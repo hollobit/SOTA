@@ -1,0 +1,567 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-27",
+  "session": "S251",
+  "note": "Batch from 10 links. NEW model Qwen3.8-Flash-Next (125B/6B hybrid-attn MoE, instruct scores). NEW benchmark AA Mobile Intelligence (on-device, iPhone 17 Pro) + E2E time, with 6 new small models (LFM2.5-2.6B/350M/230M, Nanbeige4.2-3B, Ornith-1.0-9B, G9v3-3B). AA GPQA Diamond net-new base models (7; existing bench already has 226). SKIPPED: Qwen3.8-Max blog (model already at 42 benches; competitor columns excluded per strict-attribution; net-new marginal); PAI-Bench arXiv 2512.01989 (older snapshot of the same SHI-Labs benchmark already populated from newer live HF leaderboard, config mismatch -> mis-attribution risk); NVIDIA PBench (WebFetch-summarizer scores, unverified + low DB coverage); NVIDIA simulation blog (no benchmark data). Qwen3.8-Flash-Next proxy-model ablation tables skipped (not the shipped model). Mobile reasoning/non-reasoning variants -> best per base model.",
+  "sources": [
+   "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+   "https://qwen.ai/blog?id=qwen3.8-flash-next",
+   "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference",
+   "https://artificialanalysis.ai/evaluations/gpqa-diamond"
+  ]
+ },
+ "models": [
+  {
+   "id": "alibaba/qwen3.8-flash-next",
+   "name": "Qwen3.8-Flash-Next",
+   "developer": "Alibaba (Qwen Team)",
+   "vendor": "alibaba",
+   "release_date": "2026-08-26",
+   "license": "qwen-community-1.0",
+   "context_window": 262144,
+   "base_model": "alibaba/qwen3.8-max",
+   "_note": "125B total / 6B active sparse-MoE (512 experts, 10+1 active) + 51B n-gram embeddings + 4B MTP. Hybrid attention (3x Gated DeltaNet + 1x Qwen Sparse Attention per block). 262K ctx (ext. 1M). Reasoning model. qwen.ai/blog?id=qwen3.8-flash-next; tech report 'On the Design of Qwen3.8-Next Architecture' 2026-08-26."
+  },
+  {
+   "id": "liquid-ai/lfm2.5-2.6b",
+   "name": "LFM2.5-2.6B",
+   "developer": "Liquid AI",
+   "vendor": "liquid-ai",
+   "release_date": "2026-08-01",
+   "license": "lfm-open",
+   "context_window": 32768,
+   "_note": "On-device 2.6B; AA mobile benchmark. 2.3GB @4-bit on iPhone 17 Pro."
+  },
+  {
+   "id": "liquid-ai/lfm2.5-350m",
+   "name": "LFM2.5-350M",
+   "developer": "Liquid AI",
+   "vendor": "liquid-ai",
+   "release_date": "2026-08-01",
+   "license": "lfm-open",
+   "context_window": 32768,
+   "_note": "On-device 350M."
+  },
+  {
+   "id": "liquid-ai/lfm2.5-230m",
+   "name": "LFM2.5-230M",
+   "developer": "Liquid AI",
+   "vendor": "liquid-ai",
+   "release_date": "2026-08-01",
+   "license": "lfm-open",
+   "context_window": 32768,
+   "_note": "On-device 230M (smallest)."
+  },
+  {
+   "id": "nanbeige/nanbeige4.2-3b",
+   "name": "Nanbeige4.2-3B",
+   "developer": "Nanbeige Lab",
+   "vendor": "nanbeige",
+   "release_date": "2026-08-01",
+   "license": "apache-2.0",
+   "context_window": 32768,
+   "_note": "On-device 3B; top AA mobile-intelligence score (63). 4.0GB @4-bit."
+  },
+  {
+   "id": "deepreinforce-ai/ornith-1.0-9b",
+   "name": "Ornith-1.0-9B",
+   "developer": "DeepReinforce AI",
+   "vendor": "deepreinforce-ai",
+   "release_date": "2026-08-01",
+   "license": "apache-2.0",
+   "context_window": 32768,
+   "_note": "On-device 9B; AA mobile benchmark."
+  },
+  {
+   "id": "ai9stars/g9v3-3b",
+   "name": "G9v3-3B",
+   "developer": "AI9Stars",
+   "vendor": "ai9stars",
+   "release_date": "2026-08-01",
+   "license": "apache-2.0",
+   "context_window": 32768,
+   "_note": "On-device 3B; AA mobile benchmark (high non-hallucination 89%)."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "jobbench",
+   "name": "JobBench",
+   "category": "agent",
+   "metric": "score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Agentic job-task benchmark (Qwen eval suite)."
+  },
+  {
+   "id": "recreationbench",
+   "name": "RecreationBench",
+   "category": "agent",
+   "metric": "score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Long-horizon application-recreation benchmark across desktop/mobile/web (introduced by Qwen3.8-Max blog)."
+  },
+  {
+   "id": "aa_mobile_intelligence",
+   "name": "AA Mobile Intelligence (on-device avg)",
+   "category": "on-device",
+   "metric": "avg_score",
+   "higher_better": true,
+   "unit": "score",
+   "_note": "Artificial Analysis on-device benchmark: simple avg of BFCL/IFBench/AA-Omniscience/GPQA-Diamond/MATH-500, 4-bit quantized, <=8GB, iPhone 17 Pro @16K ctx. Higher better."
+  },
+  {
+   "id": "aa_mobile_e2e_time",
+   "name": "AA Mobile End-to-End Generation Time",
+   "category": "on-device",
+   "metric": "latency_sec_lower_better",
+   "higher_better": false,
+   "unit": "s",
+   "_note": "AA on-device end-to-end generation time (1024-tok prompt + 256-tok response) on iPhone 17 Pro. Lower better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "gpqa_diamond",
+   "score": 91.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "hle",
+   "score": 35.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "livecodebench_v6_pass1",
+   "score": 91.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "deepswe_1_1",
+   "score": 58.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "swe_bench_pro",
+   "score": 62.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "swe_bench_multilingual",
+   "score": 81.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "coworkbench",
+   "score": 73.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "jobbench",
+   "score": 55.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "agents_last_exam",
+   "score": 51.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "toolathlon_verified",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "ifbench",
+   "score": 81.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "recreationbench",
+   "score": 49.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "android_world",
+   "score": 84.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "osworld_v2",
+   "score": 19.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "vision2web",
+   "score": 64.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "erqa",
+   "score": 72.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "lvbench",
+   "score": 76.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "realworldqa",
+   "score": 88.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "mathvision",
+   "score": 90.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "charxiv",
+   "score": 84.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next  (model card, post-trained instruct scores)"
+  },
+  {
+   "model": "nanbeige/nanbeige4.2-3b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 63.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2.5-2.6b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 63.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "deepreinforce-ai/ornith-1.0-9b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 62.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 61.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "google/gemma-4-e4b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 60.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "tii/falcon-h1r-7b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 59.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "inclusionai/ling-3.0-tiny",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 59.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "alibaba/qwen3.5-4b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 59.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2.5-8b-a1b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 58.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "ai9stars/g9v3-3b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 56.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "google/gemma-4-e2b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 52.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "ibm/granite-4.1-8b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 49.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2-2.6b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 47.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "openbmb/minicpm5-1b",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 45.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2.5-1.2b-instruct",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 43.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2.5-230m",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 27.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2.5-350m",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 27.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "ibm/granite-4.0-350m",
+   "benchmark": "aa_mobile_intelligence",
+   "score": 21.0,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2.5-230m",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 0.9,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2.5-350m",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 1.2,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "ibm/granite-4.0-350m",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 1.5,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "openbmb/minicpm5-1b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 2.9,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2.5-1.2b-instruct",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 3.6,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2.5-8b-a1b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 5.7,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "inclusionai/ling-3.0-tiny",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 5.7,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "google/gemma-4-e2b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 7.5,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2-2.6b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 7.6,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "liquid-ai/lfm2.5-2.6b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 8.0,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "ai9stars/g9v3-3b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 9.1,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "google/gemma-4-e4b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 14.5,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "alibaba/qwen3.5-4b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 15.2,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "nanbeige/nanbeige4.2-3b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 21.4,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "ibm/granite-4.1-8b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 24.5,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "deepreinforce-ai/ornith-1.0-9b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 25.6,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 25.6,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "tii/falcon-h1r-7b",
+   "benchmark": "aa_mobile_e2e_time",
+   "score": 26.7,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/articles/mobile-phone-intelligence-inference  (Mobile Device Benchmark Set, iPhone 17 Pro, 16K ctx, 4-bit)"
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "gpqa_diamond",
+   "score": 94.9,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/gpqa-diamond  (Playwright-verified top-30, best-per-model)"
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "gpqa_diamond",
+   "score": 94.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/gpqa-diamond  (Playwright-verified top-30, best-per-model)"
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "gpqa_diamond",
+   "score": 91.7,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/gpqa-diamond  (Playwright-verified top-30, best-per-model)"
+  },
+  {
+   "model": "thinky/inkling",
+   "benchmark": "gpqa_diamond",
+   "score": 87.2,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/gpqa-diamond  (Playwright-verified top-30, best-per-model)"
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra",
+   "benchmark": "gpqa_diamond",
+   "score": 86.7,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/gpqa-diamond  (Playwright-verified top-30, best-per-model)"
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite",
+   "benchmark": "gpqa_diamond",
+   "score": 83.8,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/gpqa-diamond  (Playwright-verified top-30, best-per-model)"
+  },
+  {
+   "model": "mistral/mistral-medium-3.5",
+   "benchmark": "gpqa_diamond",
+   "score": 74.8,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/gpqa-diamond  (Playwright-verified top-30, best-per-model)"
+  }
+ ]
+}
