@@ -1,0 +1,206 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-27",
+  "session": "S251b",
+  "note": "RE-REVIEW of S251: resolved the deferred NVIDIA PBench (Cosmos Lab). Playwright-extracted the 3 clean HTML leaderboard tables (Overall/Domain/Quality) — reliable, and they match the earlier WebFetch-summarizer values. Registered under collision-free id pbench_nvidia (existing 'pbench' is Qwen RobotWorld). 8 world models: Cosmos-Predict2-14B leads (Overall 77.4). Created 6 new video world-model entries; 2 mapped. Ingested Overall + Domain score (physical fidelity). Quality Score (generic video quality) skipped. PAI-Bench arXiv 2512.01989 remains skipped (older snapshot of already-ingested SHI-Labs bench).",
+  "sources": [
+   "https://research.nvidia.com/labs/cosmos-lab/pbench/"
+  ]
+ },
+ "models": [
+  {
+   "id": "nvidia/cosmos-predict2-2b",
+   "name": "Cosmos-Predict2-2B (Video2World)",
+   "developer": "NVIDIA",
+   "vendor": "nvidia",
+   "release_date": "2026-05-01",
+   "license": "unspecified",
+   "context_window": 0,
+   "_note": "NVIDIA Cosmos world model, 2B Video2World."
+  },
+  {
+   "id": "nvidia/cosmos-predict2-14b",
+   "name": "Cosmos-Predict2-14B (Video2World)",
+   "developer": "NVIDIA",
+   "vendor": "nvidia",
+   "release_date": "2026-05-01",
+   "license": "unspecified",
+   "context_window": 0,
+   "_note": "NVIDIA Cosmos world model, 14B Video2World. PBench Overall leader (77.4)."
+  },
+  {
+   "id": "nvidia/cosmos-predict1-7b",
+   "name": "Cosmos-Predict1-7B (Video2World)",
+   "developer": "NVIDIA",
+   "vendor": "nvidia",
+   "release_date": "2025-01-01",
+   "license": "unspecified",
+   "context_window": 0,
+   "_note": "NVIDIA Cosmos-Predict1 7B Video2World."
+  },
+  {
+   "id": "nvidia/cosmos-predict1-14b",
+   "name": "Cosmos-Predict1-14B (Video2World)",
+   "developer": "NVIDIA",
+   "vendor": "nvidia",
+   "release_date": "2025-01-01",
+   "license": "unspecified",
+   "context_window": 0,
+   "_note": "NVIDIA Cosmos-Predict1 14B Video2World."
+  },
+  {
+   "id": "alibaba/wan2.1-i2v-14b",
+   "name": "Wan2.1-I2V-14B-720P",
+   "developer": "Alibaba",
+   "vendor": "alibaba",
+   "release_date": "2025-02-01",
+   "license": "unspecified",
+   "context_window": 0,
+   "_note": "Alibaba Wan2.1 image-to-video 14B (720P)."
+  },
+  {
+   "id": "lightricks/ltx-video",
+   "name": "LTX-Video",
+   "developer": "Lightricks",
+   "vendor": "lightricks",
+   "release_date": "2024-11-01",
+   "license": "unspecified",
+   "context_window": 0,
+   "_note": "Lightricks LTX-Video generation model."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "pbench_nvidia",
+   "name": "PBench Overall (NVIDIA Cosmos Lab world models)",
+   "category": "physical-ai",
+   "metric": "overall_score",
+   "higher_better": true,
+   "unit": "points",
+   "_note": "NVIDIA Cosmos Lab PBench — physical-AI world-model benchmark (Space/Time/Fundamental-Physics ontology over AV/Robot/Industry/Physics/Human/CommonSense). Overall = combination of Domain + Quality. Distinct from 'pbench' (Qwen RobotWorld). research.nvidia.com/labs/cosmos-lab/pbench."
+  },
+  {
+   "id": "pbench_nvidia_domain",
+   "name": "PBench Domain Score (physical fidelity)",
+   "category": "physical-ai",
+   "metric": "domain_score",
+   "higher_better": true,
+   "unit": "points",
+   "_note": "NVIDIA PBench Domain Score — physical plausibility across 6 domains (AV/Robot/Industry/Physics/Human/CommonSense). Higher better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "lightricks/ltx-video",
+   "benchmark": "pbench_nvidia",
+   "score": 74.0,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "lightricks/ltx-video",
+   "benchmark": "pbench_nvidia_domain",
+   "score": 77.2,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "tencent/hunyuanvideo-i2v",
+   "benchmark": "pbench_nvidia",
+   "score": 74.0,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "tencent/hunyuanvideo-i2v",
+   "benchmark": "pbench_nvidia_domain",
+   "score": 77.4,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "zhipu/cogvideox-5b",
+   "benchmark": "pbench_nvidia",
+   "score": 74.2,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "zhipu/cogvideox-5b",
+   "benchmark": "pbench_nvidia_domain",
+   "score": 79.5,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "alibaba/wan2.1-i2v-14b",
+   "benchmark": "pbench_nvidia",
+   "score": 75.8,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "alibaba/wan2.1-i2v-14b",
+   "benchmark": "pbench_nvidia_domain",
+   "score": 81.9,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "nvidia/cosmos-predict1-7b",
+   "benchmark": "pbench_nvidia",
+   "score": 73.2,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "nvidia/cosmos-predict1-7b",
+   "benchmark": "pbench_nvidia_domain",
+   "score": 77.6,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "nvidia/cosmos-predict1-14b",
+   "benchmark": "pbench_nvidia",
+   "score": 73.3,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "nvidia/cosmos-predict1-14b",
+   "benchmark": "pbench_nvidia_domain",
+   "score": 77.4,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "nvidia/cosmos-predict2-2b",
+   "benchmark": "pbench_nvidia",
+   "score": 77.2,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "nvidia/cosmos-predict2-2b",
+   "benchmark": "pbench_nvidia_domain",
+   "score": 84.8,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "nvidia/cosmos-predict2-14b",
+   "benchmark": "pbench_nvidia",
+   "score": 77.4,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  },
+  {
+   "model": "nvidia/cosmos-predict2-14b",
+   "benchmark": "pbench_nvidia_domain",
+   "score": 84.9,
+   "unit": "points",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/pbench/  (Playwright-verified HTML tables 2026-08-27)"
+  }
+ ]
+}
