@@ -290,6 +290,7 @@ var FrontierCompare = {
         'microsoft/mai-thinking-1',  // 2026-06-02 S48 — MAI-Thinking-1 35B/~1T MoE
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-35b-a3b',
+        'tencent/hy4-preview',  // 2026-08-28 S254 — Tencent Hunyuan 4 preview (770B/49B Gated DSA MoE, 1M ctx, Apache-2.0); GPQA-D 92.3, Terminal-Bench 2.1 85.4, GDPval-AA Elo 1678
         'minimax/m3',  // 2026-06-01 S44 GA — SWE-Bench Pro 59.0% (surpasses GPT-5.5)
         'minimax/m2.7',
         'baidu/ernie-5.0',

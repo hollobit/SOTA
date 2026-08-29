@@ -1,0 +1,289 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-29",
+  "session": "S254",
+  "note": "NEW model Hy4-preview (Tencent Hunyuan 4, MoE 770B/49B Gated DSA, 1M ctx, Apache-2.0). Own-column official scores from HF card images (visually verified against the hero chart). Mapped to 26 existing benchmark ids + 4 new STEM benches (MathArena Apex, SUPERChem, BrokenArXiv, HorizonMath). Tencent-internal benches (Hy-*, E-Bench) and vendor-reported competitor columns excluded per strict attribution. GLM-5.3: added ExploitGym 2h budget=105 (only 6h=130 was stored; only net-new value on the GLM-5.3 card, which otherwise fully matched our 24 benches). GlucoFM (Google CGM foundation model, arXiv 2605.30865): NOT added as a scored model — 0.72M-param time-series health model with no LLM-comparable axis; registered as a Resources reference only.",
+  "sources": [
+   "https://huggingface.co/tencent/Hy4-preview",
+   "https://huggingface.co/zai-org/GLM-5.3"
+  ]
+ },
+ "models": [
+  {
+   "id": "tencent/hy4-preview",
+   "name": "Hy4 preview",
+   "developer": "Tencent Hunyuan",
+   "vendor": "tencent",
+   "release_date": "2026-08-28",
+   "license": "apache-2.0",
+   "context_window": 1048576,
+   "_note": "Tencent Hunyuan 4 early preview. MoE 770B total / 49B active (256 routed + 1 shared, top-8), 78 layers, Gated DeepSeek Sparse Attention + IndexCache, native MTP, 1M ctx, Apache-2.0. Text-focused reasoning model (default effort 'high'). huggingface.co/tencent/Hy4-preview."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "math_arena_apex",
+   "name": "MathArena Apex 2025",
+   "category": "math",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Competition-math benchmark (Apex 2025 set). Higher better."
+  },
+  {
+   "id": "superchem",
+   "name": "SUPERChem",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Advanced chemistry reasoning benchmark. Higher better."
+  },
+  {
+   "id": "brokenarxiv",
+   "name": "BrokenArXiv",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Error-finding in arXiv-style scientific reasoning. Higher better."
+  },
+  {
+   "id": "horizonmath",
+   "name": "HorizonMath (pass@4)",
+   "category": "math",
+   "metric": "pass_at_4",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Frontier math benchmark, pass@4. Higher better."
+  },
+  {
+   "id": "exploitgym_2h",
+   "name": "ExploitGym (2h budget)",
+   "category": "cyber",
+   "metric": "total_lower_or_higher",
+   "higher_better": true,
+   "unit": "count",
+   "_note": "ExploitGym total at 2-hour inference budget (vs the 6h in exploitgym_total). 869 tasks, Pass@1. huggingface.co/zai-org/GLM-5.3."
+  }
+ ],
+ "scores": [
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "terminal_bench_2_1",
+   "score": 85.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "swe_bench_multilingual",
+   "score": 82.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "swe_bench_pro",
+   "score": 65.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "deepswe_1_1",
+   "score": 64.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "swe_marathon",
+   "score": 31.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "nl2repo_bench",
+   "score": 58.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "cybergym",
+   "score": 78.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "programbench",
+   "score": 17.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "posttrainbench",
+   "score": 35.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "widesearch",
+   "score": 83.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "officeqa_pro",
+   "score": 66.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "toolathlon_verified",
+   "score": 74.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "agents_last_exam",
+   "score": 22.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "gdpval_aa_elo",
+   "score": 1678.0,
+   "unit": "elo",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "automationbench",
+   "score": 32.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "hle_with_tools",
+   "score": 55.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "hle",
+   "score": 43.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "gpqa_diamond",
+   "score": 92.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "jobbench",
+   "score": 61.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "critpt",
+   "score": 16.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "mcp_atlas",
+   "score": 83.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "apex_agents",
+   "score": 37.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "biomysterybench",
+   "score": 71.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "draco",
+   "score": 77.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "arxivmath",
+   "score": 66.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "skillsbench",
+   "score": 62.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "math_arena_apex",
+   "score": 74.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "superchem",
+   "score": 66.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "brokenarxiv",
+   "score": 54.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "horizonmath",
+   "score": 8.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)"
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "exploitgym_2h",
+   "score": 105.0,
+   "unit": "count",
+   "_source": "https://huggingface.co/zai-org/GLM-5.3  (card text table)"
+  }
+ ]
+}
