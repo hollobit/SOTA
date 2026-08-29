@@ -1,0 +1,126 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-29",
+  "session": "S254b",
+  "note": "RE-REVIEW of S254: completes Hy4-preview's official standard-benchmark profile with 7 non-internal benches skipped in the first pass (SWE-Atlas 3 splits, Harbor-Index, OneMillionBench, WorkspaceBench, BankerToolBench). Values from the official HF benchmark-appendix.jpg (Hy4 preview column); SWE-Atlas Refactoring 53.3 and OneMillionBench 65.4 additionally confirmed in the hero chart. Tencent-internal (Hy-*/E-Bench) and vendor-reported competitor columns remain excluded.",
+  "sources": [
+   "https://huggingface.co/tencent/Hy4-preview"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "swe_atlas_qa",
+   "name": "SWE-Atlas — Codebase Q&A",
+   "category": "coding",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "SWE-Atlas codebase question-answering split. Higher better."
+  },
+  {
+   "id": "swe_atlas_testwriting",
+   "name": "SWE-Atlas — Test Writing",
+   "category": "coding",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "SWE-Atlas test-writing split. Higher better."
+  },
+  {
+   "id": "swe_atlas_refactoring",
+   "name": "SWE-Atlas — Refactoring",
+   "category": "coding",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "SWE-Atlas refactoring split. Higher better."
+  },
+  {
+   "id": "harbor_index",
+   "name": "Harbor-Index",
+   "category": "coding",
+   "metric": "score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Agentic coding index (Hy4 blog). Higher better."
+  },
+  {
+   "id": "onemillionbench",
+   "name": "OneMillionBench (with tools)",
+   "category": "agent",
+   "metric": "score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Long-horizon agentic search benchmark with tools. Higher better."
+  },
+  {
+   "id": "workspacebench",
+   "name": "WorkspaceBench",
+   "category": "agent",
+   "metric": "score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Workspace/office agentic benchmark. Higher better."
+  },
+  {
+   "id": "bankertoolbench",
+   "name": "BankerToolBench",
+   "category": "agent",
+   "metric": "score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Finance/banking tool-use agentic benchmark. Higher better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "swe_atlas_qa",
+   "score": 64.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark-appendix.jpg, Hy4 preview column; hero-chart OCR-verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "swe_atlas_testwriting",
+   "score": 57.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark-appendix.jpg, Hy4 preview column; hero-chart OCR-verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "swe_atlas_refactoring",
+   "score": 53.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark-appendix.jpg, Hy4 preview column; hero-chart OCR-verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "harbor_index",
+   "score": 39.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark-appendix.jpg, Hy4 preview column; hero-chart OCR-verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "onemillionbench",
+   "score": 65.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark-appendix.jpg, Hy4 preview column; hero-chart OCR-verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "workspacebench",
+   "score": 60.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark-appendix.jpg, Hy4 preview column; hero-chart OCR-verified)"
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "bankertoolbench",
+   "score": 78.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/tencent/Hy4-preview  (official benchmark-appendix.jpg, Hy4 preview column; hero-chart OCR-verified)"
+  }
+ ]
+}
