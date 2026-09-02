@@ -1,0 +1,100 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-02",
+  "session": "S256b",
+  "note": "RE-REVIEW of S256: added exact-numeric system-card benches skipped in the first pass. Fable 5.1: OfficeQA 80.2, Gray Swan IPI (indirect-prompt-injection ASR, lower-better, most robust Claude). Mythos 5.1: ArXivMath 91.33 (no-tools; contamination caveat noted), Protocols Troubleshooting 70.2 / Understanding 77.2, Protein Design Seq-Gen 46.0 / Library-Ranking 49.3, OSS-Fuzz >0 78.7%. Figure-only values (CritPT/DRACO/ExploitGym) still excluded; FrontierCode/BenchCAD skipped (effort-config ambiguity vs existing ids); competitor columns excluded.",
+  "sources": [
+   "https://www.anthropic.com/claude-fable-and-mythos-5-1"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "gray_swan_ipi",
+   "name": "Gray Swan IPI (indirect prompt injection ASR)",
+   "category": "safety",
+   "metric": "asr_lower_better",
+   "higher_better": false,
+   "unit": "%",
+   "_note": "Gray Swan indirect-prompt-injection attack success rate at k=15 (lower=safer)."
+  },
+  {
+   "id": "protein_design_sequence_generation",
+   "name": "Protein Design — Sequence Generation",
+   "category": "medical",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Life-sciences protein sequence generation. Higher better."
+  },
+  {
+   "id": "protein_design_library_ranking",
+   "name": "Protein Design — Library Ranking",
+   "category": "medical",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Life-sciences protein library ranking. Higher better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "officeqa",
+   "score": 80.2,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (System Card, in-text values)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "gray_swan_ipi",
+   "score": 1.0,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (System Card, in-text values)",
+   "_note": "k=15 ASR; most robust Claude to date (Opus 5 4.8, Fable 5 6.5)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "arxivmath",
+   "score": 91.33,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (System Card, in-text values)",
+   "_note": "No tools, max effort (June 2026 set); card notes possible contamination"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "protocols_troubleshooting",
+   "score": 70.2,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (System Card, in-text values)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "protocols_understanding",
+   "score": 77.2,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (System Card, in-text values)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "protein_design_sequence_generation",
+   "score": 46.0,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (System Card, in-text values)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "protein_design_library_ranking",
+   "score": 49.3,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (System Card, in-text values)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "oss_fuzz_above_0",
+   "score": 78.7,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (System Card, in-text values)",
+   "_note": "OSS-Fuzz vuln identification (>0) trial rate"
+  }
+ ]
+}
