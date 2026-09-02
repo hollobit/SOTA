@@ -204,6 +204,8 @@ var FrontierCompare = {
         'xai/grok-4.5',  // 2026-07-08 S175 — AAII v4.1 54 (#8/186); SWE-Marathon 29 SOTA, AutomationBench-AA 51 SOTA, GDPval+ 29 SOTA; $2/$6 per Mtok, 500K ctx, GB300-trained
         // 2026-06-09 S65 Anthropic Claude Fable 5 + Mythos 5 — 13 NEW SOTAs (SWE-Bench Pro 80.3, ExploitBench 78, GDP.pdf 29.8, OSWorld 85, Toolathlon 61.7, BioMystery 46.1/83.9, LatchBio 69.2/59.3, FrontierCode 29.3/46.3) + S66 Fable 5 AAII 65 #1 NEW SOTA
         'anthropic/claude-opus-5',    // 2026-07-24 S225 — Claude Opus 5 (arena WebDev #1 1705, Document #1 1520); add so Timeline frontier graph includes it
+        'anthropic/claude-fable-5.1',  // 2026-09-01 S256 — Fable 5.1 (flagship, SWE-Pro 81.2, GDPval-AA Elo 1853, AAII 66, 1M ctx)
+        'anthropic/claude-mythos-5.1',  // 2026-09-01 S256 — Mythos 5.1 (permissive safeguards; AECI 161.98, Firefox-147 98%, life-sciences SOTA)
         'anthropic/claude-fable-5',
         'anthropic/claude-sonnet-5',  // 2026-07-01 S160 — 40 scores from system card §3 Cyber + §4 Safeguards + §8 Capabilities
         'meituan/longcat-2.0',  // 2026-06-30 S160 — 1.6T/48B MoE, SWE-Pro 59.5 beats Gemini 3.1 Pro + GPT-5.5, 50K AI ASICs (non-NVIDIA)

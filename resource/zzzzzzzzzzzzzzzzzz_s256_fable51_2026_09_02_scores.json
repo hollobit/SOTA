@@ -1,0 +1,318 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-02",
+  "session": "S256",
+  "note": "NEW models Claude Fable 5.1 + Claude Mythos 5.1 (Anthropic, 2026-09-01) — SAME underlying model, differ only by safeguards. Fable 5.1 (GA flagship): capability benches from system card (own values, adaptive/max effort, exact numeric only; figure-only benches CritPT/DRACO/ExploitGym/effort-curves skipped) + pricing + AAII 66. Mythos 5.1 (permissive, security+life-sci): cyber (Firefox 147 98%) + life-sciences (BioMysteryBench/ProteinGym/SpatialBench/etc.) + AECI 161.98 + shared Terminal-Bench 4.0 60.9. Competitor columns excluded per strict attribution. 2 new benches (Terminal-Bench 4.0, Terminal-Bench-Science). OpenAI Astra (Path to Astra): announced-but-unreleased, no specs, single saturated secondary-sourced ExploitBench=100 -> registered as reference only, NOT scored.",
+  "sources": [
+   "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+   "https://artificialanalysis.ai/models/releases/claude-fable-5-1"
+  ]
+ },
+ "models": [
+  {
+   "id": "anthropic/claude-fable-5.1",
+   "name": "Claude Fable 5.1",
+   "developer": "Anthropic",
+   "vendor": "anthropic",
+   "release_date": "2026-09-01",
+   "license": "proprietary",
+   "context_window": 1048576,
+   "base_model": "anthropic/claude-fable-5",
+   "_note": "Anthropic flagship (Fable lineage). Same underlying model as Mythos 5.1 but with restrictive dual-use safeguards. Adaptive thinking, effort Low/Med/High/XHigh/Max. 1M ctx. SOTA on many coding/agentic benches. System card 2026-09-01."
+  },
+  {
+   "id": "anthropic/claude-mythos-5.1",
+   "name": "Claude Mythos 5.1",
+   "developer": "Anthropic",
+   "vendor": "anthropic",
+   "release_date": "2026-09-01",
+   "license": "proprietary",
+   "context_window": 1048576,
+   "base_model": "anthropic/claude-mythos-5",
+   "_note": "Identical model to Fable 5.1 with more permissive safeguards for vetted security + life-sciences professionals (trusted-access). Powers Claude Security for Enterprise. Cyber + life-sciences evals run under this label."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "terminal_bench_4",
+   "name": "Terminal-Bench 4.0",
+   "category": "coding",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Terminal-Bench 4.0 agentic terminal tasks. Higher better."
+  },
+  {
+   "id": "terminal_bench_science",
+   "name": "Terminal-Bench-Science 0.1",
+   "category": "coding",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Stanford-led scientific terminal tasks (70). Higher better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "swe_bench_pro",
+   "score": 81.2,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "swe_bench_multilingual",
+   "score": 89.1,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "swe_bench_multimodal",
+   "score": 54.7,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "deepswe_1_1",
+   "score": 67.4,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "cursorbench",
+   "score": 73.4,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "programbench",
+   "score": 87.6,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_4",
+   "score": 55.8,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_science",
+   "score": 52.6,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "hle",
+   "score": 60.9,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "hle_with_tools",
+   "score": 65.0,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "arc_agi_1",
+   "score": 97.5,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "arc_agi_2",
+   "score": 90.0,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "osworld_v2",
+   "score": 77.9,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "chartography",
+   "score": 86.2,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "gdp_pdf",
+   "score": 85.4,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "gdpval_aa_elo",
+   "score": 1853.0,
+   "unit": "elo",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_briefcase",
+   "score": 1694.0,
+   "unit": "elo",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "toolathlon_verified",
+   "score": 77.8,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "automationbench",
+   "score": 31.4,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "officeqa_pro",
+   "score": 69.0,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "legal_agent_benchmark",
+   "score": 19.09,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "healthbench_professional",
+   "score": 62.1,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "global_mmlu",
+   "score": 94.0,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "milu",
+   "score": 93.0,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_intelligence_index",
+   "score": 66.0,
+   "unit": "index",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "usd_per_1m",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (announcement pricing); blended via AA"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50.0,
+   "unit": "usd_per_1m",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (announcement pricing); blended via AA"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "usd_per_1m",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (announcement pricing); blended via AA",
+   "_note": "75% cheaper vs Fable 5"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "blended_price_per_mtok_lower_better",
+   "score": 7.2,
+   "unit": "usd_per_1m",
+   "_source": "https://artificialanalysis.ai/models/releases/claude-fable-5-1"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "terminal_bench_4",
+   "score": 60.9,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 161.98,
+   "unit": "eci",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)",
+   "_note": "Anthropic ECI (AECI, internal fork). 95% CI [158.20,169.00]."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "biomysterybench",
+   "score": 90.3,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "latchbio_spatialbench_verified",
+   "score": 77.6,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "latchbio_singlecellbench",
+   "score": 61.9,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "proteingym_hard",
+   "score": 49.3,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "organic_chemistry_v2",
+   "score": 69.2,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "firefox147_partial_exploit",
+   "score": 98.0,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)"
+  }
+ ]
+}
