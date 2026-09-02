@@ -588,6 +588,8 @@ var CyberCoding = {
         'anthropic/claude-opus-4.6',
         'anthropic/claude-opus-4.5',
         'anthropic/claude-sonnet-4.6',
+        'google/gemini-3.8-flash',  // 2026-09-02 S257 — Terminal-Bench 2.1 89.4, DeepSWE 73.7
+        'google/gemini-3.8-flash-cyber',  // 2026-09-02 S257 — cyber policy variant (permissive mitigations, Fairwind); CWE-Bench 47.2
         'google/gemini-3.7-flash',  // 2026-08-13 S244 — WebDev Arena 1588, Terminal-Bench 2.1 85.8, DeepSWE 65.3, FrontierCode 43.6
         'google/gemini-3.5-flash',
         'google/gemini-3.1-pro',

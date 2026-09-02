@@ -1,0 +1,238 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-03",
+  "session": "S257",
+  "note": "Google models. Gemini 3.8 Flash (NEW): official model-card Results table (p.5, read visually — authoritative, supersedes DataCamp secondary which had errors e.g. TB2.1 90.8 vs true 89.4): DeepSWE 73.7, GDPVal-AA 1545, Terminal-Bench 2.1 89.4, CharXiv 86.2, HLE-Verified 54.9, OSWorld-2.0 59.0, BioMysteryBench 88.8, LABBench2 86.2 + AAII 59 + pricing. Gemini 3.8 Flash Cyber (NEW): POLICY VARIANT (permissive cyber mitigations, Fairwind-gated; not raw uplift, per feedback_cyber_variant_publishing) — CWE-Bench 47.2 only; CyberGym has no primary number (llm-stats 86.2 rejected as base-CharXiv misattribution). Gemini 3.5 Audio (populated from empty): FLEURS/AA WER (lower-better) from first-party Google blog. Gemini Omni Flash: no change (video-gen, existing 7 arena/AA video-Elo scores correctly attributed; model card has no scores). Competitor columns + figure-only/narrative claims excluded.",
+  "sources": [
+   "https://deepmind.google/models/model-cards/gemini-3-8-flash/",
+   "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+   "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/"
+  ]
+ },
+ "models": [
+  {
+   "id": "google/gemini-3.8-flash",
+   "name": "Gemini 3.8 Flash",
+   "developer": "Google DeepMind",
+   "vendor": "google",
+   "release_date": "2026-09-02",
+   "license": "proprietary",
+   "context_window": 1048576,
+   "base_model": "google/gemini-3.7-flash",
+   "_note": "Google Gemini 3.8 Flash (built on 3.7 Flash). Multimodal (text/image/audio/video/PDF in, text out), 1M ctx / 64K out, customizable effort (high/med/low). AAII 59. Knowledge cutoff Mar 2026. deepmind.google model card 2026-09-02."
+  },
+  {
+   "id": "google/gemini-3.8-flash-cyber",
+   "name": "Gemini 3.8 Flash Cyber",
+   "developer": "Google DeepMind",
+   "vendor": "google",
+   "release_date": "2026-09-02",
+   "license": "proprietary",
+   "context_window": 1048576,
+   "base_model": "google/gemini-3.8-flash",
+   "_note": "Policy variant of Gemini 3.8 Flash with MORE PERMISSIVE cyber mitigations (refusal-boundary relaxed), Fairwind-gated to trusted defenders. Same foundational intelligence — not a raw-capability uplift (cf. GPT-5.5-Cyber). Prioritizes vuln fixing over offensive exploitation."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "cwe_bench",
+   "name": "CWE-Bench (vulnerability patching, pass@1)",
+   "category": "cyber_defense",
+   "metric": "pass_at_1",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Automated vulnerability patching benchmark, pass@1. Higher better."
+  },
+  {
+   "id": "fleurs_wer_streaming_lower_better",
+   "name": "FLEURS WER (streaming)",
+   "category": "audio",
+   "metric": "wer_lower_better",
+   "higher_better": false,
+   "unit": "%",
+   "_note": "FLEURS multilingual ASR word error rate, streaming. Lower better."
+  },
+  {
+   "id": "aa_asr_wer_lower_better",
+   "name": "Artificial Analysis ASR WER (batch)",
+   "category": "audio",
+   "metric": "wer_lower_better",
+   "higher_better": false,
+   "unit": "%",
+   "_note": "AA ASR word error rate, batch/non-streaming. Lower better."
+  },
+  {
+   "id": "aa_asr_wer_streaming_lower_better",
+   "name": "Artificial Analysis ASR WER (streaming)",
+   "category": "audio",
+   "metric": "wer_lower_better",
+   "higher_better": false,
+   "unit": "%",
+   "_note": "AA ASR word error rate, streaming. Lower better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "deepswe_1_1",
+   "score": 73.7,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "gdpval_aa_elo",
+   "score": 1545.0,
+   "unit": "elo",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "finance_agent_v2",
+   "score": 61.4,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "legal_agent_benchmark",
+   "score": 10.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_2_1",
+   "score": 89.4,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4",
+   "score": 19.1,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "gdp_pdf",
+   "score": 35.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "charxiv_reasoning_no_tools",
+   "score": 86.2,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "lvbench",
+   "score": 87.1,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)",
+   "_note": "LVBench static"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "hle",
+   "score": 54.9,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)",
+   "_note": "HLE-Verified"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "osworld_v2",
+   "score": 59.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "biomysterybench",
+   "score": 88.8,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)",
+   "_note": "BioMystery Human-Solvable"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "labbench2",
+   "score": 86.2,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_intelligence_index",
+   "score": 59.0,
+   "unit": "index",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.75,
+   "unit": "usd_per_1m",
+   "_source": "https://openrouter.ai/google/gemini-3.8-flash  (intro pricing thru 2026-12-31; Jan 2027 -> $1.50/$7.50)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 3.75,
+   "unit": "usd_per_1m",
+   "_source": "https://openrouter.ai/google/gemini-3.8-flash  (intro pricing thru 2026-12-31; Jan 2027 -> $1.50/$7.50)"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.075,
+   "unit": "usd_per_1m",
+   "_source": "https://openrouter.ai/google/gemini-3.8-flash  (intro pricing thru 2026-12-31; Jan 2027 -> $1.50/$7.50)"
+  },
+  {
+   "model": "google/gemini-3.8-flash-cyber",
+   "benchmark": "cwe_bench",
+   "score": 47.2,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+   "_note": "Real-world vuln discovery >70% across 20 languages (not exact, omitted). CyberGym: no primary number (llm-stats 86.2 rejected as misattribution of base CharXiv)."
+  },
+  {
+   "model": "google/gemini-3.5-audio",
+   "benchmark": "fleurs_avg_wer_lower_better",
+   "score": 5.04,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/  (blog body text; first-party)",
+   "_note": "FLEURS top langs, non-streaming (streaming 5.50). Transcribe variant."
+  },
+  {
+   "model": "google/gemini-3.5-audio",
+   "benchmark": "fleurs_wer_streaming_lower_better",
+   "score": 5.5,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/  (blog body text; first-party)",
+   "_note": "Transcribe variant"
+  },
+  {
+   "model": "google/gemini-3.5-audio",
+   "benchmark": "aa_asr_wer_lower_better",
+   "score": 2.6,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/  (blog body text; first-party)",
+   "_note": "AA batch (Transcribe)"
+  },
+  {
+   "model": "google/gemini-3.5-audio",
+   "benchmark": "aa_asr_wer_streaming_lower_better",
+   "score": 4.0,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/  (blog body text; first-party)",
+   "_note": "AA streaming (Transcribe)"
+  }
+ ]
+}
