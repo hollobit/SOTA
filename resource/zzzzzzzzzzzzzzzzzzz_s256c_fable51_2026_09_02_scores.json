@@ -1,0 +1,39 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-02",
+  "session": "S256c",
+  "note": "RE-REVIEW #2 of S256: extracted the figure-locked values by reading the system-card PDF pages VISUALLY (as done for GLM-5.3-Flash's chart image). Fable 5.1: CritPT-Corrected 88.4% (Fig 8.9.A, new id) + DRACO 87.7% max effort (Fig 8.12.2.A, existing draco). These were text-absent (chart-only) in the first two passes. Remaining figure-only values (ExploitBench Cap%/Full-ACEs, effort-scaling curves) are niche/redundant with text headlines and left out.",
+  "sources": [
+   "https://www.anthropic.com/claude-fable-and-mythos-5-1"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "critpt_corrected",
+   "name": "CritPT-Corrected (Pass@1)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Anthropic-corrected variant of CritPt (physics), Pass@1 at max effort with tools, avg 16 attempts. System card Fig 8.9.A."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "critpt_corrected",
+   "score": 88.4,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (System Card figures 8.9.A/8.12.2.A, read visually)",
+   "_note": "max effort w/tools; Fig 8.9.A (Opus 5 83.0, Mythos 5 85.5, Opus 4.8 76.5)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "draco",
+   "score": 87.7,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (System Card figures 8.9.A/8.12.2.A, read visually)",
+   "_note": "max effort; Fig 8.12.2.A. Anthropic re-run (diff judge model) — card notes not directly comparable to DRACO paper headline."
+  }
+ ]
+}
