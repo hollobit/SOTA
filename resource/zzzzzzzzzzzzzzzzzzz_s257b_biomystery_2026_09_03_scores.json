@@ -1,0 +1,38 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-03",
+  "session": "S257b",
+  "note": "RE-REVIEW of S257: verified the Gemini 3.8 Flash evals-methodology PDF (p.4 Results table) is IDENTICAL to the model-card p.5 table already fully ingested — the GDM-MRCR v2 named in the methodology prose has no actual score in the results table, so nothing new there. Added the one distinct authoritative metric read but not ingested: BioMysteryBench Human-Difficult tier (new id biomysterybench_hard) for Gemini 3.8 Flash 56.5 (Google card) + Claude Mythos 5.1 44.1 (Anthropic card, own column). Remaining unretrieved items are figure-locked competitor WERs (3.5 Audio blog) and Cyber narrative claims (Chrome 2.6x, Wiz recall, >70% vuln discovery) — no clean own-model numeric, left out.",
+  "sources": [
+   "https://deepmind.google/models/model-cards/gemini-3-8-flash/",
+   "https://www.anthropic.com/claude-fable-and-mythos-5-1"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "biomysterybench_hard",
+   "name": "BioMysteryBench (Human-Difficult tier)",
+   "category": "medical",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "BioMysteryBench harder 'Human-Difficult' tier (vs the standard Human-Solvable tier in biomysterybench). Higher better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "biomysterybench_hard",
+   "score": 56.5,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (Results table p.5, read visually)"
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "biomysterybench_hard",
+   "score": 44.1,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (System Card, Mythos 5.1 own column)"
+  }
+ ]
+}
