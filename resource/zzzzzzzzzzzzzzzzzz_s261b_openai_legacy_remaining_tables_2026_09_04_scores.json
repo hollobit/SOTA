@@ -1,0 +1,3488 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-04",
+  "session": "S261b",
+  "note": "Completes the OpenAI legacy system-card sweep by mining every table S261 deferred. GPT-5 system card Tables 2/4/6/7/9/11/12/13; o3-o4-mini Tables 1/2/5/6/7/8/9/10/11/12; gpt-oss Tables 2/4/8. All read from the local pdftotext extractions of the PDFs already archived in resource/. The Standard disallowed-content tables are included after all (S261 had skipped them on the grounds that OpenAI calls them saturated) because the user asked for full coverage and the values are explicit — they are registered under their own std_refusal_* ids, separate from the harder Production Benchmarks, so the two suites are never mixed. gpt-oss Table 2's per-language MMMLU (14 languages x 6 model/effort columns + 3 OpenAI baselines) shares the mmlu_lang_* ids with GPT-5 Table 11's MMLU Language rows, since both are the same translated-MMLU suite. Comparator columns for o1 / o3-mini / o4-mini-high / o3-high are included because those models already exist in the DB. Two intra-batch collisions were resolved by preferring each model's own card: o3 phrase-protection comes from the o3 card rather than the GPT-5 restatement (which differs slightly), and the gpt-oss o3-high MMMLU column was dropped as identical to GPT-5 Table 11. vision_refusal_* is kept separate from the existing vision_safety_* ids because the o3 card splits self-harm into intent/instructions while vision_safety_* uses a single self-harm category. STILL NOT INGESTED (no extractable model-attributable numbers): gpt-oss Tables 1 (parameter counts, not a benchmark), 11/12/13 and GPT-5 Table 14 and o3 Tables 13/14 — these are eval-overview tables whose cells are prose descriptions, with the actual Preparedness bio/cyber results presented in figures; GPT-5 Table 4's online-prevalence row (-0.69/-0.75 relative deltas, not a standalone score); and gpt-oss Table 3's high-effort column plus the Codeforces/HealthBench rows already loaded in S261.",
+  "sources": [
+   "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "resource/openai_o3-o4-mini_system-card.pdf"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "std_refusal_hate_aggregate",
+   "name": "Standard refusal — hate (aggregate)",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_illicit_nonviolent",
+   "name": "Standard refusal — illicit/non-violent",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_illicit_violent",
+   "name": "Standard refusal — illicit/violent",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_personal_data",
+   "name": "Standard refusal — personal-data",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_personal_data_restricted",
+   "name": "Standard refusal — personal-data/restricted",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_personal_data_semi_restrictive",
+   "name": "Standard refusal — personal-data/semi-restrictive",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_personal_data_highly_sensitive",
+   "name": "Standard refusal — personal-data/highly-sensitive",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_personal_data_extremely_sensitive",
+   "name": "Standard refusal — personal-data/extremely-sensitive",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_self_harm_combined",
+   "name": "Standard refusal — self-harm/intent and self-harm/instructions",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_self_harm_intent",
+   "name": "Standard refusal — self-harm/intent",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_self_harm_instructions",
+   "name": "Standard refusal — self-harm/instructions",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_sexual_exploitative",
+   "name": "Standard refusal — sexual/exploitative",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_sexual_minors",
+   "name": "Standard refusal — sexual/minors",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_harassment_threatening",
+   "name": "Standard refusal — harassment/threatening",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_hate",
+   "name": "Standard refusal — hate",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_hate_threatening",
+   "name": "Standard refusal — hate/threatening",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_extremist_propaganda",
+   "name": "Standard refusal — extremist/propaganda",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_regulated_advice",
+   "name": "Standard refusal — regulated-advice",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "std_refusal_aggregate_not_overrefuse",
+   "name": "Standard refusal — aggregate not_overrefuse",
+   "category": "safety",
+   "description": "OpenAI Standard disallowed-content refusal evaluation, metric not_unsafe (higher is better). OpenAI notes this suite became relatively saturated and was superseded by the harder Production Benchmarks — kept here so the pre-GPT-5.6 generations remain comparable. This row measures NOT over-refusing benign requests.",
+   "metric": "not_overrefuse"
+  },
+  {
+   "id": "challenging_refusal_aggregate",
+   "name": "Challenging refusal — aggregate",
+   "category": "safety",
+   "description": "OpenAI challenging refusal evaluation: a harder refusal set than the standard suite, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "challenging_refusal_harassment_threatening",
+   "name": "Challenging refusal — harassment/threatening",
+   "category": "safety",
+   "description": "OpenAI challenging refusal evaluation: a harder refusal set than the standard suite, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "challenging_refusal_sexual_exploitative",
+   "name": "Challenging refusal — sexual/exploitative",
+   "category": "safety",
+   "description": "OpenAI challenging refusal evaluation: a harder refusal set than the standard suite, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "challenging_refusal_sexual_minors",
+   "name": "Challenging refusal — sexual/minors",
+   "category": "safety",
+   "description": "OpenAI challenging refusal evaluation: a harder refusal set than the standard suite, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "challenging_refusal_hate_threatening",
+   "name": "Challenging refusal — hate/threatening",
+   "category": "safety",
+   "description": "OpenAI challenging refusal evaluation: a harder refusal set than the standard suite, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "challenging_refusal_illicit_nonviolent",
+   "name": "Challenging refusal — illicit/non-violent",
+   "category": "safety",
+   "description": "OpenAI challenging refusal evaluation: a harder refusal set than the standard suite, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "challenging_refusal_illicit_violent",
+   "name": "Challenging refusal — illicit/violent",
+   "category": "safety",
+   "description": "OpenAI challenging refusal evaluation: a harder refusal set than the standard suite, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "challenging_refusal_self_harm_instructions",
+   "name": "Challenging refusal — self-harm/instructions",
+   "category": "safety",
+   "description": "OpenAI challenging refusal evaluation: a harder refusal set than the standard suite, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "sycophancy_offline_lower_better",
+   "name": "Sycophancy — offline evaluation (lower better)",
+   "category": "safety",
+   "description": "OpenAI offline sycophancy evaluation; lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "ih_sys_prompt_extraction_realistic",
+   "name": "IH — system prompt extraction, realistic user attacks",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_sys_prompt_extraction_academic_user",
+   "name": "IH — system prompt extraction, academic user-vs-system attacks",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_sys_prompt_extraction_academic_dev",
+   "name": "IH — system prompt extraction, academic developer-vs-system attacks",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_phrase_protection_user",
+   "name": "IH — phrase protection, malicious user message",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_phrase_protection_dev",
+   "name": "IH — phrase protection, malicious developer message",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_password_protection_user",
+   "name": "IH — password protection, user message",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_password_protection_dev",
+   "name": "IH — password protection, developer message",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_conflict_dev_vs_user",
+   "name": "IH — developer <> user message conflict",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_conflict_sys_vs_dev",
+   "name": "IH — system <> developer message conflict",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_conflict_sys_vs_user",
+   "name": "IH — system <> user message conflict",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_tutor_jailbreak_system",
+   "name": "IH — tutor jailbreak, system message",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_tutor_jailbreak_dev",
+   "name": "IH — tutor jailbreak, developer message",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: accuracy at following the highest-priority message. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "prompt_injection_browsing",
+   "name": "Browsing prompt injections",
+   "category": "safety",
+   "description": "OpenAI internal prompt-injection evaluation by surface; higher is better (attack resisted).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "prompt_injection_tool_calling",
+   "name": "Tool-calling prompt injections",
+   "category": "safety",
+   "description": "OpenAI internal prompt-injection evaluation by surface; higher is better (attack resisted).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "prompt_injection_coding",
+   "name": "Coding prompt injections",
+   "category": "safety",
+   "description": "OpenAI internal prompt-injection evaluation by surface; higher is better (attack resisted).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "deception_coding_lower_better",
+   "name": "Coding Deception rate (lower better)",
+   "category": "safety",
+   "description": "OpenAI deception evaluation: how often the user-facing response misrepresents the model's internal reasoning or the actions it took.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "deception_browsing_broken_tools_lower_better",
+   "name": "Browsing Broken Tools deception rate (lower better)",
+   "category": "safety",
+   "description": "OpenAI deception evaluation: how often the user-facing response misrepresents the model's internal reasoning or the actions it took.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "deception_charxiv_missing_image_lower_better",
+   "name": "CharXiv Missing Image deception rate (lower better)",
+   "category": "safety",
+   "description": "OpenAI deception evaluation: how often the user-facing response misrepresents the model's internal reasoning or the actions it took.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "abstentionbench",
+   "name": "AbstentionBench (recall, higher better)",
+   "category": "safety",
+   "description": "Measures whether the model appropriately abstains / acknowledges it cannot solve a task.",
+   "metric": "recall"
+  },
+  {
+   "id": "mmlu_lang_arabic",
+   "name": "MMLU Language (Arabic)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_bengali",
+   "name": "MMLU Language (Bengali)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_chinese",
+   "name": "MMLU Language (Chinese (Simplified))",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_french",
+   "name": "MMLU Language (French)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_german",
+   "name": "MMLU Language (German)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_hindi",
+   "name": "MMLU Language (Hindi)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_indonesian",
+   "name": "MMLU Language (Indonesian)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_italian",
+   "name": "MMLU Language (Italian)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_japanese",
+   "name": "MMLU Language (Japanese)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_korean",
+   "name": "MMLU Language (Korean)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_portuguese",
+   "name": "MMLU Language (Portuguese (Brazil))",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_spanish",
+   "name": "MMLU Language (Spanish)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_swahili",
+   "name": "MMLU Language (Swahili)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "mmlu_lang_yoruba",
+   "name": "MMLU Language (Yoruba)",
+   "category": "multilingual",
+   "description": "MMLU translated into the target language, 0-shot chain-of-thought (OpenAI 'MMLU Language' / MMMLU suite).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "bbq_p_not_stereotyping",
+   "name": "BBQ — P(not stereotyping | ambiguous, not unknown)",
+   "category": "fairness",
+   "description": "BBQ: probability the model does not pick the stereotyping answer on ambiguous questions where it did not answer 'unknown'.",
+   "metric": "probability"
+  },
+  {
+   "id": "person_id_non_adversarial",
+   "name": "Person Identification — non-adversarial",
+   "category": "safety",
+   "description": "Multimodal person-identification and ungrounded-inference refusal evaluation (higher is better).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "person_id_adversarial",
+   "name": "Person Identification — adversarial",
+   "category": "safety",
+   "description": "Multimodal person-identification and ungrounded-inference refusal evaluation (higher is better).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ungrounded_inference_non_adversarial",
+   "name": "Ungrounded Inference — non-adversarial",
+   "category": "safety",
+   "description": "Multimodal person-identification and ungrounded-inference refusal evaluation (higher is better).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ungrounded_inference_adversarial",
+   "name": "Ungrounded Inference — adversarial",
+   "category": "safety",
+   "description": "Multimodal person-identification and ungrounded-inference refusal evaluation (higher is better).",
+   "metric": "accuracy"
+  },
+  {
+   "id": "vision_refusal_sexual_exploitative",
+   "name": "Vision refusal — sexual/exploitative",
+   "category": "safety",
+   "description": "Multimodal refusal evaluation on disallowed combined text+image content, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "vision_refusal_self_harm_intent",
+   "name": "Vision refusal — self-harm/intent",
+   "category": "safety",
+   "description": "Multimodal refusal evaluation on disallowed combined text+image content, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "vision_refusal_self_harm_instructions",
+   "name": "Vision refusal — self-harm/instructions",
+   "category": "safety",
+   "description": "Multimodal refusal evaluation on disallowed combined text+image content, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "image_gen_refusal_not_unsafe",
+   "name": "Image generation refusals — not_unsafe (with system mitigations)",
+   "category": "safety",
+   "description": "o3/o4-mini cannot natively generate images but can call the image-generation tool; measured with system mitigations in place.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "image_gen_refusal_not_overrefuse",
+   "name": "Image generation refusals — not_overrefuse (with system mitigations)",
+   "category": "safety",
+   "description": "Complement of the above: whether benign image requests are not over-refused.",
+   "metric": "not_overrefuse"
+  },
+  {
+   "id": "attack_planning_redteam_winrate",
+   "name": "Attack-planning red-team blind-comparison win rate (safer model)",
+   "category": "safety",
+   "description": "Blind human red-team comparison: share of comparisons where the model was judged the safer of the pair on attack-planning prompts.",
+   "metric": "win_rate"
+  }
+ ],
+ "scores": [
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "std_refusal_hate_aggregate",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "std_refusal_hate_aggregate",
+   "score": 0.987,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "std_refusal_hate_aggregate",
+   "score": 0.996,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "std_refusal_illicit_nonviolent",
+   "score": 0.991,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "std_refusal_illicit_nonviolent",
+   "score": 0.991,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "std_refusal_illicit_nonviolent",
+   "score": 0.983,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "std_refusal_illicit_violent",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "std_refusal_illicit_violent",
+   "score": 0.992,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "std_refusal_illicit_violent",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "std_refusal_personal_data",
+   "score": 0.881,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "std_refusal_personal_data",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "std_refusal_personal_data",
+   "score": 0.967,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "std_refusal_personal_data_restricted",
+   "score": 0.989,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "std_refusal_personal_data_restricted",
+   "score": 0.989,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "std_refusal_personal_data_restricted",
+   "score": 0.978,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "std_refusal_self_harm_combined",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "std_refusal_self_harm_combined",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "std_refusal_self_harm_combined",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "std_refusal_sexual_exploitative",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "std_refusal_sexual_exploitative",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "std_refusal_sexual_exploitative",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "std_refusal_sexual_minors",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "std_refusal_sexual_minors",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "std_refusal_sexual_minors",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 2 Standard Disallowed Content Evaluation — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "std_refusal_hate_aggregate",
+   "score": 0.996,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "std_refusal_hate_aggregate",
+   "score": 0.996,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "std_refusal_self_harm_combined",
+   "score": 0.995,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "std_refusal_self_harm_combined",
+   "score": 0.984,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "std_refusal_personal_data_semi_restrictive",
+   "score": 0.967,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "std_refusal_personal_data_semi_restrictive",
+   "score": 0.947,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "std_refusal_sexual_exploitative",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "std_refusal_sexual_exploitative",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "std_refusal_sexual_minors",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "std_refusal_sexual_minors",
+   "score": 0.971,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "std_refusal_illicit_nonviolent",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "std_refusal_illicit_nonviolent",
+   "score": 0.983,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "std_refusal_illicit_violent",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "std_refusal_illicit_violent",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "std_refusal_personal_data_restricted",
+   "score": 0.996,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "std_refusal_personal_data_restricted",
+   "score": 0.978,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 4 Standard Disallowed Content Evaluation"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_harassment_threatening",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_harassment_threatening",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_harassment_threatening",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_sexual_exploitative",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_sexual_exploitative",
+   "score": 0.96,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_sexual_exploitative",
+   "score": 0.94,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_sexual_minors",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_sexual_minors",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_sexual_minors",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_extremist_propaganda",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — o4-mini's extremist/propaganda category has only 30 prompts; it refused 28"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_extremist_propaganda",
+   "score": 0.93,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — o4-mini's extremist/propaganda category has only 30 prompts; it refused 28"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_extremist_propaganda",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_hate",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_hate",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_hate",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_hate_threatening",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_hate_threatening",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_hate_threatening",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_illicit_nonviolent",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_illicit_nonviolent",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_illicit_nonviolent",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_illicit_violent",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_illicit_violent",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_illicit_violent",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_personal_data_highly_sensitive",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_personal_data_highly_sensitive",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_personal_data_highly_sensitive",
+   "score": 0.96,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_personal_data_extremely_sensitive",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_personal_data_extremely_sensitive",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_personal_data_extremely_sensitive",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_regulated_advice",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_regulated_advice",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_regulated_advice",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_self_harm_intent",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_self_harm_intent",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_self_harm_intent",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_self_harm_instructions",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_self_harm_instructions",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_self_harm_instructions",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "std_refusal_aggregate_not_overrefuse",
+   "score": 0.84,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "std_refusal_aggregate_not_overrefuse",
+   "score": 0.81,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "std_refusal_aggregate_not_overrefuse",
+   "score": 0.86,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 1 Standard refusal evaluation"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "challenging_refusal_aggregate",
+   "score": 0.92,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "challenging_refusal_aggregate",
+   "score": 0.9,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "challenging_refusal_aggregate",
+   "score": 0.92,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "challenging_refusal_harassment_threatening",
+   "score": 0.9,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "challenging_refusal_harassment_threatening",
+   "score": 0.88,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "challenging_refusal_harassment_threatening",
+   "score": 0.9,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "challenging_refusal_sexual_exploitative",
+   "score": 0.94,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "challenging_refusal_sexual_exploitative",
+   "score": 0.93,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "challenging_refusal_sexual_exploitative",
+   "score": 0.95,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "challenging_refusal_sexual_minors",
+   "score": 0.91,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "challenging_refusal_sexual_minors",
+   "score": 0.9,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "challenging_refusal_sexual_minors",
+   "score": 0.9,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "challenging_refusal_hate_threatening",
+   "score": 0.82,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "challenging_refusal_hate_threatening",
+   "score": 0.82,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "challenging_refusal_hate_threatening",
+   "score": 0.91,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "challenging_refusal_illicit_nonviolent",
+   "score": 0.91,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "challenging_refusal_illicit_nonviolent",
+   "score": 0.87,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "challenging_refusal_illicit_nonviolent",
+   "score": 0.92,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "challenging_refusal_illicit_violent",
+   "score": 0.96,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "challenging_refusal_illicit_violent",
+   "score": 0.96,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "challenging_refusal_illicit_violent",
+   "score": 0.96,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "challenging_refusal_self_harm_instructions",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "challenging_refusal_self_harm_instructions",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "challenging_refusal_self_harm_instructions",
+   "score": 0.85,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 2 Challenging refusal evaluation — comparator"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "sycophancy_offline_lower_better",
+   "score": 0.145,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 4 Sycophancy evaluation (offline) — baseline"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "sycophancy_offline_lower_better",
+   "score": 0.052,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 4 Sycophancy evaluation (offline)"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "sycophancy_offline_lower_better",
+   "score": 0.04,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 4 Sycophancy evaluation (offline)"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "ih_sys_prompt_extraction_realistic",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_sys_prompt_extraction_realistic",
+   "score": 0.997,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "ih_sys_prompt_extraction_realistic",
+   "score": 0.885,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — OpenAI flags these as regressions for gpt-5-main"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "ih_sys_prompt_extraction_realistic",
+   "score": 0.885,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "ih_sys_prompt_extraction_academic_user",
+   "score": 0.991,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_sys_prompt_extraction_academic_user",
+   "score": 0.982,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "ih_sys_prompt_extraction_academic_user",
+   "score": 0.93,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — OpenAI flags these as regressions for gpt-5-main"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "ih_sys_prompt_extraction_academic_user",
+   "score": 0.825,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "ih_sys_prompt_extraction_academic_dev",
+   "score": 0.991,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_sys_prompt_extraction_academic_dev",
+   "score": 0.982,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "ih_sys_prompt_extraction_academic_dev",
+   "score": 0.789,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — OpenAI flags these as regressions for gpt-5-main"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "ih_sys_prompt_extraction_academic_dev",
+   "score": 0.561,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "ih_phrase_protection_user",
+   "score": 0.94,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "ih_phrase_protection_user",
+   "score": 0.619,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — OpenAI flags these as regressions for gpt-5-main"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "ih_phrase_protection_user",
+   "score": 0.735,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "ih_phrase_protection_dev",
+   "score": 0.911,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "ih_phrase_protection_dev",
+   "score": 0.404,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — OpenAI flags these as regressions for gpt-5-main"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "ih_phrase_protection_dev",
+   "score": 0.449,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 6 Instruction Hierarchy Evaluations — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_conflict_dev_vs_user",
+   "score": 0.86,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 9 IH — conflicts between message types"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ih_conflict_dev_vs_user",
+   "score": 0.75,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 9 IH — conflicts between message types"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "ih_conflict_dev_vs_user",
+   "score": 0.77,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 9 IH — conflicts between message types — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_conflict_sys_vs_dev",
+   "score": 0.86,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 9 IH — conflicts between message types"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ih_conflict_sys_vs_dev",
+   "score": 0.68,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 9 IH — conflicts between message types"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "ih_conflict_sys_vs_dev",
+   "score": 0.84,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 9 IH — conflicts between message types — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_conflict_sys_vs_user",
+   "score": 0.79,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 9 IH — conflicts between message types"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ih_conflict_sys_vs_user",
+   "score": 0.75,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 9 IH — conflicts between message types"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "ih_conflict_sys_vs_user",
+   "score": 0.85,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 9 IH — conflicts between message types — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_tutor_jailbreak_system",
+   "score": 0.91,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 10 IH — tutor jailbreaks"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ih_tutor_jailbreak_system",
+   "score": 0.69,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 10 IH — tutor jailbreaks"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "ih_tutor_jailbreak_system",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 10 IH — tutor jailbreaks — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_tutor_jailbreak_dev",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 10 IH — tutor jailbreaks"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ih_tutor_jailbreak_dev",
+   "score": 0.93,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 10 IH — tutor jailbreaks"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "ih_tutor_jailbreak_dev",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 10 IH — tutor jailbreaks — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_phrase_protection_user",
+   "score": 0.97,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ih_phrase_protection_user",
+   "score": 0.94,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "ih_phrase_protection_user",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_phrase_protection_dev",
+   "score": 0.93,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ih_phrase_protection_dev",
+   "score": 0.85,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "ih_phrase_protection_dev",
+   "score": 0.89,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_password_protection_user",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ih_password_protection_user",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "ih_password_protection_user",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ih_password_protection_dev",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ih_password_protection_dev",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "ih_password_protection_dev",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 11 IH — phrase and password protection — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "ih_phrase_protection_user",
+   "score": 0.912,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 8 IH — phrase and password protection (system-vs-user framing)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "ih_phrase_protection_user",
+   "score": 0.793,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 8 IH — phrase and password protection (system-vs-user framing)"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "ih_password_protection_user",
+   "score": 0.965,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 8 IH — phrase and password protection (system-vs-user framing)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "ih_password_protection_user",
+   "score": 0.947,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 8 IH — phrase and password protection (system-vs-user framing)"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "ih_phrase_protection_dev",
+   "score": 0.909,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 8 IH — phrase and password protection (system-vs-user framing)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "ih_phrase_protection_dev",
+   "score": 0.661,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 8 IH — phrase and password protection (system-vs-user framing)"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prompt_injection_browsing",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 7 Prompt Injection Evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prompt_injection_browsing",
+   "score": 0.89,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 7 Prompt Injection Evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prompt_injection_tool_calling",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 7 Prompt Injection Evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prompt_injection_tool_calling",
+   "score": 0.8,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 7 Prompt Injection Evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prompt_injection_coding",
+   "score": 0.97,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 7 Prompt Injection Evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prompt_injection_coding",
+   "score": 0.94,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 7 Prompt Injection Evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "deception_coding_lower_better",
+   "score": 0.17,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 9 Deception evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "deception_coding_lower_better",
+   "score": 0.47,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 9 Deception evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "deception_browsing_broken_tools_lower_better",
+   "score": 0.11,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 9 Deception evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "deception_browsing_broken_tools_lower_better",
+   "score": 0.61,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 9 Deception evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "deception_charxiv_missing_image_lower_better",
+   "score": 0.09,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 9 Deception evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "deception_charxiv_missing_image_lower_better",
+   "score": 0.87,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 9 Deception evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "abstentionbench",
+   "score": 0.53,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 9 Deception evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "abstentionbench",
+   "score": 0.44,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 9 Deception evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_arabic",
+   "score": 90.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_arabic",
+   "score": 85.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_arabic",
+   "score": 90.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_bengali",
+   "score": 89.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_bengali",
+   "score": 85.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_bengali",
+   "score": 87.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_chinese",
+   "score": 90.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_chinese",
+   "score": 86.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_chinese",
+   "score": 89.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_french",
+   "score": 90.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_french",
+   "score": 87.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_french",
+   "score": 90.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_german",
+   "score": 89.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_german",
+   "score": 86.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_german",
+   "score": 90.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_hindi",
+   "score": 89.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_hindi",
+   "score": 86.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_hindi",
+   "score": 89.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_indonesian",
+   "score": 90.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_indonesian",
+   "score": 87.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_indonesian",
+   "score": 89.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_italian",
+   "score": 90.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_italian",
+   "score": 87.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_italian",
+   "score": 91.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_japanese",
+   "score": 89.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_japanese",
+   "score": 86.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_japanese",
+   "score": 89.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_korean",
+   "score": 89.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_korean",
+   "score": 85.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_korean",
+   "score": 89.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_portuguese",
+   "score": 91.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_portuguese",
+   "score": 87.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_portuguese",
+   "score": 91.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_spanish",
+   "score": 91.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_spanish",
+   "score": 88.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_spanish",
+   "score": 91.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_swahili",
+   "score": 88.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_swahili",
+   "score": 81.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_swahili",
+   "score": 86.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "mmlu_lang_yoruba",
+   "score": 80.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "mmlu_lang_yoruba",
+   "score": 66.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot)"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "mmlu_lang_yoruba",
+   "score": 78.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 11 MMLU Language (0-shot) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_arabic",
+   "score": 75.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_arabic",
+   "score": 80.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_arabic",
+   "score": 82.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_arabic",
+   "score": 65.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_arabic",
+   "score": 73.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_arabic",
+   "score": 76.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_arabic",
+   "score": 81.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_arabic",
+   "score": 86.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_bengali",
+   "score": 71.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_bengali",
+   "score": 78.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_bengali",
+   "score": 80.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_bengali",
+   "score": 68.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_bengali",
+   "score": 74.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_bengali",
+   "score": 77.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_bengali",
+   "score": 80.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_bengali",
+   "score": 84.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_chinese",
+   "score": 77.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_chinese",
+   "score": 82.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_chinese",
+   "score": 83.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_chinese",
+   "score": 72.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_chinese",
+   "score": 78.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_chinese",
+   "score": 79.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_chinese",
+   "score": 83.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_chinese",
+   "score": 86.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_french",
+   "score": 79.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_french",
+   "score": 83.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_french",
+   "score": 84.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_french",
+   "score": 73.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_french",
+   "score": 78.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_french",
+   "score": 80.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_french",
+   "score": 83.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_french",
+   "score": 87.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_german",
+   "score": 78.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_german",
+   "score": 81.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_german",
+   "score": 83.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_german",
+   "score": 71.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_german",
+   "score": 77.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_german",
+   "score": 78.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_german",
+   "score": 80.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_german",
+   "score": 86.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_hindi",
+   "score": 74.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_hindi",
+   "score": 80.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_hindi",
+   "score": 82.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_hindi",
+   "score": 70.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_hindi",
+   "score": 76.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_hindi",
+   "score": 78.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_hindi",
+   "score": 81.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_hindi",
+   "score": 85.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_indonesian",
+   "score": 78.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_indonesian",
+   "score": 82.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_indonesian",
+   "score": 84.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_indonesian",
+   "score": 71.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_indonesian",
+   "score": 77.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_indonesian",
+   "score": 79.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_indonesian",
+   "score": 82.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_indonesian",
+   "score": 86.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_italian",
+   "score": 79.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_italian",
+   "score": 83.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_italian",
+   "score": 85.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_italian",
+   "score": 73.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_italian",
+   "score": 79.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_italian",
+   "score": 80.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_italian",
+   "score": 83.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_italian",
+   "score": 87.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_japanese",
+   "score": 77.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_japanese",
+   "score": 82.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_japanese",
+   "score": 83.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_japanese",
+   "score": 70.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_japanese",
+   "score": 76.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_japanese",
+   "score": 78.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_japanese",
+   "score": 83.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_japanese",
+   "score": 86.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_korean",
+   "score": 75.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_korean",
+   "score": 80.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_korean",
+   "score": 82.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_korean",
+   "score": 69.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_korean",
+   "score": 75.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_korean",
+   "score": 77.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_korean",
+   "score": 82.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_korean",
+   "score": 86.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_portuguese",
+   "score": 80.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_portuguese",
+   "score": 83.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_portuguese",
+   "score": 85.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_portuguese",
+   "score": 73.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_portuguese",
+   "score": 79.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_portuguese",
+   "score": 80.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_portuguese",
+   "score": 84.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_portuguese",
+   "score": 87.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_spanish",
+   "score": 80.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_spanish",
+   "score": 84.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_spanish",
+   "score": 85.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_spanish",
+   "score": 75.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_spanish",
+   "score": 79.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_spanish",
+   "score": 81.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_spanish",
+   "score": 84.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_spanish",
+   "score": 88.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_swahili",
+   "score": 59.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_swahili",
+   "score": 69.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_swahili",
+   "score": 72.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_swahili",
+   "score": 46.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_swahili",
+   "score": 56.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_swahili",
+   "score": 60.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_swahili",
+   "score": 73.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_swahili",
+   "score": 81.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu_lang_yoruba",
+   "score": 49.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu_lang_yoruba",
+   "score": 58.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mmlu_lang_yoruba",
+   "score": 62.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu_lang_yoruba",
+   "score": 38.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — low reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu_lang_yoruba",
+   "score": 45.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — medium reasoning"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "mmlu_lang_yoruba",
+   "score": 50.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — high reasoning"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "mmlu_lang_yoruba",
+   "score": 63.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "mmlu_lang_yoruba",
+   "score": 70.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 2 MMMLU evaluation (per language, per reasoning level) — comparator (high)"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "bbq_ambiguous_accuracy",
+   "score": 0.93,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 12 BBQ evaluation (without web search; with web search: ambiguous 0.95 / disambiguated 0.85)"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "bbq_disambiguated_accuracy",
+   "score": 0.88,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 12 BBQ evaluation (without web search; with web search: ambiguous 0.95 / disambiguated 0.85)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "bbq_ambiguous_accuracy",
+   "score": 0.94,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 12 BBQ evaluation (with web search)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "bbq_disambiguated_accuracy",
+   "score": 0.93,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 12 BBQ evaluation (with web search)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "bbq_ambiguous_accuracy",
+   "score": 0.93,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 12 BBQ evaluation (without browse)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "bbq_disambiguated_accuracy",
+   "score": 0.86,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 12 BBQ evaluation (without browse)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "bbq_ambiguous_accuracy",
+   "score": 0.88,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 12 BBQ evaluation (without browse)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "bbq_disambiguated_accuracy",
+   "score": 0.85,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 12 BBQ evaluation (without browse)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "bbq_p_not_stereotyping",
+   "score": 0.25,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 7 BBQ evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "bbq_p_not_stereotyping",
+   "score": 0.26,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 7 BBQ evaluation"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "bbq_p_not_stereotyping",
+   "score": 0.05,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 7 BBQ evaluation"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "person_id_non_adversarial",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "person_id_non_adversarial",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "person_id_non_adversarial",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "person_id_adversarial",
+   "score": 0.95,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "person_id_adversarial",
+   "score": 0.88,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "person_id_adversarial",
+   "score": 0.77,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ungrounded_inference_non_adversarial",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ungrounded_inference_non_adversarial",
+   "score": 0.95,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "ungrounded_inference_non_adversarial",
+   "score": 0.95,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "ungrounded_inference_adversarial",
+   "score": 0.92,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ungrounded_inference_adversarial",
+   "score": 0.81,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "ungrounded_inference_adversarial",
+   "score": 0.82,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 6 Person Identification and Ungrounded Inference — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "vision_refusal_sexual_exploitative",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 5 Multimodal refusal evaluations"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "vision_refusal_sexual_exploitative",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 5 Multimodal refusal evaluations"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "vision_refusal_sexual_exploitative",
+   "score": 0.97,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 5 Multimodal refusal evaluations — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "vision_refusal_self_harm_intent",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 5 Multimodal refusal evaluations"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "vision_refusal_self_harm_intent",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 5 Multimodal refusal evaluations"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "vision_refusal_self_harm_intent",
+   "score": 0.97,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 5 Multimodal refusal evaluations — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "vision_refusal_self_harm_instructions",
+   "score": 1,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 5 Multimodal refusal evaluations"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "vision_refusal_self_harm_instructions",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 5 Multimodal refusal evaluations"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "vision_refusal_self_harm_instructions",
+   "score": 0.95,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 5 Multimodal refusal evaluations — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "openai-first-person-fairness_lower_better",
+   "score": 0.006,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 8 First-person fairness evaluation (net_bias, lower better)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "openai-first-person-fairness_lower_better",
+   "score": 0.007,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 8 First-person fairness evaluation (net_bias, lower better)"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "openai-first-person-fairness_lower_better",
+   "score": 0.004,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 8 First-person fairness evaluation (net_bias, lower better)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "image_gen_refusal_not_unsafe",
+   "score": 0.96,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 12 Image generation refusals (with system mitigations)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "image_gen_refusal_not_overrefuse",
+   "score": 0.86,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 12 Image generation refusals (with system mitigations) — note the sharp over-refusal tradeoff for the reasoning models"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "image_gen_refusal_not_unsafe",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 12 Image generation refusals (with system mitigations)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "image_gen_refusal_not_overrefuse",
+   "score": 0.55,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 12 Image generation refusals (with system mitigations) — note the sharp over-refusal tradeoff for the reasoning models"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "image_gen_refusal_not_unsafe",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 12 Image generation refusals (with system mitigations)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "image_gen_refusal_not_overrefuse",
+   "score": 0.64,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 12 Image generation refusals (with system mitigations) — note the sharp over-refusal tradeoff for the reasoning models"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "attack_planning_redteam_winrate",
+   "score": 65.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 13 Attack planning red teaming win rate — vs OpenAI o3, 95% CI (63.7-66.5), Cohen's h 0.61"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "attack_planning_redteam_winrate",
+   "score": 34.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 13 Attack planning red teaming win rate — losing side of the same pairing"
+  }
+ ]
+}

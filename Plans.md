@@ -1,7 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 261 — OpenAI legacy system-card safety sweep (2026-09-04)
-**3,548 models · 4,370 benchmarks · 21,595 scores** (export counts; S179–S259 entries live in git log / changelog.json — this header was stale at S178 until S260)
+## Current Status: Session 261b — OpenAI legacy system cards fully mined (2026-09-04)
+**3,548 models · 4,442 benchmarks · 21,966 scores** (export counts; S179–S259 entries live in git log / changelog.json — this header was stale at S178 until S260)
+
+### 2026-09-04 Session 261b — every table S261 deferred, now mined (source exhausted)
+- **72 new benches + 371 scores, 0 FK, 0 intra-batch collisions, 0 overwrites of existing rows.** GPT-5 SC Tables 2/4/6/7/9/11/12/13; o3-o4-mini Tables 1/2/5/6/7/8/9/10/11/12; gpt-oss Tables 2/4/8.
+- The **Standard Disallowed** tables S261 skipped (OpenAI calls them saturated) are included after all per the user's request, but under their own `std_refusal_*` ids (19) so they can never be mixed with the harder Production Benchmarks.
+- **Findings**: Sycophancy offline — gpt-5-thinking **0.040** / gpt-5-main 0.052 vs GPT-4o 0.145. **Deception: gpt-5-thinking beats o3 on every measure** (Coding 0.17 vs 0.47, Browsing Broken Tools 0.11 vs **0.61**, CharXiv Missing Image 0.09 vs **0.87**) plus AbstentionBench 0.53 vs 0.44. Prompt injection browsing/tool-calling/coding 0.99/0.99/0.97 (o3 0.89/0.80/0.94). **gpt-5-main regresses badly on instruction hierarchy** — phrase protection 0.619 (user) / 0.404 (developer), which OpenAI flags with a promised fix. Attack-planning red team: **gpt-5-thinking judged safer than o3 in 65.1%** of blind comparisons (95% CI 63.7–66.5, Cohen's h 0.61). o3 image-generation refusals: not_unsafe 0.98 but **not_overrefuse only 0.55** vs GPT-4o's 0.86 — a stark over-refusal tradeoff.
+- **MMLU Language (GPT-5 T11, 14 languages) and gpt-oss MMMLU (T2, 14 languages × 6 model/effort columns) share the `mmlu_lang_*` ids** — same translated-MMLU suite, so no fragmentation. Yoruba is the weak spot throughout (gpt-5-main 66.4, gpt-oss-20b-low 38.4).
+- **Two collisions resolved by preferring each model's own card**: o3 phrase-protection taken from the o3 card (the GPT-5 restatement differs: .975/.921 vs .97/.93); the gpt-oss `o3-high` MMMLU column dropped as identical to GPT-5 T11. `vision_refusal_*` kept separate from the existing `vision_safety_*` because the o3 card splits self-harm into intent/instructions while the latter uses one combined category.
+- **Final not-ingested list (source now exhausted)**: gpt-oss Table 1 (parameter counts — not a benchmark) and Tables 11/12/13, GPT-5 Table 14, o3 Tables 13/14 — all eval-**overview** tables whose cells are prose descriptions, with the actual Preparedness bio/cyber results living only in figures; plus GPT-5 Table 4's online-prevalence row (−0.69/−0.75 are relative deltas, not standalone scores). Propagation: frontier-compare cyber_defense +58, knowledge +14; syntax clean; all 72 ids verified surfaced. Backup `data/benchmark.db.pre-s261b.bak`.
 
 ### 2026-09-04 Session 261 — gpt-oss / GPT-5 / GPT-5-Codex / GPT-5.1 / o3-o4-mini system cards
 - **11 new models + 27 new benches + 319 scores, 0 FK.** Five PDFs archived to `resource/` and read via local `pdftotext -layout`; all 48+ table captions enumerated up front per `feedback_exhaustive_source_mining`.
