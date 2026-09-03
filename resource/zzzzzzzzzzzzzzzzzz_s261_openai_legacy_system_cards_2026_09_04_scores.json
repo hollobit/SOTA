@@ -1,0 +1,2887 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-04",
+  "session": "S261",
+  "note": "OpenAI legacy system-card sweep requested by the user: gpt-oss model card (arXiv 2508.10925), GPT-5 system card (arXiv 2601.03267), GPT-5-Codex addendum, GPT-5.1 addendum, o3/o4-mini system card. All five PDFs downloaded and read via local `pdftotext -layout` (per the project's WebFetch-hallucination rule), and every table caption was enumerated up front per feedback_exhaustive_source_mining. KEY FINDING: although these models were already tracked (gpt-5=201, o3=103, o4-mini=74, gpt-oss-120b=60 scores), their system-card SAFETY tables had never been ingested — prod_disallowed_* existed only for the GPT-5.6/GPT-6 generation and StrongReject did not exist at all, so this fills a real generational gap and makes the safety series comparable back to o3/GPT-4o. New models: gpt-5-codex, codex-1, gpt-5-main, gpt-5-instant-aug15/-oct3, gpt-5-thinking-mini/-nano, and gpt-oss-{120b,20b}-{low,medium} effort tiers (the -high values are already on the existing base/-high ids, so only low/medium are added). Category-mapping note: the GPT-5-era Production Benchmark category set differs from the GPT-5.6/6-era one; overlapping categories reuse the existing ids (extremism, sexual/minors, illicit/nonviolent -> prod_disallowed_nonviolent_illicit, illicit/violent -> prod_disallowed_violent_illicit, hate, sexual) and only genuinely new categories get new ids (non-violent hate, personal-data, harassment/threatening, sexual/exploitative, hate/threatening, self-harm/intent, self-harm/instructions, mental health, emotional reliance). SimpleQA is registered separately from the existing simpleqa_verified id because SimpleQA-Verified is a different dataset, and StrongReject not_unsafe is separate from the existing `strongreject` id because that one stores an inverted 0-100 attack-success metric. o3/o4-mini SimpleQA rows come from their own card, not the GPT-5 card restatement; four gpt-5.1-thinking image-input cells already held rows from an earlier source with different values and were left untouched rather than overwritten. NOT INGESTED: Standard Disallowed Content tables (OpenAI states they are saturated and superseded by Production Benchmarks), o3 Tables 2/6/7/8/9/10/11/12 and GPT-5 Tables 4/6/7/9/11/12/13 and gpt-oss Tables 1/8/11/12/13 (deferred to a follow-up pass; several are prose-heavy overview tables or use bespoke one-off metrics), gpt-oss Table 2 per-language MMMLU (14 languages x 6 columns — only the Average row is taken), and all Preparedness bio/cyber overview tables.",
+  "sources": [
+   "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "resource/openai_o3-o4-mini_system-card.pdf",
+   "https://arxiv.org/pdf/2508.10925",
+   "https://arxiv.org/pdf/2601.03267",
+   "https://openai.com/ko-KR/index/gpt-oss-model-card/",
+   "https://openai.com/ko-KR/index/gpt-5-system-card/",
+   "https://openai.com/ko-KR/index/gpt-5-system-card-addendum-gpt-5-codex/",
+   "https://openai.com/ko-KR/index/gpt-5-system-card-addendum-gpt-5-1/",
+   "https://deploymentsafety.openai.com/gpt-5-1",
+   "https://openai.com/ko-KR/index/o3-o4-mini-system-card/",
+   "https://deploymentsafety.openai.com/o3"
+  ]
+ },
+ "models": [
+  {
+   "id": "openai/gpt-5-codex",
+   "vendor": "OpenAI",
+   "name": "GPT-5-Codex",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2025-09-15"
+  },
+  {
+   "id": "openai/codex-1",
+   "vendor": "OpenAI",
+   "name": "codex-1",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2025-05-16"
+  },
+  {
+   "id": "openai/gpt-5-main",
+   "vendor": "OpenAI",
+   "name": "GPT-5 main (non-reasoning)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2025-08-07"
+  },
+  {
+   "id": "openai/gpt-5-instant-aug15",
+   "vendor": "OpenAI",
+   "name": "GPT-5 Instant (Aug 15 snapshot)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2025-08-15"
+  },
+  {
+   "id": "openai/gpt-5-instant-oct3",
+   "vendor": "OpenAI",
+   "name": "GPT-5 Instant (Oct 3 snapshot)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2025-10-03"
+  },
+  {
+   "id": "openai/gpt-5-thinking-mini",
+   "vendor": "OpenAI",
+   "name": "GPT-5 Thinking mini",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2025-08-07"
+  },
+  {
+   "id": "openai/gpt-5-thinking-nano",
+   "vendor": "OpenAI",
+   "name": "GPT-5 Thinking nano",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2025-08-07"
+  },
+  {
+   "id": "openai/gpt-oss-120b-low",
+   "vendor": "OpenAI",
+   "name": "gpt-oss-120b (low reasoning)",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2025-08-05"
+  },
+  {
+   "id": "openai/gpt-oss-120b-medium",
+   "vendor": "OpenAI",
+   "name": "gpt-oss-120b (medium reasoning)",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2025-08-05"
+  },
+  {
+   "id": "openai/gpt-oss-20b-low",
+   "vendor": "OpenAI",
+   "name": "gpt-oss-20b (low reasoning)",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2025-08-05"
+  },
+  {
+   "id": "openai/gpt-oss-20b-medium",
+   "vendor": "OpenAI",
+   "name": "gpt-oss-20b (medium reasoning)",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2025-08-05"
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "prod_disallowed_nonviolent_hate",
+   "name": "Production Benchmarks — non-violent hate",
+   "category": "safety",
+   "description": "OpenAI Production Benchmarks: challenging disallowed-content conversations drawn from production data, introduced because the older Standard disallowed-content evals had saturated. Metric is not_unsafe (higher is better). Error rates are not representative of average production traffic.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "prod_disallowed_personal_data",
+   "name": "Production Benchmarks — personal data",
+   "category": "safety",
+   "description": "OpenAI Production Benchmarks: challenging disallowed-content conversations drawn from production data, introduced because the older Standard disallowed-content evals had saturated. Metric is not_unsafe (higher is better). Error rates are not representative of average production traffic.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "prod_disallowed_harassment_threatening",
+   "name": "Production Benchmarks — harassment/threatening",
+   "category": "safety",
+   "description": "OpenAI Production Benchmarks: challenging disallowed-content conversations drawn from production data, introduced because the older Standard disallowed-content evals had saturated. Metric is not_unsafe (higher is better). Error rates are not representative of average production traffic.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "prod_disallowed_sexual_exploitative",
+   "name": "Production Benchmarks — sexual/exploitative",
+   "category": "safety",
+   "description": "OpenAI Production Benchmarks: challenging disallowed-content conversations drawn from production data, introduced because the older Standard disallowed-content evals had saturated. Metric is not_unsafe (higher is better). Error rates are not representative of average production traffic.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "prod_disallowed_hate_threatening",
+   "name": "Production Benchmarks — hate/threatening",
+   "category": "safety",
+   "description": "OpenAI Production Benchmarks: challenging disallowed-content conversations drawn from production data, introduced because the older Standard disallowed-content evals had saturated. Metric is not_unsafe (higher is better). Error rates are not representative of average production traffic.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "prod_disallowed_self_harm_intent",
+   "name": "Production Benchmarks — self-harm/intent",
+   "category": "safety",
+   "description": "OpenAI Production Benchmarks: challenging disallowed-content conversations drawn from production data, introduced because the older Standard disallowed-content evals had saturated. Metric is not_unsafe (higher is better). Error rates are not representative of average production traffic.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "prod_disallowed_self_harm_instructions",
+   "name": "Production Benchmarks — self-harm/instructions",
+   "category": "safety",
+   "description": "OpenAI Production Benchmarks: challenging disallowed-content conversations drawn from production data, introduced because the older Standard disallowed-content evals had saturated. Metric is not_unsafe (higher is better). Error rates are not representative of average production traffic.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "prod_disallowed_violence",
+   "name": "Production Benchmarks — violence",
+   "category": "safety",
+   "description": "OpenAI Production Benchmarks: challenging disallowed-content conversations drawn from production data, introduced because the older Standard disallowed-content evals had saturated. Metric is not_unsafe (higher is better). Error rates are not representative of average production traffic.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "prod_disallowed_mental_health",
+   "name": "Production Benchmarks — mental health",
+   "category": "safety",
+   "description": "OpenAI Production Benchmarks: challenging disallowed-content conversations drawn from production data, introduced because the older Standard disallowed-content evals had saturated. Metric is not_unsafe (higher is better). Error rates are not representative of average production traffic.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "prod_disallowed_emotional_reliance",
+   "name": "Production Benchmarks — emotional reliance",
+   "category": "safety",
+   "description": "OpenAI Production Benchmarks: challenging disallowed-content conversations drawn from production data, introduced because the older Standard disallowed-content evals had saturated. Metric is not_unsafe (higher is better). Error rates are not representative of average production traffic.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "strongreject_illicit_nonviolent",
+   "name": "StrongReject — illicit/non-violent-crime prompts",
+   "category": "safety",
+   "description": "StrongReject academic jailbreak benchmark (Souly et al.): a known jailbreak is inserted into a disallowed-content prompt and the response graded by the same policy graders. Metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "strongreject_violence",
+   "name": "StrongReject — violence prompts",
+   "category": "safety",
+   "description": "StrongReject academic jailbreak benchmark (Souly et al.): a known jailbreak is inserted into a disallowed-content prompt and the response graded by the same policy graders. Metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "strongreject_abuse_disinfo_hate",
+   "name": "StrongReject — abuse/disinformation/hate prompts",
+   "category": "safety",
+   "description": "StrongReject academic jailbreak benchmark (Souly et al.): a known jailbreak is inserted into a disallowed-content prompt and the response graded by the same policy graders. Metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "strongreject_sexual",
+   "name": "StrongReject — sexual-content prompts",
+   "category": "safety",
+   "description": "StrongReject academic jailbreak benchmark (Souly et al.): a known jailbreak is inserted into a disallowed-content prompt and the response graded by the same policy graders. Metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "strongreject_not_unsafe",
+   "name": "StrongReject — aggregate not_unsafe",
+   "category": "safety",
+   "description": "StrongReject academic jailbreak benchmark (Souly et al.): a known jailbreak is inserted into a disallowed-content prompt and the response graded by the same policy graders. Metric not_unsafe. NOTE: deliberately separate from the existing `strongreject` id, which stores an attack-success-rate style 0-100 metric (gpt-5.5 5.8, kimi-k2.6 25.7) where LOWER is better — the two are not comparable.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "human_sourced_jailbreaks",
+   "name": "Human-sourced jailbreaks (not_unsafe)",
+   "category": "safety",
+   "description": "Jailbreak prompts sourced from human red-teamers, graded for not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "openai-image-input-illicit",
+   "name": "Image input evaluation — illicit (not_unsafe)",
+   "category": "safety",
+   "description": "ChatGPT-agent image-input evaluation: disallowed combined text+image prompts, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "openai-image-input-attack-planning",
+   "name": "Image input evaluation — attack planning (not_unsafe)",
+   "category": "safety",
+   "description": "ChatGPT-agent image-input evaluation: disallowed combined text+image prompts, metric not_unsafe.",
+   "metric": "not_unsafe"
+  },
+  {
+   "id": "malware_refusals_golden_set",
+   "name": "Malware Refusals (Codex golden set)",
+   "category": "cyber",
+   "description": "Curated 'golden set' of malware-development requests built by internal policy experts; share correctly refused.",
+   "metric": "refusal_rate"
+  },
+  {
+   "id": "codex_coding_prompt_injection_ignored",
+   "name": "Coding-focused prompt injections successfully ignored",
+   "category": "safety",
+   "description": "Codex-environment prompt-injection suite: attacks that try to terminate the coding task or force a specific output (e.g. 'HACKED!'). Share of attacks successfully ignored.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "simpleqa_accuracy",
+   "name": "SimpleQA — accuracy",
+   "category": "factuality",
+   "description": "SimpleQA: 4,000 fact-seeking short-answer questions; accuracy on attempted answers. Distinct from the SimpleQA-Verified variant tracked under simpleqa_verified.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "simpleqa_hallucination_rate_lower_better",
+   "name": "SimpleQA — hallucination rate (lower better)",
+   "category": "factuality",
+   "description": "SimpleQA hallucination rate; lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "personqa_accuracy",
+   "name": "PersonQA — accuracy",
+   "category": "factuality",
+   "description": "PersonQA: fact-seeking questions about people; accuracy on attempted answers.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "personqa_hallucination_rate_lower_better",
+   "name": "PersonQA — hallucination rate (lower better)",
+   "category": "factuality",
+   "description": "PersonQA hallucination rate; lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "ih_system_prompt_extraction",
+   "name": "Instruction Hierarchy — system prompt extraction resistance",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: resistance to system-prompt extraction under system<>user message conflict. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "ih_prompt_injection_hijacking",
+   "name": "Instruction Hierarchy — prompt injection hijacking resistance",
+   "category": "safety",
+   "description": "Instruction-hierarchy evaluation: resistance to prompt-injection hijacking under system<>user message conflict. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "tau_bench_retail",
+   "name": "tau-bench Retail",
+   "category": "agent",
+   "description": "Original tau-bench retail domain (distinct from the tau2_bench_retail* ids, which track the later tau-2 revision).",
+   "metric": "pass@1"
+  }
+ ],
+ "scores": [
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "prod_disallowed_nonviolent_hate",
+   "score": 0.926,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 0.922,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.719,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "prod_disallowed_sexual_exploitative",
+   "score": 0.958,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.945,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.946,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "prod_disallowed_hate_threatening",
+   "score": 0.859,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.858,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.935,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.958,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.919,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prod_disallowed_nonviolent_hate",
+   "score": 0.883,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prod_disallowed_nonviolent_hate",
+   "score": 0.842,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "prod_disallowed_nonviolent_hate",
+   "score": 0.851,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "prod_disallowed_nonviolent_hate",
+   "score": 0.882,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 0.877,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 0.83,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 0.967,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.755,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.666,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.689,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.745,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prod_disallowed_sexual_exploitative",
+   "score": 0.931,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prod_disallowed_sexual_exploitative",
+   "score": 0.939,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "prod_disallowed_sexual_exploitative",
+   "score": 0.826,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "prod_disallowed_sexual_exploitative",
+   "score": 0.927,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.958,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.957,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.91,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.939,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.954,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.92,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.91,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.919,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prod_disallowed_hate_threatening",
+   "score": 0.822,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prod_disallowed_hate_threatening",
+   "score": 0.677,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "prod_disallowed_hate_threatening",
+   "score": 0.727,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "prod_disallowed_hate_threatening",
+   "score": 0.867,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.79,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.717,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.701,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.573,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.912,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.829,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.786,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.633,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.95,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.824,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.849,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.849,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.955,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.864,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.759,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.735,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 3 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.86,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.7,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.807,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.853,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 0.966,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.747,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.683,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.745,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.836,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_sexual",
+   "score": 0.895,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_sexual",
+   "score": 0.782,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_sexual",
+   "score": 0.951,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_sexual",
+   "score": 0.917,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.922,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.978,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.989,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_hate",
+   "score": 0.839,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_hate",
+   "score": 0.74,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_hate",
+   "score": 0.806,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_hate",
+   "score": 0.897,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_violence",
+   "score": 0.93,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_violence",
+   "score": 0.829,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_violence",
+   "score": 0.953,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_violence",
+   "score": 0.938,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.901,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.862,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.961,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.957,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.934,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.783,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.862,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.918,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.958,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.893,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.893,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.909,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.95,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.858,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.943,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.95,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_mental_health",
+   "score": 0.684,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_mental_health",
+   "score": 0.251,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_mental_health",
+   "score": 0.944,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_mental_health",
+   "score": 0.883,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "prod_disallowed_emotional_reliance",
+   "score": 0.785,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "prod_disallowed_emotional_reliance",
+   "score": 0.688,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "prod_disallowed_emotional_reliance",
+   "score": 0.986,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "prod_disallowed_emotional_reliance",
+   "score": 0.945,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 1 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "prod_disallowed_nonviolent_hate",
+   "score": 0.895,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "prod_disallowed_nonviolent_hate",
+   "score": 0.901,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "prod_disallowed_nonviolent_hate",
+   "score": 0.832,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 0.888,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 0.921,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "prod_disallowed_personal_data",
+   "score": 0.847,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.832,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.819,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "prod_disallowed_harassment_threatening",
+   "score": 0.695,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "prod_disallowed_sexual_exploitative",
+   "score": 0.919,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "prod_disallowed_sexual_exploitative",
+   "score": 0.852,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "prod_disallowed_sexual_exploitative",
+   "score": 0.857,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.967,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.866,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.862,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.932,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.951,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.932,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "prod_disallowed_hate_threatening",
+   "score": 0.898,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "prod_disallowed_hate_threatening",
+   "score": 0.829,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "prod_disallowed_hate_threatening",
+   "score": 0.795,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.692,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.656,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.658,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.817,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.744,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.845,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.95,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.893,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "prod_disallowed_self_harm_intent",
+   "score": 0.862,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.91,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.899,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "prod_disallowed_self_harm_instructions",
+   "score": 0.901,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 5 Production Benchmarks (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "strongreject_illicit_nonviolent",
+   "score": 0.992,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 2 StrongReject"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "strongreject_violence",
+   "score": 0.997,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 2 StrongReject"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "strongreject_abuse_disinfo_hate",
+   "score": 0.993,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 2 StrongReject"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "strongreject_sexual",
+   "score": 0.995,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 2 StrongReject"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "strongreject_illicit_nonviolent",
+   "score": 0.995,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "strongreject_illicit_nonviolent",
+   "score": 0.934,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "strongreject_illicit_nonviolent",
+   "score": 0.937,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "strongreject_violence",
+   "score": 0.999,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "strongreject_violence",
+   "score": 0.948,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "strongreject_violence",
+   "score": 0.955,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "strongreject_abuse_disinfo_hate",
+   "score": 0.999,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "strongreject_abuse_disinfo_hate",
+   "score": 0.978,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "strongreject_abuse_disinfo_hate",
+   "score": 0.981,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "strongreject_sexual",
+   "score": 0.995,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "strongreject_sexual",
+   "score": 0.967,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "strongreject_sexual",
+   "score": 0.961,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 5 Jailbreak evaluations (StrongReject-style, not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "strongreject_illicit_nonviolent",
+   "score": 0.979,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "strongreject_illicit_nonviolent",
+   "score": 0.96,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "strongreject_illicit_nonviolent",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "strongreject_violence",
+   "score": 0.983,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "strongreject_violence",
+   "score": 0.979,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "strongreject_violence",
+   "score": 0.991,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "strongreject_abuse_disinfo_hate",
+   "score": 0.993,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "strongreject_abuse_disinfo_hate",
+   "score": 0.982,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "strongreject_abuse_disinfo_hate",
+   "score": 0.982,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "strongreject_sexual",
+   "score": 0.989,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "strongreject_sexual",
+   "score": 0.97,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "strongreject_sexual",
+   "score": 0.974,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 6 Jailbreak evaluations (not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "strongreject_not_unsafe",
+   "score": 0.967,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 2 StrongReject (aggregate not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "strongreject_not_unsafe",
+   "score": 0.683,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 2 StrongReject (aggregate not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "strongreject_not_unsafe",
+   "score": 0.85,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 2 StrongReject (aggregate not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "strongreject_not_unsafe",
+   "score": 0.976,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 2 StrongReject (aggregate not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "strongreject_not_unsafe",
+   "score": 0.974,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 2 StrongReject (aggregate not_unsafe) — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "strongreject_not_unsafe",
+   "score": 0.97,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 3 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "strongreject_not_unsafe",
+   "score": 0.96,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 3 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "human_sourced_jailbreaks",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 3 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "human_sourced_jailbreaks",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 3 Jailbreak evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "openai-image-input-hate",
+   "score": 0.968,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "openai-image-input-hate",
+   "score": 0.935,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "openai-image-input-hate",
+   "score": 0.986,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "openai-image-input-hate",
+   "score": 0.989,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "openai-image-input-extremism",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "openai-image-input-extremism",
+   "score": 0.962,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "openai-image-input-extremism",
+   "score": 0.991,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "openai-image-input-extremism",
+   "score": 0.964,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "openai-image-input-illicit",
+   "score": 0.988,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "openai-image-input-illicit",
+   "score": 0.972,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "openai-image-input-illicit",
+   "score": 0.986,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "openai-image-input-illicit",
+   "score": 0.946,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "openai-image-input-attack-planning",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "openai-image-input-attack-planning",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "openai-image-input-attack-planning",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "openai-image-input-attack-planning",
+   "score": 0.956,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "openai-image-input-self-harm",
+   "score": 0.996,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "openai-image-input-self-harm",
+   "score": 0.982,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "openai-image-input-self-harm",
+   "score": 0.997,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "openai-image-input-self-harm",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "openai-image-input-harms-erotic",
+   "score": 0.994,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "openai-image-input-harms-erotic",
+   "score": 0.987,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "openai-image-input-harms-erotic",
+   "score": 0.994,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "openai-image-input-harms-erotic",
+   "score": 0.995,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 10 Image input evaluations — comparator"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "openai-image-input-hate",
+   "score": 0.982,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "openai-image-input-hate",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "openai-image-input-hate",
+   "score": 0.993,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "openai-image-input-extremism",
+   "score": 0.986,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "openai-image-input-extremism",
+   "score": 0.986,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "openai-image-input-extremism",
+   "score": 0.996,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "openai-image-input-illicit",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "openai-image-input-illicit",
+   "score": 0.986,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "openai-image-input-illicit",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "openai-image-input-illicit",
+   "score": 0.992,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "openai-image-input-attack-planning",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "openai-image-input-attack-planning",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "openai-image-input-attack-planning",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "openai-image-input-attack-planning",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "openai-image-input-self-harm",
+   "score": 0.983,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "openai-image-input-self-harm",
+   "score": 0.975,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "openai-image-input-self-harm",
+   "score": 0.96,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-aug15",
+   "benchmark": "openai-image-input-harms-erotic",
+   "score": 0.994,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-instant-oct3",
+   "benchmark": "openai-image-input-harms-erotic",
+   "score": 0.999,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5.1-instant",
+   "benchmark": "openai-image-input-harms-erotic",
+   "score": 0.999,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5.1_system-card-addendum.pdf",
+   "_note": "GPT-5.1 addendum Table 3 Image input evaluations (not_unsafe)"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "malware_refusals_golden_set",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 3"
+  },
+  {
+   "model": "openai/codex-1",
+   "benchmark": "malware_refusals_golden_set",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 3 — comparator"
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "codex_coding_prompt_injection_ignored",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 4"
+  },
+  {
+   "model": "openai/codex-1",
+   "benchmark": "codex_coding_prompt_injection_ignored",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5-codex_system-card-addendum.pdf",
+   "_note": "GPT-5-Codex addendum Table 4 — comparator"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "simpleqa_accuracy",
+   "score": 0.49,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 4 Hallucination evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "simpleqa_hallucination_rate_lower_better",
+   "score": 0.51,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 4 Hallucination evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "personqa_accuracy",
+   "score": 0.59,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 4 Hallucination evaluations"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "personqa_hallucination_rate_lower_better",
+   "score": 0.33,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 4 Hallucination evaluations"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "simpleqa_accuracy",
+   "score": 0.2,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 4 Hallucination evaluations"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "simpleqa_hallucination_rate_lower_better",
+   "score": 0.79,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 4 Hallucination evaluations"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "personqa_accuracy",
+   "score": 0.36,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 4 Hallucination evaluations"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "personqa_hallucination_rate_lower_better",
+   "score": 0.48,
+   "unit": "score",
+   "_source": "resource/openai_o3-o4-mini_system-card.pdf",
+   "_note": "o3/o4-mini system card Table 4 Hallucination evaluations"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "simpleqa_accuracy",
+   "score": 0.168,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 9 Hallucination evaluations"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "simpleqa_hallucination_rate_lower_better",
+   "score": 0.782,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 9 Hallucination evaluations"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "personqa_accuracy",
+   "score": 0.298,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 9 Hallucination evaluations"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "personqa_hallucination_rate_lower_better",
+   "score": 0.491,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 9 Hallucination evaluations"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "simpleqa_accuracy",
+   "score": 0.067,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 9 Hallucination evaluations"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "simpleqa_hallucination_rate_lower_better",
+   "score": 0.914,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 9 Hallucination evaluations"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "personqa_accuracy",
+   "score": 0.155,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 9 Hallucination evaluations"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "personqa_hallucination_rate_lower_better",
+   "score": 0.532,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 9 Hallucination evaluations"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "simpleqa_accuracy",
+   "score": 0.55,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 8 SimpleQA evaluations (no web)"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "simpleqa_hallucination_rate_lower_better",
+   "score": 0.4,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 8 SimpleQA evaluations (no web)"
+  },
+  {
+   "model": "openai/gpt-5-thinking-mini",
+   "benchmark": "simpleqa_accuracy",
+   "score": 0.22,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 8 SimpleQA evaluations (no web)"
+  },
+  {
+   "model": "openai/gpt-5-thinking-mini",
+   "benchmark": "simpleqa_hallucination_rate_lower_better",
+   "score": 0.26,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 8 SimpleQA evaluations (no web)"
+  },
+  {
+   "model": "openai/gpt-5-thinking-nano",
+   "benchmark": "simpleqa_accuracy",
+   "score": 0.11,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 8 SimpleQA evaluations (no web)"
+  },
+  {
+   "model": "openai/gpt-5-thinking-nano",
+   "benchmark": "simpleqa_hallucination_rate_lower_better",
+   "score": 0.31,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 8 SimpleQA evaluations (no web)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "simpleqa_accuracy",
+   "score": 0.46,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 8 SimpleQA evaluations (no web)"
+  },
+  {
+   "model": "openai/gpt-5-main",
+   "benchmark": "simpleqa_hallucination_rate_lower_better",
+   "score": 0.47,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 8 SimpleQA evaluations (no web)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "simpleqa_accuracy",
+   "score": 0.44,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 8 SimpleQA evaluations (no web)"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "simpleqa_hallucination_rate_lower_better",
+   "score": 0.52,
+   "unit": "score",
+   "_source": "resource/openai_gpt-5_system-card_arxiv-2601.03267.pdf",
+   "_note": "GPT-5 system card Table 8 SimpleQA evaluations (no web)"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "bbq_ambiguous_accuracy",
+   "score": 0.87,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 10 BBQ evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "bbq_disambiguated_accuracy",
+   "score": 0.9,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 10 BBQ evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "bbq_ambiguous_accuracy",
+   "score": 0.79,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 10 BBQ evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "bbq_disambiguated_accuracy",
+   "score": 0.89,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 10 BBQ evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "bbq_ambiguous_accuracy",
+   "score": 0.82,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 10 BBQ evaluation"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "bbq_disambiguated_accuracy",
+   "score": 0.95,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 10 BBQ evaluation"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "ih_system_prompt_extraction",
+   "score": 0.832,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 7 Instruction Hierarchy (system <> user conflict)"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "ih_prompt_injection_hijacking",
+   "score": 0.78,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 7 Instruction Hierarchy (system <> user conflict)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "ih_system_prompt_extraction",
+   "score": 0.881,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 7 Instruction Hierarchy (system <> user conflict)"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "ih_prompt_injection_hijacking",
+   "score": 0.639,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 7 Instruction Hierarchy (system <> user conflict)"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ih_system_prompt_extraction",
+   "score": 0.993,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 7 Instruction Hierarchy (system <> user conflict) — comparator"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "ih_prompt_injection_hijacking",
+   "score": 0.917,
+   "unit": "score",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 7 Instruction Hierarchy (system <> user conflict)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "aime_2024",
+   "score": 56.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "aime_2024",
+   "score": 80.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "aime_2024",
+   "score": 42.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "aime_2024",
+   "score": 80.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "aime_2025",
+   "score": 50.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "aime_2025",
+   "score": 80.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "aime_2025",
+   "score": 37.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "aime_2025",
+   "score": 72.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "gpqa_diamond",
+   "score": 67.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "gpqa_diamond",
+   "score": 73.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "gpqa_diamond",
+   "score": 56.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "gpqa_diamond",
+   "score": 66.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "hle",
+   "score": 5.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "hle",
+   "score": 8.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "hle",
+   "score": 4.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "hle",
+   "score": 7.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmlu",
+   "score": 85.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmlu",
+   "score": 88.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmlu",
+   "score": 80.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmlu",
+   "score": 84.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "swe_bench_verified",
+   "score": 47.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "swe_bench_verified",
+   "score": 52.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "swe_bench_verified",
+   "score": 37.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "swe_bench_verified",
+   "score": 53.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "tau_bench_retail",
+   "score": 49.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "tau_bench_retail",
+   "score": 62.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "tau_bench_retail",
+   "score": 35.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "tau_bench_retail",
+   "score": 47.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "tau_bench_airline",
+   "score": 42.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "tau_bench_airline",
+   "score": 48.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "tau_bench_airline",
+   "score": 32.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "tau_bench_airline",
+   "score": 42.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "aider_polyglot",
+   "score": 24.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "aider_polyglot",
+   "score": 34.2,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "aider_polyglot",
+   "score": 16.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "aider_polyglot",
+   "score": 26.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "mmmlu",
+   "score": 74.1,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "mmmlu",
+   "score": 79.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "mmmlu",
+   "score": 67.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "mmmlu",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "healthbench",
+   "score": 53.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "healthbench",
+   "score": 55.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "healthbench",
+   "score": 40.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "healthbench",
+   "score": 41.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "healthbench_hard",
+   "score": 22.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "healthbench_hard",
+   "score": 26.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "healthbench_hard",
+   "score": 9.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "healthbench_hard",
+   "score": 12.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "healthbench_consensus",
+   "score": 90.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "healthbench_consensus",
+   "score": 90.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "healthbench_consensus",
+   "score": 84.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "healthbench_consensus",
+   "score": 83.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "codeforces_elo",
+   "score": 1595,
+   "unit": "elo",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-120b-medium",
+   "benchmark": "codeforces_elo",
+   "score": 2205,
+   "unit": "elo",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "codeforces_elo",
+   "score": 1366,
+   "unit": "elo",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, low reasoning level (high-level values already tracked on the base/-high model ids)"
+  },
+  {
+   "model": "openai/gpt-oss-20b-medium",
+   "benchmark": "codeforces_elo",
+   "score": 1998,
+   "unit": "elo",
+   "_source": "resource/openai_gpt-oss_model-card_arxiv-2508.10925.pdf",
+   "_note": "gpt-oss model card Table 3 — evaluations across reasoning levels, medium reasoning level (high-level values already tracked on the base/-high model ids)"
+  }
+ ]
+}

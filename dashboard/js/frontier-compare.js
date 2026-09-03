@@ -10,7 +10,11 @@ var FrontierCompare = {
         reasoning: [
             'gpqa_diamond', 'hle', 'mmlu_pro', 'mmlu_pro_aa', 'mmlu', 'mmlu_redux', 'mmmlu',
             'arc_agi_2', 'arc_agi_3', 'frontiermath', 'frontier_science', 'gdpval', 'officeqa_pro',
-            'simpleqa_verified', 'chinese_simpleqa', 'facts_parametric', 'facts_score', 'facts_grounding_v2', 'facts_search', 'facts_multimodal', 'triviaqa',
+            'simpleqa_verified', 'chinese_simpleqa',
+            // 2026-09-04 S261 — SimpleQA/PersonQA from OpenAI legacy system cards (distinct from SimpleQA-Verified)
+            'simpleqa_accuracy', 'simpleqa_hallucination_rate_lower_better',
+            'personqa_accuracy', 'personqa_hallucination_rate_lower_better',
+            'facts_parametric', 'facts_score', 'facts_grounding_v2', 'facts_search', 'facts_multimodal', 'triviaqa',
             'longbench_v2', 'mrcr', 'corpusqa_1m', 'superqpga',
             'healthbench', 'healthbench_hard', 'healthbench_consensus', 'healthbench_professional',
             'healthbench_professional_length_adjusted',
@@ -139,6 +143,17 @@ var FrontierCompare = {
             'static_jailbreak_bio_high_risk', 'static_jailbreak_bio_severe', 'static_jailbreak_violence_moderate',
             'static_jailbreak_violence_severe', 'static_jailbreak_cyber',
             'indirect_prompt_injection_defender_success', 'instruction_hierarchy_robustness', 'gray_swan_ipi',
+            // 2026-09-04 S261 — OpenAI legacy system cards (gpt-oss / GPT-5 / GPT-5-Codex / GPT-5.1 / o3-o4-mini):
+            // Production Benchmark categories from the GPT-5-era category set + StrongReject + IH + image input
+            'prod_disallowed_nonviolent_hate', 'prod_disallowed_personal_data',
+            'prod_disallowed_harassment_threatening', 'prod_disallowed_sexual_exploitative',
+            'prod_disallowed_hate_threatening', 'prod_disallowed_self_harm_intent',
+            'prod_disallowed_self_harm_instructions', 'prod_disallowed_violence',
+            'prod_disallowed_mental_health', 'prod_disallowed_emotional_reliance',
+            'strongreject_not_unsafe', 'strongreject_illicit_nonviolent', 'strongreject_violence',
+            'strongreject_abuse_disinfo_hate', 'strongreject_sexual', 'human_sourced_jailbreaks',
+            'openai-image-input-illicit', 'openai-image-input-attack-planning',
+            'ih_system_prompt_extraction', 'ih_prompt_injection_hijacking',
             'apollo_eval_awareness_verbalization_rate', 'apollo_sandbagging_misreading_rate',
             'user_confirmation_financial', 'user_confirmation_high_stakes',
             // 2026-06-28 S154b — Mythos 5 system card §4 + §5 safeguards (helpful-only agentic safety)

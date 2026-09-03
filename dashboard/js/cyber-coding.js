@@ -50,6 +50,8 @@ var CyberCoding = {
         'exploitgym',
         // 2026-09-04 S260 — GPT-6 Astra system card (Critical cyber threshold): new internal evals + Irregular aggregate
         'sandbox_bench', 'sre_bench', 'irregular_frontiercyber_overall',
+        // 2026-09-04 S261 — GPT-5-Codex addendum: malware refusal + coding prompt injection
+        'malware_refusals_golden_set', 'codex_coding_prompt_injection_ignored',
         // 2026-06-14 S111 — Cybersecurity benchmark refresh (frontier + agents + 2026 boards)
         'cybergym_v1', 'exploitbench_v8', 'firefox_147_anthropic', 'oss_fuzz_anthropic', 'cybergym_v1',
         'uk_aisi_narrow_cyber_expert', 'uk_aisi_cyber_range_last_ones', 'uk_aisi_cyber_range_doing_life',
@@ -203,6 +205,8 @@ var CyberCoding = {
                 'exploitgym',
                 // 2026-09-04 S260 GPT-6 Astra system card
                 'sandbox_bench', 'sre_bench', 'irregular_frontiercyber_overall',
+                // 2026-09-04 S261 — GPT-5-Codex addendum
+                'malware_refusals_golden_set', 'codex_coding_prompt_injection_ignored',
                 'anthropic_firefox_zero_day_exploit_rate',
                 // 2026-06-27 S148 OpenAI Daybreak / Patch the Planet
                 'glasswing_critical_vulns_found_per_month',

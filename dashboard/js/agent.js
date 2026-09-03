@@ -426,6 +426,7 @@ var Agent = (function() {
         // 2026-05-15 — HAL Princeton meta-leaderboard sub-benches (Section 43)
         { id: 'corebench_hard',       label: 'CORE-Bench Hard' },
         { id: 'tau_bench_airline',    label: 'TAU-bench Airline' },
+        { id: 'tau_bench_retail',     label: 'TAU-bench Retail' },   // S261 gpt-oss model card
         // 2026-05-21 — Microsoft Fara 1.5 browser CU benchmarks (Session 23)
         { id: 'online_mind2web',      label: 'Online-Mind2Web' },
         { id: 'webvoyager',           label: 'WebVoyager' },
