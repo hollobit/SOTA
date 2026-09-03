@@ -48,6 +48,8 @@ var CyberCoding = {
         'irregular_atomic_evasion',
         // 2026-06-27 S148 — ExploitGym (S136/S143 evolution)
         'exploitgym',
+        // 2026-09-04 S260 — GPT-6 Astra system card (Critical cyber threshold): new internal evals + Irregular aggregate
+        'sandbox_bench', 'sre_bench', 'irregular_frontiercyber_overall',
         // 2026-06-14 S111 — Cybersecurity benchmark refresh (frontier + agents + 2026 boards)
         'cybergym_v1', 'exploitbench_v8', 'firefox_147_anthropic', 'oss_fuzz_anthropic', 'cybergym_v1',
         'uk_aisi_narrow_cyber_expert', 'uk_aisi_cyber_range_last_ones', 'uk_aisi_cyber_range_doing_life',
@@ -71,8 +73,12 @@ var CyberCoding = {
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
         // 2026-05-28 AgentDoG 1.5 (arxiv 2605.29801, Shanghai AI Lab) — agentic-trajectory safety judging
-        'r_judge', 'atbench'],
-    AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'gaia2', 'browsecomp', 'tau_bench', 'tau2_bench', 'tau3_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'arc_agi_3', 'claw_eval',
+        'r_judge', 'atbench',
+        // 2026-09-04 S260b — GPT-6 Astra card Table 21: Daybreak Blue trusted-access defensive work
+        'daybreak_blue_vulnerability_discovery', 'daybreak_blue_vulnerability_patching',
+        'daybreak_blue_poc_exploit_creation', 'daybreak_blue_cyber_redteaming',
+        'advanced_cybersecurity_completion_rate'],
+    AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'gaia2', 'browsecomp', 'tau_bench', 'tau2_bench', 'tau3_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'arc_agi_3', 'arc_agi_3_provider_adapter_harness', 'claw_eval',
         // 2026-05-31 S40 — Opus 4.8 + SkillOpt agentic benches
         'automationbench', 'aeci_index', 'search_qa',
         // 2026-06-01 S44 MiniMax M3 — PostTrainBench autonomous 12h ML loop
@@ -195,6 +201,8 @@ var CyberCoding = {
                 'irregular_atomic_vuln_research_exploit',
                 'irregular_atomic_evasion',
                 'exploitgym',
+                // 2026-09-04 S260 GPT-6 Astra system card
+                'sandbox_bench', 'sre_bench', 'irregular_frontiercyber_overall',
                 'anthropic_firefox_zero_day_exploit_rate',
                 // 2026-06-27 S148 OpenAI Daybreak / Patch the Planet
                 'glasswing_critical_vulns_found_per_month',
@@ -260,7 +268,22 @@ var CyberCoding = {
                 'suicide_self_harm_harmless_api', 'suicide_self_harm_multiturn_appropriate_claude_ai',
                 'disordered_eating_harmless_api', 'bbq_disambiguated_accuracy', 'bbq_ambiguous_bias',
                 'prompt_injection_bug_bounty_all', 'prompt_injection_bug_bounty_coding',
-                'prompt_injection_bug_bounty_tool_use', 'prompt_injection_bug_bounty_computer_use'
+                'prompt_injection_bug_bounty_tool_use', 'prompt_injection_bug_bounty_computer_use',
+                // 2026-09-04 S260b — GPT-6 Astra system card: robustness + cyber-safety + agentic safety
+                'static_jailbreak_cyber', 'static_jailbreak_bio_high_risk', 'static_jailbreak_bio_severe',
+                'static_jailbreak_violence_moderate', 'static_jailbreak_violence_severe',
+                'indirect_prompt_injection_defender_success', 'instruction_hierarchy_robustness', 'gray_swan_ipi',
+                'cyber_safety_semi_synthetic_agentic_policy_compliance',
+                'agentic_misaligned_outcome_rate_base_lower_better',
+                'agentic_misaligned_outcome_rate_with_confirmation_lower_better',
+                'codex_deployment_severity3_flag_rate_lower_better',
+                // 2026-09-04 S260c — GPT-6 Astra card §8 alignment / restriction-obedience / inter-agent
+                'auto_review_circumvention_rate_lower_better', 'warning_barrier_persistence_rate_lower_better',
+                'exploitgym_honeypot_attack_rate_lower_better', 'interagent_contact_speculation_rate_lower_better',
+                'external_agent_board_engagement_rate_lower_better',
+                'external_agent_board_instruction_following_rate_lower_better',
+                'codex_deployment_severity12_flag_rate_lower_better',
+                'codex_deployment_eval_awareness_rate_lower_better', 'apollo_false_label_rate_lower_better'
             ]
         },
         {
@@ -596,6 +619,7 @@ var CyberCoding = {
         'google/gemini-3-pro',
         // 2026-06-25 S148 — GPT-5.6 family (Sol/Terra/Luna)
         'openai/gpt-5.6-sol-ultra', 'openai/gpt-5.6-sol', 'openai/gpt-5.6-terra', 'openai/gpt-5.6-luna',
+        'openai/gpt-6-astra',  // S260 2026-09-03 — Critical cyber threshold; ExploitBench 100, Sandbox Bench 45.5, SRE-Bench 99.2
         'openai/gpt-5.5-instant',
         'openai/gpt-5.5',
         'openai/gpt-5.5-pro',

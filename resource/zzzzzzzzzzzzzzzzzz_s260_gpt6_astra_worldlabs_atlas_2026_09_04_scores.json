@@ -1,0 +1,190 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-04",
+  "session": "S260",
+  "note": "OpenAI GPT-6 Astra (released 2026-09-03, first model to cross Preparedness Framework 'Critical' cybersecurity threshold) + World Labs Atlas (spatial/world model, early access 2026-09-01). System card PDF downloaded to resource/openai_gpt-6-astra_system-card_2026-09.pdf and verified via pdftotext -layout (not WebFetch summarization) after an initial subagent research pass mis-transcribed two figures (NanoGPT 72.38% is the human-baseline reference, not Astra's score, so excluded; the '10/22=45.5%' figure is a distinct new benchmark 'Sandbox Bench', not ExploitGym). AA Intelligence/Coding Agent Index figures cross-checked directly against artificialanalysis.ai model pages (gpt-6-astra = 'GPT-6 Astra (max)' per AA's own page title; gpt-6-astra-high = separate lower effort tier, confirmed by arcprize.org's harness/effort breakdown). World Labs Atlas preference win-rates and 3D-recon average extracted from raw HTML aria-label chart-accessibility text (SVG bar charts are not otherwise machine-readable; only Atlas's own values are stated in accessible text, so competitor absolute values on the 3D-recon chart are NOT included — WebFetch gave two mutually-contradictory table reads of that chart, confirming it is not safely extractable).",
+  "sources": [
+   "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "https://deploymentsafety.openai.com/gpt-6-astra",
+   "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "https://artificialanalysis.ai/models/gpt-6-astra",
+   "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "https://arcprize.org/blog/astra",
+   "https://www.trendingtopics.eu/gpt-6-astra-trails-top-models-from-anthropic-and-meta-in-benchmarks/",
+   "https://www.worldlabs.ai/blog/atlas"
+  ]
+ },
+ "models": [
+  {
+   "id": "openai/gpt-6-astra",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra (max)",
+   "type": "proprietary",
+   "modalities": ["text", "vision"],
+   "release_date": "2026-09-03",
+   "context_window": 1000000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "openai/gpt-6-astra-xhigh",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra (xhigh)",
+   "type": "proprietary",
+   "modalities": ["text", "vision"],
+   "release_date": "2026-09-03",
+   "context_window": 1000000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "openai/gpt-6-astra-high",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra (high)",
+   "type": "proprietary",
+   "modalities": ["text", "vision"],
+   "release_date": "2026-09-03",
+   "context_window": 1000000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "openai/gpt-6-astra-medium",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra (medium)",
+   "type": "proprietary",
+   "modalities": ["text", "vision"],
+   "release_date": "2026-09-03",
+   "context_window": 1000000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "openai/gpt-6-astra-low",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra (low)",
+   "type": "proprietary",
+   "modalities": ["text", "vision"],
+   "release_date": "2026-09-03",
+   "context_window": 1000000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "world-labs/atlas",
+   "vendor": "World Labs",
+   "name": "Atlas",
+   "type": "proprietary",
+   "modalities": ["text", "image", "video", "3d"],
+   "release_date": "2026-09-01",
+   "context_window": null,
+   "knowledge_cutoff": null
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "sandbox_bench",
+   "name": "Sandbox Bench (OpenAI internal, 22 CTF-style challenges)",
+   "category": "cyber",
+   "description": "Internal OpenAI eval: identify/exploit vulnerabilities in runtimes, file-format parsers, and egress proxies; 22 challenges across 3 categories (5 runtime, 14 parser, 3 egress-proxy targets), flag-recovery scoring.",
+   "metric": "pct_solved"
+  },
+  {
+   "id": "sre_bench",
+   "name": "SRE-Bench (reverse engineering, pass@4)",
+   "category": "cyber",
+   "description": "262 binary reverse-engineering instances from 19 privately-developed programs (network protocols, file formats, malware remediation, firmware); pass@4, 6 task-specific objectives per instance.",
+   "metric": "pass@4"
+  },
+  {
+   "id": "irregular_frontiercyber_overall",
+   "name": "Irregular FrontierCyber — Overall (226 challenges)",
+   "category": "cyber",
+   "description": "Aggregate solve-rate across all FrontierCyber challenges (vulnerability discovery/exploitation in real software+hardware); no tier breakdown given for this figure.",
+   "metric": "pct_solved"
+  },
+  {
+   "id": "arc_agi_3_provider_adapter_harness",
+   "name": "ARC-AGI-3 Semi-Private (provider-adapter harness)",
+   "category": "agent",
+   "description": "ARC-AGI-3 semi-private eval using ARC Prize's provider-adapter harness (vs. the standard harness used for the plain arc_agi_3 id) — this harness produces near-ceiling scores (~96-99.9% flat across all reasoning-effort tiers for GPT-6 Astra) that are NOT comparable to standard-harness numbers; treat as a distinct, harness-dependent, possibly-saturated metric, not a raw capability jump.",
+   "metric": "pct_solved"
+  },
+  {
+   "id": "world_model_3d_recon_mar",
+   "name": "World-Model 3D Reconstruction Error (Mean Absolute-Relative, avg across DTU/ETH3D/KITTI/NRGBD/7-Scenes/Tanks-and-Temples/ScanNet)",
+   "category": "3d-recon",
+   "description": "Pointmap reconstruction error (AbsRel, in thousandths), averaged across 7 standard 3D reconstruction benchmarks. Lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "atlas_pref_vs_minimax_h3",
+   "name": "Camera-controlled generation human preference vs. MiniMax H3",
+   "category": "video-generation",
+   "description": "Share of human voters preferring Atlas's camera-controlled generated video over MiniMax H3's, from World Labs' own preference study (95% CI given per pairing).",
+   "metric": "win_rate_pct"
+  },
+  {
+   "id": "atlas_pref_vs_gemini_omni_flash",
+   "name": "Camera-controlled generation human preference vs. Gemini Omni Flash",
+   "category": "video-generation",
+   "description": "Share of human voters preferring Atlas's camera-controlled generated video over Gemini Omni Flash's.",
+   "metric": "win_rate_pct"
+  },
+  {
+   "id": "atlas_pref_vs_happy_horse_1_1",
+   "name": "Camera-controlled generation human preference vs. Happy Horse 1.1",
+   "category": "video-generation",
+   "description": "Share of human voters preferring Atlas's camera-controlled generated video over Happy Horse 1.1's.",
+   "metric": "win_rate_pct"
+  },
+  {
+   "id": "atlas_pref_vs_flux_3",
+   "name": "Camera-controlled generation human preference vs. FLUX 3",
+   "category": "video-generation",
+   "description": "Share of human voters preferring Atlas's camera-controlled generated video over FLUX 3's.",
+   "metric": "win_rate_pct"
+  },
+  {
+   "id": "atlas_pref_vs_seedance_2_5",
+   "name": "Camera-controlled generation human preference vs. Seedance 2.5",
+   "category": "video-generation",
+   "description": "Share of human voters preferring Atlas's camera-controlled generated video over Seedance 2.5's.",
+   "metric": "win_rate_pct"
+  }
+ ],
+ "scores": [
+  {"model": "openai/gpt-6-astra", "benchmark": "aa_intelligence_index", "score": 61, "unit": "score", "_source": "https://artificialanalysis.ai/models/gpt-6-astra", "_note": "AA Intelligence Index v4.1.1, 'GPT-6 Astra (max)' per AA page title; #8/202 models; equal to GPT-5.6 Sol's aa_intelligence_index_v4_1 tier score"},
+  {"model": "openai/gpt-6-astra-high", "benchmark": "aa_intelligence_index", "score": 60, "unit": "score", "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high", "_note": "AA Intelligence Index v4.1.1, high effort tier (below max's 61)"},
+  {"model": "openai/gpt-6-astra", "benchmark": "aa_coding_agent_index", "score": 67, "unit": "score", "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra", "_note": "Codex harness; ~70% more token-efficient than GPT-5.6 Sol per AA article"},
+  {"model": "anthropic/claude-fable-5.1", "benchmark": "aa_coding_agent_index", "score": 70, "unit": "score", "_source": "https://www.trendingtopics.eu/gpt-6-astra-trails-top-models-from-anthropic-and-meta-in-benchmarks/", "_note": "Claude Code harness; comparator figure surfaced in GPT-6 Astra coverage"},
+  {"model": "openai/gpt-6-astra", "benchmark": "healthbench", "score": 58.1, "unit": "score", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "length-adjusted; Table 6 + prose confirms (+1.1 vs GPT-5.6 Sol's 57.0)"},
+  {"model": "openai/gpt-6-astra", "benchmark": "healthbench_hard", "score": 36.3, "unit": "score", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "length-adjusted; Table 6 (Sol 33.1)"},
+  {"model": "openai/gpt-6-astra", "benchmark": "healthbench_consensus", "score": 95.8, "unit": "score", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "length-adjusted; Table 6 (Sol 95.5)"},
+  {"model": "openai/gpt-6-astra", "benchmark": "healthbench_professional_length_adjusted", "score": 63.4, "unit": "score", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "Table 6 + prose confirms (+2.9 vs GPT-5.6 Sol's 60.5)"},
+  {"model": "openai/gpt-6-astra", "benchmark": "exploitbench_v8_cap_pct", "score": 100, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.1: full score even at lowest reasoning effort tested. OpenAI itself flags these results 'may be artificially inflated due to potential contamination' from historical CVE exposure — treat with caution."},
+  {"model": "openai/gpt-6-astra", "benchmark": "sandbox_bench", "score": 45.5, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.4: 10/22 targets (4/5 runtime, 5/14 parser, 1/3 egress-proxy)"},
+  {"model": "openai/gpt-5.6-sol", "benchmark": "sandbox_bench", "score": 4.5, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.4: 1/22 targets (1 runtime only), reported in Astra's system card for comparison"},
+  {"model": "openai/gpt-6-astra", "benchmark": "sre_bench", "score": 99.2, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.3: pass@4, ~1/4 the output tokens of Sol"},
+  {"model": "openai/gpt-5.6-sol", "benchmark": "sre_bench", "score": 68.7, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.3: pass@4, reported in Astra's system card for comparison"},
+  {"model": "openai/gpt-6-astra", "benchmark": "irregular_frontiercyber_overall", "score": 38.1, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.6 (Irregular, external eval): 86/226; neither model solved any of 7 Elite-tier challenges"},
+  {"model": "openai/gpt-5.6-sol", "benchmark": "irregular_frontiercyber_overall", "score": 15.0, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.6 (Irregular): 34/226, reported in Astra's system card for comparison"},
+  {"model": "openai/gpt-6-astra", "benchmark": "cyscenariobench_long_horizon_solve", "score": 59, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.6 (Irregular): avg success rate across long-horizon offensive tasks; solved 9/10 challenges at least once (Sol 6/10, avg success 27% per PDF's stated '+32pp' delta from Astra's 59% — note existing DB Sol value of 28.0 under this id predates this card and differs slightly, likely card-revision drift)"},
+  {"model": "openai/gpt-6-astra", "benchmark": "irregular_atomic_challenges", "score": 90.9, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.6 (Irregular): 20/22 Atomic challenges solved"},
+  {"model": "openai/gpt-6-astra", "benchmark": "irregular_atomic_vuln_research_exploit", "score": 100, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.6 (Irregular): avg success rate, vulnerability research + exploitation category"},
+  {"model": "openai/gpt-6-astra", "benchmark": "irregular_atomic_network_attack_sim", "score": 100, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.6 (Irregular): avg success rate, network attack simulation category"},
+  {"model": "openai/gpt-6-astra", "benchmark": "irregular_atomic_evasion", "score": 52, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.2.6 (Irregular): avg success rate, evasion category"},
+  {"model": "openai/gpt-6-astra", "benchmark": "internal_research_debugging", "score": 78.05, "unit": "%", "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf", "_note": "§10.1.3.1: 41 real internal-research bugs + 6 alignment-auditing tasks; below OpenAI's indicative High-capability threshold"},
+  {"model": "openai/gpt-6-astra", "benchmark": "arc_agi_3", "score": 62.7, "unit": "%", "_source": "https://arcprize.org/blog/astra", "_note": "Semi-Private, standard harness, max reasoning effort, $26,098 eval cost"},
+  {"model": "openai/gpt-6-astra-xhigh", "benchmark": "arc_agi_3", "score": 59.3, "unit": "%", "_source": "https://arcprize.org/blog/astra", "_note": "Semi-Private, standard harness, xhigh effort, $37,317"},
+  {"model": "openai/gpt-6-astra-high", "benchmark": "arc_agi_3", "score": 54.8, "unit": "%", "_source": "https://arcprize.org/blog/astra", "_note": "Semi-Private, standard harness, high effort, $40,705"},
+  {"model": "openai/gpt-6-astra-medium", "benchmark": "arc_agi_3", "score": 38.6, "unit": "%", "_source": "https://arcprize.org/blog/astra", "_note": "Semi-Private, standard harness, medium effort, $48,090"},
+  {"model": "openai/gpt-6-astra-low", "benchmark": "arc_agi_3", "score": 17.5, "unit": "%", "_source": "https://arcprize.org/blog/astra", "_note": "Semi-Private, standard harness, low effort, $38,166"},
+  {"model": "openai/gpt-6-astra", "benchmark": "arc_agi_3_provider_adapter_harness", "score": 98.6, "unit": "%", "_source": "https://arcprize.org/blog/astra", "_note": "Semi-Private, provider-adapter harness, max effort, $17,332 — near-ceiling/saturated, see benchmark description"},
+  {"model": "openai/gpt-6-astra-xhigh", "benchmark": "arc_agi_3_provider_adapter_harness", "score": 98.4, "unit": "%", "_source": "https://arcprize.org/blog/astra", "_note": "provider-adapter harness, xhigh effort, $18,147"},
+  {"model": "openai/gpt-6-astra-high", "benchmark": "arc_agi_3_provider_adapter_harness", "score": 99.9, "unit": "%", "_source": "https://arcprize.org/blog/astra", "_note": "provider-adapter harness, high effort, $18,817 — highest of all effort tiers under this harness (non-monotonic vs effort, evidence of ceiling saturation)"},
+  {"model": "openai/gpt-6-astra-medium", "benchmark": "arc_agi_3_provider_adapter_harness", "score": 98.4, "unit": "%", "_source": "https://arcprize.org/blog/astra", "_note": "provider-adapter harness, medium effort, $19,285"},
+  {"model": "openai/gpt-6-astra-low", "benchmark": "arc_agi_3_provider_adapter_harness", "score": 98.0, "unit": "%", "_source": "https://arcprize.org/blog/astra", "_note": "provider-adapter harness, low effort, $21,298"},
+  {"model": "world-labs/atlas", "benchmark": "world_model_3d_recon_mar", "score": 25.3, "unit": "score_lower_better", "_source": "https://www.worldlabs.ai/blog/atlas", "_note": "Average AbsRel (thousandths) across DTU/ETH3D/KITTI/NRGBD/7-Scenes/Tanks-and-Temples/ScanNet; stated as lowest (best) among all compared models (Pi3X, π³, VGGT-Ω 1B, Depth Anything 3, MapAnything) but their individual values are chart-only/not extractable from accessible text"},
+  {"model": "world-labs/atlas", "benchmark": "atlas_pref_vs_minimax_h3", "score": 75, "unit": "%", "_source": "https://www.worldlabs.ai/blog/atlas", "_note": "95% CI [68, 82]"},
+  {"model": "world-labs/atlas", "benchmark": "atlas_pref_vs_gemini_omni_flash", "score": 81, "unit": "%", "_source": "https://www.worldlabs.ai/blog/atlas", "_note": "95% CI [74, 87]"},
+  {"model": "world-labs/atlas", "benchmark": "atlas_pref_vs_happy_horse_1_1", "score": 86, "unit": "%", "_source": "https://www.worldlabs.ai/blog/atlas", "_note": "95% CI [82, 91]"},
+  {"model": "world-labs/atlas", "benchmark": "atlas_pref_vs_flux_3", "score": 93, "unit": "%", "_source": "https://www.worldlabs.ai/blog/atlas", "_note": "95% CI [88, 97]"},
+  {"model": "world-labs/atlas", "benchmark": "atlas_pref_vs_seedance_2_5", "score": 94, "unit": "%", "_source": "https://www.worldlabs.ai/blog/atlas", "_note": "95% CI [90, 97]"}
+ ]
+}

@@ -700,6 +700,10 @@ var MedicalAI = {
                 'tacit_knowledge_gryphon', 'troubleshootingbench',
                 'aav_capsid_packaging_spearman', 'hard_negative_protein_binding_pass4',
                 'dna_tf_binding_design_pass1',
+                // 2026-09-04 S260b — GPT-6 Astra card §10.1.1.2: 3 NEW Critical-threshold bio evals (all below threshold)
+                'shp2_protein_function_mean_r2', 'coronavirus_ace2_cell_entry_reward',
+                'phage_plasmid_coevolution_nll_lower_better',
+                'securebio_vct_v2', 'securebio_advanced_screening_evasion',
                 'bio_refusal_severe_not_unsafe', 'bio_refusal_dual_use_not_unsafe',
                 'bio_refusal_benign_not_overrefuse']
         },
@@ -722,7 +726,11 @@ var MedicalAI = {
                 'securebio_world_class_bio', 'securebio_vct', 'securebio_mbct',
                 'securebio_hpct', 'securebio_reprobait',
                 'aav_capsid_packaging_spearman', 'hard_negative_protein_binding_pass4',
-                'dna_tf_binding_design_pass1']
+                'dna_tf_binding_design_pass1',
+                // 2026-09-04 S260b — GPT-6 Astra card: Critical-threshold novel-design evals + SecureBio additions
+                'shp2_protein_function_mean_r2', 'coronavirus_ace2_cell_entry_reward',
+                'phage_plasmid_coevolution_nll_lower_better',
+                'securebio_vct_v2', 'securebio_advanced_screening_evasion']
         },
         {
             label: '🧪 Protein Structure & Design',

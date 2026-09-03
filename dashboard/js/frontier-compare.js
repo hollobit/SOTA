@@ -129,6 +129,16 @@ var FrontierCompare = {
             'vision_safety_hate', 'vision_safety_extremism', 'vision_safety_self_harm', 'vision_safety_harms_erotic',
             'dynamic_mental_health', 'dynamic_emotional_reliance', 'dynamic_self_harm',
             'bio_refusal_severe_not_unsafe', 'bio_refusal_dual_use_not_unsafe', 'bio_refusal_benign_not_overrefuse',
+            // 2026-09-04 S260b — GPT-6 Astra system card safety tables (U18, agentic safe completion, jailbreak, IPI)
+            'prod_disallowed_u18_age_restricted', 'prod_disallowed_u18_sexual', 'prod_disallowed_u18_eating_disorders',
+            'prod_disallowed_u18_emotional_reliance', 'prod_disallowed_u18_self_harm', 'prod_disallowed_u18_gore',
+            'agentic_safe_completion_codex_age_restricted', 'agentic_safe_completion_codex_nonviolent_wrongdoing',
+            'agentic_safe_completion_codex_violent_wrongdoing', 'agentic_safe_completion_codex_sensitive_personal_data',
+            'agentic_safe_completion_codex_self_harm', 'agentic_safe_completion_chat_plugins',
+            'agentic_safe_completion_redteam_codex', 'agentic_safe_completion_redteam_chat_plugins',
+            'static_jailbreak_bio_high_risk', 'static_jailbreak_bio_severe', 'static_jailbreak_violence_moderate',
+            'static_jailbreak_violence_severe', 'static_jailbreak_cyber',
+            'indirect_prompt_injection_defender_success', 'instruction_hierarchy_robustness', 'gray_swan_ipi',
             'apollo_eval_awareness_verbalization_rate', 'apollo_sandbagging_misreading_rate',
             'user_confirmation_financial', 'user_confirmation_high_stakes',
             // 2026-06-28 S154b — Mythos 5 system card §4 + §5 safeguards (helpful-only agentic safety)
@@ -237,6 +247,8 @@ var FrontierCompare = {
         'openai/gpt-5.6-sol',        // flagship — Preparedness High on Cyber + Bio/Chem
         'openai/gpt-5.6-terra',      // balanced, 2x cheaper than GPT-5.5
         'openai/gpt-5.6-luna',       // fast + cost-efficient
+        // 2026-09-03 S260 — GPT-6 Astra: first model to cross Preparedness Framework CRITICAL cyber threshold (AAII 61, Coding Agent Index 67, ARC-AGI-3 62.7 std harness, SRE-Bench 99.2, HealthBench-Pro 63.4)
+        'openai/gpt-6-astra',
         // 2026-06-28 S150 — TTC reasoning-effort tier variants (per AA per-effort table)
         'anthropic/claude-opus-4.8-max',          // S147 — Opus 4.8 max effort (AAII v4.1 56)
         'google/gemini-3.1-deep-think',           // S147 — Gemini deep think

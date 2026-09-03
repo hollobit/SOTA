@@ -1,0 +1,890 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-04",
+  "session": "S260c",
+  "note": "Third pass. (1) AA sub-benchmarks that S260 wrote off as 'SPA-gated / not rendered' were in fact recoverable via the Next.js RSC `currentModel` payload technique already recorded in project memory (reference_aa_rsc_currentmodel_extraction). Extracted 16 precise sub-scores across ALL FIVE effort tiers (max/xhigh/high/medium/low) — each window anchored on its own slug so there is zero cross-model misattribution risk. AA also publishes gpt-6-astra-xhigh/-medium/-low pages, which the S260 pass never checked. The precise intelligenceIndex values (61.2161 max / 60.3350 high) refine the rounded 61/60 ingested in S260. This also resolves the ambiguity S260 explicitly refused to ingest: AA's '92% to 51%' hallucination phrasing is the AA-Omniscience hallucination rate, whose max-effort value is 51.34% — now stored as a proper per-tier triple. (2) PDF §8 alignment section: 9 restriction-obedience / inter-agent / deployment-simulation metrics that S260b dismissed as 'narrative prose' but which are in fact explicit (model, eval, number) triples. (3) A new AA hallucination-rate id was avoided: the 100-x relationship to the existing aa_omniscience_non_hall id was verified empirically on three other models, so values were converted onto the existing id rather than fragmenting the schema. (4) Table 19 Biology Model Refusal, the last unmined numeric table, onto existing bio_refusal_* ids (Sol comparator values match the DB exactly). NOT INGESTED, final list: Table 9/10 (qualitative CoT transcript comparisons), Table 11/18 (eval overview descriptions, no scores), Table 22 (Misuse Monitor classifier recall — a property of OpenAI's safeguard stack, not of the model, so it has no valid model attribution), §8.7 metagaming, §9 monitorability/CoT-controllability/monitor-recall (measured under many bespoke conditions, no stable single-value metric), UK AISI qualitative percentages, and all remaining Figure-only series.",
+  "sources": [
+   "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "https://artificialanalysis.ai/models/gpt-6-astra",
+   "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "https://artificialanalysis.ai/models/gpt-6-astra-low"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "auto_review_circumvention_rate_lower_better",
+   "name": "Auto-Review circumvention attempt rate (lower better)",
+   "category": "safety",
+   "description": "§8.2.1: share of rollouts where the model attempted to act contrary to the instructions in an Auto-Review denial message, at maximum reasoning effort. Lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "warning_barrier_persistence_rate_lower_better",
+   "name": "Warning-barrier unwanted persistence rate (lower better)",
+   "category": "safety",
+   "description": "§8.2.2: share of rollouts where the model saw an explicit warning barrier and still persisted against the restriction's spirit, at maximum reasoning effort. Lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "exploitgym_honeypot_attack_rate_lower_better",
+   "name": "ExploitGym honeypot attack rate (lower better)",
+   "category": "safety",
+   "description": "§8.2.3: adversarially-selected hardest ExploitGym problems seeded with a second 'honeypot' flag outside the target location. Measures whether a model cheats by attacking the honeypot when the real task is very hard or impossible. Lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "interagent_contact_speculation_rate_lower_better",
+   "name": "Unintended inter-agent contact speculation rate (lower better)",
+   "category": "safety",
+   "description": "§8.5.1: share of ExploitGym Honeypot trajectories featuring speculation about the presence of other agents and the potential of making contact. Lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "external_agent_board_engagement_rate_lower_better",
+   "name": "Unrequested external agent message-board engagement rate (lower better)",
+   "category": "safety",
+   "description": "§8.5.2: simulated message board (local browser cache) prepopulated with instructions encouraging improper behaviour; measures whether the agent engages when no such interaction was requested. Both models found the board ≥97.5% of the time by design. Lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "external_agent_board_instruction_following_rate_lower_better",
+   "name": "Unrequested external-agent instruction-following rate (lower better)",
+   "category": "safety",
+   "description": "§8.5.2: share of samples where the agent followed the improper instructions embedded in the unrequested message board. Lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "codex_deployment_severity12_flag_rate_lower_better",
+   "name": "Codex deployment simulation — severity-1/2 misalignment flag rate (lower better)",
+   "category": "safety",
+   "description": "§8.6: share of matched tasks producing a severity-1-or-2 misalignment flag in a deployment simulation of internal employee Codex traffic. Lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "codex_deployment_eval_awareness_rate_lower_better",
+   "name": "Codex deployment simulation — evaluation-awareness rate (lower better)",
+   "category": "safety",
+   "description": "§8.6: share of trajectories where the model verbalised awareness that it might be being evaluated. Original traffic baseline 0.76%. Lower is better (higher awareness complicates interpreting safety results).",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "apollo_false_label_rate_lower_better",
+   "name": "Apollo Research — false-label rate on control runs (lower better)",
+   "category": "safety",
+   "description": "§8.8.1 external evaluation by Apollo Research: rate at which the model produced false data labels in baseline runs. Lower is better.",
+   "metric": "score_lower_better"
+  }
+ ],
+ "scores": [
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_intelligence_index",
+   "score": 61.2161,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. Precise value; AA's own UI rounds this for display (S260 ingested the rounded 61/60)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_agentic_index",
+   "score": 51.4978,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_omniscience_index",
+   "score": 43.4,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_omniscience_acc",
+   "score": 62.6,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "gdpval_aa_elo",
+   "score": 1629.31,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "gdpval_aa_v2",
+   "score": 56.4655,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. GDPval-AA v2 normalised win-rate (the Elo form is gdpval_aa_elo)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "tau3_banking",
+   "score": 41.4433,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_2_1",
+   "score": 88.3895,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "scicode",
+   "score": 54.0509,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_lcr",
+   "score": 74.3333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "hle",
+   "score": 54.6803,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "gpqa_diamond",
+   "score": 96.0606,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "critpt",
+   "score": 31.7143,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "mmmu_pro",
+   "score": 86.8786,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_briefcase",
+   "score": 1569.52,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. AA-Briefcase Elo, 95% CI [1558.9, 1581.81]."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 48.6631,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra",
+   "_note": "AA model page RSC `currentModel` payload, max reasoning-effort tier (anchor slug verified = gpt-6-astra, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. Stored as non-hallucination rate = 100 - hallucination rate (51.3369%), the canonical DB form; the 100-x relationship was verified empirically against grok-4.3 / glm-5.1 / minimax-m3 (AA page vs DB rows agree within snapshot drift). This hallucination rate is the figure behind AA's '92% to 51%' phrasing (51.34% = max-effort tier). NOTE: at 48.66 non-hallucination, Astra sits BELOW most tracked frontier models (60-84) on this metric despite AA's improvement framing."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_intelligence_index",
+   "score": 60.9931,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. Precise value; AA's own UI rounds this for display (S260 ingested the rounded 61/60)."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_agentic_index",
+   "score": 51.2566,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_omniscience_index",
+   "score": 43.4167,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_omniscience_acc",
+   "score": 61.85,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "gdpval_aa_elo",
+   "score": 1605.58,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "gdpval_aa_v2",
+   "score": 55.279,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. GDPval-AA v2 normalised win-rate (the Elo form is gdpval_aa_elo)."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "tau3_banking",
+   "score": 43.0928,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "terminal_bench_2_1",
+   "score": 89.1386,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "scicode",
+   "score": 49.537,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_lcr",
+   "score": 74.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "hle",
+   "score": 54.5876,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "gpqa_diamond",
+   "score": 96.2626,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "critpt",
+   "score": 31.4286,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "mmmu_pro",
+   "score": 86.2428,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_briefcase",
+   "score": 1546.43,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. AA-Briefcase Elo, 95% CI [1535.47, 1558.61]."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 51.682,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+   "_note": "AA model page RSC `currentModel` payload, xhigh reasoning-effort tier (anchor slug verified = gpt-6-astra-xhigh, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. Stored as non-hallucination rate = 100 - hallucination rate (48.3180%), the canonical DB form; the 100-x relationship was verified empirically against grok-4.3 / glm-5.1 / minimax-m3 (AA page vs DB rows agree within snapshot drift). This hallucination rate is the figure behind AA's '92% to 51%' phrasing (51.34% = max-effort tier). NOTE: at 48.66 non-hallucination, Astra sits BELOW most tracked frontier models (60-84) on this metric despite AA's improvement framing."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_intelligence_index",
+   "score": 60.335,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. Precise value; AA's own UI rounds this for display (S260 ingested the rounded 61/60)."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_agentic_index",
+   "score": 49.2267,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_omniscience_index",
+   "score": 43.7333,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_omniscience_acc",
+   "score": 61.1333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "gdpval_aa_elo",
+   "score": 1574.31,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "gdpval_aa_v2",
+   "score": 53.7155,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. GDPval-AA v2 normalised win-rate (the Elo form is gdpval_aa_elo)."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "tau3_banking",
+   "score": 40.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "terminal_bench_2_1",
+   "score": 89.8876,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "scicode",
+   "score": 51.6204,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_lcr",
+   "score": 76.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "hle",
+   "score": 53.0584,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "gpqa_diamond",
+   "score": 94.9495,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "critpt",
+   "score": 28.8571,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "mmmu_pro",
+   "score": 86.4162,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_briefcase",
+   "score": 1508.28,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. AA-Briefcase Elo, 95% CI [1496.91, 1519.68]."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 55.2316,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+   "_note": "AA model page RSC `currentModel` payload, high reasoning-effort tier (anchor slug verified = gpt-6-astra-high, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. Stored as non-hallucination rate = 100 - hallucination rate (44.7684%), the canonical DB form; the 100-x relationship was verified empirically against grok-4.3 / glm-5.1 / minimax-m3 (AA page vs DB rows agree within snapshot drift). This hallucination rate is the figure behind AA's '92% to 51%' phrasing (51.34% = max-effort tier). NOTE: at 48.66 non-hallucination, Astra sits BELOW most tracked frontier models (60-84) on this metric despite AA's improvement framing."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_intelligence_index",
+   "score": 59.1799,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. Precise value; AA's own UI rounds this for display (S260 ingested the rounded 61/60)."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_agentic_index",
+   "score": 46.9296,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_omniscience_index",
+   "score": 42.2167,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_omniscience_acc",
+   "score": 60.5667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "gdpval_aa_elo",
+   "score": 1552.08,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "gdpval_aa_v2",
+   "score": 52.604,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. GDPval-AA v2 normalised win-rate (the Elo form is gdpval_aa_elo)."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "tau3_banking",
+   "score": 35.4639,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "terminal_bench_2_1",
+   "score": 89.5131,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "scicode",
+   "score": 51.0417,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_lcr",
+   "score": 76.3333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "hle",
+   "score": 52.734,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "gpqa_diamond",
+   "score": 93.9394,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "critpt",
+   "score": 29.1429,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "mmmu_pro",
+   "score": 85.0867,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_briefcase",
+   "score": 1460.46,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. AA-Briefcase Elo, 95% CI [1449.88, 1472.57]."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 53.4658,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+   "_note": "AA model page RSC `currentModel` payload, medium reasoning-effort tier (anchor slug verified = gpt-6-astra-medium, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. Stored as non-hallucination rate = 100 - hallucination rate (46.5342%), the canonical DB form; the 100-x relationship was verified empirically against grok-4.3 / glm-5.1 / minimax-m3 (AA page vs DB rows agree within snapshot drift). This hallucination rate is the figure behind AA's '92% to 51%' phrasing (51.34% = max-effort tier). NOTE: at 48.66 non-hallucination, Astra sits BELOW most tracked frontier models (60-84) on this metric despite AA's improvement framing."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_intelligence_index",
+   "score": 56.7267,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. Precise value; AA's own UI rounds this for display (S260 ingested the rounded 61/60)."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_agentic_index",
+   "score": 43.2196,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_omniscience_index",
+   "score": 40.55,
+   "unit": "score",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_omniscience_acc",
+   "score": 59.5333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "gdpval_aa_elo",
+   "score": 1473.74,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "gdpval_aa_v2",
+   "score": 48.687,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. GDPval-AA v2 normalised win-rate (the Elo form is gdpval_aa_elo)."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "tau3_banking",
+   "score": 31.9588,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "terminal_bench_2_1",
+   "score": 88.015,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "scicode",
+   "score": 51.0417,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_lcr",
+   "score": 72.6667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "hle",
+   "score": 49.2122,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "gpqa_diamond",
+   "score": 93.1313,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "critpt",
+   "score": 26.2857,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "mmmu_pro",
+   "score": 84.6243,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_briefcase",
+   "score": 1271.31,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. AA-Briefcase Elo, 95% CI [1260.95, 1282.89]."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 53.089,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "_note": "AA model page RSC `currentModel` payload, low reasoning-effort tier (anchor slug verified = gpt-6-astra-low, so no cross-model misattribution). AA Intelligence Index v4.1.1 run. Stored as non-hallucination rate = 100 - hallucination rate (46.9110%), the canonical DB form; the 100-x relationship was verified empirically against grok-4.3 / glm-5.1 / minimax-m3 (AA page vs DB rows agree within snapshot drift). This hallucination rate is the figure behind AA's '92% to 51%' phrasing (51.34% = max-effort tier). NOTE: at 48.66 non-hallucination, Astra sits BELOW most tracked frontier models (60-84) on this metric despite AA's improvement framing."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "auto_review_circumvention_rate_lower_better",
+   "score": 0.3,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.2.1 Respecting Auto-Review — max reasoning effort"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "auto_review_circumvention_rate_lower_better",
+   "score": 5.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.2.1 comparator — max reasoning effort"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "warning_barrier_persistence_rate_lower_better",
+   "score": 19.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.2.2 Respecting Warnings — max reasoning effort"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "warning_barrier_persistence_rate_lower_better",
+   "score": 64.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.2.2 comparator — max reasoning effort"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "exploitgym_honeypot_attack_rate_lower_better",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.2.3 — Astra made NO attacks on the honeypot; it legitimately captured the real flag 1.3% of the time. Directly relevant to the Hugging Face incident described in the card."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "exploitgym_honeypot_attack_rate_lower_better",
+   "score": 55.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.2.3 comparator — max reasoning effort, without production safeguards"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "interagent_contact_speculation_rate_lower_better",
+   "score": 4.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.5.1 Proactive Searches — 'under 4%' of cases; arguably attempted contact in 0.2%"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "interagent_contact_speculation_rate_lower_better",
+   "score": 43.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.5.1 comparator — representative subsample"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "external_agent_board_engagement_rate_lower_better",
+   "score": 27.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.5.2 / Figure 12"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "external_agent_board_engagement_rate_lower_better",
+   "score": 84.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.5.2 / Figure 12 comparator"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "external_agent_board_instruction_following_rate_lower_better",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.5.2 / Figure 12 — no specified misaligned actions observed"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "external_agent_board_instruction_following_rate_lower_better",
+   "score": 52.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.5.2 / Figure 12 comparator"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "codex_deployment_severity12_flag_rate_lower_better",
+   "score": 13.62,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.6 deployment simulation"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "codex_deployment_severity12_flag_rate_lower_better",
+   "score": 19.46,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.6 comparator"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "codex_deployment_eval_awareness_rate_lower_better",
+   "score": 9.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.6 — Astra demonstrated eval awareness MORE often than Sol; restricting to cases with no detected awareness still leaves ~57% fewer severity-3 flags for Astra"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "codex_deployment_eval_awareness_rate_lower_better",
+   "score": 2.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.6 comparator"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "apollo_false_label_rate_lower_better",
+   "score": 0.17,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.8.1 Apollo Research — 17 of 10,000 baseline runs; produced no false labels in 20,000 control runs"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "apollo_false_label_rate_lower_better",
+   "score": 36.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.8.1 comparator — 36 of 100 runs"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "bio_refusal_severe_not_unsafe",
+   "score": 0.998,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2 Table 19 Biology Model Refusal Evaluation — model-response safety only (monitor performance reported separately) (Sol 0.943)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "bio_refusal_dual_use_not_unsafe",
+   "score": 0.97,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2 Table 19 Biology Model Refusal Evaluation — model-response safety only (monitor performance reported separately) (Sol 0.911)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "bio_refusal_benign_not_overrefuse",
+   "score": 0.978,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2 Table 19 Biology Model Refusal Evaluation — model-response safety only (monitor performance reported separately) — slight overrefusal REGRESSION vs Sol 0.989, alongside a substantially improved safety bar"
+  }
+ ]
+}

@@ -1,0 +1,1082 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-04",
+  "session": "S260b",
+  "note": "Second pass over the GPT-6 Astra system card after an audit found the S260 pass had only mined the capability sections (§10.1.2 cyber, §10.1.3 AI self-improvement, §6.1 HealthBench). This batch adds the safety/robustness/bio-critical tables that were missed: Table 1 (production disallowed content), Table 2 (U18), Table 3 (agentic safe completion), Table 4 (image input), Table 5 (static jailbreak, with 95% CIs), Table 7 (dynamic adversarial simulations), Table 8 (harmful outcomes in work environments), §10.1.1 bio High + CRITICAL evaluations (Tables 12-17), SecureBio external evaluation, §5.2 prompt injection + Gray Swan IPI, Table 20 (cyber safety), Table 21 (Daybreak Blue), and §8.6 Codex deployment-simulation misalignment flags. Every value was read from a local `pdftotext -layout` extraction. Existing benchmark ids were reused wherever GPT-5.6 Sol or earlier GPT-5.x models already had rows (verified by matching comparator values against the DB); new ids created only where none existed. Where this card restates a Sol baseline that differs from the DB's existing Sol row (HPCT 66.5 vs 68.4, WCB 67.6 vs 68.3, ReproBAIT 69 vs 85, gore 0.785 vs 0.708, sexual 0.915 vs 0.948), the existing row was LEFT ALONE and the discrepancy recorded in notes — OpenAI states scores across system cards are not directly comparable. NOT INGESTED (figure-only or non-triple): Figures 1-6 (safety Pareto, multiturn jailbreak defender success by attacker budget, hallucination rates on user-flagged conversations), §8.7 metagaming/alignment faking rates, §8.8 UK AISI + Apollo Research eval-awareness percentages, §9 monitorability/CoT controllability and monitor-recall percentages, §10.1.3 KernelGen/PostTrainBench/MLE-Bench (charts only), Figure 41 no-CoT time horizon. CORRECTION during this same pass: an initially-declared new id 'dna_sequence_design_tf_binding_pass1' duplicated the existing 'dna_tf_binding_design_pass1' (same Nucleobench/Ledidi eval, identical comparator values) — dropped, Astra's 11.27 re-filed onto the existing id, and the three duplicate comparator rows removed since the DB already had them. All other new ids were fuzzy-matched against the full benchmark table and confirmed distinct.",
+  "sources": [
+   "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "https://deploymentsafety.openai.com/gpt-6-astra"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "agentic_safe_completion_codex_age_restricted",
+   "name": "Agentic Safe Completion — Codex prod, age-restricted actions",
+   "category": "safety",
+   "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "agentic_safe_completion_codex_nonviolent_wrongdoing",
+   "name": "Agentic Safe Completion — Codex prod, non-violent wrongdoing",
+   "category": "safety",
+   "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "agentic_safe_completion_codex_violent_wrongdoing",
+   "name": "Agentic Safe Completion — Codex prod, violent wrongdoing",
+   "category": "safety",
+   "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "agentic_safe_completion_codex_sensitive_personal_data",
+   "name": "Agentic Safe Completion — Codex prod, sensitive personal data",
+   "category": "safety",
+   "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "agentic_safe_completion_codex_self_harm",
+   "name": "Agentic Safe Completion — Codex prod, self-harm",
+   "category": "safety",
+   "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "agentic_safe_completion_chat_plugins",
+   "name": "Agentic Safe Completion — Chat prod, Chat Plugins",
+   "category": "safety",
+   "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "agentic_safe_completion_redteam_codex",
+   "name": "Agentic Safe Completion — human red-teaming, Codex",
+   "category": "safety",
+   "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "agentic_safe_completion_redteam_chat_plugins",
+   "name": "Agentic Safe Completion — human red-teaming, Chat Plugins",
+   "category": "safety",
+   "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "static_jailbreak_bio_high_risk",
+   "name": "Static Jailbreak — Bio: high risk",
+   "category": "safety",
+   "description": "Fixed set of adversarial prompts from attacker models (e.g. GPT-Red); proportion of attacks successfully refused. Half of each set generated by a held-out attacker. Prompts were designed to jailbreak earlier GPT models, so older-model scores are not representative of production traffic.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "static_jailbreak_bio_severe",
+   "name": "Static Jailbreak — Bio: severe",
+   "category": "safety",
+   "description": "Fixed set of adversarial prompts from attacker models (e.g. GPT-Red); proportion of attacks successfully refused. Half of each set generated by a held-out attacker. Prompts were designed to jailbreak earlier GPT models, so older-model scores are not representative of production traffic.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "static_jailbreak_violence_moderate",
+   "name": "Static Jailbreak — Violence: moderate",
+   "category": "safety",
+   "description": "Fixed set of adversarial prompts from attacker models (e.g. GPT-Red); proportion of attacks successfully refused. Half of each set generated by a held-out attacker. Prompts were designed to jailbreak earlier GPT models, so older-model scores are not representative of production traffic.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "static_jailbreak_violence_severe",
+   "name": "Static Jailbreak — Violence: severe",
+   "category": "safety",
+   "description": "Fixed set of adversarial prompts from attacker models (e.g. GPT-Red); proportion of attacks successfully refused. Half of each set generated by a held-out attacker. Prompts were designed to jailbreak earlier GPT models, so older-model scores are not representative of production traffic.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "static_jailbreak_cyber",
+   "name": "Static Jailbreak — Cyber",
+   "category": "safety",
+   "description": "Fixed set of adversarial prompts from attacker models (e.g. GPT-Red); proportion of attacks successfully refused. Half of each set generated by a held-out attacker. Prompts were designed to jailbreak earlier GPT models, so older-model scores are not representative of production traffic.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "agentic_misaligned_outcome_rate_base_lower_better",
+   "name": "Agentic misaligned-outcome rate — base model (no confirmation policy)",
+   "category": "safety",
+   "description": "Adversarially-designed realistic workplace agent tasks (messaging, email, browsing, project management, sales) with ambiguous instructions and complex permissions; each task has a safe route. Rate of harmful/misaligned outcomes; lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "agentic_misaligned_outcome_rate_with_confirmation_lower_better",
+   "name": "Agentic misaligned-outcome rate — with confirmation policy (user default)",
+   "category": "safety",
+   "description": "Adversarially-designed realistic workplace agent tasks (messaging, email, browsing, project management, sales) with ambiguous instructions and complex permissions; each task has a safe route. Rate of harmful/misaligned outcomes; lower is better.",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "shp2_protein_function_mean_r2",
+   "name": "SHP2 Protein Function Prediction (mean R² over 3 unpublished assays)",
+   "category": "life-sciences",
+   "description": "Velocity Bio unpublished wet-lab dataset, 411 single-residue SHP2 mutations; few-shot regression predicting held-out functional assay results. Indicative Critical threshold 0.60.",
+   "metric": "r2"
+  },
+  {
+   "id": "coronavirus_ace2_cell_entry_reward",
+   "name": "Coronavirus–ACE2 Cell-Entry Screen (composite reward)",
+   "category": "life-sciences",
+   "description": "Unpublished academic dataset: cell-entry measurements for 3 uncharacterized bat coronaviruses × 35 mammalian ACE2 proteins; model ranks held-out measurements. Indicative Critical threshold 0.75.",
+   "metric": "reward"
+  },
+  {
+   "id": "phage_plasmid_coevolution_nll_lower_better",
+   "name": "Phage–plasmid co-evolution (negative log-likelihood, lower better)",
+   "category": "life-sciences",
+   "description": "Unpublished phage–plasmid co-evolution system sequenced daily over 30 days; model predicts which amino-acid mutations appear next from cumulatively revealed checkpoints. Indicative Critical threshold NLL 9.40 (lower better).",
+   "metric": "score_lower_better"
+  },
+  {
+   "id": "securebio_vct_v2",
+   "name": "SecureBio VCT-v2 (Virology Capabilities Test v2)",
+   "category": "medical",
+   "description": "SecureBio's updated Virology Capabilities Test; refusal-corrected accuracy.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "securebio_advanced_screening_evasion",
+   "name": "SecureBio Advanced Screening Evasion",
+   "category": "biosec",
+   "description": "SecureBio evaluation of DNA-synthesis screening evasion strategy quality and fragment-evasion success; helpful-only checkpoints.",
+   "metric": "score"
+  },
+  {
+   "id": "indirect_prompt_injection_defender_success",
+   "name": "Indirect prompt-injection defender success rate (GPT-Red internal)",
+   "category": "safety",
+   "description": "OpenAI GPT-Red automated indirect prompt-injection evaluation: malicious instructions in third-party content attempt to redirect an agent. Defender success rate averaged per defender query; higher better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "instruction_hierarchy_robustness",
+   "name": "Instruction-hierarchy robustness (direct prompt injection)",
+   "category": "safety",
+   "description": "Direct prompt-injection / instruction-hierarchy violations: a user attempts to override higher-priority system or developer instructions. Higher better.",
+   "metric": "accuracy"
+  },
+  {
+   "id": "cyber_safety_semi_synthetic_agentic_policy_compliance",
+   "name": "Cybersecurity safety — semi-synthetic agentic environments",
+   "category": "safety",
+   "description": "Agentic cyber-safety environments seeded from cyber-relevant production traces (3 sources); more realistic than the earlier fully-synthetic environments. Macro-averaged safety score 0-1.",
+   "metric": "score"
+  },
+  {
+   "id": "daybreak_blue_vulnerability_discovery",
+   "name": "Daybreak Blue — vulnerability discovery and analysis",
+   "category": "cyber",
+   "description": "Defensive-work task completion under OpenAI's Daybreak Blue trusted-access program, checking that cyber safeguards do not block legitimate defensive work. Reported with Daybreak Blue enabled; the without-Trusted-Access baseline is in the notes.",
+   "metric": "pct_completed"
+  },
+  {
+   "id": "daybreak_blue_vulnerability_patching",
+   "name": "Daybreak Blue — vulnerability patching",
+   "category": "cyber",
+   "description": "Defensive-work task completion under OpenAI's Daybreak Blue trusted-access program, checking that cyber safeguards do not block legitimate defensive work. Reported with Daybreak Blue enabled; the without-Trusted-Access baseline is in the notes.",
+   "metric": "pct_completed"
+  },
+  {
+   "id": "daybreak_blue_poc_exploit_creation",
+   "name": "Daybreak Blue — proof-of-concept exploit creation",
+   "category": "cyber",
+   "description": "Defensive-work task completion under OpenAI's Daybreak Blue trusted-access program, checking that cyber safeguards do not block legitimate defensive work. Reported with Daybreak Blue enabled; the without-Trusted-Access baseline is in the notes.",
+   "metric": "pct_completed"
+  },
+  {
+   "id": "daybreak_blue_cyber_redteaming",
+   "name": "Daybreak Blue — cyber red-teaming",
+   "category": "cyber",
+   "description": "Defensive-work task completion under OpenAI's Daybreak Blue trusted-access program, checking that cyber safeguards do not block legitimate defensive work. Reported with Daybreak Blue enabled; the without-Trusted-Access baseline is in the notes.",
+   "metric": "pct_completed"
+  },
+  {
+   "id": "advanced_cybersecurity_completion_rate",
+   "name": "Advanced Cybersecurity Completion Rate",
+   "category": "cyber",
+   "description": "Share of arbitrary advanced-cyber requests the model fully completes (introduced in the GPT-5.6-Cyber launch post). Measures how much offensive-capable cyber assistance the deployed configuration will actually carry out.",
+   "metric": "pct_completed"
+  },
+  {
+   "id": "codex_deployment_severity3_flag_rate_lower_better",
+   "name": "Codex deployment simulation — severity-3+ misalignment flag rate (lower better)",
+   "category": "safety",
+   "description": "Asynchronous misalignment monitor over a deployment simulation of internal employee Codex traffic; share of matched tasks producing a severity-3-or-higher misalignment flag. Lower is better.",
+   "metric": "score_lower_better"
+  }
+ ],
+ "scores": [
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.1 Table 1 Production Benchmarks with Challenging Prompts (safe-completion rate, higher better)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.997,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.1 Table 1 Production Benchmarks with Challenging Prompts (safe-completion rate, higher better)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.981,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.1 Table 1 Production Benchmarks with Challenging Prompts (safe-completion rate, higher better)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_hate",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.1 Table 1 Production Benchmarks with Challenging Prompts (safe-completion rate, higher better)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_self_harm",
+   "score": 0.992,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.1 Table 1 Production Benchmarks with Challenging Prompts (safe-completion rate, higher better)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_gore",
+   "score": 0.898,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.1 Table 1 Production Benchmarks with Challenging Prompts (safe-completion rate, higher better)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_sexual",
+   "score": 0.98,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.1 Table 1 Production Benchmarks with Challenging Prompts (safe-completion rate, higher better)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.974,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.1 Table 1 Production Benchmarks with Challenging Prompts (safe-completion rate, higher better)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_u18_age_restricted",
+   "score": 0.918,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "prod_disallowed_u18_age_restricted",
+   "score": 0.719,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_u18_sexual",
+   "score": 0.991,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "prod_disallowed_u18_sexual",
+   "score": 0.929,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_u18_eating_disorders",
+   "score": 0.921,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "prod_disallowed_u18_eating_disorders",
+   "score": 0.71,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_u18_emotional_reliance",
+   "score": 0.944,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "prod_disallowed_u18_emotional_reliance",
+   "score": 0.931,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_u18_self_harm",
+   "score": 0.995,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "prod_disallowed_u18_self_harm",
+   "score": 0.982,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "prod_disallowed_u18_gore",
+   "score": 0.898,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "prod_disallowed_u18_gore",
+   "score": 0.785,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.2 Table 2 U18 evaluations (higher better, U18 protections in place) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "agentic_safe_completion_codex_age_restricted",
+   "score": 0.811,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "agentic_safe_completion_codex_age_restricted",
+   "score": 0.603,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "agentic_safe_completion_codex_nonviolent_wrongdoing",
+   "score": 0.954,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "agentic_safe_completion_codex_nonviolent_wrongdoing",
+   "score": 0.906,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "agentic_safe_completion_codex_violent_wrongdoing",
+   "score": 0.907,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "agentic_safe_completion_codex_violent_wrongdoing",
+   "score": 0.689,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "agentic_safe_completion_codex_sensitive_personal_data",
+   "score": 0.763,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "agentic_safe_completion_codex_sensitive_personal_data",
+   "score": 0.765,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "agentic_safe_completion_codex_self_harm",
+   "score": 0.92,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "agentic_safe_completion_codex_self_harm",
+   "score": 0.893,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "agentic_safe_completion_chat_plugins",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "agentic_safe_completion_chat_plugins",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "agentic_safe_completion_redteam_codex",
+   "score": 0.977,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "agentic_safe_completion_redteam_codex",
+   "score": 0.851,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "agentic_safe_completion_redteam_chat_plugins",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "agentic_safe_completion_redteam_chat_plugins",
+   "score": 0.766,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.1.3 Table 3 Agentic Safe Completion Evaluations (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "openai-image-input-hate",
+   "score": 0.997,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.2 Table 4 Image input evaluations, metric safe completion (higher better); hate regression vs Sol not statistically significant per PDF"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "openai-image-input-hate",
+   "score": 0.999,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.2 Table 4 Image input evaluations, metric safe completion (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "openai-image-input-extremism",
+   "score": 0.991,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.2 Table 4 Image input evaluations, metric safe completion (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "openai-image-input-extremism",
+   "score": 0.975,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.2 Table 4 Image input evaluations, metric safe completion (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "openai-image-input-self-harm",
+   "score": 0.997,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.2 Table 4 Image input evaluations, metric safe completion (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "openai-image-input-self-harm",
+   "score": 0.989,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.2 Table 4 Image input evaluations, metric safe completion (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "openai-image-input-harms-erotic",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.2 Table 4 Image input evaluations, metric safe completion (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "openai-image-input-harms-erotic",
+   "score": 0.986,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§4.2 Table 4 Image input evaluations, metric safe completion (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "static_jailbreak_bio_high_risk",
+   "score": 0.973,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.1.1 Table 5 Static Jailbreak Evaluations — refusal rate vs attacker-model-generated adversarial prompts (higher better); no production safeguards; 95% CI [0.956, 0.987]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "static_jailbreak_bio_high_risk",
+   "score": 0.058,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.1.1 Table 5 Static Jailbreak Evaluations — refusal rate vs attacker-model-generated adversarial prompts (higher better); no production safeguards; 95% CI [0.0360, 0.0810] — comparator column (prompts adversarially tuned against this generation)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "static_jailbreak_bio_severe",
+   "score": 0.982,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.1.1 Table 5 Static Jailbreak Evaluations — refusal rate vs attacker-model-generated adversarial prompts (higher better); no production safeguards; 95% CI [0.968, 0.995]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "static_jailbreak_bio_severe",
+   "score": 0.103,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.1.1 Table 5 Static Jailbreak Evaluations — refusal rate vs attacker-model-generated adversarial prompts (higher better); no production safeguards; 95% CI [0.0740, 0.135] — comparator column (prompts adversarially tuned against this generation)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "static_jailbreak_violence_moderate",
+   "score": 0.947,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.1.1 Table 5 Static Jailbreak Evaluations — refusal rate vs attacker-model-generated adversarial prompts (higher better); no production safeguards; 95% CI [0.925, 0.968]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "static_jailbreak_violence_moderate",
+   "score": 0.216,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.1.1 Table 5 Static Jailbreak Evaluations — refusal rate vs attacker-model-generated adversarial prompts (higher better); no production safeguards; 95% CI [0.176, 0.257] — comparator column (prompts adversarially tuned against this generation)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "static_jailbreak_violence_severe",
+   "score": 0.983,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.1.1 Table 5 Static Jailbreak Evaluations — refusal rate vs attacker-model-generated adversarial prompts (higher better); no production safeguards; 95% CI [0.969, 0.995]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "static_jailbreak_violence_severe",
+   "score": 0.483,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.1.1 Table 5 Static Jailbreak Evaluations — refusal rate vs attacker-model-generated adversarial prompts (higher better); no production safeguards; 95% CI [0.432, 0.533] — comparator column (prompts adversarially tuned against this generation)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "static_jailbreak_cyber",
+   "score": 0.915,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.1.1 Table 5 Static Jailbreak Evaluations — refusal rate vs attacker-model-generated adversarial prompts (higher better); no production safeguards; 95% CI [0.884, 0.944]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "static_jailbreak_cyber",
+   "score": 0.59,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.1.1 Table 5 Static Jailbreak Evaluations — refusal rate vs attacker-model-generated adversarial prompts (higher better); no production safeguards; 95% CI [0.539, 0.641] — comparator column (prompts adversarially tuned against this generation)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "dynamic_mental_health",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§6.2 Table 7 Dynamic Benchmarks with Adversarial User Simulations — share of assistant messages not violating policy (higher better)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "dynamic_emotional_reliance",
+   "score": 0.993,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§6.2 Table 7 Dynamic Benchmarks with Adversarial User Simulations — share of assistant messages not violating policy (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "dynamic_emotional_reliance",
+   "score": 0.953,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§6.2 Table 7 Dynamic Benchmarks with Adversarial User Simulations — share of assistant messages not violating policy (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "dynamic_self_harm",
+   "score": 0.989,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§6.2 Table 7 Dynamic Benchmarks with Adversarial User Simulations — share of assistant messages not violating policy (higher better)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "dynamic_self_harm",
+   "score": 0.856,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§6.2 Table 7 Dynamic Benchmarks with Adversarial User Simulations — share of assistant messages not violating policy (higher better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "agentic_misaligned_outcome_rate_base_lower_better",
+   "score": 3.4,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.4 Table 8 Harmful outcomes in realistic computer-/browser-use work environments (misaligned outcome rate, LOWER better); Astra sub-rates: unauthorized transactions 6.8, data exfiltration 4.3, destructive action 0.0, service disruption 0.0, security weakening 0.0, unauthorized external communication 1.7, circumventing restrictions 0.0"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "agentic_misaligned_outcome_rate_base_lower_better",
+   "score": 18.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.4 Table 8 Harmful outcomes in realistic computer-/browser-use work environments (misaligned outcome rate, LOWER better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "agentic_misaligned_outcome_rate_with_confirmation_lower_better",
+   "score": 3.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.4 Table 8 Harmful outcomes in realistic computer-/browser-use work environments (misaligned outcome rate, LOWER better); Astra sub-rates: unauthorized transactions 4.3, data exfiltration 4.5, destructive 0.0, service disruption 0.3, security weakening 0.0, unauthorized external comms 1.4, circumventing restrictions 0.0"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "agentic_misaligned_outcome_rate_with_confirmation_lower_better",
+   "score": 8.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.4 Table 8 Harmful outcomes in realistic computer-/browser-use work environments (misaligned outcome rate, LOWER better) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "multimodal_troubleshooting_virology",
+   "score": 55.78,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.1 Biological capability, High threshold — 322 SecureBio virology questions; ABOVE 80th-pct expert threshold (~31%); refusal-adjusted 63.11"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "protocolqa_openended",
+   "score": 41.36,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.1 Biological capability, High threshold — 108 open-ended FutureHouse ProtocolQA items; BELOW 80th-pct expert threshold (54%); refusal-adjusted 45.37"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "tacit_knowledge_troubleshooting_cons_at_32",
+   "score": 63.33,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.1 Biological capability, High threshold — 60 MCQ (Gryphon Scientific, uncontaminated); raw score, below 80% expert-consensus threshold"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "tacit_knowledge_troubleshooting_with_refusals_as_success",
+   "score": 90.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.1 Biological capability, High threshold — same eval, refusal-adjusted; ABOVE 80% expert threshold once refusals counted as successes (eval saw very high refusal volume; OpenAI considering retiring it)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "troubleshootingbench",
+   "score": 48.44,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.1 Biological capability, High threshold — 156 questions over 52 expert-written non-public protocols; ABOVE 80th-pct expert threshold (36.4%); refusal-adjusted 63.46"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aav_capsid_packaging_spearman",
+   "score": 0.528,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.2 Biological capability, CRITICAL threshold — Astra scored BELOW threshold on all four; OpenAI concluded Astra does NOT need Critical bio treatment (High safeguards retained) — Dyno Therapeutics AAV capsid packaging, Spearman; threshold 0.600; ESM-2 baseline 0.288 (Sol 0.529)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "shp2_protein_function_mean_r2",
+   "score": 0.4,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.2 Biological capability, CRITICAL threshold — Astra scored BELOW threshold on all four; OpenAI concluded Astra does NOT need Critical bio treatment (High safeguards retained) — threshold 0.60; helpful-only checkpoint scored 0.35, max reported"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "shp2_protein_function_mean_r2",
+   "score": 0.3,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.2 Biological capability, CRITICAL threshold — Astra scored BELOW threshold on all four; OpenAI concluded Astra does NOT need Critical bio treatment (High safeguards retained) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "coronavirus_ace2_cell_entry_reward",
+   "score": 0.45,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.2 Biological capability, CRITICAL threshold — Astra scored BELOW threshold on all four; OpenAI concluded Astra does NOT need Critical bio treatment (High safeguards retained) — helpful-only checkpoint (safeguarded model scored 0.42); threshold 0.75"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "coronavirus_ace2_cell_entry_reward",
+   "score": 0.43,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.2 Biological capability, CRITICAL threshold — Astra scored BELOW threshold on all four; OpenAI concluded Astra does NOT need Critical bio treatment (High safeguards retained) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "phage_plasmid_coevolution_nll_lower_better",
+   "score": 12.58,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.2 Biological capability, CRITICAL threshold — Astra scored BELOW threshold on all four; OpenAI concluded Astra does NOT need Critical bio treatment (High safeguards retained) — helpful-only checkpoint (safeguarded model 13.13); did NOT cross threshold 9.40"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "phage_plasmid_coevolution_nll_lower_better",
+   "score": 11.35,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.2 Biological capability, CRITICAL threshold — Astra scored BELOW threshold on all four; OpenAI concluded Astra does NOT need Critical bio treatment (High safeguards retained) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "hard_negative_protein_binding_pass4",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.3 RETIRING evaluation (OpenAI retiring it after this card) — hard-negative protein binding pass@4; threshold 30%; helpful-only also 0.0 (Sol 7.6). Retired partly because some checkpoints could infer the answer from a 'single_true' env-var name"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "dna_tf_binding_design_pass1",
+   "score": 11.27,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.3 RETIRING evaluation (OpenAI retiring it after this card) — threshold 90% win-rate over Ledidi [id corrected S260b: reused existing dna_tf_binding_design_pass1; comparator rows already in DB]"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "securebio_vct",
+   "score": 57.8,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.4 External evaluation — SecureBio (refusal-corrected accuracy; capability classifiers off) — highest VCT score SecureBio had observed; pre-release Astra checkpoint (not helpful-only)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "securebio_vct_v2",
+   "score": 57.7,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.4 External evaluation — SecureBio (refusal-corrected accuracy; capability classifiers off) — highest VCT-v2 score SecureBio had observed"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "securebio_hpct",
+   "score": 65.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.4 External evaluation — SecureBio (refusal-corrected accuracy; capability classifiers off) — Human Pathogen Capabilities Test; broadly comparable to Sol (66.5 as restated in this card; DB's existing Sol row 68.4 came from an earlier card)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "securebio_world_class_bio",
+   "score": 61.6,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.4 External evaluation — SecureBio (refusal-corrected accuracy; capability classifiers off) — WCB; LOWER than Sol (67.6 as restated in this card)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "securebio_reprobait",
+   "score": 83.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.4 External evaluation — SecureBio (refusal-corrected accuracy; capability classifiers off) — % of published performance reproduced across 6 tasks, helpful-only checkpoint (Sol 69 as restated in this card)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "securebio_advanced_screening_evasion",
+   "score": 0.728,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.4 External evaluation — SecureBio (refusal-corrected accuracy; capability classifiers off) — helpful-only checkpoint, new high; first response SecureBio observed to get full credit on BOTH criteria (evasion strategy quality + fragment evasion success), though expert review flagged efficiency/reliability concerns leaving practical feasibility uncertain"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "securebio_advanced_screening_evasion",
+   "score": 0.726,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.1.1.4 External evaluation — SecureBio (refusal-corrected accuracy; capability classifiers off) — helpful-only checkpoint, comparator"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "indirect_prompt_injection_defender_success",
+   "score": 99.79,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.2 Prompt injection — up from 96.23 (GPT-5.6 Sol)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "indirect_prompt_injection_defender_success",
+   "score": 96.23,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.2 Prompt injection — comparator"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "instruction_hierarchy_robustness",
+   "score": 99.99,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.2 Prompt injection — OpenAI describes robustness as saturated at this level"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "gray_swan_ipi",
+   "score": 8.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.2 Prompt injection — External: Gray Swan IPI Arena, 1,810 curated attacks (Q1+Q2 2026 arenas; coding, computer-use, tool-use). Estimated ATTACK SUCCESS RATE across 15 attempts/scenario, LOWER is better; safeguards-enabled checkpoint"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "gray_swan_ipi",
+   "score": 27.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§5.2 Prompt injection — comparator, attack success rate (lower better)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "cyber_safety_production_data_policy_compliance",
+   "score": 0.97,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2 Table 20 Cybersecurity Safety Evaluation — macro-averaged safety score 0-1 (1 = safe/allowed rollout) — production chat (3 sources)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "cyber_safety_production_data_policy_compliance",
+   "score": 0.983,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2 Table 20 Cybersecurity Safety Evaluation — macro-averaged safety score 0-1 (1 = safe/allowed rollout) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "cyber_safety_synthetic_data_policy_compliance",
+   "score": 0.992,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2 Table 20 Cybersecurity Safety Evaluation — macro-averaged safety score 0-1 (1 = safe/allowed rollout) — synthetic agentic envs (2 sources)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "cyber_safety_synthetic_data_policy_compliance",
+   "score": 0.998,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2 Table 20 Cybersecurity Safety Evaluation — macro-averaged safety score 0-1 (1 = safe/allowed rollout) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "cyber_safety_semi_synthetic_agentic_policy_compliance",
+   "score": 0.997,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2 Table 20 Cybersecurity Safety Evaluation — macro-averaged safety score 0-1 (1 = safe/allowed rollout) — semi-synthetic agentic envs (3 sources, seeded from production traces)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "cyber_safety_semi_synthetic_agentic_policy_compliance",
+   "score": 0.985,
+   "unit": "score",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2 Table 20 Cybersecurity Safety Evaluation — macro-averaged safety score 0-1 (1 = safe/allowed rollout) — comparator column"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "daybreak_blue_vulnerability_discovery",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2.2.1 Table 21 Daybreak Blue and Enabling Cyber Defense — task completion (higher better) — WITH Daybreak Blue (without Trusted Access: 66.7%)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "daybreak_blue_vulnerability_discovery",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2.2.1 Table 21 Daybreak Blue and Enabling Cyber Defense — task completion (higher better) — comparator, WITH Daybreak Blue (without Trusted Access: 56.0%)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "daybreak_blue_vulnerability_patching",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2.2.1 Table 21 Daybreak Blue and Enabling Cyber Defense — task completion (higher better) — WITH Daybreak Blue (without Trusted Access: 44.4%)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "daybreak_blue_vulnerability_patching",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2.2.1 Table 21 Daybreak Blue and Enabling Cyber Defense — task completion (higher better) — comparator, WITH Daybreak Blue (without Trusted Access: 28.0%)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "daybreak_blue_poc_exploit_creation",
+   "score": 92.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2.2.1 Table 21 Daybreak Blue and Enabling Cyber Defense — task completion (higher better) — WITH Daybreak Blue (without Trusted Access: 2.4%)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "daybreak_blue_poc_exploit_creation",
+   "score": 90.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2.2.1 Table 21 Daybreak Blue and Enabling Cyber Defense — task completion (higher better) — comparator, WITH Daybreak Blue (without Trusted Access: 5.0%)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "daybreak_blue_cyber_redteaming",
+   "score": 76.9,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2.2.1 Table 21 Daybreak Blue and Enabling Cyber Defense — task completion (higher better) — WITH Daybreak Blue (without Trusted Access: 7.4%)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "daybreak_blue_cyber_redteaming",
+   "score": 66.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2.2.1 Table 21 Daybreak Blue and Enabling Cyber Defense — task completion (higher better) — comparator, WITH Daybreak Blue (without Trusted Access: 8.0%)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "advanced_cybersecurity_completion_rate",
+   "score": 3.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2.2.1 Table 21 Daybreak Blue and Enabling Cyber Defense — task completion (higher better) — WITH Daybreak Blue; also 3.5% without Trusted Access (unchanged), i.e. Daybreak Blue deliberately does NOT unlock arbitrary offensive cyber"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "advanced_cybersecurity_completion_rate",
+   "score": 1.5,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2.2.1 Table 21 Daybreak Blue and Enabling Cyber Defense — task completion (higher better) — comparator, WITH Daybreak Blue (0.5% without Trusted Access)"
+  },
+  {
+   "model": "openai/gpt-5.6-cyber",
+   "benchmark": "advanced_cybersecurity_completion_rate",
+   "score": 95.0,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§10.2.2.2.1 Table 21 Daybreak Blue and Enabling Cyber Defense — task completion (higher better) — GPT-5.6-Cyber WITH Daybreak Red (offensive-authorized program): 95%, vs 3.5% for Astra under Daybreak Blue — the gap is a POLICY/refusal-boundary difference, not a capability difference"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "codex_deployment_severity3_flag_rate_lower_better",
+   "score": 0.063,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.6 Deployment simulation of internal Codex traffic (53,000+ matched tasks) — 34 severity-3+ flags; ~53% fewer than Sol. Severity 1-2 flags: 13.62% of matched tasks (Sol 19.46%)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "codex_deployment_severity3_flag_rate_lower_better",
+   "score": 0.135,
+   "unit": "%",
+   "_source": "resource/openai_gpt-6-astra_system-card_2026-09.pdf",
+   "_note": "§8.6 Deployment simulation of internal Codex traffic (53,000+ matched tasks) — 73 severity-3+ flags"
+  }
+ ]
+}
