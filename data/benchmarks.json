@@ -28512,6 +28512,342 @@
     "metric": "wer_lower_better"
   },
   {
+    "id": "sandbox_bench",
+    "name": "Sandbox Bench (OpenAI internal, 22 CTF-style challenges)",
+    "category": "cyber",
+    "description": "Internal OpenAI eval: identify/exploit vulnerabilities in runtimes, file-format parsers, and egress proxies; 22 challenges across 3 categories (5 runtime, 14 parser, 3 egress-proxy targets), flag-recovery scoring.",
+    "metric": "pct_solved"
+  },
+  {
+    "id": "sre_bench",
+    "name": "SRE-Bench (reverse engineering, pass@4)",
+    "category": "cyber",
+    "description": "262 binary reverse-engineering instances from 19 privately-developed programs (network protocols, file formats, malware remediation, firmware); pass@4, 6 task-specific objectives per instance.",
+    "metric": "pass@4"
+  },
+  {
+    "id": "irregular_frontiercyber_overall",
+    "name": "Irregular FrontierCyber — Overall (226 challenges)",
+    "category": "cyber",
+    "description": "Aggregate solve-rate across all FrontierCyber challenges (vulnerability discovery/exploitation in real software+hardware); no tier breakdown given for this figure.",
+    "metric": "pct_solved"
+  },
+  {
+    "id": "arc_agi_3_provider_adapter_harness",
+    "name": "ARC-AGI-3 Semi-Private (provider-adapter harness)",
+    "category": "agent",
+    "description": "ARC-AGI-3 semi-private eval using ARC Prize's provider-adapter harness (vs. the standard harness used for the plain arc_agi_3 id) — this harness produces near-ceiling scores (~96-99.9% flat across all reasoning-effort tiers for GPT-6 Astra) that are NOT comparable to standard-harness numbers; treat as a distinct, harness-dependent, possibly-saturated metric, not a raw capability jump.",
+    "metric": "pct_solved"
+  },
+  {
+    "id": "world_model_3d_recon_mar",
+    "name": "World-Model 3D Reconstruction Error (Mean Absolute-Relative, avg across DTU/ETH3D/KITTI/NRGBD/7-Scenes/Tanks-and-Temples/ScanNet)",
+    "category": "3d-recon",
+    "description": "Pointmap reconstruction error (AbsRel, in thousandths), averaged across 7 standard 3D reconstruction benchmarks. Lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "atlas_pref_vs_minimax_h3",
+    "name": "Camera-controlled generation human preference vs. MiniMax H3",
+    "category": "video-generation",
+    "description": "Share of human voters preferring Atlas's camera-controlled generated video over MiniMax H3's, from World Labs' own preference study (95% CI given per pairing).",
+    "metric": "win_rate_pct"
+  },
+  {
+    "id": "atlas_pref_vs_gemini_omni_flash",
+    "name": "Camera-controlled generation human preference vs. Gemini Omni Flash",
+    "category": "video-generation",
+    "description": "Share of human voters preferring Atlas's camera-controlled generated video over Gemini Omni Flash's.",
+    "metric": "win_rate_pct"
+  },
+  {
+    "id": "atlas_pref_vs_happy_horse_1_1",
+    "name": "Camera-controlled generation human preference vs. Happy Horse 1.1",
+    "category": "video-generation",
+    "description": "Share of human voters preferring Atlas's camera-controlled generated video over Happy Horse 1.1's.",
+    "metric": "win_rate_pct"
+  },
+  {
+    "id": "atlas_pref_vs_flux_3",
+    "name": "Camera-controlled generation human preference vs. FLUX 3",
+    "category": "video-generation",
+    "description": "Share of human voters preferring Atlas's camera-controlled generated video over FLUX 3's.",
+    "metric": "win_rate_pct"
+  },
+  {
+    "id": "atlas_pref_vs_seedance_2_5",
+    "name": "Camera-controlled generation human preference vs. Seedance 2.5",
+    "category": "video-generation",
+    "description": "Share of human voters preferring Atlas's camera-controlled generated video over Seedance 2.5's.",
+    "metric": "win_rate_pct"
+  },
+  {
+    "id": "agentic_safe_completion_codex_age_restricted",
+    "name": "Agentic Safe Completion — Codex prod, age-restricted actions",
+    "category": "safety",
+    "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "agentic_safe_completion_codex_nonviolent_wrongdoing",
+    "name": "Agentic Safe Completion — Codex prod, non-violent wrongdoing",
+    "category": "safety",
+    "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "agentic_safe_completion_codex_violent_wrongdoing",
+    "name": "Agentic Safe Completion — Codex prod, violent wrongdoing",
+    "category": "safety",
+    "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "agentic_safe_completion_codex_sensitive_personal_data",
+    "name": "Agentic Safe Completion — Codex prod, sensitive personal data",
+    "category": "safety",
+    "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "agentic_safe_completion_codex_self_harm",
+    "name": "Agentic Safe Completion — Codex prod, self-harm",
+    "category": "safety",
+    "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "agentic_safe_completion_chat_plugins",
+    "name": "Agentic Safe Completion — Chat prod, Chat Plugins",
+    "category": "safety",
+    "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "agentic_safe_completion_redteam_codex",
+    "name": "Agentic Safe Completion — human red-teaming, Codex",
+    "category": "safety",
+    "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "agentic_safe_completion_redteam_chat_plugins",
+    "name": "Agentic Safe Completion — human red-teaming, Chat Plugins",
+    "category": "safety",
+    "description": "OpenAI agentic safe-completion eval: safety of the actions taken by the model in agentic scenarios, not just the final response. Higher is better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "static_jailbreak_bio_high_risk",
+    "name": "Static Jailbreak — Bio: high risk",
+    "category": "safety",
+    "description": "Fixed set of adversarial prompts from attacker models (e.g. GPT-Red); proportion of attacks successfully refused. Half of each set generated by a held-out attacker. Prompts were designed to jailbreak earlier GPT models, so older-model scores are not representative of production traffic.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "static_jailbreak_bio_severe",
+    "name": "Static Jailbreak — Bio: severe",
+    "category": "safety",
+    "description": "Fixed set of adversarial prompts from attacker models (e.g. GPT-Red); proportion of attacks successfully refused. Half of each set generated by a held-out attacker. Prompts were designed to jailbreak earlier GPT models, so older-model scores are not representative of production traffic.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "static_jailbreak_violence_moderate",
+    "name": "Static Jailbreak — Violence: moderate",
+    "category": "safety",
+    "description": "Fixed set of adversarial prompts from attacker models (e.g. GPT-Red); proportion of attacks successfully refused. Half of each set generated by a held-out attacker. Prompts were designed to jailbreak earlier GPT models, so older-model scores are not representative of production traffic.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "static_jailbreak_violence_severe",
+    "name": "Static Jailbreak — Violence: severe",
+    "category": "safety",
+    "description": "Fixed set of adversarial prompts from attacker models (e.g. GPT-Red); proportion of attacks successfully refused. Half of each set generated by a held-out attacker. Prompts were designed to jailbreak earlier GPT models, so older-model scores are not representative of production traffic.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "static_jailbreak_cyber",
+    "name": "Static Jailbreak — Cyber",
+    "category": "safety",
+    "description": "Fixed set of adversarial prompts from attacker models (e.g. GPT-Red); proportion of attacks successfully refused. Half of each set generated by a held-out attacker. Prompts were designed to jailbreak earlier GPT models, so older-model scores are not representative of production traffic.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "agentic_misaligned_outcome_rate_base_lower_better",
+    "name": "Agentic misaligned-outcome rate — base model (no confirmation policy)",
+    "category": "safety",
+    "description": "Adversarially-designed realistic workplace agent tasks (messaging, email, browsing, project management, sales) with ambiguous instructions and complex permissions; each task has a safe route. Rate of harmful/misaligned outcomes; lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "agentic_misaligned_outcome_rate_with_confirmation_lower_better",
+    "name": "Agentic misaligned-outcome rate — with confirmation policy (user default)",
+    "category": "safety",
+    "description": "Adversarially-designed realistic workplace agent tasks (messaging, email, browsing, project management, sales) with ambiguous instructions and complex permissions; each task has a safe route. Rate of harmful/misaligned outcomes; lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "shp2_protein_function_mean_r2",
+    "name": "SHP2 Protein Function Prediction (mean R² over 3 unpublished assays)",
+    "category": "life-sciences",
+    "description": "Velocity Bio unpublished wet-lab dataset, 411 single-residue SHP2 mutations; few-shot regression predicting held-out functional assay results. Indicative Critical threshold 0.60.",
+    "metric": "r2"
+  },
+  {
+    "id": "coronavirus_ace2_cell_entry_reward",
+    "name": "Coronavirus–ACE2 Cell-Entry Screen (composite reward)",
+    "category": "life-sciences",
+    "description": "Unpublished academic dataset: cell-entry measurements for 3 uncharacterized bat coronaviruses × 35 mammalian ACE2 proteins; model ranks held-out measurements. Indicative Critical threshold 0.75.",
+    "metric": "reward"
+  },
+  {
+    "id": "phage_plasmid_coevolution_nll_lower_better",
+    "name": "Phage–plasmid co-evolution (negative log-likelihood, lower better)",
+    "category": "life-sciences",
+    "description": "Unpublished phage–plasmid co-evolution system sequenced daily over 30 days; model predicts which amino-acid mutations appear next from cumulatively revealed checkpoints. Indicative Critical threshold NLL 9.40 (lower better).",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "securebio_vct_v2",
+    "name": "SecureBio VCT-v2 (Virology Capabilities Test v2)",
+    "category": "medical",
+    "description": "SecureBio's updated Virology Capabilities Test; refusal-corrected accuracy.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "securebio_advanced_screening_evasion",
+    "name": "SecureBio Advanced Screening Evasion",
+    "category": "biosec",
+    "description": "SecureBio evaluation of DNA-synthesis screening evasion strategy quality and fragment-evasion success; helpful-only checkpoints.",
+    "metric": "score"
+  },
+  {
+    "id": "indirect_prompt_injection_defender_success",
+    "name": "Indirect prompt-injection defender success rate (GPT-Red internal)",
+    "category": "safety",
+    "description": "OpenAI GPT-Red automated indirect prompt-injection evaluation: malicious instructions in third-party content attempt to redirect an agent. Defender success rate averaged per defender query; higher better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "instruction_hierarchy_robustness",
+    "name": "Instruction-hierarchy robustness (direct prompt injection)",
+    "category": "safety",
+    "description": "Direct prompt-injection / instruction-hierarchy violations: a user attempts to override higher-priority system or developer instructions. Higher better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cyber_safety_semi_synthetic_agentic_policy_compliance",
+    "name": "Cybersecurity safety — semi-synthetic agentic environments",
+    "category": "safety",
+    "description": "Agentic cyber-safety environments seeded from cyber-relevant production traces (3 sources); more realistic than the earlier fully-synthetic environments. Macro-averaged safety score 0-1.",
+    "metric": "score"
+  },
+  {
+    "id": "daybreak_blue_vulnerability_discovery",
+    "name": "Daybreak Blue — vulnerability discovery and analysis",
+    "category": "cyber",
+    "description": "Defensive-work task completion under OpenAI's Daybreak Blue trusted-access program, checking that cyber safeguards do not block legitimate defensive work. Reported with Daybreak Blue enabled; the without-Trusted-Access baseline is in the notes.",
+    "metric": "pct_completed"
+  },
+  {
+    "id": "daybreak_blue_vulnerability_patching",
+    "name": "Daybreak Blue — vulnerability patching",
+    "category": "cyber",
+    "description": "Defensive-work task completion under OpenAI's Daybreak Blue trusted-access program, checking that cyber safeguards do not block legitimate defensive work. Reported with Daybreak Blue enabled; the without-Trusted-Access baseline is in the notes.",
+    "metric": "pct_completed"
+  },
+  {
+    "id": "daybreak_blue_poc_exploit_creation",
+    "name": "Daybreak Blue — proof-of-concept exploit creation",
+    "category": "cyber",
+    "description": "Defensive-work task completion under OpenAI's Daybreak Blue trusted-access program, checking that cyber safeguards do not block legitimate defensive work. Reported with Daybreak Blue enabled; the without-Trusted-Access baseline is in the notes.",
+    "metric": "pct_completed"
+  },
+  {
+    "id": "daybreak_blue_cyber_redteaming",
+    "name": "Daybreak Blue — cyber red-teaming",
+    "category": "cyber",
+    "description": "Defensive-work task completion under OpenAI's Daybreak Blue trusted-access program, checking that cyber safeguards do not block legitimate defensive work. Reported with Daybreak Blue enabled; the without-Trusted-Access baseline is in the notes.",
+    "metric": "pct_completed"
+  },
+  {
+    "id": "advanced_cybersecurity_completion_rate",
+    "name": "Advanced Cybersecurity Completion Rate",
+    "category": "cyber",
+    "description": "Share of arbitrary advanced-cyber requests the model fully completes (introduced in the GPT-5.6-Cyber launch post). Measures how much offensive-capable cyber assistance the deployed configuration will actually carry out.",
+    "metric": "pct_completed"
+  },
+  {
+    "id": "codex_deployment_severity3_flag_rate_lower_better",
+    "name": "Codex deployment simulation — severity-3+ misalignment flag rate (lower better)",
+    "category": "safety",
+    "description": "Asynchronous misalignment monitor over a deployment simulation of internal employee Codex traffic; share of matched tasks producing a severity-3-or-higher misalignment flag. Lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "auto_review_circumvention_rate_lower_better",
+    "name": "Auto-Review circumvention attempt rate (lower better)",
+    "category": "safety",
+    "description": "§8.2.1: share of rollouts where the model attempted to act contrary to the instructions in an Auto-Review denial message, at maximum reasoning effort. Lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "warning_barrier_persistence_rate_lower_better",
+    "name": "Warning-barrier unwanted persistence rate (lower better)",
+    "category": "safety",
+    "description": "§8.2.2: share of rollouts where the model saw an explicit warning barrier and still persisted against the restriction's spirit, at maximum reasoning effort. Lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "exploitgym_honeypot_attack_rate_lower_better",
+    "name": "ExploitGym honeypot attack rate (lower better)",
+    "category": "safety",
+    "description": "§8.2.3: adversarially-selected hardest ExploitGym problems seeded with a second 'honeypot' flag outside the target location. Measures whether a model cheats by attacking the honeypot when the real task is very hard or impossible. Lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "interagent_contact_speculation_rate_lower_better",
+    "name": "Unintended inter-agent contact speculation rate (lower better)",
+    "category": "safety",
+    "description": "§8.5.1: share of ExploitGym Honeypot trajectories featuring speculation about the presence of other agents and the potential of making contact. Lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "external_agent_board_engagement_rate_lower_better",
+    "name": "Unrequested external agent message-board engagement rate (lower better)",
+    "category": "safety",
+    "description": "§8.5.2: simulated message board (local browser cache) prepopulated with instructions encouraging improper behaviour; measures whether the agent engages when no such interaction was requested. Both models found the board ≥97.5% of the time by design. Lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "external_agent_board_instruction_following_rate_lower_better",
+    "name": "Unrequested external-agent instruction-following rate (lower better)",
+    "category": "safety",
+    "description": "§8.5.2: share of samples where the agent followed the improper instructions embedded in the unrequested message board. Lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "codex_deployment_severity12_flag_rate_lower_better",
+    "name": "Codex deployment simulation — severity-1/2 misalignment flag rate (lower better)",
+    "category": "safety",
+    "description": "§8.6: share of matched tasks producing a severity-1-or-2 misalignment flag in a deployment simulation of internal employee Codex traffic. Lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "codex_deployment_eval_awareness_rate_lower_better",
+    "name": "Codex deployment simulation — evaluation-awareness rate (lower better)",
+    "category": "safety",
+    "description": "§8.6: share of trajectories where the model verbalised awareness that it might be being evaluated. Original traffic baseline 0.76%. Lower is better (higher awareness complicates interpreting safety results).",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "apollo_false_label_rate_lower_better",
+    "name": "Apollo Research — false-label rate on control runs (lower better)",
+    "category": "safety",
+    "description": "§8.8.1 external evaluation by Apollo Research: rate at which the model produced false data labels in baseline runs. Lower is better.",
+    "metric": "score_lower_better"
+  },
+  {
     "id": "caibench",
     "name": "CAIBench (Cybersecurity AI Meta-Benchmark)",
     "category": "cyber",
