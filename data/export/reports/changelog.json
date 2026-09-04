@@ -4983,5 +4983,11 @@
   "title": "S262 — 스케일 혼재 보정: GPT-6 Astra 관련 8개 벤치를 0-100(%) 로 통일",
   "detail": "사용자 지적('GPT-6 벤치 결과에 % 값과 소수점이 섞여 있다')을 계기로 전수 스캔. 확인 결과 GPT-6 Astra 값 자체는 전부 소스 원값과 일치했고, 실제 문제는 같은 벤치에 0-1 스케일과 0-100 스케일이 함께 저장돼 있던 기존 데이터였음. DB 전체로는 145개 벤치가 혼재 상태였고, 그중 Astra가 참여하는 8개 벤치를 0-100(%)로 통일(62 rows / 5 파일). 보정: mmmu_pro 30건(0.681~0.836 -> 68.1~83.6), healthbench 5건, healthbench_hard 9건(gpt-5 0.016 -> 1.6), healthbench_consensus 1건, dynamic_mental_health 6건(Astra 1.0 -> 100.0), dynamic_emotional_reliance 6건, cyber_safety_production/synthetic 4건(Astra 0.97/0.992 -> 97.0/99.2). 결과: 8개 벤치 모두 0-1 잔존 0건, 혼재 벤치 145 -> 137. 중요: DB만 고치면 다음 make load 때 원복되므로 원본 resource/*.json 5개 파일을 직접 수정하고 각 행 _note에 보정 사유를 남김(unit도 '%'로 통일). 보정하지 않은 것(휴리스틱상 걸리지만 실제로 값이 작은 정상 케이스): apollo_false_label_rate 0.17%(17/10,000), auto_review_circumvention 0.3%, exploitgym_honeypot_attack 0.0%, external_agent_board_instruction_following 0.0%, hard_negative_protein_binding_pass4 0.0/0.4%, gray_swan_ipi 1.0%, critpt 0.0~1.0(실제 저점), arc_agi_3 0.18~0.8(실제 저점), aa_omniscience_index(-51.53~43.7, 음수 포함 별도 스케일). 나머지 137개 혼재 벤치는 이번 범위 밖(가격/Elo/물리단위/등급체계 등 오보정 위험이 커 벤치별 수동 판정 필요) — 후속 과제로 남김.",
   "type": "Fix"
+ },
+ {
+  "date": "2026-09-04",
+  "title": "S262b — S262가 쪼갠 형제 지표 스케일 복구 (dynamic_self_harm · cyber_safety_semi_synthetic)",
+  "detail": "사용자가 12개 지표 정상 여부 확인을 요청해 재점검한 결과, 12개 값 자체는 모두 소스 원값과 일치하고 벤치 내부적으로도 일관됨을 확인. 다만 S262 보정의 부작용 2건을 발견해 수정. S262는 '0-1과 0-100이 혼재된 벤치'만 대상으로 삼았는데, 그 결과 같은 시스템카드 표에 속한 형제 지표 중 혼재였던 것만 0-100으로 바뀌고 0-1로 일관됐던 것은 그대로 남아 표가 반으로 갈라졌음. (1) GPT-6 Astra Table 7: mental_health·emotional_reliance는 0-100인데 dynamic_self_harm만 0-1(Astra 0.989) — 7행 보정(Astra 0.989->98.9, Sol 0.856->85.6, terra 0.947->94.7, luna 0.905->90.5, august 2건, S148c 중복분). (2) GPT-6 Astra Table 20: production·synthetic은 0-100인데 semi_synthetic만 0-1 — 2행 보정(Astra 0.997->99.7, Sol 0.985->98.5). 총 9행 rescale + 6행 unit 라벨 정규화('score'/'fraction' -> '%'), 4개 resource JSON 직접 수정(재로드 원복 방지). 결과: 두 표 6개 지표 전부 0-100(%)로 일치. 정상 확인된 나머지: Agentic Safe Completion 8종·Bio Refusal 3종·U18 6종·Image Input 6종·Production Benchmarks 10종·Static Jailbreak 5종·Coronavirus-ACE2는 모두 0-1로 벤치 내 완전 일관(혼재 0건)이라 값 오류 아님. SecureBio Advanced Screening Evasion(0.728)이 VCT/HPCT(%)와 다른 건 카드 원문이 실제로 0-1 스코어로 표기한 별개 지표라 정상. SRE-Bench(99.2)·Sandbox Bench(45.5)는 원래 %로 정상.",
+  "type": "Fix"
  }
 ]
