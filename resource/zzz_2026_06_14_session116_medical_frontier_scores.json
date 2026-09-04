@@ -1,1680 +1,1680 @@
 {
-  "_meta": {
-    "session": "116",
-    "date": "2026-06-14",
-    "topic": "Medical AI frontier refresh (LLM/VLM + benchmarks + imaging foundation)",
-    "notes": "3 parallel agents on medical AI. First broad sweep since S98 (~17 sessions ago).",
-    "sources": [
-      "MedGemma 1.5 Tech Report (arxiv 2604.05081)",
-      "MedGemma 27B paper (arxiv 2507.05201)",
-      "AMIE Co-Clinician 2026",
-      "Hippocratic Polaris 5 model card (2026-04-30)",
-      "Lingshu (Alibaba) tech report",
-      "MedReason-8B (UCSC-VLAA)",
-      "ChatGPT for Clinicians (OpenAI 2026-05-05)",
-      "HealthBench Pro length-adjusted (arxiv 2604.27470)",
-      "llm-stats medical leaderboard mirrors",
-      "Nature Medicine 2026-06-12 (Gemini 3.1 Pro MedQA-USMLE 97.4)",
-      "MAIRA-2 (arxiv 2406.04449)",
-      "MedImageInsight (arxiv 2410.06542)",
-      "Prov-GigaPath (Nature s41586-024-07441-w)",
-      "RETFound (Nature 2023)",
-      "VisionFM (npj Digital Medicine 2025)",
-      "HuatuoGPT-Vision (arxiv 2406.19280)",
-      "VISTA-3D NVIDIA NIM"
-    ]
-  },
-  "models": [
-    {
-      "id": "google/medgemma-1.5-4b-multimodal",
-      "name": "MedGemma 1.5 4B (multimodal)",
-      "vendor": "Google Research + DeepMind",
-      "type": "multimodal",
-      "release_date": "2026-01-13",
-      "modalities": [
-        "text",
-        "vision"
-      ]
-    },
-    {
-      "id": "hippocratic/polaris-5",
-      "name": "Polaris 5.0",
-      "vendor": "Hippocratic AI",
-      "type": "language",
-      "release_date": "2026-04-30",
-      "modalities": [
-        "text",
-        "voice"
-      ]
-    },
-    {
-      "id": "google/amie-co-clinician-2026",
-      "name": "AMIE Co-Clinician (2026 release)",
-      "vendor": "Google DeepMind",
-      "type": "language",
-      "release_date": "2026-05-01",
-      "modalities": [
-        "text",
-        "multimodal"
-      ]
-    },
-    {
-      "id": "google/medsiglip-448",
-      "name": "MedSigLIP-448",
-      "vendor": "Google Research + DeepMind",
-      "type": "multimodal",
-      "release_date": "2025-07-09",
-      "modalities": [
-        "vision",
-        "text"
-      ]
-    },
-    {
-      "id": "ucsc-vlaa/medreason-8b",
-      "name": "MedReason 8B",
-      "vendor": "UCSC-VLAA (UC Santa Cruz)",
-      "type": "language",
-      "release_date": "2025-04-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "alibaba-damo/lingshu-7b",
-      "name": "Lingshu 7B (already in DB, adding scores)",
-      "vendor": "Alibaba DAMO Academy",
-      "type": "multimodal",
-      "release_date": "2025-06-08",
-      "modalities": [
-        "text",
-        "vision"
-      ]
-    },
-    {
-      "id": "alibaba-damo/lingshu-32b",
-      "name": "Lingshu 32B (already in DB, adding scores)",
-      "vendor": "Alibaba DAMO Academy",
-      "type": "multimodal",
-      "release_date": "2025-06-08",
-      "modalities": [
-        "text",
-        "vision"
-      ]
-    },
-    {
-      "id": "openai/chatgpt-for-clinicians",
-      "name": "ChatGPT for Clinicians (GPT-5.4 medical-tuned)",
-      "vendor": "OpenAI",
-      "type": "language",
-      "release_date": "2026-05-05",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-5.5-instant",
-      "name": "GPT-5.5 Instant",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-05-04",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-oss-120b",
-      "name": "GPT-OSS-120B",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2025-08-05",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-oss-20b",
-      "name": "GPT-OSS-20B",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2025-08-05",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-5.3-chat",
-      "name": "GPT-5.3 Chat",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2025-12-15",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "meta/muse-spark",
-      "name": "Muse Spark",
-      "vendor": "meta",
-      "type": "language",
-      "release_date": "2026-04-25",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "moonshot/kimi-k2-thinking-0905",
-      "name": "Kimi K2-Thinking-0905",
-      "vendor": "moonshot",
-      "type": "language",
-      "release_date": "2025-09-05",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "anthropic/claude-fable-5",
-      "name": "Claude Fable 5",
-      "vendor": "anthropic",
-      "type": "language",
-      "release_date": "2026-06-09",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "anthropic/claude-mythos-preview",
-      "name": "Claude Mythos 5 Preview",
-      "vendor": "anthropic",
-      "type": "language",
-      "release_date": "2026-06-09",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "anthropic/claude-opus-4.8",
-      "name": "Claude Opus 4.8",
-      "vendor": "anthropic",
-      "type": "language",
-      "release_date": "2026-05-28",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "anthropic/claude-opus-4.7",
-      "name": "Claude Opus 4.7",
-      "vendor": "anthropic",
-      "type": "language",
-      "release_date": "2026-04-15",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemini-3.1-pro",
-      "name": "Gemini 3.1 Pro",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-02-20",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/amie-co-clinician",
-      "name": "AMIE Co-Clinician (2026)",
-      "vendor": "google deepmind",
-      "type": "language",
-      "release_date": "2026-04-30",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "microsoft/mai-thinking-1",
-      "name": "MAI-Thinking-1",
-      "vendor": "microsoft",
-      "type": "language",
-      "release_date": "2026-03-15",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "xai/grok-4.2",
-      "name": "Grok 4.2",
-      "vendor": "xai",
-      "type": "language",
-      "release_date": "2026-03-10",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-5.4",
-      "name": "GPT-5.4",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-04-23",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-5.4-chatgpt-for-clinicians",
-      "name": "GPT-5.4 ChatGPT for Clinicians",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-04-22",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-5",
-      "name": "GPT-5",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2025-08-07",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-5.2",
-      "name": "GPT-5.2",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2025-11-20",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "alibaba/qwen3.5-122b-a10b",
-      "name": "Qwen3.5-122B-A10B",
-      "vendor": "alibaba cloud",
-      "type": "language",
-      "release_date": "2026-03-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "alibaba/qwen3.5-27b",
-      "name": "Qwen3.5-27B",
-      "vendor": "alibaba cloud",
-      "type": "language",
-      "release_date": "2026-03-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "alibaba/qwen3.5-35b-a3b",
-      "name": "Qwen3.5-35B-A3B",
-      "vendor": "alibaba cloud",
-      "type": "language",
-      "release_date": "2026-03-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemma-4-31b",
-      "name": "Gemma 4 31B",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-02-15",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemma-4-26b-a4b",
-      "name": "Gemma 4 26B-A4B",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-02-15",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/diffusiongemma-26b-a4b",
-      "name": "DiffusionGemma 26B-A4B",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-03-20",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemma-4-12b",
-      "name": "Gemma 4 12B",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-02-15",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemma-4-e4b",
-      "name": "Gemma 4 E4B",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-02-15",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemma-4-e2b",
-      "name": "Gemma 4 E2B",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-02-15",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/medgemma-4b-it",
-      "name": "MedGemma 4B IT",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2025-07-09",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "anthropic/claude-sonnet-4.6",
-      "name": "Claude Sonnet 4.6",
-      "vendor": "anthropic",
-      "type": "language",
-      "release_date": "2026-03-25",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "anthropic/claude-opus-4.6",
-      "name": "Claude Opus 4.6",
-      "vendor": "anthropic",
-      "type": "language",
-      "release_date": "2026-02-10",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "stanford-aimi/chexagent-8b",
-      "name": "CheXagent 8B",
-      "vendor": "Stanford AIMI",
-      "type": "language",
-      "release_date": "2024-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "hamamci/ct-clip",
-      "name": "CT-CLIP",
-      "vendor": "Hamamci et al. (academic)",
-      "type": "language",
-      "release_date": "2024-03-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "visionfm/visionfm",
-      "name": "VisionFM",
-      "vendor": "VisionFM consortium",
-      "type": "language",
-      "release_date": "2024-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "henrychur/mmed-llama-3-8b",
-      "name": "MMed-Llama-3-8B",
-      "vendor": "Shanghai AI Lab",
-      "type": "language",
-      "release_date": "2025-01-01",
-      "modalities": [
-        "text"
-      ]
-    }
-  ],
-  "benchmarks": [
-    {
-      "id": "ehrqa",
-      "name": "EHRQA (Electronic Health Record QA)",
-      "category": "medical",
-      "metric": "accuracy",
-      "unit": "%",
-      "description": "",
-      "source_url": "https://arxiv.org/abs/2604.05081"
-    },
-    {
-      "id": "healthbench_professional_la",
-      "name": "HealthBench Professional (length-adjusted)",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "525 physician-rubric tasks across care consult, documentation, medical research. Length-adjusted scoring per arxiv 2604.27470.",
-      "source_url": "https://arxiv.org/abs/2604.27470"
-    },
-    {
-      "id": "healthbench_professional",
-      "name": "HealthBench Professional",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "OpenAI HealthBench Pro 525-task clinician chats with physician-authored rubrics.",
-      "source_url": "https://llm-stats.com/benchmarks/healthbench-professional"
-    },
-    {
-      "id": "healthbench",
-      "name": "HealthBench",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "OpenAI HealthBench 5000 multi-turn medical conversations with physician rubrics.",
-      "source_url": "https://openai.com/index/healthbench/"
-    },
-    {
-      "id": "healthbench_hard",
-      "name": "HealthBench Hard",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "HealthBench Hard slice \u2014 unsaturated subset of HealthBench.",
-      "source_url": "https://llm-stats.com/benchmarks/healthbench-hard"
-    },
-    {
-      "id": "healthbench_consensus",
-      "name": "HealthBench Consensus",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "3,671 examples with multiply validated physician consensus criteria.",
-      "source_url": "https://llm-stats.com/benchmarks/healthbench-consensus"
-    },
-    {
-      "id": "medxpertqa",
-      "name": "MedXpertQA",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "4,460 expert-level medical reasoning Qs spanning 17 specialties + 11 body systems (ICML 2025).",
-      "source_url": "https://medxpertqa.github.io/"
-    },
-    {
-      "id": "medqa_usmle",
-      "name": "MedQA USMLE",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "USMLE-style medical licensing exam questions.",
-      "source_url": "https://github.com/jind11/MedQA"
-    },
-    {
-      "id": "rxqa_mcq",
-      "name": "RxQA (multiple choice)",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "Drug knowledge benchmark, multiple-choice questions.",
-      "source_url": "https://research.google/blog/co-clinician-rxqa/"
-    },
-    {
-      "id": "rxqa_open_ended",
-      "name": "RxQA (open-ended)",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "Drug knowledge benchmark, open-ended answer quality (dosing, interactions, patient-specific).",
-      "source_url": "https://research.google/blog/co-clinician-rxqa/"
-    },
-    {
-      "id": "healthbench_good_faith_3_7",
-      "name": "HealthBench Good-Faith 3-7 slice",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "HealthBench 'Good Faith' slice (turns 3-7) per HealthBench Professional paper.",
-      "source_url": "https://arxiv.org/abs/2604.27470"
-    },
-    {
-      "id": "rcq_clinician_preference",
-      "name": "RCQ (Real Clinical Queries)",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "100 de-identified physician queries with blinded review, Nature Medicine 2026 study.",
-      "source_url": "https://www.nature.com/articles/s41591-026-04431-5"
-    },
-    {
-      "id": "radfact_logical_precision",
-      "name": "RadFact Logical Precision",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "LLM-based metric suite for radiology report generation - logical precision sub-metric",
-      "source_url": "https://github.com/microsoft/RadFact"
-    },
-    {
-      "id": "radfact_grounding_recall",
-      "name": "RadFact Grounding Recall",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "RadFact grounding recall sub-metric",
-      "source_url": "https://github.com/microsoft/RadFact"
-    },
-    {
-      "id": "chexbench_perception",
-      "name": "CheXbench (image perception)",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "Stanford CheXbench: 8 clinically-relevant CXR tasks",
-      "source_url": "https://arxiv.org/abs/2401.12208"
-    },
-    {
-      "id": "kaggle_aptos2019_dr",
-      "name": "APTOS-2019 Diabetic Retinopathy",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "AUROC for DR classification on APTOS-2019 fundus images",
-      "source_url": "https://www.kaggle.com/c/aptos2019-blindness-detection"
-    },
-    {
-      "id": "idrid_dr",
-      "name": "IDRiD Diabetic Retinopathy",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "AUROC for DR classification on IDRiD fundus images",
-      "source_url": "https://idrid.grand-challenge.org/"
-    },
-    {
-      "id": "messidor2_dr",
-      "name": "MESSIDOR-2 Diabetic Retinopathy",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "AUROC for DR classification on MESSIDOR-2",
-      "source_url": "https://www.adcis.net/en/third-party/messidor2/"
-    },
-    {
-      "id": "cxr_tube_pathology_mauc",
-      "name": "Chest Radiograph Tube/Pathology mAUC",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "Multi-class CXR tube/pathology classification - mean AUC across 7 categories",
-      "source_url": "https://arxiv.org/abs/2410.06542"
-    },
-    {
-      "id": "abdomen_ct_dice",
-      "name": "Abdominal CT Multi-Organ Dice",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "Dice score on multi-organ abdominal CT segmentation",
-      "source_url": "https://medsam2.github.io/"
-    },
-    {
-      "id": "patho_bench",
-      "name": "PathoBench (pathology benchmark)",
-      "category": "medical",
-      "metric": "score",
-      "unit": "%",
-      "description": "Multi-task pathology evaluation benchmark",
-      "source_url": ""
-    }
-  ],
-  "scores": [
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "medqa",
-      "score": 69.1,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": "MedGemma 1.5 Technical Report Table 2; vs MedGemma 1 4B at 64%"
-    },
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "medmcqa",
-      "score": 59.8,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": "MedGemma 1.5 Technical Report"
-    },
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "pubmedqa",
-      "score": 67.6,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "mmlu_med",
-      "score": 69.7,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "ehrqa",
-      "score": 89.6,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": "vs MedGemma 1 4B at 68% (22-point jump)"
-    },
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "medxpertqa_text",
-      "score": 16.4,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "medxpertqa_mm",
-      "score": 26.4,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "ct_3d_classification_acc",
-      "score": 61.1,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": "3D CT condition classification; +3pp over MedGemma 1"
-    },
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "mri_3d_classification_acc",
-      "score": 64.7,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": "3D MRI condition classification; +14pp over MedGemma 1"
-    },
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "chest_imagenome_iou",
-      "score": 38.0,
-      "unit": "IoU",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": "Mean IoU anatomical localization"
-    },
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "ms_cxr_t_macro_acc",
-      "score": 65.7,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": "Temporal multi-CXR macro-accuracy"
-    },
-    {
-      "model": "google/medgemma-1.5-4b-multimodal",
-      "benchmark": "wsi_histopath_rouge_l",
-      "score": 49.4,
-      "unit": "ROUGE-L",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": "Whole slide pathology imaging report gen"
-    },
-    {
-      "model": "google/medgemma-27b-text",
-      "benchmark": "medqa",
-      "score": 87.7,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-27b-text",
-      "benchmark": "medmcqa",
-      "score": 74.2,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-27b-text",
-      "benchmark": "pubmedqa",
-      "score": 76.8,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-27b-text",
-      "benchmark": "mmlu_med",
-      "score": 85.3,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": "Average across MMLU medical subcategories"
-    },
-    {
-      "model": "google/medgemma-27b-text",
-      "benchmark": "medxpertqa_text",
-      "score": 25.7,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-27b-multimodal",
-      "benchmark": "medxpertqa_mm",
-      "score": 26.8,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.05081v1",
-      "_note": "MedGemma 1.5 report table comparing 27B multimodal"
-    },
-    {
-      "model": "google/medgemma-4b",
-      "benchmark": "medqa",
-      "score": 64.4,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-4b",
-      "benchmark": "medmcqa",
-      "score": 55.7,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-4b",
-      "benchmark": "pubmedqa",
-      "score": 73.4,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-4b",
-      "benchmark": "medxpertqa_text",
-      "score": 14.2,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-4b",
-      "benchmark": "medxpertqa_mm",
-      "score": 24.4,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": ""
-    },
-    {
-      "model": "google/medgemma-4b",
-      "benchmark": "vqa_rad_tokenized_f1",
-      "score": 49.9,
-      "unit": "F1",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": "VQA-RAD overall token F1"
-    },
-    {
-      "model": "google/medgemma-4b",
-      "benchmark": "slake",
-      "score": 72.3,
-      "unit": "F1",
-      "_source": "https://arxiv.org/html/2507.05201v4",
-      "_note": "SLAKE overall token F1"
-    },
-    {
-      "model": "alibaba-cloud/lingshu-7b",
-      "benchmark": "medxpertqa_mm",
-      "score": 26.7,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-7b",
-      "benchmark": "medxpertqa_text",
-      "score": 16.5,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-7b",
-      "benchmark": "medqa",
-      "score": 63.3,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-7b",
-      "benchmark": "medmcqa",
-      "score": 55.9,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-7b",
-      "benchmark": "pubmedqa",
-      "score": 76.6,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-7b",
-      "benchmark": "omnimedvqa",
-      "score": 82.9,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-7b",
-      "benchmark": "pathvqa",
-      "score": 61.9,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-7b",
-      "benchmark": "slake_vqa",
-      "score": 83.1,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-7b",
-      "benchmark": "vqa_rad_tokenized_f1",
-      "score": 67.9,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": "VQA-RAD accuracy from Lingshu paper"
-    },
-    {
-      "model": "alibaba-cloud/lingshu-7b",
-      "benchmark": "mmmu_medical",
-      "score": 54.0,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-32b",
-      "benchmark": "medxpertqa_mm",
-      "score": 30.9,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-32b",
-      "benchmark": "medxpertqa_text",
-      "score": 22.7,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-32b",
-      "benchmark": "medqa",
-      "score": 74.7,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-32b",
-      "benchmark": "medmcqa",
-      "score": 66.1,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-32b",
-      "benchmark": "pubmedqa",
-      "score": 77.8,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-32b",
-      "benchmark": "omnimedvqa",
-      "score": 83.4,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-32b",
-      "benchmark": "pathvqa",
-      "score": 65.9,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-32b",
-      "benchmark": "slake_vqa",
-      "score": 89.2,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-32b",
-      "benchmark": "vqa_rad_tokenized_f1",
-      "score": 76.5,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "alibaba-cloud/lingshu-32b",
-      "benchmark": "mmmu_medical",
-      "score": 62.3,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2506.07044v1",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.5-medium",
-      "benchmark": "healthbench_length_adjusted",
-      "score": 56.5,
-      "unit": "%",
-      "_source": "https://deploymentsafety.openai.com/gpt-5-5",
-      "_note": "GPT-5.5 System Card; +2.5 over GPT-5.4"
-    },
-    {
-      "model": "openai/gpt-5.5-medium",
-      "benchmark": "healthbench_hard",
-      "score": 31.5,
-      "unit": "%",
-      "_source": "https://deploymentsafety.openai.com/gpt-5-5",
-      "_note": "GPT-5.5 System Card; +2.4 over GPT-5.4"
-    },
-    {
-      "model": "openai/gpt-5.5-medium",
-      "benchmark": "healthbench_consensus",
-      "score": 95.6,
-      "unit": "%",
-      "_source": "https://deploymentsafety.openai.com/gpt-5-5",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.5-medium",
-      "benchmark": "healthbench_professional",
-      "score": 51.8,
-      "unit": "%",
-      "_source": "https://deploymentsafety.openai.com/gpt-5-5",
-      "_note": "+3.7 over GPT-5.4"
-    },
-    {
-      "model": "openai/chatgpt-for-clinicians",
-      "benchmark": "healthbench_professional",
-      "score": 59.0,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.27470",
-      "_note": "Clinician-tuned variant; +10.9 vs base GPT-5.4"
-    },
-    {
-      "model": "openai/chatgpt-for-clinicians",
-      "benchmark": "healthbench_pro_care_consult",
-      "score": 51.0,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.27470",
-      "_note": ""
-    },
-    {
-      "model": "openai/chatgpt-for-clinicians",
-      "benchmark": "healthbench_pro_writing",
-      "score": 64.1,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.27470",
-      "_note": ""
-    },
-    {
-      "model": "openai/chatgpt-for-clinicians",
-      "benchmark": "healthbench_pro_research",
-      "score": 67.0,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.27470",
-      "_note": ""
-    },
-    {
-      "model": "openai/chatgpt-for-clinicians",
-      "benchmark": "healthbench_pro_nephrology",
-      "score": 72.1,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.27470",
-      "_note": ""
-    },
-    {
-      "model": "openai/chatgpt-for-clinicians",
-      "benchmark": "healthbench_pro_psychiatry",
-      "score": 69.6,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.27470",
-      "_note": ""
-    },
-    {
-      "model": "openai/chatgpt-for-clinicians",
-      "benchmark": "healthbench_pro_cardiology",
-      "score": 53.9,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.27470",
-      "_note": ""
-    },
-    {
-      "model": "openai/chatgpt-for-clinicians",
-      "benchmark": "healthbench_pro_redteam",
-      "score": 55.8,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.27470",
-      "_note": "Red-teaming difficult slice"
-    },
-    {
-      "model": "openai/gpt-5.4-medium",
-      "benchmark": "healthbench_professional",
-      "score": 48.1,
-      "unit": "%",
-      "_source": "https://arxiv.org/html/2604.27470",
-      "_note": "Base GPT-5.4 baseline in HealthBench Pro paper"
-    },
-    {
-      "model": "google/amie-co-clinician",
-      "benchmark": "rxqa_mcq",
-      "score": 73.3,
-      "unit": "%",
-      "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-benchmark-results-2026",
-      "_note": "RxQA drug-interaction MCQ; vs GPT-5.4-thinking-search at 72.7%"
-    },
-    {
-      "model": "google/amie-co-clinician",
-      "benchmark": "amie_pc_critical_errors",
-      "score": 99.0,
-      "unit": "%",
-      "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-benchmark-results-2026",
-      "_note": "Zero critical errors on 97 of 98 primary-care queries (= 99.0% safe rate)"
-    },
-    {
-      "model": "google/amie-co-clinician",
-      "benchmark": "amie_physician_preference",
-      "score": 67.0,
-      "unit": "%",
-      "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-benchmark-results-2026",
-      "_note": "67% physician preference over existing clinical tools"
-    },
-    {
-      "model": "google/amie-co-clinician",
-      "benchmark": "amie_vs_gpt54_preference",
-      "score": 67.7,
-      "unit": "%",
-      "_source": "https://winbuzzer.com/2026/05/02/google-deepmind-ai-co-clinician-beats-gpt-5-4-blind-doctor-tests-xcxwbn/",
-      "_note": "63 vs 30 wins (63/(63+30) = 67.7%) blind head-to-head vs GPT-5.4 thinking+search"
-    },
-    {
-      "model": "google/amie-co-clinician",
-      "benchmark": "amie_consultation_140dims",
-      "score": 48.6,
-      "unit": "%",
-      "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-benchmark-results-2026",
-      "_note": "Matched/exceeded PCPs on 68/140 dimensions (= 48.6%)"
-    },
-    {
-      "model": "hippocratic/polaris-5",
-      "benchmark": "polaris_safety",
-      "score": 99.95,
-      "unit": "%",
-      "_source": "https://hippocraticai.com/hippocratic-ai-launches-polaris-5-0/",
-      "_note": "Drug safety accuracy across 7 body systems"
-    },
-    {
-      "model": "ucsc-vlaa/medreason-8b",
-      "benchmark": "medbullets",
-      "score": 4.2,
-      "unit": "pp_delta_vs_huatuo_o1_8b",
-      "_source": "https://arxiv.org/abs/2504.00993",
-      "_note": "Relative gain of +4.2pp over HuatuoGPT-o1-8B; absolute score requires Tab3 image in repo"
-    },
-    {
-      "model": "henrychur/mmed-llama-3-8b",
-      "benchmark": "mmedbench",
-      "score": 67.75,
-      "unit": "%",
-      "_source": "https://huggingface.co/Henrychur/MMed-Llama-3-8B",
-      "_note": "MMedBench full fine-tuning average; vs Llama-3 baseline 62.79%"
-    },
-    {
-      "model": "anthropic/claude-fable-5",
-      "benchmark": "healthbench_professional",
-      "score": 0.66,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench-professional",
-      "_note": "snapshot 2026-06-14 \u2014 #1 on board"
-    },
-    {
-      "model": "anthropic/claude-opus-4.8",
-      "benchmark": "healthbench_professional",
-      "score": 0.558,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench-professional",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "openai/gpt-5.5-instant",
-      "benchmark": "healthbench_professional",
-      "score": 0.384,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench-professional",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "microsoft/mai-thinking-1",
-      "benchmark": "healthbench_professional",
-      "score": 0.35,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench-professional",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "anthropic/claude-mythos-preview",
-      "benchmark": "healthbench_professional",
-      "score": 0.647,
-      "unit": "score",
-      "_source": "https://www.vellum.ai/blog/claude-fable-5-and-mythos-5-benchmarks-explained",
-      "_note": "Mythos Preview per Vellum"
-    },
-    {
-      "model": "anthropic/claude-opus-4.7",
-      "benchmark": "healthbench_professional",
-      "score": 0.519,
-      "unit": "score",
-      "_source": "https://www.anthropic.com/news/claude-opus-4-8",
-      "_note": "predecessor baseline reported in Opus 4.8 announcement"
-    },
-    {
-      "model": "openai/gpt-5.4-chatgpt-for-clinicians",
-      "benchmark": "healthbench_professional_la",
-      "score": 59.0,
-      "unit": "score",
-      "_source": "https://arxiv.org/html/2604.27470v1",
-      "_note": "length-adjusted, paper \u00a7Results"
-    },
-    {
-      "model": "openai/gpt-5.4",
-      "benchmark": "healthbench_professional_la",
-      "score": 48.1,
-      "unit": "score",
-      "_source": "https://arxiv.org/html/2604.27470v1",
-      "_note": "base GPT-5.4 length-adjusted"
-    },
-    {
-      "model": "anthropic/claude-opus-4.7",
-      "benchmark": "healthbench_professional_la",
-      "score": 47.0,
-      "unit": "score",
-      "_source": "https://dig.watch/updates/openai-chatgpt-for-clinicians-us",
-      "_note": "OpenAI ChatGPT for Clinicians launch comparison table"
-    },
-    {
-      "model": "google/gemini-3.1-pro",
-      "benchmark": "healthbench_professional_la",
-      "score": 43.8,
-      "unit": "score",
-      "_source": "https://dig.watch/updates/openai-chatgpt-for-clinicians-us",
-      "_note": "OpenAI launch comparison table"
-    },
-    {
-      "model": "xai/grok-4.2",
-      "benchmark": "healthbench_professional_la",
-      "score": 36.1,
-      "unit": "score",
-      "_source": "https://dig.watch/updates/openai-chatgpt-for-clinicians-us",
-      "_note": "OpenAI launch comparison table"
-    },
-    {
-      "model": "openai/gpt-5.5-instant",
-      "benchmark": "healthbench_professional_la",
-      "score": 51.8,
-      "unit": "score",
-      "_source": "https://en.wikipedia.org/wiki/GPT-5.5",
-      "_note": "GPT-5.5 system card length-adjusted, +3.7 vs GPT-5.4"
-    },
-    {
-      "model": "google/gemini-3.1-pro",
-      "benchmark": "healthbench_good_faith_3_7",
-      "score": 61.4,
-      "unit": "score",
-      "_source": "https://arxiv.org/html/2604.27470v1",
-      "_note": "Good-Faith 3-7 slice"
-    },
-    {
-      "model": "moonshot/kimi-k2-thinking-0905",
-      "benchmark": "healthbench",
-      "score": 0.58,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench",
-      "_note": "snapshot 2026-06-14 \u2014 #1 on board"
-    },
-    {
-      "model": "openai/gpt-oss-120b",
-      "benchmark": "healthbench",
-      "score": 0.576,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "openai/gpt-5.3-chat",
-      "benchmark": "healthbench",
-      "score": 0.541,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "openai/gpt-5.5-instant",
-      "benchmark": "healthbench",
-      "score": 0.514,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "openai/gpt-oss-20b",
-      "benchmark": "healthbench",
-      "score": 0.425,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "meta/muse-spark",
-      "benchmark": "healthbench_hard",
-      "score": 0.428,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
-      "_note": "snapshot 2026-06-14 \u2014 #1 SOTA"
-    },
-    {
-      "model": "openai/gpt-oss-120b",
-      "benchmark": "healthbench_hard",
-      "score": 0.3,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "openai/gpt-5.3-chat",
-      "benchmark": "healthbench_hard",
-      "score": 0.259,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "openai/gpt-5.5-instant",
-      "benchmark": "healthbench_hard",
-      "score": 0.229,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "openai/gpt-oss-20b",
-      "benchmark": "healthbench_hard",
-      "score": 0.108,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "openai/gpt-5",
-      "benchmark": "healthbench_hard",
-      "score": 0.016,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "google/gemini-3.1-pro",
-      "benchmark": "healthbench_hard",
-      "score": 0.206,
-      "unit": "score",
-      "_source": "https://www.clickrank.ai/llm-leaderboard/",
-      "_note": "20.6 per Clickrank LLM Leaderboard 2026"
-    },
-    {
-      "model": "xai/grok-4.2",
-      "benchmark": "healthbench_hard",
-      "score": 0.203,
-      "unit": "score",
-      "_source": "https://www.clickrank.ai/llm-leaderboard/",
-      "_note": "20.3"
-    },
-    {
-      "model": "anthropic/claude-sonnet-4.6",
-      "benchmark": "healthbench_hard",
-      "score": 0.148,
-      "unit": "score",
-      "_source": "https://www.clickrank.ai/llm-leaderboard/",
-      "_note": "14.8"
-    },
-    {
-      "model": "openai/gpt-5.5-instant",
-      "benchmark": "healthbench_consensus",
-      "score": 0.947,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/healthbench-consensus",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "meta/muse-spark",
-      "benchmark": "medxpertqa",
-      "score": 0.784,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14 \u2014 #1 SOTA"
-    },
-    {
-      "model": "alibaba/qwen3.5-122b-a10b",
-      "benchmark": "medxpertqa",
-      "score": 0.673,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "alibaba/qwen3.5-27b",
-      "benchmark": "medxpertqa",
-      "score": 0.624,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "alibaba/qwen3.5-35b-a3b",
-      "benchmark": "medxpertqa",
-      "score": 0.614,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "google/gemma-4-31b",
-      "benchmark": "medxpertqa",
-      "score": 0.613,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "google/gemma-4-26b-a4b",
-      "benchmark": "medxpertqa",
-      "score": 0.581,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "google/diffusiongemma-26b-a4b",
-      "benchmark": "medxpertqa",
-      "score": 0.49,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "google/gemma-4-12b",
-      "benchmark": "medxpertqa",
-      "score": 0.487,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "microsoft/mai-thinking-1",
-      "benchmark": "medxpertqa",
-      "score": 0.43,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "google/gemma-4-e4b",
-      "benchmark": "medxpertqa",
-      "score": 0.287,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "google/gemma-4-e2b",
-      "benchmark": "medxpertqa",
-      "score": 0.235,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "google/medgemma-4b-it",
-      "benchmark": "medxpertqa",
-      "score": 0.188,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/medxpertqa",
-      "_note": "snapshot 2026-06-14"
-    },
-    {
-      "model": "google/gemini-3.1-pro",
-      "benchmark": "medqa_usmle",
-      "score": 97.4,
-      "unit": "score",
-      "_source": "https://www.nature.com/articles/s41591-026-04431-5",
-      "_note": "Nature Medicine 2026-06-12 study, 500 MedQA questions"
-    },
-    {
-      "model": "openai/gpt-5.4",
-      "benchmark": "rxqa_mcq",
-      "score": 72.7,
-      "unit": "score",
-      "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-rxqa-benchmark-frontier-models",
-      "_note": "GPT-5.4-thinking-with-search"
-    },
-    {
-      "model": "google/amie-co-clinician",
-      "benchmark": "rxqa_open_ended",
-      "score": 95.0,
-      "unit": "score",
-      "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-rxqa-benchmark-frontier-models",
-      "_note": "open-ended answer quality SOTA"
-    },
-    {
-      "model": "openai/gpt-5.4",
-      "benchmark": "rxqa_open_ended",
-      "score": 90.9,
-      "unit": "score",
-      "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-rxqa-benchmark-frontier-models",
-      "_note": "GPT-5.4-thinking-with-search open-ended"
-    },
-    {
-      "model": "microsoft/maira-2",
-      "benchmark": "radfact_grounding_recall",
-      "score": 0.9,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2406.04449",
-      "_note": "RadFact Grounding Recall reaching up to 90%"
-    },
-    {
-      "model": "microsoft/maira-2",
-      "benchmark": "radfact_logical_precision",
-      "score": 0.556,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2406.04449",
-      "_note": "RadFact Logical Precision reaching 52.5%-55.6%"
-    },
-    {
-      "model": "moorfields/retfound",
-      "benchmark": "kaggle_aptos2019_dr",
-      "score": 0.943,
-      "unit": "%",
-      "_source": "https://www.nature.com/articles/s41586-023-06555-x",
-      "_note": "RETFound achieved area under the receiver operating characteristic curves (AUROCs) of 0.943, 0.822, and 0.884 on the Kaggle APTOS-2019, IDRiD, and MESSIDOR-2 datasets"
-    },
-    {
-      "model": "moorfields/retfound",
-      "benchmark": "idrid_dr",
-      "score": 0.822,
-      "unit": "%",
-      "_source": "https://www.nature.com/articles/s41586-023-06555-x",
-      "_note": "AUROCs of 0.943, 0.822, and 0.884 on the Kaggle APTOS-2019, IDRiD, and MESSIDOR-2 datasets"
-    },
-    {
-      "model": "moorfields/retfound",
-      "benchmark": "messidor2_dr",
-      "score": 0.884,
-      "unit": "%",
-      "_source": "https://www.nature.com/articles/s41586-023-06555-x",
-      "_note": "AUROCs of 0.943, 0.822, and 0.884 on the Kaggle APTOS-2019, IDRiD, and MESSIDOR-2 datasets"
-    },
-    {
-      "model": "visionfm/visionfm",
-      "benchmark": "kaggle_aptos2019_dr",
-      "score": 0.974,
-      "unit": "%",
-      "_source": "https://www.nature.com/articles/s41746-025-01772-2",
-      "_note": "It achieved AUROCs up to 0.974 ... in specific clinical environments for glaucoma and diabetic retinopathy screening"
-    },
-    {
-      "model": "freedomintelligence/huatuogpt-vision-34b",
-      "benchmark": "vqa_rad",
-      "score": 0.681,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2406.19280",
-      "_note": "HuatuoGPT-Vision-34B achieved 68.1% on VQA-RAD"
-    },
-    {
-      "model": "freedomintelligence/huatuogpt-vision-34b",
-      "benchmark": "slake",
-      "score": 0.769,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2406.19280",
-      "_note": "HuatuoGPT-Vision-34B achieved 76.9% on SLAKE"
-    },
-    {
-      "model": "freedomintelligence/huatuogpt-vision-34b",
-      "benchmark": "path_vqa",
-      "score": 0.635,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2406.19280",
-      "_note": "HuatuoGPT-Vision-34B achieved 63.5% on PathVQA"
-    },
-    {
-      "model": "freedomintelligence/huatuogpt-vision-34b",
-      "benchmark": "pmc_vqa",
-      "score": 0.582,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2406.19280",
-      "_note": "HuatuoGPT-Vision-34B achieved 58.2% on PMC-VQA"
-    },
-    {
-      "model": "microsoft/llava-med-v1.5-mistral-7b",
-      "benchmark": "vqa_rad",
-      "score": 0.514,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2306.00890",
-      "_note": "LLaVA-Med-7B achieved 51.4% on VQA-RAD"
-    },
-    {
-      "model": "microsoft/llava-med-v1.5-mistral-7b",
-      "benchmark": "slake",
-      "score": 0.486,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2306.00890",
-      "_note": "LLaVA-Med-7B achieved 48.6% on SLAKE"
-    },
-    {
-      "model": "microsoft/llava-med-v1.5-mistral-7b",
-      "benchmark": "path_vqa",
-      "score": 0.568,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2306.00890",
-      "_note": "LLaVA-Med-7B achieved 56.8% on PathVQA"
-    },
-    {
-      "model": "microsoft/medimageinsight",
-      "benchmark": "cxr_tube_pathology_mauc",
-      "score": 0.938,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2410.06542",
-      "_note": "an adapter SVM trained on MedImageInsight embeddings achieves mean AUC (mAUC) of 93.8%, outperforming Rad-DINO (91.1%), CXR-Foundation (89.0%), BiomedCLIP (83.0%), DenseNet121 (81.8%), and Med-Flamingo (75.1%)"
-    },
-    {
-      "model": "microsoft/rad-dino",
-      "benchmark": "cxr_tube_pathology_mauc",
-      "score": 0.911,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2410.06542",
-      "_note": "MedImageInsight ... outperforming Rad-DINO (91.1%), CXR-Foundation (89.0%), BiomedCLIP (83.0%), DenseNet121 (81.8%), and Med-Flamingo (75.1%)"
-    },
-    {
-      "model": "microsoft/biomedclip",
-      "benchmark": "cxr_tube_pathology_mauc",
-      "score": 0.83,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2410.06542",
-      "_note": "MedImageInsight ... outperforming ... BiomedCLIP (83.0%) ... Med-Flamingo (75.1%)"
-    },
-    {
-      "model": "monai/vista3d",
-      "benchmark": "abdomen_ct_dice",
-      "score": 0.91,
-      "unit": "%",
-      "_source": "https://docs.nvidia.com/nim/medical/vista3d/latest/overview.html",
-      "_note": "VISTA-3D architecture boasts an impressive mean dice score of about 0.91 ... 127 supported classes"
-    },
-    {
-      "model": "wanglab/medsam-2",
-      "benchmark": "abdomen_ct_dice",
-      "score": 0.699,
-      "unit": "%",
-      "_source": "https://medsam2.github.io/",
-      "_note": "MedSAM2 achieves a Dice score of 0.699 with Surface Dice of 0.752 and IoU of 0.578 among SAM-based models on multi-organ abdominal CT scans"
-    },
-    {
-      "model": "microsoft/prov-gigapath",
-      "benchmark": "patho_bench",
-      "score": 0.961,
-      "unit": "%",
-      "_source": "https://www.nature.com/articles/s41586-024-07441-w",
-      "_note": "Prov-GigaPath attains state-of-the-art performance on 25 out of 26 tasks, with significant improvement over the second-best method on 18 tasks"
-    }
+ "_meta": {
+  "session": "116",
+  "date": "2026-06-14",
+  "topic": "Medical AI frontier refresh (LLM/VLM + benchmarks + imaging foundation)",
+  "notes": "3 parallel agents on medical AI. First broad sweep since S98 (~17 sessions ago).",
+  "sources": [
+   "MedGemma 1.5 Tech Report (arxiv 2604.05081)",
+   "MedGemma 27B paper (arxiv 2507.05201)",
+   "AMIE Co-Clinician 2026",
+   "Hippocratic Polaris 5 model card (2026-04-30)",
+   "Lingshu (Alibaba) tech report",
+   "MedReason-8B (UCSC-VLAA)",
+   "ChatGPT for Clinicians (OpenAI 2026-05-05)",
+   "HealthBench Pro length-adjusted (arxiv 2604.27470)",
+   "llm-stats medical leaderboard mirrors",
+   "Nature Medicine 2026-06-12 (Gemini 3.1 Pro MedQA-USMLE 97.4)",
+   "MAIRA-2 (arxiv 2406.04449)",
+   "MedImageInsight (arxiv 2410.06542)",
+   "Prov-GigaPath (Nature s41586-024-07441-w)",
+   "RETFound (Nature 2023)",
+   "VisionFM (npj Digital Medicine 2025)",
+   "HuatuoGPT-Vision (arxiv 2406.19280)",
+   "VISTA-3D NVIDIA NIM"
   ]
+ },
+ "models": [
+  {
+   "id": "google/medgemma-1.5-4b-multimodal",
+   "name": "MedGemma 1.5 4B (multimodal)",
+   "vendor": "Google Research + DeepMind",
+   "type": "multimodal",
+   "release_date": "2026-01-13",
+   "modalities": [
+    "text",
+    "vision"
+   ]
+  },
+  {
+   "id": "hippocratic/polaris-5",
+   "name": "Polaris 5.0",
+   "vendor": "Hippocratic AI",
+   "type": "language",
+   "release_date": "2026-04-30",
+   "modalities": [
+    "text",
+    "voice"
+   ]
+  },
+  {
+   "id": "google/amie-co-clinician-2026",
+   "name": "AMIE Co-Clinician (2026 release)",
+   "vendor": "Google DeepMind",
+   "type": "language",
+   "release_date": "2026-05-01",
+   "modalities": [
+    "text",
+    "multimodal"
+   ]
+  },
+  {
+   "id": "google/medsiglip-448",
+   "name": "MedSigLIP-448",
+   "vendor": "Google Research + DeepMind",
+   "type": "multimodal",
+   "release_date": "2025-07-09",
+   "modalities": [
+    "vision",
+    "text"
+   ]
+  },
+  {
+   "id": "ucsc-vlaa/medreason-8b",
+   "name": "MedReason 8B",
+   "vendor": "UCSC-VLAA (UC Santa Cruz)",
+   "type": "language",
+   "release_date": "2025-04-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "alibaba-damo/lingshu-7b",
+   "name": "Lingshu 7B (already in DB, adding scores)",
+   "vendor": "Alibaba DAMO Academy",
+   "type": "multimodal",
+   "release_date": "2025-06-08",
+   "modalities": [
+    "text",
+    "vision"
+   ]
+  },
+  {
+   "id": "alibaba-damo/lingshu-32b",
+   "name": "Lingshu 32B (already in DB, adding scores)",
+   "vendor": "Alibaba DAMO Academy",
+   "type": "multimodal",
+   "release_date": "2025-06-08",
+   "modalities": [
+    "text",
+    "vision"
+   ]
+  },
+  {
+   "id": "openai/chatgpt-for-clinicians",
+   "name": "ChatGPT for Clinicians (GPT-5.4 medical-tuned)",
+   "vendor": "OpenAI",
+   "type": "language",
+   "release_date": "2026-05-05",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.5-instant",
+   "name": "GPT-5.5 Instant",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-05-04",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-oss-120b",
+   "name": "GPT-OSS-120B",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2025-08-05",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-oss-20b",
+   "name": "GPT-OSS-20B",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2025-08-05",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.3-chat",
+   "name": "GPT-5.3 Chat",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2025-12-15",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "meta/muse-spark",
+   "name": "Muse Spark",
+   "vendor": "meta",
+   "type": "language",
+   "release_date": "2026-04-25",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "moonshot/kimi-k2-thinking-0905",
+   "name": "Kimi K2-Thinking-0905",
+   "vendor": "moonshot",
+   "type": "language",
+   "release_date": "2025-09-05",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-fable-5",
+   "name": "Claude Fable 5",
+   "vendor": "anthropic",
+   "type": "language",
+   "release_date": "2026-06-09",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-mythos-preview",
+   "name": "Claude Mythos 5 Preview",
+   "vendor": "anthropic",
+   "type": "language",
+   "release_date": "2026-06-09",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.8",
+   "name": "Claude Opus 4.8",
+   "vendor": "anthropic",
+   "type": "language",
+   "release_date": "2026-05-28",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.7",
+   "name": "Claude Opus 4.7",
+   "vendor": "anthropic",
+   "type": "language",
+   "release_date": "2026-04-15",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-3.1-pro",
+   "name": "Gemini 3.1 Pro",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-02-20",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/amie-co-clinician",
+   "name": "AMIE Co-Clinician (2026)",
+   "vendor": "google deepmind",
+   "type": "language",
+   "release_date": "2026-04-30",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "microsoft/mai-thinking-1",
+   "name": "MAI-Thinking-1",
+   "vendor": "microsoft",
+   "type": "language",
+   "release_date": "2026-03-15",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "xai/grok-4.2",
+   "name": "Grok 4.2",
+   "vendor": "xai",
+   "type": "language",
+   "release_date": "2026-03-10",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4",
+   "name": "GPT-5.4",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-04-23",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4-chatgpt-for-clinicians",
+   "name": "GPT-5.4 ChatGPT for Clinicians",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-04-22",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5",
+   "name": "GPT-5",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2025-08-07",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.2",
+   "name": "GPT-5.2",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2025-11-20",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "alibaba/qwen3.5-122b-a10b",
+   "name": "Qwen3.5-122B-A10B",
+   "vendor": "alibaba cloud",
+   "type": "language",
+   "release_date": "2026-03-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "alibaba/qwen3.5-27b",
+   "name": "Qwen3.5-27B",
+   "vendor": "alibaba cloud",
+   "type": "language",
+   "release_date": "2026-03-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "alibaba/qwen3.5-35b-a3b",
+   "name": "Qwen3.5-35B-A3B",
+   "vendor": "alibaba cloud",
+   "type": "language",
+   "release_date": "2026-03-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemma-4-31b",
+   "name": "Gemma 4 31B",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-02-15",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemma-4-26b-a4b",
+   "name": "Gemma 4 26B-A4B",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-02-15",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/diffusiongemma-26b-a4b",
+   "name": "DiffusionGemma 26B-A4B",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-03-20",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemma-4-12b",
+   "name": "Gemma 4 12B",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-02-15",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemma-4-e4b",
+   "name": "Gemma 4 E4B",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-02-15",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemma-4-e2b",
+   "name": "Gemma 4 E2B",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-02-15",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/medgemma-4b-it",
+   "name": "MedGemma 4B IT",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2025-07-09",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-sonnet-4.6",
+   "name": "Claude Sonnet 4.6",
+   "vendor": "anthropic",
+   "type": "language",
+   "release_date": "2026-03-25",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4.6",
+   "name": "Claude Opus 4.6",
+   "vendor": "anthropic",
+   "type": "language",
+   "release_date": "2026-02-10",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "stanford-aimi/chexagent-8b",
+   "name": "CheXagent 8B",
+   "vendor": "Stanford AIMI",
+   "type": "language",
+   "release_date": "2024-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "hamamci/ct-clip",
+   "name": "CT-CLIP",
+   "vendor": "Hamamci et al. (academic)",
+   "type": "language",
+   "release_date": "2024-03-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "visionfm/visionfm",
+   "name": "VisionFM",
+   "vendor": "VisionFM consortium",
+   "type": "language",
+   "release_date": "2024-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "henrychur/mmed-llama-3-8b",
+   "name": "MMed-Llama-3-8B",
+   "vendor": "Shanghai AI Lab",
+   "type": "language",
+   "release_date": "2025-01-01",
+   "modalities": [
+    "text"
+   ]
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "ehrqa",
+   "name": "EHRQA (Electronic Health Record QA)",
+   "category": "medical",
+   "metric": "accuracy",
+   "unit": "%",
+   "description": "",
+   "source_url": "https://arxiv.org/abs/2604.05081"
+  },
+  {
+   "id": "healthbench_professional_la",
+   "name": "HealthBench Professional (length-adjusted)",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "525 physician-rubric tasks across care consult, documentation, medical research. Length-adjusted scoring per arxiv 2604.27470.",
+   "source_url": "https://arxiv.org/abs/2604.27470"
+  },
+  {
+   "id": "healthbench_professional",
+   "name": "HealthBench Professional",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "OpenAI HealthBench Pro 525-task clinician chats with physician-authored rubrics.",
+   "source_url": "https://llm-stats.com/benchmarks/healthbench-professional"
+  },
+  {
+   "id": "healthbench",
+   "name": "HealthBench",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "OpenAI HealthBench 5000 multi-turn medical conversations with physician rubrics.",
+   "source_url": "https://openai.com/index/healthbench/"
+  },
+  {
+   "id": "healthbench_hard",
+   "name": "HealthBench Hard",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "HealthBench Hard slice — unsaturated subset of HealthBench.",
+   "source_url": "https://llm-stats.com/benchmarks/healthbench-hard"
+  },
+  {
+   "id": "healthbench_consensus",
+   "name": "HealthBench Consensus",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "3,671 examples with multiply validated physician consensus criteria.",
+   "source_url": "https://llm-stats.com/benchmarks/healthbench-consensus"
+  },
+  {
+   "id": "medxpertqa",
+   "name": "MedXpertQA",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "4,460 expert-level medical reasoning Qs spanning 17 specialties + 11 body systems (ICML 2025).",
+   "source_url": "https://medxpertqa.github.io/"
+  },
+  {
+   "id": "medqa_usmle",
+   "name": "MedQA USMLE",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "USMLE-style medical licensing exam questions.",
+   "source_url": "https://github.com/jind11/MedQA"
+  },
+  {
+   "id": "rxqa_mcq",
+   "name": "RxQA (multiple choice)",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "Drug knowledge benchmark, multiple-choice questions.",
+   "source_url": "https://research.google/blog/co-clinician-rxqa/"
+  },
+  {
+   "id": "rxqa_open_ended",
+   "name": "RxQA (open-ended)",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "Drug knowledge benchmark, open-ended answer quality (dosing, interactions, patient-specific).",
+   "source_url": "https://research.google/blog/co-clinician-rxqa/"
+  },
+  {
+   "id": "healthbench_good_faith_3_7",
+   "name": "HealthBench Good-Faith 3-7 slice",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "HealthBench 'Good Faith' slice (turns 3-7) per HealthBench Professional paper.",
+   "source_url": "https://arxiv.org/abs/2604.27470"
+  },
+  {
+   "id": "rcq_clinician_preference",
+   "name": "RCQ (Real Clinical Queries)",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "100 de-identified physician queries with blinded review, Nature Medicine 2026 study.",
+   "source_url": "https://www.nature.com/articles/s41591-026-04431-5"
+  },
+  {
+   "id": "radfact_logical_precision",
+   "name": "RadFact Logical Precision",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "LLM-based metric suite for radiology report generation - logical precision sub-metric",
+   "source_url": "https://github.com/microsoft/RadFact"
+  },
+  {
+   "id": "radfact_grounding_recall",
+   "name": "RadFact Grounding Recall",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "RadFact grounding recall sub-metric",
+   "source_url": "https://github.com/microsoft/RadFact"
+  },
+  {
+   "id": "chexbench_perception",
+   "name": "CheXbench (image perception)",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "Stanford CheXbench: 8 clinically-relevant CXR tasks",
+   "source_url": "https://arxiv.org/abs/2401.12208"
+  },
+  {
+   "id": "kaggle_aptos2019_dr",
+   "name": "APTOS-2019 Diabetic Retinopathy",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "AUROC for DR classification on APTOS-2019 fundus images",
+   "source_url": "https://www.kaggle.com/c/aptos2019-blindness-detection"
+  },
+  {
+   "id": "idrid_dr",
+   "name": "IDRiD Diabetic Retinopathy",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "AUROC for DR classification on IDRiD fundus images",
+   "source_url": "https://idrid.grand-challenge.org/"
+  },
+  {
+   "id": "messidor2_dr",
+   "name": "MESSIDOR-2 Diabetic Retinopathy",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "AUROC for DR classification on MESSIDOR-2",
+   "source_url": "https://www.adcis.net/en/third-party/messidor2/"
+  },
+  {
+   "id": "cxr_tube_pathology_mauc",
+   "name": "Chest Radiograph Tube/Pathology mAUC",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "Multi-class CXR tube/pathology classification - mean AUC across 7 categories",
+   "source_url": "https://arxiv.org/abs/2410.06542"
+  },
+  {
+   "id": "abdomen_ct_dice",
+   "name": "Abdominal CT Multi-Organ Dice",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "Dice score on multi-organ abdominal CT segmentation",
+   "source_url": "https://medsam2.github.io/"
+  },
+  {
+   "id": "patho_bench",
+   "name": "PathoBench (pathology benchmark)",
+   "category": "medical",
+   "metric": "score",
+   "unit": "%",
+   "description": "Multi-task pathology evaluation benchmark",
+   "source_url": ""
+  }
+ ],
+ "scores": [
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "medqa",
+   "score": 69.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": "MedGemma 1.5 Technical Report Table 2; vs MedGemma 1 4B at 64%"
+  },
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "medmcqa",
+   "score": 59.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": "MedGemma 1.5 Technical Report"
+  },
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "pubmedqa",
+   "score": 67.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "mmlu_med",
+   "score": 69.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "ehrqa",
+   "score": 89.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": "vs MedGemma 1 4B at 68% (22-point jump)"
+  },
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "medxpertqa_text",
+   "score": 16.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "medxpertqa_mm",
+   "score": 26.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "ct_3d_classification_acc",
+   "score": 61.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": "3D CT condition classification; +3pp over MedGemma 1"
+  },
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "mri_3d_classification_acc",
+   "score": 64.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": "3D MRI condition classification; +14pp over MedGemma 1"
+  },
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "chest_imagenome_iou",
+   "score": 38.0,
+   "unit": "IoU",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": "Mean IoU anatomical localization"
+  },
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "ms_cxr_t_macro_acc",
+   "score": 65.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": "Temporal multi-CXR macro-accuracy"
+  },
+  {
+   "model": "google/medgemma-1.5-4b-multimodal",
+   "benchmark": "wsi_histopath_rouge_l",
+   "score": 49.4,
+   "unit": "ROUGE-L",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": "Whole slide pathology imaging report gen"
+  },
+  {
+   "model": "google/medgemma-27b-text",
+   "benchmark": "medqa",
+   "score": 87.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-27b-text",
+   "benchmark": "medmcqa",
+   "score": 74.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-27b-text",
+   "benchmark": "pubmedqa",
+   "score": 76.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-27b-text",
+   "benchmark": "mmlu_med",
+   "score": 85.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": "Average across MMLU medical subcategories"
+  },
+  {
+   "model": "google/medgemma-27b-text",
+   "benchmark": "medxpertqa_text",
+   "score": 25.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-27b-multimodal",
+   "benchmark": "medxpertqa_mm",
+   "score": 26.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.05081v1",
+   "_note": "MedGemma 1.5 report table comparing 27B multimodal"
+  },
+  {
+   "model": "google/medgemma-4b",
+   "benchmark": "medqa",
+   "score": 64.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-4b",
+   "benchmark": "medmcqa",
+   "score": 55.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-4b",
+   "benchmark": "pubmedqa",
+   "score": 73.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-4b",
+   "benchmark": "medxpertqa_text",
+   "score": 14.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-4b",
+   "benchmark": "medxpertqa_mm",
+   "score": 24.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": ""
+  },
+  {
+   "model": "google/medgemma-4b",
+   "benchmark": "vqa_rad_tokenized_f1",
+   "score": 49.9,
+   "unit": "F1",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": "VQA-RAD overall token F1"
+  },
+  {
+   "model": "google/medgemma-4b",
+   "benchmark": "slake",
+   "score": 72.3,
+   "unit": "F1",
+   "_source": "https://arxiv.org/html/2507.05201v4",
+   "_note": "SLAKE overall token F1"
+  },
+  {
+   "model": "alibaba-cloud/lingshu-7b",
+   "benchmark": "medxpertqa_mm",
+   "score": 26.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-7b",
+   "benchmark": "medxpertqa_text",
+   "score": 16.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-7b",
+   "benchmark": "medqa",
+   "score": 63.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-7b",
+   "benchmark": "medmcqa",
+   "score": 55.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-7b",
+   "benchmark": "pubmedqa",
+   "score": 76.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-7b",
+   "benchmark": "omnimedvqa",
+   "score": 82.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-7b",
+   "benchmark": "pathvqa",
+   "score": 61.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-7b",
+   "benchmark": "slake_vqa",
+   "score": 83.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-7b",
+   "benchmark": "vqa_rad_tokenized_f1",
+   "score": 67.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": "VQA-RAD accuracy from Lingshu paper"
+  },
+  {
+   "model": "alibaba-cloud/lingshu-7b",
+   "benchmark": "mmmu_medical",
+   "score": 54.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-32b",
+   "benchmark": "medxpertqa_mm",
+   "score": 30.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-32b",
+   "benchmark": "medxpertqa_text",
+   "score": 22.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-32b",
+   "benchmark": "medqa",
+   "score": 74.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-32b",
+   "benchmark": "medmcqa",
+   "score": 66.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-32b",
+   "benchmark": "pubmedqa",
+   "score": 77.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-32b",
+   "benchmark": "omnimedvqa",
+   "score": 83.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-32b",
+   "benchmark": "pathvqa",
+   "score": 65.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-32b",
+   "benchmark": "slake_vqa",
+   "score": 89.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-32b",
+   "benchmark": "vqa_rad_tokenized_f1",
+   "score": 76.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "alibaba-cloud/lingshu-32b",
+   "benchmark": "mmmu_medical",
+   "score": 62.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2506.07044v1",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.5-medium",
+   "benchmark": "healthbench_length_adjusted",
+   "score": 56.5,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-5-5",
+   "_note": "GPT-5.5 System Card; +2.5 over GPT-5.4"
+  },
+  {
+   "model": "openai/gpt-5.5-medium",
+   "benchmark": "healthbench_hard",
+   "score": 31.5,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-5-5",
+   "_note": "GPT-5.5 System Card; +2.4 over GPT-5.4"
+  },
+  {
+   "model": "openai/gpt-5.5-medium",
+   "benchmark": "healthbench_consensus",
+   "score": 95.6,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-5-5",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.5-medium",
+   "benchmark": "healthbench_professional",
+   "score": 51.8,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-5-5",
+   "_note": "+3.7 over GPT-5.4"
+  },
+  {
+   "model": "openai/chatgpt-for-clinicians",
+   "benchmark": "healthbench_professional",
+   "score": 59.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.27470",
+   "_note": "Clinician-tuned variant; +10.9 vs base GPT-5.4"
+  },
+  {
+   "model": "openai/chatgpt-for-clinicians",
+   "benchmark": "healthbench_pro_care_consult",
+   "score": 51.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.27470",
+   "_note": ""
+  },
+  {
+   "model": "openai/chatgpt-for-clinicians",
+   "benchmark": "healthbench_pro_writing",
+   "score": 64.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.27470",
+   "_note": ""
+  },
+  {
+   "model": "openai/chatgpt-for-clinicians",
+   "benchmark": "healthbench_pro_research",
+   "score": 67.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.27470",
+   "_note": ""
+  },
+  {
+   "model": "openai/chatgpt-for-clinicians",
+   "benchmark": "healthbench_pro_nephrology",
+   "score": 72.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.27470",
+   "_note": ""
+  },
+  {
+   "model": "openai/chatgpt-for-clinicians",
+   "benchmark": "healthbench_pro_psychiatry",
+   "score": 69.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.27470",
+   "_note": ""
+  },
+  {
+   "model": "openai/chatgpt-for-clinicians",
+   "benchmark": "healthbench_pro_cardiology",
+   "score": 53.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.27470",
+   "_note": ""
+  },
+  {
+   "model": "openai/chatgpt-for-clinicians",
+   "benchmark": "healthbench_pro_redteam",
+   "score": 55.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.27470",
+   "_note": "Red-teaming difficult slice"
+  },
+  {
+   "model": "openai/gpt-5.4-medium",
+   "benchmark": "healthbench_professional",
+   "score": 48.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/html/2604.27470",
+   "_note": "Base GPT-5.4 baseline in HealthBench Pro paper"
+  },
+  {
+   "model": "google/amie-co-clinician",
+   "benchmark": "rxqa_mcq",
+   "score": 73.3,
+   "unit": "%",
+   "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-benchmark-results-2026",
+   "_note": "RxQA drug-interaction MCQ; vs GPT-5.4-thinking-search at 72.7%"
+  },
+  {
+   "model": "google/amie-co-clinician",
+   "benchmark": "amie_pc_critical_errors",
+   "score": 99.0,
+   "unit": "%",
+   "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-benchmark-results-2026",
+   "_note": "Zero critical errors on 97 of 98 primary-care queries (= 99.0% safe rate)"
+  },
+  {
+   "model": "google/amie-co-clinician",
+   "benchmark": "amie_physician_preference",
+   "score": 67.0,
+   "unit": "%",
+   "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-benchmark-results-2026",
+   "_note": "67% physician preference over existing clinical tools"
+  },
+  {
+   "model": "google/amie-co-clinician",
+   "benchmark": "amie_vs_gpt54_preference",
+   "score": 67.7,
+   "unit": "%",
+   "_source": "https://winbuzzer.com/2026/05/02/google-deepmind-ai-co-clinician-beats-gpt-5-4-blind-doctor-tests-xcxwbn/",
+   "_note": "63 vs 30 wins (63/(63+30) = 67.7%) blind head-to-head vs GPT-5.4 thinking+search"
+  },
+  {
+   "model": "google/amie-co-clinician",
+   "benchmark": "amie_consultation_140dims",
+   "score": 48.6,
+   "unit": "%",
+   "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-benchmark-results-2026",
+   "_note": "Matched/exceeded PCPs on 68/140 dimensions (= 48.6%)"
+  },
+  {
+   "model": "hippocratic/polaris-5",
+   "benchmark": "polaris_safety",
+   "score": 99.95,
+   "unit": "%",
+   "_source": "https://hippocraticai.com/hippocratic-ai-launches-polaris-5-0/",
+   "_note": "Drug safety accuracy across 7 body systems"
+  },
+  {
+   "model": "ucsc-vlaa/medreason-8b",
+   "benchmark": "medbullets",
+   "score": 4.2,
+   "unit": "pp_delta_vs_huatuo_o1_8b",
+   "_source": "https://arxiv.org/abs/2504.00993",
+   "_note": "Relative gain of +4.2pp over HuatuoGPT-o1-8B; absolute score requires Tab3 image in repo"
+  },
+  {
+   "model": "henrychur/mmed-llama-3-8b",
+   "benchmark": "mmedbench",
+   "score": 67.75,
+   "unit": "%",
+   "_source": "https://huggingface.co/Henrychur/MMed-Llama-3-8B",
+   "_note": "MMedBench full fine-tuning average; vs Llama-3 baseline 62.79%"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "healthbench_professional",
+   "score": 0.66,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/healthbench-professional",
+   "_note": "snapshot 2026-06-14 — #1 on board"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "healthbench_professional",
+   "score": 0.558,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/healthbench-professional",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "openai/gpt-5.5-instant",
+   "benchmark": "healthbench_professional",
+   "score": 0.384,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/healthbench-professional",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "microsoft/mai-thinking-1",
+   "benchmark": "healthbench_professional",
+   "score": 0.35,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/healthbench-professional",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "anthropic/claude-mythos-preview",
+   "benchmark": "healthbench_professional",
+   "score": 0.647,
+   "unit": "score",
+   "_source": "https://www.vellum.ai/blog/claude-fable-5-and-mythos-5-benchmarks-explained",
+   "_note": "Mythos Preview per Vellum"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "healthbench_professional",
+   "score": 0.519,
+   "unit": "score",
+   "_source": "https://www.anthropic.com/news/claude-opus-4-8",
+   "_note": "predecessor baseline reported in Opus 4.8 announcement"
+  },
+  {
+   "model": "openai/gpt-5.4-chatgpt-for-clinicians",
+   "benchmark": "healthbench_professional_la",
+   "score": 59.0,
+   "unit": "score",
+   "_source": "https://arxiv.org/html/2604.27470v1",
+   "_note": "length-adjusted, paper §Results"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "healthbench_professional_la",
+   "score": 48.1,
+   "unit": "score",
+   "_source": "https://arxiv.org/html/2604.27470v1",
+   "_note": "base GPT-5.4 length-adjusted"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "healthbench_professional_la",
+   "score": 47.0,
+   "unit": "score",
+   "_source": "https://dig.watch/updates/openai-chatgpt-for-clinicians-us",
+   "_note": "OpenAI ChatGPT for Clinicians launch comparison table"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "healthbench_professional_la",
+   "score": 43.8,
+   "unit": "score",
+   "_source": "https://dig.watch/updates/openai-chatgpt-for-clinicians-us",
+   "_note": "OpenAI launch comparison table"
+  },
+  {
+   "model": "xai/grok-4.2",
+   "benchmark": "healthbench_professional_la",
+   "score": 36.1,
+   "unit": "score",
+   "_source": "https://dig.watch/updates/openai-chatgpt-for-clinicians-us",
+   "_note": "OpenAI launch comparison table"
+  },
+  {
+   "model": "openai/gpt-5.5-instant",
+   "benchmark": "healthbench_professional_la",
+   "score": 51.8,
+   "unit": "score",
+   "_source": "https://en.wikipedia.org/wiki/GPT-5.5",
+   "_note": "GPT-5.5 system card length-adjusted, +3.7 vs GPT-5.4"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "healthbench_good_faith_3_7",
+   "score": 61.4,
+   "unit": "score",
+   "_source": "https://arxiv.org/html/2604.27470v1",
+   "_note": "Good-Faith 3-7 slice"
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking-0905",
+   "benchmark": "healthbench",
+   "score": 58.0,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench",
+   "_note": "snapshot 2026-06-14 — #1 on board [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "healthbench",
+   "score": 57.6,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench",
+   "_note": "snapshot 2026-06-14 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "openai/gpt-5.3-chat",
+   "benchmark": "healthbench",
+   "score": 54.1,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench",
+   "_note": "snapshot 2026-06-14 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "openai/gpt-5.5-instant",
+   "benchmark": "healthbench",
+   "score": 51.4,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench",
+   "_note": "snapshot 2026-06-14 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "healthbench",
+   "score": 42.5,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench",
+   "_note": "snapshot 2026-06-14 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "meta/muse-spark",
+   "benchmark": "healthbench_hard",
+   "score": 42.8,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
+   "_note": "snapshot 2026-06-14 — #1 SOTA [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "healthbench_hard",
+   "score": 30.0,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
+   "_note": "snapshot 2026-06-14 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "openai/gpt-5.3-chat",
+   "benchmark": "healthbench_hard",
+   "score": 25.9,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
+   "_note": "snapshot 2026-06-14 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "openai/gpt-5.5-instant",
+   "benchmark": "healthbench_hard",
+   "score": 22.9,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
+   "_note": "snapshot 2026-06-14 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "healthbench_hard",
+   "score": 10.8,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
+   "_note": "snapshot 2026-06-14 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "healthbench_hard",
+   "score": 1.6,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench-hard",
+   "_note": "snapshot 2026-06-14 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "healthbench_hard",
+   "score": 20.6,
+   "unit": "%",
+   "_source": "https://www.clickrank.ai/llm-leaderboard/",
+   "_note": "20.6 per Clickrank LLM Leaderboard 2026 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "xai/grok-4.2",
+   "benchmark": "healthbench_hard",
+   "score": 20.3,
+   "unit": "%",
+   "_source": "https://www.clickrank.ai/llm-leaderboard/",
+   "_note": "20.3 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "healthbench_hard",
+   "score": 14.8,
+   "unit": "%",
+   "_source": "https://www.clickrank.ai/llm-leaderboard/",
+   "_note": "14.8 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "openai/gpt-5.5-instant",
+   "benchmark": "healthbench_consensus",
+   "score": 94.7,
+   "unit": "%",
+   "_source": "https://llm-stats.com/benchmarks/healthbench-consensus",
+   "_note": "snapshot 2026-06-14 [S262 scale fix: value was stored on the 0-1 scale while the majority of this benchmark's rows use 0-100; multiplied by 100 so the series is comparable.]"
+  },
+  {
+   "model": "meta/muse-spark",
+   "benchmark": "medxpertqa",
+   "score": 0.784,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14 — #1 SOTA"
+  },
+  {
+   "model": "alibaba/qwen3.5-122b-a10b",
+   "benchmark": "medxpertqa",
+   "score": 0.673,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "alibaba/qwen3.5-27b",
+   "benchmark": "medxpertqa",
+   "score": 0.624,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "alibaba/qwen3.5-35b-a3b",
+   "benchmark": "medxpertqa",
+   "score": 0.614,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "google/gemma-4-31b",
+   "benchmark": "medxpertqa",
+   "score": 0.613,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "google/gemma-4-26b-a4b",
+   "benchmark": "medxpertqa",
+   "score": 0.581,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "google/diffusiongemma-26b-a4b",
+   "benchmark": "medxpertqa",
+   "score": 0.49,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "google/gemma-4-12b",
+   "benchmark": "medxpertqa",
+   "score": 0.487,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "microsoft/mai-thinking-1",
+   "benchmark": "medxpertqa",
+   "score": 0.43,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "google/gemma-4-e4b",
+   "benchmark": "medxpertqa",
+   "score": 0.287,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "google/gemma-4-e2b",
+   "benchmark": "medxpertqa",
+   "score": 0.235,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "google/medgemma-4b-it",
+   "benchmark": "medxpertqa",
+   "score": 0.188,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/medxpertqa",
+   "_note": "snapshot 2026-06-14"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "medqa_usmle",
+   "score": 97.4,
+   "unit": "score",
+   "_source": "https://www.nature.com/articles/s41591-026-04431-5",
+   "_note": "Nature Medicine 2026-06-12 study, 500 MedQA questions"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "rxqa_mcq",
+   "score": 72.7,
+   "unit": "score",
+   "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-rxqa-benchmark-frontier-models",
+   "_note": "GPT-5.4-thinking-with-search"
+  },
+  {
+   "model": "google/amie-co-clinician",
+   "benchmark": "rxqa_open_ended",
+   "score": 95.0,
+   "unit": "score",
+   "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-rxqa-benchmark-frontier-models",
+   "_note": "open-ended answer quality SOTA"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "rxqa_open_ended",
+   "score": 90.9,
+   "unit": "score",
+   "_source": "https://www.mindstudio.ai/blog/google-deepmind-ai-co-clinician-rxqa-benchmark-frontier-models",
+   "_note": "GPT-5.4-thinking-with-search open-ended"
+  },
+  {
+   "model": "microsoft/maira-2",
+   "benchmark": "radfact_grounding_recall",
+   "score": 0.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2406.04449",
+   "_note": "RadFact Grounding Recall reaching up to 90%"
+  },
+  {
+   "model": "microsoft/maira-2",
+   "benchmark": "radfact_logical_precision",
+   "score": 0.556,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2406.04449",
+   "_note": "RadFact Logical Precision reaching 52.5%-55.6%"
+  },
+  {
+   "model": "moorfields/retfound",
+   "benchmark": "kaggle_aptos2019_dr",
+   "score": 0.943,
+   "unit": "%",
+   "_source": "https://www.nature.com/articles/s41586-023-06555-x",
+   "_note": "RETFound achieved area under the receiver operating characteristic curves (AUROCs) of 0.943, 0.822, and 0.884 on the Kaggle APTOS-2019, IDRiD, and MESSIDOR-2 datasets"
+  },
+  {
+   "model": "moorfields/retfound",
+   "benchmark": "idrid_dr",
+   "score": 0.822,
+   "unit": "%",
+   "_source": "https://www.nature.com/articles/s41586-023-06555-x",
+   "_note": "AUROCs of 0.943, 0.822, and 0.884 on the Kaggle APTOS-2019, IDRiD, and MESSIDOR-2 datasets"
+  },
+  {
+   "model": "moorfields/retfound",
+   "benchmark": "messidor2_dr",
+   "score": 0.884,
+   "unit": "%",
+   "_source": "https://www.nature.com/articles/s41586-023-06555-x",
+   "_note": "AUROCs of 0.943, 0.822, and 0.884 on the Kaggle APTOS-2019, IDRiD, and MESSIDOR-2 datasets"
+  },
+  {
+   "model": "visionfm/visionfm",
+   "benchmark": "kaggle_aptos2019_dr",
+   "score": 0.974,
+   "unit": "%",
+   "_source": "https://www.nature.com/articles/s41746-025-01772-2",
+   "_note": "It achieved AUROCs up to 0.974 ... in specific clinical environments for glaucoma and diabetic retinopathy screening"
+  },
+  {
+   "model": "freedomintelligence/huatuogpt-vision-34b",
+   "benchmark": "vqa_rad",
+   "score": 0.681,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2406.19280",
+   "_note": "HuatuoGPT-Vision-34B achieved 68.1% on VQA-RAD"
+  },
+  {
+   "model": "freedomintelligence/huatuogpt-vision-34b",
+   "benchmark": "slake",
+   "score": 0.769,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2406.19280",
+   "_note": "HuatuoGPT-Vision-34B achieved 76.9% on SLAKE"
+  },
+  {
+   "model": "freedomintelligence/huatuogpt-vision-34b",
+   "benchmark": "path_vqa",
+   "score": 0.635,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2406.19280",
+   "_note": "HuatuoGPT-Vision-34B achieved 63.5% on PathVQA"
+  },
+  {
+   "model": "freedomintelligence/huatuogpt-vision-34b",
+   "benchmark": "pmc_vqa",
+   "score": 0.582,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2406.19280",
+   "_note": "HuatuoGPT-Vision-34B achieved 58.2% on PMC-VQA"
+  },
+  {
+   "model": "microsoft/llava-med-v1.5-mistral-7b",
+   "benchmark": "vqa_rad",
+   "score": 0.514,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2306.00890",
+   "_note": "LLaVA-Med-7B achieved 51.4% on VQA-RAD"
+  },
+  {
+   "model": "microsoft/llava-med-v1.5-mistral-7b",
+   "benchmark": "slake",
+   "score": 0.486,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2306.00890",
+   "_note": "LLaVA-Med-7B achieved 48.6% on SLAKE"
+  },
+  {
+   "model": "microsoft/llava-med-v1.5-mistral-7b",
+   "benchmark": "path_vqa",
+   "score": 0.568,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2306.00890",
+   "_note": "LLaVA-Med-7B achieved 56.8% on PathVQA"
+  },
+  {
+   "model": "microsoft/medimageinsight",
+   "benchmark": "cxr_tube_pathology_mauc",
+   "score": 0.938,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2410.06542",
+   "_note": "an adapter SVM trained on MedImageInsight embeddings achieves mean AUC (mAUC) of 93.8%, outperforming Rad-DINO (91.1%), CXR-Foundation (89.0%), BiomedCLIP (83.0%), DenseNet121 (81.8%), and Med-Flamingo (75.1%)"
+  },
+  {
+   "model": "microsoft/rad-dino",
+   "benchmark": "cxr_tube_pathology_mauc",
+   "score": 0.911,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2410.06542",
+   "_note": "MedImageInsight ... outperforming Rad-DINO (91.1%), CXR-Foundation (89.0%), BiomedCLIP (83.0%), DenseNet121 (81.8%), and Med-Flamingo (75.1%)"
+  },
+  {
+   "model": "microsoft/biomedclip",
+   "benchmark": "cxr_tube_pathology_mauc",
+   "score": 0.83,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2410.06542",
+   "_note": "MedImageInsight ... outperforming ... BiomedCLIP (83.0%) ... Med-Flamingo (75.1%)"
+  },
+  {
+   "model": "monai/vista3d",
+   "benchmark": "abdomen_ct_dice",
+   "score": 0.91,
+   "unit": "%",
+   "_source": "https://docs.nvidia.com/nim/medical/vista3d/latest/overview.html",
+   "_note": "VISTA-3D architecture boasts an impressive mean dice score of about 0.91 ... 127 supported classes"
+  },
+  {
+   "model": "wanglab/medsam-2",
+   "benchmark": "abdomen_ct_dice",
+   "score": 0.699,
+   "unit": "%",
+   "_source": "https://medsam2.github.io/",
+   "_note": "MedSAM2 achieves a Dice score of 0.699 with Surface Dice of 0.752 and IoU of 0.578 among SAM-based models on multi-organ abdominal CT scans"
+  },
+  {
+   "model": "microsoft/prov-gigapath",
+   "benchmark": "patho_bench",
+   "score": 0.961,
+   "unit": "%",
+   "_source": "https://www.nature.com/articles/s41586-024-07441-w",
+   "_note": "Prov-GigaPath attains state-of-the-art performance on 25 out of 26 tasks, with significant improvement over the second-best method on 18 tasks"
+  }
+ ]
 }
