@@ -1,1238 +1,1238 @@
 {
-  "_meta": {
-    "collected_at": "2026-05-10",
-    "_note": "Round 2 (smart-mapping) bulk ingest from epoch-research/benchmark-stitching repo. Round 1 only achieved 16.3% yield because Epoch uses date-suffixed model_versions (e.g., 'claude-3-7-sonnet-20250219', 'gpt-5-2025-08-07_high', 'gemini-2.5-pro-preview-06-05'). Round 2 adds date-stripping + reasoning-effort suffix removal + 80+ MANUAL entries for canonical Epoch IDs → DB model_ids. Skips duplicates from Round 1 (epoch_external_benchmarks_scores.json).",
-    "sources": [
-      "https://github.com/epoch-research/benchmark-stitching/tree/main/data",
-      "https://arxiv.org/abs/2512.00193"
-    ]
-  },
-  "models": [],
-  "benchmarks": [],
-  "scores": [
-    {
-      "model": "openai/o3-pro",
-      "benchmark": "aider_polyglot",
-      "score": 84.9,
-      "unit": "%",
-      "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (aider_polyglot): o3-pro-2025-06-10_high = 84.90% per Aider LLM Leaderboards"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "aider_polyglot",
-      "score": 61.7,
-      "unit": "%",
-      "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (aider_polyglot): o1-2024-12-17_high = 61.70% per Aider LLM Leaderboards"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "aider_polyglot",
-      "score": 60.4,
-      "unit": "%",
-      "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (aider_polyglot): o3-mini-2025-01-31_high = 60.40% per Aider LLM Leaderboards"
-    },
-    {
-      "model": "moonshot/kimi-k2",
-      "benchmark": "aider_polyglot",
-      "score": 59.1,
-      "unit": "%",
-      "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (aider_polyglot): Kimi-K2-Instruct = 59.10% per Aider LLM Leaderboards"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "aider_polyglot",
-      "score": 53.8,
-      "unit": "%",
-      "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (aider_polyglot): o3-mini-2025-01-31_medium = 53.80% per Aider LLM Leaderboards"
-    },
-    {
-      "model": "openai/gpt-4.1",
-      "benchmark": "aider_polyglot",
-      "score": 52.4,
-      "unit": "%",
-      "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (aider_polyglot): gpt-4.1-2025-04-14 = 52.40% per Aider LLM Leaderboards"
-    },
-    {
-      "model": "openai/gpt-4.1-mini",
-      "benchmark": "aider_polyglot",
-      "score": 32.4,
-      "unit": "%",
-      "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (aider_polyglot): gpt-4.1-mini-2025-04-14 = 32.40% per Aider LLM Leaderboards"
-    },
-    {
-      "model": "google/gemini-2.0-flash",
-      "benchmark": "aider_polyglot",
-      "score": 22.2,
-      "unit": "%",
-      "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (aider_polyglot): gemini-2.0-flash-exp = 22.20% per Aider LLM Leaderboards"
-    },
-    {
-      "model": "alibaba/qwen2.5-coder-32b",
-      "benchmark": "aider_polyglot",
-      "score": 16.4,
-      "unit": "%",
-      "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (aider_polyglot): Qwen2.5-Coder-32B-Instruct = 16.40% per Aider LLM Leaderboards"
-    },
-    {
-      "model": "openai/gpt-4.1-nano",
-      "benchmark": "aider_polyglot",
-      "score": 8.9,
-      "unit": "%",
-      "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (aider_polyglot): gpt-4.1-nano-2025-04-14 = 8.90% per Aider LLM Leaderboards"
-    },
-    {
-      "model": "alibaba/qwen2.5-coder-32b",
-      "benchmark": "aider_polyglot",
-      "score": 8.0,
-      "unit": "%",
-      "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (aider_polyglot): Qwen2.5-Coder-32B-Instruct = 8.00% per Aider LLM Leaderboards"
-    },
-    {
-      "model": "openai/o4-mini",
-      "benchmark": "arc_agi_3",
-      "score": 42.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o4-mini-2025-04-16_medium = 42.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o4-mini",
-      "benchmark": "arc_agi_3",
-      "score": 21.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o4-mini-2025-04-16_low = 21.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o4-mini",
-      "benchmark": "arc_agi_3",
-      "score": 59.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o4-mini-2025-04-16_high = 59.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o3-pro",
-      "benchmark": "arc_agi_3",
-      "score": 57.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-pro-2025-06-10_medium = 57.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o3-pro",
-      "benchmark": "arc_agi_3",
-      "score": 44.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-pro-2025-06-10_low = 44.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o3-pro",
-      "benchmark": "arc_agi_3",
-      "score": 59.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-pro-2025-06-10_high = 59.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "arc_agi_3",
-      "score": 22.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-mini-2025-01-31_medium = 22.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "arc_agi_3",
-      "score": 14.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-mini-2025-01-31_low = 14.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "arc_agi_3",
-      "score": 35.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-mini-2025-01-31_high = 35.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o3",
-      "benchmark": "arc_agi_3",
-      "score": 54.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-2025-04-16_medium = 54.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o3",
-      "benchmark": "arc_agi_3",
-      "score": 42.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-2025-04-16_low = 42.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o3",
-      "benchmark": "arc_agi_3",
-      "score": 61.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-2025-04-16_high = 61.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "arc_agi_3",
-      "score": 18.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o1-preview-2024-09-12 = 18.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "arc_agi_3",
-      "score": 31.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o1-2024-12-17_medium = 31.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "arc_agi_3",
-      "score": 27.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): o1-2024-12-17_low = 27.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "xai/grok-3-mini",
-      "benchmark": "arc_agi_3",
-      "score": 17.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): grok-3-mini-beta_low = 17.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/gpt-5.1",
-      "benchmark": "arc_agi_3",
-      "score": 58.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): gpt-5.1_medium = 58.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/gpt-5.1",
-      "benchmark": "arc_agi_3",
-      "score": 33.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): GPT-5.1 (Low) = 33.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "openai/gpt-5.1",
-      "benchmark": "arc_agi_3",
-      "score": 73.0,
-      "unit": "%",
-      "_source": "https://arcprize.org/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (arc_agi): gpt-5.1_high = 73.00% per ARC Prize Leaderboard"
-    },
-    {
-      "model": "alibaba/qwen2.5-72b",
-      "benchmark": "bbh",
-      "score": 79.8,
-      "unit": "%",
-      "_source": "https://arxiv.org/pdf/2412.19437",
-      "_note": "Epoch benchmark-stitching CSV (bbh): Qwen2.5-72B = 79.80% per DeepSeek-V3 Technical Report"
-    },
-    {
-      "model": "alibaba/qwen2.5-72b",
-      "benchmark": "bbh",
-      "score": 79.8,
-      "unit": "%",
-      "_source": "http://arxiv.org/abs/2412.19437",
-      "_note": "Epoch benchmark-stitching CSV (bbh): Qwen2.5-72B = 79.80% per DeepSeek-V3 Technical Report"
-    },
-    {
-      "model": "openai/o4-mini",
-      "benchmark": "fiction_livebench",
-      "score": 55.6,
-      "unit": "%",
-      "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
-      "_note": "Epoch benchmark-stitching CSV (fictionlivebench): o4-mini-2025-04-16_medium = 55.60% per Fiction.live leaderboard. Assuming medium reasoning effort"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "fiction_livebench",
-      "score": 83.3,
-      "unit": "%",
-      "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
-      "_note": "Epoch benchmark-stitching CSV (fictionlivebench): o1-2024-12-17_medium = 83.30% per Fiction.live leaderboard"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "fiction_livebench",
-      "score": 55.6,
-      "unit": "%",
-      "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
-      "_note": "Epoch benchmark-stitching CSV (fictionlivebench): o3-mini-2025-01-31_medium = 55.60% per Fiction.live leaderboard"
-    },
-    {
-      "model": "openai/gpt-4.1",
-      "benchmark": "fiction_livebench",
-      "score": 58.3,
-      "unit": "%",
-      "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
-      "_note": "Epoch benchmark-stitching CSV (fictionlivebench): gpt-4.1-2025-04-14 = 58.30% per Fiction.live leaderboard"
-    },
-    {
-      "model": "openai/gpt-4.1-mini",
-      "benchmark": "fiction_livebench",
-      "score": 38.9,
-      "unit": "%",
-      "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
-      "_note": "Epoch benchmark-stitching CSV (fictionlivebench): gpt-4.1-mini-2025-04-14 = 38.90% per Fiction.live leaderboard"
-    },
-    {
-      "model": "openai/gpt-4.1-nano",
-      "benchmark": "fiction_livebench",
-      "score": 33.3,
-      "unit": "%",
-      "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
-      "_note": "Epoch benchmark-stitching CSV (fictionlivebench): gpt-4.1-nano-2025-04-14 = 33.30% per Fiction.live leaderboard"
-    },
-    {
-      "model": "openai/o3-pro",
-      "benchmark": "fiction_livebench",
-      "score": 100.0,
-      "unit": "%",
-      "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
-      "_note": "Epoch benchmark-stitching CSV (fictionlivebench): o3-pro-2025-06-10_medium = 100.00% per Fiction.live leaderboard. Assuming medium reasoning effort"
-    },
-    {
-      "model": "moonshot/kimi-k2",
-      "benchmark": "fiction_livebench",
-      "score": 50.0,
-      "unit": "%",
-      "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
-      "_note": "Epoch benchmark-stitching CSV (fictionlivebench): Kimi-K2-Instruct = 50.00% per Fiction.live leaderboard"
-    },
-    {
-      "model": "openai/gpt-5-mini",
-      "benchmark": "fiction_livebench",
-      "score": 63.9,
-      "unit": "%",
-      "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
-      "_note": "Epoch benchmark-stitching CSV (fictionlivebench): gpt-5-mini-2025-08-07_medium = 63.90% per Fiction.live leaderboard"
-    },
-    {
-      "model": "openai/gpt-5-nano",
-      "benchmark": "fiction_livebench",
-      "score": 47.2,
-      "unit": "%",
-      "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
-      "_note": "Epoch benchmark-stitching CSV (fictionlivebench): gpt-5-nano-2025-08-07_medium = 47.20% per Fiction.live leaderboard"
-    },
-    {
-      "model": "deepseek/deepseek-v3.2",
-      "benchmark": "fiction_livebench",
-      "score": 50.0,
-      "unit": "%",
-      "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
-      "_note": "Epoch benchmark-stitching CSV (fictionlivebench): DeepSeek-V3.2-Exp = 50.00% per Fiction.live leaderboard"
-    },
-    {
-      "model": "deepseek/deepseek-coder-v2-lite",
-      "benchmark": "gsm8k",
-      "score": 87.6,
-      "unit": "%",
-      "_source": "http://arxiv.org/abs/2409.12186",
-      "_note": "Epoch benchmark-stitching CSV (gsm8k): DeepSeek-Coder-V2-Lite-Instruct = 87.60% per Qwen2.5-Coder Technical Report"
-    },
-    {
-      "model": "deepseek/deepseek-coder-v2",
-      "benchmark": "gsm8k",
-      "score": 94.5,
-      "unit": "%",
-      "_source": "http://arxiv.org/abs/2409.12186",
-      "_note": "Epoch benchmark-stitching CSV (gsm8k): DeepSeek-Coder-V2-Instruct = 94.50% per Qwen2.5-Coder Technical Report"
-    },
-    {
-      "model": "deepseek/deepseek-coder-v2-lite",
-      "benchmark": "gsm8k",
-      "score": 67.1,
-      "unit": "%",
-      "_source": "http://arxiv.org/abs/2409.12186",
-      "_note": "Epoch benchmark-stitching CSV (gsm8k): DeepSeek-Coder-V2-Lite-Base = 67.10% per Qwen2.5-Coder Technical Report"
-    },
-    {
-      "model": "deepseek/deepseek-coder-v2",
-      "benchmark": "gsm8k",
-      "score": 85.8,
-      "unit": "%",
-      "_source": "http://arxiv.org/abs/2409.12186",
-      "_note": "Epoch benchmark-stitching CSV (gsm8k): DeepSeek-Coder-V2-Base = 85.80% per Qwen2.5-Coder Technical Report"
-    },
-    {
-      "model": "alibaba/qwen2.5-72b",
-      "benchmark": "hellaswag",
-      "score": 84.8,
-      "unit": "%",
-      "_source": "https://arxiv.org/pdf/2412.19437",
-      "_note": "Epoch benchmark-stitching CSV (hellaswag): Qwen2.5-72B = 84.80% per DeepSeek-V3 Technical Report"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "livebench",
-      "score": 75.88,
-      "unit": "%",
-      "_source": "https://livebench.ai/#/",
-      "_note": "Epoch benchmark-stitching CSV (livebench): o3-mini-2025-01-31_high = 75.88% per LiveBench Leaderboard"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "livebench",
-      "score": 75.67,
-      "unit": "%",
-      "_source": "https://livebench.ai/#/",
-      "_note": "Epoch benchmark-stitching CSV (livebench): o1-2024-12-17_high = 75.67% per LiveBench Leaderboard"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "livebench",
-      "score": 70.01,
-      "unit": "%",
-      "_source": "https://livebench.ai/#/",
-      "_note": "Epoch benchmark-stitching CSV (livebench): o3-mini-2025-01-31_medium = 70.01% per LiveBench Leaderboard"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "livebench",
-      "score": 62.45,
-      "unit": "%",
-      "_source": "https://livebench.ai/#/",
-      "_note": "Epoch benchmark-stitching CSV (livebench): o3-mini-2025-01-31_low = 62.45% per LiveBench Leaderboard"
-    },
-    {
-      "model": "openai/o1-mini",
-      "benchmark": "livebench",
-      "score": 57.76,
-      "unit": "%",
-      "_source": "https://livebench.ai/#/",
-      "_note": "Epoch benchmark-stitching CSV (livebench): o1-mini-2024-09-12_medium = 57.76% per LiveBench Leaderboard. Assuming medium thinking effort for o1-mini"
-    },
-    {
-      "model": "alibaba/qwen2.5-coder-32b",
-      "benchmark": "livebench",
-      "score": 46.23,
-      "unit": "%",
-      "_source": "https://livebench.ai/#/",
-      "_note": "Epoch benchmark-stitching CSV (livebench): Qwen2.5-Coder-32B-Instruct = 46.23% per LiveBench Leaderboard"
-    },
-    {
-      "model": "baichuan/baichuan-2-7b",
-      "benchmark": "mmlu",
-      "score": 54.2,
-      "unit": "%",
-      "_source": "http://arxiv.org/abs/2309.10305",
-      "_note": "Epoch benchmark-stitching CSV (mmlu): Baichuan-2-7B-Base = 54.20% per Baichuan 2: Open Large-scale Language Models"
-    },
-    {
-      "model": "deepseek/deepseek-coder-v2-lite",
-      "benchmark": "mmlu",
-      "score": 60.5,
-      "unit": "%",
-      "_source": "http://arxiv.org/abs/2409.12186",
-      "_note": "Epoch benchmark-stitching CSV (mmlu): DeepSeek-Coder-V2-Lite-Base = 60.50% per Qwen2.5-Coder Technical Report"
-    },
-    {
-      "model": "google/gemini-1.0-pro",
-      "benchmark": "mmlu",
-      "score": 70.0,
-      "unit": "%",
-      "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
-      "_note": "Epoch benchmark-stitching CSV (mmlu): gemini-1.0-pro-001 = 70.00% per Stanford CRFM Leaderboard"
-    },
-    {
-      "model": "google/gemini-2.0-flash",
-      "benchmark": "mmlu",
-      "score": 79.7,
-      "unit": "%",
-      "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
-      "_note": "Epoch benchmark-stitching CSV (mmlu): gemini-2.0-flash-exp = 79.70% per Stanford CRFM Leaderboard"
-    },
-    {
-      "model": "openai/gpt-3.5-turbo-0125",
-      "benchmark": "mmlu",
-      "score": 67.3,
-      "unit": "%",
-      "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
-      "_note": "Epoch benchmark-stitching CSV (mmlu): gpt-3.5-turbo-0125 = 67.30% per Stanford CRFM Leaderboard"
-    },
-    {
-      "model": "meta/llama-3.2-11b-vision",
-      "benchmark": "mmlu",
-      "score": 56.5,
-      "unit": "%",
-      "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
-      "_note": "Epoch benchmark-stitching CSV (mmlu): Llama-3.2-11B-Vision-Instruct = 56.50% per Stanford CRFM Leaderboard. Seems like the Turbo versions are quantized: https://huggingface.co/spaces/AtlaAI/judge-arena/discussions/4 (that's a different"
-    },
-    {
-      "model": "meta/llama-3.2-90b-vision",
-      "benchmark": "mmlu",
-      "score": 80.3,
-      "unit": "%",
-      "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
-      "_note": "Epoch benchmark-stitching CSV (mmlu): Llama-3.2-90B-Vision-Instruct = 80.30% per Stanford CRFM Leaderboard. Seems like the Turbo versions are quantized: https://huggingface.co/spaces/AtlaAI/judge-arena/discussions/4 (that's a different"
-    },
-    {
-      "model": "mistral/mistral-nemo",
-      "benchmark": "mmlu",
-      "score": 65.3,
-      "unit": "%",
-      "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
-      "_note": "Epoch benchmark-stitching CSV (mmlu): Mistral NeMo (2402) = 65.30% per Stanford CRFM Leaderboard"
-    },
-    {
-      "model": "openai/gpt-4o",
-      "benchmark": "osworld_verified",
-      "score": 5.03,
-      "unit": "%",
-      "_source": "https://os-world.github.io/",
-      "_note": "Epoch benchmark-stitching CSV (os_world): gpt-4o-2024-05-13 = 5.03% per OS World Website"
-    },
-    {
-      "model": "anthropic/claude-opus-4.1",
-      "benchmark": "simplebench",
-      "score": 60.0,
-      "unit": "%",
-      "_source": "https://simple-bench.com/",
-      "_note": "Epoch benchmark-stitching CSV (simple_bench): claude-opus-4-1-20250805 = 60.00% per SimpleBench Leaderboard"
-    },
-    {
-      "model": "openai/o3",
-      "benchmark": "simplebench",
-      "score": 53.1,
-      "unit": "%",
-      "_source": "https://simple-bench.com/",
-      "_note": "Epoch benchmark-stitching CSV (simple_bench): o3-2025-04-16_high = 53.10% per SimpleBench Leaderboard"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "simplebench",
-      "score": 41.7,
-      "unit": "%",
-      "_source": "https://simple-bench.com/",
-      "_note": "Epoch benchmark-stitching CSV (simple_bench): o1-preview-2024-09-12 = 41.70% per SimpleBench Leaderboard"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "simplebench",
-      "score": 40.1,
-      "unit": "%",
-      "_source": "https://simple-bench.com/",
-      "_note": "Epoch benchmark-stitching CSV (simple_bench): o1-2024-12-17_high = 40.10% per SimpleBench Leaderboard"
-    },
-    {
-      "model": "openai/o4-mini",
-      "benchmark": "simplebench",
-      "score": 38.7,
-      "unit": "%",
-      "_source": "https://simple-bench.com/",
-      "_note": "Epoch benchmark-stitching CSV (simple_bench): o4-mini-2025-04-16_high = 38.70% per SimpleBench Leaderboard"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "simplebench",
-      "score": 36.7,
-      "unit": "%",
-      "_source": "https://simple-bench.com/",
-      "_note": "Epoch benchmark-stitching CSV (simple_bench): o1-2024-12-17_medium = 36.70% per SimpleBench Leaderboard"
-    },
-    {
-      "model": "openai/gpt-4.1",
-      "benchmark": "simplebench",
-      "score": 27.0,
-      "unit": "%",
-      "_source": "https://simple-bench.com/",
-      "_note": "Epoch benchmark-stitching CSV (simple_bench): gpt-4.1-2025-04-14 = 27.00% per SimpleBench Leaderboard"
-    },
-    {
-      "model": "moonshot/kimi-k2",
-      "benchmark": "simplebench",
-      "score": 26.3,
-      "unit": "%",
-      "_source": "https://simple-bench.com/",
-      "_note": "Epoch benchmark-stitching CSV (simple_bench): Kimi-K2-Instruct = 26.30% per SimpleBench Leaderboard"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "simplebench",
-      "score": 22.8,
-      "unit": "%",
-      "_source": "https://simple-bench.com/",
-      "_note": "Epoch benchmark-stitching CSV (simple_bench): o3-mini-2025-01-31_high = 22.80% per SimpleBench Leaderboard"
-    },
-    {
-      "model": "google/gemini-2.0-flash",
-      "benchmark": "simplebench",
-      "score": 18.9,
-      "unit": "%",
-      "_source": "https://simple-bench.com/",
-      "_note": "Epoch benchmark-stitching CSV (simple_bench): gemini-2.0-flash-exp = 18.90% per SimpleBench Leaderboard"
-    },
-    {
-      "model": "openai/o1-mini",
-      "benchmark": "simplebench",
-      "score": 18.1,
-      "unit": "%",
-      "_source": "https://simple-bench.com/",
-      "_note": "Epoch benchmark-stitching CSV (simple_bench): o1-mini-2024-09-12_medium = 18.10% per SimpleBench Leaderboard. Assuming medium reasoning effort"
-    },
-    {
-      "model": "anthropic/claude-opus-4.1",
-      "benchmark": "terminal_bench_2",
-      "score": 58.8,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): claude-opus-4-1-20250805 = 58.80% per Terminal-Bench Leaderboard. Announcement confirms no thinking"
-    },
-    {
-      "model": "anthropic/claude-opus-4.1",
-      "benchmark": "terminal_bench_2",
-      "score": 43.8,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): claude-opus-4-1-20250805 = 43.80% per Terminal-Bench Leaderboard"
-    },
-    {
-      "model": "anthropic/claude-opus-4.1",
-      "benchmark": "terminal_bench_2",
-      "score": 40.5,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): claude-opus-4-1-20250805 = 40.50% per Terminal-Bench Leaderboard"
-    },
-    {
-      "model": "openai/gpt-5-mini",
-      "benchmark": "terminal_bench_2",
-      "score": 30.8,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): gpt-5-mini-2025-08-07_medium = 30.80% per Terminal-Bench Leaderboard"
-    },
-    {
-      "model": "openai/gpt-4.1",
-      "benchmark": "terminal_bench_2",
-      "score": 30.3,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): gpt-4.1-2025-04-14 = 30.30% per Terminal-Bench Leaderboard"
-    },
-    {
-      "model": "openai/o3",
-      "benchmark": "terminal_bench_2",
-      "score": 30.2,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): o3-2025-04-16_medium = 30.20% per Terminal-Bench Leaderboard"
-    },
-    {
-      "model": "openai/gpt-5-mini",
-      "benchmark": "terminal_bench_2",
-      "score": 30.0,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): gpt-5-mini-2025-08-07_medium = 30.00% per Terminal-Bench Leaderboard"
-    },
-    {
-      "model": "openai/o4-mini",
-      "benchmark": "terminal_bench_2",
-      "score": 27.5,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): o4-mini-2025-04-16_medium = 27.50% per Terminal-Bench Leaderboard"
-    },
-    {
-      "model": "openai/o4-mini",
-      "benchmark": "terminal_bench_2",
-      "score": 20.0,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): o4-mini-2025-04-16_medium = 20.00% per Terminal-Bench Leaderboard"
-    },
-    {
-      "model": "openai/o4-mini",
-      "benchmark": "terminal_bench_2",
-      "score": 18.5,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): o4-mini-2025-04-16_medium = 18.50% per Terminal-Bench Leaderboard"
-    },
-    {
-      "model": "openai/gpt-5-nano",
-      "benchmark": "terminal_bench_2",
-      "score": 12.2,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): gpt-5-nano-2025-08-07_medium = 12.20% per Terminal-Bench Leaderboard"
-    },
-    {
-      "model": "openai/gpt-4.1",
-      "benchmark": "terminal_bench_2",
-      "score": 8.3,
-      "unit": "%",
-      "_source": "https://www.tbench.ai/leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (terminal_bench): gpt-4.1-2025-04-14 = 8.30% per Terminal-Bench Leaderboard"
-    },
-    {
-      "model": "alibaba/qwen2.5-72b",
-      "benchmark": "the_agent_company",
-      "score": 5.7,
-      "unit": "%",
-      "_source": "https://github.com/TheAgentCompany/experiments/tree/main/evaluation/1.0.0/20241217_OpenHands-0.14.2-qwen2.5-72b",
-      "_note": "Epoch benchmark-stitching CSV (the_agent_company): qwen2.5-72b-instruct = 5.70% per TheAgentCompany experiment results github. Submission has open-source code, submission patch generations reproduced by Agent Company team"
-    },
-    {
-      "model": "alibaba/qwen2.5-72b",
-      "benchmark": "triviaqa",
-      "score": 71.9,
-      "unit": "%",
-      "_source": "https://arxiv.org/pdf/2412.19437",
-      "_note": "Epoch benchmark-stitching CSV (triviaqa): Qwen2.5-72B = 71.90% per DeepSeek-V3 Technical Report"
-    },
-    {
-      "model": "alibaba/qwen2-vl-72b",
-      "benchmark": "video_mme",
-      "score": 71.2,
-      "unit": "%",
-      "_source": "https://video-mme.github.io/home_page.html#leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (videomme): Qwen2-VL-72B-Instruct = 71.20% per Video-MME Leaderboard"
-    },
-    {
-      "model": "shanghai-ai-lab/internvl-2.5",
-      "benchmark": "video_mme",
-      "score": 72.1,
-      "unit": "%",
-      "_source": "https://video-mme.github.io/home_page.html#leaderboard",
-      "_note": "Epoch benchmark-stitching CSV (videomme): InternVL2_5-78B = 72.10% per Video-MME Leaderboard"
-    },
-    {
-      "model": "openai/o4-mini",
-      "benchmark": "vpct",
-      "score": 57.5,
-      "unit": "%",
-      "_source": "https://cbrower.dev/vpct",
-      "_note": "Epoch benchmark-stitching CSV (vpct): o4-mini-2025-04-16_medium = 57.50% per VPCT leaderboard. Assuming medium reasoning effort"
-    },
-    {
-      "model": "openai/gpt-5.1",
-      "benchmark": "vpct",
-      "score": 53.3,
-      "unit": "%",
-      "_source": "https://cbrower.dev/vpct",
-      "_note": "Epoch benchmark-stitching CSV (vpct): gpt-5.1_medium = 53.30% per VPCT leaderboard"
-    },
-    {
-      "model": "openai/o3",
-      "benchmark": "vpct",
-      "score": 52.0,
-      "unit": "%",
-      "_source": "https://cbrower.dev/vpct",
-      "_note": "Epoch benchmark-stitching CSV (vpct): o3-2025-04-16_medium = 52.00% per VPCT leaderboard. Assuming medium reasoning effort"
-    },
-    {
-      "model": "google-deepmind/gemini-robotics-er-1.5",
-      "benchmark": "vpct",
-      "score": 40.8,
-      "unit": "%",
-      "_source": "https://cbrower.dev/vpct",
-      "_note": "Epoch benchmark-stitching CSV (vpct): gemini-robotics-er-1.5-preview = 40.80% per VPCT leaderboard"
-    },
-    {
-      "model": "openai/gpt-5-mini",
-      "benchmark": "vpct",
-      "score": 40.2,
-      "unit": "%",
-      "_source": "https://cbrower.dev/vpct",
-      "_note": "Epoch benchmark-stitching CSV (vpct): gpt-5-mini-2025-08-07_medium = 40.20% per VPCT leaderboard"
-    },
-    {
-      "model": "openai/gpt-5-mini",
-      "benchmark": "vpct",
-      "score": 39.0,
-      "unit": "%",
-      "_source": "https://cbrower.dev/vpct",
-      "_note": "Epoch benchmark-stitching CSV (vpct): gpt-5-mini-2025-08-07_high = 39.00% per VPCT leaderboard"
-    },
-    {
-      "model": "openai/gpt-5-nano",
-      "benchmark": "vpct",
-      "score": 37.2,
-      "unit": "%",
-      "_source": "https://cbrower.dev/vpct",
-      "_note": "Epoch benchmark-stitching CSV (vpct): gpt-5-nano-2025-08-07_high = 37.20% per VPCT leaderboard"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "vpct",
-      "score": 37.0,
-      "unit": "%",
-      "_source": "https://cbrower.dev/vpct",
-      "_note": "Epoch benchmark-stitching CSV (vpct): o1-2024-12-17_medium = 37.00% per VPCT leaderboard. Assuming medium reasoning effort for o1"
-    },
-    {
-      "model": "openai/gpt-5-nano",
-      "benchmark": "vpct",
-      "score": 35.4,
-      "unit": "%",
-      "_source": "https://cbrower.dev/vpct",
-      "_note": "Epoch benchmark-stitching CSV (vpct): gpt-5-nano-2025-08-07_medium = 35.40% per VPCT leaderboard"
-    },
-    {
-      "model": "anthropic/claude-opus-4.1",
-      "benchmark": "vpct",
-      "score": 35.0,
-      "unit": "%",
-      "_source": "https://cbrower.dev/vpct",
-      "_note": "Epoch benchmark-stitching CSV (vpct): claude-opus-4-1-20250805 = 35.00% per VPCT leaderboard"
-    },
-    {
-      "model": "openai/o3-pro",
-      "benchmark": "weirdml_v2",
-      "score": 53.9,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): o3-pro-2025-06-10_high = 53.90% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/o3",
-      "benchmark": "weirdml_v2",
-      "score": 49.8,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): o3-2025-04-16_high = 49.80% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/gpt-5-mini",
-      "benchmark": "weirdml_v2",
-      "score": 49.7,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-5-mini-2025-08-07_high = 49.70% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/o4-mini",
-      "benchmark": "weirdml_v2",
-      "score": 49.2,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): o4-mini-2025-04-16_high = 49.20% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/gpt-oss-120b",
-      "benchmark": "weirdml_v2",
-      "score": 48.9,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-oss-120b_high = 48.90% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "weirdml_v2",
-      "score": 46.1,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): o1-preview-2024-09-12 = 46.10% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "weirdml_v2",
-      "score": 43.6,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): o1-2024-12-17_high = 43.60% per WeirdML Leaderboard"
-    },
-    {
-      "model": "anthropic/claude-haiku-4.5",
-      "benchmark": "weirdml_v2",
-      "score": 43.6,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): claude-haiku-4-5-20251001 = 43.60% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "weirdml_v2",
-      "score": 41.3,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): o3-mini-2025-01-31_high = 41.30% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/gpt-oss-120b",
-      "benchmark": "weirdml_v2",
-      "score": 40.2,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-oss-120b_medium = 40.20% per WeirdML Leaderboard"
-    },
-    {
-      "model": "xai/grok-3-mini",
-      "benchmark": "weirdml_v2",
-      "score": 39.6,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): grok-3-mini_high = 39.60% per WeirdML Leaderboard"
-    },
-    {
-      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
-      "benchmark": "weirdml_v2",
-      "score": 38.9,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): Qwen3-235B-A22B-Thinking-2507 = 38.90% per WeirdML Leaderboard"
-    },
-    {
-      "model": "moonshot/kimi-k2",
-      "benchmark": "weirdml_v2",
-      "score": 38.6,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): Kimi-K2-Instruct = 38.60% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/gpt-4.1",
-      "benchmark": "weirdml_v2",
-      "score": 37.9,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-4.1-2025-04-14 = 37.90% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/gpt-4.1-mini",
-      "benchmark": "weirdml_v2",
-      "score": 37.2,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-4.1-mini-2025-04-14 = 37.20% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/gpt-5-nano",
-      "benchmark": "weirdml_v2",
-      "score": 35.6,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-5-nano-2025-08-07_high = 35.60% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/o1-mini",
-      "benchmark": "weirdml_v2",
-      "score": 35.4,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): o1-mini-2024-09-12_medium = 35.40% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/gpt-4.1-nano",
-      "benchmark": "weirdml_v2",
-      "score": 19.0,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-4.1-nano-2025-04-14 = 19.00% per WeirdML Leaderboard"
-    },
-    {
-      "model": "openai/gpt-3.5-turbo-0125",
-      "benchmark": "weirdml_v2",
-      "score": 3.1,
-      "unit": "%",
-      "_source": "https://htihle.github.io/weirdml.html",
-      "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-3.5-turbo-0125 = 3.10% per WeirdML Leaderboard"
-    },
-    {
-      "model": "alibaba/qwen2.5-72b",
-      "benchmark": "arc_ai2_easy",
-      "score": 98.4,
-      "unit": "%",
-      "_source": "http://arxiv.org/abs/2412.19437",
-      "_note": "Epoch benchmark-stitching CSV (arc_ai2): Qwen2.5-72B = 98.40% per DeepSeek-V3 Technical Report"
-    },
-    {
-      "model": "openai/o3",
-      "benchmark": "lech_mazur_writing",
-      "score": 8.39,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o3-2025-04-16_medium = 8.39% per lechmazur/writing Github repository"
-    },
-    {
-      "model": "alibaba/qwq-32b",
-      "benchmark": "lech_mazur_writing",
-      "score": 8.07,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): QwQ-32B (16K thinking) = 8.07% per lechmazur/writing Github repository"
-    },
-    {
-      "model": "openai/o4-mini",
-      "benchmark": "lech_mazur_writing",
-      "score": 7.5,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o4-mini-2025-04-16_medium = 7.50% per lechmazur/writing Github repository"
-    },
-    {
-      "model": "google/gemini-2.0-flash",
-      "benchmark": "lech_mazur_writing",
-      "score": 7.15,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): gemini-2.0-flash-exp = 7.15% per lechmazur/writing Github repository"
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "lech_mazur_writing",
-      "score": 7.02,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o1-2024-12-17_medium = 7.02% per lechmazur/writing Github repository"
-    },
-    {
-      "model": "openai/o1-mini",
-      "benchmark": "lech_mazur_writing",
-      "score": 6.49,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o1-mini-2024-09-12_medium = 6.49% per lechmazur/writing Github repository. Assuming medium reasoning effort."
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "lech_mazur_writing",
-      "score": 6.17,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o3-mini-2025-01-31_high = 6.17% per lechmazur/writing Github repository"
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "lech_mazur_writing",
-      "score": 6.15,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o3-mini-2025-01-31_medium = 6.15% per lechmazur/writing Github repository"
-    },
-    {
-      "model": "alibaba/qwen3-max",
-      "benchmark": "lech_mazur_writing",
-      "score": 8.71,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): qwen3-max-2025-09-23 = 8.71% per lechmazur/writing Github repository"
-    },
-    {
-      "model": "moonshot/kimi-k2",
-      "benchmark": "lech_mazur_writing",
-      "score": 8.69,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): Kimi-K2-Instruct = 8.69% per lechmazur/writing Github repository"
-    },
-    {
-      "model": "openai/o3-pro",
-      "benchmark": "lech_mazur_writing",
-      "score": 8.63,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o3-pro-2025-06-10_medium = 8.63% per lechmazur/writing Github repository"
-    },
-    {
-      "model": "anthropic/claude-opus-4.1",
-      "benchmark": "lech_mazur_writing",
-      "score": 8.54,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): claude-opus-4-1-20250805 = 8.54% per lechmazur/writing Github repository. No thinking"
-    },
-    {
-      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
-      "benchmark": "lech_mazur_writing",
-      "score": 8.49,
-      "unit": "%",
-      "_source": "https://github.com/lechmazur/Writing",
-      "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): Qwen3-235B-A22B-Thinking-2507 = 8.49% per lechmazur/writing Github repository"
-    },
-    {
-      "model": "alibaba/qwen2.5-72b",
-      "benchmark": "piqa",
-      "score": 82.6,
-      "unit": "%",
-      "_source": "http://arxiv.org/abs/2412.19437",
-      "_note": "Epoch benchmark-stitching CSV (piqa): Qwen2.5-72B = 82.60% per DeepSeek-V3 Technical Report"
-    },
-    {
-      "model": "deepseek/deepseek-v3",
-      "benchmark": "piqa",
-      "score": 84.7,
-      "unit": "%",
-      "_source": "http://arxiv.org/abs/2412.19437",
-      "_note": "Epoch benchmark-stitching CSV (piqa): DeepSeek-V3-Base = 84.70% per DeepSeek-V3 Technical Report"
-    },
-    {
-      "model": "openai/gpt-4o",
-      "benchmark": "scienceqa",
-      "score": 88.5,
-      "unit": "%",
-      "_source": "http://arxiv.org/abs/2404.14219",
-      "_note": "Epoch benchmark-stitching CSV (scienceqa): gpt-4o-2024-05-13 = 88.50% per Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone"
-    },
-    {
-      "model": "deepseek/deepseek-coder-v2-lite",
-      "benchmark": "winogrande",
-      "score": 72.9,
-      "unit": "%",
-      "_source": "https://arxiv.org/pdf/2409.12186",
-      "_note": "Epoch benchmark-stitching CSV (winogrande): DeepSeek-Coder-V2-Lite-Base = 72.90% per Qwen2.5-Coder Technical Report"
-    },
-    {
-      "model": "deepseek/deepseek-coder-v2",
-      "benchmark": "winogrande",
-      "score": 83.7,
-      "unit": "%",
-      "_source": "https://arxiv.org/pdf/2409.12186",
-      "_note": "Epoch benchmark-stitching CSV (winogrande): DeepSeek-Coder-V2-Base = 83.70% per Qwen2.5-Coder Technical Report"
-    },
-    {
-      "model": "alibaba/qwen2.5-72b",
-      "benchmark": "winogrande",
-      "score": 82.3,
-      "unit": "%",
-      "_source": "https://arxiv.org/pdf/2412.19437",
-      "_note": "Epoch benchmark-stitching CSV (winogrande): Qwen2.5-72B = 82.30% per DeepSeek-V3 Technical Report"
-    },
-    {
-      "model": "baichuan/baichuan-2-7b",
-      "benchmark": "boolq",
-      "score": 63.2,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2309.16609",
-      "_note": "Epoch benchmark-stitching CSV (boolq): Baichuan-2-7B-Base = 63.20% per Qwen Technical Report"
-    },
-    {
-      "model": "baichuan/baichuan-2-13b",
-      "benchmark": "boolq",
-      "score": 67.0,
-      "unit": "%",
-      "_source": "https://arxiv.org/abs/2309.16609",
-      "_note": "Epoch benchmark-stitching CSV (boolq): Baichuan-2-13B-Base = 67.00% per Qwen Technical Report"
-    },
-    {
-      "model": "openai/gpt-5",
-      "benchmark": "balrog",
-      "score": 32.8,
-      "unit": "%",
-      "_source": "https://balrogai.com/",
-      "_note": "Epoch benchmark-stitching CSV (balrog): gpt-5-2025-08-07_minimal = 32.80% per Balrog Leaderboard"
-    },
-    {
-      "model": "openai/gpt-4o",
-      "benchmark": "balrog",
-      "score": 32.3,
-      "unit": "%",
-      "_source": "https://balrogai.com/",
-      "_note": "Epoch benchmark-stitching CSV (balrog): gpt-4o-2024-05-13 = 32.30% per Balrog Leaderboard. No trajectory available as of March 31, 2025."
-    },
-    {
-      "model": "meta/llama-3.2-90b-vision",
-      "benchmark": "balrog",
-      "score": 27.3,
-      "unit": "%",
-      "_source": "https://balrogai.com/",
-      "_note": "Epoch benchmark-stitching CSV (balrog): Llama-3.2-90B-Vision-Instruct = 27.30% per Balrog Leaderboard. No trajectory available as of March 31, 2025."
-    },
-    {
-      "model": "meta/llama-3.2-11b-vision",
-      "benchmark": "balrog",
-      "score": 16.8,
-      "unit": "%",
-      "_source": "https://balrogai.com/",
-      "_note": "Epoch benchmark-stitching CSV (balrog): Llama-3.2-11B-Vision-Instruct = 16.80% per Balrog Leaderboard. No trajectory available as of March 31, 2025."
-    },
-    {
-      "model": "alibaba/qwen2.5-72b",
-      "benchmark": "balrog",
-      "score": 16.2,
-      "unit": "%",
-      "_source": "https://balrogai.com/",
-      "_note": "Epoch benchmark-stitching CSV (balrog): qwen2.5-72b-instruct = 16.20% per Balrog Leaderboard. No trajectory available as of March 31, 2025."
-    },
-    {
-      "model": "alibaba/qwen2-vl-72b",
-      "benchmark": "balrog",
-      "score": 12.8,
-      "unit": "%",
-      "_source": "https://balrogai.com/",
-      "_note": "Epoch benchmark-stitching CSV (balrog): Qwen2-VL-72B-Instruct = 12.80% per Balrog Leaderboard. No trajectory available as of March 31, 2025."
-    },
-    {
-      "model": "meta/llama-3.2-3b",
-      "benchmark": "balrog",
-      "score": 10.1,
-      "unit": "%",
-      "_source": "https://balrogai.com/",
-      "_note": "Epoch benchmark-stitching CSV (balrog): Llama-3.2-3B-Instruct = 10.10% per Balrog Leaderboard"
-    },
-    {
-      "model": "meta/llama-3.2-1b",
-      "benchmark": "balrog",
-      "score": 6.6,
-      "unit": "%",
-      "_source": "https://balrogai.com/",
-      "_note": "Epoch benchmark-stitching CSV (balrog): Llama-3.2-1B-Instruct = 6.60% per Balrog Leaderboard"
-    },
-    {
-      "model": "anthropic/claude-opus-4.1",
-      "benchmark": "deepsearchqa",
-      "score": 50.6,
-      "unit": "%",
-      "_source": "https://drb.futuresearch.ai",
-      "_note": "Epoch benchmark-stitching CSV (deepresearch): claude-opus-4-1-20250805 = 50.60% per DeepResearchBench Leaderboard"
-    },
-    {
-      "model": "openai/o3",
-      "benchmark": "deepsearchqa",
-      "score": 48.4,
-      "unit": "%",
-      "_source": "https://drb.futuresearch.ai",
-      "_note": "Epoch benchmark-stitching CSV (deepresearch): o3-2025-04-16_medium = 48.40% per DeepResearchBench Leaderboard"
-    },
-    {
-      "model": "openai/gpt-4o",
-      "benchmark": "geobench",
-      "score": 3740.0,
-      "unit": "%",
-      "_source": "https://geobench.org/",
-      "_note": "Epoch benchmark-stitching CSV (geobench): gpt-4o-2024-11-20 = 3740.00% per GeoBench leaderboard. Assuming latest vesrsion of gpt-4o"
-    },
-    {
-      "model": "anthropic/claude-3.5-haiku",
-      "benchmark": "geobench",
-      "score": 2528.0,
-      "unit": "%",
-      "_source": "https://geobench.org/",
-      "_note": "Epoch benchmark-stitching CSV (geobench): claude-3-5-haiku-20241022 = 2528.00% per GeoBench leaderboard"
-    }
+ "_meta": {
+  "collected_at": "2026-05-10",
+  "_note": "Round 2 (smart-mapping) bulk ingest from epoch-research/benchmark-stitching repo. Round 1 only achieved 16.3% yield because Epoch uses date-suffixed model_versions (e.g., 'claude-3-7-sonnet-20250219', 'gpt-5-2025-08-07_high', 'gemini-2.5-pro-preview-06-05'). Round 2 adds date-stripping + reasoning-effort suffix removal + 80+ MANUAL entries for canonical Epoch IDs → DB model_ids. Skips duplicates from Round 1 (epoch_external_benchmarks_scores.json).",
+  "sources": [
+   "https://github.com/epoch-research/benchmark-stitching/tree/main/data",
+   "https://arxiv.org/abs/2512.00193"
   ]
+ },
+ "models": [],
+ "benchmarks": [],
+ "scores": [
+  {
+   "model": "openai/o3-pro",
+   "benchmark": "aider_polyglot",
+   "score": 84.9,
+   "unit": "%",
+   "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (aider_polyglot): o3-pro-2025-06-10_high = 84.90% per Aider LLM Leaderboards"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "aider_polyglot",
+   "score": 61.7,
+   "unit": "%",
+   "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (aider_polyglot): o1-2024-12-17_high = 61.70% per Aider LLM Leaderboards"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "aider_polyglot",
+   "score": 60.4,
+   "unit": "%",
+   "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (aider_polyglot): o3-mini-2025-01-31_high = 60.40% per Aider LLM Leaderboards"
+  },
+  {
+   "model": "moonshot/kimi-k2",
+   "benchmark": "aider_polyglot",
+   "score": 59.1,
+   "unit": "%",
+   "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (aider_polyglot): Kimi-K2-Instruct = 59.10% per Aider LLM Leaderboards"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "aider_polyglot",
+   "score": 53.8,
+   "unit": "%",
+   "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (aider_polyglot): o3-mini-2025-01-31_medium = 53.80% per Aider LLM Leaderboards"
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "aider_polyglot",
+   "score": 52.4,
+   "unit": "%",
+   "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (aider_polyglot): gpt-4.1-2025-04-14 = 52.40% per Aider LLM Leaderboards"
+  },
+  {
+   "model": "openai/gpt-4.1-mini",
+   "benchmark": "aider_polyglot",
+   "score": 32.4,
+   "unit": "%",
+   "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (aider_polyglot): gpt-4.1-mini-2025-04-14 = 32.40% per Aider LLM Leaderboards"
+  },
+  {
+   "model": "google/gemini-2.0-flash",
+   "benchmark": "aider_polyglot",
+   "score": 22.2,
+   "unit": "%",
+   "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (aider_polyglot): gemini-2.0-flash-exp = 22.20% per Aider LLM Leaderboards"
+  },
+  {
+   "model": "alibaba/qwen2.5-coder-32b",
+   "benchmark": "aider_polyglot",
+   "score": 16.4,
+   "unit": "%",
+   "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (aider_polyglot): Qwen2.5-Coder-32B-Instruct = 16.40% per Aider LLM Leaderboards"
+  },
+  {
+   "model": "openai/gpt-4.1-nano",
+   "benchmark": "aider_polyglot",
+   "score": 8.9,
+   "unit": "%",
+   "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (aider_polyglot): gpt-4.1-nano-2025-04-14 = 8.90% per Aider LLM Leaderboards"
+  },
+  {
+   "model": "alibaba/qwen2.5-coder-32b",
+   "benchmark": "aider_polyglot",
+   "score": 8.0,
+   "unit": "%",
+   "_source": "https://aider.chat/docs/leaderboards/#polyglot-leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (aider_polyglot): Qwen2.5-Coder-32B-Instruct = 8.00% per Aider LLM Leaderboards"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "arc_agi_1",
+   "score": 42.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o4-mini-2025-04-16_medium = 42.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "arc_agi_1",
+   "score": 21.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o4-mini-2025-04-16_low = 21.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "arc_agi_1",
+   "score": 59.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o4-mini-2025-04-16_high = 59.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o3-pro",
+   "benchmark": "arc_agi_1",
+   "score": 57.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-pro-2025-06-10_medium = 57.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o3-pro",
+   "benchmark": "arc_agi_1",
+   "score": 44.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-pro-2025-06-10_low = 44.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o3-pro",
+   "benchmark": "arc_agi_1",
+   "score": 59.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-pro-2025-06-10_high = 59.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "arc_agi_1",
+   "score": 22.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-mini-2025-01-31_medium = 22.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "arc_agi_1",
+   "score": 14.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-mini-2025-01-31_low = 14.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "arc_agi_1",
+   "score": 35.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-mini-2025-01-31_high = 35.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "arc_agi_1",
+   "score": 54.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-2025-04-16_medium = 54.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "arc_agi_1",
+   "score": 42.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-2025-04-16_low = 42.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "arc_agi_1",
+   "score": 61.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o3-2025-04-16_high = 61.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "arc_agi_1",
+   "score": 18.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o1-preview-2024-09-12 = 18.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "arc_agi_1",
+   "score": 31.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o1-2024-12-17_medium = 31.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "arc_agi_1",
+   "score": 27.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): o1-2024-12-17_low = 27.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "xai/grok-3-mini",
+   "benchmark": "arc_agi_1",
+   "score": 17.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): grok-3-mini-beta_low = 17.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/gpt-5.1",
+   "benchmark": "arc_agi_1",
+   "score": 58.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): gpt-5.1_medium = 58.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/gpt-5.1",
+   "benchmark": "arc_agi_1",
+   "score": 33.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): GPT-5.1 (Low) = 33.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "openai/gpt-5.1",
+   "benchmark": "arc_agi_1",
+   "score": 73.0,
+   "unit": "%",
+   "_source": "https://arcprize.org/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (arc_agi): gpt-5.1_high = 73.00% per ARC Prize Leaderboard [S263 correction: this row came from Epoch's `arc_agi` field, which is ARC-AGI-1, but was filed under arc_agi_3. Re-filed to arc_agi_1. Evidence: these models score single digits on ARC-AGI-2 (o3 6.5, gpt-5.1 17.6) yet appeared to score 61-73 on the harder ARC-AGI-3, and GPT-5.6 Sol's actual ARC-AGI-3 result is 7.78.]"
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "bbh",
+   "score": 79.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2412.19437",
+   "_note": "Epoch benchmark-stitching CSV (bbh): Qwen2.5-72B = 79.80% per DeepSeek-V3 Technical Report"
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "bbh",
+   "score": 79.8,
+   "unit": "%",
+   "_source": "http://arxiv.org/abs/2412.19437",
+   "_note": "Epoch benchmark-stitching CSV (bbh): Qwen2.5-72B = 79.80% per DeepSeek-V3 Technical Report"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "fiction_livebench",
+   "score": 55.6,
+   "unit": "%",
+   "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
+   "_note": "Epoch benchmark-stitching CSV (fictionlivebench): o4-mini-2025-04-16_medium = 55.60% per Fiction.live leaderboard. Assuming medium reasoning effort"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "fiction_livebench",
+   "score": 83.3,
+   "unit": "%",
+   "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
+   "_note": "Epoch benchmark-stitching CSV (fictionlivebench): o1-2024-12-17_medium = 83.30% per Fiction.live leaderboard"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "fiction_livebench",
+   "score": 55.6,
+   "unit": "%",
+   "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
+   "_note": "Epoch benchmark-stitching CSV (fictionlivebench): o3-mini-2025-01-31_medium = 55.60% per Fiction.live leaderboard"
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "fiction_livebench",
+   "score": 58.3,
+   "unit": "%",
+   "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
+   "_note": "Epoch benchmark-stitching CSV (fictionlivebench): gpt-4.1-2025-04-14 = 58.30% per Fiction.live leaderboard"
+  },
+  {
+   "model": "openai/gpt-4.1-mini",
+   "benchmark": "fiction_livebench",
+   "score": 38.9,
+   "unit": "%",
+   "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
+   "_note": "Epoch benchmark-stitching CSV (fictionlivebench): gpt-4.1-mini-2025-04-14 = 38.90% per Fiction.live leaderboard"
+  },
+  {
+   "model": "openai/gpt-4.1-nano",
+   "benchmark": "fiction_livebench",
+   "score": 33.3,
+   "unit": "%",
+   "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
+   "_note": "Epoch benchmark-stitching CSV (fictionlivebench): gpt-4.1-nano-2025-04-14 = 33.30% per Fiction.live leaderboard"
+  },
+  {
+   "model": "openai/o3-pro",
+   "benchmark": "fiction_livebench",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
+   "_note": "Epoch benchmark-stitching CSV (fictionlivebench): o3-pro-2025-06-10_medium = 100.00% per Fiction.live leaderboard. Assuming medium reasoning effort"
+  },
+  {
+   "model": "moonshot/kimi-k2",
+   "benchmark": "fiction_livebench",
+   "score": 50.0,
+   "unit": "%",
+   "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
+   "_note": "Epoch benchmark-stitching CSV (fictionlivebench): Kimi-K2-Instruct = 50.00% per Fiction.live leaderboard"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "fiction_livebench",
+   "score": 63.9,
+   "unit": "%",
+   "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
+   "_note": "Epoch benchmark-stitching CSV (fictionlivebench): gpt-5-mini-2025-08-07_medium = 63.90% per Fiction.live leaderboard"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "fiction_livebench",
+   "score": 47.2,
+   "unit": "%",
+   "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
+   "_note": "Epoch benchmark-stitching CSV (fictionlivebench): gpt-5-nano-2025-08-07_medium = 47.20% per Fiction.live leaderboard"
+  },
+  {
+   "model": "deepseek/deepseek-v3.2",
+   "benchmark": "fiction_livebench",
+   "score": 50.0,
+   "unit": "%",
+   "_source": "https://fiction.live/stories/Fiction-liveBench-Mar-14-2025/oQdzQvKHw8JyXbN87/home",
+   "_note": "Epoch benchmark-stitching CSV (fictionlivebench): DeepSeek-V3.2-Exp = 50.00% per Fiction.live leaderboard"
+  },
+  {
+   "model": "deepseek/deepseek-coder-v2-lite",
+   "benchmark": "gsm8k",
+   "score": 87.6,
+   "unit": "%",
+   "_source": "http://arxiv.org/abs/2409.12186",
+   "_note": "Epoch benchmark-stitching CSV (gsm8k): DeepSeek-Coder-V2-Lite-Instruct = 87.60% per Qwen2.5-Coder Technical Report"
+  },
+  {
+   "model": "deepseek/deepseek-coder-v2",
+   "benchmark": "gsm8k",
+   "score": 94.5,
+   "unit": "%",
+   "_source": "http://arxiv.org/abs/2409.12186",
+   "_note": "Epoch benchmark-stitching CSV (gsm8k): DeepSeek-Coder-V2-Instruct = 94.50% per Qwen2.5-Coder Technical Report"
+  },
+  {
+   "model": "deepseek/deepseek-coder-v2-lite",
+   "benchmark": "gsm8k",
+   "score": 67.1,
+   "unit": "%",
+   "_source": "http://arxiv.org/abs/2409.12186",
+   "_note": "Epoch benchmark-stitching CSV (gsm8k): DeepSeek-Coder-V2-Lite-Base = 67.10% per Qwen2.5-Coder Technical Report"
+  },
+  {
+   "model": "deepseek/deepseek-coder-v2",
+   "benchmark": "gsm8k",
+   "score": 85.8,
+   "unit": "%",
+   "_source": "http://arxiv.org/abs/2409.12186",
+   "_note": "Epoch benchmark-stitching CSV (gsm8k): DeepSeek-Coder-V2-Base = 85.80% per Qwen2.5-Coder Technical Report"
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "hellaswag",
+   "score": 84.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2412.19437",
+   "_note": "Epoch benchmark-stitching CSV (hellaswag): Qwen2.5-72B = 84.80% per DeepSeek-V3 Technical Report"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "livebench",
+   "score": 75.88,
+   "unit": "%",
+   "_source": "https://livebench.ai/#/",
+   "_note": "Epoch benchmark-stitching CSV (livebench): o3-mini-2025-01-31_high = 75.88% per LiveBench Leaderboard"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "livebench",
+   "score": 75.67,
+   "unit": "%",
+   "_source": "https://livebench.ai/#/",
+   "_note": "Epoch benchmark-stitching CSV (livebench): o1-2024-12-17_high = 75.67% per LiveBench Leaderboard"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "livebench",
+   "score": 70.01,
+   "unit": "%",
+   "_source": "https://livebench.ai/#/",
+   "_note": "Epoch benchmark-stitching CSV (livebench): o3-mini-2025-01-31_medium = 70.01% per LiveBench Leaderboard"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "livebench",
+   "score": 62.45,
+   "unit": "%",
+   "_source": "https://livebench.ai/#/",
+   "_note": "Epoch benchmark-stitching CSV (livebench): o3-mini-2025-01-31_low = 62.45% per LiveBench Leaderboard"
+  },
+  {
+   "model": "openai/o1-mini",
+   "benchmark": "livebench",
+   "score": 57.76,
+   "unit": "%",
+   "_source": "https://livebench.ai/#/",
+   "_note": "Epoch benchmark-stitching CSV (livebench): o1-mini-2024-09-12_medium = 57.76% per LiveBench Leaderboard. Assuming medium thinking effort for o1-mini"
+  },
+  {
+   "model": "alibaba/qwen2.5-coder-32b",
+   "benchmark": "livebench",
+   "score": 46.23,
+   "unit": "%",
+   "_source": "https://livebench.ai/#/",
+   "_note": "Epoch benchmark-stitching CSV (livebench): Qwen2.5-Coder-32B-Instruct = 46.23% per LiveBench Leaderboard"
+  },
+  {
+   "model": "baichuan/baichuan-2-7b",
+   "benchmark": "mmlu",
+   "score": 54.2,
+   "unit": "%",
+   "_source": "http://arxiv.org/abs/2309.10305",
+   "_note": "Epoch benchmark-stitching CSV (mmlu): Baichuan-2-7B-Base = 54.20% per Baichuan 2: Open Large-scale Language Models"
+  },
+  {
+   "model": "deepseek/deepseek-coder-v2-lite",
+   "benchmark": "mmlu",
+   "score": 60.5,
+   "unit": "%",
+   "_source": "http://arxiv.org/abs/2409.12186",
+   "_note": "Epoch benchmark-stitching CSV (mmlu): DeepSeek-Coder-V2-Lite-Base = 60.50% per Qwen2.5-Coder Technical Report"
+  },
+  {
+   "model": "google/gemini-1.0-pro",
+   "benchmark": "mmlu",
+   "score": 70.0,
+   "unit": "%",
+   "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
+   "_note": "Epoch benchmark-stitching CSV (mmlu): gemini-1.0-pro-001 = 70.00% per Stanford CRFM Leaderboard"
+  },
+  {
+   "model": "google/gemini-2.0-flash",
+   "benchmark": "mmlu",
+   "score": 79.7,
+   "unit": "%",
+   "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
+   "_note": "Epoch benchmark-stitching CSV (mmlu): gemini-2.0-flash-exp = 79.70% per Stanford CRFM Leaderboard"
+  },
+  {
+   "model": "openai/gpt-3.5-turbo-0125",
+   "benchmark": "mmlu",
+   "score": 67.3,
+   "unit": "%",
+   "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
+   "_note": "Epoch benchmark-stitching CSV (mmlu): gpt-3.5-turbo-0125 = 67.30% per Stanford CRFM Leaderboard"
+  },
+  {
+   "model": "meta/llama-3.2-11b-vision",
+   "benchmark": "mmlu",
+   "score": 56.5,
+   "unit": "%",
+   "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
+   "_note": "Epoch benchmark-stitching CSV (mmlu): Llama-3.2-11B-Vision-Instruct = 56.50% per Stanford CRFM Leaderboard. Seems like the Turbo versions are quantized: https://huggingface.co/spaces/AtlaAI/judge-arena/discussions/4 (that's a different"
+  },
+  {
+   "model": "meta/llama-3.2-90b-vision",
+   "benchmark": "mmlu",
+   "score": 80.3,
+   "unit": "%",
+   "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
+   "_note": "Epoch benchmark-stitching CSV (mmlu): Llama-3.2-90B-Vision-Instruct = 80.30% per Stanford CRFM Leaderboard. Seems like the Turbo versions are quantized: https://huggingface.co/spaces/AtlaAI/judge-arena/discussions/4 (that's a different"
+  },
+  {
+   "model": "mistral/mistral-nemo",
+   "benchmark": "mmlu",
+   "score": 65.3,
+   "unit": "%",
+   "_source": "https://crfm.stanford.edu/helm/lite/latest/#/leaderboard/mmlu",
+   "_note": "Epoch benchmark-stitching CSV (mmlu): Mistral NeMo (2402) = 65.30% per Stanford CRFM Leaderboard"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "osworld_verified",
+   "score": 5.03,
+   "unit": "%",
+   "_source": "https://os-world.github.io/",
+   "_note": "Epoch benchmark-stitching CSV (os_world): gpt-4o-2024-05-13 = 5.03% per OS World Website"
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "simplebench",
+   "score": 60.0,
+   "unit": "%",
+   "_source": "https://simple-bench.com/",
+   "_note": "Epoch benchmark-stitching CSV (simple_bench): claude-opus-4-1-20250805 = 60.00% per SimpleBench Leaderboard"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "simplebench",
+   "score": 53.1,
+   "unit": "%",
+   "_source": "https://simple-bench.com/",
+   "_note": "Epoch benchmark-stitching CSV (simple_bench): o3-2025-04-16_high = 53.10% per SimpleBench Leaderboard"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "simplebench",
+   "score": 41.7,
+   "unit": "%",
+   "_source": "https://simple-bench.com/",
+   "_note": "Epoch benchmark-stitching CSV (simple_bench): o1-preview-2024-09-12 = 41.70% per SimpleBench Leaderboard"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "simplebench",
+   "score": 40.1,
+   "unit": "%",
+   "_source": "https://simple-bench.com/",
+   "_note": "Epoch benchmark-stitching CSV (simple_bench): o1-2024-12-17_high = 40.10% per SimpleBench Leaderboard"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "simplebench",
+   "score": 38.7,
+   "unit": "%",
+   "_source": "https://simple-bench.com/",
+   "_note": "Epoch benchmark-stitching CSV (simple_bench): o4-mini-2025-04-16_high = 38.70% per SimpleBench Leaderboard"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "simplebench",
+   "score": 36.7,
+   "unit": "%",
+   "_source": "https://simple-bench.com/",
+   "_note": "Epoch benchmark-stitching CSV (simple_bench): o1-2024-12-17_medium = 36.70% per SimpleBench Leaderboard"
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "simplebench",
+   "score": 27.0,
+   "unit": "%",
+   "_source": "https://simple-bench.com/",
+   "_note": "Epoch benchmark-stitching CSV (simple_bench): gpt-4.1-2025-04-14 = 27.00% per SimpleBench Leaderboard"
+  },
+  {
+   "model": "moonshot/kimi-k2",
+   "benchmark": "simplebench",
+   "score": 26.3,
+   "unit": "%",
+   "_source": "https://simple-bench.com/",
+   "_note": "Epoch benchmark-stitching CSV (simple_bench): Kimi-K2-Instruct = 26.30% per SimpleBench Leaderboard"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "simplebench",
+   "score": 22.8,
+   "unit": "%",
+   "_source": "https://simple-bench.com/",
+   "_note": "Epoch benchmark-stitching CSV (simple_bench): o3-mini-2025-01-31_high = 22.80% per SimpleBench Leaderboard"
+  },
+  {
+   "model": "google/gemini-2.0-flash",
+   "benchmark": "simplebench",
+   "score": 18.9,
+   "unit": "%",
+   "_source": "https://simple-bench.com/",
+   "_note": "Epoch benchmark-stitching CSV (simple_bench): gemini-2.0-flash-exp = 18.90% per SimpleBench Leaderboard"
+  },
+  {
+   "model": "openai/o1-mini",
+   "benchmark": "simplebench",
+   "score": 18.1,
+   "unit": "%",
+   "_source": "https://simple-bench.com/",
+   "_note": "Epoch benchmark-stitching CSV (simple_bench): o1-mini-2024-09-12_medium = 18.10% per SimpleBench Leaderboard. Assuming medium reasoning effort"
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "terminal_bench_2",
+   "score": 58.8,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): claude-opus-4-1-20250805 = 58.80% per Terminal-Bench Leaderboard. Announcement confirms no thinking"
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "terminal_bench_2",
+   "score": 43.8,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): claude-opus-4-1-20250805 = 43.80% per Terminal-Bench Leaderboard"
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "terminal_bench_2",
+   "score": 40.5,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): claude-opus-4-1-20250805 = 40.50% per Terminal-Bench Leaderboard"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "terminal_bench_2",
+   "score": 30.8,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): gpt-5-mini-2025-08-07_medium = 30.80% per Terminal-Bench Leaderboard"
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "terminal_bench_2",
+   "score": 30.3,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): gpt-4.1-2025-04-14 = 30.30% per Terminal-Bench Leaderboard"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "terminal_bench_2",
+   "score": 30.2,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): o3-2025-04-16_medium = 30.20% per Terminal-Bench Leaderboard"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "terminal_bench_2",
+   "score": 30.0,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): gpt-5-mini-2025-08-07_medium = 30.00% per Terminal-Bench Leaderboard"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "terminal_bench_2",
+   "score": 27.5,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): o4-mini-2025-04-16_medium = 27.50% per Terminal-Bench Leaderboard"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "terminal_bench_2",
+   "score": 20.0,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): o4-mini-2025-04-16_medium = 20.00% per Terminal-Bench Leaderboard"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "terminal_bench_2",
+   "score": 18.5,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): o4-mini-2025-04-16_medium = 18.50% per Terminal-Bench Leaderboard"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "terminal_bench_2",
+   "score": 12.2,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): gpt-5-nano-2025-08-07_medium = 12.20% per Terminal-Bench Leaderboard"
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "terminal_bench_2",
+   "score": 8.3,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (terminal_bench): gpt-4.1-2025-04-14 = 8.30% per Terminal-Bench Leaderboard"
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "the_agent_company",
+   "score": 5.7,
+   "unit": "%",
+   "_source": "https://github.com/TheAgentCompany/experiments/tree/main/evaluation/1.0.0/20241217_OpenHands-0.14.2-qwen2.5-72b",
+   "_note": "Epoch benchmark-stitching CSV (the_agent_company): qwen2.5-72b-instruct = 5.70% per TheAgentCompany experiment results github. Submission has open-source code, submission patch generations reproduced by Agent Company team"
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "triviaqa",
+   "score": 71.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2412.19437",
+   "_note": "Epoch benchmark-stitching CSV (triviaqa): Qwen2.5-72B = 71.90% per DeepSeek-V3 Technical Report"
+  },
+  {
+   "model": "alibaba/qwen2-vl-72b",
+   "benchmark": "video_mme",
+   "score": 71.2,
+   "unit": "%",
+   "_source": "https://video-mme.github.io/home_page.html#leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (videomme): Qwen2-VL-72B-Instruct = 71.20% per Video-MME Leaderboard"
+  },
+  {
+   "model": "shanghai-ai-lab/internvl-2.5",
+   "benchmark": "video_mme",
+   "score": 72.1,
+   "unit": "%",
+   "_source": "https://video-mme.github.io/home_page.html#leaderboard",
+   "_note": "Epoch benchmark-stitching CSV (videomme): InternVL2_5-78B = 72.10% per Video-MME Leaderboard"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "vpct",
+   "score": 57.5,
+   "unit": "%",
+   "_source": "https://cbrower.dev/vpct",
+   "_note": "Epoch benchmark-stitching CSV (vpct): o4-mini-2025-04-16_medium = 57.50% per VPCT leaderboard. Assuming medium reasoning effort"
+  },
+  {
+   "model": "openai/gpt-5.1",
+   "benchmark": "vpct",
+   "score": 53.3,
+   "unit": "%",
+   "_source": "https://cbrower.dev/vpct",
+   "_note": "Epoch benchmark-stitching CSV (vpct): gpt-5.1_medium = 53.30% per VPCT leaderboard"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "vpct",
+   "score": 52.0,
+   "unit": "%",
+   "_source": "https://cbrower.dev/vpct",
+   "_note": "Epoch benchmark-stitching CSV (vpct): o3-2025-04-16_medium = 52.00% per VPCT leaderboard. Assuming medium reasoning effort"
+  },
+  {
+   "model": "google-deepmind/gemini-robotics-er-1.5",
+   "benchmark": "vpct",
+   "score": 40.8,
+   "unit": "%",
+   "_source": "https://cbrower.dev/vpct",
+   "_note": "Epoch benchmark-stitching CSV (vpct): gemini-robotics-er-1.5-preview = 40.80% per VPCT leaderboard"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "vpct",
+   "score": 40.2,
+   "unit": "%",
+   "_source": "https://cbrower.dev/vpct",
+   "_note": "Epoch benchmark-stitching CSV (vpct): gpt-5-mini-2025-08-07_medium = 40.20% per VPCT leaderboard"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "vpct",
+   "score": 39.0,
+   "unit": "%",
+   "_source": "https://cbrower.dev/vpct",
+   "_note": "Epoch benchmark-stitching CSV (vpct): gpt-5-mini-2025-08-07_high = 39.00% per VPCT leaderboard"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "vpct",
+   "score": 37.2,
+   "unit": "%",
+   "_source": "https://cbrower.dev/vpct",
+   "_note": "Epoch benchmark-stitching CSV (vpct): gpt-5-nano-2025-08-07_high = 37.20% per VPCT leaderboard"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "vpct",
+   "score": 37.0,
+   "unit": "%",
+   "_source": "https://cbrower.dev/vpct",
+   "_note": "Epoch benchmark-stitching CSV (vpct): o1-2024-12-17_medium = 37.00% per VPCT leaderboard. Assuming medium reasoning effort for o1"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "vpct",
+   "score": 35.4,
+   "unit": "%",
+   "_source": "https://cbrower.dev/vpct",
+   "_note": "Epoch benchmark-stitching CSV (vpct): gpt-5-nano-2025-08-07_medium = 35.40% per VPCT leaderboard"
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "vpct",
+   "score": 35.0,
+   "unit": "%",
+   "_source": "https://cbrower.dev/vpct",
+   "_note": "Epoch benchmark-stitching CSV (vpct): claude-opus-4-1-20250805 = 35.00% per VPCT leaderboard"
+  },
+  {
+   "model": "openai/o3-pro",
+   "benchmark": "weirdml_v2",
+   "score": 53.9,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): o3-pro-2025-06-10_high = 53.90% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "weirdml_v2",
+   "score": 49.8,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): o3-2025-04-16_high = 49.80% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "weirdml_v2",
+   "score": 49.7,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-5-mini-2025-08-07_high = 49.70% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "weirdml_v2",
+   "score": 49.2,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): o4-mini-2025-04-16_high = 49.20% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "weirdml_v2",
+   "score": 48.9,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-oss-120b_high = 48.90% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "weirdml_v2",
+   "score": 46.1,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): o1-preview-2024-09-12 = 46.10% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "weirdml_v2",
+   "score": 43.6,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): o1-2024-12-17_high = 43.60% per WeirdML Leaderboard"
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "weirdml_v2",
+   "score": 43.6,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): claude-haiku-4-5-20251001 = 43.60% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "weirdml_v2",
+   "score": 41.3,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): o3-mini-2025-01-31_high = 41.30% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "weirdml_v2",
+   "score": 40.2,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-oss-120b_medium = 40.20% per WeirdML Leaderboard"
+  },
+  {
+   "model": "xai/grok-3-mini",
+   "benchmark": "weirdml_v2",
+   "score": 39.6,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): grok-3-mini_high = 39.60% per WeirdML Leaderboard"
+  },
+  {
+   "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+   "benchmark": "weirdml_v2",
+   "score": 38.9,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): Qwen3-235B-A22B-Thinking-2507 = 38.90% per WeirdML Leaderboard"
+  },
+  {
+   "model": "moonshot/kimi-k2",
+   "benchmark": "weirdml_v2",
+   "score": 38.6,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): Kimi-K2-Instruct = 38.60% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "weirdml_v2",
+   "score": 37.9,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-4.1-2025-04-14 = 37.90% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/gpt-4.1-mini",
+   "benchmark": "weirdml_v2",
+   "score": 37.2,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-4.1-mini-2025-04-14 = 37.20% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "weirdml_v2",
+   "score": 35.6,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-5-nano-2025-08-07_high = 35.60% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/o1-mini",
+   "benchmark": "weirdml_v2",
+   "score": 35.4,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): o1-mini-2024-09-12_medium = 35.40% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/gpt-4.1-nano",
+   "benchmark": "weirdml_v2",
+   "score": 19.0,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-4.1-nano-2025-04-14 = 19.00% per WeirdML Leaderboard"
+  },
+  {
+   "model": "openai/gpt-3.5-turbo-0125",
+   "benchmark": "weirdml_v2",
+   "score": 3.1,
+   "unit": "%",
+   "_source": "https://htihle.github.io/weirdml.html",
+   "_note": "Epoch benchmark-stitching CSV (weirdml): gpt-3.5-turbo-0125 = 3.10% per WeirdML Leaderboard"
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "arc_ai2_easy",
+   "score": 98.4,
+   "unit": "%",
+   "_source": "http://arxiv.org/abs/2412.19437",
+   "_note": "Epoch benchmark-stitching CSV (arc_ai2): Qwen2.5-72B = 98.40% per DeepSeek-V3 Technical Report"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "lech_mazur_writing",
+   "score": 8.39,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o3-2025-04-16_medium = 8.39% per lechmazur/writing Github repository"
+  },
+  {
+   "model": "alibaba/qwq-32b",
+   "benchmark": "lech_mazur_writing",
+   "score": 8.07,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): QwQ-32B (16K thinking) = 8.07% per lechmazur/writing Github repository"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "lech_mazur_writing",
+   "score": 7.5,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o4-mini-2025-04-16_medium = 7.50% per lechmazur/writing Github repository"
+  },
+  {
+   "model": "google/gemini-2.0-flash",
+   "benchmark": "lech_mazur_writing",
+   "score": 7.15,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): gemini-2.0-flash-exp = 7.15% per lechmazur/writing Github repository"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "lech_mazur_writing",
+   "score": 7.02,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o1-2024-12-17_medium = 7.02% per lechmazur/writing Github repository"
+  },
+  {
+   "model": "openai/o1-mini",
+   "benchmark": "lech_mazur_writing",
+   "score": 6.49,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o1-mini-2024-09-12_medium = 6.49% per lechmazur/writing Github repository. Assuming medium reasoning effort."
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "lech_mazur_writing",
+   "score": 6.17,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o3-mini-2025-01-31_high = 6.17% per lechmazur/writing Github repository"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "lech_mazur_writing",
+   "score": 6.15,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o3-mini-2025-01-31_medium = 6.15% per lechmazur/writing Github repository"
+  },
+  {
+   "model": "alibaba/qwen3-max",
+   "benchmark": "lech_mazur_writing",
+   "score": 8.71,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): qwen3-max-2025-09-23 = 8.71% per lechmazur/writing Github repository"
+  },
+  {
+   "model": "moonshot/kimi-k2",
+   "benchmark": "lech_mazur_writing",
+   "score": 8.69,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): Kimi-K2-Instruct = 8.69% per lechmazur/writing Github repository"
+  },
+  {
+   "model": "openai/o3-pro",
+   "benchmark": "lech_mazur_writing",
+   "score": 8.63,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): o3-pro-2025-06-10_medium = 8.63% per lechmazur/writing Github repository"
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "lech_mazur_writing",
+   "score": 8.54,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): claude-opus-4-1-20250805 = 8.54% per lechmazur/writing Github repository. No thinking"
+  },
+  {
+   "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+   "benchmark": "lech_mazur_writing",
+   "score": 8.49,
+   "unit": "%",
+   "_source": "https://github.com/lechmazur/Writing",
+   "_note": "Epoch benchmark-stitching CSV (lech_mazur_writing): Qwen3-235B-A22B-Thinking-2507 = 8.49% per lechmazur/writing Github repository"
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "piqa",
+   "score": 82.6,
+   "unit": "%",
+   "_source": "http://arxiv.org/abs/2412.19437",
+   "_note": "Epoch benchmark-stitching CSV (piqa): Qwen2.5-72B = 82.60% per DeepSeek-V3 Technical Report"
+  },
+  {
+   "model": "deepseek/deepseek-v3",
+   "benchmark": "piqa",
+   "score": 84.7,
+   "unit": "%",
+   "_source": "http://arxiv.org/abs/2412.19437",
+   "_note": "Epoch benchmark-stitching CSV (piqa): DeepSeek-V3-Base = 84.70% per DeepSeek-V3 Technical Report"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "scienceqa",
+   "score": 88.5,
+   "unit": "%",
+   "_source": "http://arxiv.org/abs/2404.14219",
+   "_note": "Epoch benchmark-stitching CSV (scienceqa): gpt-4o-2024-05-13 = 88.50% per Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone"
+  },
+  {
+   "model": "deepseek/deepseek-coder-v2-lite",
+   "benchmark": "winogrande",
+   "score": 72.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2409.12186",
+   "_note": "Epoch benchmark-stitching CSV (winogrande): DeepSeek-Coder-V2-Lite-Base = 72.90% per Qwen2.5-Coder Technical Report"
+  },
+  {
+   "model": "deepseek/deepseek-coder-v2",
+   "benchmark": "winogrande",
+   "score": 83.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2409.12186",
+   "_note": "Epoch benchmark-stitching CSV (winogrande): DeepSeek-Coder-V2-Base = 83.70% per Qwen2.5-Coder Technical Report"
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "winogrande",
+   "score": 82.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2412.19437",
+   "_note": "Epoch benchmark-stitching CSV (winogrande): Qwen2.5-72B = 82.30% per DeepSeek-V3 Technical Report"
+  },
+  {
+   "model": "baichuan/baichuan-2-7b",
+   "benchmark": "boolq",
+   "score": 63.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2309.16609",
+   "_note": "Epoch benchmark-stitching CSV (boolq): Baichuan-2-7B-Base = 63.20% per Qwen Technical Report"
+  },
+  {
+   "model": "baichuan/baichuan-2-13b",
+   "benchmark": "boolq",
+   "score": 67.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2309.16609",
+   "_note": "Epoch benchmark-stitching CSV (boolq): Baichuan-2-13B-Base = 67.00% per Qwen Technical Report"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "balrog",
+   "score": 32.8,
+   "unit": "%",
+   "_source": "https://balrogai.com/",
+   "_note": "Epoch benchmark-stitching CSV (balrog): gpt-5-2025-08-07_minimal = 32.80% per Balrog Leaderboard"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "balrog",
+   "score": 32.3,
+   "unit": "%",
+   "_source": "https://balrogai.com/",
+   "_note": "Epoch benchmark-stitching CSV (balrog): gpt-4o-2024-05-13 = 32.30% per Balrog Leaderboard. No trajectory available as of March 31, 2025."
+  },
+  {
+   "model": "meta/llama-3.2-90b-vision",
+   "benchmark": "balrog",
+   "score": 27.3,
+   "unit": "%",
+   "_source": "https://balrogai.com/",
+   "_note": "Epoch benchmark-stitching CSV (balrog): Llama-3.2-90B-Vision-Instruct = 27.30% per Balrog Leaderboard. No trajectory available as of March 31, 2025."
+  },
+  {
+   "model": "meta/llama-3.2-11b-vision",
+   "benchmark": "balrog",
+   "score": 16.8,
+   "unit": "%",
+   "_source": "https://balrogai.com/",
+   "_note": "Epoch benchmark-stitching CSV (balrog): Llama-3.2-11B-Vision-Instruct = 16.80% per Balrog Leaderboard. No trajectory available as of March 31, 2025."
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "balrog",
+   "score": 16.2,
+   "unit": "%",
+   "_source": "https://balrogai.com/",
+   "_note": "Epoch benchmark-stitching CSV (balrog): qwen2.5-72b-instruct = 16.20% per Balrog Leaderboard. No trajectory available as of March 31, 2025."
+  },
+  {
+   "model": "alibaba/qwen2-vl-72b",
+   "benchmark": "balrog",
+   "score": 12.8,
+   "unit": "%",
+   "_source": "https://balrogai.com/",
+   "_note": "Epoch benchmark-stitching CSV (balrog): Qwen2-VL-72B-Instruct = 12.80% per Balrog Leaderboard. No trajectory available as of March 31, 2025."
+  },
+  {
+   "model": "meta/llama-3.2-3b",
+   "benchmark": "balrog",
+   "score": 10.1,
+   "unit": "%",
+   "_source": "https://balrogai.com/",
+   "_note": "Epoch benchmark-stitching CSV (balrog): Llama-3.2-3B-Instruct = 10.10% per Balrog Leaderboard"
+  },
+  {
+   "model": "meta/llama-3.2-1b",
+   "benchmark": "balrog",
+   "score": 6.6,
+   "unit": "%",
+   "_source": "https://balrogai.com/",
+   "_note": "Epoch benchmark-stitching CSV (balrog): Llama-3.2-1B-Instruct = 6.60% per Balrog Leaderboard"
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "deepsearchqa",
+   "score": 50.6,
+   "unit": "%",
+   "_source": "https://drb.futuresearch.ai",
+   "_note": "Epoch benchmark-stitching CSV (deepresearch): claude-opus-4-1-20250805 = 50.60% per DeepResearchBench Leaderboard"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "deepsearchqa",
+   "score": 48.4,
+   "unit": "%",
+   "_source": "https://drb.futuresearch.ai",
+   "_note": "Epoch benchmark-stitching CSV (deepresearch): o3-2025-04-16_medium = 48.40% per DeepResearchBench Leaderboard"
+  },
+  {
+   "model": "openai/gpt-4o",
+   "benchmark": "geobench",
+   "score": 3740.0,
+   "unit": "%",
+   "_source": "https://geobench.org/",
+   "_note": "Epoch benchmark-stitching CSV (geobench): gpt-4o-2024-11-20 = 3740.00% per GeoBench leaderboard. Assuming latest vesrsion of gpt-4o"
+  },
+  {
+   "model": "anthropic/claude-3.5-haiku",
+   "benchmark": "geobench",
+   "score": 2528.0,
+   "unit": "%",
+   "_source": "https://geobench.org/",
+   "_note": "Epoch benchmark-stitching CSV (geobench): claude-3-5-haiku-20241022 = 2528.00% per GeoBench leaderboard"
+  }
+ ]
 }
