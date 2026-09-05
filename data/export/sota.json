@@ -27255,19 +27255,19 @@
     "notes": ""
   },
   "cost_per_second_landscape_1280x720_usd_lower_better": {
-    "model_id": "openai/sora-2-pro",
+    "model_id": "openai/sora-2",
     "benchmark_id": "cost_per_second_landscape_1280x720_usd_lower_better",
-    "value": 0.3,
-    "unit": "score",
+    "value": 0.1,
+    "unit": "USD/s",
     "source": {
       "type": "leaderboard",
-      "url": "https://developers.openai.com/api/docs/models/sora-2-pro",
+      "url": "https://developers.openai.com/api/docs/pricing",
       "date": "2026-09-05",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Video generation models' table (Standard) — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. sora-2 720p $0.10/s; sora-2-pro 720p $0.30/s, 1024p $0.50/s, 1080p $0.70/s. Batch table halves these."
   },
   "cost_per_second_landscape_1792x1024_usd_lower_better": {
     "model_id": "openai/sora-2-pro",
@@ -29055,34 +29055,34 @@
     "notes": ""
   },
   "long_context_input_cost_1m_usd_lower_better": {
-    "model_id": "openai/gpt-5.5",
+    "model_id": "openai/gpt-5.6-luna",
     "benchmark_id": "long_context_input_cost_1m_usd_lower_better",
-    "value": 5.0,
-    "unit": "score",
+    "value": 0.4,
+    "unit": "USD/1M",
     "source": {
       "type": "leaderboard",
-      "url": "https://tokenmix.ai/blog/gpt-5-5-release-date-spud",
+      "url": "https://developers.openai.com/api/docs/pricing",
       "date": "2026-09-05",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $0.10 / $0.01 / $0.60 stored earlier (that snapshot matched the Batch/Flex tier, not Standard). Long-context column (>272K input tokens): cached input $0.04, cache writes $0.50."
   },
   "long_context_output_cost_1m_usd_lower_better": {
-    "model_id": "anthropic/claude-opus-4.8",
+    "model_id": "openai/gpt-5.6-luna",
     "benchmark_id": "long_context_output_cost_1m_usd_lower_better",
-    "value": 25.0,
-    "unit": "score",
+    "value": 1.8,
+    "unit": "USD/1M",
     "source": {
       "type": "leaderboard",
-      "url": "https://www.digitalapplied.com/blog/claude-opus-4-8-vs-gpt-5-5-frontier-comparison",
+      "url": "https://developers.openai.com/api/docs/pricing",
       "date": "2026-09-05",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $0.10 / $0.01 / $0.60 stored earlier (that snapshot matched the Batch/Flex tier, not Standard). Long-context column (>272K input tokens)."
   },
   "mrcr_v2_8needle_1m": {
     "model_id": "anthropic/claude-opus-4.6",
@@ -58648,6 +58648,261 @@
     "is_sota": true,
     "collected_at": "2026-09-05",
     "notes": "Read from the launch post's 'Cost vs Pass Rate' Pareto SVG (agent = Codex): marker x on the linear $0–$10.0k axis; the marker's y reproduces the model's pass rate, which fixes its identity. No printed cost labels — precision about ±$50. The post's prose check ('GPT-5.6 Sol is ~40% cheaper than Fable 5') holds: $4.0k vs $7.0k."
+  },
+  "aa_intelligence_index_v4_2": {
+    "model_id": "anthropic/claude-fable-5.1",
+    "benchmark_id": "aa_intelligence_index_v4_2",
+    "value": 56.7581,
+    "unit": "index",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. Index v4.2 (10 evals)."
+  },
+  "aa_capability_index_finance_accounting": {
+    "model_id": "anthropic/claude-fable-5.1",
+    "benchmark_id": "aa_capability_index_finance_accounting",
+    "value": 58.7619,
+    "unit": "index",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. capabilityScores.financeAndAccounting."
+  },
+  "aa_capability_index_strategy_ops": {
+    "model_id": "anthropic/claude-fable-5.1",
+    "benchmark_id": "aa_capability_index_strategy_ops",
+    "value": 57.8309,
+    "unit": "index",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. capabilityScores.strategyAndOps."
+  },
+  "aa_capability_index_legal": {
+    "model_id": "anthropic/claude-fable-5.1",
+    "benchmark_id": "aa_capability_index_legal",
+    "value": 63.0507,
+    "unit": "index",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. capabilityScores.legal."
+  },
+  "aa_capability_index_engineering": {
+    "model_id": "anthropic/claude-fable-5.1",
+    "benchmark_id": "aa_capability_index_engineering",
+    "value": 65.0091,
+    "unit": "index",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. capabilityScores.engineering."
+  },
+  "aa_capability_index_economics": {
+    "model_id": "anthropic/claude-fable-5.1",
+    "benchmark_id": "aa_capability_index_economics",
+    "value": 65.6408,
+    "unit": "index",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. capabilityScores.economics."
+  },
+  "aa_ii_cost_per_task_usd_lower_better": {
+    "model_id": "meta/muse-spark-1.2",
+    "benchmark_id": "aa_ii_cost_per_task_usd_lower_better",
+    "value": 0.5453,
+    "unit": "USD",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. Breakdown: input 0.385 (non-cache 0.021, cache read 0.229, cache write 0.135), output 0.160 (reasoning 0.077, answer 0.082)."
+  },
+  "aa_ii_time_per_task_s_lower_better": {
+    "model_id": "openai/gpt-6-astra-low",
+    "benchmark_id": "aa_ii_time_per_task_s_lower_better",
+    "value": 50.56,
+    "unit": "s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'."
+  },
+  "aa_ii_output_tokens_per_task": {
+    "model_id": "anthropic/claude-fable-5.1",
+    "benchmark_id": "aa_ii_output_tokens_per_task",
+    "value": 64072.1,
+    "unit": "tokens",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. reasoning 38594 + answer 25478."
+  },
+  "aa_time_to_first_answer_token_s_lower_better": {
+    "model_id": "openai/gpt-6-astra-low",
+    "benchmark_id": "aa_time_to_first_answer_token_s_lower_better",
+    "value": 1.948,
+    "unit": "s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. timeToFirstAnswerToken.total (input 1.95s + reasoning 0.00s)."
+  },
+  "cache_write_price_per_mtok_lower_better": {
+    "model_id": "openai/gpt-5.6-luna",
+    "benchmark_id": "cache_write_price_per_mtok_lower_better",
+    "value": 0.25,
+    "unit": "USD/1M",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $0.10 / $0.01 / $0.60 stored earlier (that snapshot matched the Batch/Flex tier, not Standard)."
+  },
+  "audio_input_price_per_mtok_lower_better": {
+    "model_id": "openai/gpt-realtime-2.1-mini",
+    "benchmark_id": "audio_input_price_per_mtok_lower_better",
+    "value": 10.0,
+    "unit": "USD/1M",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.30, image cached input $0.08."
+  },
+  "audio_output_price_per_mtok_lower_better": {
+    "model_id": "openai/gpt-realtime-2.1-mini",
+    "benchmark_id": "audio_output_price_per_mtok_lower_better",
+    "value": 20.0,
+    "unit": "USD/1M",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.30, image cached input $0.08."
+  },
+  "image_input_price_per_mtok_lower_better": {
+    "model_id": "openai/gpt-realtime-2.1-mini",
+    "benchmark_id": "image_input_price_per_mtok_lower_better",
+    "value": 0.8,
+    "unit": "USD/1M",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.30, image cached input $0.08. Image row."
+  },
+  "image_output_price_per_mtok_lower_better": {
+    "model_id": "openai/gpt-image-2",
+    "benchmark_id": "image_output_price_per_mtok_lower_better",
+    "value": 30.0,
+    "unit": "USD/1M",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Image generation models' table (Standard) — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Image row: input $8.00, cached $2.00, output $30.00; Text row: input $5.00, cached $1.25. Batch table halves all of these."
+  },
+  "cost_per_second_landscape_1920x1080_usd_lower_better": {
+    "model_id": "openai/sora-2-pro",
+    "benchmark_id": "cost_per_second_landscape_1920x1080_usd_lower_better",
+    "value": 0.7,
+    "unit": "USD/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Video generation models' table (Standard) — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. sora-2 720p $0.10/s; sora-2-pro 720p $0.30/s, 1024p $0.50/s, 1080p $0.70/s. Batch table halves these."
+  },
+  "transcription_cost_per_minute_usd_lower_better": {
+    "model_id": "openai/gpt-4o-mini-transcribe",
+    "benchmark_id": "transcription_cost_per_minute_usd_lower_better",
+    "value": 0.003,
+    "unit": "USD/min",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Transcription models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. 'Estimated cost' column, USD per minute. Transcription; text tokens $1.25 in / $5.00 out."
   },
   "cti_bench": {
     "model_id": "anthropic/claude-opus-4.7",

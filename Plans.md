@@ -1,7 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 272 — Terminal-Bench-Science re-verified 33/33; Pareto charts, harness notes, TB3.0 primary source, frontier_bench merge (2026-09-05)
-**3,471 models · 4,465 benchmarks · 22,195 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 273 — GPT-6 Astra follow-up: Astra Pro, AA Index v4.2 + capability indices, official OpenAI pricing (2026-09-05)
+**3,478 models · 4,482 benchmarks · 22,495 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-05 Session 273 — GPT-6 Astra: OpenRouter · AA release page · OpenAI pricing · myclaw review
+- **7 new models, 17 new benchmarks, 309 scores (9 price refreshes), 0 FK / 0 dup.** Backup `data/benchmark.db.pre-s273.bak`.
+- **OpenRouter** lists `openai/gpt-6-astra-pro` — same weights served with `reasoning.mode=pro` (OpenAI's reasoning guide: pro bills at standard rates) — added as a model with Astra's prices. Context refreshed to 1,050,000 / 128,000 max output on all five tiers. Per-provider latency/throughput/uptime not ingested (volatile, no id).
+- **AA re-versioned its index to v4.2** (10 evals). Astra max reads 54.7 now vs 61.2 on v4.1.1 (S260c), so the old rows stay untouched and the 23-model v4.2 set (19 with DB ids) lands on `aa_intelligence_index_v4_2` — Fable 5.1 56.8 leads, Astra max 54.7, Opus 5 54.1. Also new: five capability indices (Finance & Accounting / Strategy & Ops / Legal / Engineering / Economics), cost·time·output-tokens per II task, TTFAT, output speed, 7:2:1 blended price, and the `gpt-6-astra-non-reasoning` variant (47.8). Extracted by bracket-matching each slug-anchored RSC model object. Opus 5 / Muse Spark 1.3 effort tiers skipped (no tier ids; best-per-base).
+- **OpenAI's official pricing page** supersedes the OpenRouter snapshots: Sol $4/$0.40/$20 (promo through 2026-11-21, was $5/$0.50/$30), Terra $2/$0.20/$12 and Luna $0.20/$0.02/$1.20 (the stored $1/$6 and $0.10/$0.60 were Batch/Flex prices). Astra $10/$1/$12.50/$50 on all seven ids, long-context (>272K) $20/$75, new cache-write id; realtime-2.1 (+mini), gpt-image-2, sora-2 720p, sora-2-pro 1080p, six transcription models. Skipped: o4-mini fine-tuning rates, `chat-latest` alias.
+- **myclaw.ai review**: secondary restatement of OpenAI's docs, zero new triples; used as a cross-check only.
+- Propagation: Price tab gains an "AA Intelligence Index v4.2" axis; Frontier Compare's `composite_aaii` anchor deliberately left at v4.1 to avoid mixing scales; Resources tab + seed_sources register the three primary pages; app.js tag → 20260905c.
 
 ### 2026-09-05 Session 272 — Terminal-Bench-Science values re-verified against the source; follow-ups
 - **33/33 match.** Every DB value sourced to the announcement (overall 9, TB3.0 column 6, domain radar 15) was re-extracted independently from the raw SVGs and compared in code: bar-chart labels, slope-chart circles (y = 376 − 3.683 × value; each model group is pinned by its TBS circle matching the overall score), radar vertices (r ÷ 4.4, axis angles 90/18/306/234/162°). 0 mismatches.

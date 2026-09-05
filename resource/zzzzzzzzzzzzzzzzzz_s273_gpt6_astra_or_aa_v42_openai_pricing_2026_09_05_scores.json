@@ -1,0 +1,2754 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-05",
+  "session": "S273",
+  "sources": [
+   "https://openrouter.ai/openai/gpt-6-astra",
+   "https://openrouter.ai/api/v1/models",
+   "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "https://developers.openai.com/api/docs/pricing",
+   "https://myclaw.ai/ko/blog/gpt-6-astra-review"
+  ],
+  "note": "GPT-6 Astra follow-up from four links. (1) OpenRouter: new model id openai/gpt-6-astra-pro (same weights, reasoning.mode=pro; OpenAI reasoning guide confirms pro mode bills at standard rates), context 1,050,000 / max output 128,000, endpoint prices match OpenAI's page; per-provider latency/throughput/uptime NOT ingested (volatile, no id). (2) AA release page: the Intelligence Index moved to v4.2 (10 evals, adds GDP.pdf/CritPt/AA-LCR v1.1) so the v4.1.1 values already stored under aa_intelligence_index are left alone and the 23-model v4.2 table goes to a new id; five capability indices, cost/time/output-tokens per task, TTFAT, median output speed and 7:2:1 blended price extracted from the RSC model objects (bracket-matched JSON, slug-anchored). New AA variant openai/gpt-6-astra-non-reasoning. Opus 5 / Muse Spark 1.3 effort tiers skipped (no tier ids; best-per-base). (3) OpenAI pricing page: Standard short-context prices for the 4 flagships (+cache-write, long-context), cyber, realtime 2.1 (+mini, new ids), gpt-image-2, sora-2/-pro 1080p, six transcription models; o4-mini fine-tuning and 'chat-latest' alias skipped. (4) myclaw.ai review: secondary source restating OpenAI's docs (prices, 272K line, cutoff, effort levels, Critical-cyber designation) — zero new triples, used only as a cross-check."
+ },
+ "models": [
+  {
+   "id": "openai/gpt-6-astra",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra (max)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-09-03",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "openai/gpt-6-astra-xhigh",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra (xhigh)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-09-03",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "openai/gpt-6-astra-high",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra (high)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-09-03",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "openai/gpt-6-astra-medium",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra (medium)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-09-03",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "openai/gpt-6-astra-low",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra (low)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-09-03",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "openai/gpt-6-astra-non-reasoning",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra (Non-reasoning)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-09-03",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "openai/gpt-6-astra-pro",
+   "vendor": "OpenAI",
+   "name": "GPT-6 Astra Pro (reasoning.mode=pro)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-09-04",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-04-30"
+  },
+  {
+   "id": "openai/gpt-realtime-2.1",
+   "vendor": "OpenAI",
+   "name": "GPT Realtime 2.1",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "audio",
+    "vision"
+   ]
+  },
+  {
+   "id": "openai/gpt-realtime-2.1-mini",
+   "vendor": "OpenAI",
+   "name": "GPT Realtime 2.1 Mini",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "audio",
+    "vision"
+   ]
+  },
+  {
+   "id": "openai/gpt-live-transcribe",
+   "vendor": "OpenAI",
+   "name": "GPT Live Transcribe",
+   "type": "proprietary",
+   "modalities": [
+    "audio",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-transcribe",
+   "vendor": "OpenAI",
+   "name": "GPT Transcribe",
+   "type": "proprietary",
+   "modalities": [
+    "audio",
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-4o-mini-transcribe",
+   "vendor": "OpenAI",
+   "name": "GPT-4o mini Transcribe",
+   "type": "proprietary",
+   "modalities": [
+    "audio",
+    "text"
+   ]
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "aa_intelligence_index_v4_2",
+   "name": "Artificial Analysis Intelligence Index v4.2",
+   "category": "composite",
+   "metric": "index",
+   "description": "AA Intelligence Index v4.2 — 10 evaluations: AA-Briefcase, GDPval-AA v2, τ³-Banking, Terminal-Bench v2.1, SciCode, Humanity's Last Exam, GDP.pdf, CritPt, AA-Omniscience, AA-LCR v1.1. Not comparable with v4.1.x values stored under aa_intelligence_index (e.g. GPT-6 Astra max 61.2 on v4.1.1 → 54.7 on v4.2). Higher is better."
+  },
+  {
+   "id": "aa_capability_index_finance_accounting",
+   "name": "Artificial Analysis Finance & Accounting Index",
+   "category": "composite",
+   "metric": "index",
+   "description": "AA Capability Index — Finance & Accounting. Incorporates 5 evaluations: AA-Omniscience, GDPval-AA v2, Humanity's Last Exam, τ³-Banking, AA-LCR v1.1. Higher is better. (The Healthcare & Medical Index is listed on the page but not in the RSC payload.)"
+  },
+  {
+   "id": "aa_capability_index_strategy_ops",
+   "name": "Artificial Analysis Strategy & Ops Index",
+   "category": "composite",
+   "metric": "index",
+   "description": "AA Capability Index — Strategy & Ops. Incorporates 4 evaluations: AA-Omniscience, GDPval-AA v2, τ³-Banking, AA-LCR v1.1. Higher is better. (The Healthcare & Medical Index is listed on the page but not in the RSC payload.)"
+  },
+  {
+   "id": "aa_capability_index_legal",
+   "name": "Artificial Analysis Legal Index",
+   "category": "composite",
+   "metric": "index",
+   "description": "AA Capability Index — Legal. Incorporates 5 evaluations: AA-Omniscience, GDPval-AA v2, AA-LCR v1.1, τ³-Banking, Humanity's Last Exam. Higher is better. (The Healthcare & Medical Index is listed on the page but not in the RSC payload.)"
+  },
+  {
+   "id": "aa_capability_index_engineering",
+   "name": "Artificial Analysis Engineering Index",
+   "category": "composite",
+   "metric": "index",
+   "description": "AA Capability Index — Engineering. Incorporates 6 evaluations: AA-Omniscience, Humanity's Last Exam, GPQA Diamond, CritPt, GDPval-AA v2, Terminal-Bench v2.1. Higher is better. (The Healthcare & Medical Index is listed on the page but not in the RSC payload.)"
+  },
+  {
+   "id": "aa_capability_index_economics",
+   "name": "Artificial Analysis Economics Index",
+   "category": "composite",
+   "metric": "index",
+   "description": "AA Capability Index — Economics. Incorporates 4 evaluations: AA-Omniscience, Humanity's Last Exam, GDPval-AA v2, AA-LCR v1.1. Higher is better. (The Healthcare & Medical Index is listed on the page but not in the RSC payload.)"
+  },
+  {
+   "id": "aa_ii_cost_per_task_usd_lower_better",
+   "name": "AA — Cost per Intelligence Index task (USD)",
+   "category": "efficiency",
+   "metric": "usd_lower_better",
+   "description": "Weighted average cost (USD) to run one Artificial Analysis Intelligence Index task, from input, cache-hit, cache-write, reasoning and answer token prices divided by task count (AA 'intelligenceIndexCostPerTask.cost.total'). Lower is better."
+  },
+  {
+   "id": "aa_ii_time_per_task_s_lower_better",
+   "name": "AA — Time per Intelligence Index task (s)",
+   "category": "performance",
+   "metric": "seconds_lower_better",
+   "description": "Weighted average wall-clock seconds per Artificial Analysis Intelligence Index task (AA 'intelligenceIndexTimePerTask'). Lower is better."
+  },
+  {
+   "id": "aa_ii_output_tokens_per_task",
+   "name": "AA — Output tokens per Intelligence Index task",
+   "category": "efficiency",
+   "metric": "tokens",
+   "description": "Weighted average output tokens (reasoning + answer) per Artificial Analysis Intelligence Index task (AA 'intelligenceIndexOutputTokensPerTask.output'). Neither direction is 'better' on its own; pair with the index score."
+  },
+  {
+   "id": "aa_time_to_first_answer_token_s_lower_better",
+   "name": "AA — Time to first answer token (s)",
+   "category": "performance",
+   "metric": "seconds_lower_better",
+   "description": "Artificial Analysis latency: seconds from request to the first answer token, including any reasoning time (AA 'timeToFirstAnswerToken.total'). Lower is better."
+  },
+  {
+   "id": "cache_write_price_per_mtok_lower_better",
+   "name": "Cache-write price (USD per 1M tokens)",
+   "category": "pricing",
+   "metric": "usd_per_mtok_lower_better",
+   "description": "Price charged to write prompt tokens into the prompt cache, USD per million tokens (OpenAI 'Cache writes'). Lower is better."
+  },
+  {
+   "id": "audio_input_price_per_mtok_lower_better",
+   "name": "Audio input price (USD per 1M audio tokens)",
+   "category": "pricing",
+   "metric": "usd_per_mtok_lower_better",
+   "description": "USD per million audio input tokens. Lower is better."
+  },
+  {
+   "id": "audio_output_price_per_mtok_lower_better",
+   "name": "Audio output price (USD per 1M audio tokens)",
+   "category": "pricing",
+   "metric": "usd_per_mtok_lower_better",
+   "description": "USD per million audio output tokens. Lower is better."
+  },
+  {
+   "id": "image_input_price_per_mtok_lower_better",
+   "name": "Image input price (USD per 1M image tokens)",
+   "category": "pricing",
+   "metric": "usd_per_mtok_lower_better",
+   "description": "USD per million image input tokens. Lower is better."
+  },
+  {
+   "id": "image_output_price_per_mtok_lower_better",
+   "name": "Image output price (USD per 1M image tokens)",
+   "category": "pricing",
+   "metric": "usd_per_mtok_lower_better",
+   "description": "USD per million generated image tokens. Lower is better."
+  },
+  {
+   "id": "transcription_cost_per_minute_usd_lower_better",
+   "name": "Transcription cost (USD per audio minute)",
+   "category": "pricing",
+   "metric": "usd_lower_better",
+   "description": "Vendor-estimated cost per minute of audio transcribed/translated. Lower is better."
+  },
+  {
+   "id": "cost_per_second_landscape_1920x1080_usd_lower_better",
+   "name": "Video generation cost per second, 1080p (1920x1080)",
+   "category": "video-gen",
+   "metric": "score_lower_better",
+   "description": "USD per second of generated 1080p (1920x1080 / 1080x1920) video. Lower is better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 56.7581,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 58.7619,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 57.8309,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_capability_index_legal",
+   "score": 63.0507,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. capabilityScores.legal."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 65.0091,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. capabilityScores.engineering."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_capability_index_economics",
+   "score": 65.6408,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. capabilityScores.economics."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 6.1169,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. Breakdown: input 2.951 (non-cache 0.259, cache read 1.178, cache write 1.514), output 3.166 (reasoning 1.898, answer 1.268)."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 606.62,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 64072.1,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. reasoning 38594 + answer 25478."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_output_tps",
+   "score": 67.1,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 266.508,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. timeToFirstAnswerToken.total (input 266.51s + reasoning 0.00s)."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 7.175,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5-1'. AA name 'Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 20."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 54.6573,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 54.1111,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 51.0386,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_capability_index_legal",
+   "score": 59.5742,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'. capabilityScores.legal."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 61.5875,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'. capabilityScores.engineering."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_capability_index_economics",
+   "score": 62.8366,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'. capabilityScores.economics."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 2.5673,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'. Breakdown: input 1.518 (non-cache 0.204, cache read 0.736, cache write 0.578), output 1.049 (reasoning 0.631, answer 0.419)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 345.25,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 20985.3,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'. reasoning 12614 + answer 8372."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_output_tps",
+   "score": 62.47,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 250.182,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'. timeToFirstAnswerToken.total (input 250.18s + reasoning 0.00s)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 7.7,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra'. AA name 'GPT-6 Astra (max)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 20."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 54.3149,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 53.851,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 51.0526,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_capability_index_legal",
+   "score": 59.2325,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'. capabilityScores.legal."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 61.5298,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'. capabilityScores.engineering."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_capability_index_economics",
+   "score": 62.5299,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'. capabilityScores.economics."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.8473,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'. Breakdown: input 1.190 (non-cache 0.217, cache read 0.528, cache write 0.445), output 0.657 (reasoning 0.319, answer 0.339)."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 237.03,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 13149.6,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'. reasoning 6376 + answer 6773."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_output_tps",
+   "score": 56.76,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 119.437,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'. timeToFirstAnswerToken.total (input 119.44s + reasoning 0.00s)."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 7.7,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-xhigh'. AA name 'GPT-6 Astra (xhigh)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 20."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 53.3589,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 52.5707,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 49.2285,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_capability_index_legal",
+   "score": 59.0179,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'. capabilityScores.legal."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 60.6694,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'. capabilityScores.engineering."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_capability_index_economics",
+   "score": 61.7334,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'. capabilityScores.economics."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.411,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'. Breakdown: input 0.960 (non-cache 0.217, cache read 0.387, cache write 0.356), output 0.452 (reasoning 0.169, answer 0.283)."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 153.18,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 9030.4,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'. reasoning 3371 + answer 5660."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_output_tps",
+   "score": 60.76,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 32.712,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'. timeToFirstAnswerToken.total (input 32.71s + reasoning 0.00s)."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 7.7,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-high'. AA name 'GPT-6 Astra (high)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 20."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 52.2467,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 51.4865,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 47.2275,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_capability_index_legal",
+   "score": 57.6939,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'. capabilityScores.legal."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 59.8751,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'. capabilityScores.engineering."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_capability_index_economics",
+   "score": 61.2619,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'. capabilityScores.economics."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.1612,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'. Breakdown: input 0.826 (non-cache 0.217, cache read 0.312, cache write 0.297), output 0.335 (reasoning 0.093, answer 0.242)."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 116.47,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 6697.9,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'. reasoning 1867 + answer 4831."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_output_tps",
+   "score": 57.75,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 8.074,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'. timeToFirstAnswerToken.total (input 8.07s + reasoning 0.00s)."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 7.7,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-medium'. AA name 'GPT-6 Astra (medium)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 20."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 49.3199,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 49.1812,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 44.7165,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_capability_index_legal",
+   "score": 55.0476,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. capabilityScores.legal."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 57.6352,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. capabilityScores.engineering."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_capability_index_economics",
+   "score": 59.4374,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. capabilityScores.economics."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.631,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. Breakdown: input 0.485 (non-cache 0.217, cache read 0.115, cache write 0.154), output 0.146 (reasoning 0.018, answer 0.128)."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 50.56,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 2921.7,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. reasoning 362 + answer 2560."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_output_tps",
+   "score": 59.27,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 1.948,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. timeToFirstAnswerToken.total (input 1.95s + reasoning 0.00s)."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 7.7,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-low'. AA name 'GPT-6 Astra (low)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 20."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 47.8462,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-non-reasoning'. AA name 'GPT-6 Astra (Non-reasoning)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 46.9569,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-non-reasoning'. AA name 'GPT-6 Astra (Non-reasoning)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 47.026,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-non-reasoning'. AA name 'GPT-6 Astra (Non-reasoning)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "aa_capability_index_legal",
+   "score": 49.7876,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-non-reasoning'. AA name 'GPT-6 Astra (Non-reasoning)'. capabilityScores.legal."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 54.4757,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-non-reasoning'. AA name 'GPT-6 Astra (Non-reasoning)'. capabilityScores.engineering."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "aa_capability_index_economics",
+   "score": 52.5645,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-non-reasoning'. AA name 'GPT-6 Astra (Non-reasoning)'. capabilityScores.economics."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.4233,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-non-reasoning'. AA name 'GPT-6 Astra (Non-reasoning)'. Breakdown: input 1.112 (non-cache 0.217, cache read 0.543, cache write 0.352), output 0.311 (reasoning 0.000, answer 0.311)."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 6223.5,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-non-reasoning'. AA name 'GPT-6 Astra (Non-reasoning)'. reasoning 0 + answer 6224."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 7.7,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-6-astra-non-reasoning'. AA name 'GPT-6 Astra (Non-reasoning)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 20."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 54.0539,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 56.2068,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 54.1693,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_capability_index_legal",
+   "score": 59.6757,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'. capabilityScores.legal."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 62.788,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'. capabilityScores.engineering."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_capability_index_economics",
+   "score": 63.1811,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'. capabilityScores.economics."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 4.2053,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'. Breakdown: input 2.793 (non-cache 0.129, cache read 2.067, cache write 0.597), output 1.412 (reasoning 0.804, answer 0.609)."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 594.81,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 56488.9,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'. reasoning 32142 + answer 24347."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_output_tps",
+   "score": 57.52,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 73.622,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'. timeToFirstAnswerToken.total (input 73.62s + reasoning 0.00s)."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 3.85,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-opus-5'. AA name 'Claude Opus 5 (Adaptive Reasoning, Max Effort)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 10."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 53.1913,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5'. AA name 'Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 55.6079,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5'. AA name 'Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 52.6727,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5'. AA name 'Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_capability_index_legal",
+   "score": 60.4257,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5'. AA name 'Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)'. capabilityScores.legal."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 62.4325,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5'. AA name 'Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)'. capabilityScores.engineering."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_capability_index_economics",
+   "score": 63.8268,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5'. AA name 'Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)'. capabilityScores.economics."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 5.6175,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5'. AA name 'Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)'. Breakdown: input 3.215 (non-cache 0.253, cache read 2.033, cache write 0.929), output 2.403 (reasoning 1.605, answer 0.798)."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 432.96,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5'. AA name 'Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)'."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 49492.7,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5'. AA name 'Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)'. reasoning 33301 + answer 16192."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 105.765,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'claude-fable-5'. AA name 'Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)'. timeToFirstAnswerToken.total (input 105.76s + reasoning 0.00s)."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 52.9531,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 52.6869,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 52.7657,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_capability_index_legal",
+   "score": 54.6675,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'. capabilityScores.legal."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 60.7573,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'. capabilityScores.engineering."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_capability_index_economics",
+   "score": 60.2197,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'. capabilityScores.economics."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.9588,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'. Breakdown: input 0.784 (non-cache 0.022, cache read 0.470, cache write 0.291), output 0.175 (reasoning 0.090, answer 0.085)."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 215.12,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 41161.0,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'. reasoning 21198 + answer 19963."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_output_tps",
+   "score": 190.12,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 29.208,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'. timeToFirstAnswerToken.total (input 18.69s + reasoning 10.52s)."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.78,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-3'. AA name 'Muse Spark 1.3 (max)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 2."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 46.8372,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 47.546,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 44.3397,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_capability_index_legal",
+   "score": 50.6506,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. capabilityScores.legal."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 56.7067,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. capabilityScores.engineering."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_capability_index_economics",
+   "score": 57.1032,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. capabilityScores.economics."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.5453,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. Breakdown: input 0.385 (non-cache 0.021, cache read 0.229, cache write 0.135), output 0.160 (reasoning 0.077, answer 0.082)."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 144.79,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 37617.5,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. reasoning 18209 + answer 19408."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_output_tps",
+   "score": 260.02,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 22.822,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. timeToFirstAnswerToken.total (input 15.13s + reasoning 7.69s)."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.78,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'muse-spark-1-2'. AA name 'Muse Spark 1.2 (xhigh)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 2."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 51.2552,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 50.9202,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 52.1351,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_capability_index_legal",
+   "score": 52.4608,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'. capabilityScores.legal."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 59.2659,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'. capabilityScores.engineering."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_capability_index_economics",
+   "score": 56.7635,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'. capabilityScores.economics."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.2495,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'. Breakdown: input 0.795 (non-cache 0.087, cache read 0.495, cache write 0.213), output 0.455 (reasoning 0.282, answer 0.172)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 256.75,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 22740.8,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'. reasoning 14121 + answer 8620."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_output_tps",
+   "score": 85.45,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 107.175,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'. timeToFirstAnswerToken.total (input 107.18s + reasoning 0.00s)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 3.08,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol'. AA name 'GPT-5.6 Sol (max)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 8."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 49.8448,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 49.1311,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 49.4883,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_capability_index_legal",
+   "score": 51.3822,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'. capabilityScores.legal."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 57.4215,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'. capabilityScores.engineering."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_capability_index_economics",
+   "score": 55.3557,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'. capabilityScores.economics."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.8891,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'. Breakdown: input 0.583 (non-cache 0.083, cache read 0.298, cache write 0.202), output 0.306 (reasoning 0.161, answer 0.145)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 195.22,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 15306.9,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'. reasoning 8061 + answer 7246."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_output_tps",
+   "score": 81.03,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 44.695,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'. timeToFirstAnswerToken.total (input 44.70s + reasoning 0.00s)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 3.08,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-xhigh'. AA name 'GPT-5.6 Sol (xhigh)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 8."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 48.2979,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 47.5504,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 47.6757,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_capability_index_legal",
+   "score": 49.8461,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'. capabilityScores.legal."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 56.2653,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'. capabilityScores.engineering."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_capability_index_economics",
+   "score": 54.1304,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'. capabilityScores.economics."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.6145,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'. Breakdown: input 0.410 (non-cache 0.082, cache read 0.186, cache write 0.142), output 0.205 (reasoning 0.091, answer 0.114)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 144.29,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 10245.9,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'. reasoning 4563 + answer 5683."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_output_tps",
+   "score": 73.19,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 13.806,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'. timeToFirstAnswerToken.total (input 13.81s + reasoning 0.00s)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-high",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 3.08,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gpt-5-6-sol-high'. AA name 'GPT-5.6 Sol (high)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 8."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 50.5768,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 50.0423,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 50.7505,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_capability_index_legal",
+   "score": 54.918,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'. capabilityScores.legal."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 58.8662,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'. capabilityScores.engineering."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_capability_index_economics",
+   "score": 57.0799,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'. capabilityScores.economics."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.2536,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'. Breakdown: input 1.082 (non-cache 0.033, cache read 0.500, cache write 0.550), output 0.171 (reasoning 0.088, answer 0.084)."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 441.89,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 28540.2,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'. reasoning 14621 + answer 13919."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_output_tps",
+   "score": 63.89,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 52.027,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'. timeToFirstAnswerToken.total (input 52.03s + reasoning 0.00s)."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 1.35,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'grok-4-6'. AA name 'Grok 4.6 (high)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 3."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 50.2337,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 49.3745,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 49.0436,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_capability_index_legal",
+   "score": 51.746,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'. capabilityScores.legal."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 57.6296,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'. capabilityScores.engineering."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_capability_index_economics",
+   "score": 57.7079,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'. capabilityScores.economics."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.5764,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'. Breakdown: input 1.008 (non-cache 0.063, cache read 0.620, cache write 0.325), output 0.568 (reasoning 0.370, answer 0.198)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 907.36,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 37893.1,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'. reasoning 24697 + answer 13196."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_output_tps",
+   "score": 40.26,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 53.957,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'. timeToFirstAnswerToken.total (input 4.29s + reasoning 49.67s)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 2.31,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'kimi-k3'. AA name 'Kimi K3 (max)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 6."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 48.584,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 46.6491,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 47.3922,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_capability_index_legal",
+   "score": 45.651,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'. capabilityScores.legal."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 57.6104,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'. capabilityScores.engineering."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_capability_index_economics",
+   "score": 54.4809,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'. capabilityScores.economics."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.2594,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'. Breakdown: input 1.020 (non-cache 0.013, cache read 0.894, cache write 0.113), output 0.239 (reasoning 0.159, answer 0.081)."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 460.2,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 54389.7,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'. reasoning 36068 + answer 18322."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_output_tps",
+   "score": 84.18,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 25.9,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'. timeToFirstAnswerToken.total (input 2.14s + reasoning 23.76s)."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.9019999999999999,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'glm-5-3'. AA name 'GLM-5.3 (max)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 2.15."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 47.0713,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gemini-3-8-flash'. AA name 'Gemini 3.8 Flash (high)'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 49.2228,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gemini-3-8-flash'. AA name 'Gemini 3.8 Flash (high)'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 48.1834,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gemini-3-8-flash'. AA name 'Gemini 3.8 Flash (high)'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_capability_index_legal",
+   "score": 55.5134,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gemini-3-8-flash'. AA name 'Gemini 3.8 Flash (high)'. capabilityScores.legal."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 57.1696,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gemini-3-8-flash'. AA name 'Gemini 3.8 Flash (high)'. capabilityScores.engineering."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_capability_index_economics",
+   "score": 57.6626,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gemini-3-8-flash'. AA name 'Gemini 3.8 Flash (high)'. capabilityScores.economics."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.738,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gemini-3-8-flash'. AA name 'Gemini 3.8 Flash (high)'. Breakdown: input 0.526 (non-cache 0.011, cache read 0.209, cache write 0.305), output 0.212 (reasoning 0.125, answer 0.088)."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 56648.9,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gemini-3-8-flash'. AA name 'Gemini 3.8 Flash (high)'. reasoning 33204 + answer 23445."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.5775,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'gemini-3-8-flash'. AA name 'Gemini 3.8 Flash (high)'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 1.5."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_intelligence_index_v4_2",
+   "score": 46.9057,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'. Index v4.2 (10 evals)."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_capability_index_finance_accounting",
+   "score": 44.9799,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'. capabilityScores.financeAndAccounting."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_capability_index_strategy_ops",
+   "score": 46.1272,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'. capabilityScores.strategyAndOps."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_capability_index_legal",
+   "score": 45.8723,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'. capabilityScores.legal."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_capability_index_engineering",
+   "score": 54.9826,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'. capabilityScores.engineering."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_capability_index_economics",
+   "score": 52.4387,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'. capabilityScores.economics."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.1877,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'. Breakdown: input 0.921 (non-cache 0.039, cache read 0.513, cache write 0.369), output 0.267 (reasoning 0.186, answer 0.081)."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 796.29,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 44468.4,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'. reasoning 30970 + answer 13498."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_output_tps",
+   "score": 39.73,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'. medianOutputSpeed (tokens/s)."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 52.697,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'. timeToFirstAnswerToken.total (input 2.35s + reasoning 50.34s)."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 1.175,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/releases/gpt-6-astra",
+   "_note": "AA release page RSC payload (artificialanalysis.ai/models/releases/gpt-6-astra, 2026-09-05), model object anchored on slug 'qwen3-8-max'. AA name 'Qwen3.8 Max'. price1mBlended7To2To1 (cache:input:output). 3:1 input:output blend = 3."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Promotional pricing, available at least through 2026-11-21. Replaces the OpenRouter-sourced $5 / $0.50 / $30 (pre-promo list price) stored earlier."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.4,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Promotional pricing, available at least through 2026-11-21. Replaces the OpenRouter-sourced $5 / $0.50 / $30 (pre-promo list price) stored earlier."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 5.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Promotional pricing, available at least through 2026-11-21. Replaces the OpenRouter-sourced $5 / $0.50 / $30 (pre-promo list price) stored earlier."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Promotional pricing, available at least through 2026-11-21. Replaces the OpenRouter-sourced $5 / $0.50 / $30 (pre-promo list price) stored earlier."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 8.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Promotional pricing, available at least through 2026-11-21. Replaces the OpenRouter-sourced $5 / $0.50 / $30 (pre-promo list price) stored earlier. Long-context column (>272K input tokens): cached input $0.80, cache writes $10.00."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 30.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Promotional pricing, available at least through 2026-11-21. Replaces the OpenRouter-sourced $5 / $0.50 / $30 (pre-promo list price) stored earlier. Long-context column (>272K input tokens)."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $1 / $0.10 / $6 stored earlier (that snapshot matched the Batch/Flex tier, not Standard)."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $1 / $0.10 / $6 stored earlier (that snapshot matched the Batch/Flex tier, not Standard)."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 2.5,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $1 / $0.10 / $6 stored earlier (that snapshot matched the Batch/Flex tier, not Standard)."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 12.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $1 / $0.10 / $6 stored earlier (that snapshot matched the Batch/Flex tier, not Standard)."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $1 / $0.10 / $6 stored earlier (that snapshot matched the Batch/Flex tier, not Standard). Long-context column (>272K input tokens): cached input $0.40, cache writes $5.00."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 18.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $1 / $0.10 / $6 stored earlier (that snapshot matched the Batch/Flex tier, not Standard). Long-context column (>272K input tokens)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $0.10 / $0.01 / $0.60 stored earlier (that snapshot matched the Batch/Flex tier, not Standard)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.02,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $0.10 / $0.01 / $0.60 stored earlier (that snapshot matched the Batch/Flex tier, not Standard)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $0.10 / $0.01 / $0.60 stored earlier (that snapshot matched the Batch/Flex tier, not Standard)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.2,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $0.10 / $0.01 / $0.60 stored earlier (that snapshot matched the Batch/Flex tier, not Standard)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 0.4,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $0.10 / $0.01 / $0.60 stored earlier (that snapshot matched the Batch/Flex tier, not Standard). Long-context column (>272K input tokens): cached input $0.04, cache writes $0.50."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 1.8,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Replaces the OpenRouter-sourced $0.10 / $0.01 / $0.60 stored earlier (that snapshot matched the Batch/Flex tier, not Standard). Long-context column (>272K input tokens)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 12.5,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens): cached input $2.00, cache writes $25.00."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 75.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens)."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 12.5,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens): cached input $2.00, cache writes $25.00."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 75.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens)."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 12.5,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens): cached input $2.00, cache writes $25.00."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 75.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens)."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 12.5,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens): cached input $2.00, cache writes $25.00."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 75.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens)."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 12.5,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens): cached input $2.00, cache writes $25.00."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 75.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens)."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 12.5,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens): cached input $2.00, cache writes $25.00."
+  },
+  {
+   "model": "openai/gpt-6-astra-non-reasoning",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 75.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens)."
+  },
+  {
+   "model": "openai/gpt-6-astra-pro",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-pro",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-pro",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 12.5,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-pro",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency."
+  },
+  {
+   "model": "openai/gpt-6-astra-pro",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens): cached input $2.00, cache writes $25.00."
+  },
+  {
+   "model": "openai/gpt-6-astra-pro",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 75.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Flagship models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Same price for every reasoning-effort tier and for reasoning.mode=pro (pro bills the extra model work at standard token rates). OpenRouter's openai/gpt-6-astra endpoints list the same $10 / $50 (OpenAI, Azure), $5 / $25 (OpenAI Flex) and $20 / $100 (OpenAI Fast). Fast mode is unavailable for GPT-6 Astra with EU data residency. Long-context column (>272K input tokens)."
+  },
+  {
+   "model": "openai/gpt-5.6-cyber",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 15.625,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Cyber models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Standard $12.50 / $1.25 / $75 already stored; no long-context tier for gpt-5.6-cyber ('-')."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1",
+   "benchmark": "audio_input_price_per_mtok_lower_better",
+   "score": 32.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.40, image cached input $0.50."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1",
+   "benchmark": "audio_output_price_per_mtok_lower_better",
+   "score": 64.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.40, image cached input $0.50."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.40, image cached input $0.50. Text row."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.4,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.40, image cached input $0.50. Text row."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 24.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.40, image cached input $0.50. Text row."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1",
+   "benchmark": "image_input_price_per_mtok_lower_better",
+   "score": 5.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.40, image cached input $0.50. Image row."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1-mini",
+   "benchmark": "audio_input_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.30, image cached input $0.08."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1-mini",
+   "benchmark": "audio_output_price_per_mtok_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.30, image cached input $0.08."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1-mini",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.6,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.30, image cached input $0.08. Text row."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1-mini",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.06,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.30, image cached input $0.08. Text row."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1-mini",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.4,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.30, image cached input $0.08. Text row."
+  },
+  {
+   "model": "openai/gpt-realtime-2.1-mini",
+   "benchmark": "image_input_price_per_mtok_lower_better",
+   "score": 0.8,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Realtime and audio generation models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Per-modality rows: Audio / Text / Image. Audio cached input $0.30, image cached input $0.08. Image row."
+  },
+  {
+   "model": "openai/gpt-image-2",
+   "benchmark": "image_input_price_per_mtok_lower_better",
+   "score": 8.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Image generation models' table (Standard) — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Image row: input $8.00, cached $2.00, output $30.00; Text row: input $5.00, cached $1.25. Batch table halves all of these."
+  },
+  {
+   "model": "openai/gpt-image-2",
+   "benchmark": "image_output_price_per_mtok_lower_better",
+   "score": 30.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Image generation models' table (Standard) — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Image row: input $8.00, cached $2.00, output $30.00; Text row: input $5.00, cached $1.25. Batch table halves all of these."
+  },
+  {
+   "model": "openai/gpt-image-2",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 5.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Image generation models' table (Standard) — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Image row: input $8.00, cached $2.00, output $30.00; Text row: input $5.00, cached $1.25. Batch table halves all of these."
+  },
+  {
+   "model": "openai/gpt-image-2",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.25,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Image generation models' table (Standard) — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. Image row: input $8.00, cached $2.00, output $30.00; Text row: input $5.00, cached $1.25. Batch table halves all of these."
+  },
+  {
+   "model": "openai/sora-2",
+   "benchmark": "cost_per_second_landscape_1280x720_usd_lower_better",
+   "score": 0.1,
+   "unit": "USD/s",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Video generation models' table (Standard) — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. sora-2 720p $0.10/s; sora-2-pro 720p $0.30/s, 1024p $0.50/s, 1080p $0.70/s. Batch table halves these."
+  },
+  {
+   "model": "openai/sora-2-pro",
+   "benchmark": "cost_per_second_landscape_1920x1080_usd_lower_better",
+   "score": 0.7,
+   "unit": "USD/s",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Video generation models' table (Standard) — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. sora-2 720p $0.10/s; sora-2-pro 720p $0.30/s, 1024p $0.50/s, 1080p $0.70/s. Batch table halves these."
+  },
+  {
+   "model": "openai/gpt-realtime-translate",
+   "benchmark": "transcription_cost_per_minute_usd_lower_better",
+   "score": 0.034,
+   "unit": "USD/min",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Transcription models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. 'Estimated cost' column, USD per minute. Live translation."
+  },
+  {
+   "model": "openai/gpt-live-transcribe",
+   "benchmark": "transcription_cost_per_minute_usd_lower_better",
+   "score": 0.017,
+   "unit": "USD/min",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Transcription models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. 'Estimated cost' column, USD per minute. Live transcription."
+  },
+  {
+   "model": "openai/gpt-realtime-whisper",
+   "benchmark": "transcription_cost_per_minute_usd_lower_better",
+   "score": 0.017,
+   "unit": "USD/min",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Transcription models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. 'Estimated cost' column, USD per minute. Live transcription."
+  },
+  {
+   "model": "openai/gpt-transcribe",
+   "benchmark": "transcription_cost_per_minute_usd_lower_better",
+   "score": 0.0045,
+   "unit": "USD/min",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Transcription models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. 'Estimated cost' column, USD per minute. Transcription."
+  },
+  {
+   "model": "openai/gpt-4o-transcribe",
+   "benchmark": "transcription_cost_per_minute_usd_lower_better",
+   "score": 0.006,
+   "unit": "USD/min",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Transcription models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. 'Estimated cost' column, USD per minute. Transcription; text tokens $2.50 in / $10.00 out."
+  },
+  {
+   "model": "openai/gpt-4o-mini-transcribe",
+   "benchmark": "transcription_cost_per_minute_usd_lower_better",
+   "score": 0.003,
+   "unit": "USD/min",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Transcription models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. 'Estimated cost' column, USD per minute. Transcription; text tokens $1.25 in / $5.00 out."
+  },
+  {
+   "model": "openai/gpt-4o-transcribe",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2.5,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Transcription models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. 'Estimated cost' column, USD per minute."
+  },
+  {
+   "model": "openai/gpt-4o-transcribe",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Transcription models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. 'Estimated cost' column, USD per minute."
+  },
+  {
+   "model": "openai/gpt-4o-mini-transcribe",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.25,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Transcription models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. 'Estimated cost' column, USD per minute."
+  },
+  {
+   "model": "openai/gpt-4o-mini-transcribe",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 5.0,
+   "unit": "USD/1M",
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_note": "OpenAI official API pricing page (developers.openai.com/api/docs/pricing, read 2026-09-05), 'Transcription models' table — Standard tier, short context (≤272K input tokens). Batch and Flex are 50% of Standard; Fast mode (ex-Priority) is 2×; long-context (>272K) is billed at 2× input/cache and 1.5× output for the whole request. 'Estimated cost' column, USD per minute."
+  }
+ ]
+}

@@ -27,6 +27,7 @@ window.Price = (function () {
     var METRICS = [
         // 종합 (composite)
         ['aa_intelligence_index',    'AA Intelligence Index (AAII)', '종합'],
+        ['aa_intelligence_index_v4_2', 'AA Intelligence Index v4.2', '종합'],
         ['epoch_capabilities_index', 'Epoch Capabilities Index (ECI)', '종합'],
         ['llm_stats_index',          'LLM-Stats Index', '종합'],
         // 추론 (reasoning)
