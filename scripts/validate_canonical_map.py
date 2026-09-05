@@ -60,20 +60,33 @@ def main() -> int:
             (cycles if looped else chains).append((dupe, path, end))
 
     db_dupes, dangling = [], []
+    db_checked = False
     if DB_PATH.exists():
         con = sqlite3.connect(DB_PATH)
         ids = {r[0] for r in con.execute("SELECT id FROM models")}
-        scored = {r[0] for r in con.execute("SELECT DISTINCT model_id FROM scores")}
-        for dupe, canon in mapping.items():
-            if dupe in ids or dupe in scored:
-                db_dupes.append(dupe)
-            if canon not in ids and canon not in mapping:
-                dangling.append((dupe, canon))
-        con.close()
+        # In CI this script runs BEFORE the seed load, so the models table can be empty or
+        # nearly so. Reporting every canonical target as DANGLING there is pure noise and
+        # would bury a real finding, so skip the DB-dependent checks until the DB is populated.
+        if len(ids) < 100:
+            con.close()
+            print(f"[canonical-map] DB has {len(ids)} models — skipping DB-dependent checks "
+                  f"(expected when running before the seed load)")
+            ids = None
+        if ids is not None:
+            db_checked = True
+            scored = {r[0] for r in con.execute("SELECT DISTINCT model_id FROM scores")}
+            for dupe, canon in mapping.items():
+                if dupe in ids or dupe in scored:
+                    db_dupes.append(dupe)
+                if canon not in ids and canon not in mapping:
+                    dangling.append((dupe, canon))
+            con.close()
 
     print(f"[canonical-map] {len(mapping)} entries")
-    for label, items in (("CHAIN", chains), ("CYCLE", cycles), ("SELF", selfs),
-                         ("DB_DUPE", db_dupes), ("DANGLING", dangling)):
+    rows = [("CHAIN", chains), ("CYCLE", cycles), ("SELF", selfs)]
+    if db_checked:
+        rows += [("DB_DUPE", db_dupes), ("DANGLING", dangling)]
+    for label, items in rows:
         print(f"[canonical-map] {label:9} {len(items)}")
 
     for dupe, path, end in chains:

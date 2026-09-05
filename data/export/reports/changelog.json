@@ -5055,5 +5055,11 @@
   "title": "S269 — canonical_map 체인 검사 자동화 (scripts/validate_canonical_map.py + make/CI 게이트)",
   "detail": "S268b에서 수동으로 잡은 체인 버그가 재발하지 않도록 검사를 자동화. scripts/validate_canonical_map.py 신규: CHAIN(타깃이 또 다른 dupe 키 — loader가 1홉만 치환해 폐기 ID 부활), CYCLE(순환), SELF(자기 참조), DB_DUPE(dupe 키가 DB에 잔존), DANGLING(canonical이 models에 없음) 5종 검사. --fix 옵션으로 체인을 종점까지 접고 자기참조를 제거(순환은 수동 해결 필요하므로 exit 1 유지). 동작 검증: 인위적 체인/자기참조/순환을 주입해 각각 정확히 탐지·수정됨을 확인. 게이트 연결: Makefile의 load 타깃이 validate-map에 의존하도록 해 체인이 있으면 make load가 중단되고(시험 결과 'make: *** [validate-map] Error 1'로 차단 확인), CI 2곳에도 추가 — dashboard-tests.yml의 schema-validate 잡, benchmark-update.yml의 로드 직전 단계. 즉시 성과: 검사기가 첫 실행에서 실제 DB_DUPE 1건을 발견 — anthropic/claude-sonnet-3.7이 map의 dupe 키인데 DB에 모델 1행·점수 1행으로 남아 있었음(S268b 체인 해소 때 중간 노드가 정리되지 않은 잔재). canonical(anthropic/claude-3.7-sonnet, 60행)로 병합 — 겹친 벤치 1건은 양쪽 값이 5.8로 동일해 손실 없음. JSON 2개 파일 재지정 + DB 정리 후 재검사 결과 CHAIN/CYCLE/SELF/DB_DUPE/DANGLING 전부 0.",
   "type": "Feature"
+ },
+ {
+  "date": "2026-09-05",
+  "title": "S269b — 검증기 CI 게이트 실효화 (main 워크플로 반영) + 로드 전 DB 검사 노이즈 제거",
+  "detail": "S269에서 추가한 CI 단계가 실제로는 실행되지 않고 있었음. 이 저장소는 워크플로 정의를 main 브랜치가 보유하고(main에는 .github/HISTORY.md/LICENSE/README.md만 존재) benchmark-update.yml이 실행 시 ops를 체크아웃하는 구조라, ops에만 넣은 단계는 무시됨. 미커밋 파일 110개가 있어 브랜치 전환 대신 임시 worktree로 main에 게이트를 반영(main 커밋 6f5279d, rebase 후 push). 재실행 결과 'Analyst — validate & mark SOTA' 잡에서 [canonical-map] 로그가 정상 출력됨을 확인. dashboard-tests.yml은 main에 없는 ops 전용이라 기존 반영으로 충분. 동시에 노이즈 1건 제거: CI는 로드 '이전'에 검증기를 돌리므로 models 테이블이 비어 있어 DANGLING이 274(전량)로 보고됐음 — 진짜 문제를 가릴 수 있어, models가 100개 미만이면 DB 의존 검사(DB_DUPE·DANGLING)를 건너뛰고 사유를 출력하도록 수정. 체인/순환/자기참조 검사는 DB와 무관하므로 그대로 수행. 빈 DB와 정상 DB 양쪽으로 시험해 각각 스킵/전체검사가 올바르게 동작함을 확인.",
+  "type": "Fix"
  }
 ]
