@@ -1,0 +1,996 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-05",
+  "session": "S270",
+  "note": "Re-audit of the S265 sources. (1) Terminal-Bench 4.0: the WebFetch summary S265 relied on returned only the top 5 of a 14-row board; the remaining 9 rows are parsed from the raw HTML table — the same partial-slice failure S265c found on NYT Connections. (2) SRE-Bench paper: Figures 2 and 4 were dismissed in S265 as figure-only, but the pdftotext extraction contains their full numeric values (5 models x 9 language/domain columns; 5 models x 8 protection presets); ingested as sub-metric ids on the 0-6 rubric scale. (3) Terminal-Universe (Qwen, 2026-09-04) was skipped in S265 as 'research SFT checkpoints', which was too broad: the paper's own model Terminal-Universe-27B is a named Qwen release, EvoCode-Bench v2 is a new benchmark absent from the DB, and the Qwen3.5-27B base rows are net-new. Qwen3.7-Max's TB2.0 69.7 / TB2.1 74.5 in the paper match the existing DB rows exactly, which also confirms `terminal_bench_2` is the TB2.0 id. The other research checkpoints in Table 3 (TerminalTraj-32B, TermiGen-32B, Nemotron-Terminal-32B, TMax-27B, ...) are still left out. NOT INGESTED after re-audit: Terminal-Bench-Science's TB2.1/TB3.0/TBS comparison table — its 'TB2.1' column (Fable 5 83.8, Opus 4.8 78.9, Terra 78.4, Luna 75.7) does not match the DB's TB2.1 rows (88.0/82.7/87.4/84.7), so the column identities cannot be confirmed from the flattened RSC text and the candidate TB3.0 values (42.7/34.4/33.8/21.1/20.8/14.3) are withheld; its per-domain chart (15 values, 3 models) because the domain labels are not recoverable from the payload; the CRI page beyond Opus 5 (chart only, no data in scripts/img/iframe); openai.com/index/gpt-6-astra (HTTP 403 to curl); the K2 Horizon product page (no tables or specs beyond the blog). BenchLM ARC-AGI-3 was re-checked and is complete at 12 rows.",
+  "sources": [
+   "https://snorkel.ai/leaderboard/terminal-bench-4-0/",
+   "resource/srebench_arxiv-2608.11469.pdf",
+   "https://arxiv.org/pdf/2608.11469",
+   "resource/terminal-universe_arxiv-2609.04148.pdf",
+   "https://arxiv.org/pdf/2609.04148"
+  ]
+ },
+ "models": [
+  {
+   "id": "alibaba/terminal-universe-27b",
+   "vendor": "Alibaba / Qwen",
+   "name": "Terminal-Universe-27B",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2026-09-04",
+   "parameters": "27B"
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "sre_bench_lang_c",
+   "name": "SRE-Bench — source language: C (mean score /6)",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 2 heat-map, values printed in the paper text: mean rubric score (0-6) per model over all 262 instances, broken down by source language. Same protocol as the paper's Table 4 (mini-SWE-agent, bash only, max effort). 0-6 scale, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_lang_cpp",
+   "name": "SRE-Bench — source language: C++ (mean score /6)",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 2 heat-map, values printed in the paper text: mean rubric score (0-6) per model over all 262 instances, broken down by source language. Same protocol as the paper's Table 4 (mini-SWE-agent, bash only, max effort). 0-6 scale, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_lang_rust",
+   "name": "SRE-Bench — source language: Rust (mean score /6)",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 2 heat-map, values printed in the paper text: mean rubric score (0-6) per model over all 262 instances, broken down by source language. Same protocol as the paper's Table 4 (mini-SWE-agent, bash only, max effort). 0-6 scale, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_lang_go",
+   "name": "SRE-Bench — source language: Go (mean score /6)",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 2 heat-map, values printed in the paper text: mean rubric score (0-6) per model over all 262 instances, broken down by source language. Same protocol as the paper's Table 4 (mini-SWE-agent, bash only, max effort). 0-6 scale, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_domain_proto",
+   "name": "SRE-Bench — target domain: network protocols (mean score /6)",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 2 heat-map, values printed in the paper text: mean rubric score (0-6) per model over all 262 instances, broken down by target domain. Same protocol as the paper's Table 4 (mini-SWE-agent, bash only, max effort). 0-6 scale, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_domain_fmt",
+   "name": "SRE-Bench — target domain: file formats (mean score /6)",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 2 heat-map, values printed in the paper text: mean rubric score (0-6) per model over all 262 instances, broken down by target domain. Same protocol as the paper's Table 4 (mini-SWE-agent, bash only, max effort). 0-6 scale, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_domain_game",
+   "name": "SRE-Bench — target domain: games (mean score /6)",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 2 heat-map, values printed in the paper text: mean rubric score (0-6) per model over all 262 instances, broken down by target domain. Same protocol as the paper's Table 4 (mini-SWE-agent, bash only, max effort). 0-6 scale, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_domain_malw",
+   "name": "SRE-Bench — target domain: malware remediation (mean score /6)",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 2 heat-map, values printed in the paper text: mean rubric score (0-6) per model over all 262 instances, broken down by target domain. Same protocol as the paper's Table 4 (mini-SWE-agent, bash only, max effort). 0-6 scale, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_domain_firm",
+   "name": "SRE-Bench — target domain: firmware (mean score /6)",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 2 heat-map, values printed in the paper text: mean rubric score (0-6) per model over all 262 instances, broken down by target domain. Same protocol as the paper's Table 4 (mini-SWE-agent, bash only, max effort). 0-6 scale, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_preset_p1",
+   "name": "SRE-Bench — protection preset P1 (baseline hardened), mean score /6",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 4: mean rubric score (0-6) per model on protection preset P1 (baseline hardened) from the paper's Table 6 — all targets optimised, stripped and statically linked. Only GPT-5.6 Sol stays materially above the floor under any preset, which is why the authors describe protection as a ceiling on agentic RE rather than a graded difficulty axis. 0-6, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_preset_p2",
+   "name": "SRE-Bench — protection preset P2 (protected), mean score /6",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 4: mean rubric score (0-6) per model on protection preset P2 (protected) from the paper's Table 6 — all targets optimised, stripped and statically linked. Only GPT-5.6 Sol stays materially above the floor under any preset, which is why the authors describe protection as a ceiling on agentic RE rather than a graded difficulty axis. 0-6, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_preset_p3",
+   "name": "SRE-Bench — protection preset P3 (protected-demand), mean score /6",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 4: mean rubric score (0-6) per model on protection preset P3 (protected-demand) from the paper's Table 6 — all targets optimised, stripped and statically linked. Only GPT-5.6 Sol stays materially above the floor under any preset, which is why the authors describe protection as a ceiling on agentic RE rather than a graded difficulty axis. 0-6, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_preset_p4",
+   "name": "SRE-Bench — protection preset P4 (protected-demand-strict), mean score /6",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 4: mean rubric score (0-6) per model on protection preset P4 (protected-demand-strict) from the paper's Table 6 — all targets optimised, stripped and statically linked. Only GPT-5.6 Sol stays materially above the floor under any preset, which is why the authors describe protection as a ceiling on agentic RE rather than a graded difficulty axis. 0-6, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_preset_p5",
+   "name": "SRE-Bench — protection preset P5 (licensed-eager), mean score /6",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 4: mean rubric score (0-6) per model on protection preset P5 (licensed-eager) from the paper's Table 6 — all targets optimised, stripped and statically linked. Only GPT-5.6 Sol stays materially above the floor under any preset, which is why the authors describe protection as a ceiling on agentic RE rather than a graded difficulty axis. 0-6, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_preset_p6",
+   "name": "SRE-Bench — protection preset P6 (licensed-demand), mean score /6",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 4: mean rubric score (0-6) per model on protection preset P6 (licensed-demand) from the paper's Table 6 — all targets optimised, stripped and statically linked. Only GPT-5.6 Sol stays materially above the floor under any preset, which is why the authors describe protection as a ceiling on agentic RE rather than a graded difficulty axis. 0-6, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_preset_p7",
+   "name": "SRE-Bench — protection preset P7 (licensed-demand-material), mean score /6",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 4: mean rubric score (0-6) per model on protection preset P7 (licensed-demand-material) from the paper's Table 6 — all targets optimised, stripped and statically linked. Only GPT-5.6 Sol stays materially above the floor under any preset, which is why the authors describe protection as a ceiling on agentic RE rather than a graded difficulty axis. 0-6, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "sre_bench_preset_p8",
+   "name": "SRE-Bench — protection preset P8 (licensed-demand-superops), mean score /6",
+   "category": "cyber",
+   "description": "SRE-Bench (arXiv 2608.11469) Figure 4: mean rubric score (0-6) per model on protection preset P8 (licensed-demand-superops) from the paper's Table 6 — all targets optimised, stripped and statically linked. Only GPT-5.6 Sol stays materially above the floor under any preset, which is why the authors describe protection as a ceiling on agentic RE rather than a graded difficulty axis. 0-6, higher better.",
+   "metric": "score_0_6"
+  },
+  {
+   "id": "evocode_bench_v2_mt4",
+   "name": "EvoCode-Bench v2 — MT@4 (multi-round, fail-stop)",
+   "category": "code-agent",
+   "description": "EvoCode-Bench v2 (Shen et al., 2026a): sequential development requests in a persistent workspace. MT@4 uses fail-stop scoring — a run is credited only for the consecutive rounds it completes, averaged within each task and then across tasks. Higher better.",
+   "metric": "score"
+  },
+  {
+   "id": "evocode_bench_v2_case",
+   "name": "EvoCode-Bench v2 — Case score (verifier-case pass rate)",
+   "category": "code-agent",
+   "description": "EvoCode-Bench v2 (Shen et al., 2026a): average verifier-case pass rate across the multi-round tasks. Higher better.",
+   "metric": "score"
+  }
+ ],
+ "scores": [
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0",
+   "score": 37.3,
+   "unit": "%",
+   "_source": "https://snorkel.ai/leaderboard/terminal-bench-4-0/",
+   "_note": "Snorkel Terminal-Bench 4.0 leaderboard (v4.0.0, Aug 2026); full 14-row board parsed from raw HTML <table>; rank #6; effort max; agent harness: Codex"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_4_0",
+   "score": 23.6,
+   "unit": "%",
+   "_source": "https://snorkel.ai/leaderboard/terminal-bench-4-0/",
+   "_note": "Snorkel Terminal-Bench 4.0 leaderboard (v4.0.0, Aug 2026); full 14-row board parsed from raw HTML <table>; rank #7; effort max; agent harness: Claude Code"
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_4_0",
+   "score": 21.5,
+   "unit": "%",
+   "_source": "https://snorkel.ai/leaderboard/terminal-bench-4-0/",
+   "_note": "Snorkel Terminal-Bench 4.0 leaderboard (v4.0.0, Aug 2026); full 14-row board parsed from raw HTML <table>; rank #8; effort max; agent harness: Codex"
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_4_0",
+   "score": 20.3,
+   "unit": "%",
+   "_source": "https://snorkel.ai/leaderboard/terminal-bench-4-0/",
+   "_note": "Snorkel Terminal-Bench 4.0 leaderboard (v4.0.0, Aug 2026); full 14-row board parsed from raw HTML <table>; rank #9; effort high; agent harness: Grok Build"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4_0",
+   "score": 19.1,
+   "unit": "%",
+   "_source": "https://snorkel.ai/leaderboard/terminal-bench-4-0/",
+   "_note": "Snorkel Terminal-Bench 4.0 leaderboard (v4.0.0, Aug 2026); full 14-row board parsed from raw HTML <table>; rank #10; effort high; agent harness: mini-SWE-agent"
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_4_0",
+   "score": 17.3,
+   "unit": "%",
+   "_source": "https://snorkel.ai/leaderboard/terminal-bench-4-0/",
+   "_note": "Snorkel Terminal-Bench 4.0 leaderboard (v4.0.0, Aug 2026); full 14-row board parsed from raw HTML <table>; rank #11; effort max; agent harness: Codex"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "terminal_bench_4_0",
+   "score": 12.4,
+   "unit": "%",
+   "_source": "https://snorkel.ai/leaderboard/terminal-bench-4-0/",
+   "_note": "Snorkel Terminal-Bench 4.0 leaderboard (v4.0.0, Aug 2026); full 14-row board parsed from raw HTML <table>; rank #12; effort high; agent harness: Grok Build"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_4_0",
+   "score": 12.4,
+   "unit": "%",
+   "_source": "https://snorkel.ai/leaderboard/terminal-bench-4-0/",
+   "_note": "Snorkel Terminal-Bench 4.0 leaderboard (v4.0.0, Aug 2026); full 14-row board parsed from raw HTML <table>; rank #13; effort max; agent harness: Claude Code"
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "terminal_bench_4_0",
+   "score": 11.2,
+   "unit": "%",
+   "_source": "https://snorkel.ai/leaderboard/terminal-bench-4-0/",
+   "_note": "Snorkel Terminal-Bench 4.0 leaderboard (v4.0.0, Aug 2026); full 14-row board parsed from raw HTML <table>; rank #14; effort high; agent harness: mini-SWE-agent"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_lang_c",
+   "score": 4.24,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_lang_cpp",
+   "score": 3.64,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_lang_rust",
+   "score": 3.43,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_lang_go",
+   "score": 3.39,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_domain_proto",
+   "score": 4.88,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_domain_fmt",
+   "score": 4.16,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_domain_game",
+   "score": 3.57,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_domain_malw",
+   "score": 2.06,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_domain_firm",
+   "score": 6.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_lang_c",
+   "score": 2.32,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_lang_cpp",
+   "score": 1.88,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_lang_rust",
+   "score": 1.52,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_lang_go",
+   "score": 1.91,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_domain_proto",
+   "score": 3.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_domain_fmt",
+   "score": 1.61,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_domain_game",
+   "score": 2.28,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_domain_malw",
+   "score": 0.34,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_domain_firm",
+   "score": 4.67,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_lang_c",
+   "score": 1.56,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_lang_cpp",
+   "score": 1.09,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_lang_rust",
+   "score": 0.68,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_lang_go",
+   "score": 0.75,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_domain_proto",
+   "score": 1.42,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_domain_fmt",
+   "score": 0.81,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_domain_game",
+   "score": 1.34,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_domain_malw",
+   "score": 0.31,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_domain_firm",
+   "score": 3.17,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_lang_c",
+   "score": 0.83,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_lang_cpp",
+   "score": 0.49,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_lang_rust",
+   "score": 0.27,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_lang_go",
+   "score": 0.17,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_domain_proto",
+   "score": 0.58,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_domain_fmt",
+   "score": 0.81,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_domain_game",
+   "score": 0.5,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_domain_malw",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_domain_firm",
+   "score": 2.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_lang_c",
+   "score": 0.38,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_lang_cpp",
+   "score": 0.18,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_lang_rust",
+   "score": 0.12,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_lang_go",
+   "score": 0.14,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_domain_proto",
+   "score": 0.48,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_domain_fmt",
+   "score": 0.08,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_domain_game",
+   "score": 0.2,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_domain_malw",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_domain_firm",
+   "score": 0.83,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 2 (numeric heat-map values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_preset_p1",
+   "score": 3.19,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_preset_p2",
+   "score": 3.07,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_preset_p3",
+   "score": 2.06,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_preset_p4",
+   "score": 1.93,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_preset_p5",
+   "score": 3.07,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_preset_p6",
+   "score": 2.44,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_preset_p7",
+   "score": 2.29,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "sre_bench_preset_p8",
+   "score": 1.93,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_preset_p1",
+   "score": 0.25,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_preset_p2",
+   "score": 0.25,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_preset_p3",
+   "score": 0.25,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_preset_p4",
+   "score": 0.5,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_preset_p5",
+   "score": 0.56,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_preset_p6",
+   "score": 0.44,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_preset_p7",
+   "score": 0.12,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "sre_bench_preset_p8",
+   "score": 0.25,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_preset_p1",
+   "score": 0.19,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_preset_p2",
+   "score": 0.06,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_preset_p3",
+   "score": 0.19,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_preset_p4",
+   "score": 0.06,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_preset_p5",
+   "score": 0.19,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_preset_p6",
+   "score": 0.12,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_preset_p7",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "sre_bench_preset_p8",
+   "score": 0.06,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_preset_p1",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_preset_p2",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_preset_p3",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_preset_p4",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_preset_p5",
+   "score": 0.17,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_preset_p6",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_preset_p7",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "sre_bench_preset_p8",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_preset_p1",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_preset_p2",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_preset_p3",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_preset_p4",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_preset_p5",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_preset_p6",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_preset_p7",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "sre_bench_preset_p8",
+   "score": 0.0,
+   "unit": "score_0_6",
+   "_source": "resource/srebench_arxiv-2608.11469.pdf",
+   "_note": "arXiv 2608.11469 Figure 4 (numeric values printed in text)"
+  },
+  {
+   "model": "alibaba/terminal-universe-27b",
+   "benchmark": "terminal_bench_2",
+   "score": 52.8,
+   "unit": "%",
+   "_source": "resource/terminal-universe_arxiv-2609.04148.pdf",
+   "_note": "Terminal-Universe paper (Qwen, arXiv 2609.04148) Table 3. Terminus2 scaffold. '*' in the paper marks scores the authors measured themselves on the released model under their §G configuration; other scores are taken from the corresponding reports. Trained from Qwen3.5-27B on 32.0k Terminal-Universe samples."
+  },
+  {
+   "model": "alibaba/terminal-universe-27b",
+   "benchmark": "terminal_bench_2_1",
+   "score": 58.1,
+   "unit": "%",
+   "_source": "resource/terminal-universe_arxiv-2609.04148.pdf",
+   "_note": "Terminal-Universe paper (Qwen, arXiv 2609.04148) Table 3. Terminus2 scaffold. '*' in the paper marks scores the authors measured themselves on the released model under their §G configuration; other scores are taken from the corresponding reports. +11.9 over the Qwen3.5-27B base."
+  },
+  {
+   "model": "alibaba/terminal-universe-27b",
+   "benchmark": "evocode_bench_v2_mt4",
+   "score": 20.1,
+   "unit": "score",
+   "_source": "resource/terminal-universe_arxiv-2609.04148.pdf",
+   "_note": "Terminal-Universe paper (Qwen, arXiv 2609.04148) Table 3. Terminus2 scaffold. '*' in the paper marks scores the authors measured themselves on the released model under their §G configuration; other scores are taken from the corresponding reports. +13.8 over the Qwen3.5-27B base."
+  },
+  {
+   "model": "alibaba/terminal-universe-27b",
+   "benchmark": "evocode_bench_v2_case",
+   "score": 76.1,
+   "unit": "score",
+   "_source": "resource/terminal-universe_arxiv-2609.04148.pdf",
+   "_note": "Terminal-Universe paper (Qwen, arXiv 2609.04148) Table 3. Terminus2 scaffold. '*' in the paper marks scores the authors measured themselves on the released model under their §G configuration; other scores are taken from the corresponding reports."
+  },
+  {
+   "model": "alibaba/qwen3.5-27b",
+   "benchmark": "terminal_bench_2",
+   "score": 41.6,
+   "unit": "%",
+   "_source": "resource/terminal-universe_arxiv-2609.04148.pdf",
+   "_note": "Terminal-Universe paper (Qwen, arXiv 2609.04148) Table 3. Terminus2 scaffold. '*' in the paper marks scores the authors measured themselves on the released model under their §G configuration; other scores are taken from the corresponding reports. Base-model row."
+  },
+  {
+   "model": "alibaba/qwen3.5-27b",
+   "benchmark": "terminal_bench_2_1",
+   "score": 46.2,
+   "unit": "%",
+   "_source": "resource/terminal-universe_arxiv-2609.04148.pdf",
+   "_note": "Terminal-Universe paper (Qwen, arXiv 2609.04148) Table 3. Terminus2 scaffold. '*' in the paper marks scores the authors measured themselves on the released model under their §G configuration; other scores are taken from the corresponding reports. Base-model row."
+  },
+  {
+   "model": "alibaba/qwen3.5-27b",
+   "benchmark": "evocode_bench_v2_mt4",
+   "score": 6.3,
+   "unit": "score",
+   "_source": "resource/terminal-universe_arxiv-2609.04148.pdf",
+   "_note": "Terminal-Universe paper (Qwen, arXiv 2609.04148) Table 3. Terminus2 scaffold. '*' in the paper marks scores the authors measured themselves on the released model under their §G configuration; other scores are taken from the corresponding reports. Base-model row (*)."
+  },
+  {
+   "model": "alibaba/qwen3.5-27b",
+   "benchmark": "evocode_bench_v2_case",
+   "score": 67.8,
+   "unit": "score",
+   "_source": "resource/terminal-universe_arxiv-2609.04148.pdf",
+   "_note": "Terminal-Universe paper (Qwen, arXiv 2609.04148) Table 3. Terminus2 scaffold. '*' in the paper marks scores the authors measured themselves on the released model under their §G configuration; other scores are taken from the corresponding reports. Base-model row (*)."
+  },
+  {
+   "model": "alibaba/qwen3.7-max",
+   "benchmark": "evocode_bench_v2_mt4",
+   "score": 39.8,
+   "unit": "score",
+   "_source": "resource/terminal-universe_arxiv-2609.04148.pdf",
+   "_note": "Terminal-Universe paper (Qwen, arXiv 2609.04148) Table 3. Terminus2 scaffold. '*' in the paper marks scores the authors measured themselves on the released model under their §G configuration; other scores are taken from the corresponding reports. Teacher-model row (*). Its TB2.0 69.7 / TB2.1 74.5 already match the DB and are not re-added."
+  },
+  {
+   "model": "alibaba/qwen3.7-max",
+   "benchmark": "evocode_bench_v2_case",
+   "score": 83.4,
+   "unit": "score",
+   "_source": "resource/terminal-universe_arxiv-2609.04148.pdf",
+   "_note": "Terminal-Universe paper (Qwen, arXiv 2609.04148) Table 3. Terminus2 scaffold. '*' in the paper marks scores the authors measured themselves on the released model under their §G configuration; other scores are taken from the corresponding reports. Teacher-model row (*)."
+  }
+ ]
+}

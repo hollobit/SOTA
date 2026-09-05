@@ -124,6 +124,7 @@ var Sovereign = {
                 'alibaba/qwen3.6-plus', 'alibaba/qwen3.6-27b', 'alibaba/qwen3.6-35b-a3b',
                 'alibaba/qwen3.5-max-preview', 'alibaba/qwen3.5-plus',
                 'alibaba/qwen3.5-397b', 'alibaba/qwen3.5-122b', 'alibaba/qwen3.5-27b',
+                'alibaba/terminal-universe-27b',  // S270 2026-09-04 Qwen Terminal-Universe paper model (Qwen3.5-27B base)
                 'alibaba/qwen3-235b-a22b-thinking-2507', 'alibaba/qwen3-235b-a22b-instruct-2507', 'alibaba/qwen3-235b-a22b',
                 'alibaba/qwen3-30b-a3b', 'alibaba/qwen3-32b', 'alibaba/qwen3-14b', 'alibaba/qwen3-8b', 'alibaba/qwen3-4b', 'alibaba/qwen3-1.7b', 'alibaba/qwen3-0.6b',
                 'alibaba/qwen3-next',
@@ -652,6 +653,7 @@ var Sovereign = {
         'alibaba/qwen3.7-max': '2026-05', 'alibaba/qwen3.7-max-preview': '2026-05', 'alibaba/qwen3.7-plus-preview': '2026-05',
         'alibaba/qwen3.6-plus': '2026-04', 'alibaba/qwen3.6-27b': '2026-04', 'alibaba/qwen3.6-35b-a3b': '2026-04',
         'alibaba/qwen3.5-397b': '2025-12', 'alibaba/qwen3.5-122b': '2025-12', 'alibaba/qwen3.5-27b': '2025-12',
+        'alibaba/terminal-universe-27b': '2026-09',
         'alibaba/qwen3-235b-a22b-thinking-2507': '2025-07', 'alibaba/qwen3-235b-a22b-instruct-2507': '2025-07', 'alibaba/qwen3-235b-a22b': '2025-04',
         'alibaba/qwen3-30b-a3b': '2025-04',
         'alibaba/qwen3-32b': '2025-04', 'alibaba/qwen3-14b': '2025-04', 'alibaba/qwen3-8b': '2025-04',

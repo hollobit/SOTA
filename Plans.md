@@ -1,7 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 265 — IFM K2 Horizon + new benchmark boards (2026-09-05)
-**3,554 models · 4,449 benchmarks · 22,077 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 270 — S265 sources re-audited (2026-09-05)
+**3,471 models · 4,458 benchmarks · 22,150 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-05 Session 270 — re-audit of the S265 links: what the first pass missed
+- **1 new model + 19 new benches + 104 scores, 0 FK / 0 collisions / 0 overwrites.** Same audit question as S260b/S260c, applied to the 19-link batch.
+- **Terminal-Bench 4.0 was only one-third ingested.** The WebFetch summary S265 leaned on returned the top 5 of a **14-row** board; the raw `<table>` gave the other 9 (GPT-5.6 Sol 37.3, Opus 4.8 23.6, Terra 21.5, Grok 4.6 20.3, Gemini 3.8 Flash 19.1, Luna 17.3, Grok 4.5 12.4, Sonnet 5 12.4, Gemini 3.7 Flash 11.2). This is the S265c NYT Connections failure again — a summary never says whether it is complete.
+- **SRE-Bench Figures 2 and 4 are numeric tables, not just pictures.** S265 wrote them off as figure-only; the pdftotext text prints every cell. Fig.2 = 5 models × 9 columns (C/C++/Rust/Go source language, Proto/Fmt/Game/Malw/Firm target domain); Fig.4 = 5 models × 8 binary-protection presets. 17 sub-metric ids on the paper's 0–6 rubric. GPT-5.6 Sol hits **6.00 on firmware** and is the only model materially above the floor under any protection preset; Grok 4.5 and GLM-5.2 score **0.00 on malware remediation**.
+- **Terminal-Universe was skipped too broadly.** S265 dismissed the whole paper as research SFT checkpoints, but its headline model **Terminal-Universe-27B** (Qwen, Qwen3.5-27B base, 32.0k samples: TB2.0 52.8 / TB2.1 58.1 / EvoCode MT@4 20.1 / Case 76.1) is a named Qwen release, **EvoCode-Bench v2** (multi-round persistent-workspace; MT@4 fail-stop + Case score) was absent from the DB, and the Qwen3.5-27B base rows were net-new. Qwen3.7-Max's TB2.0 69.7 / TB2.1 74.5 in the paper **match the DB exactly**, which also confirms `terminal_bench_2` is the TB2.0 id. The other research checkpoints (TerminalTraj-32B, TermiGen-32B, Nemotron-Terminal-32B, TMax-27B …) stay out.
+- **Withheld after re-audit, with reasons**: Terminal-Bench-Science's TB2.1/TB3.0/TBS comparison table — its "TB2.1" column (Fable 5 83.8, Opus 4.8 78.9, Terra 78.4, Luna 75.7) does not match the DB's TB2.1 rows (88.0 / 82.7 / 87.4 / 84.7), so column identity cannot be confirmed from flattened RSC text and the candidate TB3.0 values (Opus 5 42.7, Sol 34.4, Fable 5 33.8, Opus 4.8 21.1, Terra 20.8, Luna 14.3) are held back; the TBS per-domain chart (15 values, 3 models) because domain labels are not recoverable; CRI beyond Opus 5 (no data in scripts/img/iframe); `openai.com/index/gpt-6-astra` (curl 403); the K2 product page (nothing beyond the blog). BenchLM ARC-AGI-3 re-checked complete at 12 rows. PDF archived `resource/terminal-universe_arxiv-2609.04148.pdf`; seed_sources entry rewritten. Backup `data/benchmark.db.pre-s270.bak`.
 
 ### 2026-09-05 Session 265 — IFM K2 Horizon fleet + CRI / TB4.0 / TB-Science / NYT Connections / SRE-Bench paper
 - **6 new models + 7 new benches + 111 scores, 0 FK, 0 collisions, 0 overwrites.** 19 user-supplied links.

@@ -54,6 +54,12 @@ var CyberCoding = {
         'malware_refusals_golden_set', 'codex_coding_prompt_injection_ignored',
         // 2026-09-05 S265 — SRE-Bench paper (arXiv 2608.11469) pass@1 metrics
         'sre_bench_capability_score', 'sre_bench_fully_solved', 'sre_bench_zero_score_lower_better',
+        // 2026-09-05 S270 — SRE-Bench paper Fig.2 (language/domain) + Fig.4 (protection presets), 0-6 rubric
+        'sre_bench_lang_c', 'sre_bench_lang_cpp', 'sre_bench_lang_rust', 'sre_bench_lang_go',
+        'sre_bench_domain_proto', 'sre_bench_domain_fmt', 'sre_bench_domain_game', 'sre_bench_domain_malw',
+        'sre_bench_domain_firm', 'sre_bench_preset_p1', 'sre_bench_preset_p2', 'sre_bench_preset_p3',
+        'sre_bench_preset_p4', 'sre_bench_preset_p5', 'sre_bench_preset_p6', 'sre_bench_preset_p7',
+        'sre_bench_preset_p8',
         // 2026-06-14 S111 — Cybersecurity benchmark refresh (frontier + agents + 2026 boards)
         'cybergym_v1', 'exploitbench_v8', 'firefox_147_anthropic', 'oss_fuzz_anthropic', 'cybergym_v1',
         'uk_aisi_narrow_cyber_expert', 'uk_aisi_cyber_range_last_ones', 'uk_aisi_cyber_range_doing_life',
@@ -137,7 +143,8 @@ var CyberCoding = {
         'livesqlbench',
         // 2026-08-02 S224b — arxiv benchmark sweep (coding leaderboards)
         'swe_compass', 'nl2repo_bench', 'dataclaweval',
-        'terminal_bench_4_0'],  // S265
+        'terminal_bench_4_0',  // S265
+        'evocode_bench_v2_mt4', 'evocode_bench_v2_case'],  // S270 Terminal-Universe paper
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
