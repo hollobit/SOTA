@@ -1,0 +1,2331 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-05",
+  "session": "S274",
+  "sources": [
+   "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://api-docs.deepseek.com/quick_start/pricing",
+   "https://docs.z.ai/guides/overview/pricing",
+   "https://openrouter.ai/api/v1/models",
+   "https://openrouter.ai/api/v1/models/{id}/endpoints",
+   "https://mistral.ai/pricing/api/",
+   "https://docs.x.ai/docs/models"
+  ],
+  "note": "Price-tab refresh. Rule applied: vendors with a first-party API get their official list price (Anthropic docs table, Google Gemini API pricing, OpenAI page from S273, DeepSeek peak rate, Z.ai table) or, where the vendor page is JS-only (Moonshot, MiniMax, Alibaba, Tencent, Upstage, Mistral), the vendor's own endpoint on OpenRouter; pure community-hosted open-weight models keep OpenRouter's listed price. xAI (docs.x.ai) and Mistral (mistral.ai/pricing/api) were checked and already matched. Biggest corrections: Claude Opus 5 / 4.8 / 4.7 are $5 / $25 (the stored $10/$50 and $30/$150 were the >200K long-context rate and a bogus snapshot); Gemini 3.7 Flash was stored at the Batch rate; Gemini 3.6 Flash was cut to $0.75 / $3.75; GLM-5.x and DeepSeek V4 now carry first-party rates instead of the cheapest third-party host."
+ },
+ "scores": [
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Cache hits 0.025× base on Fable 5.1."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Cache hits 0.025× base on Fable 5.1."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Cache hits 0.025× base on Fable 5.1."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 12.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Cache hits 0.025× base on Fable 5.1. Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Limited availability; same rates as Fable 5.1 (cache hits 0.025× base)."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Limited availability; same rates as Fable 5.1 (cache hits 0.025× base)."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Limited availability; same rates as Fable 5.1 (cache hits 0.025× base)."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 12.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Limited availability; same rates as Fable 5.1 (cache hits 0.025× base). Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 12.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%.  Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-mythos-5",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 10,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Limited availability; same rates as Fable 5."
+  },
+  {
+   "model": "anthropic/claude-mythos-5",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 50,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Limited availability; same rates as Fable 5."
+  },
+  {
+   "model": "anthropic/claude-mythos-5",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Limited availability; same rates as Fable 5."
+  },
+  {
+   "model": "anthropic/claude-mythos-5",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 12.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Limited availability; same rates as Fable 5. Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Opus 5 launched at $5 / $25 (the $10 / $50 stored from OpenRouter in August was wrong: that is the >200K long-context rate, see the page's long-context table). Fast mode (research preview, first-party only) is $10 / $50 across the full context window."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Opus 5 launched at $5 / $25 (the $10 / $50 stored from OpenRouter in August was wrong: that is the >200K long-context rate, see the page's long-context table). Fast mode (research preview, first-party only) is $10 / $50 across the full context window."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Opus 5 launched at $5 / $25 (the $10 / $50 stored from OpenRouter in August was wrong: that is the >200K long-context rate, see the page's long-context table). Fast mode (research preview, first-party only) is $10 / $50 across the full context window."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 6.25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Opus 5 launched at $5 / $25 (the $10 / $50 stored from OpenRouter in August was wrong: that is the >200K long-context rate, see the page's long-context table). Fast mode (research preview, first-party only) is $10 / $50 across the full context window. Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Replaces the $10 / $50 OpenRouter snapshot (that is the >200K long-context rate). Fast mode (research preview, first-party only) is $10 / $50 across the full context window."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Replaces the $10 / $50 OpenRouter snapshot (that is the >200K long-context rate). Fast mode (research preview, first-party only) is $10 / $50 across the full context window."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Replaces the $10 / $50 OpenRouter snapshot (that is the >200K long-context rate). Fast mode (research preview, first-party only) is $10 / $50 across the full context window."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 6.25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Replaces the $10 / $50 OpenRouter snapshot (that is the >200K long-context rate). Fast mode (research preview, first-party only) is $10 / $50 across the full context window. Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Replaces the $30 / $150 OpenRouter snapshot, which was never Anthropic's list price for Opus 4.7."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Replaces the $30 / $150 OpenRouter snapshot, which was never Anthropic's list price for Opus 4.7."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Replaces the $30 / $150 OpenRouter snapshot, which was never Anthropic's list price for Opus 4.7."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 6.25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Replaces the $30 / $150 OpenRouter snapshot, which was never Anthropic's list price for Opus 4.7. Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 6.25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%.  Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 6.25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%.  Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 15,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Bedrock/Vertex."
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 75,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Bedrock/Vertex."
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Bedrock/Vertex."
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 18.75,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Bedrock/Vertex. Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-opus-4",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 15,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Google Cloud/Bedrock."
+  },
+  {
+   "model": "anthropic/claude-opus-4",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 75,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Google Cloud/Bedrock."
+  },
+  {
+   "model": "anthropic/claude-opus-4",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Google Cloud/Bedrock."
+  },
+  {
+   "model": "anthropic/claude-opus-4",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 18.75,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Google Cloud/Bedrock. Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 10,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 2.5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%.  Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 3,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 15,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 3.75,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%.  Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 3,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 15,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 3.75,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%.  Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 3,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Bedrock."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 15,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Bedrock."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Bedrock."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 3.75,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Retired except on Bedrock. Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 5,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.1,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. "
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 1.25,
+   "unit": "USD/1M",
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%.  Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "anthropic/claude-3-haiku",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/anthropic/claude-3-haiku/endpoints",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Legacy model; OpenRouter Anthropic endpoint (not on the current docs table)."
+  },
+  {
+   "model": "anthropic/claude-3-haiku",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.25,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/anthropic/claude-3-haiku/endpoints",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Legacy model; OpenRouter Anthropic endpoint (not on the current docs table)."
+  },
+  {
+   "model": "anthropic/claude-3-haiku",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.03,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/anthropic/claude-3-haiku/endpoints",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Legacy model; OpenRouter Anthropic endpoint (not on the current docs table)."
+  },
+  {
+   "model": "anthropic/claude-3-haiku",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 0.3125,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/anthropic/claude-3-haiku/endpoints",
+   "_note": "Anthropic official pricing table (read 2026-09-05), standard API rates per 1M tokens. Batch API is 50%. Legacy model; OpenRouter Anthropic endpoint (not on the current docs table). Cache write = 5-minute cache write price."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.75,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Promotional price 'through December 31, 2026' (list price afterwards: $1.50 / $7.50, cache $0.15). Batch/Flex 50%, Priority 1.8×."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 3.75,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Promotional price 'through December 31, 2026' (list price afterwards: $1.50 / $7.50, cache $0.15). Batch/Flex 50%, Priority 1.8×."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.075,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Promotional price 'through December 31, 2026' (list price afterwards: $1.50 / $7.50, cache $0.15). Batch/Flex 50%, Priority 1.8×."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.75,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Promotional price 'through December 31, 2026' (list price afterwards: $1.50 / $7.50, cache $0.15). Batch/Flex 50%, Priority 1.8×. Replaces the $0.375 / $1.875 OpenRouter snapshot, which was the Batch/Flex tier."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 3.75,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Promotional price 'through December 31, 2026' (list price afterwards: $1.50 / $7.50, cache $0.15). Batch/Flex 50%, Priority 1.8×. Replaces the $0.375 / $1.875 OpenRouter snapshot, which was the Batch/Flex tier."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.075,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Promotional price 'through December 31, 2026' (list price afterwards: $1.50 / $7.50, cache $0.15). Batch/Flex 50%, Priority 1.8×. Replaces the $0.375 / $1.875 OpenRouter snapshot, which was the Batch/Flex tier."
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.75,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Promotional price 'through December 31, 2026' (list price afterwards: $1.50 / $7.50, cache $0.15). Batch/Flex 50%, Priority 1.8×. Replaces the $1.50 / $7.50 stored in August (price cut)."
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 3.75,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Promotional price 'through December 31, 2026' (list price afterwards: $1.50 / $7.50, cache $0.15). Batch/Flex 50%, Priority 1.8×. Replaces the $1.50 / $7.50 stored in August (price cut)."
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.075,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Promotional price 'through December 31, 2026' (list price afterwards: $1.50 / $7.50, cache $0.15). Batch/Flex 50%, Priority 1.8×. Replaces the $1.50 / $7.50 stored in August (price cut)."
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 9.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.15,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.5,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.03,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.025,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite-preview",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite-preview",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite-preview",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.025,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K tokens; >200K: $4 / $18, cache $0.40."
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 12.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K tokens; >200K: $4 / $18, cache $0.40."
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K tokens; >200K: $4 / $18, cache $0.40."
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K tokens; >200K: $4 / $18, cache $0.40. Long-context column."
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 18.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K tokens; >200K: $4 / $18, cache $0.40. Long-context column."
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K tokens; >200K: $4 / $18."
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 12.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K tokens; >200K: $4 / $18."
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K tokens; >200K: $4 / $18."
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K tokens; >200K: $4 / $18. Long-context column."
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 18.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K tokens; >200K: $4 / $18. Long-context column."
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Gemini 3 Flash Preview table."
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 3.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Gemini 3 Flash Preview table."
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.05,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Gemini 3 Flash Preview table."
+  },
+  {
+   "model": "google/gemini-3-pro-image",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Nano Banana Pro: text input/output; image output $120 per 1M image tokens."
+  },
+  {
+   "model": "google/gemini-3-pro-image",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 12.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Nano Banana Pro: text input/output; image output $120 per 1M image tokens."
+  },
+  {
+   "model": "google/gemini-3.1-flash-image",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Nano Banana 2: image output $60 per 1M image tokens."
+  },
+  {
+   "model": "google/gemini-3.1-flash-image",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 3.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Nano Banana 2: image output $60 per 1M image tokens."
+  },
+  {
+   "model": "google/gemini-3.1-flash-image-preview",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Nano Banana 2: image output $60 per 1M image tokens."
+  },
+  {
+   "model": "google/gemini-3.1-flash-image-preview",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 3.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Nano Banana 2: image output $60 per 1M image tokens."
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite-image",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Nano Banana 2 Lite: image output $30 per 1M image tokens."
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite-image",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Nano Banana 2 Lite: image output $30 per 1M image tokens."
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.25,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K; >200K: $2.50 / $15."
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K; >200K: $2.50 / $15."
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.125,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K; >200K: $2.50 / $15."
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "long_context_input_cost_1m_usd_lower_better",
+   "score": 2.5,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K; >200K: $2.50 / $15. Long-context column."
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "long_context_output_cost_1m_usd_lower_better",
+   "score": 15.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Prompts ≤200K; >200K: $2.50 / $15. Long-context column."
+  },
+  {
+   "model": "google/gemini-2.5-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-2.5-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.5,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-2.5-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.03,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-2.5-flash-lite",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.1,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-2.5-flash-lite",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.4,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-2.5-flash-lite",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.01,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. "
+  },
+  {
+   "model": "google/gemini-robotics-er-2",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Gemini Robotics ER 2 Preview table."
+  },
+  {
+   "model": "google/gemini-robotics-er-2",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 10.0,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Gemini Robotics ER 2 Preview table."
+  },
+  {
+   "model": "google/gemini-robotics-er-2",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_note": "Google Gemini API official pricing (read 2026-09-05), paid tier, Standard. Gemini Robotics ER 2 Preview table."
+  },
+  {
+   "model": "openai/gpt-3.5-turbo",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/openai/gpt-3.5-turbo/endpoints",
+   "_note": "OpenRouter OpenAI endpoint (gpt-3.5-turbo-0125 list price $0.50 / $1.50); replaces the stale $1.50 / $2.00."
+  },
+  {
+   "model": "openai/gpt-3.5-turbo",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/openai/gpt-3.5-turbo/endpoints",
+   "_note": "OpenRouter OpenAI endpoint (gpt-3.5-turbo-0125 list price $0.50 / $1.50); replaces the stale $1.50 / $2.00."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.44,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these. Model version DeepSeek-V4-Flash-0731. OpenRouter third-party hosts list the model from about $0.07 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.32,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these. Model version DeepSeek-V4-Flash-0731. OpenRouter third-party hosts list the model from about $0.07 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.014,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these. Model version DeepSeek-V4-Flash-0731. OpenRouter third-party hosts list the model from about $0.07 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.44,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these.  OpenRouter third-party hosts list the model from about $0.05 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.32,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these.  OpenRouter third-party hosts list the model from about $0.05 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.014,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these.  OpenRouter third-party hosts list the model from about $0.05 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.44,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these.  OpenRouter third-party hosts list the model from about $0.22 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.32,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these.  OpenRouter third-party hosts list the model from about $0.22 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.014,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these.  OpenRouter third-party hosts list the model from about $0.22 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.32,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these. Model version DeepSeek-V4-Pro-0813. OpenRouter third-party hosts list the model from about $0.87 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 3.96,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these. Model version DeepSeek-V4-Pro-0813. OpenRouter third-party hosts list the model from about $0.87 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.044,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these. Model version DeepSeek-V4-Pro-0813. OpenRouter third-party hosts list the model from about $0.87 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.32,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these.  OpenRouter third-party hosts list the model from about $1.11 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 3.96,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these.  OpenRouter third-party hosts list the model from about $1.11 input."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.044,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (read 2026-09-05), PEAK (standard) rate per 1M tokens: cache-miss input / output / cache-hit input. Off-peak is 50% of these.  OpenRouter third-party hosts list the model from about $1.11 input."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.4,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $1.15 input)."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 4.4,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $1.15 input)."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.26,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $1.15 input)."
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.4,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.34 input)."
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 4.4,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.34 input)."
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.26,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.34 input)."
+  },
+  {
+   "model": "zhipu/glm-5.1",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.4,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.91 input)."
+  },
+  {
+   "model": "zhipu/glm-5.1",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 4.4,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.91 input)."
+  },
+  {
+   "model": "zhipu/glm-5.1",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.26,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.91 input)."
+  },
+  {
+   "model": "zhipu/glm-5",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.60 input)."
+  },
+  {
+   "model": "zhipu/glm-5",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 3.2,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.60 input)."
+  },
+  {
+   "model": "zhipu/glm-5",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.60 input)."
+  },
+  {
+   "model": "zhipu/glm-4.7",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.6,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.40 input)."
+  },
+  {
+   "model": "zhipu/glm-4.7",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.2,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.40 input)."
+  },
+  {
+   "model": "zhipu/glm-4.7",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.11,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.40 input)."
+  },
+  {
+   "model": "zhipu/glm-4.6",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.6,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.43 input)."
+  },
+  {
+   "model": "zhipu/glm-4.6",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.2,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.43 input)."
+  },
+  {
+   "model": "zhipu/glm-4.6",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.11,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.43 input)."
+  },
+  {
+   "model": "zhipu/glm-4.5",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.6,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.60 input)."
+  },
+  {
+   "model": "zhipu/glm-4.5",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.2,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.60 input)."
+  },
+  {
+   "model": "zhipu/glm-4.5",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.11,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.60 input)."
+  },
+  {
+   "model": "zhipu/glm-4.5-air",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.13 input)."
+  },
+  {
+   "model": "zhipu/glm-4.5-air",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.1,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.13 input)."
+  },
+  {
+   "model": "zhipu/glm-4.5-air",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.03,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input.  Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.13 input)."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.075,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input. Limited-time promotional price (list: $0.15 / $0.50 / $0.03). Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.075 input)."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input. Limited-time promotional price (list: $0.15 / $0.50 / $0.03). Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.075 input)."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.015,
+   "unit": "USD/1M",
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_note": "Z.ai official API pricing (read 2026-09-05), per 1M tokens: input / output / cached input. Limited-time promotional price (list: $0.15 / $0.50 / $0.03). Replaces the OpenRouter cheapest-host snapshot where different (third-party hosts list GLM from about $0.075 input)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 3.0,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k3/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Moonshot) endpoint for moonshotai/kimi-k3, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 15.0,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k3/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Moonshot) endpoint for moonshotai/kimi-k3, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k3/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Moonshot) endpoint for moonshotai/kimi-k3, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.95,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.7-code/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Moonshot) endpoint for moonshotai/kimi-k2.7-code, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.7-code/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Moonshot) endpoint for moonshotai/kimi-k2.7-code, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.19,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.7-code/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Moonshot) endpoint for moonshotai/kimi-k2.7-code, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.95,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.6/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Moonshot) endpoint for moonshotai/kimi-k2.6, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.6/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Moonshot) endpoint for moonshotai/kimi-k2.6, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.16,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.6/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Moonshot) endpoint for moonshotai/kimi-k2.6, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.45,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.5/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Moonshot) endpoint listed for moonshotai/kimi-k2.5; cheapest listed host (SiliconFlow) per 1M tokens."
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.25,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.5/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Moonshot) endpoint listed for moonshotai/kimi-k2.5; cheapest listed host (SiliconFlow) per 1M tokens."
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.07,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.5/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Moonshot) endpoint listed for moonshotai/kimi-k2.5; cheapest listed host (SiliconFlow) per 1M tokens."
+  },
+  {
+   "model": "minimax/minimax-m3",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/minimax/minimax-m3/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Minimax) endpoint for minimax/minimax-m3, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "minimax/minimax-m3",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.2,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/minimax/minimax-m3/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Minimax) endpoint for minimax/minimax-m3, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "minimax/minimax-m3",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.06,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/minimax/minimax-m3/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Minimax) endpoint for minimax/minimax-m3, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "minimax/minimax-m2.7",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/minimax/minimax-m2.7/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Minimax) endpoint for minimax/minimax-m2.7, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "minimax/minimax-m2.7",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.2,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/minimax/minimax-m2.7/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Minimax) endpoint for minimax/minimax-m2.7, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "minimax/minimax-m2.7",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.06,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/minimax/minimax-m2.7/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Minimax) endpoint for minimax/minimax-m2.7, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2.0,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-max/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.8-max, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 6.0,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-max/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.8-max, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-max/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.8-max, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2.0,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-2.4t-a95b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.8-2.4t-a95b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 6.0,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-2.4t-a95b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.8-2.4t-a95b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-2.4t-a95b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.8-2.4t-a95b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.7-max",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.475,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.7-max/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.7-max, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.7-max",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 4.425,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.7-max/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.7-max, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.7-max",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.295,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.7-max/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.7-max, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.32,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.7-plus/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.7-plus, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.28,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.7-plus/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.7-plus, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.064,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.7-plus/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.7-plus, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.6-plus",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.325,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-plus/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.6-plus, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.6-plus",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.95,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-plus/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.6-plus, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.6-max-preview",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.027,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-max-preview/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.6-max-preview, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.6-max-preview",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 6.162,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-max-preview/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.6-max-preview, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.6-27b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.45,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-27b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.6-27b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.6-27b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.7,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-27b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.6-27b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.05,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-35b-a3b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Alibaba) endpoint listed for qwen/qwen3.6-35b-a3b; cheapest listed host (Darkbloom) per 1M tokens."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.7,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-35b-a3b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Alibaba) endpoint listed for qwen/qwen3.6-35b-a3b; cheapest listed host (Darkbloom) per 1M tokens."
+  },
+  {
+   "model": "alibaba/qwen3.5-397b-a17b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.39,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-397b-a17b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.5-397b-a17b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.5-397b-a17b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.34,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-397b-a17b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.5-397b-a17b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.5-122b-a10b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.26,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-122b-a10b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.5-122b-a10b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.5-122b-a10b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.08,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-122b-a10b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.5-122b-a10b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.5-35b-a3b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.1625,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-35b-a3b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.5-35b-a3b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.5-35b-a3b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.3,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-35b-a3b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.5-35b-a3b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3-14b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.2275,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-14b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3-14b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3-14b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.91,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-14b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3-14b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3-vl-8b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.117,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-8b-instruct/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3-vl-8b-instruct, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3-vl-8b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.455,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-8b-instruct/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3-vl-8b-instruct, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.26,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-235b-a22b-instruct/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3-vl-235b-a22b-instruct, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.04,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-235b-a22b-instruct/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3-vl-235b-a22b-instruct, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.4,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-235b-a22b-thinking/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3-vl-235b-a22b-thinking, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-235b-a22b-thinking/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3-vl-235b-a22b-thinking, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3-vl-30b-a3b-instruct",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.13,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-30b-a3b-instruct/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3-vl-30b-a3b-instruct, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3-vl-30b-a3b-instruct",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.52,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-30b-a3b-instruct/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3-vl-30b-a3b-instruct, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.425,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-27b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.8-27b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.55,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-27b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.8-27b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.085,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-27b/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Alibaba) endpoint for qwen/qwen3.8-27b, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.36,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen-2.5-72b-instruct/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Alibaba) endpoint listed for qwen/qwen-2.5-72b-instruct; cheapest listed host (DeepInfra) per 1M tokens."
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.4,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen-2.5-72b-instruct/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Alibaba) endpoint listed for qwen/qwen-2.5-72b-instruct; cheapest listed host (DeepInfra) per 1M tokens."
+  },
+  {
+   "model": "alibaba/qwen2.5-vl-72b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.8,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen2.5-vl-72b-instruct/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Alibaba) endpoint listed for qwen/qwen2.5-vl-72b-instruct; cheapest listed host (Parasail) per 1M tokens."
+  },
+  {
+   "model": "alibaba/qwen2.5-vl-72b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen2.5-vl-72b-instruct/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Alibaba) endpoint listed for qwen/qwen2.5-vl-72b-instruct; cheapest listed host (Parasail) per 1M tokens."
+  },
+  {
+   "model": "alibaba/qwen2.5-vl-72b",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.4,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen2.5-vl-72b-instruct/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Alibaba) endpoint listed for qwen/qwen2.5-vl-72b-instruct; cheapest listed host (Parasail) per 1M tokens."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.834,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy4-preview/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Tencent) endpoint for tencent/hy4-preview, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.501,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy4-preview/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Tencent) endpoint for tencent/hy4-preview, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.042,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy4-preview/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Tencent) endpoint for tencent/hy4-preview, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "tencent/hy3-preview",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.18,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy3-preview/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Tencent) endpoint listed for tencent/hy3-preview; cheapest listed host (GMICloud) per 1M tokens."
+  },
+  {
+   "model": "tencent/hy3-preview",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.6,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy3-preview/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Tencent) endpoint listed for tencent/hy3-preview; cheapest listed host (GMICloud) per 1M tokens."
+  },
+  {
+   "model": "tencent/hy3-preview",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.06,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy3-preview/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): no first-party (Tencent) endpoint listed for tencent/hy3-preview; cheapest listed host (GMICloud) per 1M tokens."
+  },
+  {
+   "model": "mistral/mistral-medium-3.5",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-medium-3-5/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/mistral-medium-3-5, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/mistral-medium-3.5",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 7.5,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-medium-3-5/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/mistral-medium-3-5, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/mistral-large-3",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-large-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/mistral-large-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/mistral-large-3",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-large-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/mistral-large-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/mistral-large-3",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.05,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-large-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/mistral-large-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/mistral-small-4",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.15,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-small-2603/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/mistral-small-2603, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/mistral-small-4",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.6,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-small-2603/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/mistral-small-2603, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/mistral-small-4",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.015,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-small-2603/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/mistral-small-2603, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/devstral-2-2512",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.4,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/devstral-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/devstral-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/devstral-2-2512",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.0,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/devstral-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/devstral-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/devstral-2-2512",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.04,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/devstral-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/devstral-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/codestral-25.08",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/codestral-2508/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/codestral-2508, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/codestral-25.08",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.9,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/codestral-2508/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/codestral-2508, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/codestral-25.08",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.03,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/codestral-2508/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/codestral-2508, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/ministral-3-14b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-14b-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/ministral-14b-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/ministral-3-14b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-14b-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/ministral-14b-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/ministral-3-14b",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.02,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-14b-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/ministral-14b-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/ministral-3-8b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.15,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-8b-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/ministral-8b-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/ministral-3-8b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.15,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-8b-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/ministral-8b-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/ministral-3-8b",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.015,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-8b-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/ministral-8b-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/ministral-3-3b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.1,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-3b-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/ministral-3b-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/ministral-3-3b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.1,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-3b-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/ministral-3b-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "mistral/ministral-3-3b",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.01,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-3b-2512/endpoints",
+   "_note": "OpenRouter endpoints API (read 2026-09-05): the vendor's own (Mistral) endpoint for mistralai/ministral-3b-2512, i.e. first-party list price per 1M tokens (input / output / cached input)."
+  },
+  {
+   "model": "upstage/solar-pro-4",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "USD/1M",
+   "_source": "https://www.upstage.ai/pricing",
+   "_note": "Upstage official pricing page (read 2026-09-05): list price $0.30 / $1.20, cached input $0.06. The $0.03 / $0.12 shown on OpenRouter's Upstage endpoint is the '90% off through Sep 10 (UTC)' launch promotion, not the list price."
+  },
+  {
+   "model": "upstage/solar-pro-4",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.2,
+   "unit": "USD/1M",
+   "_source": "https://www.upstage.ai/pricing",
+   "_note": "Upstage official pricing page (read 2026-09-05): list price $0.30 / $1.20, cached input $0.06. The $0.03 / $0.12 shown on OpenRouter's Upstage endpoint is the '90% off through Sep 10 (UTC)' launch promotion, not the list price."
+  },
+  {
+   "model": "upstage/solar-pro-4",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.06,
+   "unit": "USD/1M",
+   "_source": "https://www.upstage.ai/pricing",
+   "_note": "Upstage official pricing page (read 2026-09-05): list price $0.30 / $1.20, cached input $0.06. The $0.03 / $0.12 shown on OpenRouter's Upstage endpoint is the '90% off through Sep 10 (UTC)' launch promotion, not the list price."
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.09,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.34,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.05,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "meta/llama-4-maverick",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "meta/llama-4-maverick",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.696,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "meta/llama-3.3-70b-instruct",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.1,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "meta/llama-3.3-70b-instruct",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.32,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "meta/llama-3.2-3b-instruct",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.05,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "meta/llama-3.2-3b-instruct",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.33,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.021,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.063,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.0042,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.625,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 3.125,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.1875,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "moonshot/kimi-k2",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.57,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. Only one host (Novita) remains."
+  },
+  {
+   "model": "moonshot/kimi-k2",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.3,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. Only one host (Novita) remains."
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.6,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.5,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.15,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "mistral/mistral-small-3.2-24b-instruct",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.075,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "mistral/mistral-small-3.2-24b-instruct",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "ibm/granite-4.0-h-micro",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.017,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "ibm/granite-4.0-h-micro",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.112,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. "
+  },
+  {
+   "model": "arcee-ai/trinity-large-thinking",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.25,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. Arcee's own endpoint."
+  },
+  {
+   "model": "arcee-ai/trinity-large-thinking",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.8,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. Arcee's own endpoint."
+  },
+  {
+   "model": "arcee-ai/trinity-large-thinking",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.06,
+   "unit": "USD/1M",
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_note": "OpenRouter /api/v1/models listed price (read 2026-09-05) per 1M tokens — community-hosted open-weight model, so this is the aggregator's listed (cheapest routed) rate, not a vendor list price. Arcee's own endpoint."
+  }
+ ]
+}

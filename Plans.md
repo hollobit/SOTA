@@ -1,7 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 273 — GPT-6 Astra follow-up: Astra Pro, AA Index v4.2 + capability indices, official OpenAI pricing (2026-09-05)
-**3,478 models · 4,482 benchmarks · 22,495 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 274 — Price tab refreshed from official vendor pricing (2026-09-05)
+**3,478 models · 4,482 benchmarks · 22,584 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-05 Session 274 — Price tab: official vendor pricing over aggregator snapshots
+- **289 price rows (83 value changes, 89 new, 117 re-sourced), priced models 195 → 231.** Rule: vendors with a first-party API get their official list price (Anthropic docs, Google Gemini API, OpenAI S273, DeepSeek peak, Z.ai, Upstage, Mistral, xAI) or — when the vendor page is JS-only — the vendor's own endpoint on OpenRouter (Moonshot AI, Minimax, Alibaba, Tencent, Mistral); community-hosted open weights keep OpenRouter's listed price. Backup `data/benchmark.db.pre-s274.bak`.
+- **Claude Opus 5 / 4.8 / 4.7 were wrong.** Anthropic lists all Opus 4.5+ at $5 / $25 (cache read $0.50); the stored $10/$50 was the Fast-mode rate and $30/$150 had no basis. Mythos 5.1 / Mythos 5 priced; cache-write (1.25×) added for every Claude model.
+- **Gemini 3.7 Flash was stored at the Batch rate; 3.6 Flash was cut.** Both now $0.75 / $3.75 (promo through 2026-12-31, list $1.50 / $7.50). Long-context (>200K) rates for 3.1 Pro and 2.5 Pro, Nano Banana image-token rates, Gemini Robotics ER 2 added.
+- **First-party over cheapest host:** DeepSeek V4 Flash/Pro at official peak rates ($0.44/$1.32, $1.32/$3.96; off-peak 50%), GLM-5.x at Z.ai rates ($1.4/$4.4), Kimi K2.7 Code / K2.6 at Moonshot's $0.95/$4.0, MiniMax M2.7 $0.3/$1.2, Qwen3.8-2.4T $2/$6, Hy4/Hy3 preview, Mistral ×8. Solar Pro 4 keeps its $0.30/$1.20 list price (OpenRouter's $0.03 is a 90%-off promo through Sep 10).
+- Unchanged on check: xAI Grok 4.6/4.5/4.3/4.20, Qwen3.8-Max/3.7-Max/3.7-Plus, Kimi K3, MiniMax M3, Mistral. Six official pricing pages registered in Resources + seed_sources; app.js tag → 20260905d.
 
 ### 2026-09-05 Session 273 — GPT-6 Astra: OpenRouter · AA release page · OpenAI pricing · myclaw review
 - **7 new models, 17 new benchmarks, 309 scores (9 price refreshes), 0 FK / 0 dup.** Backup `data/benchmark.db.pre-s273.bak`.
