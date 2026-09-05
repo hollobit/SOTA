@@ -5019,5 +5019,11 @@
   "title": "S265c — S265 잔여 벤치 전량 재검증 + NYT Connections 보드 완전 반영(17→71행)",
   "detail": "K2 Horizon 외 나머지 S265 값 53건을 1차 소스에서 다시 받아 재검증. SRE-Bench 논문 15/15(로컬 PDF Table 4 직접 대조), Terminal-Bench 4.0 5/5, Terminal-Bench-Science 10/10, ARC-AGI-3 BenchLM 5/5, CRI 1/1 전부 일치 — 값 오류 0. 다만 NYT Connections에서 두 가지 문제를 발견해 보완: (1) 미반영 — S265는 WebFetch 요약이 준 상위 20개만 넣었는데, raw README를 직접 파싱하니 940문항 전체 보드가 114행이었음. DB에 이미 있는 모델과 매칭되는 54건을 net-new로 추가(17→71행). effort 접미사 id가 있으면 그 id에, 없으면 best-per-base로 base id에 최고 effort 값 기록(기존 세션 관례 준수). (2) 파싱 오염 — README에는 940 전체 보드 외에 100문항·194/940·651/940·759/940 등 부분 커버리지 보드가 여러 개 있고 행 모양이 거의 같음(5번째 coverage 컬럼만 다름). 최초 정규식이 이들을 섞어 파싱해 49건의 잘못된 행을 만들 뻔했음(예: GLM-5.2 89.5는 194문항 보드 값, 940 보드에서는 74.3). 정확히 4필드이고 #Puzzles==940인 행만 허용하도록 고쳐 해결. 최종 확인: DB 71행 전부가 940 보드 값과 일치(보드에 없는 값 0건). 교훈 기록 — 리더보드 README/페이지에 여러 표가 공존할 때 무차별 정규식 파싱은 부분집합 결과를 전체 결과로 둔갑시킨다.",
   "type": "Fix"
+ },
+ {
+  "date": "2026-09-05",
+  "title": "S265d — 부분 커버리지 보드 혼입 전수 점검: NYT 외 없음, 대신 Writing 척도 변경 발견",
+  "detail": "S265c에서 NYT Connections의 부분 커버리지 보드 혼입을 잡은 뒤, 같은 유형이 다른 벤치에도 있는지 전수 점검. 결론: 부분 커버리지 혼입은 NYT Connections에만 있었고 이미 수정 완료. (1) 동일 저자(lechmazur) 벤치인 lech_mazur_writing의 README를 받아 확인 — 표가 하나뿐이라 부분 커버리지 개념 자체가 없음. (2) BFCL v4·tau2-bench·OmniDocBench 등 GitHub 출처 리더보드는 서브지표를 이미 별도 ID로 분리(bfcl_v4_live/_multi_turn/_memory/_web_search, tau2_bench_{retail,airline,telecom,banking}_pass1, omnidocbench_v1_6_{textedit,tableteds,readorder}) — 한 ID에 섞인 형태가 아님. 다만 점검 중 성격이 다른 위험을 발견해 예방 조치: lech_mazur_writing의 DB 33행은 2026-05-10 수집된 구 채점방식(절대 0-10 스케일: qwen3-235b 8.3, gpt-4o 8.18)인데, 현재 보드는 상대 Thurstone 'comparison score'로 전면 개편됨(0이 중간값, 최고 4.1 = Fable 5.1/Opus 5, + 승률 추정치, 48모델 651쌍 비교). 두 척도는 비교 불가. 현재 DB는 구버전만 있어 내부적으로는 일관되나, 향후 신 보드를 같은 ID에 넣으면 척도가 충돌하므로 벤치 description에 경고를 명시하고 '신 보드는 반드시 새 ID로' 규칙을 기록(DB + 원본 JSON 정의 양쪽 갱신). 별건 관찰(이번 범위 밖): bfcl_v4(48행)와 bfcl_v4_overall(26행) 중복 의심, omnidocbench-v1.6(대시 14행)과 omnidocbench_v1_6(언더스코어 12행) ID 파편화.",
+  "type": "Fix"
  }
 ]
