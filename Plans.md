@@ -1,7 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 274 — Price tab refreshed from official vendor pricing (2026-09-05)
-**3,478 models · 4,482 benchmarks · 22,584 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 275 — OpenRouter-only models added and priced (2026-09-05)
+**3,512 models · 4,482 benchmarks · 22,735 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-05 Session 275 — OpenRouter catalogue: 34 new models, 26 existing models priced
+- **34 models + 151 price rows, 0 FK / 0 dup / 0 overwrites; priced models 218 → 278.** Of 132 OpenRouter ids with no DB model, the recent non-roleplay ones were added (release_date = OpenRouter listing date, context = OpenRouter context_length) with the vendor's own endpoint price where one exists, else the cheapest host, stated in each note. Backup `data/benchmark.db.pre-s275.bak`.
+- New: GPT-5.6 Sol/Terra/Luna Pro (reasoning.mode=pro at official Standard rates), GPT Audio (+Mini), GPT-5.1-Codex-Mini, gpt-oss-safeguard-20b; Qwen3.7/3.6/3.5 Flash; Tencent Hy3 GA + Hy-MT2 ×3; GLM-4.6V/4.5V (Z.ai rates); Muse Glimmer 30B; Nex-N2 Pro/Mini; Thinking Machines Inkling (+Small); Writer Palmyra X5; Poolside Laguna XS 2.1; Perceptron Mk1; Inception Mercury 2.5 Preview; Grok Build 0.1; Granite 4.2 8B; Ling 3.0 Flash Fin; MiniMax M2.1; Seed 2.1 Turbo; Sonar Pro Search / Reasoning Pro; Hermes 4 405B/70B.
+- Priced via alias ids: Nova 2 Lite/Premier, Seed 1.6 / 2.0 Lite / Code / Mini, DeepSeek V3.1, Gemma 3 ×3, KAT-Coder V2.5, Qwen3.8-Flash-Next, MiniMax M2/M2.5, Mistral Saba / Small 3.1, Nemotron 3.5 Lightning, GPT-5.2 Chat, Qwen3-Next-80B, Qwen3 2507 ×2, Reka ×2, Sakana Namazu, Grok 4.20 Multi-Agent, GLM-4.7-Flash.
+- Deliberately skipped: roleplay/community finetunes, OpenRouter routers and `~latest` aliases, 2023–24 legacy ids, dated snapshots of already-priced models, guard classifiers, code-apply tools, Muse Spark contributor variants, ambiguous image ids.
 
 ### 2026-09-05 Session 274 — Price tab: official vendor pricing over aggregator snapshots
 - **289 price rows (83 value changes, 89 new, 117 re-sourced), priced models 195 → 218.** Rule: vendors with a first-party API get their official list price (Anthropic docs, Google Gemini API, OpenAI S273, DeepSeek peak, Z.ai, Upstage, Mistral, xAI) or — when the vendor page is JS-only — the vendor's own endpoint on OpenRouter (Moonshot AI, Minimax, Alibaba, Tencent, Mistral); community-hosted open weights keep OpenRouter's listed price. Backup `data/benchmark.db.pre-s274.bak`.
