@@ -1,0 +1,343 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-05",
+  "session": "S272",
+  "sources": [
+   "https://www.terminal-bench-science.ai/announcement",
+   "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+   "https://www.tbench.ai/blog/terminal-bench-3-0"
+  ],
+  "note": "Follow-up to the S272 re-verification of every Terminal-Bench-Science value against the announcement SVGs (33/33 matched). Adds the two Pareto charts (total cost, total tokens) — three cost and two token values are stated in prose and the chart geometry reproduces them to ±0.05, which licenses reading the remaining markers the same way — and annotates the three rows whose harness differs from the leaderboard (Anthropic's own re-run of Opus 5 / Fable 5, and Fable 5.1 at max effort). The Mythos 5.1 effort curve on Anthropic's page is Terminal-Bench 4.0, not Terminal-Bench-Science; it is not ingested here. Second part: the TB3.0 launch post (primary source) — 3 leaderboard rows the DB lacked (Grok 4.5 17.8, Sonnet 5 14.6, GLM 5.2 5.1), the 5 S271 rows re-sourced to it, a description for terminal_bench_3, and its cost Pareto chart (7 rows). frontier_bench is retired into terminal_bench_3 (migration s272)."
+ },
+ "benchmarks": [
+  {
+   "id": "terminal_bench_science_total_cost_usd",
+   "name": "Terminal-Bench-Science 0.1 — Total Evaluation Cost (USD)",
+   "category": "ai4s",
+   "description": "Total API cost of one full Terminal-Bench-Science 0.1 evaluation (70 tasks × 3 trials) in the leaderboard's own harness, in USD; lower is better. From the announcement's 'Cost vs. Resolution Rate' Pareto chart.",
+   "metric": "usd_lower_better",
+   "higher_better": false
+  },
+  {
+   "id": "terminal_bench_science_total_tokens_billions",
+   "name": "Terminal-Bench-Science 0.1 — Total Tokens (billions)",
+   "category": "ai4s",
+   "description": "Total tokens consumed by one full Terminal-Bench-Science 0.1 evaluation (70 tasks × 3 trials), in billions; lower is better. From the announcement's 'Tokens vs. Resolution Rate' Pareto chart.",
+   "metric": "tokens_lower_better",
+   "higher_better": false
+  },
+  {
+   "id": "terminal_bench_3",
+   "name": "Terminal-Bench 3.0",
+   "category": "agent",
+   "metric": "accuracy",
+   "description": "Terminal-Bench 3.0 (Stanford / Harbor / Laude Institute, launched 2026-07-30; v3.0.0 tagged 2026-07-23): 74 community-sourced terminal tasks across 7 domains, built to discriminate frontier from sub-frontier agents (best models ~34% at launch). Pass rate, higher is better. The GitHub repo was previously named 'frontier-bench', so the retired id frontier_bench (S217b, 'Frontier-Bench v0.1') was this benchmark."
+  },
+  {
+   "id": "terminal_bench_3_total_cost_usd",
+   "name": "Terminal-Bench 3.0 — Total Evaluation Cost (USD)",
+   "category": "agent",
+   "metric": "usd_lower_better",
+   "higher_better": false,
+   "description": "Total API cost of one full Terminal-Bench 3.0 run (74 tasks) in the Terminal-Bench team's own harness, in USD; lower is better. From the launch post's 'Cost vs Pass Rate' Pareto chart."
+  }
+ ],
+ "scores": [
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_science_total_cost_usd",
+   "score": 400.0,
+   "unit": "USD",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis ($0 at x=84, $20.0k at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Opus 5 $7.0k, Sol $4.2k, Fable 5 $14.2k) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "terminal_bench_science_total_cost_usd",
+   "score": 1500.0,
+   "unit": "USD",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis ($0 at x=84, $20.0k at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Opus 5 $7.0k, Sol $4.2k, Fable 5 $14.2k) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_science_total_cost_usd",
+   "score": 2000.0,
+   "unit": "USD",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis ($0 at x=84, $20.0k at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Opus 5 $7.0k, Sol $4.2k, Fable 5 $14.2k) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_science_total_cost_usd",
+   "score": 2700.0,
+   "unit": "USD",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis ($0 at x=84, $20.0k at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Opus 5 $7.0k, Sol $4.2k, Fable 5 $14.2k) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_science_total_cost_usd",
+   "score": 3300.0,
+   "unit": "USD",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis ($0 at x=84, $20.0k at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Opus 5 $7.0k, Sol $4.2k, Fable 5 $14.2k) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_science_total_cost_usd",
+   "score": 4200.0,
+   "unit": "USD",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Stated in the announcement prose ('$4.2k vs $14.2k'); the Pareto chart marker agrees ($4.22k)."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_science_total_cost_usd",
+   "score": 5800.0,
+   "unit": "USD",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis ($0 at x=84, $20.0k at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Opus 5 $7.0k, Sol $4.2k, Fable 5 $14.2k) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_science_total_cost_usd",
+   "score": 7000.0,
+   "unit": "USD",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Stated in the announcement prose ('Opus 5 at $7.0k'); the Pareto chart marker agrees ($6.99k)."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_science_total_cost_usd",
+   "score": 14200.0,
+   "unit": "USD",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Stated in the announcement prose ('$4.2k vs $14.2k'); the Pareto chart marker agrees ($14.18k)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "terminal_bench_science_total_tokens_billions",
+   "score": 3.2,
+   "unit": "B tokens",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis (2.0B at x=84, 16.0B at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Fable 5 6.4B, Sol 8.4B) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_science_total_tokens_billions",
+   "score": 3.7,
+   "unit": "B tokens",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis (2.0B at x=84, 16.0B at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Fable 5 6.4B, Sol 8.4B) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_science_total_tokens_billions",
+   "score": 6.4,
+   "unit": "B tokens",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Stated in the announcement prose ('6.4B vs 8.4B'); the Pareto chart marker agrees (6.36B)."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_science_total_tokens_billions",
+   "score": 6.8,
+   "unit": "B tokens",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis (2.0B at x=84, 16.0B at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Fable 5 6.4B, Sol 8.4B) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_science_total_tokens_billions",
+   "score": 7.3,
+   "unit": "B tokens",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis (2.0B at x=84, 16.0B at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Fable 5 6.4B, Sol 8.4B) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_science_total_tokens_billions",
+   "score": 7.6,
+   "unit": "B tokens",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis (2.0B at x=84, 16.0B at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Fable 5 6.4B, Sol 8.4B) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_science_total_tokens_billions",
+   "score": 8.4,
+   "unit": "B tokens",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Stated in the announcement prose ('6.4B vs 8.4B'); the Pareto chart marker agrees (8.41B)."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_science_total_tokens_billions",
+   "score": 8.5,
+   "unit": "B tokens",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis (2.0B at x=84, 16.0B at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Fable 5 6.4B, Sol 8.4B) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_science_total_tokens_billions",
+   "score": 14.2,
+   "unit": "B tokens",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Read from the announcement's Pareto scatter SVG: marker x on a linear axis (2.0B at x=84, 16.0B at x=452); the marker's y reproduces the model's overall resolution rate, which fixes its identity. The same read-out matches every value the announcement prints in prose (Fable 5 6.4B, Sol 8.4B) to within 0.05, so precision is about ±0.05. Not printed as text on the page."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_science",
+   "score": 30.0,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, overall resolution-rate bar chart (Claude Code harness, 3 trials/task, 70 tasks). Anthropic's Fable 5.1 launch page re-ran this benchmark in its own setup and reports Claude Opus 5 at 29.0% and Claude Fable 5 at 24.7% (leaderboard: 30.0% / 21.4%), noting a standard error of ±3.5–4.5 pts per model, 'both within noise'. This row keeps the public leaderboard value (3 trials/task, Claude Code harness)."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_science",
+   "score": 21.4,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, overall resolution-rate bar chart (Claude Code harness, 3 trials/task, 70 tasks). Anthropic's Fable 5.1 launch page re-ran this benchmark in its own setup and reports Claude Opus 5 at 29.0% and Claude Fable 5 at 24.7% (leaderboard: 30.0% / 21.4%), noting a standard error of ±3.5–4.5 pts per model, 'both within noise'. This row keeps the public leaderboard value (3 trials/task, Claude Code harness). Anthropic's own effort sweep for Fable 5 on this benchmark: low 12.3 / medium 21.4 / high 25.0 / xhigh 23.4 / max 24.7 (per-task cost $17.1–$44.1)."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_science",
+   "score": 52.6,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+   "_note": "Anthropic launch-page benchmark grid, MAX effort. NOT a public-leaderboard run: Anthropic's own harness, which reproduces the leaderboard's Opus 5 / Fable 5 at 29.0% / 24.7% vs 30.0% / 21.4% (SE ±3.5–4.5 pts). Effort sweep from the page's 'Accuracy vs Cost' chart data: low 26.3 / medium 35.7 / high 40.0 (Claude Code default) / xhigh 49.5 / max 52.6, per-task cost $11.1 / $14.9 / $20.3 / $31.8 / $37.9. Terminal-Bench-Science had not published a Fable 5.1 result as of 2026-09-05."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_3",
+   "score": 34.4,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Terminal-Bench 3.0 launch post (tbench.ai, 2026-07-30), 'Pass rates on Terminal-Bench 3.0' leaderboard chart, agent = Codex. Printed label; SVG bar geometry agrees. Same value appears in the Terminal-Bench-Science announcement's comparison chart (S271 read it from there; re-sourced to the primary post in S272). Also identical to the 2026-07-31 github.com/harbor-framework/frontier-bench snapshot that S217b stored under the retired id frontier_bench."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_3",
+   "score": 33.8,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Terminal-Bench 3.0 launch post (tbench.ai, 2026-07-30), 'Pass rates on Terminal-Bench 3.0' leaderboard chart, agent = Claude Code. Printed label; SVG bar geometry agrees. The post's TB2.1-vs-TB3.0 slope chart puts this model at 83.8% on Terminal-Bench 2.1 in the Terminal-Bench team's own harness (notes only; the vendor-sourced terminal_bench_2_1 row is kept). Same value appears in the Terminal-Bench-Science announcement's comparison chart (S271 read it from there; re-sourced to the primary post in S272). Also identical to the 2026-07-31 github.com/harbor-framework/frontier-bench snapshot that S217b stored under the retired id frontier_bench."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_3",
+   "score": 21.1,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Terminal-Bench 3.0 launch post (tbench.ai, 2026-07-30), 'Pass rates on Terminal-Bench 3.0' leaderboard chart, agent = Claude Code. Printed label; SVG bar geometry agrees. The post's TB2.1-vs-TB3.0 slope chart puts this model at 78.9% on Terminal-Bench 2.1 in the Terminal-Bench team's own harness (notes only; the vendor-sourced terminal_bench_2_1 row is kept). Same value appears in the Terminal-Bench-Science announcement's comparison chart (S271 read it from there; re-sourced to the primary post in S272). Also identical to the 2026-07-31 github.com/harbor-framework/frontier-bench snapshot that S217b stored under the retired id frontier_bench."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_3",
+   "score": 20.8,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Terminal-Bench 3.0 launch post (tbench.ai, 2026-07-30), 'Pass rates on Terminal-Bench 3.0' leaderboard chart, agent = Codex. Printed label; SVG bar geometry agrees. The post's TB2.1-vs-TB3.0 slope chart puts this model at 78.4% on Terminal-Bench 2.1 in the Terminal-Bench team's own harness (notes only; the vendor-sourced terminal_bench_2_1 row is kept). Same value appears in the Terminal-Bench-Science announcement's comparison chart (S271 read it from there; re-sourced to the primary post in S272)."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "terminal_bench_3",
+   "score": 17.8,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Terminal-Bench 3.0 launch post (tbench.ai, 2026-07-30), 'Pass rates on Terminal-Bench 3.0' leaderboard chart, agent = Cursor CLI. Printed label; SVG bar geometry agrees. The post's TB2.1-vs-TB3.0 slope chart puts this model at 79.3% on Terminal-Bench 2.1 in the Terminal-Bench team's own harness (notes only; the vendor-sourced terminal_bench_2_1 row is kept)."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_3",
+   "score": 14.6,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Terminal-Bench 3.0 launch post (tbench.ai, 2026-07-30), 'Pass rates on Terminal-Bench 3.0' leaderboard chart, agent = Claude Code. Printed label; SVG bar geometry agrees. The post's TB2.1-vs-TB3.0 slope chart puts this model at 74.6% on Terminal-Bench 2.1 in the Terminal-Bench team's own harness (notes only; the vendor-sourced terminal_bench_2_1 row is kept)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_3",
+   "score": 14.3,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Terminal-Bench 3.0 launch post (tbench.ai, 2026-07-30), 'Pass rates on Terminal-Bench 3.0' leaderboard chart, agent = Codex. Printed label; SVG bar geometry agrees. The post's TB2.1-vs-TB3.0 slope chart puts this model at 75.7% on Terminal-Bench 2.1 in the Terminal-Bench team's own harness (notes only; the vendor-sourced terminal_bench_2_1 row is kept). Same value appears in the Terminal-Bench-Science announcement's comparison chart (S271 read it from there; re-sourced to the primary post in S272)."
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "terminal_bench_3",
+   "score": 5.1,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Terminal-Bench 3.0 launch post (tbench.ai, 2026-07-30), 'Pass rates on Terminal-Bench 3.0' leaderboard chart, agent = Claude Code. Printed label; SVG bar geometry agrees."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_3",
+   "score": 42.7,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Terminal-Bench-Science vs. Terminal-Bench' slope chart, Terminal-Bench 3.0 column (cx=372.5, confirmed by the chart's axis header and aria-label; S271). Opus 5 post-dates the TB3.0 launch post, which lists 8 models without it. The 2026-07-31 leaderboard snapshot that S217b stored under the retired id frontier_bench (github.com/harbor-framework/frontier-bench, now the terminal-bench repo) showed Opus 5 at 43.3; the September chart shows 42.7 — same board, later read. Kept 42.7 (more recent)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_3_total_cost_usd",
+   "score": 1700.0,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Read from the launch post's 'Cost vs Pass Rate' Pareto SVG (agent = Codex): marker x on the linear $0–$10.0k axis; the marker's y reproduces the model's pass rate, which fixes its identity. No printed cost labels — precision about ±$50. The post's prose check ('GPT-5.6 Sol is ~40% cheaper than Fable 5') holds: $4.0k vs $7.0k."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_3_total_cost_usd",
+   "score": 2500.0,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Read from the launch post's 'Cost vs Pass Rate' Pareto SVG (agent = Codex): marker x on the linear $0–$10.0k axis; the marker's y reproduces the model's pass rate, which fixes its identity. No printed cost labels — precision about ±$50. The post's prose check ('GPT-5.6 Sol is ~40% cheaper than Fable 5') holds: $4.0k vs $7.0k."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_3_total_cost_usd",
+   "score": 4000.0,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Read from the launch post's 'Cost vs Pass Rate' Pareto SVG (agent = Codex): marker x on the linear $0–$10.0k axis; the marker's y reproduces the model's pass rate, which fixes its identity. No printed cost labels — precision about ±$50. The post's prose check ('GPT-5.6 Sol is ~40% cheaper than Fable 5') holds: $4.0k vs $7.0k."
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "terminal_bench_3_total_cost_usd",
+   "score": 4200.0,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Read from the launch post's 'Cost vs Pass Rate' Pareto SVG (agent = Claude Code): marker x on the linear $0–$10.0k axis; the marker's y reproduces the model's pass rate, which fixes its identity. No printed cost labels — precision about ±$50. The post's prose check ('GPT-5.6 Sol is ~40% cheaper than Fable 5') holds: $4.0k vs $7.0k."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_3_total_cost_usd",
+   "score": 5700.0,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Read from the launch post's 'Cost vs Pass Rate' Pareto SVG (agent = Claude Code): marker x on the linear $0–$10.0k axis; the marker's y reproduces the model's pass rate, which fixes its identity. No printed cost labels — precision about ±$50. The post's prose check ('GPT-5.6 Sol is ~40% cheaper than Fable 5') holds: $4.0k vs $7.0k."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_3_total_cost_usd",
+   "score": 7000.0,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Read from the launch post's 'Cost vs Pass Rate' Pareto SVG (agent = Claude Code): marker x on the linear $0–$10.0k axis; the marker's y reproduces the model's pass rate, which fixes its identity. No printed cost labels — precision about ±$50. The post's prose check ('GPT-5.6 Sol is ~40% cheaper than Fable 5') holds: $4.0k vs $7.0k."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_3_total_cost_usd",
+   "score": 7900.0,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/blog/terminal-bench-3-0",
+   "_note": "Read from the launch post's 'Cost vs Pass Rate' Pareto SVG (agent = Claude Code): marker x on the linear $0–$10.0k axis; the marker's y reproduces the model's pass rate, which fixes its identity. No printed cost labels — precision about ±$50. The post's prose check ('GPT-5.6 Sol is ~40% cheaper than Fable 5') holds: $4.0k vs $7.0k."
+  }
+ ]
+}

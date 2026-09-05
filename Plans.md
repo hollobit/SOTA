@@ -1,7 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 271 — TB-Science comparison chart resolved via SVG geometry (2026-09-05)
-**3,471 models · 4,463 benchmarks · 22,171 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 272 — Terminal-Bench-Science re-verified 33/33; Pareto charts, harness notes, TB3.0 primary source, frontier_bench merge (2026-09-05)
+**3,471 models · 4,465 benchmarks · 22,195 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-05 Session 272 — Terminal-Bench-Science values re-verified against the source; follow-ups
+- **33/33 match.** Every DB value sourced to the announcement (overall 9, TB3.0 column 6, domain radar 15) was re-extracted independently from the raw SVGs and compared in code: bar-chart labels, slope-chart circles (y = 376 − 3.683 × value; each model group is pinned by its TBS circle matching the overall score), radar vertices (r ÷ 4.4, axis angles 90/18/306/234/162°). 0 mismatches.
+- **Two Pareto charts mined.** Markers are 28×28 hit-rects; the five values the prose states (Opus 5 $7.0k, Sol $4.2k, Fable 5 $14.2k; Fable 5 6.4B, Sol 8.4B tokens) are reproduced by the geometry to ±0.05, so the remaining markers were read the same way — including two unlabeled cost markers (GLM 5.3 $2.7k, Grok 4.6 $3.3k) identified by y = overall score. `terminal_bench_science_total_cost_usd` (9) and `_total_tokens_billions` (9).
+- **Harness notes, values unchanged.** Fable 5.1 52.6 is Anthropic's own harness at max effort (sweep low 26.3 / med 35.7 / high 40.0 / xhigh 49.5 / max 52.6); Anthropic reproduces the leaderboard's Opus 5 / Fable 5 at 29.0 / 24.7 vs 30.0 / 21.4 (SE ±3.5–4.5). Three rows annotated. The Mythos 5.1 effort curve on that page is Terminal-Bench 4.0, not TBS — not ingested.
+- **TB3.0 primary source.** The tbench.ai launch post (2026-07-30) lists 8 models; the DB lacked Grok 4.5 17.8, Sonnet 5 14.6, GLM 5.2 5.1. The five S271 rows match the post digit for digit and were re-sourced to it; `terminal_bench_3` got a description and a cost Pareto (7 rows, prose check "Sol ~40% cheaper than Fable 5" holds: $4.0k vs $7.0k). 8 → 11 rows.
+- **`frontier_bench` retired into `terminal_bench_3`.** Its only source, github.com/harbor-framework/frontier-bench, 301-redirects to the terminal-bench repo (v3.0.0 tagged 2026-07-23); 3 of its 4 rows equal the official TB3.0 values and Opus 5 43.3 was a 2026-07-31 snapshot of the same board (42.7 in September). All four models already had TB3.0 rows → migration s272 + source JSON re-pointed, nothing moved. Backup `data/benchmark.db.pre-s272.bak`.
 
 ### 2026-09-05 Session 271 — Terminal-Bench-Science comparison + domain charts, decoded from SVG geometry
 - **5 new benches + 21 scores, 0 FK / 0 collisions / 0 overwrites.** Re-check of the chart S270 withheld for "column identity unconfirmed".
