@@ -1,0 +1,217 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-05",
+  "session": "S271",
+  "note": "Re-check of the Terminal-Bench-Science comparison chart that S270 withheld. The column identity question is settled by the SVG geometry, not by the flattened text: the slope chart has three fixed x positions with axis headers (190 = Terminal-Bench 2.1, 372.5 = Terminal-Bench 3.0, 555 = Terminal-Bench-Science 0.1) and each value sits on one of them as a <circle cx=...>. The TB2.1 mismatch S270 flagged (Fable 5 83.8 vs DB 88.0) is therefore a harness difference — the TB-Science team's own runs — not a mis-read column. The six TB3.0 values are ingested on the existing terminal_bench_3 id with that provenance spelled out; the chart's TB2.1 points are recorded in notes only, so the vendor-sourced TB2.1 rows already in the DB are not overwritten.",
+  "sources": [
+   "https://www.terminal-bench-science.ai/announcement"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "terminal_bench_science_life",
+   "name": "Terminal-Bench-Science 0.1 — Life Sciences",
+   "category": "ai4s",
+   "description": "Terminal-Bench-Science 0.1 resolution rate within the Life Sciences domain (70-task board; Apache-2.0). Decoded from the announcement's radar chart: value = vertex radius / 4.4, cross-checked against the chart's printed labels. Per-domain rates are not weighted equally, so they need not average to the overall terminal_bench_science score.",
+   "metric": "resolution_rate"
+  },
+  {
+   "id": "terminal_bench_science_earth",
+   "name": "Terminal-Bench-Science 0.1 — Earth Sciences",
+   "category": "ai4s",
+   "description": "Terminal-Bench-Science 0.1 resolution rate within the Earth Sciences domain (70-task board; Apache-2.0). Decoded from the announcement's radar chart: value = vertex radius / 4.4, cross-checked against the chart's printed labels. Per-domain rates are not weighted equally, so they need not average to the overall terminal_bench_science score.",
+   "metric": "resolution_rate"
+  },
+  {
+   "id": "terminal_bench_science_engineering",
+   "name": "Terminal-Bench-Science 0.1 — Engineering Sciences",
+   "category": "ai4s",
+   "description": "Terminal-Bench-Science 0.1 resolution rate within the Engineering Sciences domain (70-task board; Apache-2.0). Decoded from the announcement's radar chart: value = vertex radius / 4.4, cross-checked against the chart's printed labels. Per-domain rates are not weighted equally, so they need not average to the overall terminal_bench_science score.",
+   "metric": "resolution_rate"
+  },
+  {
+   "id": "terminal_bench_science_mathematical",
+   "name": "Terminal-Bench-Science 0.1 — Mathematical Sciences",
+   "category": "ai4s",
+   "description": "Terminal-Bench-Science 0.1 resolution rate within the Mathematical Sciences domain (70-task board; Apache-2.0). Decoded from the announcement's radar chart: value = vertex radius / 4.4, cross-checked against the chart's printed labels. Per-domain rates are not weighted equally, so they need not average to the overall terminal_bench_science score.",
+   "metric": "resolution_rate"
+  },
+  {
+   "id": "terminal_bench_science_physical",
+   "name": "Terminal-Bench-Science 0.1 — Physical Sciences",
+   "category": "ai4s",
+   "description": "Terminal-Bench-Science 0.1 resolution rate within the Physical Sciences domain (70-task board; Apache-2.0). Decoded from the announcement's radar chart: value = vertex radius / 4.4, cross-checked against the chart's printed labels. Per-domain rates are not weighted equally, so they need not average to the overall terminal_bench_science score.",
+   "metric": "resolution_rate"
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_3",
+   "score": 42.7,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Terminal-Bench-Science vs. Terminal-Bench' slope chart, Terminal-Bench 3.0 column (cx=372.5, confirmed by the chart's axis header and aria-label). Measured by the Terminal-Bench-Science team in their own harness — their TB2.1 column runs 4-9 pts below vendor self-reports (e.g. Fable 5 83.8 vs the 88.0 already in the DB), so treat these TB3.0 numbers as third-party runs rather than vendor figures. The existing terminal_bench_3 rows (GLM-5.3 28.3, Gemini 3.7 Flash 14.9) are vendor self-reports. No TB2.1 point drawn for this model on the chart."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_3",
+   "score": 34.4,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Terminal-Bench-Science vs. Terminal-Bench' slope chart, Terminal-Bench 3.0 column (cx=372.5, confirmed by the chart's axis header and aria-label). Measured by the Terminal-Bench-Science team in their own harness — their TB2.1 column runs 4-9 pts below vendor self-reports (e.g. Fable 5 83.8 vs the 88.0 already in the DB), so treat these TB3.0 numbers as third-party runs rather than vendor figures. The existing terminal_bench_3 rows (GLM-5.3 28.3, Gemini 3.7 Flash 14.9) are vendor self-reports. No TB2.1 point drawn for this model on the chart."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_3",
+   "score": 33.8,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Terminal-Bench-Science vs. Terminal-Bench' slope chart, Terminal-Bench 3.0 column (cx=372.5, confirmed by the chart's axis header and aria-label). Measured by the Terminal-Bench-Science team in their own harness — their TB2.1 column runs 4-9 pts below vendor self-reports (e.g. Fable 5 83.8 vs the 88.0 already in the DB), so treat these TB3.0 numbers as third-party runs rather than vendor figures. The existing terminal_bench_3 rows (GLM-5.3 28.3, Gemini 3.7 Flash 14.9) are vendor self-reports. Same chart's TB2.1 point for this model: 83.8 (NOT written to terminal_bench_2_1, which already holds the vendor figure)."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_3",
+   "score": 21.1,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Terminal-Bench-Science vs. Terminal-Bench' slope chart, Terminal-Bench 3.0 column (cx=372.5, confirmed by the chart's axis header and aria-label). Measured by the Terminal-Bench-Science team in their own harness — their TB2.1 column runs 4-9 pts below vendor self-reports (e.g. Fable 5 83.8 vs the 88.0 already in the DB), so treat these TB3.0 numbers as third-party runs rather than vendor figures. The existing terminal_bench_3 rows (GLM-5.3 28.3, Gemini 3.7 Flash 14.9) are vendor self-reports. Same chart's TB2.1 point for this model: 78.9 (NOT written to terminal_bench_2_1, which already holds the vendor figure)."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_3",
+   "score": 20.8,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Terminal-Bench-Science vs. Terminal-Bench' slope chart, Terminal-Bench 3.0 column (cx=372.5, confirmed by the chart's axis header and aria-label). Measured by the Terminal-Bench-Science team in their own harness — their TB2.1 column runs 4-9 pts below vendor self-reports (e.g. Fable 5 83.8 vs the 88.0 already in the DB), so treat these TB3.0 numbers as third-party runs rather than vendor figures. The existing terminal_bench_3 rows (GLM-5.3 28.3, Gemini 3.7 Flash 14.9) are vendor self-reports. Same chart's TB2.1 point for this model: 78.4 (NOT written to terminal_bench_2_1, which already holds the vendor figure)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_3",
+   "score": 14.3,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Terminal-Bench-Science vs. Terminal-Bench' slope chart, Terminal-Bench 3.0 column (cx=372.5, confirmed by the chart's axis header and aria-label). Measured by the Terminal-Bench-Science team in their own harness — their TB2.1 column runs 4-9 pts below vendor self-reports (e.g. Fable 5 83.8 vs the 88.0 already in the DB), so treat these TB3.0 numbers as third-party runs rather than vendor figures. The existing terminal_bench_3 rows (GLM-5.3 28.3, Gemini 3.7 Flash 14.9) are vendor self-reports. Same chart's TB2.1 point for this model: 75.7 (NOT written to terminal_bench_2_1, which already holds the vendor figure)."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_science_life",
+   "score": 29.8,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_science_earth",
+   "score": 45.8,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_science_engineering",
+   "score": 29.6,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_science_mathematical",
+   "score": 25.5,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_science_physical",
+   "score": 27.5,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_science_life",
+   "score": 17.5,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_science_earth",
+   "score": 20.8,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_science_engineering",
+   "score": 14.8,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_science_mathematical",
+   "score": 31.4,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_science_physical",
+   "score": 23.5,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_science_life",
+   "score": 7.0,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_science_earth",
+   "score": 4.2,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_science_engineering",
+   "score": 14.8,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_science_mathematical",
+   "score": 5.9,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_science_physical",
+   "score": 5.9,
+   "unit": "%",
+   "_source": "https://www.terminal-bench-science.ai/announcement",
+   "_note": "Terminal-Bench-Science announcement, 'Resolution Rates by Domain' radar chart; value read from the chart's printed label and confirmed by SVG vertex radius / 4.4."
+  }
+ ]
+}

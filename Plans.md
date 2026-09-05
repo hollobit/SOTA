@@ -1,7 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 270 — S265 sources re-audited (2026-09-05)
-**3,471 models · 4,458 benchmarks · 22,150 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 271 — TB-Science comparison chart resolved via SVG geometry (2026-09-05)
+**3,471 models · 4,463 benchmarks · 22,171 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-05 Session 271 — Terminal-Bench-Science comparison + domain charts, decoded from SVG geometry
+- **5 new benches + 21 scores, 0 FK / 0 collisions / 0 overwrites.** Re-check of the chart S270 withheld for "column identity unconfirmed".
+- **Column identity settled by geometry, not text.** The slope chart has three fixed x positions with axis headers (190 = Terminal-Bench 2.1, 372.5 = Terminal-Bench 3.0, 555 = Terminal-Bench-Science 0.1) and every one of its 16 points is a `<circle cx=…>` on one of them; the aria-label names all three benches. The middle column is TB3.0 → 6 rows on `terminal_bench_3` (Opus 5 **42.7**, GPT-5.6 Sol 34.4, Fable 5 33.8, Opus 4.8 21.1, Terra 20.8, Luna 14.3), taking the id from 2 to 8 rows.
+- **The TB2.1 mismatch S270 flagged was a harness difference, not a mis-read.** The chart's TB2.1 points (Fable 5 83.8, Opus 4.8 78.9, Terra 78.4, Luna 75.7) run 4–9 pts below the vendor self-reports already in the DB (88.0 / 82.7 / 87.4 / 84.7) — the TB-Science team's own runs. Recorded in notes only; vendor-sourced TB2.1 rows left untouched.
+- **Domain chart decoded too.** It is a 5-axis radar (centre 260,260): axis labels fix Life (90°) / Earth (18°) / Engineering (306°) / Mathematical (234°) / Physical (162°) Sciences; grid pentagons at r = 44/88/132/176/220 carry ticks 10–50, so r = 4.4 × value; the three data polygons' vertex radii ÷ 4.4 reproduce all 15 printed labels exactly (re-verified in code). Model order from the aria-label (Opus 5, Sol, Grok 4.6) + DOM legend + consistency with overall scores (30.0 / 22.4 / 7.1). 5 sub-ids `terminal_bench_science_{life,earth,engineering,mathematical,physical}`, 15 rows. Opus 5 peaks on **Earth Sciences 45.8**; Sol's best is Mathematical 31.4; Grok 4.6 is single-digit everywhere except Engineering 14.8.
+- Propagation: frontier-compare gains `terminal_bench_3` (previously surfaced on **no** tab) and the five domain ids. Lesson written to memory: a chart's coordinates *are* its columns/axes — read the geometry before withholding. Backup `data/benchmark.db.pre-s271.bak`.
 
 ### 2026-09-05 Session 270 — re-audit of the S265 links: what the first pass missed
 - **1 new model + 19 new benches + 104 scores, 0 FK / 0 collisions / 0 overwrites.** Same audit question as S260b/S260c, applied to the 19-link batch.

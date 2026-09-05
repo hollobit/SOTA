@@ -9,7 +9,11 @@ var FrontierCompare = {
     CORE_BENCHMARKS: {
         reasoning: [
             'gpqa_diamond', 'hle', 'mmlu_pro', 'mmlu_pro_aa', 'mmlu', 'mmlu_redux', 'mmmlu',
-            'arc_agi_2', 'arc_agi_3', 'terminal_bench_4_0', 'terminal_bench_science', 'frontiermath', 'frontier_science', 'gdpval', 'officeqa_pro',
+            'arc_agi_2', 'arc_agi_3', 'terminal_bench_4_0', 'terminal_bench_3', 'terminal_bench_science',
+            // 2026-09-05 S271 — TB-Science per-domain rates (decoded from the announcement's radar chart)
+            'terminal_bench_science_life', 'terminal_bench_science_earth', 'terminal_bench_science_engineering',
+            'terminal_bench_science_mathematical', 'terminal_bench_science_physical',
+            'frontiermath', 'frontier_science', 'gdpval', 'officeqa_pro',
             'simpleqa_verified', 'chinese_simpleqa',
             // 2026-09-05 S265 — new reasoning/agent boards
             'conceptual_reasoning_index', 'nyt_connections_extended',
