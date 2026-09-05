@@ -1649,21 +1649,6 @@
     "collected_at": "2026-04-24",
     "notes": "GPT-5.5 System Card — 14/15 scenarios passed"
   },
-  "omnidocbench": {
-    "model_id": "alibaba/qwen3.6-plus",
-    "benchmark_id": "omnidocbench",
-    "value": 91.2,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://qwen.ai/blog?id=qwen3.6",
-      "date": "2026-04-17",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-17",
-    "notes": "Higher=better normalized score"
-  },
   "facts_benchmark": {
     "model_id": "google/gemini-3-pro",
     "benchmark_id": "facts_benchmark",
@@ -1798,6 +1783,21 @@
     "is_sota": true,
     "collected_at": "2026-09-05",
     "notes": ""
+  },
+  "omnidocbench_v1_5_composite": {
+    "model_id": "zhipu/glm-ocr-0.9b",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 94.62,
+    "unit": "score_0_100",
+    "source": {
+      "type": "leaderboard",
+      "url": "GLM-OCR arxiv 2603.10910v1 Table 4",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "#1 SOTA; Text Edit 0.040, Formula CDM 93.90, Table TEDS 93.96, Reading Order Edit 0.044"
   },
   "fortress": {
     "model_id": "anthropic/claude-opus-4.7",
@@ -11474,21 +11474,6 @@
     "collected_at": "2026-09-05",
     "notes": "Qwen blog Multimodal — CountQA | SOTA — beats Gemini-3.1 Pro 72.8"
   },
-  "omnidocbench_1_5": {
-    "model_id": "alibaba/qwen3.8-max",
-    "benchmark_id": "omnidocbench_1_5",
-    "value": 92.1,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://qwen.ai/blog?id=qwen3.8",
-      "date": "2026-08-03",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-08-03",
-    "notes": ""
-  },
   "lingoqa_driving": {
     "model_id": "alibaba/qwen3.7-plus",
     "benchmark_id": "lingoqa_driving",
@@ -12343,6 +12328,21 @@
     "is_sota": true,
     "collected_at": "2026-09-05",
     "notes": ""
+  },
+  "omnidocbench_1_5_lower_better": {
+    "model_id": "google/gemini-3-pro",
+    "benchmark_id": "omnidocbench_1_5_lower_better",
+    "value": 0.115,
+    "unit": "score_lower_better",
+    "source": {
+      "type": "leaderboard",
+      "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "rank=15 org=Google [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_1_5_lower_better (edit distance (lower better)). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   "math_vision": {
     "model_id": "alibaba/qwen3.5-27b",
@@ -19709,21 +19709,6 @@
     "collected_at": "2026-09-05",
     "notes": ""
   },
-  "omnidocbench_1_5_lower_better": {
-    "model_id": "google/gemini-3-pro",
-    "benchmark_id": "omnidocbench_1_5_lower_better",
-    "value": 0.115,
-    "unit": "score",
-    "source": {
-      "type": "pdf",
-      "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3_pro_model_evaluation.pdf",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": "lower is better, overall edit distance"
-  },
   "livecodebench_pro_elo": {
     "model_id": "google/gemini-3.1-pro",
     "benchmark_id": "livecodebench_pro_elo",
@@ -25109,21 +25094,6 @@
     "collected_at": "2026-09-05",
     "notes": "Official model card."
   },
-  "omnidocbench_v15": {
-    "model_id": "alibaba/qwen3.6-35b-a3b",
-    "benchmark_id": "omnidocbench_v15",
-    "value": 89.9,
-    "unit": "pct",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": "Official model card."
-  },
   "c_eval": {
     "model_id": "deepseek/deepseek-v4-pro-base",
     "benchmark_id": "c_eval",
@@ -26178,21 +26148,6 @@
     "model_id": "moonshot/kimi-k2.5",
     "benchmark_id": "widesearch_(agent_swarm)",
     "value": 79.0,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "huggingface.co/moonshotai/Kimi-K2.5",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": ""
-  },
-  "omnidocbench_1.5": {
-    "model_id": "moonshot/kimi-k2.5",
-    "benchmark_id": "omnidocbench_1.5",
-    "value": 88.8,
     "unit": "score",
     "source": {
       "type": "leaderboard",
@@ -31169,21 +31124,6 @@
     "collected_at": "2026-09-05",
     "notes": "rank=1 org=Alibaba/Qwen"
   },
-  "omnidocbench_v1_5": {
-    "model_id": "zai-org/glm-ocr",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 94.62,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/html/2603.10910v1",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": ""
-  },
   "blink": {
     "model_id": "iflytek/iflybot-vlm-8b",
     "benchmark_id": "blink",
@@ -34814,21 +34754,6 @@
     "collected_at": "2026-09-05",
     "notes": "Fox-Bench at 7.5x compression, 700-800 text tokens / 100 vision"
   },
-  "omnidocbench_v1_5_composite": {
-    "model_id": "zhipu/glm-ocr-0.9b",
-    "benchmark_id": "omnidocbench_v1_5_composite",
-    "value": 94.62,
-    "unit": "score_0_100",
-    "source": {
-      "type": "leaderboard",
-      "url": "GLM-OCR arxiv 2603.10910v1 Table 4",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": "#1 SOTA; Text Edit 0.040, Formula CDM 93.90, Table TEDS 93.96, Reading Order Edit 0.044"
-  },
   "olmocr_bench_long_tiny": {
     "model_id": "opendatalab/mineru-2.5",
     "benchmark_id": "olmocr_bench_long_tiny",
@@ -34933,21 +34858,6 @@
     "is_sota": true,
     "collected_at": "2026-09-05",
     "notes": "3-way tie #1"
-  },
-  "omnidocbench-v1.5": {
-    "model_id": "zai-org/glm-ocr",
-    "benchmark_id": "omnidocbench-v1.5",
-    "value": 94.62,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://decodethefuture.org/en/glm-ocr-explained/",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": "GLM-OCR Zhipu writeup: scored 94.62 on OmniDocBench V1.5"
   },
   "ocrbench-text": {
     "model_id": "zai-org/glm-ocr",
