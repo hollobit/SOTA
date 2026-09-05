@@ -78,7 +78,7 @@ var Sovereign = {
                 'aleph-alpha/pharia-1-llm-7b-control',  // 2026 S151 audit — Aleph Alpha Pharia-1 LLM Control variant
                 // 2026-06-28 S151 — Tencent + ByteDance high-score-coverage sovereign frontier
                 'tencent/hunyuan3d-2', 'tencent/hunyuan3d-2.1', 'tencent/hunyuan3d-2.5',
-                'tencent/hunyuanvideo-1.5', 'tencent/hunyuan-video-1.5',
+                'tencent/hunyuanvideo-1.5', 'tencent/hunyuanvideo-1.5',
                 'bytedance/doubao-seed-2.0-pro',
                 'mistral/leanstral',
                 'mistral/mistral-large-2', 'mistral/mistral-large-1',
@@ -95,7 +95,7 @@ var Sovereign = {
                 // Mistral — Ministraux (edge)
                 'mistral/ministral-3-14b', 'mistral/ministral-3-8b', 'mistral/ministral-3-3b',
                 'mistral/ministral-8b-v1', 'mistral/ministral-3b-v1',
-                'mistralai/ministral-14b',  // 2026-06-06 S56 — Ministral 14B (ErrorQuake b=1.12 light tail, paired with DS-V3.2)
+                'mistral/ministral-14b',  // 2026-06-06 S56 — Ministral 14B (ErrorQuake b=1.12 light tail, paired with DS-V3.2)
                 // Mistral — original / regional
                 'mistral/mistral-7b', 'mistral/mixtral-8x7b', 'mistral/mixtral-8x22b',
                 'mistral/mistral-nemo-12b', 'mistral/mistral-saba-24b',
@@ -227,9 +227,9 @@ var Sovereign = {
                 // Skywork (Kunlun)
                 'skywork/skywork-moe', 'skywork/skywork-13b', 'skywork/skywork-r1v-3', 'skywork/skywork-o1',
                 // OpenBMB MiniCPM (Tsinghua)
-                'openbmb/minicpm-4.1-8b', 'openbmb/minicpm-4-8b', 'openbmb/minicpm-3-4b', 'openbmb/minicpm-5-1b', // 2026-06-10 S67 — AAII 18 leading 1B open-weights
+                'openbmb/minicpm-4.1-8b', 'openbmb/minicpm-4-8b', 'openbmb/minicpm3-4b', 'openbmb/minicpm-5-1b', // 2026-06-10 S67 — AAII 18 leading 1B open-weights
                 'openbmb/minicpm-v-2.6', 'openbmb/minicpm-o-2.6', 'openbmb/minicpm-o-4.5',
-                'openbmb/minicpm5-1b',                // 2026-05-19 S140 — AAII v4.1 = 17.9 (1B open SOTA, +7.4 vs next)
+                'openbmb/minicpm-5-1b',                // 2026-05-19 S140 — AAII v4.1 = 17.9 (1B open SOTA, +7.4 vs next)
                 'openbmb/minicpm-v-4.6',              // 2026-05-11 S140 — iOS/Android/HarmonyOS VLM
                 'alibaba/qwen-3.5-0.8b','alibaba/qwen-3.5-2b','alibaba/qwen-3.5-4b','alibaba/qwen-3.5-9b', // 2026-03 S140 — Qwen 3.5 Small family
                 // Huawei PanGu
@@ -269,7 +269,7 @@ var Sovereign = {
                 // Fujitsu × Cohere
                 'fujitsu/takane',
                 // Rakuten
-                'rakuten/rakuten-ai-7b', 'rakuten/rakuten-ai-2.0-8x7b-instruct', 'rakuten/rakuten-ai-3.0',
+                'rakuten/rakuten-ai-7b', 'rakuten/rakutenai-2.0-8x7b-instruct', 'rakuten/rakutenai-3.0',
                 // ELYZA
                 'elyza/llama-3-elyza-jp-8b', 'elyza/llama-3-elyza-jp-70b',
                 // Karakuri
@@ -458,7 +458,7 @@ var Sovereign = {
                 'aleph-alpha/tfree-hat-pretrained-7b-base',
                 'aleph-alpha/llama-3.1-8b-tfree-hat-dpo', 'aleph-alpha/llama-3.1-70b-tfree-hat-sft',
                 // Black Forest Labs (FLUX 1 + 2)
-                'black-forest-labs/flux.2-dev',
+                'black-forest-labs/flux-2-dev',
                 'black-forest-labs/flux.1-pro', 'black-forest-labs/flux.1-dev', 'black-forest-labs/flux.1-schnell',
                 'black-forest-labs/flux.1-kontext-pro', 'black-forest-labs/flux.1-kontext-dev',
                 // TNG
@@ -705,7 +705,7 @@ var Sovereign = {
         'skywork/skywork-moe': '2024-06', 'skywork/skywork-13b': '2023-10',
         'skywork/skywork-r1v-3': '2025-04', 'skywork/skywork-o1': '2024-11',
         // China — OpenBMB MiniCPM
-        'openbmb/minicpm-5-1b': '2026-05', 'openbmb/minicpm-4.1-8b': '2025-09', 'openbmb/minicpm-4-8b': '2025-06', 'openbmb/minicpm-3-4b': '2024-09',
+        'openbmb/minicpm-5-1b': '2026-05', 'openbmb/minicpm-4.1-8b': '2025-09', 'openbmb/minicpm-4-8b': '2025-06', 'openbmb/minicpm3-4b': '2024-09',
         'openbmb/minicpm-v-2.6': '2024-08', 'openbmb/minicpm-o-2.6': '2025-01',
         // China — Huawei PanGu
         'huawei/pangu-ultra-moe': '2025-05', 'huawei/pangu-5': '2025-04', 'huawei/pangu-embedding': '2025-06',

@@ -16,13 +16,13 @@ var PhysicalAI = {
                 'nvidia/cosmos-reason-2', 'nvidia/cosmos-reason-1', 'nvidia/cosmos-reason-1-56b', 'nvidia/cosmos-reason-1-8b',
                 'nvidia/cosmos-policy-robocasa',
                 // 2026-05-30 Session 38 — NVIDIA Cosmos3 + Cosmos-Reason2 (PAI-Bench SOTA family)
-                'nvidia/cosmos3-super', 'nvidia/cosmos3-nano',
+                'nvidia/cosmos-3-super', 'nvidia/cosmos-3-nano',
                 'nvidia/alpamayo2-super',           // 2026-08-04 S233 — 34B AV VLA (32B VLM + 2.3B diffusion) on Cosmos3-Super; LingoQA 79.2 / AlpaSim 1.50 / minADE6@6.4s 0.911m
                 'nvidia/cosmos-reason2-32b', 'nvidia/cosmos-reason2-8b',
                 // 2026-06-02 S46 — Cosmos 3 Tech Report (NVIDIA): Edge + post-trained variants
-                'nvidia/cosmos3-edge',
-                'nvidia/cosmos3-super-text2image', 'nvidia/cosmos3-super-image2video',
-                'nvidia/cosmos3-nano-policy-droid',
+                'nvidia/cosmos-3-edge',
+                'nvidia/cosmos-3-super-text2image', 'nvidia/cosmos3-super-image2video',
+                'nvidia/cosmos-3-nano-policy-droid',
                 // 2026-06-19 S138 — arxiv June 2026 sweep
                 'nvidia/cosmos-3',                  // omnimodal world-model OpenMDW-1.1 (2606.02800)
                 'academic/kairos-physical-ai',      // Hybrid Linear Temporal Attention + MoT (2606.16533)
@@ -78,7 +78,7 @@ var PhysicalAI = {
                 'alibaba/abot-agentos',      // Alibaba AMAP agent OS — EmbodiedWorldBench
                 'mininglamp/mano-p',         // MiningLamp GUI-VLA — ScreenSpot-V2 93.5
                 // May 2026 additions — Allen AI MolmoAct2 family + NVIDIA CaP-X coding-agent for manipulation
-                'allenai/molmoact2', 'allenai/molmoer', 'nvidia/cap-agent0',
+                'allenai/molmoact-2', 'allenai/molmoer', 'nvidia/cap-agent0',
                 'allenai/molmoact-2',  // canonical id used in newer ingest (Section 38)
                 // 2026-05-20 Alibaba Qwen robotics — quadruped robot dog control + navigation FM
                 'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav',

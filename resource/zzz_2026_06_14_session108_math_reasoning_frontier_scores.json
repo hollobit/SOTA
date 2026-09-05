@@ -1,2144 +1,2134 @@
 {
-  "_meta": {
-    "session": "Session 108 — Math/Reasoning frontier deep dive",
-    "date": "2026-06-14",
-    "sources": [
-      "Olympiad math (11 benches): AIME 25/26, HMMT-Feb 25/26, USAMO 25/26, IMO 2025, Putnam 2025, MathArena Apex, MATH-500",
-      "Formal theorem proving (14): DeepSeek-Prover-V2 7B/671B, Goedel-Prover-V2 8B/32B, Kimina-Prover 1.7B-72B, AlphaProof, AlphaGeometry 2, STP, ReProver",
-      "Live math leaderboards (13): MathArena Overall/Apex/AIME/HMMT/USAMO/ArxivMath + LiveBench math + MATH-500"
-    ],
-    "notes": "**GPT-5.4-xhigh USAMO 2026 95.24% first LLM proof-based olympiad crack**. Qwen3.7 Max HMMT-Feb 2026 97.1. **Gemini Deep Think IMO 2025 35/42 GOLD** (first officially-graded LLM gold). DeepSeek-v3.2-Speciale Agent Putnam 2025 103/120 (Fellowship threshold). DeepSeek-V4-Pro-Max MathArena Apex 0.902. **Goedel-Prover-V2-32B MiniF2F-test 90.4%** (first >90%, beats DSP-V2-671B 88.9 at 20x fewer params). **PutnamBench 86/644 ~2x prior open record**. AlphaProof+AlphaGeometry 2 IMO 2024 silver 28/42. Kimina-Prover-72B MiniF2F 84.0. GPT-5.5-xhigh MathArena Overall 0.812. **Meituan/longcat-flash-thinking MATH-500 0.992**."
+ "_meta": {
+  "session": "Session 108 — Math/Reasoning frontier deep dive",
+  "date": "2026-06-14",
+  "sources": [
+   "Olympiad math (11 benches): AIME 25/26, HMMT-Feb 25/26, USAMO 25/26, IMO 2025, Putnam 2025, MathArena Apex, MATH-500",
+   "Formal theorem proving (14): DeepSeek-Prover-V2 7B/671B, Goedel-Prover-V2 8B/32B, Kimina-Prover 1.7B-72B, AlphaProof, AlphaGeometry 2, STP, ReProver",
+   "Live math leaderboards (13): MathArena Overall/Apex/AIME/HMMT/USAMO/ArxivMath + LiveBench math + MATH-500"
+  ],
+  "notes": "**GPT-5.4-xhigh USAMO 2026 95.24% first LLM proof-based olympiad crack**. Qwen3.7 Max HMMT-Feb 2026 97.1. **Gemini Deep Think IMO 2025 35/42 GOLD** (first officially-graded LLM gold). DeepSeek-v3.2-Speciale Agent Putnam 2025 103/120 (Fellowship threshold). DeepSeek-V4-Pro-Max MathArena Apex 0.902. **Goedel-Prover-V2-32B MiniF2F-test 90.4%** (first >90%, beats DSP-V2-671B 88.9 at 20x fewer params). **PutnamBench 86/644 ~2x prior open record**. AlphaProof+AlphaGeometry 2 IMO 2024 silver 28/42. Kimina-Prover-72B MiniF2F 84.0. GPT-5.5-xhigh MathArena Overall 0.812. **Meituan/longcat-flash-thinking MATH-500 0.992**."
+ },
+ "models": [
+  {
+   "id": "deepseek/deepseek-prover-v2-671b",
+   "name": "DeepSeek-Prover-V2-671B",
+   "vendor": "deepseek",
+   "type": "language",
+   "release_date": "2025-04-30",
+   "modalities": [
+    "text"
+   ]
   },
-  "models": [
-    {
-      "id": "deepseek/deepseek-prover-v2-671b",
-      "name": "DeepSeek-Prover-V2-671B",
-      "vendor": "deepseek",
-      "type": "language",
-      "release_date": "2025-04-30",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "deepseek/deepseek-prover-v2-7b",
-      "name": "DeepSeek-Prover-V2-7B",
-      "vendor": "deepseek",
-      "type": "language",
-      "release_date": "2025-04-30",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "goedel-lm/goedel-prover-v2-32b",
-      "name": "Goedel-Prover-V2-32B",
-      "vendor": "goedel-lm (princeton/tsinghua)",
-      "type": "language",
-      "release_date": "2025-08-05",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "goedel-lm/goedel-prover-v2-8b",
-      "name": "Goedel-Prover-V2-8B",
-      "vendor": "goedel-lm (princeton/tsinghua)",
-      "type": "language",
-      "release_date": "2025-08-05",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "goedel-lm/goedel-prover-sft",
-      "name": "Goedel-Prover-SFT",
-      "vendor": "goedel-lm (princeton/tsinghua)",
-      "type": "language",
-      "release_date": "2025-02-11",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "ai-mo/kimina-prover-72b",
-      "name": "Kimina-Prover-72B",
-      "vendor": "project numina + moonshot ai (kimi)",
-      "type": "language",
-      "release_date": "2025-07-10",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "ai-mo/kimina-prover-distill-8b",
-      "name": "Kimina-Prover-Distill-8B",
-      "vendor": "project numina + moonshot ai (kimi)",
-      "type": "language",
-      "release_date": "2025-07-10",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "ai-mo/kimina-prover-rl-1.7b",
-      "name": "Kimina-Prover-RL-1.7B",
-      "vendor": "project numina + moonshot ai (kimi)",
-      "type": "language",
-      "release_date": "2025-08-14",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "ai-mo/kimina-prover-distill-1.7b",
-      "name": "Kimina-Prover-Distill-1.7B",
-      "vendor": "project numina + moonshot ai (kimi)",
-      "type": "language",
-      "release_date": "2025-08-14",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "ai-mo/kimina-prover-preview-distill-7b",
-      "name": "Kimina-Prover-Preview-Distill-7B",
-      "vendor": "project numina + moonshot ai (kimi)",
-      "type": "language",
-      "release_date": "2025-04-17",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google-deepmind/alphaproof",
-      "name": "AlphaProof",
-      "vendor": "google deepmind",
-      "type": "language",
-      "release_date": "2024-07-25",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google-deepmind/alphageometry-2",
-      "name": "AlphaGeometry 2",
-      "vendor": "google deepmind",
-      "type": "language",
-      "release_date": "2024-07-25",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "stanford/stp-self-play-prover",
-      "name": "STP (Self-play Theorem Prover)",
-      "vendor": "stanford (dong & ma)",
-      "type": "language",
-      "release_date": "2025-01-31",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "lean-dojo/reprover",
-      "name": "ReProver (LeanDojo)",
-      "vendor": "leandojo / cmu",
-      "type": "language",
-      "release_date": "2023-06-23",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "anthropic/claude-fable-5-max",
-      "name": "Claude Fable 5 Max",
-      "vendor": "anthropic",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "bytedance/seed-2.0-lite",
-      "name": "Seed 2.0 Lite",
-      "vendor": "bytedance",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemini-deep-think",
-      "name": "Gemini Deep Think",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google-deepmind/alphaproof-alphageometry-2",
-      "name": "AlphaProof + AlphaGeometry 2",
-      "vendor": "google-deepmind",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "internlm/intern-s2-preview",
-      "name": "Intern S2 Preview",
-      "vendor": "internlm",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "meituan/longcat-flash-thinking",
-      "name": "LongCat Flash Thinking",
-      "vendor": "meituan",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "meituan/longcat-flash-thinking-2601",
-      "name": "LongCat Flash Thinking 2601",
-      "vendor": "meituan",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "minimax/minimax-m3",
-      "name": "MiniMax M3",
-      "vendor": "minimax",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "mistral/ministral-3-14b-instruct-2512",
-      "name": "Ministral 3 14B Instruct 2512",
-      "vendor": "mistral",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "moonshot/kimi-k2-0905",
-      "name": "Kimi K2 0905",
-      "vendor": "moonshot",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "moonshot/kimi-k2-instruct-0905",
-      "name": "Kimi K2 Instruct 0905",
-      "vendor": "moonshot",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "moonshot/kimi-k2-thinking-0905",
-      "name": "Kimi K2 Thinking 0905",
-      "vendor": "moonshot",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
-      "name": "Llama 3.1 Nemotron Ultra 253B v1",
-      "vendor": "nvidia",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "nvidia/nemotron-3-nano-30b-a3b",
-      "name": "Nemotron-3 Nano 30B A3B",
-      "vendor": "nvidia",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "nvidia/nemotron-3-super-120b-a12b-bf16",
-      "name": "Nemotron-3 Super 120B A12B BF16",
-      "vendor": "nvidia",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-5.1-codex-high",
-      "name": "GPT-5.1 Codex High",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-5.1-high",
-      "name": "GPT-5.1 High",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-5.4-pro-xhigh",
-      "name": "GPT-5.4 Pro xHigh",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-oss-20b-high",
-      "name": "GPT-OSS 20B High",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "qwen/qwen3-235b-a22b",
-      "name": "Qwen3 235B A22B",
-      "vendor": "alibaba",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "qwen/qwen3-32b",
-      "name": "Qwen3 32B",
-      "vendor": "alibaba",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "qwen/qwen3.5-397b-a17b",
-      "name": "Qwen3.5 397B A17B",
-      "vendor": "alibaba",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "qwen/qwen3.6-27b",
-      "name": "Qwen3.6 27B",
-      "vendor": "alibaba",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "qwen/qwen3.6-35b-a3b",
-      "name": "Qwen3.6 35B A3B",
-      "vendor": "alibaba",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "qwen/qwen3.6-plus",
-      "name": "Qwen3.6 Plus",
-      "vendor": "alibaba",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "qwen/qwen3.7-max",
-      "name": "Qwen3.7 Max",
-      "vendor": "alibaba",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "zai/glm-4.5",
-      "name": "GLM-4.5",
-      "vendor": "zai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "deepseek/deepseek-v3.2-speciale-agent",
-      "name": "DeepSeek V3.2 Speciale Agent",
-      "vendor": "deepseek",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "moonshot/kimi-k2.5-reasoning",
-      "name": "Kimi K2.5 Reasoning",
-      "vendor": "moonshot",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/openai-experimental-imo-2025",
-      "name": "OpenAI Experimental IMO 2025",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "zai/glm-4.7",
-      "name": "GLM-4.7",
-      "vendor": "zai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    }
-  ],
-  "benchmarks": [
-    {
-      "id": "aime_2026",
-      "name": "AIME 2026",
-      "category": "Olympiad Math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "aime_2025",
-      "name": "AIME 2025",
-      "category": "Olympiad Math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "hmmt_feb_2026",
-      "name": "HMMT Feb 2026",
-      "category": "Olympiad Math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "hmmt_feb_2025",
-      "name": "HMMT Feb 2025",
-      "category": "Olympiad Math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "usamo_2026",
-      "name": "USAMO 2026",
-      "category": "Olympiad Math (Proof-based)",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "usamo_2025",
-      "name": "USAMO 2025",
-      "category": "Olympiad Math (Proof-based)",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "imo_2025",
-      "name": "IMO 2025",
-      "category": "Olympiad Math (Proof-based)",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "putnam_2025",
-      "name": "Putnam 2025",
-      "category": "Olympiad Math (Proof-based)",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "matharena_apex_2025",
-      "name": "MathArena Apex 2025",
-      "category": "Olympiad Math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "math_500",
-      "name": "MATH-500",
-      "category": "Math Reasoning",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "imo_2024",
-      "name": "Imo 2024",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "minif2f_test_pass",
-      "name": "Minif2F Test Pass",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "putnambench",
-      "name": "Putnambench",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "proverbench_aime",
-      "name": "Proverbench Aime",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "minif2f_test_pass_standard",
-      "name": "Minif2F Test Pass Standard",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "putnambench_pass32",
-      "name": "Putnambench Pass32",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "proofnet_test",
-      "name": "Proofnet Test",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "minif2f_test_pass_8192",
-      "name": "Minif2F Test Pass 8192",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "imo_2024_score",
-      "name": "Imo 2024 Score",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "imo_2024_problems_solved",
-      "name": "Imo 2024 Problems Solved",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "imo_2024_compute_per_problem_hours",
-      "name": "Imo 2024 Compute Per Problem Hours",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "imo_geometry_historical_accuracy",
-      "name": "Imo Geometry Historical Accuracy",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "imo_2024_geometry_solve_time_seconds",
-      "name": "Imo 2024 Geometry Solve Time Seconds",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "leanworkbook_solve",
-      "name": "Leanworkbook Solve",
-      "category": "math",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "matharena_overall",
-      "name": "MathArena Overall (cross-competition aggregate)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "matharena_aime_2026",
-      "name": "MathArena AIME 2026 (30 problems)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "matharena_aime_2025",
-      "name": "MathArena AIME 2025 (30 problems)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "matharena_hmmt_feb_2026",
-      "name": "MathArena HMMT Feb 2026 (33 problems)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "matharena_usamo_2026",
-      "name": "MathArena USAMO 2026 (6 proof problems, 42 pts)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "matharena_arxivmath_0126",
-      "name": "MathArena ArxivMath Jan 2026 (40 problems, research-level)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "matharena_arxivmath_0326",
-      "name": "MathArena ArxivMath Mar 2026 (30 problems)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "matharena_arxivmath_0426",
-      "name": "MathArena ArxivMath Apr 2026 (41 problems)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "matharena_arxivmath_0526",
-      "name": "MathArena ArxivMath May 2026 (40 problems)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "livebench_math",
-      "name": "LiveBench Mathematics (monthly refresh)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "math_500_llmstats",
-      "name": "MATH-500 (Hendrycks subset, 500 problems)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "math_legacy_hendrycks",
-      "name": "MATH (Hendrycks 2021, 12500 problems)",
-      "category": "math-live",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    }
-  ],
-  "scores": [
-    {
-      "model": "openai/gpt-5.2",
-      "benchmark": "aime_2025",
-      "score": 100.0,
-      "unit": "score",
-      "_source": "https://www.vellum.ai/blog/gpt-5-2-benchmarks",
-      "_note": "no-tools"
-    },
-    {
-      "model": "gemini-3-pro",
-      "benchmark": "aime_2025",
-      "score": 100.0,
-      "unit": "score",
-      "_source": "https://www.vellum.ai/llm-leaderboard",
-      "_note": "code-execution"
-    },
-    {
-      "model": "gemini-3-pro",
-      "benchmark": "aime_2025",
-      "score": 95.0,
-      "unit": "score",
-      "_source": "https://www.vellum.ai/blog/gpt-5-2-benchmarks",
-      "_note": "no-tools"
-    },
-    {
-      "model": "claude-opus-4-5",
-      "benchmark": "aime_2025",
-      "score": 92.8,
-      "unit": "score",
-      "_source": "https://www.vellum.ai/blog/gpt-5-2-benchmarks",
-      "_note": ""
-    },
-    {
-      "model": "microsoft/mai-thinking-1",
-      "benchmark": "aime_2025",
-      "score": 97.0,
-      "unit": "score",
-      "_source": "https://benchlm.ai/math",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5-reasoning",
-      "benchmark": "aime_2025",
-      "score": 96.1,
-      "unit": "score",
-      "_source": "https://benchlm.ai/math",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "aime_2025",
-      "score": 96.1,
-      "unit": "score",
-      "_source": "https://benchlm.ai/math",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-4.7",
-      "benchmark": "aime_2025",
-      "score": 95.7,
-      "unit": "score",
-      "_source": "https://benchlm.ai/math",
-      "_note": ""
-    },
-    {
-      "model": "xiaomi/mimo-v2-flash",
-      "benchmark": "aime_2025",
-      "score": 94.1,
-      "unit": "score",
-      "_source": "https://benchlm.ai/math",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5",
-      "benchmark": "aime_2026",
-      "score": 100.0,
-      "unit": "score",
-      "_source": "https://benchlm.ai/math",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.5-xhigh",
-      "benchmark": "aime_2026",
-      "score": 81.2,
-      "unit": "score",
-      "_source": "https://matharena.ai/",
-      "_note": "expected-performance-composite"
-    },
-    {
-      "model": "alibaba/qwen3.7-max",
-      "benchmark": "hmmt_feb_2026",
-      "score": 97.1,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro-max",
-      "benchmark": "hmmt_feb_2026",
-      "score": 95.2,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-flash-max",
-      "benchmark": "hmmt_feb_2026",
-      "score": 94.8,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
-      "_note": ""
-    },
-    {
-      "model": "kimi-k2-6",
-      "benchmark": "hmmt_feb_2026",
-      "score": 92.7,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
-      "_note": ""
-    },
-    {
-      "model": "alibaba/qwen3.6-plus",
-      "benchmark": "hmmt_feb_2026",
-      "score": 87.8,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
-      "_note": ""
-    },
-    {
-      "model": "microsoft/mai-thinking-1",
-      "benchmark": "hmmt_feb_2026",
-      "score": 84.9,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
-      "_note": ""
-    },
-    {
-      "model": "qwen3-6-27b",
-      "benchmark": "hmmt_feb_2026",
-      "score": 84.3,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
-      "_note": ""
-    },
-    {
-      "model": "alibaba/qwen3.6-35b-a3b",
-      "benchmark": "hmmt_feb_2026",
-      "score": 83.6,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
-      "_note": ""
-    },
-    {
-      "model": "glm-5-1",
-      "benchmark": "hmmt_feb_2026",
-      "score": 82.6,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
-      "_note": ""
-    },
-    {
-      "model": "alibaba/qwen3.5-397b-a17b",
-      "benchmark": "hmmt_feb_2026",
-      "score": 87.88,
-      "unit": "score",
-      "_source": "https://huggingface.co/Qwen/Qwen3.5-397B-A17B/discussions/53",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "hmmt_feb_2026",
-      "score": 87.12,
-      "unit": "score",
-      "_source": "https://matharena.ai/competitions",
-      "_note": ""
-    },
-    {
-      "model": "stepfun/step-3.5-flash",
-      "benchmark": "hmmt_feb_2026",
-      "score": 86.36,
-      "unit": "score",
-      "_source": "https://matharena.ai/competitions",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5",
-      "benchmark": "hmmt_feb_2026",
-      "score": 86.36,
-      "unit": "score",
-      "_source": "https://huggingface.co/zai-org/GLM-5/discussions/51",
-      "_note": ""
-    },
-    {
-      "model": "nvidia/nemotron-3-super-120b-a12b",
-      "benchmark": "hmmt_feb_2026",
-      "score": 84.85,
-      "unit": "score",
-      "_source": "https://matharena.ai/competitions",
-      "_note": ""
-    },
-    {
-      "model": "xai/grok-4-heavy",
-      "benchmark": "hmmt_feb_2025",
-      "score": 96.7,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt25",
-      "_note": ""
-    },
-    {
-      "model": "alibaba/qwen3.6-plus",
-      "benchmark": "hmmt_feb_2025",
-      "score": 94.6,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt25",
-      "_note": ""
-    },
-    {
-      "model": "alibaba/qwen3.5-397b-a17b",
-      "benchmark": "hmmt_feb_2025",
-      "score": 92.7,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt25",
-      "_note": ""
-    },
-    {
-      "model": "qwen3-6-27b",
-      "benchmark": "hmmt_feb_2025",
-      "score": 90.7,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt25",
-      "_note": ""
-    },
-    {
-      "model": "alibaba/qwen3.5-122b-a10b",
-      "benchmark": "hmmt_feb_2025",
-      "score": 90.3,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt25",
-      "_note": ""
-    },
-    {
-      "model": "xai/grok-4",
-      "benchmark": "hmmt_feb_2025",
-      "score": 90.0,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt25",
-      "_note": ""
-    },
-    {
-      "model": "alibaba/qwen3.5-27b",
-      "benchmark": "hmmt_feb_2025",
-      "score": 89.8,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt25",
-      "_note": ""
-    },
-    {
-      "model": "alibaba/qwen3.5-35b-a3b",
-      "benchmark": "hmmt_feb_2025",
-      "score": 89.2,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt25",
-      "_note": ""
-    },
-    {
-      "model": "sarvam/sarvam-105b",
-      "benchmark": "hmmt_feb_2025",
-      "score": 85.8,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt25",
-      "_note": ""
-    },
-    {
-      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
-      "benchmark": "hmmt_feb_2025",
-      "score": 83.9,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/hmmt25",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.4-xhigh",
-      "benchmark": "usamo_2026",
-      "score": 95.24,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "gemini-3-1-pro",
-      "benchmark": "usamo_2026",
-      "score": 74.4,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "claude-opus-4-6",
-      "benchmark": "usamo_2026",
-      "score": 47.0,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "stepfun/step-3.5-flash",
-      "benchmark": "usamo_2026",
-      "score": 44.6,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "alibaba/qwen3.5-397b",
-      "benchmark": "usamo_2026",
-      "score": 36.3,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5",
-      "benchmark": "usamo_2026",
-      "score": 35.1,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "minimax/minimax-m3",
-      "benchmark": "usamo_2026",
-      "score": 85.7,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/usamo-2026",
-      "_note": "self-reported"
-    },
-    {
-      "model": "gemini-2-5-pro",
-      "benchmark": "imo_2025",
-      "score": 31.0,
-      "unit": "score",
-      "_source": "https://matharena.ai/imo/",
-      "_note": ""
-    },
-    {
-      "model": "xai/grok-4",
-      "benchmark": "imo_2025",
-      "score": 21.43,
-      "unit": "score",
-      "_source": "https://matharena.ai/imo/",
-      "_note": "updated-prompt"
-    },
-    {
-      "model": "google/gemini-deep-think",
-      "benchmark": "imo_2025",
-      "score": 83.33,
-      "unit": "score",
-      "_source": "https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/",
-      "_note": ""
-    },
-    {
-      "model": "openai/openai-experimental-imo-2025",
-      "benchmark": "imo_2025",
-      "score": 83.33,
-      "unit": "score",
-      "_source": "https://the-decoder.com/openai-claims-a-breakthrough-in-llm-reasoning-on-complex-math-problems/",
-      "_note": ""
-    },
-    {
-      "model": "google-deepmind/alphaproof-alphageometry-2",
-      "benchmark": "imo_2024",
-      "score": 66.67,
-      "unit": "score",
-      "_source": "https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v3.2-speciale-agent",
-      "benchmark": "putnam_2025",
-      "score": 85.83,
-      "unit": "score",
-      "_source": "https://matharena.ai/putnam/",
-      "_note": "agent"
-    },
-    {
-      "model": "gemini-3-pro",
-      "benchmark": "putnam_2025",
-      "score": 75.83,
-      "unit": "score",
-      "_source": "https://matharena.ai/putnam/",
-      "_note": "non-agent"
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro-max",
-      "benchmark": "matharena_apex_2025",
-      "score": 90.2,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/matharena-apex",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-flash-max",
-      "benchmark": "matharena_apex_2025",
-      "score": 85.7,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/matharena-apex",
-      "_note": ""
-    },
-    {
-      "model": "alibaba/qwen3.7-max",
-      "benchmark": "matharena_apex_2025",
-      "score": 44.5,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/matharena-apex",
-      "_note": ""
-    },
-    {
-      "model": "claude-opus-4-6",
-      "benchmark": "math_500",
-      "score": 99.8,
-      "unit": "score",
-      "_source": "https://benchlm.ai/math",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-prover-v2-671b",
-      "benchmark": "minif2f_test_pass",
-      "score": 88.9,
-      "unit": "score",
-      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-671B",
-      "_note": "budget=pass@8192"
-    },
-    {
-      "model": "deepseek/deepseek-prover-v2-671b",
-      "benchmark": "putnambench",
-      "score": 49.0,
-      "unit": "score",
-      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-671B",
-      "_note": "budget=pass@1024"
-    },
-    {
-      "model": "deepseek/deepseek-prover-v2-671b",
-      "benchmark": "proverbench_aime",
-      "score": 6.0,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2504.21801",
-      "_note": "budget="
-    },
-    {
-      "model": "deepseek/deepseek-prover-v2-7b",
-      "benchmark": "minif2f_test_pass",
-      "score": 82.0,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2504.21801",
-      "_note": "budget=pass@8192"
-    },
-    {
-      "model": "goedel-lm/goedel-prover-v2-32b",
-      "benchmark": "minif2f_test_pass",
-      "score": 90.4,
-      "unit": "score",
-      "_source": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B",
-      "_note": "budget=pass@32 self-correction"
-    },
-    {
-      "model": "goedel-lm/goedel-prover-v2-32b",
-      "benchmark": "minif2f_test_pass_standard",
-      "score": 88.1,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2508.03613",
-      "_note": "budget=pass@32"
-    },
-    {
-      "model": "goedel-lm/goedel-prover-v2-32b",
-      "benchmark": "putnambench",
-      "score": 86.0,
-      "unit": "score",
-      "_source": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B",
-      "_note": "budget=pass@192 self-correction"
-    },
-    {
-      "model": "goedel-lm/goedel-prover-v2-32b",
-      "benchmark": "putnambench_pass32",
-      "score": 57.0,
-      "unit": "score",
-      "_source": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B",
-      "_note": "budget=pass@32 self-correction"
-    },
-    {
-      "model": "goedel-lm/goedel-prover-v2-8b",
-      "benchmark": "minif2f_test_pass",
-      "score": 84.6,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2508.03613",
-      "_note": "budget=pass@32"
-    },
-    {
-      "model": "goedel-lm/goedel-prover-sft",
-      "benchmark": "minif2f_test_pass",
-      "score": 57.6,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2502.07640",
-      "_note": "budget=pass@32"
-    },
-    {
-      "model": "goedel-lm/goedel-prover-sft",
-      "benchmark": "putnambench",
-      "score": 7.0,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2502.07640",
-      "_note": "budget=pass@512"
-    },
-    {
-      "model": "goedel-lm/goedel-prover-sft",
-      "benchmark": "proofnet_test",
-      "score": 15.2,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2502.07640",
-      "_note": "budget=pass@32"
-    },
-    {
-      "model": "ai-mo/kimina-prover-72b",
-      "benchmark": "minif2f_test_pass",
-      "score": 84.0,
-      "unit": "score",
-      "_source": "https://huggingface.co/AI-MO/Kimina-Prover-72B",
-      "_note": "budget=pass@32"
-    },
-    {
-      "model": "ai-mo/kimina-prover-72b",
-      "benchmark": "minif2f_test_pass_8192",
-      "score": 80.7,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2504.11354",
-      "_note": "budget=pass@8192"
-    },
-    {
-      "model": "ai-mo/kimina-prover-distill-8b",
-      "benchmark": "minif2f_test_pass",
-      "score": 77.86,
-      "unit": "score",
-      "_source": "https://huggingface.co/AI-MO/Kimina-Prover-Distill-8B",
-      "_note": "budget=pass@32"
-    },
-    {
-      "model": "ai-mo/kimina-prover-rl-1.7b",
-      "benchmark": "minif2f_test_pass",
-      "score": 76.63,
-      "unit": "score",
-      "_source": "https://huggingface.co/AI-MO/Kimina-Prover-RL-1.7B",
-      "_note": "budget=pass@32"
-    },
-    {
-      "model": "ai-mo/kimina-prover-distill-1.7b",
-      "benchmark": "minif2f_test_pass",
-      "score": 72.95,
-      "unit": "score",
-      "_source": "https://huggingface.co/AI-MO/Kimina-Prover-Distill-1.7B",
-      "_note": "budget=pass@32"
-    },
-    {
-      "model": "google-deepmind/alphaproof",
-      "benchmark": "imo_2024_score",
-      "score": 28.0,
-      "unit": "score",
-      "_source": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
-      "_note": "budget="
-    },
-    {
-      "model": "google-deepmind/alphaproof",
-      "benchmark": "imo_2024_problems_solved",
-      "score": 4.0,
-      "unit": "score",
-      "_source": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
-      "_note": "budget="
-    },
-    {
-      "model": "google-deepmind/alphaproof",
-      "benchmark": "imo_2024_compute_per_problem_hours",
-      "score": 72.0,
-      "unit": "score",
-      "_source": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
-      "_note": "budget="
-    },
-    {
-      "model": "google-deepmind/alphageometry-2",
-      "benchmark": "imo_geometry_historical_accuracy",
-      "score": 83.0,
-      "unit": "score",
-      "_source": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
-      "_note": "budget="
-    },
-    {
-      "model": "google-deepmind/alphageometry-2",
-      "benchmark": "imo_2024_geometry_solve_time_seconds",
-      "score": 19.0,
-      "unit": "score",
-      "_source": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
-      "_note": "budget="
-    },
-    {
-      "model": "stanford/stp-self-play-prover",
-      "benchmark": "minif2f_test_pass",
-      "score": 65.0,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2502.00212",
-      "_note": "budget=pass@3200"
-    },
-    {
-      "model": "stanford/stp-self-play-prover",
-      "benchmark": "proofnet_test",
-      "score": 23.9,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2502.00212",
-      "_note": "budget=pass@3200"
-    },
-    {
-      "model": "stanford/stp-self-play-prover",
-      "benchmark": "putnambench",
-      "score": 8.0,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2502.00212",
-      "_note": "budget=pass@3200"
-    },
-    {
-      "model": "stanford/stp-self-play-prover",
-      "benchmark": "leanworkbook_solve",
-      "score": 28.5,
-      "unit": "score",
-      "_source": "https://arxiv.org/abs/2502.00212",
-      "_note": "budget="
-    },
-    {
-      "model": "openai/gpt-5.5-xhigh",
-      "benchmark": "matharena_overall",
-      "score": 0.812,
-      "unit": "score",
-      "_source": "https://matharena.ai/",
-      "_note": ""
-    },
-    {
-      "model": "anthropic/claude-fable-5-max",
-      "benchmark": "matharena_overall",
-      "score": 0.78,
-      "unit": "score",
-      "_source": "https://matharena.ai/",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.4-pro-xhigh",
-      "benchmark": "matharena_overall",
-      "score": 0.755,
-      "unit": "score",
-      "_source": "https://matharena.ai/",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro-max",
-      "benchmark": "matharena_overall",
-      "score": 0.592,
-      "unit": "score",
-      "_source": "https://matharena.ai/",
-      "_note": "best open"
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro-max",
-      "benchmark": "matharena_apex_2025",
-      "score": 0.902,
-      "unit": "score",
-      "_source": "https://matharena.ai/?comp=apex--apex_2025",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-flash-max",
-      "benchmark": "matharena_apex_2025",
-      "score": 0.857,
-      "unit": "score",
-      "_source": "https://matharena.ai/?comp=apex--apex_2025",
-      "_note": ""
-    },
-    {
-      "model": "qwen/qwen3.7-max",
-      "benchmark": "matharena_apex_2025",
-      "score": 0.445,
-      "unit": "score",
-      "_source": "https://matharena.ai/?comp=apex--apex_2025",
-      "_note": ""
-    },
-    {
-      "model": "google/gemini-3-pro",
-      "benchmark": "matharena_apex_2025",
-      "score": 0.234,
-      "unit": "score",
-      "_source": "https://matharena.ai/?comp=apex--apex_2025",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.964,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.953,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "qwen/qwen3.6-plus",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.953,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "microsoft/mai-thinking-1",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.945,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "bytedance/seed-2.0-pro",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.942,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "qwen/qwen3.6-27b",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.941,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "qwen/qwen3.6-35b-a3b",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.927,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "microsoft/mai-code-1-flash",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.925,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "qwen/qwen3.5-397b-a17b",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.913,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "google/gemma-4-31b",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.892,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "bytedance/seed-2.0-lite",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.883,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "google/gemma-4-26b-a4b",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.883,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "stepfun/step-3.5-flash",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.9667,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": "MathArena dataset card rank; per llm-stats mirror is excluded"
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.9583,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.9583,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "inclusionai/ring-2.6-1t",
-      "benchmark": "matharena_aime_2026",
-      "score": 0.9583,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.2-pro",
-      "benchmark": "matharena_aime_2025",
-      "score": 1.0,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.2",
-      "benchmark": "matharena_aime_2025",
-      "score": 1.0,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2-thinking-0905",
-      "benchmark": "matharena_aime_2025",
-      "score": 1.0,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "xai/grok-4-heavy",
-      "benchmark": "matharena_aime_2025",
-      "score": 1.0,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "google/gemini-3-pro",
-      "benchmark": "matharena_aime_2025",
-      "score": 1.0,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.998,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "google/gemini-3-flash",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.997,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.1-high",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.996,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "meituan/longcat-flash-thinking-2601",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.996,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "nvidia/nemotron-3-nano-30b-a3b",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.992,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-oss-20b-high",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.987,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.1-medium",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.984,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "bytedance/seed-2.0-pro",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.983,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "stepfun/step-3.5-flash",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.973,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "microsoft/mai-thinking-1",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.97,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.1-codex-high",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.967,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "sarvam/sarvam-30b",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.967,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "sarvam/sarvam-105b",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.967,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.961,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v3.2-speciale",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.96,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-4.7",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.957,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.946,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5-high",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.946,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "xiaomi/mimo-v2-flash",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.941,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.1-thinking",
-      "benchmark": "matharena_aime_2025",
-      "score": 0.94,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/aime-2025",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "matharena_hmmt_feb_2026",
-      "score": 0.927,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
-      "_note": ""
-    },
-    {
-      "model": "qwen/qwen3.5-397b-a17b",
-      "benchmark": "matharena_hmmt_feb_2026",
-      "score": 0.879,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
-      "_note": ""
-    },
-    {
-      "model": "internlm/intern-s2-preview",
-      "benchmark": "matharena_hmmt_feb_2026",
-      "score": 0.873,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "matharena_hmmt_feb_2026",
-      "score": 0.871,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
-      "_note": ""
-    },
-    {
-      "model": "stepfun/step-3.5-flash",
-      "benchmark": "matharena_hmmt_feb_2026",
-      "score": 0.864,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5",
-      "benchmark": "matharena_hmmt_feb_2026",
-      "score": 0.864,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
-      "_note": ""
-    },
-    {
-      "model": "nvidia/nemotron-3-super-120b-a12b-bf16",
-      "benchmark": "matharena_hmmt_feb_2026",
-      "score": 0.849,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
-      "_note": ""
-    },
-    {
-      "model": "qwen/qwen3.6-27b",
-      "benchmark": "matharena_hmmt_feb_2026",
-      "score": 0.843,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
-      "_note": ""
-    },
-    {
-      "model": "qwen/qwen3.6-35b-a3b",
-      "benchmark": "matharena_hmmt_feb_2026",
-      "score": 0.836,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "matharena_hmmt_feb_2026",
-      "score": 0.826,
-      "unit": "score",
-      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.4",
-      "benchmark": "matharena_usamo_2026",
-      "score": 0.952,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "google/gemini-3.1-pro",
-      "benchmark": "matharena_usamo_2026",
-      "score": 0.744,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "matharena_usamo_2026",
-      "score": 0.47,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "stepfun/step-3.5-flash",
-      "benchmark": "matharena_usamo_2026",
-      "score": 0.446,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "qwen/qwen3.5-397b-a17b",
-      "benchmark": "matharena_usamo_2026",
-      "score": 0.363,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5",
-      "benchmark": "matharena_usamo_2026",
-      "score": 0.351,
-      "unit": "score",
-      "_source": "https://matharena.ai/usamo/",
-      "_note": ""
-    },
-    {
-      "model": "openai/gpt-5.2",
-      "benchmark": "matharena_arxivmath_0126",
-      "score": 0.6,
-      "unit": "score",
-      "_source": "https://matharena.ai/arxivmath/",
-      "_note": ""
-    },
-    {
-      "model": "google/gemini-3-pro",
-      "benchmark": "matharena_arxivmath_0126",
-      "score": 0.565,
-      "unit": "score",
-      "_source": "https://matharena.ai/arxivmath/",
-      "_note": ""
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "livebench_math",
-      "score": 0.846,
-      "unit": "score",
-      "_source": "https://livebench.ai/#/?slug=mathematics",
-      "_note": ""
-    },
-    {
-      "model": "qwen/qwen3-235b-a22b",
-      "benchmark": "livebench_math",
-      "score": 0.771,
-      "unit": "score",
-      "_source": "https://livebench.ai/#/?slug=mathematics",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2-instruct-0905",
-      "benchmark": "livebench_math",
-      "score": 0.764,
-      "unit": "score",
-      "_source": "https://livebench.ai/#/?slug=mathematics",
-      "_note": ""
-    },
-    {
-      "model": "qwen/qwen3-32b",
-      "benchmark": "livebench_math",
-      "score": 0.749,
-      "unit": "score",
-      "_source": "https://livebench.ai/#/?slug=mathematics",
-      "_note": ""
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "livebench_math",
-      "score": 0.67,
-      "unit": "score",
-      "_source": "https://livebench.ai/#/?slug=mathematics",
-      "_note": ""
-    },
-    {
-      "model": "microsoft/phi-4",
-      "benchmark": "livebench_math",
-      "score": 0.476,
-      "unit": "score",
-      "_source": "https://livebench.ai/#/?slug=mathematics",
-      "_note": ""
-    },
-    {
-      "model": "meituan/longcat-flash-thinking",
-      "benchmark": "math_500_llmstats",
-      "score": 0.992,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math-500",
-      "_note": ""
-    },
-    {
-      "model": "sarvam/sarvam-105b",
-      "benchmark": "math_500_llmstats",
-      "score": 0.986,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math-500",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-4.5",
-      "benchmark": "math_500_llmstats",
-      "score": 0.982,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math-500",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-4.5-air",
-      "benchmark": "math_500_llmstats",
-      "score": 0.981,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math-500",
-      "_note": ""
-    },
-    {
-      "model": "nvidia/nemotron-nano-9b-v2",
-      "benchmark": "math_500_llmstats",
-      "score": 0.978,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math-500",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2-instruct-0905",
-      "benchmark": "math_500_llmstats",
-      "score": 0.974,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math-500",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2-instruct",
-      "benchmark": "math_500_llmstats",
-      "score": 0.974,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math-500",
-      "_note": ""
-    },
-    {
-      "model": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
-      "benchmark": "math_500_llmstats",
-      "score": 0.97,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math-500",
-      "_note": ""
-    },
-    {
-      "model": "sarvam/sarvam-30b",
-      "benchmark": "math_500_llmstats",
-      "score": 0.97,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math-500",
-      "_note": ""
-    },
-    {
-      "model": "minimax/minimax-m1-80k",
-      "benchmark": "math_500_llmstats",
-      "score": 0.968,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math-500",
-      "_note": ""
-    },
-    {
-      "model": "openai/o3-mini",
-      "benchmark": "math_legacy_hendrycks",
-      "score": 0.979,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math",
-      "_note": ""
-    },
-    {
-      "model": "openai/o1",
-      "benchmark": "math_legacy_hendrycks",
-      "score": 0.964,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math",
-      "_note": ""
-    },
-    {
-      "model": "mistral/ministral-3-14b-instruct-2512",
-      "benchmark": "math_legacy_hendrycks",
-      "score": 0.904,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math",
-      "_note": ""
-    },
-    {
-      "model": "mistral/mistral-large-3",
-      "benchmark": "math_legacy_hendrycks",
-      "score": 0.904,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math",
-      "_note": ""
-    },
-    {
-      "model": "google/gemini-2.0-flash",
-      "benchmark": "math_legacy_hendrycks",
-      "score": 0.897,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2-0905",
-      "benchmark": "math_legacy_hendrycks",
-      "score": 0.891,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math",
-      "_note": ""
-    },
-    {
-      "model": "google/gemma-3-27b",
-      "benchmark": "math_legacy_hendrycks",
-      "score": 0.89,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/math",
-      "_note": ""
-    }
-  ]
+  {
+   "id": "deepseek/deepseek-prover-v2-7b",
+   "name": "DeepSeek-Prover-V2-7B",
+   "vendor": "deepseek",
+   "type": "language",
+   "release_date": "2025-04-30",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "goedel-lm/goedel-prover-v2-32b",
+   "name": "Goedel-Prover-V2-32B",
+   "vendor": "goedel-lm (princeton/tsinghua)",
+   "type": "language",
+   "release_date": "2025-08-05",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "goedel-lm/goedel-prover-v2-8b",
+   "name": "Goedel-Prover-V2-8B",
+   "vendor": "goedel-lm (princeton/tsinghua)",
+   "type": "language",
+   "release_date": "2025-08-05",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "goedel-lm/goedel-prover-sft",
+   "name": "Goedel-Prover-SFT",
+   "vendor": "goedel-lm (princeton/tsinghua)",
+   "type": "language",
+   "release_date": "2025-02-11",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "ai-mo/kimina-prover-72b",
+   "name": "Kimina-Prover-72B",
+   "vendor": "project numina + moonshot ai (kimi)",
+   "type": "language",
+   "release_date": "2025-07-10",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "ai-mo/kimina-prover-distill-8b",
+   "name": "Kimina-Prover-Distill-8B",
+   "vendor": "project numina + moonshot ai (kimi)",
+   "type": "language",
+   "release_date": "2025-07-10",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "ai-mo/kimina-prover-rl-1.7b",
+   "name": "Kimina-Prover-RL-1.7B",
+   "vendor": "project numina + moonshot ai (kimi)",
+   "type": "language",
+   "release_date": "2025-08-14",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "ai-mo/kimina-prover-distill-1.7b",
+   "name": "Kimina-Prover-Distill-1.7B",
+   "vendor": "project numina + moonshot ai (kimi)",
+   "type": "language",
+   "release_date": "2025-08-14",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "ai-mo/kimina-prover-preview-distill-7b",
+   "name": "Kimina-Prover-Preview-Distill-7B",
+   "vendor": "project numina + moonshot ai (kimi)",
+   "type": "language",
+   "release_date": "2025-04-17",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google-deepmind/alphaproof",
+   "name": "AlphaProof",
+   "vendor": "google deepmind",
+   "type": "language",
+   "release_date": "2024-07-25",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google-deepmind/alphageometry-2",
+   "name": "AlphaGeometry 2",
+   "vendor": "google deepmind",
+   "type": "language",
+   "release_date": "2024-07-25",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "stanford/stp-self-play-prover",
+   "name": "STP (Self-play Theorem Prover)",
+   "vendor": "stanford (dong & ma)",
+   "type": "language",
+   "release_date": "2025-01-31",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "lean-dojo/reprover",
+   "name": "ReProver (LeanDojo)",
+   "vendor": "leandojo / cmu",
+   "type": "language",
+   "release_date": "2023-06-23",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-fable-5-max",
+   "name": "Claude Fable 5 Max",
+   "vendor": "anthropic",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "bytedance/seed-2.0-lite",
+   "name": "Seed 2.0 Lite",
+   "vendor": "bytedance",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-deep-think",
+   "name": "Gemini Deep Think",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google-deepmind/alphaproof-alphageometry-2",
+   "name": "AlphaProof + AlphaGeometry 2",
+   "vendor": "google-deepmind",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "internlm/intern-s2-preview",
+   "name": "Intern S2 Preview",
+   "vendor": "internlm",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "meituan/longcat-flash-thinking",
+   "name": "LongCat Flash Thinking",
+   "vendor": "meituan",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "meituan/longcat-flash-thinking-2601",
+   "name": "LongCat Flash Thinking 2601",
+   "vendor": "meituan",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "minimax/minimax-m3",
+   "name": "MiniMax M3",
+   "vendor": "minimax",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "mistral/ministral-3-14b-instruct-2512",
+   "name": "Ministral 3 14B Instruct 2512",
+   "vendor": "mistral",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "moonshot/kimi-k2-0905",
+   "name": "Kimi K2 0905",
+   "vendor": "moonshot",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "moonshot/kimi-k2-instruct-0905",
+   "name": "Kimi K2 Instruct 0905",
+   "vendor": "moonshot",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "moonshot/kimi-k2-thinking-0905",
+   "name": "Kimi K2 Thinking 0905",
+   "vendor": "moonshot",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
+   "name": "Llama 3.1 Nemotron Ultra 253B v1",
+   "vendor": "nvidia",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "nvidia/nemotron-3-nano-30b-a3b",
+   "name": "Nemotron-3 Nano 30B A3B",
+   "vendor": "nvidia",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "nvidia/nemotron-3-super-120b-a12b-bf16",
+   "name": "Nemotron-3 Super 120B A12B BF16",
+   "vendor": "nvidia",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.1-codex-high",
+   "name": "GPT-5.1 Codex High",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.1-high",
+   "name": "GPT-5.1 High",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.4-pro-xhigh",
+   "name": "GPT-5.4 Pro xHigh",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-oss-20b-high",
+   "name": "GPT-OSS 20B High",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3-235b-a22b",
+   "name": "Qwen3 235B A22B",
+   "vendor": "alibaba",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3-32b",
+   "name": "Qwen3 32B",
+   "vendor": "alibaba",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.6-27b",
+   "name": "Qwen3.6 27B",
+   "vendor": "alibaba",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.6-35b-a3b",
+   "name": "Qwen3.6 35B A3B",
+   "vendor": "alibaba",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.6-plus",
+   "name": "Qwen3.6 Plus",
+   "vendor": "alibaba",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "qwen/qwen3.7-max",
+   "name": "Qwen3.7 Max",
+   "vendor": "alibaba",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "zai/glm-4.5",
+   "name": "GLM-4.5",
+   "vendor": "zai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "deepseek/deepseek-v3.2-speciale-agent",
+   "name": "DeepSeek V3.2 Speciale Agent",
+   "vendor": "deepseek",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "moonshot/kimi-k2.5-reasoning",
+   "name": "Kimi K2.5 Reasoning",
+   "vendor": "moonshot",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/openai-experimental-imo-2025",
+   "name": "OpenAI Experimental IMO 2025",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "zai/glm-4.7",
+   "name": "GLM-4.7",
+   "vendor": "zai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "aime_2026",
+   "name": "AIME 2026",
+   "category": "Olympiad Math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "aime_2025",
+   "name": "AIME 2025",
+   "category": "Olympiad Math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "hmmt_feb_2026",
+   "name": "HMMT Feb 2026",
+   "category": "Olympiad Math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "hmmt_feb_2025",
+   "name": "HMMT Feb 2025",
+   "category": "Olympiad Math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "usamo_2026",
+   "name": "USAMO 2026",
+   "category": "Olympiad Math (Proof-based)",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "usamo_2025",
+   "name": "USAMO 2025",
+   "category": "Olympiad Math (Proof-based)",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "imo_2025",
+   "name": "IMO 2025",
+   "category": "Olympiad Math (Proof-based)",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "putnam_2025",
+   "name": "Putnam 2025",
+   "category": "Olympiad Math (Proof-based)",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "matharena_apex_2025",
+   "name": "MathArena Apex 2025",
+   "category": "Olympiad Math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "math_500",
+   "name": "MATH-500",
+   "category": "Math Reasoning",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "imo_2024",
+   "name": "Imo 2024",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "minif2f_test_pass",
+   "name": "Minif2F Test Pass",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "putnambench",
+   "name": "Putnambench",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "proverbench_aime",
+   "name": "Proverbench Aime",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "minif2f_test_pass_standard",
+   "name": "Minif2F Test Pass Standard",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "putnambench_pass32",
+   "name": "Putnambench Pass32",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "proofnet_test",
+   "name": "Proofnet Test",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "minif2f_test_pass_8192",
+   "name": "Minif2F Test Pass 8192",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "imo_2024_score",
+   "name": "Imo 2024 Score",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "imo_2024_problems_solved",
+   "name": "Imo 2024 Problems Solved",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "imo_2024_compute_per_problem_hours",
+   "name": "Imo 2024 Compute Per Problem Hours",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "imo_geometry_historical_accuracy",
+   "name": "Imo Geometry Historical Accuracy",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "imo_2024_geometry_solve_time_seconds",
+   "name": "Imo 2024 Geometry Solve Time Seconds",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "leanworkbook_solve",
+   "name": "Leanworkbook Solve",
+   "category": "math",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "matharena_overall",
+   "name": "MathArena Overall (cross-competition aggregate)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "matharena_aime_2026",
+   "name": "MathArena AIME 2026 (30 problems)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "matharena_aime_2025",
+   "name": "MathArena AIME 2025 (30 problems)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "matharena_hmmt_feb_2026",
+   "name": "MathArena HMMT Feb 2026 (33 problems)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "matharena_usamo_2026",
+   "name": "MathArena USAMO 2026 (6 proof problems, 42 pts)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "matharena_arxivmath_0126",
+   "name": "MathArena ArxivMath Jan 2026 (40 problems, research-level)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "matharena_arxivmath_0326",
+   "name": "MathArena ArxivMath Mar 2026 (30 problems)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "matharena_arxivmath_0426",
+   "name": "MathArena ArxivMath Apr 2026 (41 problems)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "matharena_arxivmath_0526",
+   "name": "MathArena ArxivMath May 2026 (40 problems)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "livebench_math",
+   "name": "LiveBench Mathematics (monthly refresh)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "math_500_llmstats",
+   "name": "MATH-500 (Hendrycks subset, 500 problems)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "math_legacy_hendrycks",
+   "name": "MATH (Hendrycks 2021, 12500 problems)",
+   "category": "math-live",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  }
+ ],
+ "scores": [
+  {
+   "model": "openai/gpt-5.2",
+   "benchmark": "aime_2025",
+   "score": 100.0,
+   "unit": "score",
+   "_source": "https://www.vellum.ai/blog/gpt-5-2-benchmarks",
+   "_note": "no-tools"
+  },
+  {
+   "model": "gemini-3-pro",
+   "benchmark": "aime_2025",
+   "score": 100.0,
+   "unit": "score",
+   "_source": "https://www.vellum.ai/llm-leaderboard",
+   "_note": "code-execution"
+  },
+  {
+   "model": "gemini-3-pro",
+   "benchmark": "aime_2025",
+   "score": 95.0,
+   "unit": "score",
+   "_source": "https://www.vellum.ai/blog/gpt-5-2-benchmarks",
+   "_note": "no-tools"
+  },
+  {
+   "model": "claude-opus-4-5",
+   "benchmark": "aime_2025",
+   "score": 92.8,
+   "unit": "score",
+   "_source": "https://www.vellum.ai/blog/gpt-5-2-benchmarks",
+   "_note": ""
+  },
+  {
+   "model": "microsoft/mai-thinking-1",
+   "benchmark": "aime_2025",
+   "score": 97.0,
+   "unit": "score",
+   "_source": "https://benchlm.ai/math",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5-reasoning",
+   "benchmark": "aime_2025",
+   "score": 96.1,
+   "unit": "score",
+   "_source": "https://benchlm.ai/math",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "aime_2025",
+   "score": 96.1,
+   "unit": "score",
+   "_source": "https://benchlm.ai/math",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-4.7",
+   "benchmark": "aime_2025",
+   "score": 95.7,
+   "unit": "score",
+   "_source": "https://benchlm.ai/math",
+   "_note": ""
+  },
+  {
+   "model": "xiaomi/mimo-v2-flash",
+   "benchmark": "aime_2025",
+   "score": 94.1,
+   "unit": "score",
+   "_source": "https://benchlm.ai/math",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "aime_2026",
+   "score": 100.0,
+   "unit": "score",
+   "_source": "https://benchlm.ai/math",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.5-xhigh",
+   "benchmark": "aime_2026",
+   "score": 81.2,
+   "unit": "score",
+   "_source": "https://matharena.ai/",
+   "_note": "expected-performance-composite"
+  },
+  {
+   "model": "alibaba/qwen3.7-max",
+   "benchmark": "hmmt_feb_2026",
+   "score": 97.1,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "hmmt_feb_2026",
+   "score": 95.2,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-max",
+   "benchmark": "hmmt_feb_2026",
+   "score": 94.8,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
+   "_note": ""
+  },
+  {
+   "model": "kimi-k2-6",
+   "benchmark": "hmmt_feb_2026",
+   "score": 92.7,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.6-plus",
+   "benchmark": "hmmt_feb_2026",
+   "score": 87.8,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
+   "_note": ""
+  },
+  {
+   "model": "microsoft/mai-thinking-1",
+   "benchmark": "hmmt_feb_2026",
+   "score": 84.9,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
+   "_note": ""
+  },
+  {
+   "model": "qwen3-6-27b",
+   "benchmark": "hmmt_feb_2026",
+   "score": 84.3,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "hmmt_feb_2026",
+   "score": 83.6,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
+   "_note": ""
+  },
+  {
+   "model": "glm-5-1",
+   "benchmark": "hmmt_feb_2026",
+   "score": 82.6,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt-feb-26",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.5-397b-a17b",
+   "benchmark": "hmmt_feb_2026",
+   "score": 87.88,
+   "unit": "score",
+   "_source": "https://huggingface.co/Qwen/Qwen3.5-397B-A17B/discussions/53",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "hmmt_feb_2026",
+   "score": 87.12,
+   "unit": "score",
+   "_source": "https://matharena.ai/competitions",
+   "_note": ""
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "hmmt_feb_2026",
+   "score": 86.36,
+   "unit": "score",
+   "_source": "https://matharena.ai/competitions",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5",
+   "benchmark": "hmmt_feb_2026",
+   "score": 86.36,
+   "unit": "score",
+   "_source": "https://huggingface.co/zai-org/GLM-5/discussions/51",
+   "_note": ""
+  },
+  {
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "benchmark": "hmmt_feb_2026",
+   "score": 84.85,
+   "unit": "score",
+   "_source": "https://matharena.ai/competitions",
+   "_note": ""
+  },
+  {
+   "model": "xai/grok-4-heavy",
+   "benchmark": "hmmt_feb_2025",
+   "score": 96.7,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt25",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.6-plus",
+   "benchmark": "hmmt_feb_2025",
+   "score": 94.6,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt25",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.5-397b-a17b",
+   "benchmark": "hmmt_feb_2025",
+   "score": 92.7,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt25",
+   "_note": ""
+  },
+  {
+   "model": "qwen3-6-27b",
+   "benchmark": "hmmt_feb_2025",
+   "score": 90.7,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt25",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.5-122b-a10b",
+   "benchmark": "hmmt_feb_2025",
+   "score": 90.3,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt25",
+   "_note": ""
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "hmmt_feb_2025",
+   "score": 90.0,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt25",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.5-27b",
+   "benchmark": "hmmt_feb_2025",
+   "score": 89.8,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt25",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.5-35b-a3b",
+   "benchmark": "hmmt_feb_2025",
+   "score": 89.2,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt25",
+   "_note": ""
+  },
+  {
+   "model": "sarvam/sarvam-105b",
+   "benchmark": "hmmt_feb_2025",
+   "score": 85.8,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt25",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+   "benchmark": "hmmt_feb_2025",
+   "score": 83.9,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/hmmt25",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.4-xhigh",
+   "benchmark": "usamo_2026",
+   "score": 95.24,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "gemini-3-1-pro",
+   "benchmark": "usamo_2026",
+   "score": 74.4,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "claude-opus-4-6",
+   "benchmark": "usamo_2026",
+   "score": 47.0,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "usamo_2026",
+   "score": 44.6,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.5-397b",
+   "benchmark": "usamo_2026",
+   "score": 36.3,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5",
+   "benchmark": "usamo_2026",
+   "score": 35.1,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "minimax/minimax-m3",
+   "benchmark": "usamo_2026",
+   "score": 85.7,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/usamo-2026",
+   "_note": "self-reported"
+  },
+  {
+   "model": "gemini-2-5-pro",
+   "benchmark": "imo_2025",
+   "score": 31.0,
+   "unit": "score",
+   "_source": "https://matharena.ai/imo/",
+   "_note": ""
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "imo_2025",
+   "score": 21.43,
+   "unit": "score",
+   "_source": "https://matharena.ai/imo/",
+   "_note": "updated-prompt"
+  },
+  {
+   "model": "google/gemini-deep-think",
+   "benchmark": "imo_2025",
+   "score": 83.33,
+   "unit": "score",
+   "_source": "https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/",
+   "_note": ""
+  },
+  {
+   "model": "openai/openai-experimental-imo-2025",
+   "benchmark": "imo_2025",
+   "score": 83.33,
+   "unit": "score",
+   "_source": "https://the-decoder.com/openai-claims-a-breakthrough-in-llm-reasoning-on-complex-math-problems/",
+   "_note": ""
+  },
+  {
+   "model": "google-deepmind/alphaproof-alphageometry-2",
+   "benchmark": "imo_2024",
+   "score": 66.67,
+   "unit": "score",
+   "_source": "https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v3.2-speciale-agent",
+   "benchmark": "putnam_2025",
+   "score": 85.83,
+   "unit": "score",
+   "_source": "https://matharena.ai/putnam/",
+   "_note": "agent"
+  },
+  {
+   "model": "gemini-3-pro",
+   "benchmark": "putnam_2025",
+   "score": 75.83,
+   "unit": "score",
+   "_source": "https://matharena.ai/putnam/",
+   "_note": "non-agent"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "matharena_apex_2025",
+   "score": 90.2,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/matharena-apex",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-max",
+   "benchmark": "matharena_apex_2025",
+   "score": 85.7,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/matharena-apex",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.7-max",
+   "benchmark": "matharena_apex_2025",
+   "score": 44.5,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/matharena-apex",
+   "_note": ""
+  },
+  {
+   "model": "claude-opus-4-6",
+   "benchmark": "math_500",
+   "score": 99.8,
+   "unit": "score",
+   "_source": "https://benchlm.ai/math",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-prover-v2-671b",
+   "benchmark": "minif2f_test_pass",
+   "score": 88.9,
+   "unit": "score",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-671B",
+   "_note": "budget=pass@8192"
+  },
+  {
+   "model": "deepseek/deepseek-prover-v2-671b",
+   "benchmark": "putnambench",
+   "score": 49.0,
+   "unit": "score",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-671B",
+   "_note": "budget=pass@1024"
+  },
+  {
+   "model": "deepseek/deepseek-prover-v2-671b",
+   "benchmark": "proverbench_aime",
+   "score": 6.0,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2504.21801",
+   "_note": "budget="
+  },
+  {
+   "model": "deepseek/deepseek-prover-v2-7b",
+   "benchmark": "minif2f_test_pass",
+   "score": 82.0,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2504.21801",
+   "_note": "budget=pass@8192"
+  },
+  {
+   "model": "goedel-lm/goedel-prover-v2-32b",
+   "benchmark": "minif2f_test_pass",
+   "score": 90.4,
+   "unit": "score",
+   "_source": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B",
+   "_note": "budget=pass@32 self-correction"
+  },
+  {
+   "model": "goedel-lm/goedel-prover-v2-32b",
+   "benchmark": "minif2f_test_pass_standard",
+   "score": 88.1,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2508.03613",
+   "_note": "budget=pass@32"
+  },
+  {
+   "model": "goedel-lm/goedel-prover-v2-32b",
+   "benchmark": "putnambench",
+   "score": 86.0,
+   "unit": "score",
+   "_source": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B",
+   "_note": "budget=pass@192 self-correction"
+  },
+  {
+   "model": "goedel-lm/goedel-prover-v2-32b",
+   "benchmark": "putnambench_pass32",
+   "score": 57.0,
+   "unit": "score",
+   "_source": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B",
+   "_note": "budget=pass@32 self-correction"
+  },
+  {
+   "model": "goedel-lm/goedel-prover-v2-8b",
+   "benchmark": "minif2f_test_pass",
+   "score": 84.6,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2508.03613",
+   "_note": "budget=pass@32"
+  },
+  {
+   "model": "goedel-lm/goedel-prover-sft",
+   "benchmark": "minif2f_test_pass",
+   "score": 57.6,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2502.07640",
+   "_note": "budget=pass@32"
+  },
+  {
+   "model": "goedel-lm/goedel-prover-sft",
+   "benchmark": "putnambench",
+   "score": 7.0,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2502.07640",
+   "_note": "budget=pass@512"
+  },
+  {
+   "model": "goedel-lm/goedel-prover-sft",
+   "benchmark": "proofnet_test",
+   "score": 15.2,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2502.07640",
+   "_note": "budget=pass@32"
+  },
+  {
+   "model": "ai-mo/kimina-prover-72b",
+   "benchmark": "minif2f_test_pass",
+   "score": 84.0,
+   "unit": "score",
+   "_source": "https://huggingface.co/AI-MO/Kimina-Prover-72B",
+   "_note": "budget=pass@32"
+  },
+  {
+   "model": "ai-mo/kimina-prover-72b",
+   "benchmark": "minif2f_test_pass_8192",
+   "score": 80.7,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2504.11354",
+   "_note": "budget=pass@8192"
+  },
+  {
+   "model": "ai-mo/kimina-prover-distill-8b",
+   "benchmark": "minif2f_test_pass",
+   "score": 77.86,
+   "unit": "score",
+   "_source": "https://huggingface.co/AI-MO/Kimina-Prover-Distill-8B",
+   "_note": "budget=pass@32"
+  },
+  {
+   "model": "ai-mo/kimina-prover-rl-1.7b",
+   "benchmark": "minif2f_test_pass",
+   "score": 76.63,
+   "unit": "score",
+   "_source": "https://huggingface.co/AI-MO/Kimina-Prover-RL-1.7B",
+   "_note": "budget=pass@32"
+  },
+  {
+   "model": "ai-mo/kimina-prover-distill-1.7b",
+   "benchmark": "minif2f_test_pass",
+   "score": 72.95,
+   "unit": "score",
+   "_source": "https://huggingface.co/AI-MO/Kimina-Prover-Distill-1.7B",
+   "_note": "budget=pass@32"
+  },
+  {
+   "model": "google-deepmind/alphaproof",
+   "benchmark": "imo_2024_score",
+   "score": 28.0,
+   "unit": "score",
+   "_source": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
+   "_note": "budget="
+  },
+  {
+   "model": "google-deepmind/alphaproof",
+   "benchmark": "imo_2024_problems_solved",
+   "score": 4.0,
+   "unit": "score",
+   "_source": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
+   "_note": "budget="
+  },
+  {
+   "model": "google-deepmind/alphaproof",
+   "benchmark": "imo_2024_compute_per_problem_hours",
+   "score": 72.0,
+   "unit": "score",
+   "_source": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
+   "_note": "budget="
+  },
+  {
+   "model": "google-deepmind/alphageometry-2",
+   "benchmark": "imo_geometry_historical_accuracy",
+   "score": 83.0,
+   "unit": "score",
+   "_source": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
+   "_note": "budget="
+  },
+  {
+   "model": "google-deepmind/alphageometry-2",
+   "benchmark": "imo_2024_geometry_solve_time_seconds",
+   "score": 19.0,
+   "unit": "score",
+   "_source": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
+   "_note": "budget="
+  },
+  {
+   "model": "stanford/stp-self-play-prover",
+   "benchmark": "minif2f_test_pass",
+   "score": 65.0,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2502.00212",
+   "_note": "budget=pass@3200"
+  },
+  {
+   "model": "stanford/stp-self-play-prover",
+   "benchmark": "proofnet_test",
+   "score": 23.9,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2502.00212",
+   "_note": "budget=pass@3200"
+  },
+  {
+   "model": "stanford/stp-self-play-prover",
+   "benchmark": "putnambench",
+   "score": 8.0,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2502.00212",
+   "_note": "budget=pass@3200"
+  },
+  {
+   "model": "stanford/stp-self-play-prover",
+   "benchmark": "leanworkbook_solve",
+   "score": 28.5,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2502.00212",
+   "_note": "budget="
+  },
+  {
+   "model": "openai/gpt-5.5-xhigh",
+   "benchmark": "matharena_overall",
+   "score": 0.812,
+   "unit": "score",
+   "_source": "https://matharena.ai/",
+   "_note": ""
+  },
+  {
+   "model": "anthropic/claude-fable-5-max",
+   "benchmark": "matharena_overall",
+   "score": 0.78,
+   "unit": "score",
+   "_source": "https://matharena.ai/",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.4-pro-xhigh",
+   "benchmark": "matharena_overall",
+   "score": 0.755,
+   "unit": "score",
+   "_source": "https://matharena.ai/",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "matharena_overall",
+   "score": 0.592,
+   "unit": "score",
+   "_source": "https://matharena.ai/",
+   "_note": "best open"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "matharena_apex_2025",
+   "score": 0.902,
+   "unit": "score",
+   "_source": "https://matharena.ai/?comp=apex--apex_2025",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-max",
+   "benchmark": "matharena_apex_2025",
+   "score": 0.857,
+   "unit": "score",
+   "_source": "https://matharena.ai/?comp=apex--apex_2025",
+   "_note": ""
+  },
+  {
+   "model": "qwen/qwen3.7-max",
+   "benchmark": "matharena_apex_2025",
+   "score": 0.445,
+   "unit": "score",
+   "_source": "https://matharena.ai/?comp=apex--apex_2025",
+   "_note": ""
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "matharena_apex_2025",
+   "score": 0.234,
+   "unit": "score",
+   "_source": "https://matharena.ai/?comp=apex--apex_2025",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.964,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.953,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "qwen/qwen3.6-plus",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.953,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "microsoft/mai-thinking-1",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.945,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "bytedance/seed-2.0-pro",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.942,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "qwen/qwen3.6-27b",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.941,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "qwen/qwen3.6-35b-a3b",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.927,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "microsoft/mai-code-1-flash",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.925,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.5-397b-a17b",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.913,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "google/gemma-4-31b",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.892,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "bytedance/seed-2.0-lite",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.883,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "google/gemma-4-26b-a4b",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.883,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.9667,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": "MathArena dataset card rank; per llm-stats mirror is excluded"
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.9583,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.9583,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "matharena_aime_2026",
+   "score": 0.9583,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.2-pro",
+   "benchmark": "matharena_aime_2025",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.2",
+   "benchmark": "matharena_aime_2025",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking-0905",
+   "benchmark": "matharena_aime_2025",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "xai/grok-4-heavy",
+   "benchmark": "matharena_aime_2025",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "matharena_aime_2025",
+   "score": 1.0,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.998,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.997,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.1-high",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.996,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "meituan/longcat-flash-thinking-2601",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.996,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "nvidia/nemotron-3-nano-30b-a3b",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.992,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-oss-20b-high",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.987,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.1-medium",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.984,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "bytedance/seed-2.0-pro",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.983,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.973,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "microsoft/mai-thinking-1",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.97,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.1-codex-high",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.967,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "sarvam/sarvam-30b",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.967,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "sarvam/sarvam-105b",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.967,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.961,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v3.2-speciale",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.96,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-4.7",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.957,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.946,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5-high",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.946,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "xiaomi/mimo-v2-flash",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.941,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.1-thinking",
+   "benchmark": "matharena_aime_2025",
+   "score": 0.94,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/aime-2025",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "matharena_hmmt_feb_2026",
+   "score": 0.927,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.5-397b-a17b",
+   "benchmark": "matharena_hmmt_feb_2026",
+   "score": 0.879,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+   "_note": ""
+  },
+  {
+   "model": "internlm/intern-s2-preview",
+   "benchmark": "matharena_hmmt_feb_2026",
+   "score": 0.873,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "matharena_hmmt_feb_2026",
+   "score": 0.871,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+   "_note": ""
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "matharena_hmmt_feb_2026",
+   "score": 0.864,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5",
+   "benchmark": "matharena_hmmt_feb_2026",
+   "score": 0.864,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+   "_note": ""
+  },
+  {
+   "model": "nvidia/nemotron-3-super-120b-a12b-bf16",
+   "benchmark": "matharena_hmmt_feb_2026",
+   "score": 0.849,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+   "_note": ""
+  },
+  {
+   "model": "qwen/qwen3.6-27b",
+   "benchmark": "matharena_hmmt_feb_2026",
+   "score": 0.843,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+   "_note": ""
+  },
+  {
+   "model": "qwen/qwen3.6-35b-a3b",
+   "benchmark": "matharena_hmmt_feb_2026",
+   "score": 0.836,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "matharena_hmmt_feb_2026",
+   "score": 0.826,
+   "unit": "score",
+   "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "matharena_usamo_2026",
+   "score": 0.952,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "matharena_usamo_2026",
+   "score": 0.744,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "matharena_usamo_2026",
+   "score": 0.47,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "matharena_usamo_2026",
+   "score": 0.446,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "alibaba/qwen3.5-397b-a17b",
+   "benchmark": "matharena_usamo_2026",
+   "score": 0.363,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5",
+   "benchmark": "matharena_usamo_2026",
+   "score": 0.351,
+   "unit": "score",
+   "_source": "https://matharena.ai/usamo/",
+   "_note": ""
+  },
+  {
+   "model": "openai/gpt-5.2",
+   "benchmark": "matharena_arxivmath_0126",
+   "score": 0.6,
+   "unit": "score",
+   "_source": "https://matharena.ai/arxivmath/",
+   "_note": ""
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "matharena_arxivmath_0126",
+   "score": 0.565,
+   "unit": "score",
+   "_source": "https://matharena.ai/arxivmath/",
+   "_note": ""
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "livebench_math",
+   "score": 0.846,
+   "unit": "score",
+   "_source": "https://livebench.ai/#/?slug=mathematics",
+   "_note": ""
+  },
+  {
+   "model": "qwen/qwen3-235b-a22b",
+   "benchmark": "livebench_math",
+   "score": 0.771,
+   "unit": "score",
+   "_source": "https://livebench.ai/#/?slug=mathematics",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2-instruct-0905",
+   "benchmark": "livebench_math",
+   "score": 0.764,
+   "unit": "score",
+   "_source": "https://livebench.ai/#/?slug=mathematics",
+   "_note": ""
+  },
+  {
+   "model": "qwen/qwen3-32b",
+   "benchmark": "livebench_math",
+   "score": 0.749,
+   "unit": "score",
+   "_source": "https://livebench.ai/#/?slug=mathematics",
+   "_note": ""
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "livebench_math",
+   "score": 0.67,
+   "unit": "score",
+   "_source": "https://livebench.ai/#/?slug=mathematics",
+   "_note": ""
+  },
+  {
+   "model": "microsoft/phi-4",
+   "benchmark": "livebench_math",
+   "score": 0.476,
+   "unit": "score",
+   "_source": "https://livebench.ai/#/?slug=mathematics",
+   "_note": ""
+  },
+  {
+   "model": "meituan/longcat-flash-thinking",
+   "benchmark": "math_500_llmstats",
+   "score": 0.992,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math-500",
+   "_note": ""
+  },
+  {
+   "model": "sarvam/sarvam-105b",
+   "benchmark": "math_500_llmstats",
+   "score": 0.986,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math-500",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-4.5",
+   "benchmark": "math_500_llmstats",
+   "score": 0.982,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math-500",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-4.5-air",
+   "benchmark": "math_500_llmstats",
+   "score": 0.981,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math-500",
+   "_note": ""
+  },
+  {
+   "model": "nvidia/nemotron-nano-9b-v2",
+   "benchmark": "math_500_llmstats",
+   "score": 0.978,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math-500",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2-instruct-0905",
+   "benchmark": "math_500_llmstats",
+   "score": 0.974,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math-500",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2-instruct",
+   "benchmark": "math_500_llmstats",
+   "score": 0.974,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math-500",
+   "_note": ""
+  },
+  {
+   "model": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
+   "benchmark": "math_500_llmstats",
+   "score": 0.97,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math-500",
+   "_note": ""
+  },
+  {
+   "model": "sarvam/sarvam-30b",
+   "benchmark": "math_500_llmstats",
+   "score": 0.97,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math-500",
+   "_note": ""
+  },
+  {
+   "model": "minimax/minimax-m1-80k",
+   "benchmark": "math_500_llmstats",
+   "score": 0.968,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math-500",
+   "_note": ""
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "math_legacy_hendrycks",
+   "score": 0.979,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math",
+   "_note": ""
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "math_legacy_hendrycks",
+   "score": 0.964,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math",
+   "_note": ""
+  },
+  {
+   "model": "mistral/ministral-3-14b-instruct-2512",
+   "benchmark": "math_legacy_hendrycks",
+   "score": 0.904,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math",
+   "_note": ""
+  },
+  {
+   "model": "mistral/mistral-large-3",
+   "benchmark": "math_legacy_hendrycks",
+   "score": 0.904,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math",
+   "_note": ""
+  },
+  {
+   "model": "google/gemini-2.0-flash",
+   "benchmark": "math_legacy_hendrycks",
+   "score": 0.897,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2-0905",
+   "benchmark": "math_legacy_hendrycks",
+   "score": 0.891,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math",
+   "_note": ""
+  },
+  {
+   "model": "google/gemma-3-27b",
+   "benchmark": "math_legacy_hendrycks",
+   "score": 0.89,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/math",
+   "_note": ""
+  }
+ ]
 }

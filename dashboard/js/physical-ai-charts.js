@@ -1182,7 +1182,7 @@
       narrative: 'World foundation model for physical AI',
       value: 'Embodied SOTA',
       domain: 'world-models',
-      model_id: 'nvidia/cosmos-transfer-2.5',
+      model_id: 'nvidia/cosmos-transfer2.5',
       benchmark_id: 'cosmos_embodied_reasoning',
       source_url: 'https://www.nvidia.com/en-us/ai/cosmos/',
       year: 2025

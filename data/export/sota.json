@@ -1,4 +1,19 @@
 {
+  "offcyber_nyu_ctf_bench": {
+    "model_id": "anthropic/claude-opus-4.5",
+    "benchmark_id": "offcyber_nyu_ctf_bench",
+    "value": 59.0,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2604.17159",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": "118/200 solved — SOTA. Table I."
+  },
   "screenspot_pro": {
     "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "screenspot_pro",
@@ -2519,36 +2534,6 @@
     "collected_at": "2026-04-25",
     "notes": "Codestral 25.01 baseline"
   },
-  "chartqa": {
-    "model_id": "openai/gpt-5.5",
-    "benchmark_id": "chartqa",
-    "value": 94.0,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://automatio.ai/models/gpt-5-5",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": ""
-  },
-  "docvqa": {
-    "model_id": "mistral/pixtral-large",
-    "benchmark_id": "docvqa",
-    "value": 93.3,
-    "unit": "anls",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411",
-      "date": "2026-04-25",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "Pixtral Large ANLS — SOTA at release"
-  },
   "vqav2": {
     "model_id": "mistral/pixtral-large",
     "benchmark_id": "vqav2",
@@ -2563,21 +2548,6 @@
     "is_sota": true,
     "collected_at": "2026-04-25",
     "notes": "Pixtral Large VQA Match"
-  },
-  "ai2d": {
-    "model_id": "mistral/pixtral-large",
-    "benchmark_id": "ai2d",
-    "value": 93.8,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411",
-      "date": "2026-04-25",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "Pixtral Large BBox"
   },
   "libero": {
     "model_id": "unitree/unifolm-vla-0",
@@ -3195,7 +3165,7 @@
     "notes": "ER 1.5 Pixmo-Point — 2x Gemini 2.0 Flash 25.8%"
   },
   "physical_ai_bench": {
-    "model_id": "nvidia/cosmos3-super",
+    "model_id": "nvidia/cosmos-3-super",
     "benchmark_id": "physical_ai_bench",
     "value": 73.7,
     "unit": "%",
@@ -3823,6 +3793,51 @@
     "is_sota": true,
     "collected_at": "2026-05-10",
     "notes": "HF model card — Elastic-30B LiveCodeBench v5 = 72.70."
+  },
+  "chartqa": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "chartqa",
+    "value": 94.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://automatio.ai/models/gpt-5-5",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": ""
+  },
+  "ai2d": {
+    "model_id": "meta/llama-3.2-90b",
+    "benchmark_id": "ai2d",
+    "value": 92.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/meta-llama/Llama-3.2-90B-Vision-Instruct",
+      "date": "2026-05-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-10",
+    "notes": "Vendor model card: Llama 3.2 90B Vision Instruct = 92.3 accuracy on AI2D test. Charts and Diagram Understanding row."
+  },
+  "docvqa": {
+    "model_id": "htx-mistral/phoenix-vl-1.5-medium",
+    "benchmark_id": "docvqa",
+    "value": 93.05,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "arxiv:2605.10391",
+      "date": "2026-08-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-08-01",
+    "notes": ""
   },
   "delegate_52": {
     "model_id": "google/gemini-3.1-pro",
@@ -9270,7 +9285,7 @@
     "notes": "First-party. Named-baseline leader. Strong Trajectory Accuracy 0.482."
   },
   "pai_bench_g": {
-    "model_id": "nvidia/cosmos3-super",
+    "model_id": "nvidia/cosmos-3-super",
     "benchmark_id": "pai_bench_g",
     "value": 83.9,
     "unit": "%",
@@ -10395,19 +10410,19 @@
     "notes": "First-party. SOTA — beats StreamVLN 56.9, NaVILA 54.0."
   },
   "unigenbench_all_1170": {
-    "model_id": "nvidia/cosmos3-super-text2image",
+    "model_id": "nvidia/cosmos-3-super-text2image",
     "benchmark_id": "unigenbench_all_1170",
     "value": 91.36,
-    "unit": "%",
+    "unit": "score",
     "source": {
-      "type": "pdf",
-      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "type": "leaderboard",
+      "url": "NVIDIA Cosmos 3 Technical Report",
       "date": "2026-09-05",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-05",
-    "notes": "Cosmos 3 Tech Report Table 11 | Best on UniGenBench among evaluated; AA T2I Leaderboard #1 open-weight, #4 overall (2026-05-28)"
+    "notes": "split=all-1170"
   },
   "cvtg_500l_pned": {
     "model_id": "alibaba/qwen-image-2512",
@@ -10470,7 +10485,7 @@
     "notes": "Cosmos 3 Tech Report Table 11"
   },
   "paibench_g_t2v_overall": {
-    "model_id": "nvidia/cosmos3-super",
+    "model_id": "nvidia/cosmos-3-super",
     "benchmark_id": "paibench_g_t2v_overall",
     "value": 80.0,
     "unit": "%",
@@ -10513,51 +10528,6 @@
     "is_sota": true,
     "collected_at": "2026-09-05",
     "notes": "Cosmos 3 Tech Report Table 12 | RBench SOTA, narrowly above Cosmos3-Nano 58.4"
-  },
-  "physics_iq_i2v": {
-    "model_id": "nvidia/cosmos3-super",
-    "benchmark_id": "physics_iq_i2v",
-    "value": 48.9,
-    "unit": "score_0_100",
-    "source": {
-      "type": "pdf",
-      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": "Cosmos 3 Tech Report Table 13 | I2V with WMReward (BoN) — Cosmos3-Super SOTA. Direct 43.8 also SOTA among direct."
-  },
-  "physics_iq_v2v": {
-    "model_id": "nvidia/cosmos3-super",
-    "benchmark_id": "physics_iq_v2v",
-    "value": 63.4,
-    "unit": "score_0_100",
-    "source": {
-      "type": "pdf",
-      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": "Cosmos 3 Tech Report Table 13 | V2V with WMReward (BoN) — Cosmos3-Super SOTA"
-  },
-  "cosmos_hue_t2v": {
-    "model_id": "google/veo-3.1",
-    "benchmark_id": "cosmos_hue_t2v",
-    "value": 91.3,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "NVIDIA Cosmos 3 Technical Report",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": ""
   },
   "cosmos_hue_i2v": {
     "model_id": "google/veo-3.1",
@@ -10605,7 +10575,7 @@
     "notes": "Cosmos 3 Tech Report Table 15 | AVQ SOTA via PQ strength"
   },
   "soundbench_sav": {
-    "model_id": "nvidia/cosmos3-nano",
+    "model_id": "nvidia/cosmos-3-nano",
     "benchmark_id": "soundbench_sav",
     "value": 8.35,
     "unit": "score_0_10",
@@ -10620,7 +10590,7 @@
     "notes": "Cosmos 3 Tech Report Table 15 | Cosmos3-Nano SAV SOTA — strongest semantic audio-visual grounding"
   },
   "robolab_droid_specific": {
-    "model_id": "nvidia/cosmos3-nano-policy-droid",
+    "model_id": "nvidia/cosmos-3-nano-policy-droid",
     "benchmark_id": "robolab_droid_specific",
     "value": 39.7,
     "unit": "%",
@@ -10635,7 +10605,7 @@
     "notes": "Cosmos 3 Tech Report Table 19 — Overall Specific | SOTA — vs π0.5 28.1 (+11.6pp), DreamZero 23.9. Also #1 on RoboArena leaderboard 2026-05-30."
   },
   "libero_10_adaptation_2k": {
-    "model_id": "nvidia/cosmos3-nano",
+    "model_id": "nvidia/cosmos-3-nano",
     "benchmark_id": "libero_10_adaptation_2k",
     "value": 97.4,
     "unit": "%",
@@ -11115,7 +11085,7 @@
     "notes": "LVBench static"
   },
   "scale_ai_multi_challenge": {
-    "model_id": "nvidia/cosmos3-edge",
+    "model_id": "nvidia/cosmos-3-edge",
     "benchmark_id": "scale_ai_multi_challenge",
     "value": 28.1,
     "unit": "%",
@@ -11190,7 +11160,7 @@
     "notes": "Tab 32"
   },
   "cosmos_hue_t2v_av": {
-    "model_id": "nvidia/cosmos3-super",
+    "model_id": "nvidia/cosmos-3-super",
     "benchmark_id": "cosmos_hue_t2v_av",
     "value": 87.7,
     "unit": "%",
@@ -11205,7 +11175,7 @@
     "notes": "Tab 32 — Cosmos3-Super BEATS ALL generators incl. closed-source on AV domain"
   },
   "cosmos_hue_t2v_physics": {
-    "model_id": "nvidia/cosmos3-super",
+    "model_id": "nvidia/cosmos-3-super",
     "benchmark_id": "cosmos_hue_t2v_physics",
     "value": 91.5,
     "unit": "%",
@@ -11264,36 +11234,6 @@
     "collected_at": "2026-06-02",
     "notes": "Tab 33 — Cosmos3-Super-I2V Visual Integrity SOTA among open + closed"
   },
-  "paibench_g_t2v_domain": {
-    "model_id": "nvidia/cosmos3-super",
-    "benchmark_id": "paibench_g_t2v_domain",
-    "value": 86.8,
-    "unit": "%",
-    "source": {
-      "type": "pdf",
-      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "date": "2026-06-02",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-02",
-    "notes": "Tab 12"
-  },
-  "paibench_g_t2v_quality": {
-    "model_id": "nvidia/cosmos3-super",
-    "benchmark_id": "paibench_g_t2v_quality",
-    "value": 73.1,
-    "unit": "%",
-    "source": {
-      "type": "pdf",
-      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "date": "2026-06-02",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-02",
-    "notes": "Tab 12"
-  },
   "paibench_g_i2v_domain": {
     "model_id": "google/veo-3.1",
     "benchmark_id": "paibench_g_i2v_domain",
@@ -11323,6 +11263,21 @@
     "is_sota": true,
     "collected_at": "2026-06-02",
     "notes": "Tab 12"
+  },
+  "paibench_g_t2v_domain": {
+    "model_id": "nvidia/cosmos-3-super",
+    "benchmark_id": "paibench_g_t2v_domain",
+    "value": 86.8,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "NVIDIA Cosmos 3 Technical Report",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": ""
   },
   "soundbench_pq": {
     "model_id": "bytedance/seedance-1.5-pro",
@@ -11428,6 +11383,36 @@
     "is_sota": true,
     "collected_at": "2026-06-02",
     "notes": "Qwen MM — MLVU M-Avg"
+  },
+  "cosmos_hue_t2v": {
+    "model_id": "google/veo-3.1",
+    "benchmark_id": "cosmos_hue_t2v",
+    "value": 91.3,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "NVIDIA Cosmos 3 Technical Report",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": ""
+  },
+  "physics_iq_i2v": {
+    "model_id": "alibaba/wan-2.2",
+    "benchmark_id": "physics_iq_i2v",
+    "value": 44.4,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "date": "2026-06-02",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-02",
+    "notes": "Tab 13 — Wan2.2-A14B with WMReward (BoN)"
   },
   "text_arena_elo": {
     "model_id": "anthropic/claude-opus-4.6-thinking",
@@ -11565,7 +11550,7 @@
     "notes": "Code-04"
   },
   "fleurs_keyword_biasing_wer_improvement": {
-    "model_id": "microsoft/mai-transcribe-1.5",
+    "model_id": "microsoft/mai-transcribe-1-5",
     "benchmark_id": "fleurs_keyword_biasing_wer_improvement",
     "value": 30.0,
     "unit": "%",
@@ -13335,7 +13320,7 @@
     "notes": "🌍 Gemini 3 Pro Step-Caption 75.55 NEW SOTA NEW bench"
   },
   "cosmos3_reasoner_general_avg": {
-    "model_id": "nvidia/cosmos3-super",
+    "model_id": "nvidia/cosmos-3-super",
     "benchmark_id": "cosmos3_reasoner_general_avg",
     "value": 73.7,
     "unit": "score_0_100",
@@ -13350,7 +13335,7 @@
     "notes": "🌍 Cosmos 3 Super Reasoner General Avg 73.7 NEW SOTA NEW bench. Mean over 19 benchmarks. Lead vs Nano 69.6 (+4.1pp) and Edge 53.1 (+20.6pp)"
   },
   "cosmos3_reasoner_robotics_avg": {
-    "model_id": "nvidia/cosmos3-super",
+    "model_id": "nvidia/cosmos-3-super",
     "benchmark_id": "cosmos3_reasoner_robotics_avg",
     "value": 57.8,
     "unit": "score_0_100",
@@ -13365,7 +13350,7 @@
     "notes": "🌍 Cosmos 3 Super Reasoner Robotics Avg 57.8 NEW SOTA NEW bench (17 benches mean)"
   },
   "cosmos3_reasoner_smart_infra_avg": {
-    "model_id": "nvidia/cosmos3-super",
+    "model_id": "nvidia/cosmos-3-super",
     "benchmark_id": "cosmos3_reasoner_smart_infra_avg",
     "value": 62.6,
     "unit": "score_0_100",
@@ -13380,7 +13365,7 @@
     "notes": "🌍 Cosmos 3 Super Reasoner Smart-Infra 62.6 NEW SOTA NEW bench (9 benches mean)"
   },
   "cosmos3_reasoner_driving_avg": {
-    "model_id": "nvidia/cosmos3-super",
+    "model_id": "nvidia/cosmos-3-super",
     "benchmark_id": "cosmos3_reasoner_driving_avg",
     "value": 79.3,
     "unit": "score_0_100",
@@ -15629,21 +15614,6 @@
     "collected_at": "2026-09-05",
     "notes": ""
   },
-  "offcyber_nyu_ctf_bench": {
-    "model_id": "anthropic/claude-opus-4.5",
-    "benchmark_id": "offcyber_nyu_ctf_bench",
-    "value": 59.0,
-    "unit": "percent",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2604.17159",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": "118/200 solved — SOTA. Table I."
-  },
   "offcyber_nyu_ctf_pwn": {
     "model_id": "anthropic/claude-opus-4.5",
     "benchmark_id": "offcyber_nyu_ctf_pwn",
@@ -15870,7 +15840,7 @@
     "notes": ""
   },
   "tele_telelogs_cfr": {
-    "model_id": "google/gemma4-31b",
+    "model_id": "google/gemma-4-31b",
     "benchmark_id": "tele_telelogs_cfr",
     "value": 19.8,
     "unit": "score",
@@ -15930,7 +15900,7 @@
     "notes": ""
   },
   "tele_sixg_bench_cfr": {
-    "model_id": "google/gemma4-31b",
+    "model_id": "google/gemma-4-31b",
     "benchmark_id": "tele_sixg_bench_cfr",
     "value": 29.1,
     "unit": "score",
@@ -21209,6 +21179,21 @@
     "collected_at": "2026-09-05",
     "notes": ""
   },
+  "paibench_g_t2v_quality": {
+    "model_id": "nvidia/cosmos-3-super",
+    "benchmark_id": "paibench_g_t2v_quality",
+    "value": 73.1,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "NVIDIA Cosmos 3 Technical Report",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": ""
+  },
   "paibench_g_i2v": {
     "model_id": "nvidia/cosmos-3-super",
     "benchmark_id": "paibench_g_i2v",
@@ -21228,6 +21213,21 @@
     "model_id": "nvidia/cosmos-3-super",
     "benchmark_id": "physics_iq_i2v_wmreward_bon",
     "value": 48.9,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "NVIDIA Cosmos 3 Technical Report",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-05",
+    "notes": ""
+  },
+  "physics_iq_v2v": {
+    "model_id": "nvidia/cosmos-3-super",
+    "benchmark_id": "physics_iq_v2v",
+    "value": 59.7,
     "unit": "score",
     "source": {
       "type": "leaderboard",
@@ -21825,7 +21825,7 @@
     "notes": ""
   },
   "aa_image_to_video_arena_rank_global": {
-    "model_id": "nvidia/cosmos-3-super-image2video",
+    "model_id": "nvidia/cosmos3-super-image2video",
     "benchmark_id": "aa_image_to_video_arena_rank_global",
     "value": 22.0,
     "unit": "score",
@@ -21840,7 +21840,7 @@
     "notes": ""
   },
   "aa_image_to_video_arena_rank_open_weight": {
-    "model_id": "nvidia/cosmos-3-super-image2video",
+    "model_id": "nvidia/cosmos3-super-image2video",
     "benchmark_id": "aa_image_to_video_arena_rank_open_weight",
     "value": 1.0,
     "unit": "score",
@@ -24555,7 +24555,7 @@
     "notes": "rating"
   },
   "memory-gb_lower_better": {
-    "model_id": "google/gemma-4-31b-it-qat-q4-0-gguf",
+    "model_id": "google/gemma-4-31b-it-qat-q4_0-gguf",
     "benchmark_id": "memory-gb_lower_better",
     "value": 17.7,
     "unit": "score",
@@ -24570,7 +24570,7 @@
     "notes": ""
   },
   "math-vision": {
-    "model_id": "google/gemma-4-31b-it-qat-q4-0-gguf",
+    "model_id": "google/gemma-4-31b-it-qat-q4_0-gguf",
     "benchmark_id": "math-vision",
     "value": 85.6,
     "unit": "score",
@@ -25095,7 +25095,7 @@
     "notes": ""
   },
   "ttft_s_provider_avg_aa_lower_better": {
-    "model_id": "gemma-4-31b",
+    "model_id": "google/gemma-4-31b",
     "benchmark_id": "ttft_s_provider_avg_aa_lower_better",
     "value": 1.08,
     "unit": "s",
@@ -25110,7 +25110,7 @@
     "notes": ""
   },
   "tokens_per_sec_rtx4090_q4km_peak": {
-    "model_id": "qwen-3.6-35b-a3b",
+    "model_id": "alibaba/qwen3.6-35b-a3b",
     "benchmark_id": "tokens_per_sec_rtx4090_q4km_peak",
     "value": 101.0,
     "unit": "tok/s",
@@ -25125,7 +25125,7 @@
     "notes": "Q4_K_M"
   },
   "tokens_per_sec_6gb_vram_q4_llamacpp": {
-    "model_id": "qwen-3.6-35b-a3b",
+    "model_id": "alibaba/qwen3.6-35b-a3b",
     "benchmark_id": "tokens_per_sec_6gb_vram_q4_llamacpp",
     "value": 30.0,
     "unit": "tok/s",
@@ -25140,7 +25140,7 @@
     "notes": "Q4 partial offload"
   },
   "tokens_per_sec_m3_ultra_mlx_8bit": {
-    "model_id": "qwen-3.6-35b-a3b",
+    "model_id": "alibaba/qwen3.6-35b-a3b",
     "benchmark_id": "tokens_per_sec_m3_ultra_mlx_8bit",
     "value": 80.0,
     "unit": "tok/s",
@@ -25155,7 +25155,7 @@
     "notes": "MLX 8-bit"
   },
   "tokens_per_sec_m4_max_64gb_mlx": {
-    "model_id": "qwen-3.6-35b-a3b",
+    "model_id": "alibaba/qwen3.6-35b-a3b",
     "benchmark_id": "tokens_per_sec_m4_max_64gb_mlx",
     "value": 62.0,
     "unit": "tok/s",
@@ -25170,7 +25170,7 @@
     "notes": "MLX 4-bit"
   },
   "ttft_ms_gb10_mtp_lower_better": {
-    "model_id": "qwen-3.6-35b-a3b",
+    "model_id": "alibaba/qwen3.6-35b-a3b",
     "benchmark_id": "ttft_ms_gb10_mtp_lower_better",
     "value": 433.0,
     "unit": "ms",
@@ -25185,7 +25185,7 @@
     "notes": ""
   },
   "throughput_pct_gain_gb10_mtp": {
-    "model_id": "qwen-3.6-35b-a3b",
+    "model_id": "alibaba/qwen3.6-35b-a3b",
     "benchmark_id": "throughput_pct_gain_gb10_mtp",
     "value": 24.2,
     "unit": "% gain",
@@ -25200,7 +25200,7 @@
     "notes": ""
   },
   "tokens_per_sec_h100_concurrency128": {
-    "model_id": "gemma-4-31b",
+    "model_id": "google/gemma-4-31b",
     "benchmark_id": "tokens_per_sec_h100_concurrency128",
     "value": 1260.0,
     "unit": "tok/s aggregate",
@@ -25215,7 +25215,7 @@
     "notes": "BF16"
   },
   "tokens_per_sec_h100_throughput_sweep_peak": {
-    "model_id": "gemma-4-31b",
+    "model_id": "google/gemma-4-31b",
     "benchmark_id": "tokens_per_sec_h100_throughput_sweep_peak",
     "value": 855.0,
     "unit": "tok/s",
@@ -25230,7 +25230,7 @@
     "notes": "BF16"
   },
   "tokens_per_sec_12gb_vram_128k_ctx": {
-    "model_id": "gemma-4-26b-a4b",
+    "model_id": "google/gemma-4-26b-a4b",
     "benchmark_id": "tokens_per_sec_12gb_vram_128k_ctx",
     "value": 44.2,
     "unit": "tok/s",
@@ -25245,7 +25245,7 @@
     "notes": "Q4_K_M"
   },
   "tokens_per_sec_12gb_vram_64k_vision": {
-    "model_id": "gemma-4-26b-a4b",
+    "model_id": "google/gemma-4-26b-a4b",
     "benchmark_id": "tokens_per_sec_12gb_vram_64k_vision",
     "value": 42.1,
     "unit": "tok/s",
@@ -25260,7 +25260,7 @@
     "notes": "Q4_K_M"
   },
   "turboquant_kv_cache_speedup_pct_128k_256k": {
-    "model_id": "gemma-4-26b-a4b",
+    "model_id": "google/gemma-4-26b-a4b",
     "benchmark_id": "turboquant_kv_cache_speedup_pct_128k_256k",
     "value": 17.0,
     "unit": "% gain",
@@ -25275,7 +25275,7 @@
     "notes": ""
   },
   "tokens_per_sec_rtx5090_q4km_batch1": {
-    "model_id": "gemma-4-e4b",
+    "model_id": "google/gemma-4-e4b",
     "benchmark_id": "tokens_per_sec_rtx5090_q4km_batch1",
     "value": 178.0,
     "unit": "tok/s",
@@ -25290,7 +25290,7 @@
     "notes": "Q4_K_M"
   },
   "tokens_per_sec_pixel9_pro_tensor_g4": {
-    "model_id": "gemma-4-e4b",
+    "model_id": "google/gemma-4-e4b",
     "benchmark_id": "tokens_per_sec_pixel9_pro_tensor_g4",
     "value": 17.0,
     "unit": "tok/s",
@@ -25305,7 +25305,7 @@
     "notes": ""
   },
   "tokens_per_sec_snapdragon8gen3": {
-    "model_id": "gemma-4-e4b",
+    "model_id": "google/gemma-4-e4b",
     "benchmark_id": "tokens_per_sec_snapdragon8gen3",
     "value": 11.0,
     "unit": "tok/s",
@@ -25320,7 +25320,7 @@
     "notes": ""
   },
   "tokens_per_sec_macbook_m5": {
-    "model_id": "gemma-4-e4b",
+    "model_id": "google/gemma-4-e4b",
     "benchmark_id": "tokens_per_sec_macbook_m5",
     "value": 400.0,
     "unit": "tok/s",
@@ -25335,7 +25335,7 @@
     "notes": ""
   },
   "tokens_per_sec_snapdragon8_recent": {
-    "model_id": "gemma-4-e2b",
+    "model_id": "google/gemma-4-e2b",
     "benchmark_id": "tokens_per_sec_snapdragon8_recent",
     "value": 16.0,
     "unit": "tok/s",
@@ -25350,7 +25350,7 @@
     "notes": ""
   },
   "tokens_per_sec_rog_phone_9_pro": {
-    "model_id": "gemma-4-e2b",
+    "model_id": "google/gemma-4-e2b",
     "benchmark_id": "tokens_per_sec_rog_phone_9_pro",
     "value": 48.0,
     "unit": "tok/s",
@@ -25365,7 +25365,7 @@
     "notes": ""
   },
   "tokens_per_sec_tensor_g4_3_5b_class": {
-    "model_id": "gemma-4-e2b",
+    "model_id": "google/gemma-4-e2b",
     "benchmark_id": "tokens_per_sec_tensor_g4_3_5b_class",
     "value": 45.0,
     "unit": "tok/s",
@@ -29010,7 +29010,7 @@
     "notes": ""
   },
   "pai_bench": {
-    "model_id": "cosmos-reason-2-8b",
+    "model_id": "nvidia/cosmos-reason2-8b",
     "benchmark_id": "pai_bench",
     "value": 80.18,
     "unit": "score",
@@ -30090,7 +30090,7 @@
     "notes": ""
   },
   "mteb_multilingual_v2": {
-    "model_id": "qwen/qwen3-embedding-8b",
+    "model_id": "alibaba/qwen3-embedding-8b",
     "benchmark_id": "mteb_multilingual_v2",
     "value": 70.58,
     "unit": "score",
@@ -30135,7 +30135,7 @@
     "notes": ""
   },
   "mteb_multilingual_v2_overall": {
-    "model_id": "qwen/qwen3-embedding-8b",
+    "model_id": "alibaba/qwen3-embedding-8b",
     "benchmark_id": "mteb_multilingual_v2_overall",
     "value": 70.58,
     "unit": "score",
@@ -30150,7 +30150,7 @@
     "notes": "2025-06-05"
   },
   "mteb_english_v2_overall": {
-    "model_id": "qwen/qwen3-embedding-8b",
+    "model_id": "alibaba/qwen3-embedding-8b",
     "benchmark_id": "mteb_english_v2_overall",
     "value": 75.22,
     "unit": "score",
@@ -30165,7 +30165,7 @@
     "notes": "2025-06-05"
   },
   "c_mteb_overall": {
-    "model_id": "qwen/qwen3-embedding-8b",
+    "model_id": "alibaba/qwen3-embedding-8b",
     "benchmark_id": "c_mteb_overall",
     "value": 73.84,
     "unit": "score",
@@ -30180,7 +30180,7 @@
     "notes": ""
   },
   "mteb_multilingual_retrieval": {
-    "model_id": "qwen/qwen3-embedding-4b",
+    "model_id": "alibaba/qwen3-embedding-4b",
     "benchmark_id": "mteb_multilingual_retrieval",
     "value": 85.05,
     "unit": "score",
@@ -30195,7 +30195,7 @@
     "notes": ""
   },
   "mteb_multilingual_sts": {
-    "model_id": "qwen/qwen3-embedding-8b",
+    "model_id": "alibaba/qwen3-embedding-8b",
     "benchmark_id": "mteb_multilingual_sts",
     "value": 81.08,
     "unit": "score",
@@ -30210,7 +30210,7 @@
     "notes": ""
   },
   "mteb_multilingual_classification": {
-    "model_id": "qwen/qwen3-embedding-8b",
+    "model_id": "alibaba/qwen3-embedding-8b",
     "benchmark_id": "mteb_multilingual_classification",
     "value": 74.0,
     "unit": "score",
@@ -30225,7 +30225,7 @@
     "notes": ""
   },
   "mteb_multilingual_clustering": {
-    "model_id": "qwen/qwen3-embedding-8b",
+    "model_id": "alibaba/qwen3-embedding-8b",
     "benchmark_id": "mteb_multilingual_clustering",
     "value": 57.65,
     "unit": "score",
@@ -30240,7 +30240,7 @@
     "notes": ""
   },
   "mteb_multilingual_reranking": {
-    "model_id": "qwen/qwen3-embedding-8b",
+    "model_id": "alibaba/qwen3-embedding-8b",
     "benchmark_id": "mteb_multilingual_reranking",
     "value": 65.63,
     "unit": "score",
@@ -30255,7 +30255,7 @@
     "notes": ""
   },
   "mteb_multilingual_bitext_mining": {
-    "model_id": "qwen/qwen3-embedding-8b",
+    "model_id": "alibaba/qwen3-embedding-8b",
     "benchmark_id": "mteb_multilingual_bitext_mining",
     "value": 80.89,
     "unit": "score",
@@ -30270,7 +30270,7 @@
     "notes": ""
   },
   "mteb_multilingual_pair_classification": {
-    "model_id": "qwen/qwen3-embedding-8b",
+    "model_id": "alibaba/qwen3-embedding-8b",
     "benchmark_id": "mteb_multilingual_pair_classification",
     "value": 86.4,
     "unit": "score",
@@ -30285,7 +30285,7 @@
     "notes": ""
   },
   "mteb_english_retrieval_mteb_r": {
-    "model_id": "qwen/qwen3-embedding-0.6b",
+    "model_id": "alibaba/qwen3-embedding-0.6b",
     "benchmark_id": "mteb_english_retrieval_mteb_r",
     "value": 61.82,
     "unit": "score",
@@ -31320,7 +31320,7 @@
     "notes": ""
   },
   "tau2_bench_retail_pass1": {
-    "model_id": "qwen/qwen3.5-397b-a17b",
+    "model_id": "alibaba/qwen3.5-397b-a17b",
     "benchmark_id": "tau2_bench_retail_pass1",
     "value": 84.43,
     "unit": "%",
@@ -31335,7 +31335,7 @@
     "notes": ""
   },
   "tau2_bench_retail_pass4": {
-    "model_id": "qwen/qwen3.5-397b-a17b",
+    "model_id": "alibaba/qwen3.5-397b-a17b",
     "benchmark_id": "tau2_bench_retail_pass4",
     "value": 59.65,
     "unit": "%",
@@ -31365,7 +31365,7 @@
     "notes": "Tied SOTA tau2 telecom; tied with LongCat-Flash-Thinking-2601 99.3%"
   },
   "tau2_bench_telecom_pass4": {
-    "model_id": "qwen/qwen3.5-397b-a17b",
+    "model_id": "alibaba/qwen3.5-397b-a17b",
     "benchmark_id": "tau2_bench_telecom_pass4",
     "value": 92.11,
     "unit": "%",
@@ -40155,7 +40155,7 @@
     "notes": ""
   },
   "aa_provider_ttft_sec": {
-    "model_id": "qwen2.5-72b-instruct",
+    "model_id": "alibaba/qwen2.5-72b-instruct",
     "benchmark_id": "aa_provider_ttft_sec",
     "value": 3.52,
     "unit": "tok/s",
@@ -40995,7 +40995,7 @@
     "notes": "Mano-P 1.0-72B (official GitHub benchmark table)"
   },
   "aaii_v41": {
-    "model_id": "openbmb/minicpm5-1b",
+    "model_id": "openbmb/minicpm-5-1b",
     "benchmark_id": "aaii_v41",
     "value": 17.9,
     "unit": "%",
@@ -43050,7 +43050,7 @@
     "notes": ""
   },
   "omnidocbench_v1_6_2604": {
-    "model_id": "opendatalab/mineru2.5-pro",
+    "model_id": "opendatalab/mineru-2.5-pro",
     "benchmark_id": "omnidocbench_v1_6_2604",
     "value": 95.69,
     "unit": "%",
@@ -54855,7 +54855,7 @@
     "notes": ""
   },
   "mast_radiology": {
-    "model_id": "qwen/qwen3.5-397b-a17b",
+    "model_id": "alibaba/qwen3.5-397b-a17b",
     "benchmark_id": "mast_radiology",
     "value": 62.9,
     "unit": "%",

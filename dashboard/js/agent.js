@@ -388,7 +388,7 @@ var Agent = (function() {
         'google/gemma-4-e4b-qat',             // 2026-06-05 — QAT edge
         'google/gemini-nano-v3',              // 2026-05-12 — Nano v3
         'microsoft/phi-4-reasoning-vision-15b', // 2026-03-04 — 15B reasoning VLM
-        'openbmb/minicpm5-1b',                // 2026-05-19 — 1B AAII v4.1 = 17.9 SOTA
+        'openbmb/minicpm-5-1b',                // 2026-05-19 — 1B AAII v4.1 = 17.9 SOTA
         'openbmb/minicpm-v-4.6',              // 2026-05-11 — iOS/Android/HarmonyOS VLM
         'alibaba/qwen-3.5-0.8b', 'alibaba/qwen-3.5-2b', 'alibaba/qwen-3.5-4b', 'alibaba/qwen-3.5-9b',
         'mistral/ministral-3-3b', 'mistral/ministral-3-8b', 'mistral/ministral-3-14b',
