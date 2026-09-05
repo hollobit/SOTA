@@ -5013,5 +5013,11 @@
   "title": "S265b — K2 Horizon 전량 재검증(60/60 일치) + 누락 1건 보완",
   "detail": "사용자 요청으로 K2 Horizon 6개 모델의 전체 점수를 IFM 블로그 원본 HTML에서 재파싱해 자동 대조. 결과 60/60 값 완전 일치, 불일치 0. 벤치 ID 매핑 26종도 DB 등록명과 대조해 전부 타당함을 확인(Toolathlon Verified->toolathlon 'Toolathlon (Tool-Decathlon)', Automation Bench Public->automationbench 'AutomationBench'(AA판 automationbench_aa와 구분), SWE Bench Pro->swe_bench_pro 'SWE-bench Pro (Scale)' 등). 누락 1건 발견·보완: K2-Horizon-375B-A23B의 AA-Omniscience Non-Hallucination 74.7 — Table 1의 마지막 행인데 S265 최초 파싱 때 출력이 잘려 못 보고 지나감. 참고로 이 값(74.7)은 비교 대상 중 GPT 5.6 Luna 7.0·Terra 10.0보다 월등히 높아, K2가 정확도(23.0)는 낮지만 모르는 것을 모른다고 답하는 성향은 강함을 보여줌. 재검증 스크립트 자체의 버그도 1건 잡음: Table 1만 헤더가 2줄(그룹헤더 'Open-weight models|Closed models' + 모델명 행)이라 그룹헤더를 모델 컬럼으로 오인해 375B 17건이 전부 '미검증'으로 잡혔음. K2 모델명으로 앵커링하도록 고쳐 해결.",
   "type": "Fix"
+ },
+ {
+  "date": "2026-09-05",
+  "title": "S265c — S265 잔여 벤치 전량 재검증 + NYT Connections 보드 완전 반영(17→71행)",
+  "detail": "K2 Horizon 외 나머지 S265 값 53건을 1차 소스에서 다시 받아 재검증. SRE-Bench 논문 15/15(로컬 PDF Table 4 직접 대조), Terminal-Bench 4.0 5/5, Terminal-Bench-Science 10/10, ARC-AGI-3 BenchLM 5/5, CRI 1/1 전부 일치 — 값 오류 0. 다만 NYT Connections에서 두 가지 문제를 발견해 보완: (1) 미반영 — S265는 WebFetch 요약이 준 상위 20개만 넣었는데, raw README를 직접 파싱하니 940문항 전체 보드가 114행이었음. DB에 이미 있는 모델과 매칭되는 54건을 net-new로 추가(17→71행). effort 접미사 id가 있으면 그 id에, 없으면 best-per-base로 base id에 최고 effort 값 기록(기존 세션 관례 준수). (2) 파싱 오염 — README에는 940 전체 보드 외에 100문항·194/940·651/940·759/940 등 부분 커버리지 보드가 여러 개 있고 행 모양이 거의 같음(5번째 coverage 컬럼만 다름). 최초 정규식이 이들을 섞어 파싱해 49건의 잘못된 행을 만들 뻔했음(예: GLM-5.2 89.5는 194문항 보드 값, 940 보드에서는 74.3). 정확히 4필드이고 #Puzzles==940인 행만 허용하도록 고쳐 해결. 최종 확인: DB 71행 전부가 940 보드 값과 일치(보드에 없는 값 0건). 교훈 기록 — 리더보드 README/페이지에 여러 표가 공존할 때 무차별 정규식 파싱은 부분집합 결과를 전체 결과로 둔갑시킨다.",
+  "type": "Fix"
  }
 ]
