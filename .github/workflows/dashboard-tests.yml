@@ -102,6 +102,10 @@ jobs:
         run: pip install jsonschema pyyaml
       - name: Validate
         run: python3 scripts/validate_enrichment.py
+      - name: Validate canonical map
+        # The loader rewrites dupe ids with a single lookup, so a chained entry
+        # silently revives a retired id on every ingest (see S268/S268b).
+        run: python3 scripts/validate_canonical_map.py
 
   arena-elo-refresh:
     name: Arena Elo refresh (placeholder)

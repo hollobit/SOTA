@@ -59,6 +59,11 @@ jobs:
           name: benchmark-db
           path: data/
 
+      - name: Validate canonical map
+        # Gate the load: a chained dupe->dupe entry makes the loader recreate a
+        # retired model id, because it only follows one hop (S268/S268b).
+        run: python scripts/validate_canonical_map.py
+
       - name: Load curated seed scores
         # Merges all resource/*_scores_*.json into the DB so that manually
         # curated System-Card / PDF / blog-sourced scores land in the live

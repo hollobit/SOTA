@@ -1,4 +1,4 @@
-.PHONY: help test test-py test-js test-e2e export load lint badge coverage changelog clean
+.PHONY: help test test-py test-js test-e2e export load lint badge coverage changelog clean validate-map
 
 help:
 	@echo "Common targets:"
@@ -7,6 +7,7 @@ help:
 	@echo "  test-js      node assert tests"
 	@echo "  test-e2e     Playwright E2E"
 	@echo "  load         Reload DB from seed files"
+	@echo "  validate-map Check model_canonical_map.json for chains (loader only rewrites one hop)"
 	@echo "  export       Export JSON sidecars to data/export/"
 	@echo "  badge        Refresh README enrichment badge"
 	@echo "  lint         Run ruff over python files"
@@ -25,7 +26,12 @@ test-js:
 test-e2e:
 	cd dashboard && python3 -m pytest tests/test_modal_e2e.py -v
 
-load:
+validate-map:
+	python3 scripts/validate_canonical_map.py
+
+# Validate the rewrite table before loading: the loader follows only ONE hop, so a chained
+# entry silently revives a retired id on every ingest (see S268/S268b).
+load: validate-map
 	python3 scripts/load_benchmark_scores.py
 
 export:
