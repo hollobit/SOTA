@@ -102,7 +102,7 @@ var Agent = (function() {
                 // 2026-05-31 S40 SkillOpt SearchQA (extractive search-augmented QA)
                 'search_qa',
                 // 2026-06-14 S112 — Function calling / tool-use frontier
-                'bfcl_v4_overall', 'bfcl_v4_non_live_ast', 'bfcl_v4_live', 'bfcl_v4_multi_turn',
+                'bfcl_v4', 'bfcl_v4_non_live_ast', 'bfcl_v4_live', 'bfcl_v4_multi_turn',  // S266: bfcl_v4_overall merged into bfcl_v4
                 'bfcl_v4_memory', 'bfcl_v4_irrelevance_detection',
                 'tau2_bench_airline_pass1', 'tau2_bench_retail_pass1', 'tau2_bench_telecom_pass1',
                 'tau2_bench_airline_pass4', 'tau2_bench_retail_pass4', 'tau2_bench_telecom_pass4',
