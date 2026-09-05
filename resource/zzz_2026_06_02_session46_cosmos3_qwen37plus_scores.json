@@ -1,1328 +1,1322 @@
 {
-  "_meta": {
-    "session": "Session 46",
-    "date": "2026-06-02",
-    "sources": [
-      "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (NVIDIA Cosmos 3 Tech Report, 2026-06-01)",
-      "https://qwen.ai/blog?id=qwen3.7-plus (Qwen3.7-Plus Multimodal Agent, Alibaba, 2026-06-01)"
-    ],
-    "pdf_archive": "resource/cosmos3_technical_report.pdf (27MB)",
-    "notes": "Strict-attribution per memory rules. Cosmos 3 paper: Tables 1, 10, 11, 12, 13, 14, 15, 19, 20. Qwen3.7-Plus: TEXT (37 benches × 6 models) + MULTIMODAL (32 benches × 5 models). Comparison columns for Qwen tables ingested only for primary new model + selectively for cross-comparison columns existing in our DB."
+ "_meta": {
+  "session": "Session 46",
+  "date": "2026-06-02",
+  "sources": [
+   "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (NVIDIA Cosmos 3 Tech Report, 2026-06-01)",
+   "https://qwen.ai/blog?id=qwen3.7-plus (Qwen3.7-Plus Multimodal Agent, Alibaba, 2026-06-01)"
+  ],
+  "pdf_archive": "resource/cosmos3_technical_report.pdf (27MB)",
+  "notes": "Strict-attribution per memory rules. Cosmos 3 paper: Tables 1, 10, 11, 12, 13, 14, 15, 19, 20. Qwen3.7-Plus: TEXT (37 benches × 6 models) + MULTIMODAL (32 benches × 5 models). Comparison columns for Qwen tables ingested only for primary new model + selectively for cross-comparison columns existing in our DB."
+ },
+ "models": [
+  {
+   "id": "nvidia/cosmos3-edge",
+   "name": "Cosmos 3 Edge",
+   "vendor": "NVIDIA",
+   "type": "open-weight",
+   "release_date": "2026-06-01",
+   "parameters": "2B",
+   "context_window": null,
+   "architecture": "Dense MoT transformer, trained from scratch (28 layers, 2048 hidden, 16 heads, 8 KV heads, 9216 FFN)",
+   "modalities": [
+    "omnimodal"
+   ]
   },
-  "models": [
-    {
-      "id": "nvidia/cosmos3-edge",
-      "name": "Cosmos 3 Edge",
-      "vendor": "NVIDIA",
-      "type": "open-weight",
-      "release_date": "2026-06-01",
-      "parameters": "2B",
-      "context_window": null,
-      "architecture": "Dense MoT transformer, trained from scratch (28 layers, 2048 hidden, 16 heads, 8 KV heads, 9216 FFN)",
-      "modalities": [
-        "omnimodal"
-      ]
-    },
-    {
-      "id": "nvidia/cosmos3-super-text2image",
-      "name": "Cosmos 3 Super Text-to-Image",
-      "vendor": "NVIDIA",
-      "type": "open-weight",
-      "release_date": "2026-06-01",
-      "parameters": "Super-scale MoT (Qwen3-VL 32B init)",
-      "context_window": null,
-      "architecture": "Cosmos 3 Super post-trained for Text-to-Image (UniGenBench 91.36 → AA T2I Leaderboard #1 open-weight, #4 overall)",
-      "modalities": [
-        "image-generation"
-      ]
-    },
-    {
-      "id": "nvidia/cosmos3-super-image2video",
-      "name": "Cosmos 3 Super Image-to-Video",
-      "vendor": "NVIDIA",
-      "type": "open-weight",
-      "release_date": "2026-06-01",
-      "parameters": "Super-scale MoT (Qwen3-VL 32B init)",
-      "context_window": null,
-      "architecture": "Cosmos 3 Super post-trained for Image-to-Video (PAIBench-G I2V 82.8, RBench 58.1)",
-      "modalities": [
-        "video-generation"
-      ]
-    },
-    {
-      "id": "nvidia/cosmos3-nano-policy-droid",
-      "name": "Cosmos 3 Nano Policy-DROID",
-      "vendor": "NVIDIA",
-      "type": "open-weight",
-      "release_date": "2026-06-01",
-      "parameters": "Nano-scale MoT (Qwen3-VL 8B init)",
-      "context_window": null,
-      "architecture": "Cosmos 3 Nano post-trained as world-action robot policy on DROID dataset (Franka Panda + Robotiq 2F-85). RoboArena #1, RoboLab #1.",
-      "modalities": [
-        "robot-policy"
-      ]
-    },
-    {
-      "id": "alibaba/qwen3.7-plus",
-      "name": "Qwen3.7-Plus",
-      "vendor": "Alibaba",
-      "type": "proprietary",
-      "release_date": "2026-06-01",
-      "parameters": "Not disclosed",
-      "context_window": 1000000,
-      "architecture": "Multimodal agent foundation. Vision+language unified. Reasoning + tool-use + GUI/CLI agent. Available via Alibaba Cloud Model Studio. Supports preserve_thinking for agentic tasks.",
-      "modalities": [
-        "multimodal"
-      ]
-    },
-    {
-      "id": "google/gemini-3-pro-image",
-      "name": "Gemini 3 Pro Image",
-      "vendor": "Google",
-      "type": "proprietary",
-      "release_date": "2025-12-01",
-      "modalities": [
-        "image-generation"
-      ]
-    },
-    {
-      "id": "bytedance/seedance-1.5-pro",
-      "name": "Seedance 1.5 Pro",
-      "vendor": "ByteDance",
-      "type": "proprietary",
-      "release_date": "2026-03-01",
-      "modalities": [
-        "video-generation"
-      ]
-    },
-    {
-      "id": "tencent/hunyuan-3.0",
-      "name": "Hunyuan 3.0",
-      "vendor": "Tencent",
-      "type": "open-weight",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "image-generation"
-      ]
-    },
-    {
-      "id": "z-image-turbo/z-image-turbo",
-      "name": "Z-Image-Turbo",
-      "vendor": "Z-Image",
-      "type": "open-weight",
-      "release_date": "2026-04-01",
-      "modalities": [
-        "image-generation"
-      ]
-    }
-  ],
-  "benchmarks": [
-    {
-      "id": "unigenbench_all_1170",
-      "name": "UniGenBench (All 1170)",
-      "category": "image-generation",
-      "description": "Text-to-image evaluation. 1170 prompts (600 Orig + 570 Physical AI). Fraction of criteria satisfied (higher better).",
-      "introduced_by": "Cosmos 3 tech report (2026-06-01)",
-      "primary_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf"
-    },
-    {
-      "id": "cvtg_500l_pned",
-      "name": "CVTG-500L PNED",
-      "category": "image-generation",
-      "description": "Long-prompt English character-level text rendering (higher better, character-level accuracy).",
-      "introduced_by": "Cosmos 3 tech report"
-    },
-    {
-      "id": "cvtg_102ch_pned",
-      "name": "CVTG-102ch PNED",
-      "category": "image-generation",
-      "description": "Chinese-character text rendering accuracy (102 prompts).",
-      "introduced_by": "Cosmos 3 tech report"
-    },
-    {
-      "id": "hpsv3",
-      "name": "HPSv3",
-      "category": "image-generation",
-      "description": "Learned human-preference reward (VLM-based, uncertainty-aware ranking, prompt-aware).",
-      "introduced_by": "Ma et al., 2025"
-    },
-    {
-      "id": "aesthetic_v2",
-      "name": "Aesthetic v2 (LAION)",
-      "category": "image-generation",
-      "description": "Prompt-independent visual appeal (1-10 scale on CLIP embeddings).",
-      "introduced_by": "Schuhmann & LAION 2022"
-    },
-    {
-      "id": "paibench_g_t2v_overall",
-      "name": "PAIBench-G T2V Overall",
-      "category": "video-generation",
-      "description": "Physical AI video generation Text-to-Video overall (0.5×Quality + 0.5×Domain).",
-      "introduced_by": "Zhou et al., 2025c"
-    },
-    {
-      "id": "paibench_g_i2v_overall",
-      "name": "PAIBench-G I2V Overall",
-      "category": "video-generation",
-      "description": "Physical AI video generation Image-to-Video overall.",
-      "introduced_by": "Zhou et al., 2025c"
-    },
-    {
-      "id": "rbench_i2v",
-      "name": "RBench Image2Video Score",
-      "category": "video-generation",
-      "description": "Embodied task scenarios — task correctness and physical plausibility (650 cases, 2 splits).",
-      "introduced_by": "Deng et al., 2026"
-    },
-    {
-      "id": "physics_iq_i2v",
-      "name": "Physics-IQ I2V",
-      "category": "video-generation",
-      "description": "Physics-grounded video evaluation, image-to-video mode (396 scenes, 5 physics categories). 0-100 score.",
-      "introduced_by": "Motamed et al., 2026"
-    },
-    {
-      "id": "physics_iq_v2v",
-      "name": "Physics-IQ V2V",
-      "category": "video-generation",
-      "description": "Physics-IQ video-to-video continuation mode (3s in, 5s out).",
-      "introduced_by": "Motamed et al., 2026"
-    },
-    {
-      "id": "cosmos_hue_t2v",
-      "name": "Cosmos HUE T2V",
-      "category": "video-generation",
-      "description": "NVIDIA Cosmos Human EUval — 100 prompts, atomic binary fact-verification across 4 dimensions (Semantic Align / Physical Laws / Geometric Reasoning / Visual Integrity).",
-      "introduced_by": "Cosmos 3 tech report (NEW dataset, HF: Cosmos-HumanEval-v1)"
-    },
-    {
-      "id": "cosmos_hue_i2v",
-      "name": "Cosmos HUE I2V",
-      "category": "video-generation",
-      "description": "Cosmos HUE Image-to-Video track.",
-      "introduced_by": "Cosmos 3 tech report"
-    },
-    {
-      "id": "human_world_bench_i2v",
-      "name": "Human World Bench (HWB)",
-      "category": "video-generation",
-      "description": "Egocentric image-to-video for human manipulation tasks. Pass rates for instruction-following + physical plausibility (180 samples from EgoVerse).",
-      "introduced_by": "Cosmos 3 tech report (Punamiya et al., 2026)"
-    },
-    {
-      "id": "soundbench_avq",
-      "name": "Cosmos-SoundBench AVQ",
-      "category": "audio-visual",
-      "description": "Overall Audiovisual Quality (0-10, higher better).",
-      "introduced_by": "Cosmos 3 tech report"
-    },
-    {
-      "id": "soundbench_sav",
-      "name": "Cosmos-SoundBench SAV",
-      "category": "audio-visual",
-      "description": "Semantic Audiovisual Quality sub-score.",
-      "introduced_by": "Cosmos 3 tech report"
-    },
-    {
-      "id": "robolab_droid_specific",
-      "name": "RoboLab-120 (Specific Inst.)",
-      "category": "physical-ai",
-      "description": "120 DROID Franka Panda manipulation tasks, specific instruction granularity, overall success rate (10 rollouts/task).",
-      "introduced_by": "Yang et al., 2026a"
-    },
-    {
-      "id": "libero_10_adaptation_2k",
-      "name": "LIBERO-10 Adaptation (2k iter)",
-      "category": "physical-ai",
-      "description": "Closed-loop success rate after 2000 post-training iters (500 rollouts/checkpoint).",
-      "introduced_by": "Liu et al., 2023a"
-    },
-    {
-      "id": "terminal_bench_2_0",
-      "name": "Terminal-Bench 2.0-Terminus",
-      "category": "coding-agent",
-      "description": "Harbor/Terminus-2 harness; 5h timeout, 12 CPU/24 GB RAM; avg of 5 runs.",
-      "introduced_by": "Refined Terminal-Bench 2.0 protocol"
-    },
-    {
-      "id": "swe_multilingual",
-      "name": "SWE-Multilingual",
-      "category": "coding-agent",
-      "description": "Multilingual SWE-Bench."
-    },
-    {
-      "id": "nl2repo_qwen",
-      "name": "NL2repo",
-      "category": "coding-agent",
-      "description": "Natural language to repository-level code generation."
-    },
-    {
-      "id": "qwen_webdev_elo",
-      "name": "QwenWebDev (Elo)",
-      "category": "coding-agent",
-      "description": "Qwen web development Elo rating."
-    },
-    {
-      "id": "qwen_svg_elo",
-      "name": "QwenSVG (Elo)",
-      "category": "coding-agent",
-      "description": "Qwen SVG generation Elo rating."
-    },
-    {
-      "id": "qwen_world_bench",
-      "name": "QwenWorldBench",
-      "category": "agent",
-      "description": "Qwen-internal world benchmark for general agent."
-    },
-    {
-      "id": "cowork_bench",
-      "name": "CoWorkBench",
-      "category": "agent",
-      "description": "Internal long-horizon tasks across CS/finance/law/medical/productivity."
-    },
-    {
-      "id": "mcp_mark",
-      "name": "MCP-Mark",
-      "category": "agent",
-      "description": "GitHub MCP v0.30.3 evaluation; Playwright responses truncated at 32K tokens.",
-      "introduced_by": "MCP eval"
-    },
-    {
-      "id": "deep_planning",
-      "name": "Deep-Planning",
-      "category": "agent",
-      "description": "Multi-step planning benchmark."
-    },
-    {
-      "id": "spreadsheetbench_v1",
-      "name": "SpreadSheetBench-v1",
-      "category": "agent",
-      "description": "Spreadsheet manipulation tasks."
-    },
-    {
-      "id": "hmmt_2026_feb",
-      "name": "HMMT 2026 Feb",
-      "category": "reasoning",
-      "description": "Harvard-MIT Math Tournament February 2026."
-    },
-    {
-      "id": "mrcr_v2_128k_full",
-      "name": "MRCR-v2 128k",
-      "category": "long-context",
-      "description": "Multi-Reference Coreference v2 at 128k context."
-    },
-    {
-      "id": "babyvision_with_ci",
-      "name": "BabyVision (with CI)",
-      "category": "multimodal-reasoning",
-      "description": "Early-human visual cognition tasks, with-CI scoring."
-    },
-    {
-      "id": "charxiv_rq",
-      "name": "CharXiv (RQ, with CI)",
-      "category": "multimodal-reasoning",
-      "description": "Chart understanding from arXiv; Reasoning Question subset, with-CI scoring."
-    },
-    {
-      "id": "hipho",
-      "name": "HiPhO",
-      "category": "multimodal-reasoning",
-      "description": "Multimodal physics olympiad reasoning."
-    },
-    {
-      "id": "visfactor",
-      "name": "VisFactor",
-      "category": "multimodal-reasoning",
-      "description": "Visual reasoning factors benchmark."
-    },
-    {
-      "id": "medxpertqa_mm",
-      "name": "MedXpertQA-MM",
-      "category": "medical",
-      "description": "Multimodal medical expert QA."
-    },
-    {
-      "id": "screenspot_pro",
-      "name": "ScreenSpot Pro",
-      "category": "visual-agent",
-      "description": "Professional screen-element grounding."
-    },
-    {
-      "id": "qwen_vision2code",
-      "name": "QwenVision2Code (Elo)",
-      "category": "visual-agent",
-      "description": "Vision-to-code generation, Elo score."
-    },
-    {
-      "id": "clawval_mm",
-      "name": "ClawEval-MM",
-      "category": "agent",
-      "description": "Multimodal ClawEval."
-    },
-    {
-      "id": "simplevqa_search",
-      "name": "SimpleVQA (search-aug)",
-      "category": "multimodal-search",
-      "description": "Simple VQA with search augmentation."
-    },
-    {
-      "id": "worldvqa_search",
-      "name": "WorldVQA (search-aug)",
-      "category": "multimodal-search",
-      "description": "World knowledge VQA with search."
-    },
-    {
-      "id": "mmsearchplus",
-      "name": "MMSearchPlus",
-      "category": "multimodal-search",
-      "description": "Multimodal search-augmented QA."
-    },
-    {
-      "id": "bc_vl",
-      "name": "BC-VL",
-      "category": "multimodal-search",
-      "description": "BC vision-language search; presence_penalty 1.5 recommended."
-    },
-    {
-      "id": "mmbc",
-      "name": "MMBC",
-      "category": "multimodal-search",
-      "description": "Multimodal BC search."
-    },
-    {
-      "id": "countqa",
-      "name": "CountQA",
-      "category": "vision-understanding",
-      "description": "Counting in visual scenes."
-    },
-    {
-      "id": "omnidocbench_1_5",
-      "name": "OmniDocBench 1.5",
-      "category": "doc-understanding",
-      "description": "OmniDoc v1.5 document understanding."
-    },
-    {
-      "id": "odinw13",
-      "name": "ODinW13",
-      "category": "vision-detection",
-      "description": "Object detection in the wild — 13 datasets."
-    },
-    {
-      "id": "lingoqa_driving",
-      "name": "LingoQA (driving)",
-      "category": "driving",
-      "description": "Language QA on driving scenes."
-    },
-    {
-      "id": "ego3d_bench",
-      "name": "Ego3D-Bench (lower better)",
-      "category": "driving",
-      "description": "Egocentric 3D understanding (lower error = better).",
-      "unit": "error_lower_better"
-    },
-    {
-      "id": "surds",
-      "name": "SURDS",
-      "category": "driving",
-      "description": "Spatial Understanding for Driving Scenes."
-    },
-    {
-      "id": "vladbench",
-      "name": "VLADBench",
-      "category": "driving",
-      "description": "Vision-Language Autonomous Driving Benchmark."
-    },
-    {
-      "id": "videommmu_test",
-      "name": "VideoMMMU",
-      "category": "video-understanding",
-      "description": "Multi-modal multi-discipline understanding for video."
-    },
-    {
-      "id": "tvbench",
-      "name": "TVBench",
-      "category": "video-understanding",
-      "description": "TV video understanding."
-    },
-    {
-      "id": "lvbench",
-      "name": "LVBench",
-      "category": "video-understanding",
-      "description": "Long-video understanding benchmark."
-    }
-  ],
-  "scores": [
-    {
-      "model": "nvidia/cosmos3-super",
-      "benchmark": "physical_ai_bench",
-      "score": 73.7,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 10 — General Avg (19 benches) | General Avg across 19 multimodal-understanding benches"
-    },
-    {
-      "model": "nvidia/cosmos3-nano",
-      "benchmark": "physical_ai_bench",
-      "score": 69.6,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 10 — General Avg"
-    },
-    {
-      "model": "nvidia/cosmos3-edge",
-      "benchmark": "physical_ai_bench",
-      "score": 60.3,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 10 — General Avg"
-    },
-    {
-      "model": "nvidia/cosmos3-super-text2image",
-      "benchmark": "unigenbench_all_1170",
-      "score": 91.36,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 11 | Best on UniGenBench among evaluated; AA T2I Leaderboard #1 open-weight, #4 overall (2026-05-28)"
-    },
-    {
-      "model": "google/gemini-3-pro-image",
-      "benchmark": "unigenbench_all_1170",
-      "score": 90.69,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 11"
-    },
-    {
-      "model": "nvidia/cosmos3-super-text2image",
-      "benchmark": "cvtg_500l_pned",
-      "score": 89.08,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 11 | Beaten by Qwen-Image-2512 90.86"
-    },
-    {
-      "model": "alibaba/qwen-image-2512",
-      "benchmark": "cvtg_500l_pned",
-      "score": 90.86,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 11"
-    },
-    {
-      "model": "google/gemini-3-pro-image",
-      "benchmark": "cvtg_102ch_pned",
-      "score": 76.4,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 11"
-    },
-    {
-      "model": "z-image-turbo/z-image-turbo",
-      "benchmark": "cvtg_102ch_pned",
-      "score": 73.32,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 11"
-    },
-    {
-      "model": "nvidia/cosmos3-super-text2image",
-      "benchmark": "hpsv3",
-      "score": 11.6,
-      "unit": "score",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 11"
-    },
-    {
-      "model": "google/gemini-3-pro-image",
-      "benchmark": "hpsv3",
-      "score": 11.78,
-      "unit": "score",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 11"
-    },
-    {
-      "model": "tencent/hunyuan-3.0",
-      "benchmark": "hpsv3",
-      "score": 11.93,
-      "unit": "score",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 11"
-    },
-    {
-      "model": "alibaba/qwen-image-2512",
-      "benchmark": "aesthetic_v2",
-      "score": 5.92,
-      "unit": "score_1_10",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 11"
-    },
-    {
-      "model": "nvidia/cosmos3-super-text2image",
-      "benchmark": "aesthetic_v2",
-      "score": 5.91,
-      "unit": "score_1_10",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 11"
-    },
-    {
-      "model": "nvidia/cosmos3-super",
-      "benchmark": "paibench_g_t2v_overall",
-      "score": 80.0,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 12 | SOTA — best across all models including Veo-3.1 (79.1)"
-    },
-    {
-      "model": "nvidia/cosmos3-nano",
-      "benchmark": "paibench_g_t2v_overall",
-      "score": 79.4,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 12"
-    },
-    {
-      "model": "google/veo-3.1",
-      "benchmark": "paibench_g_t2v_overall",
-      "score": 79.1,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 12"
-    },
-    {
-      "model": "alibaba/wan2.6-t2v",
-      "benchmark": "paibench_g_t2v_overall",
-      "score": 78.6,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 12"
-    },
-    {
-      "model": "nvidia/cosmos3-super-image2video",
-      "benchmark": "paibench_g_i2v_overall",
-      "score": 82.8,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 12 | SOTA — best across all models open+closed"
-    },
-    {
-      "model": "nvidia/cosmos3-nano",
-      "benchmark": "paibench_g_i2v_overall",
-      "score": 82.7,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 12"
-    },
-    {
-      "model": "google/veo-3.1",
-      "benchmark": "paibench_g_i2v_overall",
-      "score": 82.6,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 12"
-    },
-    {
-      "model": "alibaba/wan2.6-t2v",
-      "benchmark": "rbench_i2v",
-      "score": 60.7,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 12 | RBench SOTA, narrowly above Cosmos3-Nano 58.4"
-    },
-    {
-      "model": "nvidia/cosmos3-nano",
-      "benchmark": "rbench_i2v",
-      "score": 58.4,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 12 | Best open-source on RBench (paper claim)"
-    },
-    {
-      "model": "nvidia/cosmos3-super-image2video",
-      "benchmark": "rbench_i2v",
-      "score": 58.1,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 12"
-    },
-    {
-      "model": "google/veo-3.1",
-      "benchmark": "rbench_i2v",
-      "score": 56.3,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 12"
-    },
-    {
-      "model": "nvidia/cosmos3-super",
-      "benchmark": "physics_iq_i2v",
-      "score": 48.9,
-      "unit": "score_0_100",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 13 | I2V with WMReward (BoN) — Cosmos3-Super SOTA. Direct 43.8 also SOTA among direct."
-    },
-    {
-      "model": "openai/sora-2",
-      "benchmark": "physics_iq_i2v",
-      "score": 46.4,
-      "unit": "score_0_100",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 13"
-    },
-    {
-      "model": "nvidia/cosmos3-super",
-      "benchmark": "physics_iq_v2v",
-      "score": 63.4,
-      "unit": "score_0_100",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 13 | V2V with WMReward (BoN) — Cosmos3-Super SOTA"
-    },
-    {
-      "model": "google/veo-3.1",
-      "benchmark": "cosmos_hue_t2v",
-      "score": 91.3,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 14 | Closed-source Veo-3.1 leads. Cosmos3-Super 89.3 = #1 open-source"
-    },
-    {
-      "model": "nvidia/cosmos3-super",
-      "benchmark": "cosmos_hue_t2v",
-      "score": 89.3,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 14"
-    },
-    {
-      "model": "nvidia/cosmos3-nano",
-      "benchmark": "cosmos_hue_t2v",
-      "score": 87.6,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 14"
-    },
-    {
-      "model": "google/veo-3.1",
-      "benchmark": "cosmos_hue_i2v",
-      "score": 89.7,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 14"
-    },
-    {
-      "model": "nvidia/cosmos3-super-image2video",
-      "benchmark": "cosmos_hue_i2v",
-      "score": 89.6,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 14"
-    },
-    {
-      "model": "nvidia/cosmos3-super-image2video",
-      "benchmark": "human_world_bench_i2v",
-      "score": 71.9,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 14 | HWB SOTA — beats Veo-3.1 67.8 and all closed/open"
-    },
-    {
-      "model": "google/veo-3.1",
-      "benchmark": "human_world_bench_i2v",
-      "score": 67.8,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 14"
-    },
-    {
-      "model": "nvidia/cosmos3-nano",
-      "benchmark": "human_world_bench_i2v",
-      "score": 66.9,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 14"
-    },
-    {
-      "model": "nvidia/cosmos3-nano",
-      "benchmark": "soundbench_avq",
-      "score": 7.34,
-      "unit": "score_0_10",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 15"
-    },
-    {
-      "model": "nvidia/cosmos3-super",
-      "benchmark": "soundbench_avq",
-      "score": 7.31,
-      "unit": "score_0_10",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 15"
-    },
-    {
-      "model": "bytedance/seedance-1.5-pro",
-      "benchmark": "soundbench_avq",
-      "score": 7.64,
-      "unit": "score_0_10",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 15 | AVQ SOTA via PQ strength"
-    },
-    {
-      "model": "nvidia/cosmos3-nano",
-      "benchmark": "soundbench_sav",
-      "score": 8.35,
-      "unit": "score_0_10",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 15 | Cosmos3-Nano SAV SOTA — strongest semantic audio-visual grounding"
-    },
-    {
-      "model": "nvidia/cosmos3-super",
-      "benchmark": "soundbench_sav",
-      "score": 8.34,
-      "unit": "score_0_10",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 15"
-    },
-    {
-      "model": "nvidia/cosmos3-nano-policy-droid",
-      "benchmark": "robolab_droid_specific",
-      "score": 39.7,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 19 — Overall Specific | SOTA — vs π0.5 28.1 (+11.6pp), DreamZero 23.9. Also #1 on RoboArena leaderboard 2026-05-30."
-    },
-    {
-      "model": "physical-intelligence/pi-0.5",
-      "benchmark": "robolab_droid_specific",
-      "score": 28.1,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 19"
-    },
-    {
-      "model": "nvidia/gr00t-n1.6",
-      "benchmark": "robolab_droid_specific",
-      "score": 5.3,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 19"
-    },
-    {
-      "model": "nvidia/cosmos3-nano",
-      "benchmark": "libero_10_adaptation_2k",
-      "score": 97.4,
-      "unit": "%",
-      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
-      "_note": "Cosmos 3 Tech Report Table 20 — MT-init @ 2000 iter | Cosmos3-Nano MT-init reaches 97.4% closed-loop success vs PT-init 95.2%. Demonstrates MT-init faster adaptation."
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "terminal_bench_2_0",
-      "score": 70.3,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen3.7-Plus blog, Text Benchmarks — Terminal-Bench 2.0-Terminus | SOTA in table — beats Opus-4.6 Max 65.4, K2.6 Thinking 66.7, DeepSeek-V4-Pro Max 67.9"
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro-max",
-      "benchmark": "terminal_bench_2_0",
-      "score": 67.9,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — Terminal-Bench 2.0"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "terminal_bench_2_0",
-      "score": 65.4,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — Terminal-Bench 2.0"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "swe_multilingual",
-      "score": 75.8,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — SWE-Multilingual"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "swe_multilingual",
-      "score": 77.5,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — SWE-Multilingual"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "nl2repo_qwen",
-      "score": 41.1,
-      "unit": "score",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — NL2repo"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "nl2repo_qwen",
-      "score": 47.6,
-      "unit": "score",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — NL2repo"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "qwen_webdev_elo",
-      "score": 1536,
-      "unit": "elo",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — QwenWebDev"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "qwen_webdev_elo",
-      "score": 1617,
-      "unit": "elo",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — QwenWebDev"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "qwen_svg_elo",
-      "score": 1588,
-      "unit": "elo",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — QwenSVG"
-    },
-    {
-      "model": "zhipu/glm-5.1",
-      "benchmark": "qwen_svg_elo",
-      "score": 1605,
-      "unit": "elo",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — QwenSVG"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "qwenclaw",
-      "score": 61.8,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — Qwenclaw"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "qwenclaw",
-      "score": 65.5,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — Qwenclaw"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "cowork_bench",
-      "score": 65.1,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — CoWorkBench"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "cowork_bench",
-      "score": 68.2,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — CoWorkBench"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "skillsbench",
-      "score": 54.9,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — Skillsbench | Highest in table among models with disclosed values (Opus-4.6 Max --)"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "bfcl_v4",
-      "score": 72.9,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — BFCL-V4"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "bfcl_v4",
-      "score": 76.7,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — BFCL-V4"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "mcp_mark",
-      "score": 58.7,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — MCP-Mark"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "mcp_atlas",
-      "score": 73.2,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — MCP-Atlas"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "mcp_atlas",
-      "score": 75.8,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — MCP-Atlas"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "vitabench",
-      "score": 45.6,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — Vitabench"
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro-max",
-      "benchmark": "vitabench",
-      "score": 51.9,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — Vitabench"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "deep_planning",
-      "score": 62.3,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — Deep-Planning | SOTA — beats Opus-4.6 Max 58.9, K2.6 Thinking 42.3"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "spreadsheetbench_v1",
-      "score": 86.3,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — SpreadSheetBench-v1"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "spreadsheetbench_v1",
-      "score": 89.3,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — SpreadSheetBench-v1"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "qwen_world_bench",
-      "score": 62.1,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — QwenWorldBench | Beats Opus-4.6 Max 56.1, K2.6 Thinking 50.9"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "hmmt_2026_feb",
-      "score": 92.9,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — HMMT 2026 Feb"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "hmmt_2026_feb",
-      "score": 96.2,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — HMMT 2026 Feb"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "imoanswerbench",
-      "score": 86.0,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — IMOAnswerBench"
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro-max",
-      "benchmark": "imoanswerbench",
-      "score": 89.8,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — IMOAnswerBench"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "mrcr_v2_128k",
-      "score": 91.7,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — MRCR-v2 128k | SOTA — beats Opus-4.6 Max 84.0, K2.6 Thinking 63.1, DeepSeek-V4-Pro Max 74.4"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "polymath",
-      "score": 84.0,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Text — PolyMATH | SOTA — beats K2.6 Thinking 82.7, Opus-4.6 Max 80.2"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "babyvision_with_ci",
-      "score": 70.4,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — BabyVision with CI | SOTA — beats Gemini-3.1 Pro 55.9, GPT-5.4 xhigh 53.1 by wide margin"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "charxiv_rq",
-      "score": 85.9,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — CharXiv(RQ) with CI"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "hipho",
-      "score": 84.1,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — HiPhO"
-    },
-    {
-      "model": "google/gemini-3.1-pro",
-      "benchmark": "hipho",
-      "score": 85.4,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — HiPhO"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "visfactor",
-      "score": 42.8,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — VisFactor"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "screenspot_pro",
-      "score": 79.0,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — ScreenSpot Pro | SOTA — beats Gemini-3.1 Pro 68.1, GPT-5.4 xhigh 67.4 by wide margin"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "osworld_verified",
-      "score": 73.3,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — OSWorld-Verified"
-    },
-    {
-      "model": "openai/gpt-5.4",
-      "benchmark": "osworld_verified",
-      "score": 75.0,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — OSWorld-Verified"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "androidworld",
-      "score": 81.0,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — AndroidWorld | SOTA — beats Gemini-3.1 Pro 70.7, Opus-4.6 Max 62.0"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "qwen_vision2code",
-      "score": 1772,
-      "unit": "elo",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — QwenVision2Code"
-    },
-    {
-      "model": "openai/gpt-5.4",
-      "benchmark": "qwen_vision2code",
-      "score": 1884,
-      "unit": "elo",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — QwenVision2Code"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "clawval_mm",
-      "score": 55.7,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — ClawEval-MM"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "simplevqa_search",
-      "score": 81.7,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — SimpleVQA (search-aug)"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "worldvqa_search",
-      "score": 61.1,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — WorldVQA"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "worldvqa_search",
-      "score": 65.4,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — WorldVQA"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "mmsearchplus",
-      "score": 41.4,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — MMSearchPlus"
-    },
-    {
-      "model": "google/gemini-3.1-pro",
-      "benchmark": "mmsearchplus",
-      "score": 42.0,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — MMSearchPlus"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "bc_vl",
-      "score": 51.1,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — BC-VL"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "bc_vl",
-      "score": 51.5,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — BC-VL"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "mmbc",
-      "score": 46.3,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — MMBC | Ties Opus-4.6 Max at 46.3"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "countqa",
-      "score": 77.0,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — CountQA | SOTA — beats Gemini-3.1 Pro 72.8"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "omnidocbench_1_5",
-      "score": 91.4,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — OmniDocBench1.5 | SOTA — narrowly above Qwen3.6-Plus 91.2"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "lingoqa_driving",
-      "score": 83.4,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — LingoQA | SOTA — beats GPT-5.4 xhigh 78.2, Opus-4.6 Max 77.6"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "ego3d_bench",
-      "score": 5.9,
-      "unit": "error_lower_better",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — Ego3D-Bench (lower better) | SOTA (lower=better) — vs Gemini-3.1 Pro 10.4"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "surds",
-      "score": 77.2,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — SURDS"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "vladbench",
-      "score": 77.2,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — VLADBench | Ties GPT-5.4 xhigh at 77.1, edges by 0.1"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "videommmu_test",
-      "score": 85.4,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — VideoMMMU | SOTA — narrowly above Gemini-3.1 Pro 85.3, Opus-4.6 Max 85.2"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "tvbench",
-      "score": 78.2,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — TVBench"
-    },
-    {
-      "model": "openai/gpt-5.4",
-      "benchmark": "tvbench",
-      "score": 82.5,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — TVBench"
-    },
-    {
-      "model": "alibaba/qwen3.7-plus",
-      "benchmark": "lvbench",
-      "score": 76.2,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — LVBench"
-    },
-    {
-      "model": "openai/gpt-5.4",
-      "benchmark": "lvbench",
-      "score": 77.4,
-      "unit": "%",
-      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "_note": "Qwen blog Multimodal — LVBench"
-    }
-  ]
+  {
+   "id": "nvidia/cosmos3-super-text2image",
+   "name": "Cosmos 3 Super Text-to-Image",
+   "vendor": "NVIDIA",
+   "type": "open-weight",
+   "release_date": "2026-06-01",
+   "parameters": "Super-scale MoT (Qwen3-VL 32B init)",
+   "context_window": null,
+   "architecture": "Cosmos 3 Super post-trained for Text-to-Image (UniGenBench 91.36 → AA T2I Leaderboard #1 open-weight, #4 overall)",
+   "modalities": [
+    "image-generation"
+   ]
+  },
+  {
+   "id": "nvidia/cosmos3-super-image2video",
+   "name": "Cosmos 3 Super Image-to-Video",
+   "vendor": "NVIDIA",
+   "type": "open-weight",
+   "release_date": "2026-06-01",
+   "parameters": "Super-scale MoT (Qwen3-VL 32B init)",
+   "context_window": null,
+   "architecture": "Cosmos 3 Super post-trained for Image-to-Video (PAIBench-G I2V 82.8, RBench 58.1)",
+   "modalities": [
+    "video-generation"
+   ]
+  },
+  {
+   "id": "nvidia/cosmos3-nano-policy-droid",
+   "name": "Cosmos 3 Nano Policy-DROID",
+   "vendor": "NVIDIA",
+   "type": "open-weight",
+   "release_date": "2026-06-01",
+   "parameters": "Nano-scale MoT (Qwen3-VL 8B init)",
+   "context_window": null,
+   "architecture": "Cosmos 3 Nano post-trained as world-action robot policy on DROID dataset (Franka Panda + Robotiq 2F-85). RoboArena #1, RoboLab #1.",
+   "modalities": [
+    "robot-policy"
+   ]
+  },
+  {
+   "id": "alibaba/qwen3.7-plus",
+   "name": "Qwen3.7-Plus",
+   "vendor": "Alibaba",
+   "type": "proprietary",
+   "release_date": "2026-06-01",
+   "parameters": "Not disclosed",
+   "context_window": 1000000,
+   "architecture": "Multimodal agent foundation. Vision+language unified. Reasoning + tool-use + GUI/CLI agent. Available via Alibaba Cloud Model Studio. Supports preserve_thinking for agentic tasks.",
+   "modalities": [
+    "multimodal"
+   ]
+  },
+  {
+   "id": "google/gemini-3-pro-image",
+   "name": "Gemini 3 Pro Image",
+   "vendor": "Google",
+   "type": "proprietary",
+   "release_date": "2025-12-01",
+   "modalities": [
+    "image-generation"
+   ]
+  },
+  {
+   "id": "bytedance/seedance-1.5-pro",
+   "name": "Seedance 1.5 Pro",
+   "vendor": "ByteDance",
+   "type": "proprietary",
+   "release_date": "2026-03-01",
+   "modalities": [
+    "video-generation"
+   ]
+  },
+  {
+   "id": "tencent/hunyuan-3.0",
+   "name": "Hunyuan 3.0",
+   "vendor": "Tencent",
+   "type": "open-weight",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "image-generation"
+   ]
+  },
+  {
+   "id": "z-image-turbo/z-image-turbo",
+   "name": "Z-Image-Turbo",
+   "vendor": "Z-Image",
+   "type": "open-weight",
+   "release_date": "2026-04-01",
+   "modalities": [
+    "image-generation"
+   ]
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "unigenbench_all_1170",
+   "name": "UniGenBench (All 1170)",
+   "category": "image-generation",
+   "description": "Text-to-image evaluation. 1170 prompts (600 Orig + 570 Physical AI). Fraction of criteria satisfied (higher better).",
+   "introduced_by": "Cosmos 3 tech report (2026-06-01)",
+   "primary_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf"
+  },
+  {
+   "id": "cvtg_500l_pned",
+   "name": "CVTG-500L PNED",
+   "category": "image-generation",
+   "description": "Long-prompt English character-level text rendering (higher better, character-level accuracy).",
+   "introduced_by": "Cosmos 3 tech report"
+  },
+  {
+   "id": "cvtg_102ch_pned",
+   "name": "CVTG-102ch PNED",
+   "category": "image-generation",
+   "description": "Chinese-character text rendering accuracy (102 prompts).",
+   "introduced_by": "Cosmos 3 tech report"
+  },
+  {
+   "id": "hpsv3",
+   "name": "HPSv3",
+   "category": "image-generation",
+   "description": "Learned human-preference reward (VLM-based, uncertainty-aware ranking, prompt-aware).",
+   "introduced_by": "Ma et al., 2025"
+  },
+  {
+   "id": "aesthetic_v2",
+   "name": "Aesthetic v2 (LAION)",
+   "category": "image-generation",
+   "description": "Prompt-independent visual appeal (1-10 scale on CLIP embeddings).",
+   "introduced_by": "Schuhmann & LAION 2022"
+  },
+  {
+   "id": "paibench_g_t2v_overall",
+   "name": "PAIBench-G T2V Overall",
+   "category": "video-generation",
+   "description": "Physical AI video generation Text-to-Video overall (0.5×Quality + 0.5×Domain).",
+   "introduced_by": "Zhou et al., 2025c"
+  },
+  {
+   "id": "paibench_g_i2v_overall",
+   "name": "PAIBench-G I2V Overall",
+   "category": "video-generation",
+   "description": "Physical AI video generation Image-to-Video overall.",
+   "introduced_by": "Zhou et al., 2025c"
+  },
+  {
+   "id": "rbench_i2v",
+   "name": "RBench Image2Video Score",
+   "category": "video-generation",
+   "description": "Embodied task scenarios — task correctness and physical plausibility (650 cases, 2 splits).",
+   "introduced_by": "Deng et al., 2026"
+  },
+  {
+   "id": "physics_iq_i2v",
+   "name": "Physics-IQ I2V",
+   "category": "video-generation",
+   "description": "Physics-grounded video evaluation, image-to-video mode (396 scenes, 5 physics categories). 0-100 score.",
+   "introduced_by": "Motamed et al., 2026"
+  },
+  {
+   "id": "physics_iq_v2v",
+   "name": "Physics-IQ V2V",
+   "category": "video-generation",
+   "description": "Physics-IQ video-to-video continuation mode (3s in, 5s out).",
+   "introduced_by": "Motamed et al., 2026"
+  },
+  {
+   "id": "cosmos_hue_t2v",
+   "name": "Cosmos HUE T2V",
+   "category": "video-generation",
+   "description": "NVIDIA Cosmos Human EUval — 100 prompts, atomic binary fact-verification across 4 dimensions (Semantic Align / Physical Laws / Geometric Reasoning / Visual Integrity).",
+   "introduced_by": "Cosmos 3 tech report (NEW dataset, HF: Cosmos-HumanEval-v1)"
+  },
+  {
+   "id": "cosmos_hue_i2v",
+   "name": "Cosmos HUE I2V",
+   "category": "video-generation",
+   "description": "Cosmos HUE Image-to-Video track.",
+   "introduced_by": "Cosmos 3 tech report"
+  },
+  {
+   "id": "human_world_bench_i2v",
+   "name": "Human World Bench (HWB)",
+   "category": "video-generation",
+   "description": "Egocentric image-to-video for human manipulation tasks. Pass rates for instruction-following + physical plausibility (180 samples from EgoVerse).",
+   "introduced_by": "Cosmos 3 tech report (Punamiya et al., 2026)"
+  },
+  {
+   "id": "soundbench_avq",
+   "name": "Cosmos-SoundBench AVQ",
+   "category": "audio-visual",
+   "description": "Overall Audiovisual Quality (0-10, higher better).",
+   "introduced_by": "Cosmos 3 tech report"
+  },
+  {
+   "id": "soundbench_sav",
+   "name": "Cosmos-SoundBench SAV",
+   "category": "audio-visual",
+   "description": "Semantic Audiovisual Quality sub-score.",
+   "introduced_by": "Cosmos 3 tech report"
+  },
+  {
+   "id": "robolab_droid_specific",
+   "name": "RoboLab-120 (Specific Inst.)",
+   "category": "physical-ai",
+   "description": "120 DROID Franka Panda manipulation tasks, specific instruction granularity, overall success rate (10 rollouts/task).",
+   "introduced_by": "Yang et al., 2026a"
+  },
+  {
+   "id": "libero_10_adaptation_2k",
+   "name": "LIBERO-10 Adaptation (2k iter)",
+   "category": "physical-ai",
+   "description": "Closed-loop success rate after 2000 post-training iters (500 rollouts/checkpoint).",
+   "introduced_by": "Liu et al., 2023a"
+  },
+  {
+   "id": "terminal_bench_2_0",
+   "name": "Terminal-Bench 2.0-Terminus",
+   "category": "coding-agent",
+   "description": "Harbor/Terminus-2 harness; 5h timeout, 12 CPU/24 GB RAM; avg of 5 runs.",
+   "introduced_by": "Refined Terminal-Bench 2.0 protocol"
+  },
+  {
+   "id": "swe_multilingual",
+   "name": "SWE-Multilingual",
+   "category": "coding-agent",
+   "description": "Multilingual SWE-Bench."
+  },
+  {
+   "id": "nl2repo_qwen",
+   "name": "NL2repo",
+   "category": "coding-agent",
+   "description": "Natural language to repository-level code generation."
+  },
+  {
+   "id": "qwen_webdev_elo",
+   "name": "QwenWebDev (Elo)",
+   "category": "coding-agent",
+   "description": "Qwen web development Elo rating."
+  },
+  {
+   "id": "qwen_svg_elo",
+   "name": "QwenSVG (Elo)",
+   "category": "coding-agent",
+   "description": "Qwen SVG generation Elo rating."
+  },
+  {
+   "id": "qwen_world_bench",
+   "name": "QwenWorldBench",
+   "category": "agent",
+   "description": "Qwen-internal world benchmark for general agent."
+  },
+  {
+   "id": "cowork_bench",
+   "name": "CoWorkBench",
+   "category": "agent",
+   "description": "Internal long-horizon tasks across CS/finance/law/medical/productivity."
+  },
+  {
+   "id": "mcp_mark",
+   "name": "MCP-Mark",
+   "category": "agent",
+   "description": "GitHub MCP v0.30.3 evaluation; Playwright responses truncated at 32K tokens.",
+   "introduced_by": "MCP eval"
+  },
+  {
+   "id": "deep_planning",
+   "name": "Deep-Planning",
+   "category": "agent",
+   "description": "Multi-step planning benchmark."
+  },
+  {
+   "id": "spreadsheetbench_v1",
+   "name": "SpreadSheetBench-v1",
+   "category": "agent",
+   "description": "Spreadsheet manipulation tasks."
+  },
+  {
+   "id": "hmmt_2026_feb",
+   "name": "HMMT 2026 Feb",
+   "category": "reasoning",
+   "description": "Harvard-MIT Math Tournament February 2026."
+  },
+  {
+   "id": "mrcr_v2_128k_full",
+   "name": "MRCR-v2 128k",
+   "category": "long-context",
+   "description": "Multi-Reference Coreference v2 at 128k context."
+  },
+  {
+   "id": "babyvision_with_ci",
+   "name": "BabyVision (with CI)",
+   "category": "multimodal-reasoning",
+   "description": "Early-human visual cognition tasks, with-CI scoring."
+  },
+  {
+   "id": "charxiv_rq",
+   "name": "CharXiv (RQ, with CI)",
+   "category": "multimodal-reasoning",
+   "description": "Chart understanding from arXiv; Reasoning Question subset, with-CI scoring."
+  },
+  {
+   "id": "hipho",
+   "name": "HiPhO",
+   "category": "multimodal-reasoning",
+   "description": "Multimodal physics olympiad reasoning."
+  },
+  {
+   "id": "visfactor",
+   "name": "VisFactor",
+   "category": "multimodal-reasoning",
+   "description": "Visual reasoning factors benchmark."
+  },
+  {
+   "id": "medxpertqa_mm",
+   "name": "MedXpertQA-MM",
+   "category": "medical",
+   "description": "Multimodal medical expert QA."
+  },
+  {
+   "id": "screenspot_pro",
+   "name": "ScreenSpot Pro",
+   "category": "visual-agent",
+   "description": "Professional screen-element grounding."
+  },
+  {
+   "id": "qwen_vision2code",
+   "name": "QwenVision2Code (Elo)",
+   "category": "visual-agent",
+   "description": "Vision-to-code generation, Elo score."
+  },
+  {
+   "id": "clawval_mm",
+   "name": "ClawEval-MM",
+   "category": "agent",
+   "description": "Multimodal ClawEval."
+  },
+  {
+   "id": "simplevqa_search",
+   "name": "SimpleVQA (search-aug)",
+   "category": "multimodal-search",
+   "description": "Simple VQA with search augmentation."
+  },
+  {
+   "id": "worldvqa_search",
+   "name": "WorldVQA (search-aug)",
+   "category": "multimodal-search",
+   "description": "World knowledge VQA with search."
+  },
+  {
+   "id": "mmsearchplus",
+   "name": "MMSearchPlus",
+   "category": "multimodal-search",
+   "description": "Multimodal search-augmented QA."
+  },
+  {
+   "id": "bc_vl",
+   "name": "BC-VL",
+   "category": "multimodal-search",
+   "description": "BC vision-language search; presence_penalty 1.5 recommended."
+  },
+  {
+   "id": "mmbc",
+   "name": "MMBC",
+   "category": "multimodal-search",
+   "description": "Multimodal BC search."
+  },
+  {
+   "id": "countqa",
+   "name": "CountQA",
+   "category": "vision-understanding",
+   "description": "Counting in visual scenes."
+  },
+  {
+   "id": "odinw13",
+   "name": "ODinW13",
+   "category": "vision-detection",
+   "description": "Object detection in the wild — 13 datasets."
+  },
+  {
+   "id": "lingoqa_driving",
+   "name": "LingoQA (driving)",
+   "category": "driving",
+   "description": "Language QA on driving scenes."
+  },
+  {
+   "id": "ego3d_bench",
+   "name": "Ego3D-Bench (lower better)",
+   "category": "driving",
+   "description": "Egocentric 3D understanding (lower error = better).",
+   "unit": "error_lower_better"
+  },
+  {
+   "id": "surds",
+   "name": "SURDS",
+   "category": "driving",
+   "description": "Spatial Understanding for Driving Scenes."
+  },
+  {
+   "id": "vladbench",
+   "name": "VLADBench",
+   "category": "driving",
+   "description": "Vision-Language Autonomous Driving Benchmark."
+  },
+  {
+   "id": "videommmu_test",
+   "name": "VideoMMMU",
+   "category": "video-understanding",
+   "description": "Multi-modal multi-discipline understanding for video."
+  },
+  {
+   "id": "tvbench",
+   "name": "TVBench",
+   "category": "video-understanding",
+   "description": "TV video understanding."
+  },
+  {
+   "id": "lvbench",
+   "name": "LVBench",
+   "category": "video-understanding",
+   "description": "Long-video understanding benchmark."
+  }
+ ],
+ "scores": [
+  {
+   "model": "nvidia/cosmos3-super",
+   "benchmark": "physical_ai_bench",
+   "score": 73.7,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 10 — General Avg (19 benches) | General Avg across 19 multimodal-understanding benches"
+  },
+  {
+   "model": "nvidia/cosmos3-nano",
+   "benchmark": "physical_ai_bench",
+   "score": 69.6,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 10 — General Avg"
+  },
+  {
+   "model": "nvidia/cosmos3-edge",
+   "benchmark": "physical_ai_bench",
+   "score": 60.3,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 10 — General Avg"
+  },
+  {
+   "model": "nvidia/cosmos3-super-text2image",
+   "benchmark": "unigenbench_all_1170",
+   "score": 91.36,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 11 | Best on UniGenBench among evaluated; AA T2I Leaderboard #1 open-weight, #4 overall (2026-05-28)"
+  },
+  {
+   "model": "google/gemini-3-pro-image",
+   "benchmark": "unigenbench_all_1170",
+   "score": 90.69,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 11"
+  },
+  {
+   "model": "nvidia/cosmos3-super-text2image",
+   "benchmark": "cvtg_500l_pned",
+   "score": 89.08,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 11 | Beaten by Qwen-Image-2512 90.86"
+  },
+  {
+   "model": "alibaba/qwen-image-2512",
+   "benchmark": "cvtg_500l_pned",
+   "score": 90.86,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 11"
+  },
+  {
+   "model": "google/gemini-3-pro-image",
+   "benchmark": "cvtg_102ch_pned",
+   "score": 76.4,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 11"
+  },
+  {
+   "model": "z-image-turbo/z-image-turbo",
+   "benchmark": "cvtg_102ch_pned",
+   "score": 73.32,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 11"
+  },
+  {
+   "model": "nvidia/cosmos3-super-text2image",
+   "benchmark": "hpsv3",
+   "score": 11.6,
+   "unit": "score",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 11"
+  },
+  {
+   "model": "google/gemini-3-pro-image",
+   "benchmark": "hpsv3",
+   "score": 11.78,
+   "unit": "score",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 11"
+  },
+  {
+   "model": "tencent/hunyuan-3.0",
+   "benchmark": "hpsv3",
+   "score": 11.93,
+   "unit": "score",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 11"
+  },
+  {
+   "model": "alibaba/qwen-image-2512",
+   "benchmark": "aesthetic_v2",
+   "score": 5.92,
+   "unit": "score_1_10",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 11"
+  },
+  {
+   "model": "nvidia/cosmos3-super-text2image",
+   "benchmark": "aesthetic_v2",
+   "score": 5.91,
+   "unit": "score_1_10",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 11"
+  },
+  {
+   "model": "nvidia/cosmos3-super",
+   "benchmark": "paibench_g_t2v_overall",
+   "score": 80.0,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 12 | SOTA — best across all models including Veo-3.1 (79.1)"
+  },
+  {
+   "model": "nvidia/cosmos3-nano",
+   "benchmark": "paibench_g_t2v_overall",
+   "score": 79.4,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 12"
+  },
+  {
+   "model": "google/veo-3.1",
+   "benchmark": "paibench_g_t2v_overall",
+   "score": 79.1,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 12"
+  },
+  {
+   "model": "alibaba/wan2.6-t2v",
+   "benchmark": "paibench_g_t2v_overall",
+   "score": 78.6,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 12"
+  },
+  {
+   "model": "nvidia/cosmos3-super-image2video",
+   "benchmark": "paibench_g_i2v_overall",
+   "score": 82.8,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 12 | SOTA — best across all models open+closed"
+  },
+  {
+   "model": "nvidia/cosmos3-nano",
+   "benchmark": "paibench_g_i2v_overall",
+   "score": 82.7,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 12"
+  },
+  {
+   "model": "google/veo-3.1",
+   "benchmark": "paibench_g_i2v_overall",
+   "score": 82.6,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 12"
+  },
+  {
+   "model": "alibaba/wan2.6-t2v",
+   "benchmark": "rbench_i2v",
+   "score": 60.7,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 12 | RBench SOTA, narrowly above Cosmos3-Nano 58.4"
+  },
+  {
+   "model": "nvidia/cosmos3-nano",
+   "benchmark": "rbench_i2v",
+   "score": 58.4,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 12 | Best open-source on RBench (paper claim)"
+  },
+  {
+   "model": "nvidia/cosmos3-super-image2video",
+   "benchmark": "rbench_i2v",
+   "score": 58.1,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 12"
+  },
+  {
+   "model": "google/veo-3.1",
+   "benchmark": "rbench_i2v",
+   "score": 56.3,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 12"
+  },
+  {
+   "model": "nvidia/cosmos3-super",
+   "benchmark": "physics_iq_i2v",
+   "score": 48.9,
+   "unit": "score_0_100",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 13 | I2V with WMReward (BoN) — Cosmos3-Super SOTA. Direct 43.8 also SOTA among direct."
+  },
+  {
+   "model": "openai/sora-2",
+   "benchmark": "physics_iq_i2v",
+   "score": 46.4,
+   "unit": "score_0_100",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 13"
+  },
+  {
+   "model": "nvidia/cosmos3-super",
+   "benchmark": "physics_iq_v2v",
+   "score": 63.4,
+   "unit": "score_0_100",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 13 | V2V with WMReward (BoN) — Cosmos3-Super SOTA"
+  },
+  {
+   "model": "google/veo-3.1",
+   "benchmark": "cosmos_hue_t2v",
+   "score": 91.3,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 14 | Closed-source Veo-3.1 leads. Cosmos3-Super 89.3 = #1 open-source"
+  },
+  {
+   "model": "nvidia/cosmos3-super",
+   "benchmark": "cosmos_hue_t2v",
+   "score": 89.3,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 14"
+  },
+  {
+   "model": "nvidia/cosmos3-nano",
+   "benchmark": "cosmos_hue_t2v",
+   "score": 87.6,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 14"
+  },
+  {
+   "model": "google/veo-3.1",
+   "benchmark": "cosmos_hue_i2v",
+   "score": 89.7,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 14"
+  },
+  {
+   "model": "nvidia/cosmos3-super-image2video",
+   "benchmark": "cosmos_hue_i2v",
+   "score": 89.6,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 14"
+  },
+  {
+   "model": "nvidia/cosmos3-super-image2video",
+   "benchmark": "human_world_bench_i2v",
+   "score": 71.9,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 14 | HWB SOTA — beats Veo-3.1 67.8 and all closed/open"
+  },
+  {
+   "model": "google/veo-3.1",
+   "benchmark": "human_world_bench_i2v",
+   "score": 67.8,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 14"
+  },
+  {
+   "model": "nvidia/cosmos3-nano",
+   "benchmark": "human_world_bench_i2v",
+   "score": 66.9,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 14"
+  },
+  {
+   "model": "nvidia/cosmos3-nano",
+   "benchmark": "soundbench_avq",
+   "score": 7.34,
+   "unit": "score_0_10",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 15"
+  },
+  {
+   "model": "nvidia/cosmos3-super",
+   "benchmark": "soundbench_avq",
+   "score": 7.31,
+   "unit": "score_0_10",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 15"
+  },
+  {
+   "model": "bytedance/seedance-1.5-pro",
+   "benchmark": "soundbench_avq",
+   "score": 7.64,
+   "unit": "score_0_10",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 15 | AVQ SOTA via PQ strength"
+  },
+  {
+   "model": "nvidia/cosmos3-nano",
+   "benchmark": "soundbench_sav",
+   "score": 8.35,
+   "unit": "score_0_10",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 15 | Cosmos3-Nano SAV SOTA — strongest semantic audio-visual grounding"
+  },
+  {
+   "model": "nvidia/cosmos3-super",
+   "benchmark": "soundbench_sav",
+   "score": 8.34,
+   "unit": "score_0_10",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 15"
+  },
+  {
+   "model": "nvidia/cosmos3-nano-policy-droid",
+   "benchmark": "robolab_droid_specific",
+   "score": 39.7,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 19 — Overall Specific | SOTA — vs π0.5 28.1 (+11.6pp), DreamZero 23.9. Also #1 on RoboArena leaderboard 2026-05-30."
+  },
+  {
+   "model": "physical-intelligence/pi-0.5",
+   "benchmark": "robolab_droid_specific",
+   "score": 28.1,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 19"
+  },
+  {
+   "model": "nvidia/gr00t-n1.6",
+   "benchmark": "robolab_droid_specific",
+   "score": 5.3,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 19"
+  },
+  {
+   "model": "nvidia/cosmos3-nano",
+   "benchmark": "libero_10_adaptation_2k",
+   "score": 97.4,
+   "unit": "%",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "_note": "Cosmos 3 Tech Report Table 20 — MT-init @ 2000 iter | Cosmos3-Nano MT-init reaches 97.4% closed-loop success vs PT-init 95.2%. Demonstrates MT-init faster adaptation."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "terminal_bench_2_0",
+   "score": 70.3,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen3.7-Plus blog, Text Benchmarks — Terminal-Bench 2.0-Terminus | SOTA in table — beats Opus-4.6 Max 65.4, K2.6 Thinking 66.7, DeepSeek-V4-Pro Max 67.9"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "terminal_bench_2_0",
+   "score": 67.9,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — Terminal-Bench 2.0"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "terminal_bench_2_0",
+   "score": 65.4,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — Terminal-Bench 2.0"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "swe_multilingual",
+   "score": 75.8,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — SWE-Multilingual"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "swe_multilingual",
+   "score": 77.5,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — SWE-Multilingual"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "nl2repo_qwen",
+   "score": 41.1,
+   "unit": "score",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — NL2repo"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "nl2repo_qwen",
+   "score": 47.6,
+   "unit": "score",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — NL2repo"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "qwen_webdev_elo",
+   "score": 1536,
+   "unit": "elo",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — QwenWebDev"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "qwen_webdev_elo",
+   "score": 1617,
+   "unit": "elo",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — QwenWebDev"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "qwen_svg_elo",
+   "score": 1588,
+   "unit": "elo",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — QwenSVG"
+  },
+  {
+   "model": "zhipu/glm-5.1",
+   "benchmark": "qwen_svg_elo",
+   "score": 1605,
+   "unit": "elo",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — QwenSVG"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "qwenclaw",
+   "score": 61.8,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — Qwenclaw"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "qwenclaw",
+   "score": 65.5,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — Qwenclaw"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "cowork_bench",
+   "score": 65.1,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — CoWorkBench"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "cowork_bench",
+   "score": 68.2,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — CoWorkBench"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "skillsbench",
+   "score": 54.9,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — Skillsbench | Highest in table among models with disclosed values (Opus-4.6 Max --)"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "bfcl_v4",
+   "score": 72.9,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — BFCL-V4"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "bfcl_v4",
+   "score": 76.7,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — BFCL-V4"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "mcp_mark",
+   "score": 58.7,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — MCP-Mark"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "mcp_atlas",
+   "score": 73.2,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — MCP-Atlas"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "mcp_atlas",
+   "score": 75.8,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — MCP-Atlas"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "vitabench",
+   "score": 45.6,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — Vitabench"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "vitabench",
+   "score": 51.9,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — Vitabench"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "deep_planning",
+   "score": 62.3,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — Deep-Planning | SOTA — beats Opus-4.6 Max 58.9, K2.6 Thinking 42.3"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "spreadsheetbench_v1",
+   "score": 86.3,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — SpreadSheetBench-v1"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "spreadsheetbench_v1",
+   "score": 89.3,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — SpreadSheetBench-v1"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "qwen_world_bench",
+   "score": 62.1,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — QwenWorldBench | Beats Opus-4.6 Max 56.1, K2.6 Thinking 50.9"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "hmmt_2026_feb",
+   "score": 92.9,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — HMMT 2026 Feb"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "hmmt_2026_feb",
+   "score": 96.2,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — HMMT 2026 Feb"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "imoanswerbench",
+   "score": 86.0,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — IMOAnswerBench"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "imoanswerbench",
+   "score": 89.8,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — IMOAnswerBench"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "mrcr_v2_128k",
+   "score": 91.7,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — MRCR-v2 128k | SOTA — beats Opus-4.6 Max 84.0, K2.6 Thinking 63.1, DeepSeek-V4-Pro Max 74.4"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "polymath",
+   "score": 84.0,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Text — PolyMATH | SOTA — beats K2.6 Thinking 82.7, Opus-4.6 Max 80.2"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "babyvision_with_ci",
+   "score": 70.4,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — BabyVision with CI | SOTA — beats Gemini-3.1 Pro 55.9, GPT-5.4 xhigh 53.1 by wide margin"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "charxiv_rq",
+   "score": 85.9,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — CharXiv(RQ) with CI"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "hipho",
+   "score": 84.1,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — HiPhO"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "hipho",
+   "score": 85.4,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — HiPhO"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "visfactor",
+   "score": 42.8,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — VisFactor"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "screenspot_pro",
+   "score": 79.0,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — ScreenSpot Pro | SOTA — beats Gemini-3.1 Pro 68.1, GPT-5.4 xhigh 67.4 by wide margin"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_verified",
+   "score": 73.3,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — OSWorld-Verified"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "osworld_verified",
+   "score": 75.0,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — OSWorld-Verified"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "androidworld",
+   "score": 81.0,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — AndroidWorld | SOTA — beats Gemini-3.1 Pro 70.7, Opus-4.6 Max 62.0"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "qwen_vision2code",
+   "score": 1772,
+   "unit": "elo",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — QwenVision2Code"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "qwen_vision2code",
+   "score": 1884,
+   "unit": "elo",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — QwenVision2Code"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "clawval_mm",
+   "score": 55.7,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — ClawEval-MM"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "simplevqa_search",
+   "score": 81.7,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — SimpleVQA (search-aug)"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "worldvqa_search",
+   "score": 61.1,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — WorldVQA"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "worldvqa_search",
+   "score": 65.4,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — WorldVQA"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "mmsearchplus",
+   "score": 41.4,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — MMSearchPlus"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "mmsearchplus",
+   "score": 42.0,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — MMSearchPlus"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "bc_vl",
+   "score": 51.1,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — BC-VL"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "bc_vl",
+   "score": 51.5,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — BC-VL"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "mmbc",
+   "score": 46.3,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — MMBC | Ties Opus-4.6 Max at 46.3"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "countqa",
+   "score": 77.0,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — CountQA | SOTA — beats Gemini-3.1 Pro 72.8"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "omnidocbench_v1_5_composite",
+   "score": 91.4,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — OmniDocBench1.5 | SOTA — narrowly above Qwen3.6-Plus 91.2 [S267: consolidated from omnidocbench_1_5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "lingoqa_driving",
+   "score": 83.4,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — LingoQA | SOTA — beats GPT-5.4 xhigh 78.2, Opus-4.6 Max 77.6"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "ego3d_bench",
+   "score": 5.9,
+   "unit": "error_lower_better",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — Ego3D-Bench (lower better) | SOTA (lower=better) — vs Gemini-3.1 Pro 10.4"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "surds",
+   "score": 77.2,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — SURDS"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "vladbench",
+   "score": 77.2,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — VLADBench | Ties GPT-5.4 xhigh at 77.1, edges by 0.1"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "videommmu_test",
+   "score": 85.4,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — VideoMMMU | SOTA — narrowly above Gemini-3.1 Pro 85.3, Opus-4.6 Max 85.2"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "tvbench",
+   "score": 78.2,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — TVBench"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "tvbench",
+   "score": 82.5,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — TVBench"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "lvbench",
+   "score": 76.2,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — LVBench"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "lvbench",
+   "score": 77.4,
+   "unit": "%",
+   "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+   "_note": "Qwen blog Multimodal — LVBench"
+  }
+ ]
 }

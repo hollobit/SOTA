@@ -1,116 +1,483 @@
 {
-  "_meta": {
-    "collected_at": "2026-05-03",
-    "sources": [
-      "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
-      "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B",
-      "https://huggingface.co/collections/LGAI-EXAONE/exaone-45",
-      "https://huggingface.co/collections/LGAI-EXAONE/k-exaone",
-      "http://arxiv.org/abs/2604.08644",
-      "http://arxiv.org/abs/2601.01739",
-      "https://www.lgresearch.ai/blog/view?seq=641",
-      "https://github.com/LG-AI-EXAONE/EXAONE-4.5",
-      "https://github.com/LG-AI-EXAONE/K-EXAONE"
-    ],
-    "_note": "LG AI Research EXAONE family. EXAONE 4.5 33B = first open-weight VLM (31.7B LM + 1.29B vision encoder, dense, 262K context, hybrid attention 16×(3SWA+1Global), 6 langs en/ko/es/de/ja/vi, arxiv 2604.08644). K-EXAONE 236B-A23B = MoE total 236B / 23B active, 256K context, same 6 languages (arxiv 2601.01739). All scores reasoning mode unless noted. Both models reported in Table 3 of EXAONE 4.5 tech report comparison column."
+ "_meta": {
+  "collected_at": "2026-05-03",
+  "sources": [
+   "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
+   "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B",
+   "https://huggingface.co/collections/LGAI-EXAONE/exaone-45",
+   "https://huggingface.co/collections/LGAI-EXAONE/k-exaone",
+   "http://arxiv.org/abs/2604.08644",
+   "http://arxiv.org/abs/2601.01739",
+   "https://www.lgresearch.ai/blog/view?seq=641",
+   "https://github.com/LG-AI-EXAONE/EXAONE-4.5",
+   "https://github.com/LG-AI-EXAONE/K-EXAONE"
+  ],
+  "_note": "LG AI Research EXAONE family. EXAONE 4.5 33B = first open-weight VLM (31.7B LM + 1.29B vision encoder, dense, 262K context, hybrid attention 16×(3SWA+1Global), 6 langs en/ko/es/de/ja/vi, arxiv 2604.08644). K-EXAONE 236B-A23B = MoE total 236B / 23B active, 256K context, same 6 languages (arxiv 2601.01739). All scores reasoning mode unless noted. Both models reported in Table 3 of EXAONE 4.5 tech report comparison column."
+ },
+ "benchmarks": [
+  {
+   "id": "wemath",
+   "name": "WeMath",
+   "category": "math",
+   "metric": "accuracy",
+   "description": "Mathematical reasoning evaluation"
   },
-  "benchmarks": [
-    {"id": "wemath", "name": "WeMath", "category": "math", "metric": "accuracy", "description": "Mathematical reasoning evaluation"},
-    {"id": "logicvista", "name": "LogicVista", "category": "multimodal", "metric": "accuracy", "description": "Logic reasoning over visual content"},
-    {"id": "babyvision", "name": "BabyVision", "category": "multimodal", "metric": "accuracy", "description": "Visual reasoning hard set"},
-    {"id": "chartqapro", "name": "ChartQAPro", "category": "multimodal", "metric": "accuracy", "description": "Professional chart understanding QA"},
-    {"id": "omnidocbench_v15", "name": "OmniDocBench v1.5", "category": "multimodal", "metric": "accuracy", "description": "OmniDocBench v1.5 — comprehensive document understanding"},
-    {"id": "mmstar", "name": "MMStar", "category": "multimodal", "metric": "accuracy", "description": "MMStar multimodal benchmark"},
-    {"id": "hallusionbench", "name": "HallusionBench", "category": "multimodal", "metric": "accuracy", "description": "Hallucination detection in vision-language models"},
-    {"id": "k_viscuit", "name": "K-Viscuit (Korean)", "category": "multilingual", "metric": "accuracy", "description": "Korean visual reasoning benchmark"},
-    {"id": "kreta", "name": "KRETA (Korean)", "category": "multilingual", "metric": "accuracy", "description": "Korean reading comprehension evaluation"},
-    {"id": "kmmlu_pro", "name": "KMMLU-Pro (Korean)", "category": "multilingual", "metric": "accuracy", "description": "Korean MMLU-Pro extension"},
-    {"id": "kobalt", "name": "KoBALT (Korean)", "category": "multilingual", "metric": "accuracy", "description": "Korean balanced linguistic test"},
-    {"id": "tau2_retail", "name": "τ²-Bench (Retail)", "category": "agent", "metric": "success_rate", "description": "Tau-2 Retail agent benchmark"},
-    {"id": "tau2_airline", "name": "τ²-Bench (Airline)", "category": "agent", "metric": "success_rate", "description": "Tau-2 Airline agent benchmark"},
-    {"id": "tau2_telecom", "name": "τ²-Bench (Telecom)", "category": "agent", "metric": "success_rate", "description": "Tau-2 Telecom agent benchmark"},
-    {"id": "wmt24pp", "name": "WMT24++", "category": "multilingual", "metric": "accuracy", "description": "WMT24++ multilingual machine translation benchmark"},
-    {"id": "aa_lcr", "name": "AA-LCR", "category": "long-context", "metric": "accuracy", "description": "Artificial Analysis Long Context Reasoning"},
-    {"id": "ocrbench_v2", "name": "OCRBench v2", "category": "multimodal", "metric": "accuracy", "description": "OCRBench v2 — visual text recognition and reasoning"},
-    {"id": "medxpertqa_mm", "name": "MedXpertQA-MM", "category": "medical", "metric": "accuracy", "description": "Medical expert QA multimodal subset"},
-    {"id": "math_vision", "name": "MATH-Vision", "category": "math", "metric": "accuracy", "description": "Multimodal mathematics reasoning"}
-  ],
-  "scores": [
-    {"model": "lg/exaone-4.5-33b", "benchmark": "mmmu", "score": 78.7, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B", "_note": "Reasoning mode"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "mmmu_pro", "score": 68.6, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "medxpertqa_mm", "score": 42.1, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "math_vision", "score": 75.2, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "mathvista_mini", "score": 85.0, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "wemath", "score": 79.1, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B", "_note": "Beats GPT-5 mini high (70.3) and Qwen3-VL 32B (71.6)"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "logicvista", "score": 73.8, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "babyvision", "score": 18.8, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "ai2d", "score": 89.0, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "chartqapro", "score": 62.2, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "charxiv_reasoning", "score": 71.7, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B", "_note": "CharXiv RQ"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "ocrbench_v2", "score": 63.2, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "omnidocbench_v15", "score": 81.2, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "mmstar", "score": 74.9, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "blink", "score": 68.8, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "hallusionbench", "score": 63.7, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-
-    {"model": "lg/exaone-4.5-33b", "benchmark": "kmmmu", "score": 42.7, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B", "_note": "Korean — beats GPT-5 mini high 42.6 and Qwen3-VL 32B 37.8"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "k_viscuit", "score": 80.1, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B", "_note": "Korean visual reasoning — beats Qwen3-VL 32B 78.5 and GPT-5 mini 78.5"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "kreta", "score": 91.9, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-
-    {"model": "lg/exaone-4.5-33b", "benchmark": "aime_2025", "score": 92.9, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "aime_2026", "score": 92.6, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "gpqa_diamond", "score": 80.5, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "livecodebench_v6", "score": 81.4, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "mmlu_pro", "score": 83.3, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-
-    {"model": "lg/exaone-4.5-33b", "benchmark": "tau2_retail", "score": 77.9, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "tau2_airline", "score": 56.5, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "tau2_telecom", "score": 73.0, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-
-    {"model": "lg/exaone-4.5-33b", "benchmark": "ifbench", "score": 62.6, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "ifeval", "score": 89.6, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-
-    {"model": "lg/exaone-4.5-33b", "benchmark": "aa_lcr", "score": 50.6, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-
-    {"model": "lg/exaone-4.5-33b", "benchmark": "kmmlu_pro", "score": 67.6, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "kobalt", "score": 52.1, "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"},
-
-    {"model": "lg/exaone-4.5-33b", "benchmark": "mmmlu", "score": 85.4, "_source": "http://arxiv.org/abs/2604.08644", "_note": "Tech report Table 3 multilinguality (ko,de,es,ja avg)"},
-    {"model": "lg/exaone-4.5-33b", "benchmark": "wmt24pp", "score": 91.5, "_source": "http://arxiv.org/abs/2604.08644", "_note": "Tech report Table 3 (ko,de,es,ja,vi avg)"},
-
-    {"model": "lg/k-exaone-236b", "benchmark": "aime_2026", "score": 92.2, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3 K-EXAONE-236B comparison column"},
-    {"model": "lg/k-exaone-236b", "benchmark": "gpqa_diamond", "score": 79.1, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3"},
-    {"model": "lg/k-exaone-236b", "benchmark": "livecodebench_v6", "score": 80.7, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3"},
-    {"model": "lg/k-exaone-236b", "benchmark": "mmlu_pro", "score": 83.8, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3"},
-    {"model": "lg/k-exaone-236b", "benchmark": "tau2_retail", "score": 78.6, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3"},
-    {"model": "lg/k-exaone-236b", "benchmark": "tau2_airline", "score": 60.4, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3"},
-    {"model": "lg/k-exaone-236b", "benchmark": "tau2_telecom", "score": 73.5, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3"},
-    {"model": "lg/k-exaone-236b", "benchmark": "ifbench", "score": 67.3, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3"},
-    {"model": "lg/k-exaone-236b", "benchmark": "ifeval", "score": 89.7, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3"},
-    {"model": "lg/k-exaone-236b", "benchmark": "aa_lcr", "score": 53.5, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3"},
-    {"model": "lg/k-exaone-236b", "benchmark": "kmmlu_pro", "score": 67.3, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3"},
-    {"model": "lg/k-exaone-236b", "benchmark": "kobalt", "score": 61.8, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3"},
-    {"model": "lg/k-exaone-236b", "benchmark": "mmmlu", "score": 85.7, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3 multilinguality (ko,de,es,ja avg)"},
-    {"model": "lg/k-exaone-236b", "benchmark": "wmt24pp", "score": 90.5, "_source": "http://arxiv.org/abs/2604.08644", "_note": "EXAONE 4.5 paper Table 3 (ko,de,es,ja,vi avg)"}
-  ],
-  "models": [
-    {
-      "id": "lg/k-exaone-236b",
-      "vendor": "LG AI Research",
-      "name": "K-EXAONE 236B-A23B",
-      "type": "open-weight",
-      "modalities": ["text"],
-      "parameters": "236B (23B active MoE)",
-      "release_date": "2026-01-09"
-    },
-    {
-      "id": "lg/exaone-4.5-33b",
-      "vendor": "LG AI Research",
-      "name": "EXAONE 4.5 33B",
-      "type": "open-weight",
-      "modalities": ["text", "image"],
-      "parameters": "33B (31.7B LM + 1.29B vision encoder)",
-      "release_date": "2026-04-23"
-    }
-  ]
+  {
+   "id": "logicvista",
+   "name": "LogicVista",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "Logic reasoning over visual content"
+  },
+  {
+   "id": "babyvision",
+   "name": "BabyVision",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "Visual reasoning hard set"
+  },
+  {
+   "id": "chartqapro",
+   "name": "ChartQAPro",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "Professional chart understanding QA"
+  },
+  {
+   "id": "mmstar",
+   "name": "MMStar",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "MMStar multimodal benchmark"
+  },
+  {
+   "id": "hallusionbench",
+   "name": "HallusionBench",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "Hallucination detection in vision-language models"
+  },
+  {
+   "id": "k_viscuit",
+   "name": "K-Viscuit (Korean)",
+   "category": "multilingual",
+   "metric": "accuracy",
+   "description": "Korean visual reasoning benchmark"
+  },
+  {
+   "id": "kreta",
+   "name": "KRETA (Korean)",
+   "category": "multilingual",
+   "metric": "accuracy",
+   "description": "Korean reading comprehension evaluation"
+  },
+  {
+   "id": "kmmlu_pro",
+   "name": "KMMLU-Pro (Korean)",
+   "category": "multilingual",
+   "metric": "accuracy",
+   "description": "Korean MMLU-Pro extension"
+  },
+  {
+   "id": "kobalt",
+   "name": "KoBALT (Korean)",
+   "category": "multilingual",
+   "metric": "accuracy",
+   "description": "Korean balanced linguistic test"
+  },
+  {
+   "id": "tau2_retail",
+   "name": "τ²-Bench (Retail)",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Tau-2 Retail agent benchmark"
+  },
+  {
+   "id": "tau2_airline",
+   "name": "τ²-Bench (Airline)",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Tau-2 Airline agent benchmark"
+  },
+  {
+   "id": "tau2_telecom",
+   "name": "τ²-Bench (Telecom)",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Tau-2 Telecom agent benchmark"
+  },
+  {
+   "id": "wmt24pp",
+   "name": "WMT24++",
+   "category": "multilingual",
+   "metric": "accuracy",
+   "description": "WMT24++ multilingual machine translation benchmark"
+  },
+  {
+   "id": "aa_lcr",
+   "name": "AA-LCR",
+   "category": "long-context",
+   "metric": "accuracy",
+   "description": "Artificial Analysis Long Context Reasoning"
+  },
+  {
+   "id": "ocrbench_v2",
+   "name": "OCRBench v2",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "OCRBench v2 — visual text recognition and reasoning"
+  },
+  {
+   "id": "medxpertqa_mm",
+   "name": "MedXpertQA-MM",
+   "category": "medical",
+   "metric": "accuracy",
+   "description": "Medical expert QA multimodal subset"
+  },
+  {
+   "id": "math_vision",
+   "name": "MATH-Vision",
+   "category": "math",
+   "metric": "accuracy",
+   "description": "Multimodal mathematics reasoning"
+  }
+ ],
+ "scores": [
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "mmmu",
+   "score": 78.7,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
+   "_note": "Reasoning mode"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "mmmu_pro",
+   "score": 68.6,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "medxpertqa_mm",
+   "score": 42.1,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "math_vision",
+   "score": 75.2,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "mathvista_mini",
+   "score": 85.0,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "wemath",
+   "score": 79.1,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
+   "_note": "Beats GPT-5 mini high (70.3) and Qwen3-VL 32B (71.6)"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "logicvista",
+   "score": 73.8,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "babyvision",
+   "score": 18.8,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "ai2d",
+   "score": 89.0,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "chartqapro",
+   "score": 62.2,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "charxiv_reasoning",
+   "score": 71.7,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
+   "_note": "CharXiv RQ"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "ocrbench_v2",
+   "score": 63.2,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "omnidocbench_v1_5_composite",
+   "score": 81.2,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
+   "unit": "%",
+   "notes": " [S267: consolidated from omnidocbench_v15 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "mmstar",
+   "score": 74.9,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "blink",
+   "score": 68.8,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "hallusionbench",
+   "score": 63.7,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "kmmmu",
+   "score": 42.7,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
+   "_note": "Korean — beats GPT-5 mini high 42.6 and Qwen3-VL 32B 37.8"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "k_viscuit",
+   "score": 80.1,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
+   "_note": "Korean visual reasoning — beats Qwen3-VL 32B 78.5 and GPT-5 mini 78.5"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "kreta",
+   "score": 91.9,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "aime_2025",
+   "score": 92.9,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "aime_2026",
+   "score": 92.6,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "gpqa_diamond",
+   "score": 80.5,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "livecodebench_v6",
+   "score": 81.4,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "mmlu_pro",
+   "score": 83.3,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "tau2_retail",
+   "score": 77.9,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "tau2_airline",
+   "score": 56.5,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "tau2_telecom",
+   "score": 73.0,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "ifbench",
+   "score": 62.6,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "ifeval",
+   "score": 89.6,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "aa_lcr",
+   "score": 50.6,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "kmmlu_pro",
+   "score": 67.6,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "kobalt",
+   "score": 52.1,
+   "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "mmmlu",
+   "score": 85.4,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "Tech report Table 3 multilinguality (ko,de,es,ja avg)"
+  },
+  {
+   "model": "lg/exaone-4.5-33b",
+   "benchmark": "wmt24pp",
+   "score": 91.5,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "Tech report Table 3 (ko,de,es,ja,vi avg)"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "aime_2026",
+   "score": 92.2,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3 K-EXAONE-236B comparison column"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "gpqa_diamond",
+   "score": 79.1,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "livecodebench_v6",
+   "score": 80.7,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "mmlu_pro",
+   "score": 83.8,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "tau2_retail",
+   "score": 78.6,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "tau2_airline",
+   "score": 60.4,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "tau2_telecom",
+   "score": 73.5,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "ifbench",
+   "score": 67.3,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "ifeval",
+   "score": 89.7,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "aa_lcr",
+   "score": 53.5,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "kmmlu_pro",
+   "score": 67.3,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "kobalt",
+   "score": 61.8,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "mmmlu",
+   "score": 85.7,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3 multilinguality (ko,de,es,ja avg)"
+  },
+  {
+   "model": "lg/k-exaone-236b",
+   "benchmark": "wmt24pp",
+   "score": 90.5,
+   "_source": "http://arxiv.org/abs/2604.08644",
+   "_note": "EXAONE 4.5 paper Table 3 (ko,de,es,ja,vi avg)"
+  }
+ ],
+ "models": [
+  {
+   "id": "lg/k-exaone-236b",
+   "vendor": "LG AI Research",
+   "name": "K-EXAONE 236B-A23B",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "parameters": "236B (23B active MoE)",
+   "release_date": "2026-01-09"
+  },
+  {
+   "id": "lg/exaone-4.5-33b",
+   "vendor": "LG AI Research",
+   "name": "EXAONE 4.5 33B",
+   "type": "open-weight",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "parameters": "33B (31.7B LM + 1.29B vision encoder)",
+   "release_date": "2026-04-23"
+  }
+ ]
 }

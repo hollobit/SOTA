@@ -1,1711 +1,1702 @@
 {
-  "_meta": {
-    "session": "Session 95 — Chinese flagship deep dive (DeepSeek V4 + GLM-5.1 + Kimi K2.6)",
-    "date": "2026-06-11",
-    "sources": [
-      "DeepSeek V4 (HF deepseek-ai org + api-docs.deepseek.com + GitHub)",
-      "GLM-5.1 (HF zai-org + Z.ai homepage + AA)",
-      "Kimi K2.5/K2.6 (HF moonshotai org + AA + Moonshot blog)"
-    ],
-    "notes": "All 3 are 2026 Chinese flagships. DeepSeek V4-Pro 1.6T/49B 9 NEW SOTAs (HMMT 95.2/AIME26 94.3/LCB-v6 93.5/CF 3206/GPQA-D 90.1/SWE-Pro 55.4/IMO 89.8/MCP-Atlas 73.6/SWE-V 80.6). GLM-5.1 754B/40B SWE-Pro 58.4 (first non-NVIDIA-silicon SOTA), CyberGym 68.7. Kimi K2.6 1T/32B DeepSearchQA F1 92.5/BrowseComp Agent-Swarm 86.3/HLE w/tools 54.0/WideSearch 80.8."
+ "_meta": {
+  "session": "Session 95 — Chinese flagship deep dive (DeepSeek V4 + GLM-5.1 + Kimi K2.6)",
+  "date": "2026-06-11",
+  "sources": [
+   "DeepSeek V4 (HF deepseek-ai org + api-docs.deepseek.com + GitHub)",
+   "GLM-5.1 (HF zai-org + Z.ai homepage + AA)",
+   "Kimi K2.5/K2.6 (HF moonshotai org + AA + Moonshot blog)"
+  ],
+  "notes": "All 3 are 2026 Chinese flagships. DeepSeek V4-Pro 1.6T/49B 9 NEW SOTAs (HMMT 95.2/AIME26 94.3/LCB-v6 93.5/CF 3206/GPQA-D 90.1/SWE-Pro 55.4/IMO 89.8/MCP-Atlas 73.6/SWE-V 80.6). GLM-5.1 754B/40B SWE-Pro 58.4 (first non-NVIDIA-silicon SOTA), CyberGym 68.7. Kimi K2.6 1T/32B DeepSearchQA F1 92.5/BrowseComp Agent-Swarm 86.3/HLE w/tools 54.0/WideSearch 80.8."
+ },
+ "models": [
+  {
+   "id": "deepseek/deepseek-v4-pro",
+   "name": "DeepSeek-V4-Pro",
+   "vendor": "deepseek",
+   "type": "language",
+   "release_date": "2026-04-24",
+   "modalities": [
+    "text"
+   ]
   },
-  "models": [
-    {
-      "id": "deepseek/deepseek-v4-pro",
-      "name": "DeepSeek-V4-Pro",
-      "vendor": "deepseek",
-      "type": "language",
-      "release_date": "2026-04-24",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "deepseek/deepseek-v4-pro-base",
-      "name": "DeepSeek-V4-Pro-Base",
-      "vendor": "deepseek",
-      "type": "language",
-      "release_date": "2026-04-27",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "deepseek/deepseek-v4-flash",
-      "name": "DeepSeek-V4-Flash",
-      "vendor": "deepseek",
-      "type": "language",
-      "release_date": "2026-04-24",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "deepseek/deepseek-v4-flash-base",
-      "name": "DeepSeek-V4-Flash-Base",
-      "vendor": "deepseek",
-      "type": "language",
-      "release_date": "2026-04-27",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "zai/glm-5.1",
-      "name": "GLM-5.1",
-      "vendor": "Z.ai (formerly Zhipu AI)",
-      "type": "language",
-      "release_date": "2026-03-27",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "zai/glm-5.1-fp8",
-      "name": "GLM-5.1-FP8",
-      "vendor": "Z.ai",
-      "type": "language",
-      "release_date": "2026-03-27",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "zai/glm-5",
-      "name": "GLM-5",
-      "vendor": "Z.ai",
-      "type": "language",
-      "release_date": "2026-04-05",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "moonshot/kimi-k2.6",
-      "name": "Kimi K2.6",
-      "vendor": "moonshot",
-      "type": "language",
-      "release_date": "2026-04-20",
-      "modalities": [
-        "text",
-        "image",
-        "video"
-      ]
-    },
-    {
-      "id": "moonshot/kimi-k2.5",
-      "name": "Kimi K2.5",
-      "vendor": "moonshot",
-      "type": "language",
-      "release_date": "2026-01-29",
-      "modalities": [
-        "text",
-        "image",
-        "video"
-      ]
-    }
-  ],
-  "benchmarks": [
-    {
-      "id": "swe_bench_verified",
-      "name": "SWE-bench Verified",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "swe_bench_pro",
-      "name": "SWE-bench Pro",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "livecodebench_v6",
-      "name": "LiveCodeBench v6",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "codeforces_rating",
-      "name": "Codeforces Rating",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "terminal_bench_2",
-      "name": "Terminal-Bench 2.0",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "aime_2026",
-      "name": "AIME 2026",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "hmmt_feb_2026",
-      "name": "HMMT-Feb-2026",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "imo_answer_bench",
-      "name": "IMOAnswerBench",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "mmlu_pro",
-      "name": "MMLU-Pro",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "gpqa_diamond",
-      "name": "GPQA Diamond",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "humanitys_last_exam",
-      "name": "Humanity's Last Exam",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "simpleqa_verified",
-      "name": "SimpleQA-Verified",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "mcp_atlas",
-      "name": "MCPAtlas",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "toolathlon",
-      "name": "Toolathlon",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "arc_agi_2",
-      "name": "ARC-AGI-2",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "humaneval",
-      "name": "HumanEval",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "mmlu",
-      "name": "MMLU (base eval)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "niah_1m",
-      "name": "Needle-in-Haystack @ 1M",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "hmmt_nov_2025",
-      "name": "Hmmt Nov 2025",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "nl2repo",
-      "name": "Nl2Repo",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "terminal_bench_2_claude_code",
-      "name": "Terminal Bench 2 Claude Code",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "cybergym",
-      "name": "Cybergym",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "browsecomp",
-      "name": "Browsecomp",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "browsecomp_ctx_mgmt",
-      "name": "Browsecomp Ctx Mgmt",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "tau3_bench",
-      "name": "Tau3 Bench",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "mcp_atlas_public",
-      "name": "Mcp Atlas Public",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "tool_decathlon",
-      "name": "Tool Decathlon",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "claw_eval_general",
-      "name": "Claw Eval General",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "claw_eval_multiturn",
-      "name": "Claw Eval Multiturn",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "hle",
-      "name": "Hle",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "hle_with_tools",
-      "name": "Hle With Tools",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "vending_bench_2_usd",
-      "name": "Vending Bench 2 Usd",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "aaii",
-      "name": "Aaii",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "hmmt_2026_feb",
-      "name": "Hmmt 2026 Feb",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "imo_answerbench",
-      "name": "Imo Answerbench",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "hle_full",
-      "name": "Hle Full",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "hle_full_with_tools",
-      "name": "Hle Full With Tools",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "browsecomp_(agent_swarm)",
-      "name": "Browsecomp (Agent Swarm)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "deepsearchqa_f1",
-      "name": "Deepsearchqa F1",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "deepsearchqa_accuracy",
-      "name": "Deepsearchqa Accuracy",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "widesearch_item_f1",
-      "name": "Widesearch Item F1",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "mcpmark",
-      "name": "Mcpmark",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "claw_eval_pass@3",
-      "name": "Claw Eval Pass@3",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "claw_eval_pass^3",
-      "name": "Claw Eval Pass^3",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "apex_agents",
-      "name": "Apex Agents",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "osworld_verified",
-      "name": "Osworld Verified",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "terminal_bench_2.0_(terminus_2)",
-      "name": "Terminal Bench 2.0 (Terminus 2)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "swe_bench_multilingual",
-      "name": "Swe Bench Multilingual",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "scicode",
-      "name": "Scicode",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "ojbench_(python)",
-      "name": "Ojbench (Python)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "mmmu_pro",
-      "name": "Mmmu Pro",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "mmmu_pro_(w/_python)",
-      "name": "Mmmu Pro (W/ Python)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "charxiv_rq",
-      "name": "Charxiv Rq",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "charxiv_rq_(w/_python)",
-      "name": "Charxiv Rq (W/ Python)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "mathvision",
-      "name": "Mathvision",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "mathvision_(w/_python)",
-      "name": "Mathvision (W/ Python)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "babyvision",
-      "name": "Babyvision",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "babyvision_(w/_python)",
-      "name": "Babyvision (W/ Python)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "v*_(w/_python)",
-      "name": "V* (W/ Python)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "aaii_(artificial_analysis_intelligence_index)",
-      "name": "Aaii (Artificial Analysis Intelligence Index)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "time_to_first_token_(s)_lower_better",
-      "name": "Time To First Token (S) Lower Better",
-      "category": "general",
-      "metric": "score_lower_better",
-      "unit": "score_lower_better",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "output_speed_(tokens/s)",
-      "name": "Output Speed (Tokens/S)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "aime_2025",
-      "name": "Aime 2025",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "hmmt_2025_feb",
-      "name": "Hmmt 2025 Feb",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "widesearch_(agent_swarm)",
-      "name": "Widesearch (Agent Swarm)",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "mathvista_mini",
-      "name": "Mathvista Mini",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "ocrbench",
-      "name": "Ocrbench",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "omnidocbench_1.5",
-      "name": "Omnidocbench 1.5",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "videommmu",
-      "name": "Videommmu",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "videomme",
-      "name": "Videomme",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "longbench_v2",
-      "name": "Longbench V2",
-      "category": "general",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    }
-  ],
-  "scores": [
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "swe_bench_verified",
-      "score": 80.6,
-      "unit": "score",
-      "_source": "aimadetools + buildfastwithai (vendor-reported)",
-      "_note": "V4-Pro-Max"
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "swe_bench_pro",
-      "score": 55.4,
-      "unit": "score",
-      "_source": "aimadetools",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "livecodebench_v6",
-      "score": 93.5,
-      "unit": "score",
-      "_source": "aimadetools + buildfastwithai",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "codeforces_rating",
-      "score": 3206,
-      "unit": "score",
-      "_source": "aimadetools",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "terminal_bench_2",
-      "score": 67.9,
-      "unit": "score",
-      "_source": "aimadetools + buildfastwithai",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "aime_2026",
-      "score": 94.3,
-      "unit": "score",
-      "_source": "aimadetools",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "hmmt_feb_2026",
-      "score": 95.2,
-      "unit": "score",
-      "_source": "aimadetools + buildfastwithai",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "imo_answer_bench",
-      "score": 89.8,
-      "unit": "score",
-      "_source": "aimadetools",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "mmlu_pro",
-      "score": 87.5,
-      "unit": "score",
-      "_source": "aimadetools + medium leucopsis",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "gpqa_diamond",
-      "score": 90.1,
-      "unit": "score",
-      "_source": "aimadetools + medium leucopsis",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "humanitys_last_exam",
-      "score": 37.7,
-      "unit": "score",
-      "_source": "buildfastwithai + aimadetools",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "simpleqa_verified",
-      "score": 57.9,
-      "unit": "score",
-      "_source": "buildfastwithai",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "mcp_atlas",
-      "score": 73.6,
-      "unit": "score",
-      "_source": "aimadetools",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "toolathlon",
-      "score": 51.8,
-      "unit": "score",
-      "_source": "aimadetools",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "arc_agi_2",
-      "score": 76.6,
-      "unit": "score",
-      "_source": "benchlm.ai V4-Pro-Max page",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "niah_1m",
-      "score": 97.0,
-      "unit": "score",
-      "_source": "framia.pro (vendor claim)",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-flash",
-      "benchmark": "swe_bench_verified",
-      "score": 79.0,
-      "unit": "score",
-      "_source": "buildfastwithai",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-flash",
-      "benchmark": "livecodebench_v6",
-      "score": 91.6,
-      "unit": "score",
-      "_source": "buildfastwithai",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-flash",
-      "benchmark": "terminal_bench_2",
-      "score": 56.9,
-      "unit": "score",
-      "_source": "buildfastwithai",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-flash",
-      "benchmark": "simpleqa_verified",
-      "score": 34.1,
-      "unit": "score",
-      "_source": "buildfastwithai",
-      "_note": ""
-    },
-    {
-      "model": "deepseek/deepseek-v4-flash-base",
-      "benchmark": "mmlu",
-      "score": 88.7,
-      "unit": "score",
-      "_source": "WebSearch synthesis of HF model card vs V3.2-Base 87.8",
-      "_note": "Base-model 5-shot MMLU comparison"
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "swe_bench_pro",
-      "score": 58.4,
-      "unit": "score",
-      "_source": "Z.ai official + HuggingFace card",
-      "_note": "NEW SOTA on SWE-Bench Pro; beats GPT-5.4 (57.7) and Claude Opus 4.6 (57.3). First open-weight + first non-US-silicon model to lead."
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "aime_2026",
-      "score": 95.3,
-      "unit": "score",
-      "_source": "Z.ai official + HuggingFace card",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "hmmt_nov_2025",
-      "score": 94.0,
-      "unit": "score",
-      "_source": "HuggingFace card zai-org/GLM-5.1",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "hmmt_feb_2026",
-      "score": 82.6,
-      "unit": "score",
-      "_source": "HuggingFace card zai-org/GLM-5.1",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "gpqa_diamond",
-      "score": 86.2,
-      "unit": "score",
-      "_source": "HuggingFace card",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "imo_answer_bench",
-      "score": 83.8,
-      "unit": "score",
-      "_source": "HuggingFace card",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "nl2repo",
-      "score": 42.7,
-      "unit": "score",
-      "_source": "HuggingFace card",
-      "_note": "Repository-level code generation."
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "terminal_bench_2",
-      "score": 63.5,
-      "unit": "score",
-      "_source": "HuggingFace card (Terminus-2 harness)",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "terminal_bench_2_claude_code",
-      "score": 66.5,
-      "unit": "score",
-      "_source": "officechai (Claude Code harness variant)",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "cybergym",
-      "score": 68.7,
-      "unit": "score",
-      "_source": "HuggingFace card",
-      "_note": "NEW SOTA candidate — beats Claude Opus 4.6 (66.6)."
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "browsecomp",
-      "score": 68.0,
-      "unit": "score",
-      "_source": "HuggingFace card",
-      "_note": "79.3 with context management."
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "browsecomp_ctx_mgmt",
-      "score": 79.3,
-      "unit": "score",
-      "_source": "officechai / HF",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "tau3_bench",
-      "score": 70.6,
-      "unit": "score",
-      "_source": "HuggingFace card",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "mcp_atlas_public",
-      "score": 71.8,
-      "unit": "score",
-      "_source": "HuggingFace card",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "tool_decathlon",
-      "score": 40.7,
-      "unit": "score",
-      "_source": "HuggingFace card",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "claw_eval_general",
-      "score": 62.7,
-      "unit": "score",
-      "_source": "HuggingFace card",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "claw_eval_multiturn",
-      "score": 60.5,
-      "unit": "score",
-      "_source": "HuggingFace card",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "hle",
-      "score": 31.0,
-      "unit": "score",
-      "_source": "lushbinary / officechai",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "hle_with_tools",
-      "score": 52.3,
-      "unit": "score",
-      "_source": "HuggingFace card",
-      "_note": ""
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "vending_bench_2_usd",
-      "score": 5634.0,
-      "unit": "score",
-      "_source": "lushbinary",
-      "_note": "Final account balance in USD; #2 overall."
-    },
-    {
-      "model": "zai/glm-5.1",
-      "benchmark": "aaii",
-      "score": 51,
-      "unit": "score",
-      "_source": "artificialanalysis.ai/models/glm-5-1",
-      "_note": "Artificial Analysis Intelligence Index (#4 / 89 as of fetch date)."
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "aime_2026",
-      "score": 96.4,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "hmmt_2026_feb",
-      "score": 92.7,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "gpqa_diamond",
-      "score": 90.5,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "imo_answerbench",
-      "score": 86.0,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "hle_full",
-      "score": 34.7,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "hle_full_with_tools",
-      "score": 54.0,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "browsecomp",
-      "score": 83.2,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "browsecomp_(agent_swarm)",
-      "score": 86.3,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "deepsearchqa_f1",
-      "score": 92.5,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "deepsearchqa_accuracy",
-      "score": 83.0,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "widesearch_item_f1",
-      "score": 80.8,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "toolathlon",
-      "score": 50.0,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "mcpmark",
-      "score": 55.9,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "claw_eval_pass@3",
-      "score": 80.9,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "claw_eval_pass^3",
-      "score": 62.3,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "apex_agents",
-      "score": 27.9,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "osworld_verified",
-      "score": 73.1,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "terminal_bench_2.0_(terminus_2)",
-      "score": 66.7,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "swe_bench_pro",
-      "score": 58.6,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "swe_bench_multilingual",
-      "score": 76.7,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "swe_bench_verified",
-      "score": 80.2,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "scicode",
-      "score": 52.2,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "ojbench_(python)",
-      "score": 60.6,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "livecodebench_v6",
-      "score": 89.6,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "mmmu_pro",
-      "score": 79.4,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "mmmu_pro_(w/_python)",
-      "score": 80.1,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "charxiv_rq",
-      "score": 80.4,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "charxiv_rq_(w/_python)",
-      "score": 86.7,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "mathvision",
-      "score": 87.4,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "mathvision_(w/_python)",
-      "score": 93.2,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "babyvision",
-      "score": 39.8,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "babyvision_(w/_python)",
-      "score": 68.5,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "v*_(w/_python)",
-      "score": 96.9,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "aaii_(artificial_analysis_intelligence_index)",
-      "score": 54,
-      "unit": "score",
-      "_source": "artificialanalysis.ai/models/kimi-k2-6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "time_to_first_token_(s)_lower_better",
-      "score": 2.22,
-      "unit": "score",
-      "_source": "artificialanalysis.ai/models/kimi-k2-6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "output_speed_(tokens/s)",
-      "score": 57.9,
-      "unit": "score",
-      "_source": "artificialanalysis.ai/models/kimi-k2-6",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "aime_2025",
-      "score": 96.1,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "aime_2026",
-      "score": 95.8,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "hmmt_2025_feb",
-      "score": 95.4,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "hmmt_2026_feb",
-      "score": 87.1,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "gpqa_diamond",
-      "score": 87.6,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "mmlu_pro",
-      "score": 87.1,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "hle_full",
-      "score": 30.1,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "hle_full_with_tools",
-      "score": 50.2,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "browsecomp",
-      "score": 74.9,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "browsecomp_(agent_swarm)",
-      "score": 78.4,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "deepsearchqa_f1",
-      "score": 89.0,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "deepsearchqa_accuracy",
-      "score": 77.1,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "widesearch_item_f1",
-      "score": 72.7,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "widesearch_(agent_swarm)",
-      "score": 79.0,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "toolathlon",
-      "score": 27.8,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "mcpmark",
-      "score": 29.5,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "claw_eval_pass@3",
-      "score": 75.4,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "claw_eval_pass^3",
-      "score": 52.3,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "apex_agents",
-      "score": 11.5,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "osworld_verified",
-      "score": 63.3,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "terminal_bench_2.0_(terminus_2)",
-      "score": 50.8,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "swe_bench_pro",
-      "score": 50.7,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "swe_bench_multilingual",
-      "score": 73.0,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "swe_bench_verified",
-      "score": 76.8,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "scicode",
-      "score": 48.7,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "ojbench_(python)",
-      "score": 54.7,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "livecodebench_v6",
-      "score": 85.0,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "mmmu_pro",
-      "score": 78.5,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "mmmu_pro_(w/_python)",
-      "score": 77.7,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "charxiv_rq",
-      "score": 77.5,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "charxiv_rq_(w/_python)",
-      "score": 78.7,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "mathvision",
-      "score": 84.2,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "mathvision_(w/_python)",
-      "score": 85.0,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "babyvision",
-      "score": 36.5,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "babyvision_(w/_python)",
-      "score": 40.5,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "v*_(w/_python)",
-      "score": 86.9,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "mathvista_mini",
-      "score": 90.1,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "ocrbench",
-      "score": 92.3,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "omnidocbench_1.5",
-      "score": 88.8,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "videommmu",
-      "score": 86.6,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "videomme",
-      "score": 87.4,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    },
-    {
-      "model": "moonshot/kimi-k2.5",
-      "benchmark": "longbench_v2",
-      "score": 61.0,
-      "unit": "score",
-      "_source": "huggingface.co/moonshotai/Kimi-K2.5",
-      "_note": ""
-    }
-  ]
+  {
+   "id": "deepseek/deepseek-v4-pro-base",
+   "name": "DeepSeek-V4-Pro-Base",
+   "vendor": "deepseek",
+   "type": "language",
+   "release_date": "2026-04-27",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "deepseek/deepseek-v4-flash",
+   "name": "DeepSeek-V4-Flash",
+   "vendor": "deepseek",
+   "type": "language",
+   "release_date": "2026-04-24",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "deepseek/deepseek-v4-flash-base",
+   "name": "DeepSeek-V4-Flash-Base",
+   "vendor": "deepseek",
+   "type": "language",
+   "release_date": "2026-04-27",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "zai/glm-5.1",
+   "name": "GLM-5.1",
+   "vendor": "Z.ai (formerly Zhipu AI)",
+   "type": "language",
+   "release_date": "2026-03-27",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "zai/glm-5.1-fp8",
+   "name": "GLM-5.1-FP8",
+   "vendor": "Z.ai",
+   "type": "language",
+   "release_date": "2026-03-27",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "zai/glm-5",
+   "name": "GLM-5",
+   "vendor": "Z.ai",
+   "type": "language",
+   "release_date": "2026-04-05",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "moonshot/kimi-k2.6",
+   "name": "Kimi K2.6",
+   "vendor": "moonshot",
+   "type": "language",
+   "release_date": "2026-04-20",
+   "modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  },
+  {
+   "id": "moonshot/kimi-k2.5",
+   "name": "Kimi K2.5",
+   "vendor": "moonshot",
+   "type": "language",
+   "release_date": "2026-01-29",
+   "modalities": [
+    "text",
+    "image",
+    "video"
+   ]
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "swe_bench_verified",
+   "name": "SWE-bench Verified",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "swe_bench_pro",
+   "name": "SWE-bench Pro",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "livecodebench_v6",
+   "name": "LiveCodeBench v6",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "codeforces_rating",
+   "name": "Codeforces Rating",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "terminal_bench_2",
+   "name": "Terminal-Bench 2.0",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "aime_2026",
+   "name": "AIME 2026",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "hmmt_feb_2026",
+   "name": "HMMT-Feb-2026",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "imo_answer_bench",
+   "name": "IMOAnswerBench",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "mmlu_pro",
+   "name": "MMLU-Pro",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "gpqa_diamond",
+   "name": "GPQA Diamond",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "humanitys_last_exam",
+   "name": "Humanity's Last Exam",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "simpleqa_verified",
+   "name": "SimpleQA-Verified",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "mcp_atlas",
+   "name": "MCPAtlas",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "toolathlon",
+   "name": "Toolathlon",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "arc_agi_2",
+   "name": "ARC-AGI-2",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "humaneval",
+   "name": "HumanEval",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "mmlu",
+   "name": "MMLU (base eval)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "niah_1m",
+   "name": "Needle-in-Haystack @ 1M",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "hmmt_nov_2025",
+   "name": "Hmmt Nov 2025",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "nl2repo",
+   "name": "Nl2Repo",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "terminal_bench_2_claude_code",
+   "name": "Terminal Bench 2 Claude Code",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "cybergym",
+   "name": "Cybergym",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "browsecomp",
+   "name": "Browsecomp",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "browsecomp_ctx_mgmt",
+   "name": "Browsecomp Ctx Mgmt",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "tau3_bench",
+   "name": "Tau3 Bench",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "mcp_atlas_public",
+   "name": "Mcp Atlas Public",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "tool_decathlon",
+   "name": "Tool Decathlon",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "claw_eval_general",
+   "name": "Claw Eval General",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "claw_eval_multiturn",
+   "name": "Claw Eval Multiturn",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "hle",
+   "name": "Hle",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "hle_with_tools",
+   "name": "Hle With Tools",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "vending_bench_2_usd",
+   "name": "Vending Bench 2 Usd",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "aaii",
+   "name": "Aaii",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "hmmt_2026_feb",
+   "name": "Hmmt 2026 Feb",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "imo_answerbench",
+   "name": "Imo Answerbench",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "hle_full",
+   "name": "Hle Full",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "hle_full_with_tools",
+   "name": "Hle Full With Tools",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "browsecomp_(agent_swarm)",
+   "name": "Browsecomp (Agent Swarm)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "deepsearchqa_f1",
+   "name": "Deepsearchqa F1",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "deepsearchqa_accuracy",
+   "name": "Deepsearchqa Accuracy",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "widesearch_item_f1",
+   "name": "Widesearch Item F1",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "mcpmark",
+   "name": "Mcpmark",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "claw_eval_pass@3",
+   "name": "Claw Eval Pass@3",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "claw_eval_pass^3",
+   "name": "Claw Eval Pass^3",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "apex_agents",
+   "name": "Apex Agents",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "osworld_verified",
+   "name": "Osworld Verified",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "terminal_bench_2.0_(terminus_2)",
+   "name": "Terminal Bench 2.0 (Terminus 2)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "swe_bench_multilingual",
+   "name": "Swe Bench Multilingual",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "scicode",
+   "name": "Scicode",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "ojbench_(python)",
+   "name": "Ojbench (Python)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "mmmu_pro",
+   "name": "Mmmu Pro",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "mmmu_pro_(w/_python)",
+   "name": "Mmmu Pro (W/ Python)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "charxiv_rq",
+   "name": "Charxiv Rq",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "charxiv_rq_(w/_python)",
+   "name": "Charxiv Rq (W/ Python)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "mathvision",
+   "name": "Mathvision",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "mathvision_(w/_python)",
+   "name": "Mathvision (W/ Python)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "babyvision",
+   "name": "Babyvision",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "babyvision_(w/_python)",
+   "name": "Babyvision (W/ Python)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "v*_(w/_python)",
+   "name": "V* (W/ Python)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "aaii_(artificial_analysis_intelligence_index)",
+   "name": "Aaii (Artificial Analysis Intelligence Index)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "time_to_first_token_(s)_lower_better",
+   "name": "Time To First Token (S) Lower Better",
+   "category": "general",
+   "metric": "score_lower_better",
+   "unit": "score_lower_better",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "output_speed_(tokens/s)",
+   "name": "Output Speed (Tokens/S)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "aime_2025",
+   "name": "Aime 2025",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "hmmt_2025_feb",
+   "name": "Hmmt 2025 Feb",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "widesearch_(agent_swarm)",
+   "name": "Widesearch (Agent Swarm)",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "mathvista_mini",
+   "name": "Mathvista Mini",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "ocrbench",
+   "name": "Ocrbench",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "videommmu",
+   "name": "Videommmu",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "videomme",
+   "name": "Videomme",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "longbench_v2",
+   "name": "Longbench V2",
+   "category": "general",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  }
+ ],
+ "scores": [
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "swe_bench_verified",
+   "score": 80.6,
+   "unit": "score",
+   "_source": "aimadetools + buildfastwithai (vendor-reported)",
+   "_note": "V4-Pro-Max"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "swe_bench_pro",
+   "score": 55.4,
+   "unit": "score",
+   "_source": "aimadetools",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "livecodebench_v6",
+   "score": 93.5,
+   "unit": "score",
+   "_source": "aimadetools + buildfastwithai",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "codeforces_rating",
+   "score": 3206,
+   "unit": "score",
+   "_source": "aimadetools",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "terminal_bench_2",
+   "score": 67.9,
+   "unit": "score",
+   "_source": "aimadetools + buildfastwithai",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "aime_2026",
+   "score": 94.3,
+   "unit": "score",
+   "_source": "aimadetools",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "hmmt_feb_2026",
+   "score": 95.2,
+   "unit": "score",
+   "_source": "aimadetools + buildfastwithai",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "imo_answer_bench",
+   "score": 89.8,
+   "unit": "score",
+   "_source": "aimadetools",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "mmlu_pro",
+   "score": 87.5,
+   "unit": "score",
+   "_source": "aimadetools + medium leucopsis",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "gpqa_diamond",
+   "score": 90.1,
+   "unit": "score",
+   "_source": "aimadetools + medium leucopsis",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "humanitys_last_exam",
+   "score": 37.7,
+   "unit": "score",
+   "_source": "buildfastwithai + aimadetools",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "simpleqa_verified",
+   "score": 57.9,
+   "unit": "score",
+   "_source": "buildfastwithai",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "mcp_atlas",
+   "score": 73.6,
+   "unit": "score",
+   "_source": "aimadetools",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "toolathlon",
+   "score": 51.8,
+   "unit": "score",
+   "_source": "aimadetools",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "arc_agi_2",
+   "score": 76.6,
+   "unit": "score",
+   "_source": "benchlm.ai V4-Pro-Max page",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "niah_1m",
+   "score": 97.0,
+   "unit": "score",
+   "_source": "framia.pro (vendor claim)",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "swe_bench_verified",
+   "score": 79.0,
+   "unit": "score",
+   "_source": "buildfastwithai",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "livecodebench_v6",
+   "score": 91.6,
+   "unit": "score",
+   "_source": "buildfastwithai",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "terminal_bench_2",
+   "score": 56.9,
+   "unit": "score",
+   "_source": "buildfastwithai",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "simpleqa_verified",
+   "score": 34.1,
+   "unit": "score",
+   "_source": "buildfastwithai",
+   "_note": ""
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "mmlu",
+   "score": 88.7,
+   "unit": "score",
+   "_source": "WebSearch synthesis of HF model card vs V3.2-Base 87.8",
+   "_note": "Base-model 5-shot MMLU comparison"
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "swe_bench_pro",
+   "score": 58.4,
+   "unit": "score",
+   "_source": "Z.ai official + HuggingFace card",
+   "_note": "NEW SOTA on SWE-Bench Pro; beats GPT-5.4 (57.7) and Claude Opus 4.6 (57.3). First open-weight + first non-US-silicon model to lead."
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "aime_2026",
+   "score": 95.3,
+   "unit": "score",
+   "_source": "Z.ai official + HuggingFace card",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "hmmt_nov_2025",
+   "score": 94.0,
+   "unit": "score",
+   "_source": "HuggingFace card zai-org/GLM-5.1",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "hmmt_feb_2026",
+   "score": 82.6,
+   "unit": "score",
+   "_source": "HuggingFace card zai-org/GLM-5.1",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "gpqa_diamond",
+   "score": 86.2,
+   "unit": "score",
+   "_source": "HuggingFace card",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "imo_answer_bench",
+   "score": 83.8,
+   "unit": "score",
+   "_source": "HuggingFace card",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "nl2repo",
+   "score": 42.7,
+   "unit": "score",
+   "_source": "HuggingFace card",
+   "_note": "Repository-level code generation."
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "terminal_bench_2",
+   "score": 63.5,
+   "unit": "score",
+   "_source": "HuggingFace card (Terminus-2 harness)",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "terminal_bench_2_claude_code",
+   "score": 66.5,
+   "unit": "score",
+   "_source": "officechai (Claude Code harness variant)",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "cybergym",
+   "score": 68.7,
+   "unit": "score",
+   "_source": "HuggingFace card",
+   "_note": "NEW SOTA candidate — beats Claude Opus 4.6 (66.6)."
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "browsecomp",
+   "score": 68.0,
+   "unit": "score",
+   "_source": "HuggingFace card",
+   "_note": "79.3 with context management."
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "browsecomp_ctx_mgmt",
+   "score": 79.3,
+   "unit": "score",
+   "_source": "officechai / HF",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "tau3_bench",
+   "score": 70.6,
+   "unit": "score",
+   "_source": "HuggingFace card",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "mcp_atlas_public",
+   "score": 71.8,
+   "unit": "score",
+   "_source": "HuggingFace card",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "tool_decathlon",
+   "score": 40.7,
+   "unit": "score",
+   "_source": "HuggingFace card",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "claw_eval_general",
+   "score": 62.7,
+   "unit": "score",
+   "_source": "HuggingFace card",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "claw_eval_multiturn",
+   "score": 60.5,
+   "unit": "score",
+   "_source": "HuggingFace card",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "hle",
+   "score": 31.0,
+   "unit": "score",
+   "_source": "lushbinary / officechai",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "hle_with_tools",
+   "score": 52.3,
+   "unit": "score",
+   "_source": "HuggingFace card",
+   "_note": ""
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "vending_bench_2_usd",
+   "score": 5634.0,
+   "unit": "score",
+   "_source": "lushbinary",
+   "_note": "Final account balance in USD; #2 overall."
+  },
+  {
+   "model": "zai/glm-5.1",
+   "benchmark": "aaii",
+   "score": 51,
+   "unit": "score",
+   "_source": "artificialanalysis.ai/models/glm-5-1",
+   "_note": "Artificial Analysis Intelligence Index (#4 / 89 as of fetch date)."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "aime_2026",
+   "score": 96.4,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "hmmt_2026_feb",
+   "score": 92.7,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "gpqa_diamond",
+   "score": 90.5,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "imo_answerbench",
+   "score": 86.0,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "hle_full",
+   "score": 34.7,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "hle_full_with_tools",
+   "score": 54.0,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "browsecomp",
+   "score": 83.2,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "browsecomp_(agent_swarm)",
+   "score": 86.3,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "deepsearchqa_f1",
+   "score": 92.5,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "deepsearchqa_accuracy",
+   "score": 83.0,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "widesearch_item_f1",
+   "score": 80.8,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "toolathlon",
+   "score": 50.0,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "mcpmark",
+   "score": 55.9,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "claw_eval_pass@3",
+   "score": 80.9,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "claw_eval_pass^3",
+   "score": 62.3,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "apex_agents",
+   "score": 27.9,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "osworld_verified",
+   "score": 73.1,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "terminal_bench_2.0_(terminus_2)",
+   "score": 66.7,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "swe_bench_pro",
+   "score": 58.6,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "swe_bench_multilingual",
+   "score": 76.7,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "swe_bench_verified",
+   "score": 80.2,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "scicode",
+   "score": 52.2,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "ojbench_(python)",
+   "score": 60.6,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "livecodebench_v6",
+   "score": 89.6,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "mmmu_pro",
+   "score": 79.4,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "mmmu_pro_(w/_python)",
+   "score": 80.1,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "charxiv_rq",
+   "score": 80.4,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "charxiv_rq_(w/_python)",
+   "score": 86.7,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "mathvision",
+   "score": 87.4,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "mathvision_(w/_python)",
+   "score": 93.2,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "babyvision",
+   "score": 39.8,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "babyvision_(w/_python)",
+   "score": 68.5,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "v*_(w/_python)",
+   "score": 96.9,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "aaii_(artificial_analysis_intelligence_index)",
+   "score": 54,
+   "unit": "score",
+   "_source": "artificialanalysis.ai/models/kimi-k2-6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "time_to_first_token_(s)_lower_better",
+   "score": 2.22,
+   "unit": "score",
+   "_source": "artificialanalysis.ai/models/kimi-k2-6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "output_speed_(tokens/s)",
+   "score": 57.9,
+   "unit": "score",
+   "_source": "artificialanalysis.ai/models/kimi-k2-6",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "aime_2025",
+   "score": 96.1,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "aime_2026",
+   "score": 95.8,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "hmmt_2025_feb",
+   "score": 95.4,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "hmmt_2026_feb",
+   "score": 87.1,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "gpqa_diamond",
+   "score": 87.6,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "mmlu_pro",
+   "score": 87.1,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "hle_full",
+   "score": 30.1,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "hle_full_with_tools",
+   "score": 50.2,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "browsecomp",
+   "score": 74.9,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "browsecomp_(agent_swarm)",
+   "score": 78.4,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "deepsearchqa_f1",
+   "score": 89.0,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "deepsearchqa_accuracy",
+   "score": 77.1,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "widesearch_item_f1",
+   "score": 72.7,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "widesearch_(agent_swarm)",
+   "score": 79.0,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "toolathlon",
+   "score": 27.8,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "mcpmark",
+   "score": 29.5,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "claw_eval_pass@3",
+   "score": 75.4,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "claw_eval_pass^3",
+   "score": 52.3,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "apex_agents",
+   "score": 11.5,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "osworld_verified",
+   "score": 63.3,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "terminal_bench_2.0_(terminus_2)",
+   "score": 50.8,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "swe_bench_pro",
+   "score": 50.7,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "swe_bench_multilingual",
+   "score": 73.0,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "swe_bench_verified",
+   "score": 76.8,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "scicode",
+   "score": 48.7,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "ojbench_(python)",
+   "score": 54.7,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "livecodebench_v6",
+   "score": 85.0,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "mmmu_pro",
+   "score": 78.5,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "mmmu_pro_(w/_python)",
+   "score": 77.7,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "charxiv_rq",
+   "score": 77.5,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "charxiv_rq_(w/_python)",
+   "score": 78.7,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "mathvision",
+   "score": 84.2,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "mathvision_(w/_python)",
+   "score": 85.0,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "babyvision",
+   "score": 36.5,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "babyvision_(w/_python)",
+   "score": 40.5,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "v*_(w/_python)",
+   "score": 86.9,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.6 (comparison table)",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "mathvista_mini",
+   "score": 90.1,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "ocrbench",
+   "score": 92.3,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "omnidocbench_v1_5_composite",
+   "score": 88.8,
+   "unit": "%",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": " [S267: consolidated from omnidocbench_1.5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "videommmu",
+   "score": 86.6,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "videomme",
+   "score": 87.4,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "longbench_v2",
+   "score": 61.0,
+   "unit": "score",
+   "_source": "huggingface.co/moonshotai/Kimi-K2.5",
+   "_note": ""
+  }
+ ]
 }

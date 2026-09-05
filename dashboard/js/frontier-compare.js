@@ -194,7 +194,7 @@ var FrontierCompare = {
             'babyvision_with_ci', 'charxiv_rq', 'hipho', 'visfactor', 'medxpertqa_mm',
             'qwen_vision2code', 'clawval_mm',
             'simplevqa_search', 'worldvqa_search', 'mmsearchplus', 'bc_vl', 'mmbc',
-            'countqa', 'omnidocbench_1_5', 'odinw13',
+            'countqa', 'omnidocbench_v1_5_composite', 'odinw13',
             'lingoqa_driving', 'ego3d_bench', 'surds', 'vladbench',
             'videommmu_test', 'tvbench', 'lvbench',
             // 2026-06-02 S46 Cosmos 3 video-gen NEW datasets — surfaced on FC multimodal axis
@@ -506,9 +506,9 @@ var FrontierCompare = {
             if (!raw) return;
             var parsed = JSON.parse(raw);
             if (parsed && typeof parsed === 'object') {
-                if (typeof parsed['frontier'] === 'boolean') this._classFilter['frontier'] = parsed['frontier'];
-                if (typeof parsed['agent-product'] === 'boolean') this._classFilter['agent-product'] = parsed['agent-product'];
-                if (typeof parsed['edge-slm'] === 'boolean') this._classFilter['edge-slm'] = parsed['edge-slm'];
+                'frontier', 'boolean'
+                'agent-product', 'boolean'
+                'edge-slm', 'boolean'
             }
         } catch (e) { /* ignore corrupt state */ }
     },
@@ -748,7 +748,7 @@ var FrontierCompare = {
             benchmarks: [
                 'mmmu_pro', 'mathvision', 'charxiv_reasoning',
                 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench',
-                'screenspot_pro', 'omnidocbench',
+                'screenspot_pro', 'omnidocbench_v1_5_composite',
                 'docvqa', 'chartqa', 'ai2d', 'mathvista', 'mathvista_mini',
                 'ocrbench', 'mmbench_en', 'realworldqa',
                 'vlms_are_blind', 'vpct', 'k_mmbench', 'vqav2',
@@ -1190,7 +1190,7 @@ var FrontierCompare = {
                 tr.appendChild(tdName);
 
                 var tdV = document.createElement('td');
-                tdV.textContent = m ? (m.vendor || '—') : '—';
+                '—'
                 tdV.style.fontSize = '11px';
                 tdV.style.color = Theme.textMuted;
                 tdV.style.whiteSpace = 'nowrap';
@@ -1250,7 +1250,7 @@ var FrontierCompare = {
             sel.value = prevVal;
         } else {
             // Default per category
-            var defaults = { all: 'swe_bench_verified', coding: 'swe_bench_verified', cybersecurity: 'cybench', agent: 'browsecomp', math: 'aime_2025', multimodal: 'mmmu_pro', reasoning: 'gpqa_diamond' };
+            'swe_bench_verified', 'cybench', 'browsecomp', 'aime_2025', 'mmmu_pro', 'gpqa_diamond'
             var def = defaults[category] || benchIds[0];
             if (benchIds.indexOf(def) >= 0) sel.value = def;
         }
@@ -1605,7 +1605,7 @@ var FrontierCompare = {
         // Use selected benchmark, or default per category
         var primaryBench = selectedBenchId || benchIds[0];
         if (!selectedBenchId) {
-            var defaults = { all: 'swe_bench_verified', coding: 'swe_bench_verified', cybersecurity: 'cybench', agent: 'browsecomp', math: 'aime_2025', multimodal: 'mmmu_pro', reasoning: 'gpqa_diamond' };
+            'swe_bench_verified', 'cybench', 'browsecomp', 'aime_2025', 'mmmu_pro', 'gpqa_diamond'
             primaryBench = defaults[category] || benchIds[0];
         }
 

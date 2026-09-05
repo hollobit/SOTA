@@ -3196,21 +3196,6 @@
   },
   {
     "model_id": "google/gemini-3-pro",
-    "benchmark_id": "omnidocbench",
-    "value": 0.115,
-    "unit": "%",
-    "source": {
-      "type": "pdf",
-      "url": "resource/Gemini-3-Pro-Model-Card.pdf",
-      "date": "2026-04-17",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-04-17",
-    "notes": "Edit distance, lower is better"
-  },
-  {
-    "model_id": "google/gemini-3-pro",
     "benchmark_id": "facts_benchmark",
     "value": 70.5,
     "unit": "%",
@@ -3243,21 +3228,6 @@
     "model_id": "google/gemini-2.5-pro",
     "benchmark_id": "hle",
     "value": 21.6,
-    "unit": "%",
-    "source": {
-      "type": "pdf",
-      "url": "resource/Gemini-3-Pro-Model-Card.pdf",
-      "date": "2026-04-17",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-04-17",
-    "notes": "Gemini 3 Pro Model Card"
-  },
-  {
-    "model_id": "google/gemini-2.5-pro",
-    "benchmark_id": "omnidocbench",
-    "value": 0.145,
     "unit": "%",
     "source": {
       "type": "pdf",
@@ -3316,21 +3286,6 @@
   },
   {
     "model_id": "anthropic/claude-sonnet-4.5",
-    "benchmark_id": "omnidocbench",
-    "value": 0.145,
-    "unit": "%",
-    "source": {
-      "type": "pdf",
-      "url": "resource/Gemini-3-Pro-Model-Card.pdf",
-      "date": "2026-04-17",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-04-17",
-    "notes": "Gemini 3 Pro Model Card"
-  },
-  {
-    "model_id": "anthropic/claude-sonnet-4.5",
     "benchmark_id": "vending_bench_2",
     "value": 3838.74,
     "unit": "%",
@@ -3363,21 +3318,6 @@
     "model_id": "openai/gpt-5.1",
     "benchmark_id": "hle",
     "value": 26.5,
-    "unit": "%",
-    "source": {
-      "type": "pdf",
-      "url": "resource/Gemini-3-Pro-Model-Card.pdf",
-      "date": "2026-04-17",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-04-17",
-    "notes": "Gemini 3 Pro Model Card"
-  },
-  {
-    "model_id": "openai/gpt-5.1",
-    "benchmark_id": "omnidocbench",
-    "value": 0.147,
     "unit": "%",
     "source": {
       "type": "pdf",
@@ -4441,7 +4381,7 @@
   },
   {
     "model_id": "alibaba/qwen3.6-plus",
-    "benchmark_id": "omnidocbench",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 91.2,
     "unit": "%",
     "source": {
@@ -4450,9 +4390,9 @@
       "date": "2026-04-17",
       "citation": null
     },
-    "is_sota": true,
+    "is_sota": false,
     "collected_at": "2026-04-17",
-    "notes": "Higher=better normalized score"
+    "notes": "Higher=better normalized score [S267: consolidated from omnidocbench -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3.5-397b",
@@ -5278,6 +5218,21 @@
     "is_sota": false,
     "collected_at": "2026-04-17",
     "notes": "HMMT Feb 25"
+  },
+  {
+    "model_id": "alibaba/qwen3.6-35b-a3b",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 89.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://qwen.ai/blog?id=qwen3.6-35b-a3b",
+      "date": "2026-04-17",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-04-17",
+    "notes": " [S267: consolidated from omnidocbench -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3.5-27b",
@@ -11518,21 +11473,6 @@
     "is_sota": true,
     "collected_at": "2026-04-25",
     "notes": "DEV-v1.1"
-  },
-  {
-    "model_id": "alibaba/qwen3.6-35b-a3b",
-    "benchmark_id": "omnidocbench",
-    "value": 89.9,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-      "date": "2026-04-25",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-04-25",
-    "notes": "Qwen official OmniDocBench 1.5"
   },
   {
     "model_id": "alibaba/qwen3.6-35b-a3b",
@@ -62281,7 +62221,7 @@
   },
   {
     "model_id": "alibaba/qwen3.7-plus",
-    "benchmark_id": "omnidocbench_1_5",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 91.4,
     "unit": "%",
     "source": {
@@ -62292,7 +62232,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "Qwen blog Multimodal — OmniDocBench1.5 | SOTA — narrowly above Qwen3.6-Plus 91.2"
+    "notes": "Qwen blog Multimodal — OmniDocBench1.5 | SOTA — narrowly above Qwen3.6-Plus 91.2 [S267: consolidated from omnidocbench_1_5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3.7-plus",
@@ -63686,21 +63626,6 @@
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-06-02",
-    "notes": "Qwen blog"
-  },
-  {
-    "model_id": "alibaba/qwen3.6-plus",
-    "benchmark_id": "omnidocbench_1_5",
-    "value": 91.2,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://qwen.ai/blog?id=qwen3.7-plus",
-      "date": "2026-06-02",
-      "citation": null
-    },
-    "is_sota": false,
     "collected_at": "2026-06-02",
     "notes": "Qwen blog"
   },
@@ -65221,9 +65146,9 @@
   },
   {
     "model_id": "google/gemma-4-12b",
-    "benchmark_id": "omnidocbench_1_5",
+    "benchmark_id": "omnidocbench_1_5_lower_better",
     "value": 0.164,
-    "unit": "ned_lower_better",
+    "unit": "score_lower_better",
     "source": {
       "type": "leaderboard",
       "url": "https://huggingface.co/google/gemma-4-12B",
@@ -65232,7 +65157,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-06-04",
-    "notes": "Gemma 4 12B HF card — OmniDocBench 1.5 average edit distance (lower better)"
+    "notes": "Gemma 4 12B HF card — OmniDocBench 1.5 average edit distance (lower better) [S267: consolidated from omnidocbench_1_5 -> omnidocbench_1_5_lower_better (edit distance (lower better)). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "google/gemma-4-12b",
@@ -100140,21 +100065,6 @@
     "notes": ""
   },
   {
-    "model_id": "google/gemini-3-pro",
-    "benchmark_id": "omnidocbench_1_5_lower_better",
-    "value": 0.115,
-    "unit": "score",
-    "source": {
-      "type": "pdf",
-      "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3_pro_model_evaluation.pdf",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": "lower is better, overall edit distance"
-  },
-  {
     "model_id": "google/gemini-2.5-pro",
     "benchmark_id": "omnidocbench_1_5_lower_better",
     "value": 0.145,
@@ -117961,21 +117871,6 @@
   },
   {
     "model_id": "alibaba/qwen3.6-35b-a3b",
-    "benchmark_id": "omnidocbench_v15",
-    "value": 89.9,
-    "unit": "pct",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": "Official model card."
-  },
-  {
-    "model_id": "alibaba/qwen3.6-35b-a3b",
     "benchmark_id": "mmlu_redux",
     "value": 93.3,
     "unit": "pct",
@@ -118231,9 +118126,9 @@
   },
   {
     "model_id": "alibaba/qwen3.6-35b-a3b-fp8",
-    "benchmark_id": "omnidocbench_v15",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 89.9,
-    "unit": "pct",
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
@@ -118242,7 +118137,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "FP8 card explicit value."
+    "notes": "FP8 card explicit value. [S267: consolidated from omnidocbench_v15 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3.6-35b-a3b-fp8",
@@ -121831,18 +121726,18 @@
   },
   {
     "model_id": "moonshot/kimi-k2.5",
-    "benchmark_id": "omnidocbench_1.5",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 88.8,
-    "unit": "score",
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "huggingface.co/moonshotai/Kimi-K2.5",
       "date": "2026-09-05",
       "citation": null
     },
-    "is_sota": true,
+    "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench_1.5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "moonshot/kimi-k2.5",
@@ -138481,9 +138376,9 @@
   },
   {
     "model_id": "minimax/minimax-m3",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.916,
-    "unit": "score",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 91.6,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
@@ -138492,43 +138387,13 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "rank=1 org=MiniMax"
-  },
-  {
-    "model_id": "alibaba/qwen3.6-plus",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.912,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": "rank=2 org=Alibaba/Qwen"
-  },
-  {
-    "model_id": "alibaba/qwen3.6-35b-a3b",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.899,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": "rank=3 org=Alibaba/Qwen"
+    "notes": "rank=1 org=MiniMax [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-1 score -> x100). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3.5-122b-a10b",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.898,
-    "unit": "score",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 89.8,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
@@ -138537,13 +138402,13 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "rank=4 org=Alibaba/Qwen"
+    "notes": "rank=4 org=Alibaba/Qwen [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-1 score -> x100). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3.5-35b-a3b",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.893,
-    "unit": "score",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 89.3,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
@@ -138552,13 +138417,13 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "rank=5 org=Alibaba/Qwen"
+    "notes": "rank=5 org=Alibaba/Qwen [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-1 score -> x100). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "openai/gpt-5.4",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.891,
-    "unit": "score",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 89.1,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
@@ -138567,13 +138432,13 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "rank=6 org=OpenAI"
+    "notes": "rank=6 org=OpenAI [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-1 score -> x100). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3.5-27b",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.889,
-    "unit": "score",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 88.9,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
@@ -138582,28 +138447,13 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "rank=7 org=Alibaba/Qwen"
-  },
-  {
-    "model_id": "moonshot/kimi-k2.5",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.888,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": "rank=8 org=Moonshot AI"
+    "notes": "rank=7 org=Alibaba/Qwen [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-1 score -> x100). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "openai/gpt-5.5-instant",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.875,
-    "unit": "score",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 87.5,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
@@ -138612,13 +138462,13 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "rank=9 org=OpenAI"
+    "notes": "rank=9 org=OpenAI [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-1 score -> x100). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "openai/gpt-5.4-mini",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.874,
-    "unit": "score",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 87.4,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
@@ -138627,13 +138477,13 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "rank=10 org=OpenAI"
+    "notes": "rank=10 org=OpenAI [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-1 score -> x100). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "openai/gpt-5.4-nano",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.758,
-    "unit": "score",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 75.8,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
@@ -138642,13 +138492,13 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "rank=11 org=OpenAI"
+    "notes": "rank=11 org=OpenAI [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-1 score -> x100). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "google/diffusiongemma-26b-a4b",
-    "benchmark_id": "omnidocbench_v1_5",
+    "benchmark_id": "omnidocbench_1_5_lower_better",
     "value": 0.319,
-    "unit": "score",
+    "unit": "score_lower_better",
     "source": {
       "type": "leaderboard",
       "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
@@ -138657,43 +138507,28 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "rank=12 org=Google"
-  },
-  {
-    "model_id": "google/gemma-4-12b",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.164,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": "rank=13 org=Google"
+    "notes": "rank=12 org=Google [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_1_5_lower_better (edit distance (lower better)). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "google/gemini-3-pro",
-    "benchmark_id": "omnidocbench_v1_5",
+    "benchmark_id": "omnidocbench_1_5_lower_better",
     "value": 0.115,
-    "unit": "score",
+    "unit": "score_lower_better",
     "source": {
       "type": "leaderboard",
       "url": "llm-stats.com/benchmarks/omnidocbench-1.5",
       "date": "2026-09-05",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-09-05",
-    "notes": "rank=15 org=Google"
+    "notes": "rank=15 org=Google [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_1_5_lower_better (edit distance (lower better)). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "google/gemini-3-flash",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 0.901,
-    "unit": "score",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 90.1,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "llamaindex.ai/blog/omnidocbench-is-saturated + idp-leaderboard.org/benchmarks/omnidocbench v1.5 alt snapshot",
@@ -138702,7 +138537,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "rank= org=Google"
+    "notes": "rank= org=Google [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-1 score -> x100). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3.6-plus",
@@ -157996,9 +157831,9 @@
   },
   {
     "model_id": "mistral/mistral-ocr-2503",
-    "benchmark_id": "omnidocbench_v1_5",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 78.83,
-    "unit": "score",
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "https://arxiv.org/html/2510.14528v1",
@@ -158007,7 +157842,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "PaddleOCR-VL paper Table"
+    "notes": "PaddleOCR-VL paper Table [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "mistral/mistral-ocr-2503",
@@ -158520,21 +158355,6 @@
     "notes": "dots.ocr-bench Overall Edit, multilingual"
   },
   {
-    "model_id": "rednote/dots-ocr",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 88.41,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/html/2510.14528v1",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": "PaddleOCR-VL paper comparison table"
-  },
-  {
     "model_id": "rednote/dots-mocr",
     "benchmark_id": "olmocr_bench",
     "value": 83.9,
@@ -158581,9 +158401,9 @@
   },
   {
     "model_id": "baidu/paddleocr-vl",
-    "benchmark_id": "omnidocbench_v1_5",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 92.56,
-    "unit": "score",
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "https://arxiv.org/html/2510.14528v1",
@@ -158592,7 +158412,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "PaddleOCR-VL paper overall on OmniDocBench v1.5"
+    "notes": "PaddleOCR-VL paper overall on OmniDocBench v1.5 [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "baidu/paddleocr-vl",
@@ -158655,6 +158475,21 @@
     "notes": ""
   },
   {
+    "model_id": "baidu/paddleocr-vl-1.5",
+    "benchmark_id": "omnidocbench_v1_5_composite",
+    "value": 94.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2601.21957v1",
+      "date": "2026-09-05",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-09-05",
+    "notes": "PaddleOCR-VL 1.5 paper claim [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
+  },
+  {
     "model_id": "opendatalab/mineru-2.5",
     "benchmark_id": "olmocr_bench",
     "value": 75.2,
@@ -158668,21 +158503,6 @@
     "is_sota": false,
     "collected_at": "2026-09-05",
     "notes": "MinerU 2.5.4 reported in olmOCR-2 paper, 75.2±1.1"
-  },
-  {
-    "model_id": "opendatalab/mineru-2.5",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 90.67,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/html/2510.14528v1",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": "MinerU2.5-1.2B per PaddleOCR-VL paper"
   },
   {
     "model_id": "opendatalab/mineru-2.5",
@@ -159733,21 +159553,6 @@
     "is_sota": false,
     "collected_at": "2026-09-05",
     "notes": "1.2B; Text Edit 0.047, Formula CDM 88.46, Table TEDS 88.22"
-  },
-  {
-    "model_id": "google/gemini-3-pro",
-    "benchmark_id": "omnidocbench_v1_5_composite",
-    "value": 90.33,
-    "unit": "score_0_100",
-    "source": {
-      "type": "leaderboard",
-      "url": "GLM-OCR arxiv 2603.10910v1 Table 4; decodethefuture.org explainer",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": "Closed; Text Edit 0.065, Formula CDM 89.18, Table TEDS 88.28"
   },
   {
     "model_id": "echo840/monkeyocr-pro-3b",
@@ -162135,36 +161940,6 @@
     "notes": "MinerU2.5-Pro technical report: 'achieves the absolute SOTA overall score of 95.69 on OmniDocBench v1.6' [S266: merged into omnidocbench_v1_6 — same OmniDocBench v1.6 overall metric (all 4 overlapping models had identical values). The snake_case form is canonical, matching omnidocbench_v1_6_{textedit,tableteds,readorder}.]"
   },
   {
-    "model_id": "baidu/paddleocr-vl-1.5",
-    "benchmark_id": "omnidocbench-v1.5",
-    "value": 94.5,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://ernie.baidu.com/blog/posts/paddleocr-vl-1.5/",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": "ERNIE blog: 'PaddleOCR-VL-1.5 raises overall score from 92.86% to 94.50%' on OmniDocBench"
-  },
-  {
-    "model_id": "zai-org/glm-ocr",
-    "benchmark_id": "omnidocbench-v1.5",
-    "value": 94.62,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://decodethefuture.org/en/glm-ocr-explained/",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": "GLM-OCR Zhipu writeup: scored 94.62 on OmniDocBench V1.5"
-  },
-  {
     "model_id": "zai-org/glm-ocr",
     "benchmark_id": "ocrbench-text",
     "value": 94.0,
@@ -162253,21 +162028,6 @@
     "is_sota": true,
     "collected_at": "2026-09-05",
     "notes": ""
-  },
-  {
-    "model_id": "rednote/dots-ocr",
-    "benchmark_id": "omnidocbench-v1.5",
-    "value": 87.5,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://github.com/rednote-hilab/dots.ocr",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": "dots.ocr blog: 'achieves new SOTA scores of 87.5 (EN) and 84.0 (CH) on OmniDocBench'"
   },
   {
     "model_id": "tencent/youtu-parsing",
@@ -162466,7 +162226,7 @@
   },
   {
     "model_id": "yuliang-liu/monkeyocr-pro-1.2b",
-    "benchmark_id": "omnidocbench-v1.5",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 90.67,
     "unit": "%",
     "source": {
@@ -162477,22 +162237,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "MinerU2.5 paper comparison: 'MinerU2.5 90.67 outperforms second-best MonkeyOCR-pro-3B by 1.82' (so MonkeyOCR-pro-3B = 88.85). Strict-attrib: 90.67 belongs to MinerU2.5; corrected — see next entry"
-  },
-  {
-    "model_id": "echo840/monkeyocr-pro-3b",
-    "benchmark_id": "omnidocbench-v1.5",
-    "value": 88.85,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2509.22186",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": "Derived from MinerU2.5 paper: '90.67 outperforms second-best MonkeyOCR-pro-3B by 1.82' — value implicitly stated"
+    "notes": "MinerU2.5 paper comparison: 'MinerU2.5 90.67 outperforms second-best MonkeyOCR-pro-3B by 1.82' (so MonkeyOCR-pro-3B = 88.85). Strict-attrib: 90.67 belongs to MinerU2.5; corrected — see next entry [S267: consolidated from omnidocbench-v1.5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "naver/donut",
@@ -162556,7 +162301,7 @@
   },
   {
     "model_id": "google/gemini-3-pro",
-    "benchmark_id": "omnidocbench-v1.5",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 90.33,
     "unit": "%",
     "source": {
@@ -162567,7 +162312,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": "GLM-OCR comparison: 'Gemini 3 Pro (90.33)'"
+    "notes": "GLM-OCR comparison: 'Gemini 3 Pro (90.33)' [S267: consolidated from omnidocbench-v1.5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "google/gemini-3-pro",
@@ -162601,7 +162346,7 @@
   },
   {
     "model_id": "alibaba/qwen3-vl-235b-a22b-instruct",
-    "benchmark_id": "omnidocbench-v1.5",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 89.15,
     "unit": "%",
     "source": {
@@ -162612,7 +162357,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench-v1.5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3-vl-235b-a22b-instruct",
@@ -167611,9 +167356,9 @@
   },
   {
     "model_id": "google/gemma-4-e2b-it",
-    "benchmark_id": "omnidocbench_v15",
+    "benchmark_id": "omnidocbench_1_5_lower_better",
     "value": 0.29,
-    "unit": "score-lower-better",
+    "unit": "score_lower_better",
     "source": {
       "type": "leaderboard",
       "url": "https://huggingface.co/google/gemma-4-e4b-it",
@@ -167622,7 +167367,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench_v15 -> omnidocbench_1_5_lower_better (edit distance (lower better)). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "google/gemma-4-e2b-it",
@@ -167851,9 +167596,9 @@
   },
   {
     "model_id": "google/gemma-4-e4b-it",
-    "benchmark_id": "omnidocbench_v15",
+    "benchmark_id": "omnidocbench_1_5_lower_better",
     "value": 0.181,
-    "unit": "score-lower-better",
+    "unit": "score_lower_better",
     "source": {
       "type": "leaderboard",
       "url": "https://huggingface.co/google/gemma-4-e4b-it",
@@ -167862,7 +167607,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench_v15 -> omnidocbench_1_5_lower_better (edit distance (lower better)). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "google/gemma-4-e4b-it",
@@ -168106,9 +167851,9 @@
   },
   {
     "model_id": "google/gemma-4-12b-it",
-    "benchmark_id": "omnidocbench_v15",
+    "benchmark_id": "omnidocbench_1_5_lower_better",
     "value": 0.164,
-    "unit": "score-lower-better",
+    "unit": "score_lower_better",
     "source": {
       "type": "leaderboard",
       "url": "https://huggingface.co/google/gemma-4-12b-it",
@@ -168117,7 +167862,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench_v15 -> omnidocbench_1_5_lower_better (edit distance (lower better)). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "google/gemma-4-12b-it",
@@ -168421,9 +168166,9 @@
   },
   {
     "model_id": "google/gemma-4-26b-a4b-it",
-    "benchmark_id": "omnidocbench_v15",
+    "benchmark_id": "omnidocbench_1_5_lower_better",
     "value": 0.149,
-    "unit": "score-lower-better",
+    "unit": "score_lower_better",
     "source": {
       "type": "leaderboard",
       "url": "https://huggingface.co/google/gemma-4-26b-a4b-it",
@@ -168432,7 +168177,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench_v15 -> omnidocbench_1_5_lower_better (edit distance (lower better)). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "google/gemma-4-26b-a4b-it",
@@ -168691,9 +168436,9 @@
   },
   {
     "model_id": "google/gemma-4-31b-it",
-    "benchmark_id": "omnidocbench_v15",
+    "benchmark_id": "omnidocbench_1_5_lower_better",
     "value": 0.131,
-    "unit": "score-lower-better",
+    "unit": "score_lower_better",
     "source": {
       "type": "leaderboard",
       "url": "https://huggingface.co/google/gemma-4-31b-it",
@@ -168702,7 +168447,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench_v15 -> omnidocbench_1_5_lower_better (edit distance (lower better)). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "google/gemma-4-31b-it",
@@ -168976,9 +168721,9 @@
   },
   {
     "model_id": "alibaba/qwen3.5-4b",
-    "benchmark_id": "omnidocbench_v15",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 86.2,
-    "unit": "pct",
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "https://huggingface.co/Qwen/Qwen3.5-4B",
@@ -168987,7 +168732,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench_v15 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3.5-4b",
@@ -203175,21 +202920,6 @@
     "notes": ""
   },
   {
-    "model_id": "baidu/paddleocr-vl-1.5",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 94.5,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://github.com/PaddlePaddle/PaddleOCR/releases",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": ""
-  },
-  {
     "model_id": "opendatalab/mineru2.5-pro",
     "benchmark_id": "omnidocbench_v1_6",
     "value": 95.75,
@@ -203236,7 +202966,7 @@
   },
   {
     "model_id": "zai-org/glm-ocr",
-    "benchmark_id": "omnidocbench_v1_5",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 94.62,
     "unit": "%",
     "source": {
@@ -203245,24 +202975,9 @@
       "date": "2026-09-05",
       "citation": null
     },
-    "is_sota": true,
-    "collected_at": "2026-09-05",
-    "notes": ""
-  },
-  {
-    "model_id": "baidu/qianfan-ocr",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 93.12,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/pdf/2603.13398",
-      "date": "2026-09-05",
-      "citation": null
-    },
     "is_sota": false,
     "collected_at": "2026-09-05",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "tencent/hunyuanocr",
@@ -203317,21 +203032,6 @@
     "source": {
       "type": "leaderboard",
       "url": "https://arxiv.org/pdf/2603.27365 (Falcon Perception report — cites Mistral OCR 3 = 85.20)",
-      "date": "2026-09-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-09-05",
-    "notes": ""
-  },
-  {
-    "model_id": "deepseek/deepseek-ocr-2",
-    "benchmark_id": "omnidocbench_v1_5",
-    "value": 91.09,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/pdf/2603.13398 (Qianfan-OCR report cites DeepSeek-OCR-v2 = 91.09)",
       "date": "2026-09-05",
       "citation": null
     },
@@ -225196,7 +224896,7 @@
   },
   {
     "model_id": "moonshot/kimi-k3",
-    "benchmark_id": "omnidocbench",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 91.1,
     "unit": "%",
     "source": {
@@ -225207,7 +224907,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-07-16",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "moonshot/kimi-k3",
@@ -262411,7 +262111,7 @@
   },
   {
     "model_id": "alibaba/qwen3.8-27b",
-    "benchmark_id": "omnidocbench_1_5",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 91.1,
     "unit": "%",
     "source": {
@@ -262422,7 +262122,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-08-17",
-    "notes": "OmniDocBench 1.5"
+    "notes": "OmniDocBench 1.5 [S267: consolidated from omnidocbench_1_5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3.8-27b",
@@ -262786,7 +262486,7 @@
   },
   {
     "model_id": "alibaba/qwen3.8-max",
-    "benchmark_id": "omnidocbench_1_5",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 92.1,
     "unit": "%",
     "source": {
@@ -262795,9 +262495,9 @@
       "date": "2026-08-03",
       "citation": null
     },
-    "is_sota": true,
+    "is_sota": false,
     "collected_at": "2026-08-03",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench_1_5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "alibaba/qwen3.8-max",
@@ -322801,7 +322501,7 @@
   },
   {
     "model_id": "lg/exaone-4.5-33b",
-    "benchmark_id": "omnidocbench_v15",
+    "benchmark_id": "omnidocbench_v1_5_composite",
     "value": 81.2,
     "unit": "%",
     "source": {
@@ -322812,7 +322512,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-05-03",
-    "notes": ""
+    "notes": " [S267: consolidated from omnidocbench_v15 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
     "model_id": "lg/exaone-4.5-33b",

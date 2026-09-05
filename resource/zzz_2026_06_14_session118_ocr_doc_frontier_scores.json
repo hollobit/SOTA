@@ -1209,15 +1209,6 @@
    "source_url": "https://github.com/rednote-hilab/dots.ocr"
   },
   {
-   "id": "omnidocbench_v1_5",
-   "name": "OmniDocBench v1.5 Overall",
-   "category": "ocr",
-   "metric": "overall",
-   "unit": "score",
-   "description": "",
-   "source_url": "https://arxiv.org/html/2510.14528v1"
-  },
-  {
    "id": "olmocr_bench",
    "name": "olmOCR-Bench",
    "category": "ocr",
@@ -1443,15 +1434,6 @@
    "source_url": ""
   },
   {
-   "id": "omnidocbench-v1.5",
-   "name": "OmniDocBench v1.5",
-   "category": "Document parsing",
-   "metric": "score",
-   "unit": "%",
-   "description": "",
-   "source_url": ""
-  },
-  {
    "id": "real5-omnidocbench",
    "name": "Real5-OmniDocBench",
    "category": "Physically reconstructed (warp/skew/photography) doc parsing",
@@ -1649,11 +1631,11 @@
   },
   {
    "model": "mistral/mistral-ocr-2503",
-   "benchmark": "omnidocbench_v1_5",
+   "benchmark": "omnidocbench_v1_5_composite",
    "score": 78.83,
-   "unit": "score",
+   "unit": "%",
    "_source": "https://arxiv.org/html/2510.14528v1",
-   "_note": "PaddleOCR-VL paper Table"
+   "_note": "PaddleOCR-VL paper Table [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
    "model": "mistral/mistral-ocr-2503",
@@ -1928,14 +1910,6 @@
    "_note": "dots.ocr-bench Overall Edit, multilingual"
   },
   {
-   "model": "rednote/dots-ocr",
-   "benchmark": "omnidocbench_v1_5",
-   "score": 88.41,
-   "unit": "score",
-   "_source": "https://arxiv.org/html/2510.14528v1",
-   "_note": "PaddleOCR-VL paper comparison table"
-  },
-  {
    "model": "rednote/dots-mocr",
    "benchmark": "olmocr_bench",
    "score": 83.9,
@@ -1961,11 +1935,11 @@
   },
   {
    "model": "baidu/paddleocr-vl",
-   "benchmark": "omnidocbench_v1_5",
+   "benchmark": "omnidocbench_v1_5_composite",
    "score": 92.56,
-   "unit": "score",
+   "unit": "%",
    "_source": "https://arxiv.org/html/2510.14528v1",
-   "_note": "PaddleOCR-VL paper overall on OmniDocBench v1.5"
+   "_note": "PaddleOCR-VL paper overall on OmniDocBench v1.5 [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
    "model": "baidu/paddleocr-vl",
@@ -2001,11 +1975,11 @@
   },
   {
    "model": "baidu/paddleocr-vl-1.5",
-   "benchmark": "omnidocbench_v1_5",
+   "benchmark": "omnidocbench_v1_5_composite",
    "score": 94.5,
-   "unit": "score",
+   "unit": "%",
    "_source": "https://arxiv.org/html/2601.21957v1",
-   "_note": "PaddleOCR-VL 1.5 paper claim"
+   "_note": "PaddleOCR-VL 1.5 paper claim [S267: consolidated from omnidocbench_v1_5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
    "model": "opendatalab/mineru-2.5",
@@ -2014,14 +1988,6 @@
    "unit": "%",
    "_source": "https://arxiv.org/html/2510.19817v1",
    "_note": "MinerU 2.5.4 reported in olmOCR-2 paper, 75.2±1.1"
-  },
-  {
-   "model": "opendatalab/mineru-2.5",
-   "benchmark": "omnidocbench_v1_5",
-   "score": 90.67,
-   "unit": "score",
-   "_source": "https://arxiv.org/html/2510.14528v1",
-   "_note": "MinerU2.5-1.2B per PaddleOCR-VL paper"
   },
   {
    "model": "opendatalab/mineru-2.5",
@@ -3872,20 +3838,12 @@
    "_note": "MinerU2.5-Pro technical report: 'achieves the absolute SOTA overall score of 95.69 on OmniDocBench v1.6' [S266: merged into omnidocbench_v1_6 — same OmniDocBench v1.6 overall metric (all 4 overlapping models had identical values). The snake_case form is canonical, matching omnidocbench_v1_6_{textedit,tableteds,readorder}.]"
   },
   {
-   "model": "baidu/paddleocr-vl-1.5",
-   "benchmark": "omnidocbench-v1.5",
-   "score": 94.5,
-   "unit": "%",
-   "_source": "https://ernie.baidu.com/blog/posts/paddleocr-vl-1.5/",
-   "_note": "ERNIE blog: 'PaddleOCR-VL-1.5 raises overall score from 92.86% to 94.50%' on OmniDocBench"
-  },
-  {
    "model": "zai-org/glm-ocr",
-   "benchmark": "omnidocbench-v1.5",
+   "benchmark": "omnidocbench_v1_5_composite",
    "score": 94.62,
    "unit": "%",
    "_source": "https://decodethefuture.org/en/glm-ocr-explained/",
-   "_note": "GLM-OCR Zhipu writeup: scored 94.62 on OmniDocBench V1.5"
+   "_note": "GLM-OCR Zhipu writeup: scored 94.62 on OmniDocBench V1.5 [S267: consolidated from omnidocbench-v1.5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
    "model": "zai-org/glm-ocr",
@@ -3934,14 +3892,6 @@
    "unit": "%",
    "_source": "https://huggingface.co/zai-org/GLM-OCR",
    "_note": ""
-  },
-  {
-   "model": "rednote/dots-ocr",
-   "benchmark": "omnidocbench-v1.5",
-   "score": 87.5,
-   "unit": "%",
-   "_source": "https://github.com/rednote-hilab/dots.ocr",
-   "_note": "dots.ocr blog: 'achieves new SOTA scores of 87.5 (EN) and 84.0 (CH) on OmniDocBench'"
   },
   {
    "model": "tencent/youtu-parsing",
@@ -4049,19 +3999,11 @@
   },
   {
    "model": "yuliang-liu/monkeyocr-pro-1.2b",
-   "benchmark": "omnidocbench-v1.5",
+   "benchmark": "omnidocbench_v1_5_composite",
    "score": 90.67,
    "unit": "%",
    "_source": "https://arxiv.org/abs/2509.22186",
-   "_note": "MinerU2.5 paper comparison: 'MinerU2.5 90.67 outperforms second-best MonkeyOCR-pro-3B by 1.82' (so MonkeyOCR-pro-3B = 88.85). Strict-attrib: 90.67 belongs to MinerU2.5; corrected — see next entry"
-  },
-  {
-   "model": "echo840/monkeyocr-pro-3b",
-   "benchmark": "omnidocbench-v1.5",
-   "score": 88.85,
-   "unit": "%",
-   "_source": "https://arxiv.org/abs/2509.22186",
-   "_note": "Derived from MinerU2.5 paper: '90.67 outperforms second-best MonkeyOCR-pro-3B by 1.82' — value implicitly stated"
+   "_note": "MinerU2.5 paper comparison: 'MinerU2.5 90.67 outperforms second-best MonkeyOCR-pro-3B by 1.82' (so MonkeyOCR-pro-3B = 88.85). Strict-attrib: 90.67 belongs to MinerU2.5; corrected — see next entry [S267: consolidated from omnidocbench-v1.5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
    "model": "naver/donut",
@@ -4097,11 +4039,11 @@
   },
   {
    "model": "gemini-3-pro",
-   "benchmark": "omnidocbench-v1.5",
+   "benchmark": "omnidocbench_v1_5_composite",
    "score": 90.33,
    "unit": "%",
    "_source": "https://decodethefuture.org/en/glm-ocr-explained/",
-   "_note": "GLM-OCR comparison: 'Gemini 3 Pro (90.33)'"
+   "_note": "GLM-OCR comparison: 'Gemini 3 Pro (90.33)' [S267: consolidated from omnidocbench-v1.5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
    "model": "gemini-3-pro",
@@ -4121,11 +4063,11 @@
   },
   {
    "model": "alibaba/qwen3-vl-235b-a22b-instruct",
-   "benchmark": "omnidocbench-v1.5",
+   "benchmark": "omnidocbench_v1_5_composite",
    "score": 89.15,
    "unit": "%",
    "_source": "https://decodethefuture.org/en/glm-ocr-explained/",
-   "_note": ""
+   "_note": " [S267: consolidated from omnidocbench-v1.5 -> omnidocbench_v1_5_composite (0-100 score). The v1.5 family had spread one benchmark across seven ids mixing edit distance (lower better) with overall score (higher better); they are now split by metric direction.]"
   },
   {
    "model": "alibaba/qwen3-vl-235b-a22b-instruct",
