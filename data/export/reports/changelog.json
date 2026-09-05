@@ -5043,5 +5043,11 @@
   "title": "S268 — 모델 ID 파편화 정리: 표기 변종 83개 canonical 통합 (cross-vendor 81건은 정책상 유지)",
   "detail": "S267에서 관찰한 모델 ID 파편화를 전수 스캔 후 정리. vendor·구분자 무시 정규화 키로 156개 후보 그룹을 뽑고, 그중 '같은 벤더의 표기 변종'만 병합 대상으로 한정. canonical_map 191→274(+83), 점수 283행 이동, FK 0. 병합 유형: prefix-less orphan(gemma-4-31b→google/gemma-4-31b, gpt-5-2→openai/gpt-5.2), dash-vs-dot(zhipu/glm-5-1→glm-5.1, google/gemini-2-5-pro→gemini-2.5-pro), 하이픈 드리프트(nvidia/cosmos3-super→cosmos-3-super), 벤더명 동의어(qwen/→alibaba/, mistralai/→mistral/). 핵심 판단 — cross-vendor 81개 그룹은 병합하지 않음: S163이 '벤더 선택은 주관적'이라며 남긴 정책을 따랐고, boltz-2(jwohlwend/boltz-ai/mit/mit-jameel), flux(bfl vs black-forest-labs), chexagent(rad-onc vs stanford-aimi), esm-c(biohub vs evolutionaryscale), muse-spark(meta vs microsoft) 등이 여기 해당. canonical 선정 규칙도 도중 수정: 처음엔 표기 규칙(점·하이픈)을 우선해 mistral-large-24.11(2행)이 mistral-large-2411(12행)을 이기고 minicpm-3-4b(0행)가 minicpm3-4b(9행)를 이기는 오류가 났음 → 근거 수(점수 행 수)를 최우선으로 바꾸고 표기는 tie-break로 강등. 다만 계열 일관성이 깨지는 6건(gemma-4-e4b/e2b, cosmos-3-edge, qwen3-embedding ×3)은 수동 오버라이드로 계열 표기에 맞춤. 정리 후속: 대시보드 4개 파일이 폐기 ID 15곳을 참조하고 있어 canonical로 치환(안 했으면 Physical AI·Sovereign·Agent 탭에 빈 행). 이 과정에서 자체 오류 1건 — 중복제거 로직이 JS 3개 파일 구문을 깨뜨려 git checkout으로 즉시 복구하고 단순 치환만 재수행. 잔존 1건(qwen/qwen3.5-397b-a17b)은 canonical에 동일 값이 이미 있어 UPDATE OR IGNORE가 건너뛴 케이스로, 별도 삭제해 마무리. DB 3,554→3,472 모델.",
   "type": "Fix"
+ },
+ {
+  "date": "2026-09-05",
+  "title": "S268b — canonical_map 체인 해소 (1단계만 치환하는 loader에서 폐기 ID가 부활하던 버그)",
+  "detail": "S268 배포 후 gh-pages에 폐기 ID qwen/qwen3.5-397b-a17b가 1건 남아 원인 추적. 로컬 DB에서 지워도 make load 때마다 되살아났고, 원인은 canonical_map의 2단계 체인이었음: alibaba/qwen-3.5-397b-a17b -> qwen/qwen3.5-397b-a17b -> alibaba/qwen3.5-397b-a17b. loader의 canonicalize()는 dict.get 한 번만 수행하므로 중간 지점에서 멈춰 폐기 ID를 다시 만들어냄. map 전체를 훑어 체인을 종점까지 해소(transitive closure): 위 건과 claude-sonnet-3-7 -> anthropic/claude-sonnet-3.7 -> anthropic/claude-3.7-sonnet 총 2건 수정. 재로드 검증 결과 폐기 ID 0건, canonical(alibaba/qwen3.5-397b-a17b) 71행으로 정상 흡수. 체인 잔존 0 확인. 향후 canonical_map에 항목을 추가할 때는 기존 값이 다른 dupe를 가리키는지 반드시 확인할 것 — loader가 1단계만 치환하므로 체인은 조용히 폐기 ID를 부활시킴.",
+  "type": "Fix"
  }
 ]
