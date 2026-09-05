@@ -28477,13 +28477,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "terminal_bench_science",
-    "name": "Terminal-Bench-Science 0.1",
-    "category": "coding",
-    "description": "",
-    "metric": "accuracy"
-  },
-  {
     "id": "cwe_bench",
     "name": "CWE-Bench (vulnerability patching, pass@1)",
     "category": "cyber_defense",
@@ -29532,6 +29525,55 @@
     "category": "safety",
     "description": "Blind human red-team comparison: share of comparisons where the model was judged the safer of the pair on attack-planning prompts.",
     "metric": "win_rate"
+  },
+  {
+    "id": "conceptual_reasoning_index",
+    "name": "Conceptual Reasoning Index (CRI)",
+    "category": "reasoning",
+    "description": "Anthropic Alignment Science aggregate measuring reasoning about questions that lack empirical verification (AI governance, alignment, decision theory). Weighted average of LMCA (60%), ACCoRD (20%) and DTBench capabilities (20%). 0-100, with an estimated ceiling near 91.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "terminal_bench_4_0",
+    "name": "Terminal-Bench 4.0 (resolution rate)",
+    "category": "code-agent",
+    "description": "Terminal-Bench v4.0.0 (Aug 2026): 66 tasks after removing 8 and revising 20 from v3.0. Measures whether an agent can operate a real terminal for software-engineering and systems tasks. Separate id from terminal_bench_2_1 because the task set differs (2.x had 89 tasks).",
+    "metric": "resolution_rate"
+  },
+  {
+    "id": "terminal_bench_science",
+    "name": "Terminal-Bench-Science 0.1",
+    "category": "ai4s",
+    "description": "70 terminal-agent tasks across the life, physical, Earth, mathematical and engineering sciences, contributed and peer-reviewed by practising scientists for scientific validity and realism. NOTE: this id mixes two reporting channels — the official announcement leaderboard and vendor self-reports. Anthropic's Fable 5.1 system card self-reports 52.6, well above the official board's top entry (Opus 5, 30.0), and Fable 5.1 does not appear on that board; compare across channels with care.",
+    "metric": "resolution_rate"
+  },
+  {
+    "id": "nyt_connections_extended",
+    "name": "NYT Connections — Extended (quadratic-v1)",
+    "category": "reasoning",
+    "description": "940 NYT Connections puzzles with up to four extra trick words added per puzzle. Quadratic-v1 scoring: a puzzle with g exact groups contributes (g/4)^2, so 0/1/2/3/4 groups earn 0 / 6.25 / 25 / 56.25 / 100%.",
+    "metric": "score"
+  },
+  {
+    "id": "sre_bench_capability_score",
+    "name": "SRE-Bench — capability score (paper, pass@1)",
+    "category": "cyber",
+    "description": "SRE-Bench (Columbia / UC Berkeley / Vals AI / Tufts, arXiv 2608.11469): 262 contamination-free reverse-engineering instances, 1,572 deterministically verifiable tasks (6 objectives each). Standardised mini-SWE-agent harness whose only tool is bash, max reasoning effort, 500 steps / 6h cap. NOTE: kept separate from the `sre_bench` id, which holds OpenAI's own pass@4 figures from the GPT-6 Astra card (Astra 99.2 / Sol 68.7) — a different protocol and a different scale.",
+    "metric": "score"
+  },
+  {
+    "id": "sre_bench_fully_solved",
+    "name": "SRE-Bench — instances fully solved (6/6)",
+    "category": "cyber",
+    "description": "SRE-Bench (Columbia / UC Berkeley / Vals AI / Tufts, arXiv 2608.11469): 262 contamination-free reverse-engineering instances, 1,572 deterministically verifiable tasks (6 objectives each). Standardised mini-SWE-agent harness whose only tool is bash, max reasoning effort, 500 steps / 6h cap. NOTE: kept separate from the `sre_bench` id, which holds OpenAI's own pass@4 figures from the GPT-6 Astra card (Astra 99.2 / Sol 68.7) — a different protocol and a different scale.",
+    "metric": "pct_solved"
+  },
+  {
+    "id": "sre_bench_zero_score_lower_better",
+    "name": "SRE-Bench — instances scoring zero (lower better)",
+    "category": "cyber",
+    "description": "SRE-Bench (Columbia / UC Berkeley / Vals AI / Tufts, arXiv 2608.11469): 262 contamination-free reverse-engineering instances, 1,572 deterministically verifiable tasks (6 objectives each). Standardised mini-SWE-agent harness whose only tool is bash, max reasoning effort, 500 steps / 6h cap. NOTE: kept separate from the `sre_bench` id, which holds OpenAI's own pass@4 figures from the GPT-6 Astra card (Astra 99.2 / Sol 68.7) — a different protocol and a different scale. Lower is better.",
+    "metric": "score_lower_better"
   },
   {
     "id": "caibench",
