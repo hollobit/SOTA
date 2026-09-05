@@ -1,7 +1,17 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 261b — OpenAI legacy system cards fully mined (2026-09-04)
-**3,548 models · 4,442 benchmarks · 21,966 scores** (export counts; S179–S259 entries live in git log / changelog.json — this header was stale at S178 until S260)
+## Current Status: Session 265 — IFM K2 Horizon + new benchmark boards (2026-09-05)
+**3,554 models · 4,449 benchmarks · 22,077 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-05 Session 265 — IFM K2 Horizon fleet + CRI / TB4.0 / TB-Science / NYT Connections / SRE-Bench paper
+- **6 new models + 7 new benches + 111 scores, 0 FK, 0 collisions, 0 overwrites.** 19 user-supplied links.
+- **IFM (Institute of Foundation Models, MBZUAI) K2 Horizon**, 2026-09-03 — billed as the largest fully open-source launch to date (weights + training code + data): 375B-A23B and MoVA-36B-A4B (MoE), 32B dense, 7B, 3.7B, 0.9B. Benchmark tables parsed from the blog's HTML `<table>` markup, since the flattened text scrambles header/value alignment. Only the K2 columns ingested; vendor-picked comparison columns skipped.
+- **Highlights**: 375B-A23B reaches GDPval-AA Elo 1441 / Toolathlon 65.3 / MCPMark 67.7 / Terminal-Bench 2.1 70.2 / GPQA-D 87.3, but **CritPt 8.6** trails GLM 5.2 (20.9) and GPT-5.6 Luna (21.0). The small models are the story: **7B scores SWE-bench Verified 70.6** against Qwen3.5-9B's 50.8, 3.7B scores 68.6, and 0.9B reaches HumanEval+ 79.9.
+- **New boards**: Conceptual Reasoning Index (Anthropic Alignment; LMCA 60% + ACCoRD 20% + DTBench 20%; Opus 5 **73.6 ±2.1**), Terminal-Bench 4.0 (66 tasks; **GPT-6 Astra 58.2 ±2.8** ahead of Fable 5.1 57.9), Terminal-Bench-Science 0.1 (70 scientist-authored tasks; Opus 5 30.0), NYT Connections Extended (940 puzzles; Gemini 3.1 Pro and 3.8 Flash tied at 97.4), and three SRE-Bench paper metrics.
+- **Key ID call**: arXiv 2608.11469 *is* the SRE-Bench paper (Vals AI is a co-author) — the same benchmark as the `sre_bench` id S261 created from OpenAI's card. Protocols differ (OpenAI pass@4: Astra 99.2 / Sol 68.7; paper pass@1 capability score: Sol 61.4), so the paper's numbers went to separate ids rather than being mixed into one series.
+- **External cross-validation**: BenchLM's ARC-AGI-3 board independently matches the DB after the S263 ARC-AGI-1/3 correction (Astra 62.7, Opus 5 30.2, Sol 7.8, Terra 0.8) — confirming that fix was right. 5 models missing from the DB were added.
+- **Channel-mixing flagged**: `terminal_bench_science` already held Anthropic's self-reported Fable 5.1 **52.6**, which exceeds the official board's top entry (Opus 5, 30.0) while Fable 5.1 is absent from that board. Both are kept, with the vendor-vs-board split recorded in the benchmark description and every row's notes.
+- **Not ingested**: RuneBench (framework only, no results table), Perplexity WANDR (403 to both WebFetch and curl), the four x.com links (blocked), the HF collection and orcarouter post (no primary numbers), openai.com/index/gpt-6-astra (mined in S260–S260c), and arXiv 2609.04148 Terminal-Universe (result tables dominated by research SFT checkpoints, outside latest-models-focus). Propagation: frontier-compare, cyber-coding, sovereign (UAE roster). Backup `data/benchmark.db.pre-s265.bak`.
 
 ### 2026-09-04 Session 261b — every table S261 deferred, now mined (source exhausted)
 - **72 new benches + 371 scores, 0 FK, 0 intra-batch collisions, 0 overwrites of existing rows.** GPT-5 SC Tables 2/4/6/7/9/11/12/13; o3-o4-mini Tables 1/2/5/6/7/8/9/10/11/12; gpt-oss Tables 2/4/8.

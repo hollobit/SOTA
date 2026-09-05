@@ -52,6 +52,8 @@ var CyberCoding = {
         'sandbox_bench', 'sre_bench', 'irregular_frontiercyber_overall',
         // 2026-09-04 S261 — GPT-5-Codex addendum: malware refusal + coding prompt injection
         'malware_refusals_golden_set', 'codex_coding_prompt_injection_ignored',
+        // 2026-09-05 S265 — SRE-Bench paper (arXiv 2608.11469) pass@1 metrics
+        'sre_bench_capability_score', 'sre_bench_fully_solved', 'sre_bench_zero_score_lower_better',
         // 2026-06-14 S111 — Cybersecurity benchmark refresh (frontier + agents + 2026 boards)
         'cybergym_v1', 'exploitbench_v8', 'firefox_147_anthropic', 'oss_fuzz_anthropic', 'cybergym_v1',
         'uk_aisi_narrow_cyber_expert', 'uk_aisi_cyber_range_last_ones', 'uk_aisi_cyber_range_doing_life',
@@ -134,7 +136,8 @@ var CyberCoding = {
         // 2026-08-02 S224 — LiveSQLBench (text-to-SQL on live databases)
         'livesqlbench',
         // 2026-08-02 S224b — arxiv benchmark sweep (coding leaderboards)
-        'swe_compass', 'nl2repo_bench', 'dataclaweval'],
+        'swe_compass', 'nl2repo_bench', 'dataclaweval',
+        'terminal_bench_4_0'],  // S265
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the

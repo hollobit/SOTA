@@ -9,8 +9,10 @@ var FrontierCompare = {
     CORE_BENCHMARKS: {
         reasoning: [
             'gpqa_diamond', 'hle', 'mmlu_pro', 'mmlu_pro_aa', 'mmlu', 'mmlu_redux', 'mmmlu',
-            'arc_agi_2', 'arc_agi_3', 'frontiermath', 'frontier_science', 'gdpval', 'officeqa_pro',
+            'arc_agi_2', 'arc_agi_3', 'terminal_bench_4_0', 'terminal_bench_science', 'frontiermath', 'frontier_science', 'gdpval', 'officeqa_pro',
             'simpleqa_verified', 'chinese_simpleqa',
+            // 2026-09-05 S265 — new reasoning/agent boards
+            'conceptual_reasoning_index', 'nyt_connections_extended',
             // 2026-09-04 S261b — MMLU Language / MMMLU per-language (GPT-5 Table 11 + gpt-oss Table 2)
             'mmlu_lang_arabic', 'mmlu_lang_bengali', 'mmlu_lang_chinese', 'mmlu_lang_french',
             'mmlu_lang_german', 'mmlu_lang_hindi', 'mmlu_lang_indonesian', 'mmlu_lang_italian',

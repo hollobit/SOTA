@@ -352,7 +352,11 @@ var Sovereign = {
                 // MBZUAI / G42 / Cerebras
                 'mbzuai/k2-think-v2',  // 2026-01-27 73B reasoning SOTA
                 'mbzuai/k2-v2-instruct',
-                'mbzuai/llm360-k2-65b', 'mbzuai/atlas-chat-9b', 'mbzuai/bimedix'
+                'mbzuai/llm360-k2-65b', 'mbzuai/atlas-chat-9b', 'mbzuai/bimedix',
+                // 2026-09-03 S265 — IFM (Institute of Foundation Models, MBZUAI) K2 Horizon fleet,
+                // billed as the largest fully open-source launch to date (weights + training code + data)
+                'ifm/k2-horizon-375b-a23b', 'ifm/k2-horizon-mova-36b-a4b', 'ifm/k2-horizon-32b',
+                'ifm/k2-horizon-7b', 'ifm/k2-horizon-3.7b', 'ifm/k2-horizon-0.9b'
             ]
         },
         {
