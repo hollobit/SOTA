@@ -5025,5 +5025,11 @@
   "title": "S265d — 부분 커버리지 보드 혼입 전수 점검: NYT 외 없음, 대신 Writing 척도 변경 발견",
   "detail": "S265c에서 NYT Connections의 부분 커버리지 보드 혼입을 잡은 뒤, 같은 유형이 다른 벤치에도 있는지 전수 점검. 결론: 부분 커버리지 혼입은 NYT Connections에만 있었고 이미 수정 완료. (1) 동일 저자(lechmazur) 벤치인 lech_mazur_writing의 README를 받아 확인 — 표가 하나뿐이라 부분 커버리지 개념 자체가 없음. (2) BFCL v4·tau2-bench·OmniDocBench 등 GitHub 출처 리더보드는 서브지표를 이미 별도 ID로 분리(bfcl_v4_live/_multi_turn/_memory/_web_search, tau2_bench_{retail,airline,telecom,banking}_pass1, omnidocbench_v1_6_{textedit,tableteds,readorder}) — 한 ID에 섞인 형태가 아님. 다만 점검 중 성격이 다른 위험을 발견해 예방 조치: lech_mazur_writing의 DB 33행은 2026-05-10 수집된 구 채점방식(절대 0-10 스케일: qwen3-235b 8.3, gpt-4o 8.18)인데, 현재 보드는 상대 Thurstone 'comparison score'로 전면 개편됨(0이 중간값, 최고 4.1 = Fable 5.1/Opus 5, + 승률 추정치, 48모델 651쌍 비교). 두 척도는 비교 불가. 현재 DB는 구버전만 있어 내부적으로는 일관되나, 향후 신 보드를 같은 ID에 넣으면 척도가 충돌하므로 벤치 description에 경고를 명시하고 '신 보드는 반드시 새 ID로' 규칙을 기록(DB + 원본 JSON 정의 양쪽 갱신). 별건 관찰(이번 범위 밖): bfcl_v4(48행)와 bfcl_v4_overall(26행) 중복 의심, omnidocbench-v1.6(대시 14행)과 omnidocbench_v1_6(언더스코어 12행) ID 파편화.",
   "type": "Fix"
+ },
+ {
+  "date": "2026-09-05",
+  "title": "S266 — 중복 벤치 ID 2쌍 병합 (bfcl_v4_overall→bfcl_v4, omnidocbench-v1.6→omnidocbench_v1_6)",
+  "detail": "S265d에서 별건으로 관찰한 ID 중복/파편화를 정리. 이동 23행 + 중복삭제 20행, FK 0. (1) bfcl_v4_overall(26행) -> bfcl_v4(48행): 두 ID에 겹치는 16개 모델 중 14개가 값까지 동일(claude-opus-4.5 77.47, o3 63.05, gemini-3-pro-preview 72.51 등)해 동일 지표임이 확정. 값이 다른 2건(qwen3-32b 46.7 vs 48.71, command-a 57.06 vs 46.49)은 리더보드 갱신 시점차. canonical은 bfcl_v4 — 행이 많고(48) 이력이 길며(2026-04-17~) 최근 세션도 이 ID를 사용. 결과 58행. (2) omnidocbench-v1.6(14행) -> omnidocbench_v1_6(12행): 겹치는 4개 모델 값이 전부 동일(paddleocr-vl-1.6 96.33, glm-ocr 95.22, paddleocr-vl-1.5 94.93, dots-ocr 90.77). canonical은 snake_case인 omnidocbench_v1_6 — 서브지표 omnidocbench_v1_6_{textedit,tableteds,readorder}와 명명 체계가 일치. 결과 22행. 병합 규칙: canonical에 이미 값이 있는 모델의 dupe 행은 이동하지 않고 삭제해 canonical 값이 항상 우선하도록 함. 원본 resource JSON 4개 파일을 재지정하고(재로드 원복 방지), loader가 못 지우는 잔존행·정의는 scripts/migrations/s266_merge_duplicate_benchmark_ids.sql로 제거 후 SOTA 재계산. 참고: OmniDocBench는 이 외에도 v1.5 계열이 7가지 표기(omnidocbench-v1.5, omnidocbench_1.5, omnidocbench_1_5, omnidocbench_1_5_lower_better, omnidocbench_v15, omnidocbench_v1_5, omnidocbench_v1_5_composite)로 갈려 있어 추가 정리 여지가 있으나, 일부는 metric이 서로 달라(edit_distance vs accuracy vs composite) 일괄 병합이 위험해 이번 범위에서 제외.",
+  "type": "Fix"
  }
 ]

@@ -1,1290 +1,1257 @@
 {
-  "_meta": {
-    "session": "Session 104 — Coding agent specialty deep dive",
-    "date": "2026-06-12",
-    "sources": [
-      "CLI/IDE coding agents (12): Aider, Cline, Roo Code, Cursor Composer 2/2.5, Codex CLI, Claude Code, Continue, Devstral 2, Mistral Medium 3.5",
-      "Autonomous coding agents (14): Devin 2.0, Replit Agent 3/4, Magic, Lindy, Auggie, Sourcegraph Amp, v0, GitHub Copilot Workspace GA, Bolt, Lovable, DeepCode, Stitch",
-      "Coding agent benchmarks (15): Aider Polyglot, SWE-V/Pro/Multilingual, SWE-Lancer, LCB v6, Terminal-Bench 2.0, Tau2, BFCL v4, BigCodeBench-Hard, Codeforces"
-    ],
-    "notes": "Mythos 5 SWE-V 95.5/Aider Polyglot 95.5. Fable 5 SWE-Pro vendor 80.3. Cursor Composer 2.5 SWE-Multi 79.8. GPT-5.5 Codex CLI SWE-V 88.7. Mistral Medium 3.5 SWE-V 77.6 (replaces Devstral 2 72.2). Devin 2.0 SWE-V 45.8 (up from Devin 1 13.86). Auggie SWE-Pro 51.80 leads Scale SEAL. Augment SWE-V 72.0 w/Opus 4.6. GPT-5.4 xHigh SWE-Pro Scale-SEAL 59.1. Mythos Preview SWE-Multilingual 87.3. GLM-4.7-Flash Tau2 98.8. GPT-5.1 Codex SWE-Lancer 66.3 (vs Claude 3.5 Sonnet baseline 40.3). DeepSeek V4-Pro Codeforces 3206. Devin pricing collapsed $500→$20/mo+$2.25/ACU."
+ "_meta": {
+  "session": "Session 104 — Coding agent specialty deep dive",
+  "date": "2026-06-12",
+  "sources": [
+   "CLI/IDE coding agents (12): Aider, Cline, Roo Code, Cursor Composer 2/2.5, Codex CLI, Claude Code, Continue, Devstral 2, Mistral Medium 3.5",
+   "Autonomous coding agents (14): Devin 2.0, Replit Agent 3/4, Magic, Lindy, Auggie, Sourcegraph Amp, v0, GitHub Copilot Workspace GA, Bolt, Lovable, DeepCode, Stitch",
+   "Coding agent benchmarks (15): Aider Polyglot, SWE-V/Pro/Multilingual, SWE-Lancer, LCB v6, Terminal-Bench 2.0, Tau2, BFCL v4, BigCodeBench-Hard, Codeforces"
+  ],
+  "notes": "Mythos 5 SWE-V 95.5/Aider Polyglot 95.5. Fable 5 SWE-Pro vendor 80.3. Cursor Composer 2.5 SWE-Multi 79.8. GPT-5.5 Codex CLI SWE-V 88.7. Mistral Medium 3.5 SWE-V 77.6 (replaces Devstral 2 72.2). Devin 2.0 SWE-V 45.8 (up from Devin 1 13.86). Auggie SWE-Pro 51.80 leads Scale SEAL. Augment SWE-V 72.0 w/Opus 4.6. GPT-5.4 xHigh SWE-Pro Scale-SEAL 59.1. Mythos Preview SWE-Multilingual 87.3. GLM-4.7-Flash Tau2 98.8. GPT-5.1 Codex SWE-Lancer 66.3 (vs Claude 3.5 Sonnet baseline 40.3). DeepSeek V4-Pro Codeforces 3206. Devin pricing collapsed $500→$20/mo+$2.25/ACU."
+ },
+ "models": [
+  {
+   "id": "aider/aider-0.86",
+   "name": "Aider 0.86",
+   "vendor": "aider (paul-gauthier / aider-ai)",
+   "type": "coding-agent",
+   "release_date": "2026-02-12",
+   "modalities": [
+    "text"
+   ]
   },
-  "models": [
-    {
-      "id": "aider/aider-0.86",
-      "name": "Aider 0.86",
-      "vendor": "aider (paul-gauthier / aider-ai)",
-      "type": "coding-agent",
-      "release_date": "2026-02-12",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "cline/cline-3.x",
-      "name": "Cline 3.0.24",
-      "vendor": "cline bot inc.",
-      "type": "coding-agent",
-      "release_date": "2026-06-11",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "roo/roo-code-3.54",
-      "name": "Roo Code 3.54",
-      "vendor": "roocodeinc (archived)",
-      "type": "coding-agent",
-      "release_date": "2026-05-15",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "cursor/cursor-composer-2",
-      "name": "Cursor Composer 2",
-      "vendor": "cursor ai",
-      "type": "coding-agent",
-      "release_date": "2026-03",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "cursor/cursor-composer-2.5",
-      "name": "Cursor Composer 2.5",
-      "vendor": "cursor ai",
-      "type": "coding-agent",
-      "release_date": "2026-05-18",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/codex-cli",
-      "name": "OpenAI Codex CLI 0.139",
-      "vendor": "openai",
-      "type": "coding-agent",
-      "release_date": "2026-06-09",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "anthropic/claude-code",
-      "name": "Claude Code",
-      "vendor": "anthropic",
-      "type": "coding-agent",
-      "release_date": "2026-06",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "continue/continue-2.0",
-      "name": "Continue 2.0 (final)",
-      "vendor": "continue dev, inc.",
-      "type": "coding-agent",
-      "release_date": "2026-03-27",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "sweep/sweep-jetbrains",
-      "name": "Sweep (JetBrains)",
-      "vendor": "sweep ai",
-      "type": "coding-agent",
-      "release_date": "2023-09-11",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "mistral/devstral-2",
-      "name": "Devstral 2",
-      "vendor": "mistral ai",
-      "type": "coding-agent",
-      "release_date": "2026-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "mistral/mistral-medium-3.5",
-      "name": "Mistral Medium 3.5 (Devstral/Magistral merged)",
-      "vendor": "mistral ai",
-      "type": "coding-agent",
-      "release_date": "2026-05-03",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "mistral/codestral",
-      "name": "Codestral (22B v0.1)",
-      "vendor": "mistral ai",
-      "type": "coding-agent",
-      "release_date": "2024-05-29 (v0.1); 2025-01 (25.01)",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "cognition/devin",
-      "name": "Devin 2.0",
-      "vendor": "cognition ai",
-      "type": "coding-agent",
-      "release_date": "2026-04",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "cognition/devin-1",
-      "name": "Devin 1 (original)",
-      "vendor": "cognition ai",
-      "type": "coding-agent",
-      "release_date": "2024-03",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "replit/replit-agent-3",
-      "name": "Replit Agent 3",
-      "vendor": "replit",
-      "type": "coding-agent",
-      "release_date": "2025-09",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "replit/replit-agent-4",
-      "name": "Replit Agent 4",
-      "vendor": "replit",
-      "type": "coding-agent",
-      "release_date": "2026-03-11",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "magic/magic-1",
-      "name": "Magic LTM-2",
-      "vendor": "magic.dev",
-      "type": "coding-agent",
-      "release_date": "2024-08 (LTM-2-mini); ongoing",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "lindy/lindy-1",
-      "name": "Lindy Agent",
-      "vendor": "lindy ai",
-      "type": "coding-agent",
-      "release_date": "2024",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "augment/auggie",
-      "name": "Auggie CLI",
-      "vendor": "augment code",
-      "type": "coding-agent",
-      "release_date": "2026-04",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "sourcegraph/amp",
-      "name": "Amp",
-      "vendor": "sourcegraph",
-      "type": "coding-agent",
-      "release_date": "2025-06 (rebrand of Cody Agent)",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "vercel/v0",
-      "name": "v0 (coding agent mode)",
-      "vendor": "vercel",
-      "type": "coding-agent",
-      "release_date": "2026-02 (agent upgrade)",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "github/copilot-workspace",
-      "name": "Copilot Workspace",
-      "vendor": "github (microsoft)",
-      "type": "coding-agent",
-      "release_date": "2026-06-02 (GA at Build 2026)",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "stackblitz/bolt-new",
-      "name": "Bolt.new",
-      "vendor": "stackblitz",
-      "type": "coding-agent",
-      "release_date": "2024-10",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "lovable/lovable",
-      "name": "Lovable.dev",
-      "vendor": "lovable",
-      "type": "coding-agent",
-      "release_date": "2024-11",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "deepcode/deepcode-ai",
-      "name": "DeepCode AI",
-      "vendor": "snyk (deepcode)",
-      "type": "coding-agent",
-      "release_date": "2023",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "mode/stitch",
-      "name": "Stitch",
-      "vendor": "mode",
-      "type": "coding-agent",
-      "release_date": "2025 (preview)",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "alibaba/qwen2.5-coder-32b-instruct",
-      "name": "Qwen2.5 Coder 32B Instruct",
-      "vendor": "alibaba",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "alibaba/qwen2.5-coder-7b-instruct",
-      "name": "Qwen2.5 Coder 7B Instruct",
-      "vendor": "alibaba",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "anthropic/claude-opus-4-32k-think",
-      "name": "Claude Opus 4 32K Thinking",
-      "vendor": "anthropic",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "deepseek/deepseek-v3.2-exp-reasoner",
-      "name": "DeepSeek V3.2 Exp Reasoner",
-      "vendor": "deepseek",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemini-2.5-pro-preview-03-25",
-      "name": "Gemini 2.5 Pro Preview 03-25",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemini-2.5-pro-preview-05-06",
-      "name": "Gemini 2.5 Pro Preview 05-06",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemini-2.5-pro-preview-06-05-32k-think",
-      "name": "Gemini 2.5 Pro Preview 06-05 32k Think",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemini-2.5-pro-preview-06-05-default-think",
-      "name": "Gemini 2.5 Pro Preview 06-05 Default Think",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemini-3-flash-preview-reasoning",
-      "name": "Gemini 3 Flash Preview Reasoning",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemini-3-pro-preview-high",
-      "name": "Gemini 3 Pro Preview High",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "google/gemini-3.1",
-      "name": "Gemini 3.1",
-      "vendor": "google",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "microsoft/muse-spark",
-      "name": "Muse Spark",
-      "vendor": "microsoft",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "minimax/minimax-m1-80k",
-      "name": "MiniMax M1 80K",
-      "vendor": "minimax",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/gpt-5.1-codex",
-      "name": "GPT-5.1 Codex",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/o3-high",
-      "name": "OpenAI o3 High",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/o3-high+gpt-4.1-architect",
-      "name": "OpenAI o3 High + GPT-4.1 Architect",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/o3-pro-high",
-      "name": "OpenAI o3 Pro High",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "openai/o4-mini-high",
-      "name": "OpenAI o4-mini High",
-      "vendor": "openai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "xai/grok-4-high",
-      "name": "Grok 4 High",
-      "vendor": "xai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "zai/glm-4.5-air",
-      "name": "GLM-4.5 Air",
-      "vendor": "zai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    },
-    {
-      "id": "zai/glm-4.7-flash",
-      "name": "GLM-4.7 Flash",
-      "vendor": "zai",
-      "type": "language",
-      "release_date": "2026-01-01",
-      "modalities": [
-        "text"
-      ]
-    }
-  ],
-  "benchmarks": [
-    {
-      "id": "aider_polyglot",
-      "name": "Aider Polyglot",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "swe_bench_verified",
-      "name": "Swe Bench Verified",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "swe_bench_verified_legacy",
-      "name": "Swe Bench Verified Legacy",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "swe_bench_pro",
-      "name": "Swe Bench Pro",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "aider_polyglot_pass1",
-      "name": "Aider Polyglot",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "aider_polyglot_cost_usd",
-      "name": "Aider Polyglot — Total Cost (USD)",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "swe_bench_pro_vendor",
-      "name": "SWE-Bench Pro (vendor self-reported)",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "swe_bench_pro_scale_public",
-      "name": "SWE-Bench Pro (Scale SEAL public 731 tasks)",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "swe_bench_multilingual",
-      "name": "SWE-Bench Multilingual",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "swe_lancer",
-      "name": "SWE-Lancer",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "livecodebench_v6_pass1",
-      "name": "LiveCodeBench v6",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "livebench_coding",
-      "name": "LiveBench Coding",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "terminal_bench_2",
-      "name": "Terminal-Bench 2.0",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "bigcodebench_hard_instruct",
-      "name": "BigCodeBench-Hard (Instruct)",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "tau_bench_airline",
-      "name": "TAU-Bench Airline",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "tau2_bench",
-      "name": "Tau2-Bench",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "bfcl_v4_overall",
-      "name": "BFCL v4 Overall",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    },
-    {
-      "id": "codeforces_rating",
-      "name": "Codeforces Rating (AI)",
-      "category": "coding",
-      "metric": "score",
-      "unit": "score",
-      "description": "",
-      "source_url": ""
-    }
-  ],
-  "scores": [
-    {
-      "model": "anthropic/claude-mythos-5",
-      "benchmark": "aider_polyglot",
-      "score": 95.5,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=1 as_of=2026-06"
-    },
-    {
-      "model": "anthropic/claude-fable-5",
-      "benchmark": "aider_polyglot",
-      "score": 95.0,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=2 as_of=2026-06"
-    },
-    {
-      "model": "anthropic/claude-opus-4.5",
-      "benchmark": "aider_polyglot",
-      "score": 89.4,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=3 as_of=2026-04"
-    },
-    {
-      "model": "anthropic/claude-opus-4.8",
-      "benchmark": "aider_polyglot",
-      "score": 88.6,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=4 as_of=2026-06"
-    },
-    {
-      "model": "openai/gpt-5-high",
-      "benchmark": "aider_polyglot",
-      "score": 88.0,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=5 as_of=2025-11"
-    },
-    {
-      "model": "anthropic/claude-opus-4.7",
-      "benchmark": "aider_polyglot",
-      "score": 87.6,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=6 as_of=2026-04"
-    },
-    {
-      "model": "anthropic/claude-mythos-5",
-      "benchmark": "swe_bench_verified",
-      "score": 95.5,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=1 as_of=None"
-    },
-    {
-      "model": "anthropic/claude-fable-5",
-      "benchmark": "swe_bench_verified",
-      "score": 95.0,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=2 as_of=None"
-    },
-    {
-      "model": "openai/gpt-5.5",
-      "benchmark": "swe_bench_verified",
-      "score": 88.7,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=3 as_of=None"
-    },
-    {
-      "model": "anthropic/claude-opus-4.8",
-      "benchmark": "swe_bench_verified",
-      "score": 88.6,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=4 as_of=None"
-    },
-    {
-      "model": "anthropic/claude-opus-4.7",
-      "benchmark": "swe_bench_verified",
-      "score": 87.6,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=5 as_of=None"
-    },
-    {
-      "model": "mistral/mistral-medium-3.5",
-      "benchmark": "swe_bench_verified",
-      "score": 77.6,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=7 as_of=None"
-    },
-    {
-      "model": "mistral/devstral-2",
-      "benchmark": "swe_bench_verified",
-      "score": 72.2,
-      "unit": "score",
-      "_source": "aider.chat / vendor leaderboards",
-      "_note": "rank=8 as_of=None"
-    },
-    {
-      "model": "cognition/devin",
-      "benchmark": "swe_bench_verified",
-      "score": 45.8,
-      "unit": "score",
-      "_source": "https://cognition.ai/blog/swe-bench-technical-report",
-      "_note": "Cognition standard eval (single-agent, no HITL, no BoN)"
-    },
-    {
-      "model": "cognition/devin",
-      "benchmark": "swe_bench_verified_legacy",
-      "score": 13.86,
-      "unit": "score",
-      "_source": "https://cognition.ai/blog/swe-bench-technical-report",
-      "_note": "Original 2024 Devin technical report (Devin 1)"
-    },
-    {
-      "model": "cognition/devin-1",
-      "benchmark": "swe_bench_verified",
-      "score": 13.86,
-      "unit": "score",
-      "_source": "https://cognition.ai/blog/swe-bench-technical-report",
-      "_note": "Cognition original technical report"
-    },
-    {
-      "model": "augment/auggie",
-      "benchmark": "swe_bench_pro",
-      "score": 51.8,
-      "unit": "score",
-      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
-      "_note": "Scale SEAL SWE-Bench Pro public, April 2026"
-    },
-    {
-      "model": "augment/auggie",
-      "benchmark": "swe_bench_verified",
-      "score": 72.0,
-      "unit": "score",
-      "_source": "https://www.augmentcode.com/blog/auggie-tops-swe-bench-pro",
-      "_note": "Augment self-reported with Claude Opus 4.6"
-    },
-    {
-      "model": "augment/auggie",
-      "benchmark": "swe_bench_verified",
-      "score": 70.6,
-      "unit": "score",
-      "_source": "https://github.com/augmentcode/augment-swebench-agent",
-      "_note": "Augment self-reported (open-source agent)"
-    },
-    {
-      "model": "openai/gpt-5-high",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 88.0,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff date=2025-08-23"
-    },
-    {
-      "model": "openai/gpt-5-medium",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 86.7,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff date=2025-08-25"
-    },
-    {
-      "model": "openai/o3-pro-high",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 84.9,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff date=2025-06-28"
-    },
-    {
-      "model": "google/gemini-2.5-pro-preview-06-05-32k-think",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 83.1,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff-fenced date=2025-06-06"
-    },
-    {
-      "model": "openai/gpt-5-low",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 81.3,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff date=2025-08-25"
-    },
-    {
-      "model": "openai/o3-high",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 81.3,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff date=2025-06-25"
-    },
-    {
-      "model": "xai/grok-4-high",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 79.6,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff date=2025-07-11"
-    },
-    {
-      "model": "google/gemini-2.5-pro-preview-06-05-default-think",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 79.1,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff-fenced date=2025-06-06"
-    },
-    {
-      "model": "openai/o3-high+gpt-4.1-architect",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 78.2,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=architect date=2025-06-27"
-    },
-    {
-      "model": "openai/o3",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 76.9,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff date=2025-06-25"
-    },
-    {
-      "model": "google/gemini-2.5-pro-preview-05-06",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 76.9,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff-fenced date=2025-05-07"
-    },
-    {
-      "model": "deepseek/deepseek-v3.2-exp-reasoner",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 74.2,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff date=2025-10-03"
-    },
-    {
-      "model": "google/gemini-2.5-pro-preview-03-25",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 72.9,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff-fenced date=2025-04-12"
-    },
-    {
-      "model": "anthropic/claude-opus-4-32k-think",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 72.0,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff date=2025-05-25"
-    },
-    {
-      "model": "openai/o4-mini-high",
-      "benchmark": "aider_polyglot_pass1",
-      "score": 72.0,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold=diff date=2025-04-16"
-    },
-    {
-      "model": "openai/gpt-5-high",
-      "benchmark": "aider_polyglot_cost_usd",
-      "score": 29.08,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold= date=2025-08-23"
-    },
-    {
-      "model": "openai/gpt-5-low",
-      "benchmark": "aider_polyglot_cost_usd",
-      "score": 10.37,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold= date=2025-08-25"
-    },
-    {
-      "model": "deepseek/deepseek-v3.2-exp-reasoner",
-      "benchmark": "aider_polyglot_cost_usd",
-      "score": 1.3,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold= date=2025-10-03"
-    },
-    {
-      "model": "openai/o3-pro-high",
-      "benchmark": "aider_polyglot_cost_usd",
-      "score": 146.32,
-      "unit": "score",
-      "_source": "https://aider.chat/docs/leaderboards/",
-      "_note": "scaffold= date=2025-06-28"
-    },
-    {
-      "model": "anthropic/claude-mythos-5",
-      "benchmark": "swe_bench_verified",
-      "score": 95.5,
-      "unit": "score",
-      "_source": "https://benchlm.ai/benchmarks/sweVerified",
-      "_note": "scaffold=vendor date=2026-06-09"
-    },
-    {
-      "model": "anthropic/claude-fable-5",
-      "benchmark": "swe_bench_verified",
-      "score": 95.0,
-      "unit": "score",
-      "_source": "https://benchlm.ai/benchmarks/sweVerified",
-      "_note": "scaffold=vendor date=2026-06-09"
-    },
-    {
-      "model": "anthropic/claude-opus-4.8",
-      "benchmark": "swe_bench_verified",
-      "score": 88.6,
-      "unit": "score",
-      "_source": "https://benchlm.ai/benchmarks/sweVerified",
-      "_note": "scaffold=vendor date=2026-06-09"
-    },
-    {
-      "model": "openai/gpt-5.5",
-      "benchmark": "swe_bench_verified",
-      "score": 88.7,
-      "unit": "score",
-      "_source": "https://www.marc0.dev/en/leaderboard",
-      "_note": "scaffold=vendor date=2026-05-01"
-    },
-    {
-      "model": "anthropic/claude-fable-5",
-      "benchmark": "swe_bench_pro_vendor",
-      "score": 80.3,
-      "unit": "score",
-      "_source": "https://www.morphllm.com/swe-bench-pro",
-      "_note": "scaffold=anthropic-internal date=2026-06-09"
-    },
-    {
-      "model": "anthropic/claude-opus-4.8",
-      "benchmark": "swe_bench_pro_vendor",
-      "score": 69.2,
-      "unit": "score",
-      "_source": "https://www.morphllm.com/swe-bench-pro",
-      "_note": "scaffold=anthropic-internal date=2026-06-09"
-    },
-    {
-      "model": "openai/gpt-5.4-xhigh",
-      "benchmark": "swe_bench_pro_scale_public",
-      "score": 59.1,
-      "unit": "score",
-      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
-      "_note": "scaffold=scale-seal date=2026-06-09"
-    },
-    {
-      "model": "microsoft/muse-spark",
-      "benchmark": "swe_bench_pro_scale_public",
-      "score": 55.0,
-      "unit": "score",
-      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
-      "_note": "scaffold=scale-seal date=2026-06-09"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6-thinking",
-      "benchmark": "swe_bench_pro_scale_public",
-      "score": 51.9,
-      "unit": "score",
-      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
-      "_note": "scaffold=scale-seal date=2026-06-09"
-    },
-    {
-      "model": "anthropic/claude-mythos-preview",
-      "benchmark": "swe_bench_multilingual",
-      "score": 87.3,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/swe-bench-multilingual",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "swe_bench_multilingual",
-      "score": 77.8,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/swe-bench-multilingual",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "swe_bench_multilingual",
-      "score": 76.7,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/swe-bench-multilingual",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "openai/gpt-5.1-codex",
-      "benchmark": "swe_lancer",
-      "score": 66.3,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/swe-lancer",
-      "_note": "scaffold= date=2026-03-01"
-    },
-    {
-      "model": "anthropic/claude-3.5-sonnet",
-      "benchmark": "swe_lancer",
-      "score": 40.3,
-      "unit": "score",
-      "_source": "https://openai.com/index/swe-lancer/",
-      "_note": "scaffold= date=2025-02-18"
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro-max",
-      "benchmark": "livecodebench_v6_pass1",
-      "score": 93.5,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/livecodebench-v6",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "alibaba/qwen3.7-max",
-      "benchmark": "livecodebench_v6_pass1",
-      "score": 91.6,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/livecodebench-v6",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "deepseek/deepseek-v4-flash-max",
-      "benchmark": "livecodebench_v6_pass1",
-      "score": 91.6,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/livecodebench-v6",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "google/gemini-3-pro-preview-high",
-      "benchmark": "livecodebench_v6_pass1",
-      "score": 91.7,
-      "unit": "score",
-      "_source": "https://pricepertoken.com/leaderboards/benchmark/livecodebench",
-      "_note": "scaffold= date=2026-06-06"
-    },
-    {
-      "model": "google/gemini-3-flash-preview-reasoning",
-      "benchmark": "livecodebench_v6_pass1",
-      "score": 90.8,
-      "unit": "score",
-      "_source": "https://pricepertoken.com/leaderboards/benchmark/livecodebench",
-      "_note": "scaffold= date=2026-06-06"
-    },
-    {
-      "model": "deepseek/deepseek-v3.2-speciale",
-      "benchmark": "livecodebench_v6_pass1",
-      "score": 89.6,
-      "unit": "score",
-      "_source": "https://pricepertoken.com/leaderboards/benchmark/livecodebench",
-      "_note": "scaffold= date=2026-06-06"
-    },
-    {
-      "model": "moonshot/kimi-k2.6",
-      "benchmark": "livecodebench_v6_pass1",
-      "score": 89.6,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/livecodebench-v6",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "bytedance/seed-2.0-pro",
-      "benchmark": "livecodebench_v6_pass1",
-      "score": 87.8,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/livecodebench-v6",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "openai/gpt-5.5",
-      "benchmark": "terminal_bench_2",
-      "score": 82.7,
-      "unit": "score",
-      "_source": "https://www.tbench.ai/leaderboard/terminal-bench/2.0",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "anthropic/claude-mythos-preview",
-      "benchmark": "terminal_bench_2",
-      "score": 82.0,
-      "unit": "score",
-      "_source": "https://www.tbench.ai/leaderboard/terminal-bench/2.0",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "google/gemini-3.1-pro",
-      "benchmark": "terminal_bench_2",
-      "score": 78.4,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/terminal-bench-2",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "openai/gpt-5.3-codex",
-      "benchmark": "terminal_bench_2",
-      "score": 77.3,
-      "unit": "score",
-      "_source": "https://www.tbench.ai/leaderboard/terminal-bench/2.0",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "anthropic/claude-opus-4.6",
-      "benchmark": "terminal_bench_2",
-      "score": 74.7,
-      "unit": "score",
-      "_source": "https://www.tbench.ai/leaderboard/terminal-bench/2.0",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "alibaba/qwen2.5-coder-32b-instruct",
-      "benchmark": "bigcodebench_hard_instruct",
-      "score": 27.0,
-      "unit": "score",
-      "_source": "https://bigcode-bench.github.io/",
-      "_note": "scaffold= date=2024-11-15"
-    },
-    {
-      "model": "alibaba/qwen2.5-coder-7b-instruct",
-      "benchmark": "bigcodebench_hard_instruct",
-      "score": 18.2,
-      "unit": "score",
-      "_source": "https://bigcode-bench.github.io/",
-      "_note": "scaffold= date=2024-11-15"
-    },
-    {
-      "model": "anthropic/claude-sonnet-4.5",
-      "benchmark": "tau_bench_airline",
-      "score": 70.0,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/tau-bench-airline",
-      "_note": "scaffold= date=2025-10-01"
-    },
-    {
-      "model": "minimax/minimax-m1-80k",
-      "benchmark": "tau_bench_airline",
-      "score": 62.0,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/tau-bench-airline",
-      "_note": "scaffold= date=2025-10-01"
-    },
-    {
-      "model": "zai/glm-4.5-air",
-      "benchmark": "tau_bench_airline",
-      "score": 60.8,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/tau-bench-airline",
-      "_note": "scaffold= date=2025-10-01"
-    },
-    {
-      "model": "zai/glm-4.7-flash",
-      "benchmark": "tau2_bench",
-      "score": 98.8,
-      "unit": "score",
-      "_source": "https://pricepertoken.com/leaderboards/benchmark/tau2",
-      "_note": "scaffold= date=2026-03-16"
-    },
-    {
-      "model": "zai/glm-5",
-      "benchmark": "tau2_bench",
-      "score": 98.2,
-      "unit": "score",
-      "_source": "https://pricepertoken.com/leaderboards/benchmark/tau2",
-      "_note": "scaffold= date=2026-03-16"
-    },
-    {
-      "model": "anthropic/claude-mythos-preview",
-      "benchmark": "tau2_bench",
-      "score": 89.2,
-      "unit": "score",
-      "_source": "https://benchlm.ai/benchmarks/tauBench",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "anthropic/claude-opus-4.5",
-      "benchmark": "bfcl_v4_overall",
-      "score": 77.47,
-      "unit": "score",
-      "_source": "https://gorilla.cs.berkeley.edu/leaderboard.html",
-      "_note": "scaffold= date=2025-12-16"
-    },
-    {
-      "model": "anthropic/claude-sonnet-4.5",
-      "benchmark": "bfcl_v4_overall",
-      "score": 73.24,
-      "unit": "score",
-      "_source": "https://gorilla.cs.berkeley.edu/leaderboard.html",
-      "_note": "scaffold= date=2025-12-16"
-    },
-    {
-      "model": "alibaba/qwen3.7-max",
-      "benchmark": "bfcl_v4_overall",
-      "score": 75.0,
-      "unit": "score",
-      "_source": "https://llm-stats.com/benchmarks/bfcl-v4",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "deepseek/deepseek-v4-pro",
-      "benchmark": "codeforces_rating",
-      "score": 3206.0,
-      "unit": "score",
-      "_source": "https://www.digitaltrends.com/computing/deepseeek-v4-is-out-touting-some-disruptive-wins-over-gemini-chatgpt-and-claude/",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "openai/gpt-5.4",
-      "benchmark": "codeforces_rating",
-      "score": 3168.0,
-      "unit": "score",
-      "_source": "https://medium.com/@sanjeevpatel3007/best-ai-models-in-2026-the-complete-honest-ranking-d67b63cf3543",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "google/gemini-3.1",
-      "benchmark": "codeforces_rating",
-      "score": 3052.0,
-      "unit": "score",
-      "_source": "https://medium.com/@sanjeevpatel3007/best-ai-models-in-2026-the-complete-honest-ranking-d67b63cf3543",
-      "_note": "scaffold= date=2026-06-09"
-    },
-    {
-      "model": "google/gemma-4",
-      "benchmark": "codeforces_rating",
-      "score": 2150.0,
-      "unit": "score",
-      "_source": "https://medium.com/@sanjeevpatel3007/april-2026-ai-models-every-major-release-reviewed-6ea03d7bc0b7",
-      "_note": "scaffold= date=2026-04-01"
-    }
-  ]
+  {
+   "id": "cline/cline-3.x",
+   "name": "Cline 3.0.24",
+   "vendor": "cline bot inc.",
+   "type": "coding-agent",
+   "release_date": "2026-06-11",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "roo/roo-code-3.54",
+   "name": "Roo Code 3.54",
+   "vendor": "roocodeinc (archived)",
+   "type": "coding-agent",
+   "release_date": "2026-05-15",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "cursor/cursor-composer-2",
+   "name": "Cursor Composer 2",
+   "vendor": "cursor ai",
+   "type": "coding-agent",
+   "release_date": "2026-03",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "cursor/cursor-composer-2.5",
+   "name": "Cursor Composer 2.5",
+   "vendor": "cursor ai",
+   "type": "coding-agent",
+   "release_date": "2026-05-18",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/codex-cli",
+   "name": "OpenAI Codex CLI 0.139",
+   "vendor": "openai",
+   "type": "coding-agent",
+   "release_date": "2026-06-09",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-code",
+   "name": "Claude Code",
+   "vendor": "anthropic",
+   "type": "coding-agent",
+   "release_date": "2026-06",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "continue/continue-2.0",
+   "name": "Continue 2.0 (final)",
+   "vendor": "continue dev, inc.",
+   "type": "coding-agent",
+   "release_date": "2026-03-27",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "sweep/sweep-jetbrains",
+   "name": "Sweep (JetBrains)",
+   "vendor": "sweep ai",
+   "type": "coding-agent",
+   "release_date": "2023-09-11",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "mistral/devstral-2",
+   "name": "Devstral 2",
+   "vendor": "mistral ai",
+   "type": "coding-agent",
+   "release_date": "2026-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "mistral/mistral-medium-3.5",
+   "name": "Mistral Medium 3.5 (Devstral/Magistral merged)",
+   "vendor": "mistral ai",
+   "type": "coding-agent",
+   "release_date": "2026-05-03",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "mistral/codestral",
+   "name": "Codestral (22B v0.1)",
+   "vendor": "mistral ai",
+   "type": "coding-agent",
+   "release_date": "2024-05-29 (v0.1); 2025-01 (25.01)",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "cognition/devin",
+   "name": "Devin 2.0",
+   "vendor": "cognition ai",
+   "type": "coding-agent",
+   "release_date": "2026-04",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "cognition/devin-1",
+   "name": "Devin 1 (original)",
+   "vendor": "cognition ai",
+   "type": "coding-agent",
+   "release_date": "2024-03",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "replit/replit-agent-3",
+   "name": "Replit Agent 3",
+   "vendor": "replit",
+   "type": "coding-agent",
+   "release_date": "2025-09",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "replit/replit-agent-4",
+   "name": "Replit Agent 4",
+   "vendor": "replit",
+   "type": "coding-agent",
+   "release_date": "2026-03-11",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "magic/magic-1",
+   "name": "Magic LTM-2",
+   "vendor": "magic.dev",
+   "type": "coding-agent",
+   "release_date": "2024-08 (LTM-2-mini); ongoing",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "lindy/lindy-1",
+   "name": "Lindy Agent",
+   "vendor": "lindy ai",
+   "type": "coding-agent",
+   "release_date": "2024",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "augment/auggie",
+   "name": "Auggie CLI",
+   "vendor": "augment code",
+   "type": "coding-agent",
+   "release_date": "2026-04",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "sourcegraph/amp",
+   "name": "Amp",
+   "vendor": "sourcegraph",
+   "type": "coding-agent",
+   "release_date": "2025-06 (rebrand of Cody Agent)",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "vercel/v0",
+   "name": "v0 (coding agent mode)",
+   "vendor": "vercel",
+   "type": "coding-agent",
+   "release_date": "2026-02 (agent upgrade)",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "github/copilot-workspace",
+   "name": "Copilot Workspace",
+   "vendor": "github (microsoft)",
+   "type": "coding-agent",
+   "release_date": "2026-06-02 (GA at Build 2026)",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "stackblitz/bolt-new",
+   "name": "Bolt.new",
+   "vendor": "stackblitz",
+   "type": "coding-agent",
+   "release_date": "2024-10",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "lovable/lovable",
+   "name": "Lovable.dev",
+   "vendor": "lovable",
+   "type": "coding-agent",
+   "release_date": "2024-11",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "deepcode/deepcode-ai",
+   "name": "DeepCode AI",
+   "vendor": "snyk (deepcode)",
+   "type": "coding-agent",
+   "release_date": "2023",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "mode/stitch",
+   "name": "Stitch",
+   "vendor": "mode",
+   "type": "coding-agent",
+   "release_date": "2025 (preview)",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "alibaba/qwen2.5-coder-32b-instruct",
+   "name": "Qwen2.5 Coder 32B Instruct",
+   "vendor": "alibaba",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "alibaba/qwen2.5-coder-7b-instruct",
+   "name": "Qwen2.5 Coder 7B Instruct",
+   "vendor": "alibaba",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "anthropic/claude-opus-4-32k-think",
+   "name": "Claude Opus 4 32K Thinking",
+   "vendor": "anthropic",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "deepseek/deepseek-v3.2-exp-reasoner",
+   "name": "DeepSeek V3.2 Exp Reasoner",
+   "vendor": "deepseek",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-pro-preview-03-25",
+   "name": "Gemini 2.5 Pro Preview 03-25",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-pro-preview-05-06",
+   "name": "Gemini 2.5 Pro Preview 05-06",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-pro-preview-06-05-32k-think",
+   "name": "Gemini 2.5 Pro Preview 06-05 32k Think",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-2.5-pro-preview-06-05-default-think",
+   "name": "Gemini 2.5 Pro Preview 06-05 Default Think",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-3-flash-preview-reasoning",
+   "name": "Gemini 3 Flash Preview Reasoning",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-3-pro-preview-high",
+   "name": "Gemini 3 Pro Preview High",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "google/gemini-3.1",
+   "name": "Gemini 3.1",
+   "vendor": "google",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "microsoft/muse-spark",
+   "name": "Muse Spark",
+   "vendor": "microsoft",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "minimax/minimax-m1-80k",
+   "name": "MiniMax M1 80K",
+   "vendor": "minimax",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/gpt-5.1-codex",
+   "name": "GPT-5.1 Codex",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/o3-high",
+   "name": "OpenAI o3 High",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/o3-high+gpt-4.1-architect",
+   "name": "OpenAI o3 High + GPT-4.1 Architect",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/o3-pro-high",
+   "name": "OpenAI o3 Pro High",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "openai/o4-mini-high",
+   "name": "OpenAI o4-mini High",
+   "vendor": "openai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "xai/grok-4-high",
+   "name": "Grok 4 High",
+   "vendor": "xai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "zai/glm-4.5-air",
+   "name": "GLM-4.5 Air",
+   "vendor": "zai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  },
+  {
+   "id": "zai/glm-4.7-flash",
+   "name": "GLM-4.7 Flash",
+   "vendor": "zai",
+   "type": "language",
+   "release_date": "2026-01-01",
+   "modalities": [
+    "text"
+   ]
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "aider_polyglot",
+   "name": "Aider Polyglot",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "swe_bench_verified",
+   "name": "Swe Bench Verified",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "swe_bench_verified_legacy",
+   "name": "Swe Bench Verified Legacy",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "swe_bench_pro",
+   "name": "Swe Bench Pro",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "aider_polyglot_pass1",
+   "name": "Aider Polyglot",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "aider_polyglot_cost_usd",
+   "name": "Aider Polyglot — Total Cost (USD)",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "swe_bench_pro_vendor",
+   "name": "SWE-Bench Pro (vendor self-reported)",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "swe_bench_pro_scale_public",
+   "name": "SWE-Bench Pro (Scale SEAL public 731 tasks)",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "swe_bench_multilingual",
+   "name": "SWE-Bench Multilingual",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "swe_lancer",
+   "name": "SWE-Lancer",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "livecodebench_v6_pass1",
+   "name": "LiveCodeBench v6",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "livebench_coding",
+   "name": "LiveBench Coding",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "terminal_bench_2",
+   "name": "Terminal-Bench 2.0",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "bigcodebench_hard_instruct",
+   "name": "BigCodeBench-Hard (Instruct)",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "tau_bench_airline",
+   "name": "TAU-Bench Airline",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "tau2_bench",
+   "name": "Tau2-Bench",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  },
+  {
+   "id": "codeforces_rating",
+   "name": "Codeforces Rating (AI)",
+   "category": "coding",
+   "metric": "score",
+   "unit": "score",
+   "description": "",
+   "source_url": ""
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-mythos-5",
+   "benchmark": "aider_polyglot",
+   "score": 95.5,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=1 as_of=2026-06"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aider_polyglot",
+   "score": 95.0,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=2 as_of=2026-06"
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "aider_polyglot",
+   "score": 89.4,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=3 as_of=2026-04"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "aider_polyglot",
+   "score": 88.6,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=4 as_of=2026-06"
+  },
+  {
+   "model": "openai/gpt-5-high",
+   "benchmark": "aider_polyglot",
+   "score": 88.0,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=5 as_of=2025-11"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "aider_polyglot",
+   "score": 87.6,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=6 as_of=2026-04"
+  },
+  {
+   "model": "anthropic/claude-mythos-5",
+   "benchmark": "swe_bench_verified",
+   "score": 95.5,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=1 as_of=None"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "swe_bench_verified",
+   "score": 95.0,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=2 as_of=None"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "swe_bench_verified",
+   "score": 88.7,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=3 as_of=None"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "swe_bench_verified",
+   "score": 88.6,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=4 as_of=None"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "swe_bench_verified",
+   "score": 87.6,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=5 as_of=None"
+  },
+  {
+   "model": "mistral/mistral-medium-3.5",
+   "benchmark": "swe_bench_verified",
+   "score": 77.6,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=7 as_of=None"
+  },
+  {
+   "model": "mistral/devstral-2",
+   "benchmark": "swe_bench_verified",
+   "score": 72.2,
+   "unit": "score",
+   "_source": "aider.chat / vendor leaderboards",
+   "_note": "rank=8 as_of=None"
+  },
+  {
+   "model": "cognition/devin",
+   "benchmark": "swe_bench_verified",
+   "score": 45.8,
+   "unit": "score",
+   "_source": "https://cognition.ai/blog/swe-bench-technical-report",
+   "_note": "Cognition standard eval (single-agent, no HITL, no BoN)"
+  },
+  {
+   "model": "cognition/devin",
+   "benchmark": "swe_bench_verified_legacy",
+   "score": 13.86,
+   "unit": "score",
+   "_source": "https://cognition.ai/blog/swe-bench-technical-report",
+   "_note": "Original 2024 Devin technical report (Devin 1)"
+  },
+  {
+   "model": "cognition/devin-1",
+   "benchmark": "swe_bench_verified",
+   "score": 13.86,
+   "unit": "score",
+   "_source": "https://cognition.ai/blog/swe-bench-technical-report",
+   "_note": "Cognition original technical report"
+  },
+  {
+   "model": "augment/auggie",
+   "benchmark": "swe_bench_pro",
+   "score": 51.8,
+   "unit": "score",
+   "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+   "_note": "Scale SEAL SWE-Bench Pro public, April 2026"
+  },
+  {
+   "model": "augment/auggie",
+   "benchmark": "swe_bench_verified",
+   "score": 72.0,
+   "unit": "score",
+   "_source": "https://www.augmentcode.com/blog/auggie-tops-swe-bench-pro",
+   "_note": "Augment self-reported with Claude Opus 4.6"
+  },
+  {
+   "model": "augment/auggie",
+   "benchmark": "swe_bench_verified",
+   "score": 70.6,
+   "unit": "score",
+   "_source": "https://github.com/augmentcode/augment-swebench-agent",
+   "_note": "Augment self-reported (open-source agent)"
+  },
+  {
+   "model": "openai/gpt-5-high",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 88.0,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff date=2025-08-23"
+  },
+  {
+   "model": "openai/gpt-5-medium",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 86.7,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff date=2025-08-25"
+  },
+  {
+   "model": "openai/o3-pro-high",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 84.9,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff date=2025-06-28"
+  },
+  {
+   "model": "google/gemini-2.5-pro-preview-06-05-32k-think",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 83.1,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff-fenced date=2025-06-06"
+  },
+  {
+   "model": "openai/gpt-5-low",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 81.3,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff date=2025-08-25"
+  },
+  {
+   "model": "openai/o3-high",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 81.3,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff date=2025-06-25"
+  },
+  {
+   "model": "xai/grok-4-high",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 79.6,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff date=2025-07-11"
+  },
+  {
+   "model": "google/gemini-2.5-pro-preview-06-05-default-think",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 79.1,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff-fenced date=2025-06-06"
+  },
+  {
+   "model": "openai/o3-high+gpt-4.1-architect",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 78.2,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=architect date=2025-06-27"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 76.9,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff date=2025-06-25"
+  },
+  {
+   "model": "google/gemini-2.5-pro-preview-05-06",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 76.9,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff-fenced date=2025-05-07"
+  },
+  {
+   "model": "deepseek/deepseek-v3.2-exp-reasoner",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 74.2,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff date=2025-10-03"
+  },
+  {
+   "model": "google/gemini-2.5-pro-preview-03-25",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 72.9,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff-fenced date=2025-04-12"
+  },
+  {
+   "model": "anthropic/claude-opus-4-32k-think",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 72.0,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff date=2025-05-25"
+  },
+  {
+   "model": "openai/o4-mini-high",
+   "benchmark": "aider_polyglot_pass1",
+   "score": 72.0,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold=diff date=2025-04-16"
+  },
+  {
+   "model": "openai/gpt-5-high",
+   "benchmark": "aider_polyglot_cost_usd",
+   "score": 29.08,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold= date=2025-08-23"
+  },
+  {
+   "model": "openai/gpt-5-low",
+   "benchmark": "aider_polyglot_cost_usd",
+   "score": 10.37,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold= date=2025-08-25"
+  },
+  {
+   "model": "deepseek/deepseek-v3.2-exp-reasoner",
+   "benchmark": "aider_polyglot_cost_usd",
+   "score": 1.3,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold= date=2025-10-03"
+  },
+  {
+   "model": "openai/o3-pro-high",
+   "benchmark": "aider_polyglot_cost_usd",
+   "score": 146.32,
+   "unit": "score",
+   "_source": "https://aider.chat/docs/leaderboards/",
+   "_note": "scaffold= date=2025-06-28"
+  },
+  {
+   "model": "anthropic/claude-mythos-5",
+   "benchmark": "swe_bench_verified",
+   "score": 95.5,
+   "unit": "score",
+   "_source": "https://benchlm.ai/benchmarks/sweVerified",
+   "_note": "scaffold=vendor date=2026-06-09"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "swe_bench_verified",
+   "score": 95.0,
+   "unit": "score",
+   "_source": "https://benchlm.ai/benchmarks/sweVerified",
+   "_note": "scaffold=vendor date=2026-06-09"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "swe_bench_verified",
+   "score": 88.6,
+   "unit": "score",
+   "_source": "https://benchlm.ai/benchmarks/sweVerified",
+   "_note": "scaffold=vendor date=2026-06-09"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "swe_bench_verified",
+   "score": 88.7,
+   "unit": "score",
+   "_source": "https://www.marc0.dev/en/leaderboard",
+   "_note": "scaffold=vendor date=2026-05-01"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "swe_bench_pro_vendor",
+   "score": 80.3,
+   "unit": "score",
+   "_source": "https://www.morphllm.com/swe-bench-pro",
+   "_note": "scaffold=anthropic-internal date=2026-06-09"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "swe_bench_pro_vendor",
+   "score": 69.2,
+   "unit": "score",
+   "_source": "https://www.morphllm.com/swe-bench-pro",
+   "_note": "scaffold=anthropic-internal date=2026-06-09"
+  },
+  {
+   "model": "openai/gpt-5.4-xhigh",
+   "benchmark": "swe_bench_pro_scale_public",
+   "score": 59.1,
+   "unit": "score",
+   "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+   "_note": "scaffold=scale-seal date=2026-06-09"
+  },
+  {
+   "model": "microsoft/muse-spark",
+   "benchmark": "swe_bench_pro_scale_public",
+   "score": 55.0,
+   "unit": "score",
+   "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+   "_note": "scaffold=scale-seal date=2026-06-09"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6-thinking",
+   "benchmark": "swe_bench_pro_scale_public",
+   "score": 51.9,
+   "unit": "score",
+   "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+   "_note": "scaffold=scale-seal date=2026-06-09"
+  },
+  {
+   "model": "anthropic/claude-mythos-preview",
+   "benchmark": "swe_bench_multilingual",
+   "score": 87.3,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/swe-bench-multilingual",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "swe_bench_multilingual",
+   "score": 77.8,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/swe-bench-multilingual",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "swe_bench_multilingual",
+   "score": 76.7,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/swe-bench-multilingual",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "openai/gpt-5.1-codex",
+   "benchmark": "swe_lancer",
+   "score": 66.3,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/swe-lancer",
+   "_note": "scaffold= date=2026-03-01"
+  },
+  {
+   "model": "anthropic/claude-3.5-sonnet",
+   "benchmark": "swe_lancer",
+   "score": 40.3,
+   "unit": "score",
+   "_source": "https://openai.com/index/swe-lancer/",
+   "_note": "scaffold= date=2025-02-18"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "livecodebench_v6_pass1",
+   "score": 93.5,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/livecodebench-v6",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "alibaba/qwen3.7-max",
+   "benchmark": "livecodebench_v6_pass1",
+   "score": 91.6,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/livecodebench-v6",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-max",
+   "benchmark": "livecodebench_v6_pass1",
+   "score": 91.6,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/livecodebench-v6",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "google/gemini-3-pro-preview-high",
+   "benchmark": "livecodebench_v6_pass1",
+   "score": 91.7,
+   "unit": "score",
+   "_source": "https://pricepertoken.com/leaderboards/benchmark/livecodebench",
+   "_note": "scaffold= date=2026-06-06"
+  },
+  {
+   "model": "google/gemini-3-flash-preview-reasoning",
+   "benchmark": "livecodebench_v6_pass1",
+   "score": 90.8,
+   "unit": "score",
+   "_source": "https://pricepertoken.com/leaderboards/benchmark/livecodebench",
+   "_note": "scaffold= date=2026-06-06"
+  },
+  {
+   "model": "deepseek/deepseek-v3.2-speciale",
+   "benchmark": "livecodebench_v6_pass1",
+   "score": 89.6,
+   "unit": "score",
+   "_source": "https://pricepertoken.com/leaderboards/benchmark/livecodebench",
+   "_note": "scaffold= date=2026-06-06"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "livecodebench_v6_pass1",
+   "score": 89.6,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/livecodebench-v6",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "bytedance/seed-2.0-pro",
+   "benchmark": "livecodebench_v6_pass1",
+   "score": 87.8,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/livecodebench-v6",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "terminal_bench_2",
+   "score": 82.7,
+   "unit": "score",
+   "_source": "https://www.tbench.ai/leaderboard/terminal-bench/2.0",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "anthropic/claude-mythos-preview",
+   "benchmark": "terminal_bench_2",
+   "score": 82.0,
+   "unit": "score",
+   "_source": "https://www.tbench.ai/leaderboard/terminal-bench/2.0",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "terminal_bench_2",
+   "score": 78.4,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/terminal-bench-2",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "openai/gpt-5.3-codex",
+   "benchmark": "terminal_bench_2",
+   "score": 77.3,
+   "unit": "score",
+   "_source": "https://www.tbench.ai/leaderboard/terminal-bench/2.0",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "terminal_bench_2",
+   "score": 74.7,
+   "unit": "score",
+   "_source": "https://www.tbench.ai/leaderboard/terminal-bench/2.0",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "alibaba/qwen2.5-coder-32b-instruct",
+   "benchmark": "bigcodebench_hard_instruct",
+   "score": 27.0,
+   "unit": "score",
+   "_source": "https://bigcode-bench.github.io/",
+   "_note": "scaffold= date=2024-11-15"
+  },
+  {
+   "model": "alibaba/qwen2.5-coder-7b-instruct",
+   "benchmark": "bigcodebench_hard_instruct",
+   "score": 18.2,
+   "unit": "score",
+   "_source": "https://bigcode-bench.github.io/",
+   "_note": "scaffold= date=2024-11-15"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "tau_bench_airline",
+   "score": 70.0,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/tau-bench-airline",
+   "_note": "scaffold= date=2025-10-01"
+  },
+  {
+   "model": "minimax/minimax-m1-80k",
+   "benchmark": "tau_bench_airline",
+   "score": 62.0,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/tau-bench-airline",
+   "_note": "scaffold= date=2025-10-01"
+  },
+  {
+   "model": "zai/glm-4.5-air",
+   "benchmark": "tau_bench_airline",
+   "score": 60.8,
+   "unit": "score",
+   "_source": "https://llm-stats.com/benchmarks/tau-bench-airline",
+   "_note": "scaffold= date=2025-10-01"
+  },
+  {
+   "model": "zai/glm-4.7-flash",
+   "benchmark": "tau2_bench",
+   "score": 98.8,
+   "unit": "score",
+   "_source": "https://pricepertoken.com/leaderboards/benchmark/tau2",
+   "_note": "scaffold= date=2026-03-16"
+  },
+  {
+   "model": "zai/glm-5",
+   "benchmark": "tau2_bench",
+   "score": 98.2,
+   "unit": "score",
+   "_source": "https://pricepertoken.com/leaderboards/benchmark/tau2",
+   "_note": "scaffold= date=2026-03-16"
+  },
+  {
+   "model": "anthropic/claude-mythos-preview",
+   "benchmark": "tau2_bench",
+   "score": 89.2,
+   "unit": "score",
+   "_source": "https://benchlm.ai/benchmarks/tauBench",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "codeforces_rating",
+   "score": 3206.0,
+   "unit": "score",
+   "_source": "https://www.digitaltrends.com/computing/deepseeek-v4-is-out-touting-some-disruptive-wins-over-gemini-chatgpt-and-claude/",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "codeforces_rating",
+   "score": 3168.0,
+   "unit": "score",
+   "_source": "https://medium.com/@sanjeevpatel3007/best-ai-models-in-2026-the-complete-honest-ranking-d67b63cf3543",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "google/gemini-3.1",
+   "benchmark": "codeforces_rating",
+   "score": 3052.0,
+   "unit": "score",
+   "_source": "https://medium.com/@sanjeevpatel3007/best-ai-models-in-2026-the-complete-honest-ranking-d67b63cf3543",
+   "_note": "scaffold= date=2026-06-09"
+  },
+  {
+   "model": "google/gemma-4",
+   "benchmark": "codeforces_rating",
+   "score": 2150.0,
+   "unit": "score",
+   "_source": "https://medium.com/@sanjeevpatel3007/april-2026-ai-models-every-major-release-reviewed-6ea03d7bc0b7",
+   "_note": "scaffold= date=2026-04-01"
+  }
+ ]
 }
