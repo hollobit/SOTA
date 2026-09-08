@@ -29828,6 +29828,447 @@
     "metric": "score_lower_better"
   },
   {
+    "id": "artifactsbench",
+    "name": "ArtifactsBench",
+    "category": "coding",
+    "description": "Visual/interactive code-artifact generation benchmark (as used on the Ling-3.0-flash card).",
+    "metric": "score"
+  },
+  {
+    "id": "miniappbench",
+    "name": "MiniAppBench",
+    "category": "coding",
+    "description": "500-task benchmark: turn a single user request into a complete, usable interactive HTML app (Ling-3.0-flash card; temperature 1.0, max_tokens 128K).",
+    "metric": "score"
+  },
+  {
+    "id": "antswebench",
+    "name": "AntSWEBench (internal)",
+    "category": "coding",
+    "description": "Ant Group internal software-engineering benchmark (Java/JavaScript/Python; new feature, bug fix, refactoring).",
+    "metric": "resolve_rate"
+  },
+  {
+    "id": "sysbench",
+    "name": "SysBench",
+    "category": "instruction-following",
+    "description": "System-prompt instruction-following benchmark.",
+    "metric": "score"
+  },
+  {
+    "id": "lifebench",
+    "name": "LIFEBench",
+    "category": "instruction-following",
+    "description": "Length-instruction-following benchmark.",
+    "metric": "score"
+  },
+  {
+    "id": "diagnosisarena_mcq",
+    "name": "DiagnosisArena-MCQ",
+    "category": "medical",
+    "description": "Clinical diagnosis multiple-choice benchmark.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "redisqa",
+    "name": "ReDisQA",
+    "category": "medical",
+    "description": "Rare-disease question answering.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medethicalign",
+    "name": "MedEthicAlign",
+    "category": "medical",
+    "description": "Medical ethics / compliance alignment (1,000-sample high-quality subset covering high-risk Chinese medical scenarios).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "afumed_drug_internal",
+    "name": "AFUMED-Drug (internal)",
+    "category": "medical",
+    "description": "inclusionAI internal medication-safety benchmark: accuracy at identifying medication contraindications.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "afusafe_medsce_internal",
+    "name": "AFUSAFE-MedSCE (internal)",
+    "category": "medical",
+    "description": "inclusionAI in-house medical ethics & safety benchmark built from real-world risk interactions and recent regulatory updates.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "vstar_python",
+    "name": "V* (with Python)",
+    "category": "multimodal",
+    "description": "V* fine-grained visual search benchmark, model given an enriched action space (crop/zoom/draw) via Python.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "hr_bench_4k",
+    "name": "HR-Bench 4K",
+    "category": "multimodal",
+    "description": "High-resolution image perception benchmark, 4K split.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "hr_bench_8k",
+    "name": "HR-Bench 8K",
+    "category": "multimodal",
+    "description": "High-resolution image perception benchmark, 8K split.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "visualprobe",
+    "name": "VisualProbe",
+    "category": "multimodal",
+    "description": "Visual reasoning probe benchmark (StepFun blog).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "researchrubrics",
+    "name": "ResearchRubrics",
+    "category": "agent",
+    "description": "Rubric-scored deep-research benchmark.",
+    "metric": "score"
+  },
+  {
+    "id": "gdpval_stirrup_internal_elo",
+    "name": "GDPval (Stirrup, StepFun internal pairwise)",
+    "category": "agent",
+    "description": "GDPval via the Stirrup harness with StepFun's internal pairwise evaluation; Elo-style rating, not the AA leaderboard entry.",
+    "metric": "elo_rating"
+  },
+  {
+    "id": "gdpval_stirrup_internal_win_pct",
+    "name": "GDPval (Stirrup, StepFun internal) — ii %",
+    "category": "agent",
+    "description": "The '(ii xx%)' figure StepFun reports next to its GDPval-Stirrup rating.",
+    "metric": "pct"
+  },
+  {
+    "id": "step_swe_bench_hermes_agent",
+    "name": "Step-SWE-Bench — Hermes Agent harness",
+    "category": "coding",
+    "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog).",
+    "metric": "pass_rate"
+  },
+  {
+    "id": "step_swe_bench_openclaw",
+    "name": "Step-SWE-Bench — Openclaw harness",
+    "category": "coding",
+    "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog).",
+    "metric": "pass_rate"
+  },
+  {
+    "id": "step_swe_bench_claude_code",
+    "name": "Step-SWE-Bench — Claude Code harness",
+    "category": "coding",
+    "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog).",
+    "metric": "pass_rate"
+  },
+  {
+    "id": "step_swe_bench_kilocode",
+    "name": "Step-SWE-Bench — Kilocode harness",
+    "category": "coding",
+    "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog).",
+    "metric": "pass_rate"
+  },
+  {
+    "id": "step_swe_bench_opencode",
+    "name": "Step-SWE-Bench — Opencode harness",
+    "category": "coding",
+    "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog).",
+    "metric": "pass_rate"
+  },
+  {
+    "id": "step_swe_bench_roocode",
+    "name": "Step-SWE-Bench — Roocode harness",
+    "category": "coding",
+    "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog).",
+    "metric": "pass_rate"
+  },
+  {
+    "id": "gaokao_2026",
+    "name": "Gaokao 2026 (5 papers, /150)",
+    "category": "math",
+    "description": "Average over the five 2026 Chinese Gaokao mathematics papers (National I, National II, Beijing, Shanghai, Tianjin), each graded out of 150.",
+    "metric": "score_150"
+  },
+  {
+    "id": "seal_0",
+    "name": "SEAL-0",
+    "category": "agent",
+    "description": "Search-augmented QA benchmark (SEAL-0 split) used in deep-research agent evaluations.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "osworld_v2_single_action",
+    "name": "OSWorld 2.0 binary (500 steps, single-action tool)",
+    "category": "agent",
+    "description": "Binary task completion at 500 steps with the single-action tool condition (paper Table 3); the batched-actions condition is the headline osworld_v2 figure.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_single_action_partial",
+    "name": "OSWorld 2.0 partial score (500 steps, single-action tool)",
+    "category": "agent",
+    "description": "Partial score at 500 steps, single-action tool condition (paper Table 3).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_cost_per_task_usd_lower_better",
+    "name": "OSWorld 2.0 — cost per task (USD)",
+    "category": "efficiency",
+    "description": "Approximate API cost per task, 500-step runs (paper Table 3). Lower is better.",
+    "metric": "usd_lower_better"
+  },
+  {
+    "id": "osworld_v2_tool_calls_per_task",
+    "name": "OSWorld 2.0 — tool calls per task",
+    "category": "efficiency",
+    "description": "Average tool calls per task, 500-step runs (paper Table 3).",
+    "metric": "count"
+  },
+  {
+    "id": "osworld_v2_output_tokens_per_task_k",
+    "name": "OSWorld 2.0 — output tokens per task (K)",
+    "category": "efficiency",
+    "description": "Average output tokens per task in thousands, 500-step runs (paper Table 3).",
+    "metric": "tokens_k"
+  },
+  {
+    "id": "osworld_v2_steps_per_task",
+    "name": "OSWorld 2.0 — steps per task",
+    "category": "efficiency",
+    "description": "Average steps (turns) per task, 500-step runs (paper Table 3).",
+    "metric": "count"
+  },
+  {
+    "id": "osworld_v2_time_bin_0_45",
+    "name": "OSWorld 2.0 binary completion — expected task time [0, 45) min, n=25",
+    "category": "agent",
+    "description": "Binary completion (%) on tasks whose human-annotated expected time is [0, 45) min, n=25 (paper Table 21; 500-step budget, max reasoning effort).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_time_bin_45_90",
+    "name": "OSWorld 2.0 binary completion — expected task time [45, 90) min, n=21",
+    "category": "agent",
+    "description": "Binary completion (%) on tasks whose human-annotated expected time is [45, 90) min, n=21 (paper Table 21; 500-step budget, max reasoning effort).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_time_bin_90_137",
+    "name": "OSWorld 2.0 binary completion — expected task time [90, 137) min, n=24",
+    "category": "agent",
+    "description": "Binary completion (%) on tasks whose human-annotated expected time is [90, 137) min, n=24 (paper Table 21; 500-step budget, max reasoning effort).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_time_bin_137_163",
+    "name": "OSWorld 2.0 binary completion — expected task time [137, 163) min, n=21",
+    "category": "agent",
+    "description": "Binary completion (%) on tasks whose human-annotated expected time is [137, 163) min, n=21 (paper Table 21; 500-step budget, max reasoning effort).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_time_bin_163_360",
+    "name": "OSWorld 2.0 binary completion — expected task time [163, 360] min, n=17",
+    "category": "agent",
+    "description": "Binary completion (%) on tasks whose human-annotated expected time is [163, 360] min, n=17 (paper Table 21; 500-step budget, max reasoning effort).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_phen_implicit_state_partial",
+    "name": "OSWorld 2.0 — Implicit-state tasks, partial score",
+    "category": "agent",
+    "description": "Partial score on the 43 tasks tagged with the 'Implicit-state' challenge phenomenon (paper Table 23; tags overlap).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_phen_implicit_state_binary",
+    "name": "OSWorld 2.0 — Implicit-state tasks, binary success",
+    "category": "agent",
+    "description": "Binary success rate on the 43 tasks tagged 'Implicit-state' (paper Table 23; tags overlap).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_phen_multimodal_partial",
+    "name": "OSWorld 2.0 — Multimodal tasks, partial score",
+    "category": "agent",
+    "description": "Partial score on the 30 tasks tagged with the 'Multimodal' challenge phenomenon (paper Table 23; tags overlap).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_phen_multimodal_binary",
+    "name": "OSWorld 2.0 — Multimodal tasks, binary success",
+    "category": "agent",
+    "description": "Binary success rate on the 30 tasks tagged 'Multimodal' (paper Table 23; tags overlap).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_phen_visual_spatial_partial",
+    "name": "OSWorld 2.0 — Visual-spatial tasks, partial score",
+    "category": "agent",
+    "description": "Partial score on the 45 tasks tagged with the 'Visual-spatial' challenge phenomenon (paper Table 23; tags overlap).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_phen_visual_spatial_binary",
+    "name": "OSWorld 2.0 — Visual-spatial tasks, binary success",
+    "category": "agent",
+    "description": "Binary success rate on the 45 tasks tagged 'Visual-spatial' (paper Table 23; tags overlap).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_phen_proactive_partial",
+    "name": "OSWorld 2.0 — Proactive tasks, partial score",
+    "category": "agent",
+    "description": "Partial score on the 6 tasks tagged with the 'Proactive' challenge phenomenon (paper Table 23; tags overlap).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_phen_proactive_binary",
+    "name": "OSWorld 2.0 — Proactive tasks, binary success",
+    "category": "agent",
+    "description": "Binary success rate on the 6 tasks tagged 'Proactive' (paper Table 23; tags overlap).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_phen_multi_item_partial",
+    "name": "OSWorld 2.0 — Multi-item tasks, partial score",
+    "category": "agent",
+    "description": "Partial score on the 43 tasks tagged with the 'Multi-item' challenge phenomenon (paper Table 23; tags overlap).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_phen_multi_item_binary",
+    "name": "OSWorld 2.0 — Multi-item tasks, binary success",
+    "category": "agent",
+    "description": "Binary success rate on the 43 tasks tagged 'Multi-item' (paper Table 23; tags overlap).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_phen_dynamic_partial",
+    "name": "OSWorld 2.0 — Dynamic tasks, partial score",
+    "category": "agent",
+    "description": "Partial score on the 10 tasks tagged with the 'Dynamic' challenge phenomenon (paper Table 23; tags overlap).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_phen_dynamic_binary",
+    "name": "OSWorld 2.0 — Dynamic tasks, binary success",
+    "category": "agent",
+    "description": "Binary success rate on the 10 tasks tagged 'Dynamic' (paper Table 23; tags overlap).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_phen_conflict_partial",
+    "name": "OSWorld 2.0 — Conflict tasks, partial score",
+    "category": "agent",
+    "description": "Partial score on the 39 tasks tagged with the 'Conflict' challenge phenomenon (paper Table 23; tags overlap).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_phen_conflict_binary",
+    "name": "OSWorld 2.0 — Conflict tasks, binary success",
+    "category": "agent",
+    "description": "Binary success rate on the 39 tasks tagged 'Conflict' (paper Table 23; tags overlap).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_phen_tutorial_partial",
+    "name": "OSWorld 2.0 — Tutorial tasks, partial score",
+    "category": "agent",
+    "description": "Partial score on the 22 tasks tagged with the 'Tutorial' challenge phenomenon (paper Table 23; tags overlap).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_phen_tutorial_binary",
+    "name": "OSWorld 2.0 — Tutorial tasks, binary success",
+    "category": "agent",
+    "description": "Binary success rate on the 22 tasks tagged 'Tutorial' (paper Table 23; tags overlap).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_phen_streaming_partial",
+    "name": "OSWorld 2.0 — Streaming tasks, partial score",
+    "category": "agent",
+    "description": "Partial score on the 6 tasks tagged with the 'Streaming' challenge phenomenon (paper Table 23; tags overlap).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_phen_streaming_binary",
+    "name": "OSWorld 2.0 — Streaming tasks, binary success",
+    "category": "agent",
+    "description": "Binary success rate on the 6 tasks tagged 'Streaming' (paper Table 23; tags overlap).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_phen_cross_source_partial",
+    "name": "OSWorld 2.0 — Cross-source tasks, partial score",
+    "category": "agent",
+    "description": "Partial score on the 46 tasks tagged with the 'Cross-source' challenge phenomenon (paper Table 23; tags overlap).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_phen_cross_source_binary",
+    "name": "OSWorld 2.0 — Cross-source tasks, binary success",
+    "category": "agent",
+    "description": "Binary success rate on the 46 tasks tagged 'Cross-source' (paper Table 23; tags overlap).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_behavior_mean_score",
+    "name": "OSWorld 2.0 — mean score (behavior-analysis run)",
+    "category": "agent",
+    "description": "Mean fine-grained score (0–1) over the 108 tasks in the behavior-analysis runs (paper Table 15).",
+    "metric": "score"
+  },
+  {
+    "id": "osworld_v2_partial_progress_rate",
+    "name": "OSWorld 2.0 — tasks with partial progress (%)",
+    "category": "agent",
+    "description": "Share of the 108 tasks on which the agent made partial progress (paper Table 15).",
+    "metric": "pct"
+  },
+  {
+    "id": "osworld_v2_unsafe_hidden_state_tasks_lower_better",
+    "name": "OSWorld 2.0 — tasks with hidden-state extraction (of 108)",
+    "category": "safety",
+    "description": "Number of tasks (deduplicated, of 108) in which the agent extracted hidden application states (paper Table 14). Lower is better.",
+    "metric": "count_lower_better"
+  },
+  {
+    "id": "osworld_v2_unsafe_bypass_ui_tasks_lower_better",
+    "name": "OSWorld 2.0 — tasks bypassing user-visible interfaces (of 108)",
+    "category": "safety",
+    "description": "Number of tasks (deduplicated, of 108) in which the agent bypassed user-visible interfaces: system-level changes, killing apps, hidden APIs, credential reuse (paper Table 14). Lower is better.",
+    "metric": "count_lower_better"
+  },
+  {
+    "id": "bu_bench_v1",
+    "name": "BU Bench V1 (Browser Use, 100 web tasks)",
+    "category": "agent",
+    "description": "Browser Use's open benchmark: 100 hand-selected hard-but-completable live-web tasks (20 each from custom challenges, WebBench, Mind2Web 2, GAIA, BrowseComp), LLM judge (gemini-2.5-flash, binary verdict, 87% human agreement). Score = tasks passed of 100 running the open-source Browser Use library with the named LLM.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "bu_bench_v1_cost_usd_lower_better",
+    "name": "BU Bench V1 — API cost per 100-task run (USD)",
+    "category": "efficiency",
+    "description": "LLM API cost of one 100-task BU Bench V1 run. Lower is better.",
+    "metric": "usd_lower_better"
+  },
+  {
+    "id": "caict_trusted_ai_mcp_special_test_total",
+    "name": "CAICT Trusted AI Large Model Benchmark — MCP special test (total score)",
+    "category": "agent",
+    "description": "China Academy of Information and Communications Technology (MIIT) 'Trusted AI Large Model Benchmark' MCP special test: 6 tool-use tasks (location navigation, web search, browser automation, financial analysis, code-repository management, 3D design) plus an overall assessment, partly based on the open-source MCP-Universe framework. Total score as reported by press summaries of the CAICT inspection report (August 2026).",
+    "metric": "score"
+  },
+  {
     "id": "caibench",
     "name": "CAIBench (Cybersecurity AI Meta-Benchmark)",
     "category": "cyber",
