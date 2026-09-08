@@ -1,0 +1,788 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-09",
+  "session": "S277",
+  "sources": [
+   "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "https://arxiv.org/pdf/2606.29537",
+   "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "https://static.stepfun.com/blog/step-3.7-flash/",
+   "https://eu.36kr.com/en/p/3963345222147335"
+  ],
+  "note": "Re-audit of the S276 sources for misses. (1) browser-use old_results/ holds 22 earlier-library runs; the 13 models not yet on bu_bench_v1 are added with the library version in each note (blog multi-run values are kept where they exist). (2) OSWorld 2.0 Tables 19/20 (behaviour-label and primary-mode rates, 4 models) — descriptive rates, 15 new ids. (3) Ling-3.0-flash context corrected 1,000,000 → 262,144 (card: 8K→32K→256K schedule; OpenRouter 262,144). (4) Step 3.7 Flash HLE text-only 49.7 as its own id; the HF card's 48.1 vs blog 47.2 discrepancy recorded. (5) Qwen-3.6-27B CAICT total derived from the stated 5.34-point gap. Checked and nothing further: Spark-X2.5-1.7B card table is identical to the 4B card; the OpenRouter Sante page adds only context/price; AgentCPM paper prose repeats Table 1; explainx has no new data. BenchLM BrowseComp cross-check vs DB: 34/41 match; DB lacks GPT-6 Astra (not in the system card — BenchLM's source unknown), Inkling / Inkling-Small (TML blog, not in this link set), and three models absent from the DB entirely (Ornith-1.5 ×3, dots3-note Preview, Agents-A1) — candidates for a separate ingest from their primary cards. minimax/m3 vs minimax/minimax-m3 duplicate ids noted."
+ },
+ "models": [
+  {
+   "id": "inclusionai/ling-3.0-flash",
+   "vendor": "inclusionAI",
+   "name": "Ling 3.0 Flash",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "parameters": "124B-A5.1B",
+   "release_date": "2026-07-23",
+   "context_window": 262144,
+   "languages": [
+    "en",
+    "zh"
+   ]
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "osworld_v2_behavior_direct_code_api_file_rate",
+   "name": "OSWorld 2.0 — 'Direct code/API/file strategy' label rate (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories carrying the overlapping behaviour label 'Direct code/API/file strategy' (paper Table 19; labels overlap). Descriptive, no better/worse direction."
+  },
+  {
+   "id": "osworld_v2_behavior_human_gui_rate",
+   "name": "OSWorld 2.0 — 'Human-style GUI strategy' label rate (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories carrying the overlapping behaviour label 'Human-style GUI strategy' (paper Table 19; labels overlap). Descriptive, no better/worse direction."
+  },
+  {
+   "id": "osworld_v2_behavior_hybrid_gui_code_rate",
+   "name": "OSWorld 2.0 — 'Hybrid GUI + code strategy' label rate (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories carrying the overlapping behaviour label 'Hybrid GUI + code strategy' (paper Table 19; labels overlap). Descriptive, no better/worse direction."
+  },
+  {
+   "id": "osworld_v2_behavior_gui_grounding_issue_rate",
+   "name": "OSWorld 2.0 — 'GUI/visual grounding issue' label rate (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories carrying the overlapping behaviour label 'GUI/visual grounding issue' (paper Table 19; labels overlap). Descriptive, no better/worse direction."
+  },
+  {
+   "id": "osworld_v2_behavior_loop_recovery_churn_rate",
+   "name": "OSWorld 2.0 — 'Loop/repeated recovery churn' label rate (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories carrying the overlapping behaviour label 'Loop/repeated recovery churn' (paper Table 19; labels overlap). Descriptive, no better/worse direction."
+  },
+  {
+   "id": "osworld_v2_behavior_planning_goal_drift_rate",
+   "name": "OSWorld 2.0 — 'Planning or goal drift' label rate (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories carrying the overlapping behaviour label 'Planning or goal drift' (paper Table 19; labels overlap). Descriptive, no better/worse direction."
+  },
+  {
+   "id": "osworld_v2_behavior_final_state_exactness_failure_rate",
+   "name": "OSWorld 2.0 — 'Final-state exactness failure' label rate (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories carrying the overlapping behaviour label 'Final-state exactness failure' (paper Table 19; labels overlap). Descriptive, no better/worse direction."
+  },
+  {
+   "id": "osworld_v2_behavior_premature_stop_false_done_rate",
+   "name": "OSWorld 2.0 — 'Premature stop / false done' label rate (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories carrying the overlapping behaviour label 'Premature stop / false done' (paper Table 19; labels overlap). Descriptive, no better/worse direction."
+  },
+  {
+   "id": "osworld_v2_behavior_step_time_exhaustion_rate",
+   "name": "OSWorld 2.0 — 'Step/time exhaustion' label rate (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories carrying the overlapping behaviour label 'Step/time exhaustion' (paper Table 19; labels overlap). Descriptive, no better/worse direction."
+  },
+  {
+   "id": "osworld_v2_behavior_scoring_env_mismatch_rate",
+   "name": "OSWorld 2.0 — 'Scoring/environment mismatch' label rate (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories carrying the overlapping behaviour label 'Scoring/environment mismatch' (paper Table 19; labels overlap). Descriptive, no better/worse direction."
+  },
+  {
+   "id": "osworld_v2_primary_mode_direct_code_api_file_rate",
+   "name": "OSWorld 2.0 — primary mode 'Direct code/API/file' (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories whose mutually exclusive primary strategy mode is 'Direct code/API/file' (paper Table 20). Descriptive."
+  },
+  {
+   "id": "osworld_v2_primary_mode_human_gui_rate",
+   "name": "OSWorld 2.0 — primary mode 'Human GUI' (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories whose mutually exclusive primary strategy mode is 'Human GUI' (paper Table 20). Descriptive."
+  },
+  {
+   "id": "osworld_v2_primary_mode_hybrid_rate",
+   "name": "OSWorld 2.0 — primary mode 'Hybrid' (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories whose mutually exclusive primary strategy mode is 'Hybrid' (paper Table 20). Descriptive."
+  },
+  {
+   "id": "osworld_v2_primary_mode_exploratory_churn_rate",
+   "name": "OSWorld 2.0 — primary mode 'Exploratory churn' (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories whose mutually exclusive primary strategy mode is 'Exploratory churn' (paper Table 20). Descriptive."
+  },
+  {
+   "id": "osworld_v2_primary_mode_other_rate",
+   "name": "OSWorld 2.0 — primary mode 'Other' (% of 108 tasks)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 annotated trajectories whose mutually exclusive primary strategy mode is 'Other' (paper Table 20). Descriptive."
+  },
+  {
+   "id": "hle_with_tools_text_only",
+   "name": "Humanity's Last Exam (with tools, text-only subset)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "HLE accuracy with tool use restricted to the text-only questions."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "bu_bench_v1",
+   "score": 20.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (claude-haiku-4-5): tasks_successful 20/100 with Browser Use library 0.11.5 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. "
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "bu_bench_v1",
+   "score": 60.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (claude-sonnet-4-5): tasks_successful 60/100 with Browser Use library 0.11.5 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. "
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "bu_bench_v1",
+   "score": 66.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (gemini-3-flash-preview): tasks_successful 66/100 with Browser Use library 0.11.5 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. "
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "bu_bench_v1",
+   "score": 61.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (gemini-3-pro-preview): tasks_successful 61/100 with Browser Use library 0.11.5 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. "
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "bu_bench_v1",
+   "score": 28.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (gpt-4.1): tasks_successful 28/100 with Browser Use library 0.11.5 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. "
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "bu_bench_v1_cost_usd_lower_better",
+   "score": 30.95,
+   "unit": "USD",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "total_cost field of the old_results run file (gpt-4.1, library 0.11.5); several other run files record 0 or sub-$1 totals, which look like untracked provider billing and were not ingested."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "bu_bench_v1",
+   "score": 45.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (deepseek-v4-pro-fireworks): tasks_successful 45/100 with Browser Use library 0.12.6 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. Served via Fireworks."
+  },
+  {
+   "model": "zhipu/glm-5.1",
+   "benchmark": "bu_bench_v1",
+   "score": 16.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (glm-5.1): tasks_successful 16/100 with Browser Use library 0.12.6 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. "
+  },
+  {
+   "model": "zhipu/glm-5.1",
+   "benchmark": "bu_bench_v1_cost_usd_lower_better",
+   "score": 30.91,
+   "unit": "USD",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "total_cost field of the old_results run file (glm-5.1, library 0.12.6); several other run files record 0 or sub-$1 totals, which look like untracked provider billing and were not ingested."
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "bu_bench_v1",
+   "score": 19.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (gpt-5.4-mini): tasks_successful 19/100 with Browser Use library 0.12.6 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. "
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "bu_bench_v1_cost_usd_lower_better",
+   "score": 20.96,
+   "unit": "USD",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "total_cost field of the old_results run file (gpt-5.4-mini, library 0.12.6); several other run files record 0 or sub-$1 totals, which look like untracked provider billing and were not ingested."
+  },
+  {
+   "model": "xai/grok-4.20",
+   "benchmark": "bu_bench_v1",
+   "score": 43.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (grok-4.20-openrouter): tasks_successful 43/100 with Browser Use library 0.12.6 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. Served via OpenRouter."
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "bu_bench_v1",
+   "score": 41.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (kimi-k2.5): tasks_successful 41/100 with Browser Use library 0.12.6 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. "
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "bu_bench_v1",
+   "score": 45.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (kimi-k2.6-fireworks): tasks_successful 45/100 with Browser Use library 0.12.6 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. Served via Fireworks."
+  },
+  {
+   "model": "minimax/minimax-m2.7",
+   "benchmark": "bu_bench_v1",
+   "score": 31.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (minimax-m2.7): tasks_successful 31/100 with Browser Use library 0.12.6 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. "
+  },
+  {
+   "model": "minimax/minimax-m2.7",
+   "benchmark": "bu_bench_v1_cost_usd_lower_better",
+   "score": 16.21,
+   "unit": "USD",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "total_cost field of the old_results run file (minimax-m2.7, library 0.12.6); several other run files record 0 or sub-$1 totals, which look like untracked provider billing and were not ingested."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-xhigh",
+   "benchmark": "bu_bench_v1",
+   "score": 35.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "browser-use/benchmark old_results JSON (gpt-5.6-luna-xhigh): tasks_successful 35/100 with Browser Use library 0.13.7 on Browser Use Cloud browsers — an earlier library version than the 0.13.7 official_results runs, so not directly comparable with them. xhigh reasoning effort; the default-effort Luna run (official_results, 0.13.7) scored 31."
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "bu_bench_v1_cost_usd_lower_better",
+   "score": 37.28,
+   "unit": "USD",
+   "_source": "https://github.com/browser-use/benchmark/tree/main/old_results",
+   "_note": "total_cost field of old_results/…gemini-3-1-pro-preview.json (library 0.11.5, 62/100 in that single run; the blog's multi-run 59.3 is kept as the score)."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_behavior_direct_code_api_file_rate",
+   "score": 88.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Direct code/API/file strategy, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_behavior_human_gui_rate",
+   "score": 67.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Human-style GUI strategy, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_behavior_hybrid_gui_code_rate",
+   "score": 76.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Hybrid GUI + code strategy, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_behavior_gui_grounding_issue_rate",
+   "score": 61.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — GUI/visual grounding issue, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_behavior_loop_recovery_churn_rate",
+   "score": 95.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Loop/repeated recovery churn, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_behavior_planning_goal_drift_rate",
+   "score": 81.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Planning or goal drift, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_behavior_final_state_exactness_failure_rate",
+   "score": 95.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Final-state exactness failure, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_behavior_premature_stop_false_done_rate",
+   "score": 75.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Premature stop / false done, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_behavior_step_time_exhaustion_rate",
+   "score": 31.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Step/time exhaustion, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_behavior_scoring_env_mismatch_rate",
+   "score": 30.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Scoring/environment mismatch, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_behavior_direct_code_api_file_rate",
+   "score": 87.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Direct code/API/file strategy, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_behavior_human_gui_rate",
+   "score": 69.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Human-style GUI strategy, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_behavior_hybrid_gui_code_rate",
+   "score": 77.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Hybrid GUI + code strategy, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_behavior_gui_grounding_issue_rate",
+   "score": 52.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — GUI/visual grounding issue, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_behavior_loop_recovery_churn_rate",
+   "score": 81.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Loop/repeated recovery churn, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_behavior_planning_goal_drift_rate",
+   "score": 41.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Planning or goal drift, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_behavior_final_state_exactness_failure_rate",
+   "score": 89.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Final-state exactness failure, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_behavior_premature_stop_false_done_rate",
+   "score": 77.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Premature stop / false done, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_behavior_step_time_exhaustion_rate",
+   "score": 12.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Step/time exhaustion, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_behavior_scoring_env_mismatch_rate",
+   "score": 42.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Scoring/environment mismatch, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_behavior_direct_code_api_file_rate",
+   "score": 95.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Direct code/API/file strategy, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_behavior_human_gui_rate",
+   "score": 26.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Human-style GUI strategy, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_behavior_hybrid_gui_code_rate",
+   "score": 43.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Hybrid GUI + code strategy, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_behavior_gui_grounding_issue_rate",
+   "score": 20.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — GUI/visual grounding issue, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_behavior_loop_recovery_churn_rate",
+   "score": 56.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Loop/repeated recovery churn, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_behavior_planning_goal_drift_rate",
+   "score": 48.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Planning or goal drift, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_behavior_final_state_exactness_failure_rate",
+   "score": 85.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Final-state exactness failure, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_behavior_premature_stop_false_done_rate",
+   "score": 83.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Premature stop / false done, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_behavior_step_time_exhaustion_rate",
+   "score": 0.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Step/time exhaustion, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_behavior_scoring_env_mismatch_rate",
+   "score": 42.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Scoring/environment mismatch, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_behavior_direct_code_api_file_rate",
+   "score": 75.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Direct code/API/file strategy, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_behavior_human_gui_rate",
+   "score": 80.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Human-style GUI strategy, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_behavior_hybrid_gui_code_rate",
+   "score": 69.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Hybrid GUI + code strategy, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_behavior_gui_grounding_issue_rate",
+   "score": 46.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — GUI/visual grounding issue, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_behavior_loop_recovery_churn_rate",
+   "score": 90.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Loop/repeated recovery churn, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_behavior_planning_goal_drift_rate",
+   "score": 53.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Planning or goal drift, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_behavior_final_state_exactness_failure_rate",
+   "score": 84.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Final-state exactness failure, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_behavior_premature_stop_false_done_rate",
+   "score": 79.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Premature stop / false done, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_behavior_step_time_exhaustion_rate",
+   "score": 24.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Step/time exhaustion, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_behavior_scoring_env_mismatch_rate",
+   "score": 39.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 19 'Overlapping behavior labels by model' — Scoring/environment mismatch, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_primary_mode_direct_code_api_file_rate",
+   "score": 13.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Direct code/API/file, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_primary_mode_human_gui_rate",
+   "score": 11.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Human GUI, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_primary_mode_hybrid_rate",
+   "score": 33.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Hybrid, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_primary_mode_exploratory_churn_rate",
+   "score": 42.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Exploratory churn, counts over 108 tasks."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_primary_mode_other_rate",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Other, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_primary_mode_direct_code_api_file_rate",
+   "score": 16.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Direct code/API/file, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_primary_mode_human_gui_rate",
+   "score": 13.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Human GUI, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_primary_mode_hybrid_rate",
+   "score": 62.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Hybrid, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_primary_mode_exploratory_churn_rate",
+   "score": 7.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Exploratory churn, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_primary_mode_other_rate",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Other, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_primary_mode_direct_code_api_file_rate",
+   "score": 71.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Direct code/API/file, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_primary_mode_human_gui_rate",
+   "score": 4.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Human GUI, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_primary_mode_hybrid_rate",
+   "score": 20.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Hybrid, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_primary_mode_exploratory_churn_rate",
+   "score": 2.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Exploratory churn, counts over 108 tasks."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_primary_mode_other_rate",
+   "score": 0.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Other, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_primary_mode_direct_code_api_file_rate",
+   "score": 13.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Direct code/API/file, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_primary_mode_human_gui_rate",
+   "score": 26.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Human GUI, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_primary_mode_hybrid_rate",
+   "score": 47.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Hybrid, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_primary_mode_exploratory_churn_rate",
+   "score": 12.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Exploratory churn, counts over 108 tasks."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_primary_mode_other_rate",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537) Table 20 'Mutually exclusive primary modes by model' — Other, counts over 108 tasks."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "hle_with_tools_text_only",
+   "score": 49.7,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash blog main table: 'HLE w. tool (acc) 47.2% (text-only 49.7%)'. Note the HF model card prose says 'HLE w. Tool 48.1' — the blog table value 47.2 is kept as the primary figure."
+  },
+  {
+   "model": "alibaba/qwen3.6-27b",
+   "benchmark": "caict_trusted_ai_mcp_special_test_total",
+   "score": 33.91,
+   "unit": "score",
+   "_source": "https://eu.36kr.com/en/p/3963345222147335",
+   "_note": "DERIVED: 36Kr/TMTPost state StartLux-V1.0-27B-Preview (39.25) is '5.34 percentage points higher than Qwen-3.6-27B' on the CAICT Trusted-AI MCP special test → 39.25 − 5.34 = 33.91. The articles do not print Qwen's total directly."
+  }
+ ]
+}

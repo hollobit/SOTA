@@ -1,7 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 276 — Ling-3.0-flash(+Sante), Step 3.7 Flash, Spark-X2.5, AgentCPM-Explore, OSWorld 2.0 sub-tables, BU Bench V1 (2026-09-09)
-**3,517 models · 4,545 benchmarks · 23,080 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 277 — S276 source re-audit: BU Bench old_results, OSWorld Tables 19/20, Ling ctx fix (2026-09-09)
+**3,517 models · 4,561 benchmarks · 23,160 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-09 Session 277 — re-audit of the 16 S276 sources
+- **16 new ids, 80 rows, 0 FK / 0 dup / 0 overwrites.** Backup `data/benchmark.db.pre-s277.bak`.
+- **browser-use `old_results/`** held 22 earlier-library runs; 13 models missing from `bu_bench_v1` added with the library version in each note, plus five run costs. Blog multi-run averages kept where they exist.
+- **OSWorld 2.0 Tables 19/20** (behaviour-label and primary-mode rates for 4 models, 60 rows). GPT-5.5 solves 71.3% of tasks in the Direct code/API mode; Opus 4.7 is Hybrid 47.2%.
+- **Ling-3.0-flash context corrected** 1,000,000 → 262,144 (card 256K schedule, OpenRouter 262,144). Step 3.7 Flash HLE text-only 49.7 as its own id (card 48.1 vs blog 47.2 discrepancy recorded). Qwen-3.6-27B CAICT total 33.91 derived from the stated 5.34-point gap.
+- Checked, nothing further: Spark-X2.5-1.7B card (identical table), OpenRouter Sante page, AgentCPM prose, explainx. BenchLM BrowseComp cross-check: 34/41 match; Astra 91.5 has no source in the system card (withheld); Ornith-1.5, dots3-note Preview, Agents-A1 are absent from the DB (candidates for a primary-card ingest); `minimax/m3` vs `minimax/minimax-m3` duplicate ids noted.
 
 ### 2026-09-09 Session 276 — 16-link ingest
 - **5 new models, 63 new benchmarks, 345 scores, 0 FK / 0 dup / 0 overwrites.** Own-model values only (competitor columns excluded); chart images read directly (Ling card table, Sante announcement, Step blog chart); paper tables via pdftotext. Backup `data/benchmark.db.pre-s276.bak`.
