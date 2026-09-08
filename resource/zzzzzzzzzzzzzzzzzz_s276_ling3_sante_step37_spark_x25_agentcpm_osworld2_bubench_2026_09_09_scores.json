@@ -1,0 +1,3303 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-09",
+  "session": "S276",
+  "sources": [
+   "https://x.com/AntLingAGI/status/2095953758148853892",
+   "https://openrouter.ai/inclusionai/ling-3.0-flash-sante:free",
+   "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "https://benchlm.ai/models/ling-3-0-flash",
+   "https://arxiv.org/pdf/2606.29537",
+   "https://benchlm.ai/benchmarks/browsecomp",
+   "https://www.explainx.ai/blog/gpt-6-astra-browser-use-benchmark-v2-claude-opus-5-2026",
+   "https://github.com/browser-use/benchmark",
+   "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "https://eu.36kr.com/en/p/3963345222147335",
+   "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+   "https://static.stepfun.com/blog/step-3.7-flash/",
+   "https://en.tmtpost.com/post/8122839",
+   "https://arxiv.org/pdf/2602.06485",
+   "https://huggingface.co/openbmb/AgentCPM-Explore",
+   "https://modelscope.ai/models/OpenBMB/AgentCPM-Explore"
+  ],
+  "note": "16-link ingest. Own-model values only from vendor cards/blogs (competitor columns excluded); paper tables read from pdftotext; chart images read directly. WITHHELD: explainx.ai 'Browser Use Benchmark v2' figures (GPT-6 Astra 77.3 / Opus 5 50.5 — the blog itself says there is no citable source and the run is unreproduced); BenchLM BrowseComp leaderboard (41 rows, secondary aggregation — used only as a cross-check: Ling 72.2 / Step 3.7 75.8 match the cards); BenchLM's 'GPQA 84.97' for Ling (not present on the card); Browser Use cloud-agent rows; CAICT per-task scores and other models' totals (not published); OSWorld 2.0 Tables 19/20 (behaviour-label counts, qualitative)."
+ },
+ "models": [
+  {
+   "id": "inclusionai/ling-3.0-flash-sante",
+   "vendor": "inclusionAI (Ant Group)",
+   "name": "Ling-3.0-flash-Sante",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2026-09-04",
+   "context_window": 262144,
+   "parameters": "124B-A5.1B"
+  },
+  {
+   "id": "stepfun/step-3.7-flash",
+   "vendor": "StepFun",
+   "name": "Step 3.7 Flash",
+   "type": "open-weight",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-05-29",
+   "context_window": 262144,
+   "parameters": "198B-A11B (196B LM + 1.8B ViT)"
+  },
+  {
+   "id": "xhtoken/spark-x2.5-4b",
+   "vendor": "XHToken",
+   "name": "Spark-X2.5-4B",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2026-08-24",
+   "context_window": 1048576,
+   "parameters": "4B"
+  },
+  {
+   "id": "xhtoken/spark-x2.5-1.7b",
+   "vendor": "XHToken",
+   "name": "Spark-X2.5-1.7B",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2026-08-24",
+   "context_window": 1048576,
+   "parameters": "1.7B"
+  },
+  {
+   "id": "openbmb/agentcpm-explore",
+   "vendor": "OpenBMB",
+   "name": "AgentCPM-Explore (4B)",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2026-01-11",
+   "parameters": "4B (Qwen3-4B-Thinking-2507 base)"
+  },
+  {
+   "id": "startlux/startlux-v1.0-27b-preview",
+   "vendor": "StartLux (Shanghai Origin Starshine / Yuandian Xinghui)",
+   "name": "StartLux-V1.0-27B-Preview",
+   "type": "proprietary",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2026-07-15",
+   "parameters": "27B (Qwen3.6-27B base, post-trained)"
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "artifactsbench",
+   "name": "ArtifactsBench",
+   "category": "coding",
+   "metric": "score",
+   "description": "Visual/interactive code-artifact generation benchmark (as used on the Ling-3.0-flash card)."
+  },
+  {
+   "id": "miniappbench",
+   "name": "MiniAppBench",
+   "category": "coding",
+   "metric": "score",
+   "description": "500-task benchmark: turn a single user request into a complete, usable interactive HTML app (Ling-3.0-flash card; temperature 1.0, max_tokens 128K)."
+  },
+  {
+   "id": "antswebench",
+   "name": "AntSWEBench (internal)",
+   "category": "coding",
+   "metric": "resolve_rate",
+   "description": "Ant Group internal software-engineering benchmark (Java/JavaScript/Python; new feature, bug fix, refactoring)."
+  },
+  {
+   "id": "sysbench",
+   "name": "SysBench",
+   "category": "instruction-following",
+   "metric": "score",
+   "description": "System-prompt instruction-following benchmark."
+  },
+  {
+   "id": "lifebench",
+   "name": "LIFEBench",
+   "category": "instruction-following",
+   "metric": "score",
+   "description": "Length-instruction-following benchmark."
+  },
+  {
+   "id": "diagnosisarena_mcq",
+   "name": "DiagnosisArena-MCQ",
+   "category": "medical",
+   "metric": "accuracy",
+   "description": "Clinical diagnosis multiple-choice benchmark."
+  },
+  {
+   "id": "redisqa",
+   "name": "ReDisQA",
+   "category": "medical",
+   "metric": "accuracy",
+   "description": "Rare-disease question answering."
+  },
+  {
+   "id": "medethicalign",
+   "name": "MedEthicAlign",
+   "category": "medical",
+   "metric": "accuracy",
+   "description": "Medical ethics / compliance alignment (1,000-sample high-quality subset covering high-risk Chinese medical scenarios)."
+  },
+  {
+   "id": "afumed_drug_internal",
+   "name": "AFUMED-Drug (internal)",
+   "category": "medical",
+   "metric": "accuracy",
+   "description": "inclusionAI internal medication-safety benchmark: accuracy at identifying medication contraindications."
+  },
+  {
+   "id": "afusafe_medsce_internal",
+   "name": "AFUSAFE-MedSCE (internal)",
+   "category": "medical",
+   "metric": "accuracy",
+   "description": "inclusionAI in-house medical ethics & safety benchmark built from real-world risk interactions and recent regulatory updates."
+  },
+  {
+   "id": "vstar_python",
+   "name": "V* (with Python)",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "V* fine-grained visual search benchmark, model given an enriched action space (crop/zoom/draw) via Python."
+  },
+  {
+   "id": "hr_bench_4k",
+   "name": "HR-Bench 4K",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "High-resolution image perception benchmark, 4K split."
+  },
+  {
+   "id": "hr_bench_8k",
+   "name": "HR-Bench 8K",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "High-resolution image perception benchmark, 8K split."
+  },
+  {
+   "id": "visualprobe",
+   "name": "VisualProbe",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "Visual reasoning probe benchmark (StepFun blog)."
+  },
+  {
+   "id": "researchrubrics",
+   "name": "ResearchRubrics",
+   "category": "agent",
+   "metric": "score",
+   "description": "Rubric-scored deep-research benchmark."
+  },
+  {
+   "id": "gdpval_stirrup_internal_elo",
+   "name": "GDPval (Stirrup, StepFun internal pairwise)",
+   "category": "agent",
+   "metric": "elo_rating",
+   "description": "GDPval via the Stirrup harness with StepFun's internal pairwise evaluation; Elo-style rating, not the AA leaderboard entry."
+  },
+  {
+   "id": "gdpval_stirrup_internal_win_pct",
+   "name": "GDPval (Stirrup, StepFun internal) — ii %",
+   "category": "agent",
+   "metric": "pct",
+   "description": "The '(ii xx%)' figure StepFun reports next to its GDPval-Stirrup rating."
+  },
+  {
+   "id": "step_swe_bench_hermes_agent",
+   "name": "Step-SWE-Bench — Hermes Agent harness",
+   "category": "coding",
+   "metric": "pass_rate",
+   "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog)."
+  },
+  {
+   "id": "step_swe_bench_openclaw",
+   "name": "Step-SWE-Bench — Openclaw harness",
+   "category": "coding",
+   "metric": "pass_rate",
+   "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog)."
+  },
+  {
+   "id": "step_swe_bench_claude_code",
+   "name": "Step-SWE-Bench — Claude Code harness",
+   "category": "coding",
+   "metric": "pass_rate",
+   "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog)."
+  },
+  {
+   "id": "step_swe_bench_kilocode",
+   "name": "Step-SWE-Bench — Kilocode harness",
+   "category": "coding",
+   "metric": "pass_rate",
+   "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog)."
+  },
+  {
+   "id": "step_swe_bench_opencode",
+   "name": "Step-SWE-Bench — Opencode harness",
+   "category": "coding",
+   "metric": "pass_rate",
+   "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog)."
+  },
+  {
+   "id": "step_swe_bench_roocode",
+   "name": "Step-SWE-Bench — Roocode harness",
+   "category": "coding",
+   "metric": "pass_rate",
+   "description": "StepFun's internal Step-SWE-Bench run through a named open-source agent harness (Agent Ecosystem Compatibility section of the Step 3.7 Flash blog)."
+  },
+  {
+   "id": "gaokao_2026",
+   "name": "Gaokao 2026 (5 papers, /150)",
+   "category": "math",
+   "metric": "score_150",
+   "description": "Average over the five 2026 Chinese Gaokao mathematics papers (National I, National II, Beijing, Shanghai, Tianjin), each graded out of 150."
+  },
+  {
+   "id": "seal_0",
+   "name": "SEAL-0",
+   "category": "agent",
+   "metric": "accuracy",
+   "description": "Search-augmented QA benchmark (SEAL-0 split) used in deep-research agent evaluations."
+  },
+  {
+   "id": "osworld_v2_single_action",
+   "name": "OSWorld 2.0 binary (500 steps, single-action tool)",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary task completion at 500 steps with the single-action tool condition (paper Table 3); the batched-actions condition is the headline osworld_v2 figure."
+  },
+  {
+   "id": "osworld_v2_single_action_partial",
+   "name": "OSWorld 2.0 partial score (500 steps, single-action tool)",
+   "category": "agent",
+   "metric": "score",
+   "description": "Partial score at 500 steps, single-action tool condition (paper Table 3)."
+  },
+  {
+   "id": "osworld_v2_cost_per_task_usd_lower_better",
+   "name": "OSWorld 2.0 — cost per task (USD)",
+   "category": "efficiency",
+   "metric": "usd_lower_better",
+   "description": "Approximate API cost per task, 500-step runs (paper Table 3). Lower is better."
+  },
+  {
+   "id": "osworld_v2_tool_calls_per_task",
+   "name": "OSWorld 2.0 — tool calls per task",
+   "category": "efficiency",
+   "metric": "count",
+   "description": "Average tool calls per task, 500-step runs (paper Table 3)."
+  },
+  {
+   "id": "osworld_v2_output_tokens_per_task_k",
+   "name": "OSWorld 2.0 — output tokens per task (K)",
+   "category": "efficiency",
+   "metric": "tokens_k",
+   "description": "Average output tokens per task in thousands, 500-step runs (paper Table 3)."
+  },
+  {
+   "id": "osworld_v2_steps_per_task",
+   "name": "OSWorld 2.0 — steps per task",
+   "category": "efficiency",
+   "metric": "count",
+   "description": "Average steps (turns) per task, 500-step runs (paper Table 3)."
+  },
+  {
+   "id": "osworld_v2_time_bin_0_45",
+   "name": "OSWorld 2.0 binary completion — expected task time [0, 45) min, n=25",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary completion (%) on tasks whose human-annotated expected time is [0, 45) min, n=25 (paper Table 21; 500-step budget, max reasoning effort)."
+  },
+  {
+   "id": "osworld_v2_time_bin_45_90",
+   "name": "OSWorld 2.0 binary completion — expected task time [45, 90) min, n=21",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary completion (%) on tasks whose human-annotated expected time is [45, 90) min, n=21 (paper Table 21; 500-step budget, max reasoning effort)."
+  },
+  {
+   "id": "osworld_v2_time_bin_90_137",
+   "name": "OSWorld 2.0 binary completion — expected task time [90, 137) min, n=24",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary completion (%) on tasks whose human-annotated expected time is [90, 137) min, n=24 (paper Table 21; 500-step budget, max reasoning effort)."
+  },
+  {
+   "id": "osworld_v2_time_bin_137_163",
+   "name": "OSWorld 2.0 binary completion — expected task time [137, 163) min, n=21",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary completion (%) on tasks whose human-annotated expected time is [137, 163) min, n=21 (paper Table 21; 500-step budget, max reasoning effort)."
+  },
+  {
+   "id": "osworld_v2_time_bin_163_360",
+   "name": "OSWorld 2.0 binary completion — expected task time [163, 360] min, n=17",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary completion (%) on tasks whose human-annotated expected time is [163, 360] min, n=17 (paper Table 21; 500-step budget, max reasoning effort)."
+  },
+  {
+   "id": "osworld_v2_phen_implicit_state_partial",
+   "name": "OSWorld 2.0 — Implicit-state tasks, partial score",
+   "category": "agent",
+   "metric": "score",
+   "description": "Partial score on the 43 tasks tagged with the 'Implicit-state' challenge phenomenon (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_implicit_state_binary",
+   "name": "OSWorld 2.0 — Implicit-state tasks, binary success",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary success rate on the 43 tasks tagged 'Implicit-state' (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_multimodal_partial",
+   "name": "OSWorld 2.0 — Multimodal tasks, partial score",
+   "category": "agent",
+   "metric": "score",
+   "description": "Partial score on the 30 tasks tagged with the 'Multimodal' challenge phenomenon (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_multimodal_binary",
+   "name": "OSWorld 2.0 — Multimodal tasks, binary success",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary success rate on the 30 tasks tagged 'Multimodal' (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_visual_spatial_partial",
+   "name": "OSWorld 2.0 — Visual-spatial tasks, partial score",
+   "category": "agent",
+   "metric": "score",
+   "description": "Partial score on the 45 tasks tagged with the 'Visual-spatial' challenge phenomenon (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_visual_spatial_binary",
+   "name": "OSWorld 2.0 — Visual-spatial tasks, binary success",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary success rate on the 45 tasks tagged 'Visual-spatial' (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_proactive_partial",
+   "name": "OSWorld 2.0 — Proactive tasks, partial score",
+   "category": "agent",
+   "metric": "score",
+   "description": "Partial score on the 6 tasks tagged with the 'Proactive' challenge phenomenon (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_proactive_binary",
+   "name": "OSWorld 2.0 — Proactive tasks, binary success",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary success rate on the 6 tasks tagged 'Proactive' (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_multi_item_partial",
+   "name": "OSWorld 2.0 — Multi-item tasks, partial score",
+   "category": "agent",
+   "metric": "score",
+   "description": "Partial score on the 43 tasks tagged with the 'Multi-item' challenge phenomenon (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_multi_item_binary",
+   "name": "OSWorld 2.0 — Multi-item tasks, binary success",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary success rate on the 43 tasks tagged 'Multi-item' (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_dynamic_partial",
+   "name": "OSWorld 2.0 — Dynamic tasks, partial score",
+   "category": "agent",
+   "metric": "score",
+   "description": "Partial score on the 10 tasks tagged with the 'Dynamic' challenge phenomenon (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_dynamic_binary",
+   "name": "OSWorld 2.0 — Dynamic tasks, binary success",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary success rate on the 10 tasks tagged 'Dynamic' (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_conflict_partial",
+   "name": "OSWorld 2.0 — Conflict tasks, partial score",
+   "category": "agent",
+   "metric": "score",
+   "description": "Partial score on the 39 tasks tagged with the 'Conflict' challenge phenomenon (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_conflict_binary",
+   "name": "OSWorld 2.0 — Conflict tasks, binary success",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary success rate on the 39 tasks tagged 'Conflict' (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_tutorial_partial",
+   "name": "OSWorld 2.0 — Tutorial tasks, partial score",
+   "category": "agent",
+   "metric": "score",
+   "description": "Partial score on the 22 tasks tagged with the 'Tutorial' challenge phenomenon (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_tutorial_binary",
+   "name": "OSWorld 2.0 — Tutorial tasks, binary success",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary success rate on the 22 tasks tagged 'Tutorial' (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_streaming_partial",
+   "name": "OSWorld 2.0 — Streaming tasks, partial score",
+   "category": "agent",
+   "metric": "score",
+   "description": "Partial score on the 6 tasks tagged with the 'Streaming' challenge phenomenon (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_streaming_binary",
+   "name": "OSWorld 2.0 — Streaming tasks, binary success",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary success rate on the 6 tasks tagged 'Streaming' (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_cross_source_partial",
+   "name": "OSWorld 2.0 — Cross-source tasks, partial score",
+   "category": "agent",
+   "metric": "score",
+   "description": "Partial score on the 46 tasks tagged with the 'Cross-source' challenge phenomenon (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_phen_cross_source_binary",
+   "name": "OSWorld 2.0 — Cross-source tasks, binary success",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Binary success rate on the 46 tasks tagged 'Cross-source' (paper Table 23; tags overlap)."
+  },
+  {
+   "id": "osworld_v2_behavior_mean_score",
+   "name": "OSWorld 2.0 — mean score (behavior-analysis run)",
+   "category": "agent",
+   "metric": "score",
+   "description": "Mean fine-grained score (0–1) over the 108 tasks in the behavior-analysis runs (paper Table 15)."
+  },
+  {
+   "id": "osworld_v2_partial_progress_rate",
+   "name": "OSWorld 2.0 — tasks with partial progress (%)",
+   "category": "agent",
+   "metric": "pct",
+   "description": "Share of the 108 tasks on which the agent made partial progress (paper Table 15)."
+  },
+  {
+   "id": "osworld_v2_unsafe_hidden_state_tasks_lower_better",
+   "name": "OSWorld 2.0 — tasks with hidden-state extraction (of 108)",
+   "category": "safety",
+   "metric": "count_lower_better",
+   "description": "Number of tasks (deduplicated, of 108) in which the agent extracted hidden application states (paper Table 14). Lower is better."
+  },
+  {
+   "id": "osworld_v2_unsafe_bypass_ui_tasks_lower_better",
+   "name": "OSWorld 2.0 — tasks bypassing user-visible interfaces (of 108)",
+   "category": "safety",
+   "metric": "count_lower_better",
+   "description": "Number of tasks (deduplicated, of 108) in which the agent bypassed user-visible interfaces: system-level changes, killing apps, hidden APIs, credential reuse (paper Table 14). Lower is better."
+  },
+  {
+   "id": "bu_bench_v1",
+   "name": "BU Bench V1 (Browser Use, 100 web tasks)",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Browser Use's open benchmark: 100 hand-selected hard-but-completable live-web tasks (20 each from custom challenges, WebBench, Mind2Web 2, GAIA, BrowseComp), LLM judge (gemini-2.5-flash, binary verdict, 87% human agreement). Score = tasks passed of 100 running the open-source Browser Use library with the named LLM."
+  },
+  {
+   "id": "bu_bench_v1_cost_usd_lower_better",
+   "name": "BU Bench V1 — API cost per 100-task run (USD)",
+   "category": "efficiency",
+   "metric": "usd_lower_better",
+   "description": "LLM API cost of one 100-task BU Bench V1 run. Lower is better."
+  },
+  {
+   "id": "caict_trusted_ai_mcp_special_test_total",
+   "name": "CAICT Trusted AI Large Model Benchmark — MCP special test (total score)",
+   "category": "agent",
+   "metric": "score",
+   "description": "China Academy of Information and Communications Technology (MIIT) 'Trusted AI Large Model Benchmark' MCP special test: 6 tool-use tasks (location navigation, web search, browser automation, financial analysis, code-repository management, 3D design) plus an overall assessment, partly based on the open-source MCP-Universe framework. Total score as reported by press summaries of the CAICT inspection report (August 2026)."
+  }
+ ],
+ "scores": [
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "swe_bench_pro",
+   "score": 56.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. OpenHands harness, temperature 0.6, max_new_tokens 32K, 256K context."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "swe_bench_pro",
+   "score": 53.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. OpenHands harness, temperature 0.6, max_new_tokens 32K, 256K context."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "swe_bench_multilingual",
+   "score": 72.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. OpenHands harness."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "swe_bench_multilingual",
+   "score": 56.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. OpenHands harness."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "terminal_bench_2_1",
+   "score": 57.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. AA protocol, Terminus 2 harness, 2-hour timeout, 3 runs mean."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "terminal_bench_2_1",
+   "score": 43.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. AA protocol, Terminus 2 harness, 2-hour timeout, 3 runs mean."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "artifactsbench",
+   "score": 77.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "artifactsbench",
+   "score": 65.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "miniappbench",
+   "score": 25.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "miniappbench",
+   "score": 19.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "antswebench",
+   "score": 52.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Internal benchmark."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "antswebench",
+   "score": 46.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Internal benchmark."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "tau3_banking",
+   "score": 28.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Aligned with the AA leaderboard: GPT-5.4-mini (medium) as user simulator and judge."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "tau3_banking",
+   "score": 14.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Aligned with the AA leaderboard: GPT-5.4-mini (medium) as user simulator and judge."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "mcp_atlas",
+   "score": 65.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. 500-task public set, official v1 harness, 20-turn limit, Gemini-2.5-Pro claim-coverage judge."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "mcp_atlas",
+   "score": 61.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. 500-task public set, official v1 harness, 20-turn limit, Gemini-2.5-Pro claim-coverage judge."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "skillsbench",
+   "score": 44.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Via kilo-code on 87 tasks (external-API tasks excluded), 3-run average."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "skillsbench",
+   "score": 11.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Via kilo-code on 87 tasks (external-API tasks excluded), 3-run average."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "bfcl_v4",
+   "score": 73.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "bfcl_v4",
+   "score": 64.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "gdpval_aa_elo",
+   "score": 1107,
+   "unit": "elo",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. GDPval v2-AA: public 220-task set, official Stirrup harness, 250-turn limit, 5-hour timeout (vendor-run, not the AA leaderboard entry)."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "gdpval_aa_elo",
+   "score": 920,
+   "unit": "elo",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. GDPval v2-AA: public 220-task set, official Stirrup harness, 250-turn limit, 5-hour timeout (vendor-run, not the AA leaderboard entry)."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "widesearch",
+   "score": 73.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Official prompt, GPT-4.1 judge, corrected dataset."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "widesearch",
+   "score": 62.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Official prompt, GPT-4.1 judge, corrected dataset."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "browsecomp_single_agent",
+   "score": 72.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Single-agent ReAct with resume strategy (summarise at 64K context). Card label 'BrowseComp (w/ ctx)'."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "browsecomp_single_agent",
+   "score": 71.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Single-agent ReAct with resume strategy (summarise at 64K context). Card label 'BrowseComp (w/ ctx)'."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "browsecomp_multi_agent",
+   "score": 82.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Internal multi-agent search harness (SearchSwarm/Tongyi DeepResearch-based), main/sub context 128K/64K. Card label 'BrowseComp (MA)'."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "browsecomp",
+   "score": 72.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Single-agent (w/ ctx) figure, the card's primary BrowseComp number."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "browsecomp",
+   "score": 71.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Single-agent (w/ ctx) figure, the card's primary BrowseComp number."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "draco",
+   "score": 70.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Official rubrics, Claude Opus 4.6 as scoring model."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "ifbench",
+   "score": 74.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "ifbench",
+   "score": 44.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "sysbench",
+   "score": 93.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "sysbench",
+   "score": 86.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "lifebench",
+   "score": 77.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "lifebench",
+   "score": 72.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "aime_2026",
+   "score": 93.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "hmmt_feb_2026",
+   "score": 87.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "hmmt_feb_2026",
+   "score": 93.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "imo_answerbench",
+   "score": 83.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "imo_answerbench",
+   "score": 86.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "hle",
+   "score": 22.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. No-tools HLE as listed under 'Reasoning'."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "hle",
+   "score": 18.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. No-tools HLE as listed under 'Reasoning'."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "livecodebench_v5",
+   "score": 82.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Card label 'LiveCodeBench (2408-2505)' = the v5 window."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "livecodebench_v5",
+   "score": 87.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Card label 'LiveCodeBench (2408-2505)' = the v5 window."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "mrcr_v2_128k",
+   "score": 90.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Card label 'MRCR_128K' (version not stated on the card)."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "mrcr_v2_128k",
+   "score": 90.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Card label 'MRCR_128K' (version not stated on the card)."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "mrcr_v2_256k",
+   "score": 81.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Card label 'MRCR_256k' (version not stated on the card)."
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "mrcr_v2_256k",
+   "score": 76.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. Card label 'MRCR_256k' (version not stated on the card)."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "aa_lcr",
+   "score": 65.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "aa_lcr",
+   "score": 64.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "multi_if",
+   "score": 87.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ling-3.0-flash column (124B-A5.1B). Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ring-2.6-1t",
+   "benchmark": "multi_if",
+   "score": 89.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+   "_note": "Ling-3.0-flash model card (HF, read 2026-09-09), 'Evaluation' comparison table image — Ring-2.6-1T (xhigh) column — inclusionAI's own previous flagship, vendor-run. Thinking mode on; temperature 0.6 / top_p 0.95 / top_k 20 unless noted. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "medxpertqa_text",
+   "score": 53.9,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "healthbench_professional",
+   "score": 45.7,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "diagnosisarena_mcq",
+   "score": 83.8,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "redisqa",
+   "score": 91.3,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "medqa_usmle",
+   "score": 93.5,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "medmcqa",
+   "score": 81.6,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. Standard validation set."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "medethicalign",
+   "score": 82.1,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "afumed_drug_internal",
+   "score": 89.6,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "afusafe_medsce_internal",
+   "score": 78.6,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. "
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "browsecomp_single_agent",
+   "score": 73.9,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. Single agent with context: temperature 1.0, 256K context, max 1,000 turns, discard-all context management at 40% of window."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "browsecomp_multi_agent",
+   "score": 86.9,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. In-house harness dispatching up to 64 subagents."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "browsecomp",
+   "score": 73.9,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. Single-agent figure."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "deepsearchqa",
+   "score": 86.8,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. Metric not labelled on the chart; temperature 1.0, 256K context, no context management."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash-sante",
+   "benchmark": "hle_with_tools",
+   "score": 53.2,
+   "unit": "%",
+   "_source": "https://x.com/AntLingAGI/status/2095953758148853892",
+   "_note": "Ling-3.0-flash-Sante announcement chart (@AntLingAGI on X, 2026-09-04) — the model's own (blue) bar. temperature 0.6 / top_p 0.95; reasoning effort at the highest tier. Competitor bars are inclusionAI's own runs and are not ingested. temperature 1.0, 256K context."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "simplevqa_search",
+   "score": 79.16,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. Visual Recognition with Visual Search table; 'SimpleVQA (with Tool)'."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "worldvqa_search",
+   "score": 58.1,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. Visual Recognition with Visual Search table."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "bc_vl",
+   "score": 58.96,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. Visual Recognition with Visual Search table."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "vstar_python",
+   "score": 95.29,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. Fine-grained perception table (crop/zoom/draw action space)."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "hr_bench_4k",
+   "score": 89.13,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "hr_bench_8k",
+   "score": 86.34,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "visualprobe",
+   "score": 65.05,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "deepsearchqa_f1",
+   "score": 92.8,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. General Agent table."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "deepsearchqa_acc",
+   "score": 81.7,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. General Agent table."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "researchrubrics",
+   "score": 71.7,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "toolathlon",
+   "score": 49.5,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. Internal fixed version of Toolathlon."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "gdpval_stirrup_internal_elo",
+   "score": 1415.8,
+   "unit": "elo",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "gdpval_stirrup_internal_win_pct",
+   "score": 45.8,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "swe_bench_multilingual",
+   "score": 72.4,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. Coding table, 'SWE-MTLG'."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "swe_bench_verified",
+   "score": 76.5,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "terminal_bench_2_1",
+   "score": 59.6,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. Coding table (the bar chart rounds to 59.5)."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "aa_lcr",
+   "score": 63.9,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. AA-LCR avg@16."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "step_swe_bench_hermes_agent",
+   "score": 67.5,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "step_swe_bench_openclaw",
+   "score": 67.0,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "step_swe_bench_claude_code",
+   "score": 71.5,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "step_swe_bench_kilocode",
+   "score": 67.5,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "step_swe_bench_opencode",
+   "score": 64.5,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "step_swe_bench_roocode",
+   "score": 64.5,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), main comparison table — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "hle_with_tools",
+   "score": 35.7,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "browsecomp",
+   "score": 69.0,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "deepsearchqa_f1",
+   "score": 85.5,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. Marked * (self-tested)."
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "deepsearchqa_acc",
+   "score": 73.4,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "researchrubrics",
+   "score": 65.3,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "toolathlon",
+   "score": 33.3,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "claweval_1_1",
+   "score": 43.6,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "gdpval_stirrup_internal_elo",
+   "score": 1055.0,
+   "unit": "elo",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "gdpval_stirrup_internal_win_pct",
+   "score": 27.8,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "swe_bench_multilingual",
+   "score": 67.4,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "swe_bench_pro",
+   "score": 51.3,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "terminal_bench_2_1",
+   "score": 53.4,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "step_swe_bench_hermes_agent",
+   "score": 60.0,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "step_swe_bench_openclaw",
+   "score": 47.0,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "step_swe_bench_claude_code",
+   "score": 73.0,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "step_swe_bench_kilocode",
+   "score": 59.0,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "step_swe_bench_opencode",
+   "score": 57.0,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "stepfun/step-3.5-flash",
+   "benchmark": "step_swe_bench_roocode",
+   "score": 43.0,
+   "unit": "%",
+   "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+   "_note": "Step 3.7 Flash launch blog (static.stepfun.com, 2026-05-29), Step 3.5 Flash column (StepFun's previous Flash model, vendor-run) — StepFun's own model. "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "bfcl_v4",
+   "score": 65.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "bfcl_v4",
+   "score": 46.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "tau2_bench",
+   "score": 75.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). τ²-bench."
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "tau2_bench",
+   "score": 65.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). τ²-bench."
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "tau3_bench",
+   "score": 30.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). τ³-bench."
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "tau3_bench",
+   "score": 20.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). τ³-bench."
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "mcp_atlas",
+   "score": 54.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "mcp_atlas",
+   "score": 23.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "mcp_mark",
+   "score": 14.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "mcp_mark",
+   "score": 2.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "workspacebench",
+   "score": 31.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "workspacebench",
+   "score": 18.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "vitabench",
+   "score": 25.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). VitaBench 2.0."
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "vitabench",
+   "score": 8.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). VitaBench 2.0."
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "browsecomp",
+   "score": 40.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "browsecomp",
+   "score": 29.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "swe_bench_pro",
+   "score": 44.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "swe_bench_pro",
+   "score": 10.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "swe_bench_verified",
+   "score": 41.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "swe_bench_verified",
+   "score": 28.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "swe_bench_multilingual",
+   "score": 53.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "swe_bench_multilingual",
+   "score": 23.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "scicode",
+   "score": 34.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "scicode",
+   "score": 18.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "gaokao_2026",
+   "score": 133.4,
+   "unit": "score",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "gaokao_2026",
+   "score": 114.8,
+   "unit": "score",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "aime_2026",
+   "score": 90.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "aime_2026",
+   "score": 69.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "hmmt_feb_2026",
+   "score": 81.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "hmmt_feb_2026",
+   "score": 48.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "imo_answerbench",
+   "score": 74.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "imo_answerbench",
+   "score": 45.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "ifeval",
+   "score": 93.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "ifeval",
+   "score": 89.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "ifbench",
+   "score": 75.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "ifbench",
+   "score": 66.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "aa_lcr",
+   "score": 56.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "aa_lcr",
+   "score": 24.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "hle",
+   "score": 12.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "hle",
+   "score": 6.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). "
+  },
+  {
+   "model": "xhtoken/spark-x2.5-4b",
+   "benchmark": "gpqa",
+   "score": 67.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-4B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). Card label 'GPQA' (split not stated)."
+  },
+  {
+   "model": "xhtoken/spark-x2.5-1.7b",
+   "benchmark": "gpqa",
+   "score": 43.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/XHToken/Spark-X2.5-4B",
+   "_note": "Spark-X2.5 model card (HF XHToken, read 2026-09-09), benchmark table — Spark-X2.5-1.7B column, XHToken's own run in thinking mode (temperature 1.0, top_p 0.95). Card label 'GPQA' (split not stated)."
+  },
+  {
+   "model": "openbmb/agentcpm-explore",
+   "benchmark": "gaia",
+   "score": 63.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2602.06485",
+   "_note": "AgentCPM-Explore paper (arXiv 2602.06485, Table 1 'Overall performance on 8 frequently adopted agent benchmarks'), AgentCPM-Explore-4B row — archived resource/arxiv-2602.06485.pdf. Competitor rows are citations of other papers and are not ingested. GAIA text-only."
+  },
+  {
+   "model": "openbmb/agentcpm-explore",
+   "benchmark": "browsecomp",
+   "score": 24.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2602.06485",
+   "_note": "AgentCPM-Explore paper (arXiv 2602.06485, Table 1 'Overall performance on 8 frequently adopted agent benchmarks'), AgentCPM-Explore-4B row — archived resource/arxiv-2602.06485.pdf. Competitor rows are citations of other papers and are not ingested. "
+  },
+  {
+   "model": "openbmb/agentcpm-explore",
+   "benchmark": "browsecomp_zh",
+   "score": 29.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2602.06485",
+   "_note": "AgentCPM-Explore paper (arXiv 2602.06485, Table 1 'Overall performance on 8 frequently adopted agent benchmarks'), AgentCPM-Explore-4B row — archived resource/arxiv-2602.06485.pdf. Competitor rows are citations of other papers and are not ingested. "
+  },
+  {
+   "model": "openbmb/agentcpm-explore",
+   "benchmark": "hle",
+   "score": 19.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2602.06485",
+   "_note": "AgentCPM-Explore paper (arXiv 2602.06485, Table 1 'Overall performance on 8 frequently adopted agent benchmarks'), AgentCPM-Explore-4B row — archived resource/arxiv-2602.06485.pdf. Competitor rows are citations of other papers and are not ingested. "
+  },
+  {
+   "model": "openbmb/agentcpm-explore",
+   "benchmark": "frames",
+   "score": 82.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2602.06485",
+   "_note": "AgentCPM-Explore paper (arXiv 2602.06485, Table 1 'Overall performance on 8 frequently adopted agent benchmarks'), AgentCPM-Explore-4B row — archived resource/arxiv-2602.06485.pdf. Competitor rows are citations of other papers and are not ingested. "
+  },
+  {
+   "model": "openbmb/agentcpm-explore",
+   "benchmark": "webwalkerqa",
+   "score": 68.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2602.06485",
+   "_note": "AgentCPM-Explore paper (arXiv 2602.06485, Table 1 'Overall performance on 8 frequently adopted agent benchmarks'), AgentCPM-Explore-4B row — archived resource/arxiv-2602.06485.pdf. Competitor rows are citations of other papers and are not ingested. "
+  },
+  {
+   "model": "openbmb/agentcpm-explore",
+   "benchmark": "seal_0",
+   "score": 40.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2602.06485",
+   "_note": "AgentCPM-Explore paper (arXiv 2602.06485, Table 1 'Overall performance on 8 frequently adopted agent benchmarks'), AgentCPM-Explore-4B row — archived resource/arxiv-2602.06485.pdf. Competitor rows are citations of other papers and are not ingested. "
+  },
+  {
+   "model": "openbmb/agentcpm-explore",
+   "benchmark": "xbench_deepsearch",
+   "score": 70.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2602.06485",
+   "_note": "AgentCPM-Explore paper (arXiv 2602.06485, Table 1 'Overall performance on 8 frequently adopted agent benchmarks'), AgentCPM-Explore-4B row — archived resource/arxiv-2602.06485.pdf. Competitor rows are citations of other papers and are not ingested. "
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "osworld_v2_cost_per_task_usd_lower_better",
+   "score": 72.4,
+   "unit": "USD",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "osworld_v2_tool_calls_per_task",
+   "score": 481.8,
+   "unit": "calls",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "osworld_v2_output_tokens_per_task_k",
+   "score": 224,
+   "unit": "K tokens",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "osworld_v2_steps_per_task",
+   "score": 103,
+   "unit": "steps",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_cost_per_task_usd_lower_better",
+   "score": 33.6,
+   "unit": "USD",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_tool_calls_per_task",
+   "score": 597.1,
+   "unit": "calls",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_output_tokens_per_task_k",
+   "score": 150,
+   "unit": "K tokens",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_steps_per_task",
+   "score": 160.7,
+   "unit": "steps",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_cost_per_task_usd_lower_better",
+   "score": 25.5,
+   "unit": "USD",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_tool_calls_per_task",
+   "score": 149.8,
+   "unit": "calls",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_output_tokens_per_task_k",
+   "score": 37.1,
+   "unit": "K tokens",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_steps_per_task",
+   "score": 95.2,
+   "unit": "steps",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: batched actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "osworld_v2_single_action",
+   "score": 18.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3 main 500-step results, 'Single action' group. Tool-use condition: single actions; max reasoning effort. The osworld_v2 row for this model comes from the live leaderboard, which may differ from the paper snapshot."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "osworld_v2_single_action_partial",
+   "score": 49.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3, 'Single action' group. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_single_action",
+   "score": 13.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3 main 500-step results, 'Single action' group. Tool-use condition: single actions; max reasoning effort. The osworld_v2 row for this model comes from the live leaderboard, which may differ from the paper snapshot."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_single_action_partial",
+   "score": 49.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3, 'Single action' group. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_single_action",
+   "score": 8.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3 main 500-step results, 'Single action' group. Tool-use condition: single actions; max reasoning effort. The osworld_v2 row for this model comes from the live leaderboard, which may differ from the paper snapshot."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_single_action_partial",
+   "score": 41.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3, 'Single action' group. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_cost_per_task_usd_lower_better",
+   "score": 22.3,
+   "unit": "USD",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_tool_calls_per_task",
+   "score": 253.3,
+   "unit": "calls",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_output_tokens_per_task_k",
+   "score": 185.9,
+   "unit": "K tokens",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_steps_per_task",
+   "score": 253.3,
+   "unit": "steps",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_single_action",
+   "score": 4.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3 main 500-step results, 'Single action' group. Tool-use condition: single actions; max reasoning effort. The osworld_v2 row for this model comes from the live leaderboard, which may differ from the paper snapshot."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_single_action_partial",
+   "score": 22.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3, 'Single action' group. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_cost_per_task_usd_lower_better",
+   "score": 2.4,
+   "unit": "USD",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_tool_calls_per_task",
+   "score": 326.7,
+   "unit": "calls",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_output_tokens_per_task_k",
+   "score": 70.8,
+   "unit": "K tokens",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_steps_per_task",
+   "score": 326.7,
+   "unit": "steps",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "osworld_v2_single_action",
+   "score": 4.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3 main 500-step results, 'Single action' group. Tool-use condition: single actions; max reasoning effort. The osworld_v2 row for this model comes from the live leaderboard, which may differ from the paper snapshot."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "osworld_v2_single_action_partial",
+   "score": 22.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3, 'Single action' group. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "osworld_v2_cost_per_task_usd_lower_better",
+   "score": 6.6,
+   "unit": "USD",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "osworld_v2_tool_calls_per_task",
+   "score": 179.3,
+   "unit": "calls",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "osworld_v2_output_tokens_per_task_k",
+   "score": 63.0,
+   "unit": "K tokens",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "osworld_v2_steps_per_task",
+   "score": 179.3,
+   "unit": "steps",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_single_action",
+   "score": 2.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3 main 500-step results, 'Single action' group. Tool-use condition: single actions; max reasoning effort. The osworld_v2 row for this model comes from the live leaderboard, which may differ from the paper snapshot."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_single_action_partial",
+   "score": 21.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3, 'Single action' group. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_cost_per_task_usd_lower_better",
+   "score": 3.8,
+   "unit": "USD",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_tool_calls_per_task",
+   "score": 173.5,
+   "unit": "calls",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_output_tokens_per_task_k",
+   "score": 28.9,
+   "unit": "K tokens",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_steps_per_task",
+   "score": 173.5,
+   "unit": "steps",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 3. Tool-use condition: single actions; max reasoning effort."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_time_bin_0_45",
+   "score": 20.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [0, 45) min, n=25"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_time_bin_45_90",
+   "score": 19.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [45, 90) min, n=21"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_time_bin_90_137",
+   "score": 16.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [90, 137) min, n=24"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_time_bin_137_163",
+   "score": 5.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [137, 163) min, n=21"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_time_bin_163_360",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [163, 360] min, n=17"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_time_bin_0_45",
+   "score": 12.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [0, 45) min, n=25"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_time_bin_45_90",
+   "score": 14.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [45, 90) min, n=21"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_time_bin_90_137",
+   "score": 8.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [90, 137) min, n=24"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_time_bin_137_163",
+   "score": 9.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [137, 163) min, n=21"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_time_bin_163_360",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [163, 360] min, n=17"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_time_bin_0_45",
+   "score": 24.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [0, 45) min, n=25"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_time_bin_45_90",
+   "score": 19.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [45, 90) min, n=21"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_time_bin_90_137",
+   "score": 16.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [90, 137) min, n=24"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_time_bin_137_163",
+   "score": 4.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [137, 163) min, n=21"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_time_bin_163_360",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [163, 360] min, n=17"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_time_bin_0_45",
+   "score": 8.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [0, 45) min, n=25"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_time_bin_45_90",
+   "score": 9.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [45, 90) min, n=21"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_time_bin_90_137",
+   "score": 4.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [90, 137) min, n=24"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_time_bin_137_163",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [137, 163) min, n=21"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_time_bin_163_360",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 21 (binary completion by human-annotated expected task time). [163, 360] min, n=17"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_implicit_state_partial",
+   "score": 50.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Implicit-state, n=43; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_implicit_state_binary",
+   "score": 18.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Implicit-state, n=43."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_multimodal_partial",
+   "score": 44.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Multimodal, n=30; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_multimodal_binary",
+   "score": 13.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Multimodal, n=30."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_visual_spatial_partial",
+   "score": 43.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Visual-spatial, n=45; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_visual_spatial_binary",
+   "score": 13.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Visual-spatial, n=45."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_proactive_partial",
+   "score": 52.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Proactive, n=6; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_proactive_binary",
+   "score": 16.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Proactive, n=6."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_multi_item_partial",
+   "score": 52.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Multi-item, n=43; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_multi_item_binary",
+   "score": 11.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Multi-item, n=43."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_dynamic_partial",
+   "score": 45.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Dynamic, n=10; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_dynamic_binary",
+   "score": 30.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Dynamic, n=10."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_conflict_partial",
+   "score": 48.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Conflict, n=39; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_conflict_binary",
+   "score": 15.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Conflict, n=39."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_tutorial_partial",
+   "score": 43.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Tutorial, n=22; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_tutorial_binary",
+   "score": 9.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Tutorial, n=22."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_streaming_partial",
+   "score": 36.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Streaming, n=6; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_streaming_binary",
+   "score": 33.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Streaming, n=6."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_cross_source_partial",
+   "score": 52.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Cross-source, n=46; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_phen_cross_source_binary",
+   "score": 13.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Cross-source, n=46."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_implicit_state_partial",
+   "score": 37.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Implicit-state, n=43; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_implicit_state_binary",
+   "score": 9.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Implicit-state, n=43."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_multimodal_partial",
+   "score": 37.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Multimodal, n=30; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_multimodal_binary",
+   "score": 6.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Multimodal, n=30."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_visual_spatial_partial",
+   "score": 36.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Visual-spatial, n=45; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_visual_spatial_binary",
+   "score": 8.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Visual-spatial, n=45."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_proactive_partial",
+   "score": 51.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Proactive, n=6; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_proactive_binary",
+   "score": 16.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Proactive, n=6."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_multi_item_partial",
+   "score": 46.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Multi-item, n=43; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_multi_item_binary",
+   "score": 11.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Multi-item, n=43."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_dynamic_partial",
+   "score": 22.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Dynamic, n=10; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_dynamic_binary",
+   "score": 10.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Dynamic, n=10."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_conflict_partial",
+   "score": 42.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Conflict, n=39; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_conflict_binary",
+   "score": 12.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Conflict, n=39."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_tutorial_partial",
+   "score": 43.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Tutorial, n=22; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_tutorial_binary",
+   "score": 13.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Tutorial, n=22."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_streaming_partial",
+   "score": 4.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Streaming, n=6; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_streaming_binary",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Streaming, n=6."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_cross_source_partial",
+   "score": 45.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Cross-source, n=46; cell = partial / binary."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_phen_cross_source_binary",
+   "score": 10.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Cross-source, n=46."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_implicit_state_partial",
+   "score": 47.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Implicit-state, n=43; cell = partial / binary."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_implicit_state_binary",
+   "score": 14.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Implicit-state, n=43."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_multimodal_partial",
+   "score": 47.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Multimodal, n=30; cell = partial / binary."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_multimodal_binary",
+   "score": 6.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Multimodal, n=30."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_visual_spatial_partial",
+   "score": 51.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Visual-spatial, n=45; cell = partial / binary."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_visual_spatial_binary",
+   "score": 11.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Visual-spatial, n=45."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_proactive_partial",
+   "score": 43.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Proactive, n=6; cell = partial / binary."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_proactive_binary",
+   "score": 16.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Proactive, n=6."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_multi_item_partial",
+   "score": 50.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Multi-item, n=43; cell = partial / binary."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_multi_item_binary",
+   "score": 14.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Multi-item, n=43."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_dynamic_partial",
+   "score": 46.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Dynamic, n=10; cell = partial / binary."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_dynamic_binary",
+   "score": 30.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Dynamic, n=10."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_conflict_partial",
+   "score": 51.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Conflict, n=39; cell = partial / binary."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_conflict_binary",
+   "score": 20.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Conflict, n=39."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_tutorial_partial",
+   "score": 37.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Tutorial, n=22; cell = partial / binary."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_tutorial_binary",
+   "score": 9.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Tutorial, n=22."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_streaming_partial",
+   "score": 57.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Streaming, n=6; cell = partial / binary."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_streaming_binary",
+   "score": 50.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Streaming, n=6."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_cross_source_partial",
+   "score": 52.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Cross-source, n=46; cell = partial / binary."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_phen_cross_source_binary",
+   "score": 13.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Cross-source, n=46."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_implicit_state_partial",
+   "score": 24.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Implicit-state, n=43; cell = partial / binary."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_implicit_state_binary",
+   "score": 2.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Implicit-state, n=43."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_multimodal_partial",
+   "score": 20.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Multimodal, n=30; cell = partial / binary."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_multimodal_binary",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Multimodal, n=30."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_visual_spatial_partial",
+   "score": 19.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Visual-spatial, n=45; cell = partial / binary."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_visual_spatial_binary",
+   "score": 2.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Visual-spatial, n=45."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_proactive_partial",
+   "score": 22.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Proactive, n=6; cell = partial / binary."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_proactive_binary",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Proactive, n=6."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_multi_item_partial",
+   "score": 20.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Multi-item, n=43; cell = partial / binary."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_multi_item_binary",
+   "score": 2.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Multi-item, n=43."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_dynamic_partial",
+   "score": 16.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Dynamic, n=10; cell = partial / binary."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_dynamic_binary",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Dynamic, n=10."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_conflict_partial",
+   "score": 29.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Conflict, n=39; cell = partial / binary."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_conflict_binary",
+   "score": 7.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Conflict, n=39."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_tutorial_partial",
+   "score": 15.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Tutorial, n=22; cell = partial / binary."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_tutorial_binary",
+   "score": 4.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Tutorial, n=22."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_streaming_partial",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Streaming, n=6; cell = partial / binary."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_streaming_binary",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Streaming, n=6."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_cross_source_partial",
+   "score": 26.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Cross-source, n=46; cell = partial / binary."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "osworld_v2_phen_cross_source_binary",
+   "score": 6.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Cross-source, n=46."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_implicit_state_partial",
+   "score": 24.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Implicit-state, n=43; cell = partial / binary."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_implicit_state_binary",
+   "score": 4.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Implicit-state, n=43."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_multimodal_partial",
+   "score": 22.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Multimodal, n=30; cell = partial / binary."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_multimodal_binary",
+   "score": 6.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Multimodal, n=30."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_visual_spatial_partial",
+   "score": 19.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Visual-spatial, n=45; cell = partial / binary."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_visual_spatial_binary",
+   "score": 4.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Visual-spatial, n=45."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_proactive_partial",
+   "score": 16.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Proactive, n=6; cell = partial / binary."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_proactive_binary",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Proactive, n=6."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_multi_item_partial",
+   "score": 23.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Multi-item, n=43; cell = partial / binary."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_multi_item_binary",
+   "score": 7.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Multi-item, n=43."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_dynamic_partial",
+   "score": 17.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Dynamic, n=10; cell = partial / binary."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_dynamic_binary",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Dynamic, n=10."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_conflict_partial",
+   "score": 24.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Conflict, n=39; cell = partial / binary."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_conflict_binary",
+   "score": 7.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Conflict, n=39."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_tutorial_partial",
+   "score": 15.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Tutorial, n=22; cell = partial / binary."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_tutorial_binary",
+   "score": 4.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Tutorial, n=22."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_streaming_partial",
+   "score": 6.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Streaming, n=6; cell = partial / binary."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_streaming_binary",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Streaming, n=6."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_cross_source_partial",
+   "score": 24.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23 raw 500-step model-by-phenomenon scores. Cross-source, n=46; cell = partial / binary."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_phen_cross_source_binary",
+   "score": 6.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 23. Cross-source, n=46."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_behavior_mean_score",
+   "score": 0.223,
+   "unit": "score",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 15 aggregate task outcomes. 5/108 success, 59/108 partial"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "osworld_v2_partial_progress_rate",
+   "score": 54.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 15. 5/108 success, 59/108 partial"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_behavior_mean_score",
+   "score": 0.415,
+   "unit": "score",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 15 aggregate task outcomes. 10/108, 84/108"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "osworld_v2_partial_progress_rate",
+   "score": 77.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 15. 10/108, 84/108"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_behavior_mean_score",
+   "score": 0.495,
+   "unit": "score",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 15 aggregate task outcomes. 14/108, 88/108"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_partial_progress_rate",
+   "score": 81.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 15. 14/108, 88/108"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_behavior_mean_score",
+   "score": 0.495,
+   "unit": "score",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 15 aggregate task outcomes. 15/107, 89/107 (task 048 missing)"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_partial_progress_rate",
+   "score": 83.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 15. 15/107, 89/107 (task 048 missing)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_unsafe_hidden_state_tasks_lower_better",
+   "score": 16,
+   "unit": "tasks",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 14 interaction-level unsafe behaviors. hidden browser states 14, internal DBs 2; system-level 6, killing apps 11, internal state 6, hidden APIs 6, credential reuse 7"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_unsafe_bypass_ui_tasks_lower_better",
+   "score": 27,
+   "unit": "tasks",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 14. hidden browser states 14, internal DBs 2; system-level 6, killing apps 11, internal state 6, hidden APIs 6, credential reuse 7"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_unsafe_hidden_state_tasks_lower_better",
+   "score": 14,
+   "unit": "tasks",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 14 interaction-level unsafe behaviors. hidden browser states 14; system-level 35, killing apps 12, internal state 1, hidden APIs 3, credential reuse 5"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "osworld_v2_unsafe_bypass_ui_tasks_lower_better",
+   "score": 45,
+   "unit": "tasks",
+   "_source": "https://arxiv.org/pdf/2606.29537",
+   "_note": "OSWorld 2.0 paper (arXiv 2606.29537 v2, 2026-07-13; archived resource/arxiv-2606.29537.pdf), Table 14. hidden browser states 14; system-level 35, killing apps 12, internal state 1, hidden APIs 3, credential reuse 5"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "bu_bench_v1",
+   "score": 74.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark",
+   "_note": "browser-use/benchmark official_results JSON (claude-opus-4-7): tasks_successful 74/100 with the open-source Browser Use 0.13.7 library on Browser Use Cloud browsers. Browser Use's own cloud/integrated agents (bu-v4-opus-4-8 85, bu-v4-luna 78, bu-ultra 78, bu-2-0 68, ChatBrowserUse-2 63.3) are products, not models, and are not ingested."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "bu_bench_v1",
+   "score": 66.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark",
+   "_note": "browser-use/benchmark official_results JSON (gpt-5.5): tasks_successful 66/100 with the open-source Browser Use 0.13.7 library on Browser Use Cloud browsers. Browser Use's own cloud/integrated agents (bu-v4-opus-4-8 85, bu-v4-luna 78, bu-ultra 78, bu-2-0 68, ChatBrowserUse-2 63.3) are products, not models, and are not ingested."
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "bu_bench_v1",
+   "score": 65.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark",
+   "_note": "browser-use/benchmark official_results JSON (gemini-3.5-flash): tasks_successful 65/100 with the open-source Browser Use 0.13.7 library on Browser Use Cloud browsers. Browser Use's own cloud/integrated agents (bu-v4-opus-4-8 85, bu-v4-luna 78, bu-ultra 78, bu-2-0 68, ChatBrowserUse-2 63.3) are products, not models, and are not ingested."
+  },
+  {
+   "model": "alibaba/qwen3.6-plus",
+   "benchmark": "bu_bench_v1",
+   "score": 45.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark",
+   "_note": "browser-use/benchmark official_results JSON (qwen3.6-plus): tasks_successful 45/100 with the open-source Browser Use 0.13.7 library on Browser Use Cloud browsers. Browser Use's own cloud/integrated agents (bu-v4-opus-4-8 85, bu-v4-luna 78, bu-ultra 78, bu-2-0 68, ChatBrowserUse-2 63.3) are products, not models, and are not ingested."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "bu_bench_v1",
+   "score": 37.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark",
+   "_note": "browser-use/benchmark official_results JSON (deepseek-v4-flash-0731): tasks_successful 37/100 with the open-source Browser Use 0.13.7 library on Browser Use Cloud browsers. Browser Use's own cloud/integrated agents (bu-v4-opus-4-8 85, bu-v4-luna 78, bu-ultra 78, bu-2-0 68, ChatBrowserUse-2 63.3) are products, not models, and are not ingested."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "bu_bench_v1",
+   "score": 31.0,
+   "unit": "%",
+   "_source": "https://github.com/browser-use/benchmark",
+   "_note": "browser-use/benchmark official_results JSON (gpt-5.6-luna): tasks_successful 31/100 with the open-source Browser Use 0.13.7 library on Browser Use Cloud browsers. Browser Use's own cloud/integrated agents (bu-v4-opus-4-8 85, bu-v4-luna 78, bu-ultra 78, bu-2-0 68, ChatBrowserUse-2 63.3) are products, not models, and are not ingested."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "bu_bench_v1",
+   "score": 80.0,
+   "unit": "%",
+   "_source": "https://browser-use.com/posts/claude-fable-browser-agent-benchmark",
+   "_note": "Browser Use blog 'Claude Fable Sets High Score on BU Bench' (2026-06-10): 80 of 100 tasks passed with the open-source library (16 judged incorrect, 4 timeouts; 6m53s per task). The post says this beat GPT 5.5 by 12 points; the official_results file for gpt-5.5 records 66."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "bu_bench_v1_cost_usd_lower_better",
+   "score": 580.87,
+   "unit": "USD",
+   "_source": "https://browser-use.com/posts/claude-fable-browser-agent-benchmark",
+   "_note": "Browser Use blog (2026-06-10): '$580.87 in API cost for 100 tasks'."
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "bu_bench_v1",
+   "score": 62.0,
+   "unit": "%",
+   "_source": "https://browser-use.com/posts/ai-browser-agent-benchmark",
+   "_note": "Browser Use blog 'Browser Agent Benchmark' results table (updated 2026-06-11; runs with Browser Use library 0.11.x per old_results/), 'Open Source' rows = open-source library + that LLM."
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "bu_bench_v1",
+   "score": 59.3,
+   "unit": "%",
+   "_source": "https://browser-use.com/posts/ai-browser-agent-benchmark",
+   "_note": "Browser Use blog 'Browser Agent Benchmark' results table (updated 2026-06-11; runs with Browser Use library 0.11.x per old_results/), 'Open Source' rows = open-source library + that LLM."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "bu_bench_v1",
+   "score": 59.0,
+   "unit": "%",
+   "_source": "https://browser-use.com/posts/ai-browser-agent-benchmark",
+   "_note": "Browser Use blog 'Browser Agent Benchmark' results table (updated 2026-06-11; runs with Browser Use library 0.11.x per old_results/), 'Open Source' rows = open-source library + that LLM."
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "bu_bench_v1",
+   "score": 52.4,
+   "unit": "%",
+   "_source": "https://browser-use.com/posts/ai-browser-agent-benchmark",
+   "_note": "Browser Use blog 'Browser Agent Benchmark' results table (updated 2026-06-11; runs with Browser Use library 0.11.x per old_results/), 'Open Source' rows = open-source library + that LLM."
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "bu_bench_v1",
+   "score": 37.0,
+   "unit": "%",
+   "_source": "https://browser-use.com/posts/ai-browser-agent-benchmark",
+   "_note": "Browser Use blog 'Browser Agent Benchmark' results table (updated 2026-06-11; runs with Browser Use library 0.11.x per old_results/), 'Open Source' rows = open-source library + that LLM."
+  },
+  {
+   "model": "google/gemini-2.5-flash",
+   "benchmark": "bu_bench_v1",
+   "score": 35.2,
+   "unit": "%",
+   "_source": "https://browser-use.com/posts/ai-browser-agent-benchmark",
+   "_note": "Browser Use blog 'Browser Agent Benchmark' results table (updated 2026-06-11; runs with Browser Use library 0.11.x per old_results/), 'Open Source' rows = open-source library + that LLM."
+  },
+  {
+   "model": "startlux/startlux-v1.0-27b-preview",
+   "benchmark": "caict_trusted_ai_mcp_special_test_total",
+   "score": 39.25,
+   "unit": "score",
+   "_source": "https://eu.36kr.com/en/p/3963345222147335",
+   "_note": "36Kr (2026-08-31) and TMTPost summaries of the CAICT report: total score 39.25, ranked 2nd of the six tested models (DeepSeek-V4-Pro 1st; ahead of DeepSeek-V4-Flash-0731, Step-3.7-Flash, Qwen-3.6-27B (5.34 points lower) and AgentCPM-Explore-4B); 1st on location navigation, tied/1st on browser automation and financial analysis. Other models' totals are not published in the articles. Model id StartLux-27B-260715."
+  }
+ ]
+}

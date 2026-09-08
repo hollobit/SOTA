@@ -63,6 +63,7 @@ var Agent = (function() {
                 'appworld',
                 'visualwebarena',
                 'online_mind2web',
+                'bu_bench_v1',  // 2026-09-09 S276 — Browser Use BU Bench V1 (Fable 5 80.0, Opus 4.7 74)
                 'webshop',
                 // 2026-06-14 S112 — HAL Princeton CITP per-sub-benchmark
                 'hal_swe_bench_verified_mini', 'hal_usaco', 'hal_core_bench_hard', 'hal_tau_bench_airline',
@@ -84,6 +85,7 @@ var Agent = (function() {
                 'visualagentbench',
                 // 2026-06-29 S155 — OSWorld 2.0 (XLANG, 108 long-horizon tasks, 500-step canonical)
                 'osworld_v2', 'osworld_v2_partial', 'osworld_v2_150step', 'osworld_v2_300step',
+                'osworld_v2_single_action', 'osworld_v2_single_action_partial',  // 2026-09-09 S276 — paper Table 3 single-action condition
                 // 2026-04 S216 — GUI grounding (MiningLamp Mano-P + others)
                 'screenspot_v2', 'mmbench_gui_l2', 'ui_vision', 'online_mind2web', 'osworld_g_refine', 'osexpert_eval'
             ]

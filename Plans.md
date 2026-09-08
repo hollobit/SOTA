@@ -1,7 +1,16 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 275 — OpenRouter-only models added and priced (2026-09-05)
-**3,512 models · 4,482 benchmarks · 22,735 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 276 — Ling-3.0-flash(+Sante), Step 3.7 Flash, Spark-X2.5, AgentCPM-Explore, OSWorld 2.0 sub-tables, BU Bench V1 (2026-09-09)
+**3,517 models · 4,545 benchmarks · 23,080 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-09 Session 276 — 16-link ingest
+- **5 new models, 63 new benchmarks, 345 scores, 0 FK / 0 dup / 0 overwrites.** Own-model values only (competitor columns excluded); chart images read directly (Ling card table, Sante announcement, Step blog chart); paper tables via pdftotext. Backup `data/benchmark.db.pre-s276.bak`.
+- **Ling-3.0-flash** (29 benchmarks from the card image, incl. Ring-2.6-1T column) and **Ling-3.0-flash-Sante** (new, 2026-09-04: 9 medical benchmarks + BrowseComp 73.9 / 86.9 multi-agent, HLE w/ tools 53.2). BenchLM matched the card and served as a cross-check only.
+- **Step 3.7 Flash**: 23 own rows from the blog tables (multimodal search, deep-research, coding, Step-SWE-Bench by harness) + 18 Step 3.5 Flash rows; metadata corrected to 2026-05-29 / 198B-A11B VLM / 256K / open-weight (the overriding `model_metadata_fix` file was patched too).
+- **Spark-X2.5-4B / 1.7B** (XHToken, new; 21 benchmarks each), **AgentCPM-Explore** (OpenBMB 4B, new; paper Table 1), **StartLux-V1.0-27B-Preview** (new; CAICT MCP special test 39.25, #2 of 6).
+- **OSWorld 2.0 paper**: headline rows were already in; added Table 3 single-action condition + per-task cost/tool-calls/tokens/steps, Table 21 time bins, Table 23 ten phenomena × 5 models (100 rows), Tables 14/15 (39 new ids).
+- **BU Bench V1** (Browser Use, new id): 13 models from official_results JSON + blog (Fable 5 80.0 at $580.87/run, Opus 4.7 74, GPT-5.5 66).
+- Withheld: explainx "Browser Use Benchmark v2" (Astra 77.3 / Opus 5 50.5 — no citable source), BenchLM BrowseComp aggregation, Browser Use cloud-agent rows, CAICT per-task/other-model scores. Tabs: Sovereign +5 CN models, Medical +4 ids, Agent +3 ids; Resources/seed_sources +7; two arXiv PDFs archived in resource/.
 
 ### 2026-09-05 Session 275 — OpenRouter catalogue: 34 new models, 26 existing models priced
 - **34 models + 151 price rows, 0 FK / 0 dup / 0 overwrites; priced models 218 → 278.** Of 132 OpenRouter ids with no DB model, the recent non-roleplay ones were added (release_date = OpenRouter listing date, context = OpenRouter context_length) with the vendor's own endpoint price where one exists, else the cheapest host, stated in each note. Backup `data/benchmark.db.pre-s275.bak`.

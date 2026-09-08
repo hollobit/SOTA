@@ -637,7 +637,7 @@ var MedicalAI = {
         {
             label: '🎓 Medical Licensing & QA',
             note: 'USMLE / MedQA / MedMCQA / PubMedQA / MMLU clinical / MedXpertQA / MedBullets / EHRQA',
-            benchmarks: ['medqa_usmle', 'medmcqa', 'pubmedqa', 'mmlu_clinical', 'medxpertqa', 'medbullets', 'ehrqa']
+            benchmarks: ['medqa_usmle', 'medmcqa', 'pubmedqa', 'mmlu_clinical', 'medxpertqa', 'medxpertqa_text', 'diagnosisarena_mcq', 'redisqa', 'medethicalign', 'medbullets', 'ehrqa']
         },
         {
             label: '🌏 Multilingual / Regional Medical QA',
@@ -1918,7 +1918,7 @@ var MedicalAI = {
 
         var self = this;
         // Pick top-6 clinical-LLM-eligible models by HealthBench Pro then MedQA
-        var allBids = ['healthbench_professional', 'healthbench', 'medqa_usmle', 'medmcqa', 'pubmedqa', 'mmlu_clinical', 'medxpertqa'];
+        var allBids = ['healthbench_professional', 'healthbench', 'medqa_usmle', 'medmcqa', 'pubmedqa', 'mmlu_clinical', 'medxpertqa', 'medxpertqa_text'];
         var modelScoreSums = {};
         this._models.forEach(function(m) {
             var sum = 0, cnt = 0;

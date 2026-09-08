@@ -119,6 +119,9 @@ var Sovereign = {
                 // Alibaba Qwen — full param lineup
                 'alibaba/qwen3.8-max-preview', 'alibaba/qwen3.7-max', 'alibaba/qwen3.7-max-20260517', 'alibaba/qwen3.7-max-preview', 'alibaba/qwen3.7-plus-preview',
                 'inclusionai/ling-3.0-flash',
+                'inclusionai/ling-3.0-flash-sante',  // 2026-09-09 S276 — health/medicine MoE on Ling-3.0-flash (MedXpertQA-Text 53.9, DiagnosisArena 83.8)
+                'startlux/startlux-v1.0-27b-preview', // 2026-09-09 S276 — CAICT MCP special test 39.25 (#2 of 6)
+                'xhtoken/spark-x2.5-4b', 'xhtoken/spark-x2.5-1.7b', // 2026-09-09 S276 — Ascend-trained 1M-ctx small models (BrowseComp 40.9, SWE-Bench Pro 44.4)
                 'alibaba/qwen3.7-plus',  // 2026-06-02 S46 — Qwen3.7-Plus GA (Multimodal Agent Intelligence, qwen.ai blog)
                 'alibaba/qwen3.6-max-preview',  // 2026-04-20 S179 audit — ECI 149.65
                 'alibaba/qwen3.6-plus', 'alibaba/qwen3.6-27b', 'alibaba/qwen3.6-35b-a3b',
@@ -230,6 +233,7 @@ var Sovereign = {
                 // OpenBMB MiniCPM (Tsinghua)
                 'openbmb/minicpm-4.1-8b', 'openbmb/minicpm-4-8b', 'openbmb/minicpm3-4b', 'openbmb/minicpm-5-1b', // 2026-06-10 S67 — AAII 18 leading 1B open-weights
                 'openbmb/minicpm-v-2.6', 'openbmb/minicpm-o-2.6', 'openbmb/minicpm-o-4.5',
+                'openbmb/agentcpm-explore',            // 2026-09-09 S276 — 4B agent model (GAIA 63.9, xbench-DeepSearch 70.0)
                 'openbmb/minicpm-5-1b',                // 2026-05-19 S140 — AAII v4.1 = 17.9 (1B open SOTA, +7.4 vs next)
                 'openbmb/minicpm-v-4.6',              // 2026-05-11 S140 — iOS/Android/HarmonyOS VLM
                 'alibaba/qwen-3.5-0.8b','alibaba/qwen-3.5-2b','alibaba/qwen-3.5-4b','alibaba/qwen-3.5-9b', // 2026-03 S140 — Qwen 3.5 Small family
