@@ -1,0 +1,916 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-10",
+  "session": "S278",
+  "sources": [
+   "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/DeepSeek_V41_Tech_Report.pdf",
+   "https://openrouter.ai/deepseek/deepseek-v4.1-flash",
+   "https://www.deepseek.com/en/news/deepseek-v4-1-flash/",
+   "https://api-docs.deepseek.com/quick_start/pricing"
+  ],
+  "note": "DeepSeek-V4.1-Flash (2026-09-10, MIT, 552B backbone CED MoE, 8B/16B active, 1M ctx, native vision). Tech report (51 pp) archived as resource/deepseek_v4.1_tech_report_2026-09.pdf; deepseek.com and api-docs.deepseek.com refuse direct connections from this host, so those two pages were read through the r.jina.ai reader proxy and the launch table image via an image proxy. Ingested: Table 1 base (20 rows), Table 3 instruct (21 own rows incl. HLE text-only), Table 4/5 scaffold runs (16 rows), Appendix B.3 effort prose (AIME 2026 100 at max, Apex 25.3 at effort 25), Section 5.3.5 multi-agent scaling endpoints (4 rows), Figure 1(b) KV-cache bytes/token (3 DeepSeek generations), official pricing. The V4-Pro-0813 / V4-Flash-0731 columns (DeepSeek's own previous models, column identity fixed by the deepseek.com image) fill only rows the DB lacked. Competitor columns (Opus 5, GPT-5.6 Sol, K3, GLM-5.3) not ingested. NL2Repo-Bench: report + news say 65.4, HF card 64.0 → 65.4. Withheld: Figures 7/8/9/11/12 curve points (axes only), Table 19-style qualitative material, Figure 6 BPB on internal corpora, the reasoning-effort tier mapping (Table 2: max=100/high=75/low=50, metadata only)."
+ },
+ "models": [
+  {
+   "id": "deepseek/deepseek-v4.1-flash",
+   "vendor": "DeepSeek",
+   "name": "DeepSeek-V4.1-Flash",
+   "type": "open-weight",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-09-10",
+   "context_window": 1048576,
+   "parameters": "552B backbone (8B active prefill / 16B decode) + 196B Engram memory",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "deepseek/deepseek-v4.1-flash-base",
+   "vendor": "DeepSeek",
+   "name": "DeepSeek-V4.1-Flash-Base",
+   "type": "open-weight",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-09-10",
+   "context_window": 1048576,
+   "parameters": "552B backbone (8B/16B active)"
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "hle_text_only",
+   "name": "Humanity's Last Exam (text-only subset)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "HLE pass@1 on the text-only question subset (no tools)."
+  },
+  {
+   "id": "deepswe_1_1_codex_harness",
+   "name": "DeepSWE v1.1 — Codex scaffold",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 resolved rate when the agent runs inside the Codex scaffold (N=8 samples/task, 1M context, max 500 steps)."
+  },
+  {
+   "id": "deepswe_1_1_opencode",
+   "name": "DeepSWE v1.1 — OpenCode scaffold",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 resolved rate when the agent runs inside the OpenCode scaffold (N=8 samples/task, 1M context, max 500 steps)."
+  },
+  {
+   "id": "terminal_bench_2_1_opencode",
+   "name": "Terminal-Bench 2.1 — OpenCode scaffold",
+   "category": "agent",
+   "metric": "pass@1",
+   "description": "Terminal-Bench 2.1 pass@1 inside the OpenCode scaffold (N=3, 1M context, max 500 steps, no network)."
+  },
+  {
+   "id": "deepswe_1_1_pi",
+   "name": "DeepSWE v1.1 — Pi scaffold",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 resolved rate when the agent runs inside the Pi scaffold (N=8 samples/task, 1M context, max 500 steps)."
+  },
+  {
+   "id": "terminal_bench_2_1_pi",
+   "name": "Terminal-Bench 2.1 — Pi scaffold",
+   "category": "agent",
+   "metric": "pass@1",
+   "description": "Terminal-Bench 2.1 pass@1 inside the Pi scaffold (N=3, 1M context, max 500 steps, no network)."
+  },
+  {
+   "id": "deepswe_1_1_dsh_minimal",
+   "name": "DeepSWE v1.1 — DeepSeek Harness Minimal scaffold",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 resolved rate when the agent runs inside the DeepSeek Harness Minimal scaffold (N=8 samples/task, 1M context, max 500 steps)."
+  },
+  {
+   "id": "terminal_bench_2_1_dsh_minimal",
+   "name": "Terminal-Bench 2.1 — DeepSeek Harness Minimal scaffold",
+   "category": "agent",
+   "metric": "pass@1",
+   "description": "Terminal-Bench 2.1 pass@1 inside the DeepSeek Harness Minimal scaffold (N=3, 1M context, max 500 steps, no network)."
+  },
+  {
+   "id": "deepswe_1_1_dsh_standard",
+   "name": "DeepSWE v1.1 — DeepSeek Harness Standard scaffold",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 resolved rate when the agent runs inside the DeepSeek Harness Standard scaffold (N=8 samples/task, 1M context, max 500 steps)."
+  },
+  {
+   "id": "terminal_bench_2_1_dsh_standard",
+   "name": "Terminal-Bench 2.1 — DeepSeek Harness Standard scaffold",
+   "category": "agent",
+   "metric": "pass@1",
+   "description": "Terminal-Bench 2.1 pass@1 inside the DeepSeek Harness Standard scaffold (N=3, 1M context, max 500 steps, no network)."
+  },
+  {
+   "id": "deepswe_1_1_dsh_ptc",
+   "name": "DeepSWE v1.1 — DeepSeek Harness PTC scaffold",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 resolved rate when the agent runs inside the DeepSeek Harness PTC scaffold (N=8 samples/task, 1M context, max 500 steps)."
+  },
+  {
+   "id": "terminal_bench_2_1_dsh_ptc",
+   "name": "Terminal-Bench 2.1 — DeepSeek Harness PTC scaffold",
+   "category": "agent",
+   "metric": "pass@1",
+   "description": "Terminal-Bench 2.1 pass@1 inside the DeepSeek Harness PTC scaffold (N=3, 1M context, max 500 steps, no network)."
+  },
+  {
+   "id": "deepswe_1_1_claude_code",
+   "name": "DeepSWE v1.1 — Claude Code scaffold",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 resolved rate inside the Claude Code scaffold (Claude Agent SDK)."
+  },
+  {
+   "id": "matharena_apex_2025_effort25",
+   "name": "MathArena Apex 2025 (reasoning effort 25)",
+   "category": "math",
+   "metric": "accuracy",
+   "description": "MathArena Apex 2025 pass@1 at the lowest reasoning-effort setting (25 of 100) — the low end of the model's cost/accuracy knob."
+  },
+  {
+   "id": "programbench_golden172_almost1_single_agent_8h",
+   "name": "ProgramBench golden-172 Almost@1 — single agent, 8h deadline",
+   "category": "coding",
+   "metric": "almost_percent",
+   "description": "DeepSeek's 172-task 'golden' ProgramBench subset (reference solution ≥95% on hidden tests), Almost@1 (rollout score ≥0.95), single-agent configuration at an 8-hour per-rollout wall-clock deadline."
+  },
+  {
+   "id": "programbench_golden172_almost1_multi_agent_8h",
+   "name": "ProgramBench golden-172 Almost@1 — Agent Team (multi-agent), 8h deadline",
+   "category": "coding",
+   "metric": "almost_percent",
+   "description": "Same subset and metric, DeepSeek Agent Team multi-agent configuration at an 8-hour deadline (peak in Figure 10)."
+  },
+  {
+   "id": "frontierswe_v2_nogpu_mean5_single_agent_20h",
+   "name": "FrontierSWE v2 (no-GPU subset) Mean@5 — single agent, 20h deadline",
+   "category": "coding",
+   "metric": "mean@5",
+   "description": "FrontierSWE v2 no-GPU public subset, Mean@5, single-agent configuration at a 20-hour per-rollout deadline."
+  },
+  {
+   "id": "frontierswe_v2_nogpu_mean5_multi_agent_20h",
+   "name": "FrontierSWE v2 (no-GPU subset) Mean@5 — Agent Team (multi-agent), 20h deadline",
+   "category": "coding",
+   "metric": "mean@5",
+   "description": "Same subset and metric, Agent Team multi-agent configuration at a 20-hour deadline."
+  },
+  {
+   "id": "global_kv_cache_bytes_per_token_lower_better",
+   "name": "Global KV cache per token (bytes)",
+   "category": "efficiency",
+   "metric": "bytes_lower_better",
+   "description": "Global (always-in-HBM) KV cache footprint per token in bytes, as reported by the vendor. Lower is better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "agieval",
+   "score": 83.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 3–5-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "mmlu_pro",
+   "score": 74.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 5-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "c_eval",
+   "score": 92.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 5-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "multiloko",
+   "score": 45.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 5-shot, LLM-judge). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "simpleqa_verified",
+   "score": 42.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 25-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "supergpqa",
+   "score": 53.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 5-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "bbh",
+   "score": 86.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 3-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "bbeh",
+   "score": 27.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 1-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "drop",
+   "score": 87.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 1-shot, F1). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "hellaswag",
+   "score": 87.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 0-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "bigcodebench",
+   "score": 60.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 3-shot, Pass@1). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "humaneval",
+   "score": 79.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 0-shot, Pass@1). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "gsm8k",
+   "score": 93.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 8-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "math",
+   "score": 61.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 4-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "mgsm",
+   "score": 80.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 8-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "longbench_v2",
+   "score": 45.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 1-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "mmmu_pro",
+   "score": 56.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 4-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "cvbench",
+   "score": 77.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 4-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "docvqa",
+   "score": 95.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 4-shot, LLM-judge). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-base",
+   "benchmark": "refcoco_avg",
+   "score": 86.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 0-shot, Acc@0.5). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "gpqa_diamond",
+   "score": 90.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). "
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "hle",
+   "score": 36.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). Full HLE; text-only subset 39.1 stored separately."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "hle_text_only",
+   "score": 39.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). † text-only subset."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "codeforces_rating",
+   "score": 3471,
+   "unit": "rating",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). "
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "matharena_apex",
+   "score": 65.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). "
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1",
+   "score": 90.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). Also Table 4: DSH Minimal 90.6, mini-SWE 90.3, Claude Code 88.0."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_3",
+   "score": 30.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). "
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_4",
+   "score": 31.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). "
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1",
+   "score": 74.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). mini-SWE harness (official setup). Table 4 mini-SWE scaffold value is identical (74.2), so no separate mini-SWE id row."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "programbench_almost",
+   "score": 20.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). "
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "nl2repo_bench",
+   "score": 65.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). Tech report Table 3 and the deepseek.com table print 65.4; the HF card's markdown table shows 64.0 — treated as a card typo, 65.4 kept."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "cybergym",
+   "score": 88.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). "
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "sec-bench-pro",
+   "score": 62.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). Claude Code harness."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "exploitgym",
+   "score": 15.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). "
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "hle_with_tools",
+   "score": 63.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). "
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "automationbench",
+   "score": 54.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). Official scaffold."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "agents_last_exam",
+   "score": 31.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). Official scaffold."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "chartography",
+   "score": 78.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). w/ tools, Claude Code harness, 512K."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "babyvision",
+   "score": 89.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). w/ tools, Claude Code harness, 512K."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "zerobench_main",
+   "score": 49.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). Pass@5, w/ tools, Claude Code harness, 512K."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "hle_text_only",
+   "score": 42.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). †"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "codeforces_rating",
+   "score": 3348,
+   "unit": "rating",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "matharena_apex",
+   "score": 65.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "terminal_bench_2_1",
+   "score": 87.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). DeepSeek harness; the AA leaderboard entry for the April V4 Pro is 64.0 under deepseek/deepseek-v4-pro."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "terminal_bench_3",
+   "score": 11.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "terminal_bench_4",
+   "score": 12.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "deepswe_1_1",
+   "score": 62.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "programbench_almost",
+   "score": 15.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "nl2repo_bench",
+   "score": 61.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "cybergym",
+   "score": 83.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "sec-bench-pro",
+   "score": 56.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "exploitgym",
+   "score": 5.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "hle_with_tools",
+   "score": 60.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "automationbench",
+   "score": 43.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "agents_last_exam",
+   "score": 25.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "hle_text_only",
+   "score": 37.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Flash 0731' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). †"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "codeforces_rating",
+   "score": 3289,
+   "unit": "rating",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Flash 0731' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "matharena_apex",
+   "score": 58.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Flash 0731' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "terminal_bench_3",
+   "score": 7.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Flash 0731' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "terminal_bench_4",
+   "score": 7.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Flash 0731' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "deepswe_1_1",
+   "score": 54.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Flash 0731' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "nl2repo_bench",
+   "score": 54.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Flash 0731' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "sec-bench-pro",
+   "score": 30.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Flash 0731' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "exploitgym",
+   "score": 1.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Flash 0731' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "hle_with_tools",
+   "score": 51.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Flash 0731' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). "
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_claude_code",
+   "score": 69.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Claude Code v2.1.251 (Table 5: v2.1.105 68.4/87.3, v2.1.238 68.7/88.4, v2.1.259 68.6/87.6; 4-version average 68.9/87.8)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_claude_code",
+   "score": 88.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Claude Code v2.1.251 (Table 5: v2.1.105 68.4/87.3, v2.1.238 68.7/88.4, v2.1.259 68.6/87.6; 4-version average 68.9/87.8)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_codex_harness",
+   "score": 65.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Codex v0.147.0 app-server mode."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_codex_harness",
+   "score": 84.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Codex v0.147.0 app-server mode."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_opencode",
+   "score": 65.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. OpenCode v1.18.15."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_opencode",
+   "score": 85.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. OpenCode v1.18.15."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_pi",
+   "score": 66.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Pi v0.84.2 RPC mode."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_pi",
+   "score": 86.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Pi v0.84.2 RPC mode."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_mini_swe",
+   "score": 90.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. mini_swe_v2 port, single bash tool."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_dsh_minimal",
+   "score": 72.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH Minimal, single bash tool."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_dsh_minimal",
+   "score": 90.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH Minimal, single bash tool."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_dsh_standard",
+   "score": 70.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH Standard, 26 initial tools incl. web search."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_dsh_standard",
+   "score": 85.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH Standard, 26 initial tools incl. web search."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_dsh_ptc",
+   "score": 67.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH PTC, run_code over 24 tools."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_dsh_ptc",
+   "score": 85.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH PTC, run_code over 24 tools."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aime_2026",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Appendix B.3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): 'AIME 2026 reaches a full 100%' at reasoning effort 100 (Figure 12; 4.6k→11.4k output tokens from effort 25 to 100)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "matharena_apex_2025_effort25",
+   "score": 25.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "Tech report Appendix B.3: 'MathArena Apex 2025 gains +40.3 points (25.3%→65.6%)' from effort 25 to 100; output tokens 29.1k→86.1k."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "programbench_golden172_almost1_single_agent_8h",
+   "score": 20.39,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Section 5.3.5 / Figure 10 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf), preliminary results: ProgramBench single-agent Almost@1 12.79% at 1h → 20.39% at 8h."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "programbench_golden172_almost1_multi_agent_8h",
+   "score": 30.04,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Section 5.3.5 / Figure 10 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf), preliminary results: ProgramBench multi-agent Almost@1 13.59% at 1h → peak 30.04% at 8h."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "frontierswe_v2_nogpu_mean5_single_agent_20h",
+   "score": 28.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Section 5.3.5 / Figure 10 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf), preliminary results: FrontierSWE v2 single-agent Mean@5 10.50% at 1h → 28.20% at 20h."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "frontierswe_v2_nogpu_mean5_multi_agent_20h",
+   "score": 32.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Section 5.3.5 / Figure 10 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf), preliminary results: FrontierSWE v2 multi-agent Mean@5 13.50% at 1h → 32.90% at 20h."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "global_kv_cache_bytes_per_token_lower_better",
+   "score": 890,
+   "unit": "bytes",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Figure 1(b) 'Global KV Cache Per Token (Bytes)' bar chart (read from the image; the report text confirms 890 for V4.1-Flash, ~1/4 of V4-Flash). 2026.09."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "global_kv_cache_bytes_per_token_lower_better",
+   "score": 3514,
+   "unit": "bytes",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Figure 1(b) 'Global KV Cache Per Token (Bytes)' bar chart (read from the image; the report text confirms 890 for V4.1-Flash, ~1/4 of V4-Flash). 2026.04; 3.9× smaller than V3.2."
+  },
+  {
+   "model": "deepseek/deepseek-v3.2",
+   "benchmark": "global_kv_cache_bytes_per_token_lower_better",
+   "score": 48068,
+   "unit": "bytes",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash model card / tech report Figure 1(b) 'Global KV Cache Per Token (Bytes)' bar chart (read from the image; the report text confirms 890 for V4.1-Flash, ~1/4 of V4-Flash). 2025.12; 13.7× smaller than V1."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (api-docs.deepseek.com, read 2026-09-10 via reader proxy), model name deepseek-flash = DeepSeek-V4.1-Flash: PEAK (standard) rate per 1M tokens — cache-miss input $0.30, output $1.20, cache-hit input $0.006; off-peak is 50% ($0.15 / $0.60 / $0.003). OpenRouter's DeepSeek endpoint lists the same schedule (peak windows 01–04 and 06–10 UTC weekdays); Novita/DeepInfra list $0.30 / $1.20. Context 1M, max output 384K. Legacy names deepseek-v4-flash and -vision-exp now route to V4.1-Flash; deepseek-v4-pro routes to V4.1-Flash from 2026-09-14 until V4.1 Pro ships."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.2,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (api-docs.deepseek.com, read 2026-09-10 via reader proxy), model name deepseek-flash = DeepSeek-V4.1-Flash: PEAK (standard) rate per 1M tokens — cache-miss input $0.30, output $1.20, cache-hit input $0.006; off-peak is 50% ($0.15 / $0.60 / $0.003). OpenRouter's DeepSeek endpoint lists the same schedule (peak windows 01–04 and 06–10 UTC weekdays); Novita/DeepInfra list $0.30 / $1.20. Context 1M, max output 384K. Legacy names deepseek-v4-flash and -vision-exp now route to V4.1-Flash; deepseek-v4-pro routes to V4.1-Flash from 2026-09-14 until V4.1 Pro ships."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.006,
+   "unit": "USD/1M",
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_note": "DeepSeek official pricing (api-docs.deepseek.com, read 2026-09-10 via reader proxy), model name deepseek-flash = DeepSeek-V4.1-Flash: PEAK (standard) rate per 1M tokens — cache-miss input $0.30, output $1.20, cache-hit input $0.006; off-peak is 50% ($0.15 / $0.60 / $0.003). OpenRouter's DeepSeek endpoint lists the same schedule (peak windows 01–04 and 06–10 UTC weekdays); Novita/DeepInfra list $0.30 / $1.20. Context 1M, max output 384K. Legacy names deepseek-v4-flash and -vision-exp now route to V4.1-Flash; deepseek-v4-pro routes to V4.1-Flash from 2026-09-14 until V4.1 Pro ships."
+  }
+ ]
+}

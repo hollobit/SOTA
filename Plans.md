@@ -1,7 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 277 — S276 source re-audit: BU Bench old_results, OSWorld Tables 19/20, Ling ctx fix (2026-09-09)
-**3,517 models · 4,561 benchmarks · 23,160 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 278 — DeepSeek-V4.1-Flash card, tech report, pricing (2026-09-10)
+**3,519 models · 4,580 benchmarks · 23,252 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-10 Session 278 — DeepSeek-V4.1-Flash
+- **2 new models, 19 new benchmarks, 92 scores, 0 FK / 0 dup / 0 overwrites.** 552B Causal Encoder-Decoder MoE (8B prefill / 16B decode active), 1M ctx, native vision, MIT; 51-page tech report archived `resource/deepseek_v4.1_tech_report_2026-09.pdf`. deepseek.com / api-docs block direct fetches → read via the r.jina.ai reader proxy (launch table image via an image proxy). Backup `data/benchmark.db.pre-s278.bak`.
+- Own rows: Table 1 base (20), Table 3 instruct (21; HLE text-only as its own id; NL2Repo-Bench 65.4 from report+news over the card's 64.0), Table 4/5 scaffold runs (15: DSH Minimal 90.6 / mini-SWE 90.3 / Claude Code 88.0 on TB2.1), Appendix B.3 effort prose (AIME 2026 100 at max; Apex 25.3 at effort 25), Section 5.3.5 multi-agent scaling endpoints (4), Figure 1(b) KV-cache bytes/token for three generations, official peak pricing $0.30 / $1.20 / $0.006.
+- The launch image fixes the comparison columns as V4-Pro-0813 and V4-Flash-0731; 26 rows the DB lacked for those two were filled from DeepSeek's own re-runs (existing rows untouched). Competitor columns not ingested.
+- Withheld: curve-figure axis values (Fig 7/8/9/11/12), internal-corpus BPB (Fig 6), effort-tier mapping (Table 2, metadata). Frontier Compare / Cyber-Coding rosters, Sovereign CN list, Resources + seed_sources updated.
 
 ### 2026-09-09 Session 277 — re-audit of the 16 S276 sources
 - **16 new ids, 80 rows, 0 FK / 0 dup / 0 overwrites.** Backup `data/benchmark.db.pre-s277.bak`.

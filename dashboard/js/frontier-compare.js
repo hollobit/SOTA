@@ -304,6 +304,7 @@ var FrontierCompare = {
         'moonshot/kimi-k2.6',
         'deepseek/deepseek-v4-pro-max',
         'deepseek/deepseek-v4-pro-0813',  // 2026-08-13 S242 — SWE-Verified 73.6, SWE-Pro 52.1, Terminal-2 59.1; $0.435/$0.87, 1M ctx
+        'deepseek/deepseek-v4.1-flash',  // 2026-09-10 S278 — 552B CED MoE 8B/16B active; TB2.1 90.6, DeepSWE 74.2, CyberGym 88.1, Codeforces 3471
         'deepseek/deepseek-v4-pro',
         'deepseek/deepseek-v4-flash',
         'deepseek/deepseek-v4-flash-0731',  // 2026-07-31 S226c — official 0731 flash release; Timeline frontier graph
