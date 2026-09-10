@@ -2220,19 +2220,19 @@
     "notes": "Claude Code harness"
   },
   "nl2repo_bench": {
-    "model_id": "tencent/hy4-preview",
+    "model_id": "deepseek/deepseek-v4.1-flash",
     "benchmark_id": "nl2repo_bench",
-    "value": 58.9,
+    "value": 65.4,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://huggingface.co/tencent/Hy4-preview  (official benchmark.jpg / benchmark-appendix.jpg, Hy4 preview column; visually verified)",
-      "date": "2026-08-29",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-08-29",
-    "notes": ""
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). Tech report Table 3 and the deepseek.com table print 65.4; the HF card's markdown table shows 64.0 — treated as a card typo, 65.4 kept."
   },
   "riddlebench": {
     "model_id": "openai/gpt-oss-120b",
@@ -4410,19 +4410,19 @@
     "notes": "Vendor model card: Llama 3.2 90B Vision Instruct = 92.3 accuracy on AI2D test. Charts and Diagram Understanding row."
   },
   "docvqa": {
-    "model_id": "htx-mistral/phoenix-vl-1.5-medium",
+    "model_id": "deepseek/deepseek-v4.1-flash-base",
     "benchmark_id": "docvqa",
-    "value": 93.05,
+    "value": 95.6,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "arxiv:2605.10391",
-      "date": "2026-08-01",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-08-01",
-    "notes": ""
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 4-shot, LLM-judge). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
   },
   "delegate_52": {
     "model_id": "google/gemini-3.1-pro",
@@ -5145,19 +5145,19 @@
     "notes": "Section 8.6; hidden test pass rate; 5 episodes (84-93 range; max reported)"
   },
   "programbench_almost": {
-    "model_id": "anthropic/claude-opus-4.7",
+    "model_id": "deepseek/deepseek-v4.1-flash",
     "benchmark_id": "programbench_almost",
-    "value": 3.0,
+    "value": 20.3,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2605.03546",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
       "date": "2026-09-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-10",
-    "notes": "Leader on Almost (≥95% tests)"
+    "notes": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). "
   },
   "tribench_ko": {
     "model_id": "openai/gpt-5.4",
@@ -20625,34 +20625,34 @@
     "notes": "FrontierCode Main pass rate"
   },
   "terminal_bench_2_1_mini_swe": {
-    "model_id": "anthropic/claude-mythos-5",
+    "model_id": "deepseek/deepseek-v4.1-flash",
     "benchmark_id": "terminal_bench_2_1_mini_swe",
-    "value": 88.0,
-    "unit": "score",
+    "value": 90.3,
+    "unit": "%",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
       "date": "2026-09-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-10",
-    "notes": "Section 8.3; mini-SWE-agent harness; high effort"
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. mini_swe_v2 port, single bash tool."
   },
   "terminal_bench_2_1_codex_harness": {
-    "model_id": "openai/gpt-5.5-codex",
+    "model_id": "deepseek/deepseek-v4.1-flash",
     "benchmark_id": "terminal_bench_2_1_codex_harness",
-    "value": 83.4,
-    "unit": "score",
+    "value": 84.1,
+    "unit": "%",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
       "date": "2026-09-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-10",
-    "notes": "Section 8.3"
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Codex v0.147.0 app-server mode."
   },
   "programbench_multi_agent_5": {
     "model_id": "anthropic/claude-mythos-5",
@@ -26055,19 +26055,19 @@
     "notes": "MathVision w/ python (Fable 98.6 lead; tied GPT-5.6 Sol 97.8)."
   },
   "babyvision": {
-    "model_id": "moonshot/kimi-k3",
+    "model_id": "deepseek/deepseek-v4.1-flash",
     "benchmark_id": "babyvision",
-    "value": 85.7,
+    "value": 89.6,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://www.kimi.com/blog/kimi-k3",
-      "date": "2026-07-16",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-07-16",
-    "notes": "BabyVision w/ python."
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). w/ tools, Claude Code harness, 512K."
   },
   "babyvision_(w/_python)": {
     "model_id": "moonshot/kimi-k2.6",
@@ -28725,19 +28725,19 @@
     "notes": "scaffold= date=2024-11-15"
   },
   "codeforces_rating": {
-    "model_id": "deepseek/deepseek-v4-pro",
+    "model_id": "deepseek/deepseek-v4.1-flash",
     "benchmark_id": "codeforces_rating",
-    "value": 3206.0,
-    "unit": "score",
+    "value": 3471.0,
+    "unit": "rating",
     "source": {
       "type": "leaderboard",
-      "url": "https://www.digitaltrends.com/computing/deepseeek-v4-is-out-touting-some-disruptive-wins-over-gemini-chatgpt-and-claude/",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
       "date": "2026-09-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-10",
-    "notes": "scaffold= date=2026-06-09"
+    "notes": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). "
   },
   "kimi_code_bench_v2": {
     "model_id": "moonshot/kimi-k3",
@@ -32595,19 +32595,19 @@
     "notes": ""
   },
   "automationbench": {
-    "model_id": "meta/muse-spark-1.3",
+    "model_id": "deepseek/deepseek-v4.1-flash",
     "benchmark_id": "automationbench",
-    "value": 49.4,
+    "value": 54.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://developer.meta.com/ai/models/muse-spark/  (official 'Muse Spark 1.3 benchmarks' table, Muse Spark 1.3 (max) column, read visually via Playwright)",
-      "date": "2026-09-03",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-09-03",
-    "notes": "max effort"
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). Official scaffold."
   },
   "tau2_bench_airline": {
     "model_id": "google/gemini-3-pro",
@@ -32895,19 +32895,19 @@
     "notes": "Existing capture as ctf_professional_pass_at_12; cross-listed"
   },
   "agieval": {
-    "model_id": "deepseek/deepseek-v4-pro-base",
+    "model_id": "deepseek/deepseek-v4.1-flash-base",
     "benchmark_id": "agieval",
-    "value": 83.1,
+    "value": 83.4,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
-      "date": "2026-08-13",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-08-13",
-    "notes": "V4-Pro-Base (tech report)"
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash model card / tech report Table 1 (base-model comparison, DeepSeek internal framework, 3–5-shot, EM). DeepSeek-V4.1-Flash-Base column. The same table re-reports V4-Flash-Base / V4-Pro-Base; those rows already exist in the DB from the V4 report and are not overwritten (AGIEval 83.9/84.4 and MultiLoKo 42.6/50.9 differ slightly from the V4-era 82.6/83.1 and 42.2/51.1)."
   },
   "cmmlu": {
     "model_id": "deepseek/deepseek-v4-pro-base",
@@ -44940,19 +44940,19 @@
     "notes": ""
   },
   "terminal_bench_2_1_claude_code": {
-    "model_id": "zhipu/glm-5.2",
+    "model_id": "deepseek/deepseek-v4.1-flash",
     "benchmark_id": "terminal_bench_2_1_claude_code",
-    "value": 82.7,
+    "value": 88.0,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "deep-reinforce.com Full Table",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
       "date": "2026-09-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-10",
-    "notes": ""
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Claude Code v2.1.251 (Table 5: v2.1.105 68.4/87.3, v2.1.238 68.7/88.4, v2.1.259 68.6/87.6; 4-version average 68.9/87.8)."
   },
   "claweval_avg": {
     "model_id": "anthropic/claude-opus-4.7",
@@ -47490,19 +47490,19 @@
     "notes": ""
   },
   "zerobench_main": {
-    "model_id": "deepseek/deepseek-v4-flash-vision-exp",
+    "model_id": "deepseek/deepseek-v4.1-flash",
     "benchmark_id": "zerobench_main",
-    "value": 35.0,
+    "value": 49.0,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)",
-      "date": "2026-08-24",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-08-24",
-    "notes": ""
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash model card 'Comparison with frontier models' == tech report Table 3 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf) == deepseek.com launch table. Max reasoning effort (=100), temperature 1.0 / top_p 0.95; code-agent benches via DeepSeek Harness Minimal with 1M context (DeepSWE v1.1 via mini-SWE, SEC-Bench Pro via Claude Code harness; visual-agent benches via Claude Code harness, 512K). Pass@5, w/ tools, Claude Code harness, 512K."
   },
   "perceptionbench": {
     "model_id": "openai/gpt-5.6-sol",
@@ -60103,6 +60103,291 @@
     "is_sota": true,
     "collected_at": "2026-09-09",
     "notes": "Step 3.7 Flash blog main table: 'HLE w. tool (acc) 47.2% (text-only 49.7%)'. Note the HF model card prose says 'HLE w. Tool 48.1' — the blog table value 47.2 is kept as the primary figure."
+  },
+  "hle_text_only": {
+    "model_id": "deepseek/deepseek-v4-pro-0813",
+    "benchmark_id": "hle_text_only",
+    "value": 42.7,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table — 'DeepSeek V4-Pro 0813' column (DeepSeek's own re-run of its previous model at Max effort under the V4.1 evaluation harness; column identity from the deepseek.com image). †"
+  },
+  "deepswe_1_1_claude_code": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "deepswe_1_1_claude_code",
+    "value": 69.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Claude Code v2.1.251 (Table 5: v2.1.105 68.4/87.3, v2.1.238 68.7/88.4, v2.1.259 68.6/87.6; 4-version average 68.9/87.8)."
+  },
+  "deepswe_1_1_codex_harness": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "deepswe_1_1_codex_harness",
+    "value": 65.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Codex v0.147.0 app-server mode."
+  },
+  "deepswe_1_1_opencode": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "deepswe_1_1_opencode",
+    "value": 65.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. OpenCode v1.18.15."
+  },
+  "terminal_bench_2_1_opencode": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "terminal_bench_2_1_opencode",
+    "value": 85.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. OpenCode v1.18.15."
+  },
+  "deepswe_1_1_pi": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "deepswe_1_1_pi",
+    "value": 66.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Pi v0.84.2 RPC mode."
+  },
+  "terminal_bench_2_1_pi": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "terminal_bench_2_1_pi",
+    "value": 86.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. Pi v0.84.2 RPC mode."
+  },
+  "deepswe_1_1_dsh_minimal": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "deepswe_1_1_dsh_minimal",
+    "value": 72.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH Minimal, single bash tool."
+  },
+  "terminal_bench_2_1_dsh_minimal": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "terminal_bench_2_1_dsh_minimal",
+    "value": 90.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH Minimal, single bash tool."
+  },
+  "deepswe_1_1_dsh_standard": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "deepswe_1_1_dsh_standard",
+    "value": 70.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH Standard, 26 initial tools incl. web search."
+  },
+  "terminal_bench_2_1_dsh_standard": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "terminal_bench_2_1_dsh_standard",
+    "value": 85.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH Standard, 26 initial tools incl. web search."
+  },
+  "deepswe_1_1_dsh_ptc": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "deepswe_1_1_dsh_ptc",
+    "value": 67.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH PTC, run_code over 24 tools."
+  },
+  "terminal_bench_2_1_dsh_ptc": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "terminal_bench_2_1_dsh_ptc",
+    "value": 85.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Table 4 'Performance across agent scaffolds at Max reasoning effort' (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): N=8 (DeepSWE) / N=3 (TB2.1), Linux containers, temperature 1.0, top_p 0.95, 1M context, max_steps 500; TB2.1 without network. DSH PTC, run_code over 24 tools."
+  },
+  "matharena_apex_2025_effort25": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "matharena_apex_2025_effort25",
+    "value": 25.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "Tech report Appendix B.3: 'MathArena Apex 2025 gains +40.3 points (25.3%→65.6%)' from effort 25 to 100; output tokens 29.1k→86.1k."
+  },
+  "programbench_golden172_almost1_single_agent_8h": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "programbench_golden172_almost1_single_agent_8h",
+    "value": 20.39,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Section 5.3.5 / Figure 10 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf), preliminary results: ProgramBench single-agent Almost@1 12.79% at 1h → 20.39% at 8h."
+  },
+  "programbench_golden172_almost1_multi_agent_8h": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "programbench_golden172_almost1_multi_agent_8h",
+    "value": 30.04,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Section 5.3.5 / Figure 10 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf), preliminary results: ProgramBench multi-agent Almost@1 13.59% at 1h → peak 30.04% at 8h."
+  },
+  "frontierswe_v2_nogpu_mean5_single_agent_20h": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "frontierswe_v2_nogpu_mean5_single_agent_20h",
+    "value": 28.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Section 5.3.5 / Figure 10 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf), preliminary results: FrontierSWE v2 single-agent Mean@5 10.50% at 1h → 28.20% at 20h."
+  },
+  "frontierswe_v2_nogpu_mean5_multi_agent_20h": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "frontierswe_v2_nogpu_mean5_multi_agent_20h",
+    "value": 32.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash tech report Section 5.3.5 / Figure 10 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf), preliminary results: FrontierSWE v2 multi-agent Mean@5 13.50% at 1h → 32.90% at 20h."
+  },
+  "global_kv_cache_bytes_per_token_lower_better": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "global_kv_cache_bytes_per_token_lower_better",
+    "value": 890.0,
+    "unit": "bytes",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "date": "2026-09-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-10",
+    "notes": "DeepSeek-V4.1-Flash model card / tech report Figure 1(b) 'Global KV Cache Per Token (Bytes)' bar chart (read from the image; the report text confirms 890 for V4.1-Flash, ~1/4 of V4-Flash). 2026.09."
   },
   "cti_bench": {
     "model_id": "anthropic/claude-opus-4.7",
