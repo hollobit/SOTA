@@ -134,6 +134,7 @@ var Sovereign = {
                 'alibaba/qwen2.5-72b', 'alibaba/qwen2.5-32b', 'alibaba/qwen2.5-14b', 'alibaba/qwen2.5-7b',
                 // DeepSeek
                 'deepseek/deepseek-v4-pro-max', 'deepseek/deepseek-v4-pro-thinking', 'deepseek/deepseek-v4-pro', 'deepseek/deepseek-v4-flash',
+                'deepseek/deepseek-v4.1-flash', 'deepseek/deepseek-v4.1-flash-base',  // 2026-09-10 S278 — 552B CED MoE, TB2.1 90.6
                 'deepseek/deepseek-v3.2', 'deepseek/deepseek-v3.2-speciale',
                 'deepseek/deepseek-v3.1-terminus', 'deepseek/deepseek-v3',
                 'deepseek/deepseek-r1-0528', 'deepseek/deepseek-r1',
