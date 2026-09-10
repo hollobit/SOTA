@@ -5121,5 +5121,11 @@
   "type": "ingest",
   "title": "S279 — DeepSeek-V4.1-Flash 소스 재감사: 5.3.3절 effort-25 종점 4행 (신규 id 4)",
   "detail": "S278의 3개 링크(+기술 리포트 51p)를 '빠진 부분' 관점으로 재점검. 놓친 것: 5.3.3절 산문의 reasoning effort 25→100 비교 — 8개 추론 벤치 평균 67.1→76.3, DeepSWE v1.1 66.0→74.2, Terminal-Bench 2.1 82.4→90.6(출력 토큰 약 2.5배) → effort-25 종점과 8벤치 평균 2종을 별도 id로 4행 반영. 재확인 결과 추가 없음: HF 저장소 evaluation/ 폴더는 재현 절차와 dsh-minimal 패치뿐, assets/는 이미 읽은 차트 2장, config.json은 model_type만 노출; 4.2.1절은 아키텍처 하이퍼파라미터(40층·d=5120·384+1 experts·6 활성·top-k 512·ViT 32층)로 점수 아님; 5.1/5.2절엔 평가 가능한 수치 없음; OpenRouter 프로바이더별 처리량/지연(DeepSeek 142 tps·1.37 s)은 휘발성이라 정책상 미반영; 가격 페이지의 V4 Pro 9/14 퇴역 공지는 S278 노트에 이미 기록. 리포트 Table 2(max=100/high=75/low=50)와 5.3.3절 본문의 티어 매핑은 일치."
+ },
+ {
+  "date": "2026-09-10",
+  "type": "Fix",
+  "title": "S280 — DeepSeek-V4.1-Flash 소스 3차 재감사: NL2Repo-Bench id 3개 통합(nl2repo) + V4-Pro-0813 오귀속 2행 정정",
+  "detail": "리포트 부록·각주·HF encoding/inference README·OpenRouter 원본 객체까지 재점검. 점수 누락은 없었고 데이터 품질 문제 2건을 발견. (1) NL2Repo-Bench(arXiv 2512.12730)가 nl2repo(18행)·nl2repo_bench(15행)·nl2repo_qwen(2행) 세 id로 갈라져 있었음 — 겹치는 모델(V4-Flash-0731 54.2, Opus 4.6 47.6)은 값이 동일 → 가장 오래된 nl2repo로 통합(15행 재지정, 중복 2행 삭제, 소스 JSON 8개 재지정, migration s280, Cyber-Coding·Frontier Compare 참조 4곳 교체). 통합 후 33행; 선두는 Claude Opus 4.8 69.7(deep-reinforce.com 실행), DeepSeek-V4.1-Flash 65.4는 2위. (2) deepseek-v4-pro-0813의 GPQA Diamond 72.9·HLE 7.7은 노트에도 적혀 있듯 V4-Pro Non-Think 값이 0813 id에 잘못 올라간 것(동일 값이 nonthink id에 이미 존재) → 삭제하고 V4.1 런치 표의 max effort 값 GPQA Diamond 92.4로 교체(HLE text-only 42.7은 S278에서 추가). 재확인 결과 추가 없음: 리포트의 나머지 수치는 아키텍처·학습 설정(45T 토큰, 배치 100.6M, LR 2.6e-4→2.6e-5, 1344×1344 해상도, Engram 196B)으로 점수 아님; Figure 2(FLOPs)·Figure 6(BPB)은 축값만; HF encoding README는 effort 티어(low 50/high 75 기본/max 100) 설명; OpenRouter 모델 객체는 가격·컨텍스트가 DB와 일치. V4-Flash-0731의 AutomationBench 25.1(Public 서브셋, 0731 카드) vs V4.1 표의 37.7(공식 스캐폴드)은 서브셋 차이로 판단해 기존 유지."
  }
 ]
