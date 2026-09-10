@@ -1,0 +1,21 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-10",
+  "session": "S280",
+  "sources": [
+   "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "https://www.deepseek.com/en/news/deepseek-v4-1-flash/"
+  ],
+  "note": "Third re-audit of the DeepSeek-V4.1-Flash sources. (1) NL2Repo-Bench was split across three ids (nl2repo 18 rows, nl2repo_bench 15, nl2repo_qwen 2; the only overlaps carried identical values) → consolidated into nl2repo: 15 rows re-pointed, 2 duplicates dropped, migration s280 clears the retired ids. (2) deepseek/deepseek-v4-pro-0813 carried the V4-Pro Non-Think GPQA 72.9 / HLE 7.7 (already on the -nonthink id); replaced with the max-effort GPQA Diamond 92.4 from the V4.1 launch table (HLE text-only 42.7 was added in S278)."
+ },
+ "scores": [
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "gpqa_diamond",
+   "score": 92.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Table 3 / deepseek.com launch table, 'DeepSeek V4-Pro 0813' column at Max reasoning effort (DeepSeek's own re-run). Replaces the Non-Think 72.9 that had been mis-filed under this id (S280)."
+  }
+ ]
+}

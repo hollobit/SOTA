@@ -120,7 +120,7 @@ var CyberCoding = {
         // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
         'kernelbench_hard', 'swe_fficiency',
         // 2026-06-02 S46 Qwen3.7-Plus — coding agent benches
-        'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen', 'qwen_webdev_elo', 'qwen_svg_elo',
+        'terminal_bench_2_0', 'swe_multilingual', 'nl2repo', 'qwen_webdev_elo', 'qwen_svg_elo',
         // 2026-06-02 S48 — Microsoft MAI Code/Thinking benches
         'lcb_v6', 'artifacts_bench',
         // 2026-06-29 S156 — Epoch + METR MirrorCode (reimplement-from-black-box CLI)
@@ -142,7 +142,7 @@ var CyberCoding = {
         // 2026-08-02 S224 — LiveSQLBench (text-to-SQL on live databases)
         'livesqlbench',
         // 2026-08-02 S224b — arxiv benchmark sweep (coding leaderboards)
-        'swe_compass', 'nl2repo_bench', 'dataclaweval',
+        'swe_compass', 'nl2repo', 'dataclaweval',
         'terminal_bench_4_0',  // S265
         'evocode_bench_v2_mt4', 'evocode_bench_v2_case'],  // S270 Terminal-Universe paper
 
@@ -165,7 +165,7 @@ var CyberCoding = {
                 'expert_swe', 'gso', 'mle_bench', 'weirdml_v2', 'paperbench',
                 'terminal_bench_2', 'nl2repo', 'repobench', 'vibe_code_bench',
                 // 2026-06-02 S46 Qwen3.7-Plus coding suite
-                'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen', 'qwen_webdev_elo', 'qwen_svg_elo',
+                'terminal_bench_2_0', 'swe_multilingual', 'nl2repo', 'qwen_webdev_elo', 'qwen_svg_elo',
                 // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
                 'kernelbench_hard', 'swe_fficiency'
             ]

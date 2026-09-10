@@ -1,7 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 279 — DeepSeek-V4.1-Flash source re-audit (2026-09-10)
-**3,519 models · 4,584 benchmarks · 23,256 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 280 — third re-audit: NL2Repo id merge, V4-Pro-0813 fix (2026-09-10)
+**3,519 models · 4,582 benchmarks · 23,253 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-10 Session 280 — third pass over the DeepSeek-V4.1-Flash sources
+- **No missed scores; two data-quality fixes.** Backup `data/benchmark.db.pre-s280.bak`.
+- **NL2Repo-Bench was split across `nl2repo` (18), `nl2repo_bench` (15) and `nl2repo_qwen` (2)** — the only overlaps carried identical values. Consolidated into `nl2repo` (15 rows re-pointed, 2 duplicates dropped, 8 source JSONs re-pointed, migration s280, 4 dashboard references switched). 33 rows; Claude Opus 4.8 69.7 (deep-reinforce.com run) leads, DeepSeek-V4.1-Flash 65.4 second.
+- **`deepseek-v4-pro-0813` GPQA 72.9 / HLE 7.7 were the Non-Think values** (the note said so; they already sit on the nonthink id). Deleted and replaced with the max-effort GPQA Diamond 92.4 from the V4.1 launch table; HLE text-only 42.7 was added in S278.
+- Re-checked with nothing further: remaining report numbers are training/architecture settings (45T tokens, batch 100.6M, LR schedule, 1344×1344 input, Engram 196B); Figures 2/6 are axis-only; the HF encoding README documents the effort tiers (low 50 / high 75 default / max 100); the OpenRouter model object matches the stored price and context. V4-Flash-0731 AutomationBench 25.1 (Public subset) vs 37.7 (official scaffold, V4.1 table) kept as different subsets.
 
 ### 2026-09-10 Session 279 — re-audit of the S278 sources
 - **4 new ids, 4 rows, 0 FK / 0 dup / 0 overwrites.** Missed in S278: the Section 5.3.3 effort-25 endpoints — DeepSWE v1.1 66.0 (→74.2), Terminal-Bench 2.1 82.4 (→90.6) and the vendor-defined 8-benchmark reasoning average 67.1 → 76.3, at ~2.5× output tokens. Backup `data/benchmark.db.pre-s279.bak`.

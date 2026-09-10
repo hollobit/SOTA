@@ -54,7 +54,7 @@ var FrontierCompare = {
             // 2026-06-01 S44 MiniMax M3 agentic-coding benches
             'kernelbench_hard', 'swe_fficiency',
             // 2026-06-02 S46 Qwen3.7-Plus + Cosmos 3 — coding agent benches
-            'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen',
+            'terminal_bench_2_0', 'swe_multilingual', 'nl2repo',
             // 2026-06-02 S48 — Microsoft MAI Thinking/Code benches
             'lcb_v6', 'artifacts_bench',
             // 2026-06-29 S156 — Epoch AI + METR MirrorCode (reimplement-from-black-box, 132 instances, up to 10B tok/L-task)

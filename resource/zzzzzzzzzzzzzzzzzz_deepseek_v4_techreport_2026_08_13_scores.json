@@ -5,7 +5,8 @@
   "note": "SUPPLEMENT to S242 (re-review) — full DeepSeek-V4 tech-report benchmark tables from the primary source (HF model card README, huggingface.co/deepseek-ai/DeepSeek-V4-Pro), which benchlm only partially rendered. Extracted OWN columns from 2 tables: (1) Base Model table -> DeepSeek-V4-Pro-Base + V4-Flash-Base (24 benches each). (2) 'Comparison across Modes' table -> V4-Pro Non-Think (= the 0813 default-served config; its coding numbers exactly match benchlm's '0813': SWE-Verified 73.6/Terminal 59.1/LiveCodeBench 56.8) and V4-Pro Max. Competitor columns (Opus/GPT/Gemini/K2.6/GLM in the frontier-compare table) and Flash Non-Think/High + Pro High modes skipped (no clean DB target / avoid over-scope). Authoritative primary-source values overwrite any stale mixed-source values via many-z late load. New benchmark ids: apex, mcpatlas.",
   "sources": [
    "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
-  ]
+  ],
+  "s280_note": "S280: the two V4-Pro-0813 rows (gpqa_diamond 72.9, hle 7.7) were the V4-Pro Non-Think values mis-filed under the 0813 id; they already live on deepseek/deepseek-v4-pro-nonthink. The V4.1-Flash launch table reports V4-Pro-0813 at max effort: GPQA Diamond 92.4 (now stored), HLE text-only 42.7 (hle_text_only)."
  },
  "benchmarks": [
   {
@@ -443,28 +444,12 @@
    "_note": "V4-Pro Max mode (tech report)"
   },
   {
-   "model": "deepseek/deepseek-v4-pro-0813",
-   "benchmark": "gpqa_diamond",
-   "score": 72.9,
-   "unit": "%",
-   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
-   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
-  },
-  {
    "model": "deepseek/deepseek-v4-pro-max",
    "benchmark": "gpqa_diamond",
    "score": 90.1,
    "unit": "%",
    "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
    "_note": "V4-Pro Max mode (tech report)"
-  },
-  {
-   "model": "deepseek/deepseek-v4-pro-0813",
-   "benchmark": "hle",
-   "score": 7.7,
-   "unit": "%",
-   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
-   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
   },
   {
    "model": "deepseek/deepseek-v4-pro-max",
