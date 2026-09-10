@@ -1,0 +1,74 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-10",
+  "session": "S279",
+  "sources": [
+   "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash"
+  ],
+  "note": "Re-audit of the S278 DeepSeek-V4.1-Flash sources. Missed: the Section 5.3.3 effort-25 endpoints (DeepSWE 66.0, TB2.1 82.4, 8-bench reasoning average 67.1->76.3). Everything else re-checked with nothing further: HF repo evaluation/ holds only reproduction instructions and a patch; assets/ has the two charts already read; config.json exposes only model_type; Section 4.2.1 is architecture hyper-parameters (40 layers, d=5120, 384+1 experts, 6 active, top-k 512, ViT 32 layers) - metadata, not scores; Sections 5.1/5.2 give no evaluable counts; OpenRouter per-provider throughput/latency (DeepSeek 142 tps / 1.37 s) is volatile and not ingested by policy; the pricing page's V4 Pro retirement date was already recorded in S278 notes."
+ },
+ "benchmarks": [
+  {
+   "id": "deepswe_1_1_effort25",
+   "name": "DeepSWE v1.1 (reasoning effort 25)",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 resolved rate at the lowest reasoning-effort setting (25 of 100) — the low end of DeepSeek's cost/accuracy knob (mini-SWE harness)."
+  },
+  {
+   "id": "terminal_bench_2_1_effort25",
+   "name": "Terminal-Bench 2.1 (reasoning effort 25)",
+   "category": "agent",
+   "metric": "pass@1",
+   "description": "Terminal-Bench 2.1 pass@1 at reasoning effort 25 of 100 (DeepSeek Harness Minimal)."
+  },
+  {
+   "id": "deepseek_reasoning8_avg_effort100",
+   "name": "DeepSeek reasoning-intensive 8-benchmark average (effort 100)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "Average pass@1 over AIME 2026, Apex 2025 Shortlist, GPQA Diamond, HLE, IMO-AnswerBench, LiveCodeBench, MathArena Apex and SimpleQA-Verified at max reasoning effort (DeepSeek-V4.1-Flash tech report Figure 9). Vendor-defined composite."
+  },
+  {
+   "id": "deepseek_reasoning8_avg_effort25",
+   "name": "DeepSeek reasoning-intensive 8-benchmark average (effort 25)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "Same 8-benchmark average at reasoning effort 25 of 100."
+  }
+ ],
+ "scores": [
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_effort25",
+   "score": 66.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Section 5.3.3 / Figure 9 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): 'raising the effort from 25 to 100 improves the average over eight reasoning-intensive benchmarks from 67.1% to 76.3%, DeepSWE v1.1 from 66.0% to 74.2%, and Terminal-Bench 2.1 from 82.4% to 90.6%, at roughly 2.5x more output tokens'. Effort 25; the max-effort value 74.2 is on deepswe_1_1."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_effort25",
+   "score": 82.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Section 5.3.3 / Figure 9 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): 'raising the effort from 25 to 100 improves the average over eight reasoning-intensive benchmarks from 67.1% to 76.3%, DeepSWE v1.1 from 66.0% to 74.2%, and Terminal-Bench 2.1 from 82.4% to 90.6%, at roughly 2.5x more output tokens'. Effort 25; max-effort 90.6 on terminal_bench_2_1."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepseek_reasoning8_avg_effort100",
+   "score": 76.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Section 5.3.3 / Figure 9 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): 'raising the effort from 25 to 100 improves the average over eight reasoning-intensive benchmarks from 67.1% to 76.3%, DeepSWE v1.1 from 66.0% to 74.2%, and Terminal-Bench 2.1 from 82.4% to 90.6%, at roughly 2.5x more output tokens'. Effort 100."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepseek_reasoning8_avg_effort25",
+   "score": 67.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "_note": "DeepSeek-V4.1-Flash tech report Section 5.3.3 / Figure 9 (archived resource/deepseek_v4.1_tech_report_2026-09.pdf): 'raising the effort from 25 to 100 improves the average over eight reasoning-intensive benchmarks from 67.1% to 76.3%, DeepSWE v1.1 from 66.0% to 74.2%, and Terminal-Bench 2.1 from 82.4% to 90.6%, at roughly 2.5x more output tokens'. Effort 25."
+  }
+ ]
+}

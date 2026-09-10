@@ -1,7 +1,11 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 278 — DeepSeek-V4.1-Flash card, tech report, pricing (2026-09-10)
-**3,519 models · 4,580 benchmarks · 23,252 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 279 — DeepSeek-V4.1-Flash source re-audit (2026-09-10)
+**3,519 models · 4,584 benchmarks · 23,256 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-10 Session 279 — re-audit of the S278 sources
+- **4 new ids, 4 rows, 0 FK / 0 dup / 0 overwrites.** Missed in S278: the Section 5.3.3 effort-25 endpoints — DeepSWE v1.1 66.0 (→74.2), Terminal-Bench 2.1 82.4 (→90.6) and the vendor-defined 8-benchmark reasoning average 67.1 → 76.3, at ~2.5× output tokens. Backup `data/benchmark.db.pre-s279.bak`.
+- Re-checked with nothing further: HF `evaluation/` (reproduction steps + dsh-minimal patch), `assets/` (the two charts already read), `config.json` (model_type only), Section 4.2.1 hyper-parameters (metadata), Sections 5.1/5.2 (no evaluable counts), OpenRouter per-provider throughput/latency (volatile, excluded by policy), the pricing page's V4 Pro retirement date (already in S278 notes). Table 2 and Section 5.3.3 agree on the tier mapping max/high/low = 100/75/50.
 
 ### 2026-09-10 Session 278 — DeepSeek-V4.1-Flash
 - **2 new models, 19 new benchmarks, 92 scores, 0 FK / 0 dup / 0 overwrites.** 552B Causal Encoder-Decoder MoE (8B prefill / 16B decode active), 1M ctx, native vision, MIT; 51-page tech report archived `resource/deepseek_v4.1_tech_report_2026-09.pdf`. deepseek.com / api-docs block direct fetches → read via the r.jina.ai reader proxy (launch table image via an image proxy). Backup `data/benchmark.db.pre-s278.bak`.
