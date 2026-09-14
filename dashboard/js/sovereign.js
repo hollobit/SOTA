@@ -152,7 +152,7 @@ var Sovereign = {
                 // 2026-07-01 S160 — Meituan LongCat family (1.6T total / 48B active MoE, 50K+ AI ASICs non-NVIDIA)
                 'meituan/longcat-2.0', 'meituan/longcat-flash-thinking', 'meituan/longcat-flash-thinking-2601', 'meituan/longcat-video',
                 // MiniMax / MiMo / StepFun
-                'minimax/m3', 'minimax/m2.7', 'minimax/m2.5', 'minimax/minimax-m2.7',
+                'minimax/m3', 'minimax/m2.7', 'minimax/m2.5', 'minimax/m2.1',
                 'mimo/mimo-v2-pro', 'mimo/mimo-v2-flash',
                 'stepfun/step-3.7-flash', 'stepfun/step-3.5-flash', 'stepfun/step-2-pro', 'stepfun/step-2-mini', // 2026-06-10 S67 — step-3.7-flash AAII 43
                 'stepfun/step-1o',

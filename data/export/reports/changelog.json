@@ -5127,5 +5127,11 @@
   "type": "Fix",
   "title": "S280 — DeepSeek-V4.1-Flash 소스 3차 재감사: NL2Repo-Bench id 3개 통합(nl2repo) + V4-Pro-0813 오귀속 2행 정정",
   "detail": "리포트 부록·각주·HF encoding/inference README·OpenRouter 원본 객체까지 재점검. 점수 누락은 없었고 데이터 품질 문제 2건을 발견. (1) NL2Repo-Bench(arXiv 2512.12730)가 nl2repo(18행)·nl2repo_bench(15행)·nl2repo_qwen(2행) 세 id로 갈라져 있었음 — 겹치는 모델(V4-Flash-0731 54.2, Opus 4.6 47.6)은 값이 동일 → 가장 오래된 nl2repo로 통합(15행 재지정, 중복 2행 삭제, 소스 JSON 8개 재지정, migration s280, Cyber-Coding·Frontier Compare 참조 4곳 교체). 통합 후 33행; 선두는 Claude Opus 4.8 69.7(deep-reinforce.com 실행), DeepSeek-V4.1-Flash 65.4는 2위. (2) deepseek-v4-pro-0813의 GPQA Diamond 72.9·HLE 7.7은 노트에도 적혀 있듯 V4-Pro Non-Think 값이 0813 id에 잘못 올라간 것(동일 값이 nonthink id에 이미 존재) → 삭제하고 V4.1 런치 표의 max effort 값 GPQA Diamond 92.4로 교체(HLE text-only 42.7은 S278에서 추가). 재확인 결과 추가 없음: 리포트의 나머지 수치는 아키텍처·학습 설정(45T 토큰, 배치 100.6M, LR 2.6e-4→2.6e-5, 1344×1344 해상도, Engram 196B)으로 점수 아님; Figure 2(FLOPs)·Figure 6(BPB)은 축값만; HF encoding README는 effort 티어(low 50/high 75 기본/max 100) 설명; OpenRouter 모델 객체는 가격·컨텍스트가 DB와 일치. V4-Flash-0731의 AutomationBench 25.1(Public 서브셋, 0731 카드) vs V4.1 표의 37.7(공식 스캐폴드)은 서브셋 차이로 판단해 기존 유지."
+ },
+ {
+  "date": "2026-09-14",
+  "type": "Fix",
+  "title": "S281 — MiniMax 모델 id 파편화 정리: minimax-m3→m3, minimax-m2.7→m2.7, minimax-2.1+minimax-m2.1→m2.1 (56행 이동, 모델 4개 폐기)",
+  "detail": "같은 벤더의 표기 변형만 병합(S268 원칙). minimax/minimax-m3(17행)→minimax/m3(112행): 겹치는 5행(AAII v4.1 44.0 동일, ECI 148.74/148.75, WebDev Elo 1491/1493, USAMO 85.7 동일, MMMU-Pro 78.1 llm-stats vs 80.0 AA)은 m3 값 유지. minimax/minimax-m2.7(32행)→minimax/m2.7(40행): 겹침 1행(ECI). minimax/minimax-2.1(4행, PACE-Bench·SWE-Bench Pro Public — 노트가 'M2.1'로 명시)과 minimax/minimax-m2.1(3행, 가격)은 모두 M2.1이라 신규 canonical id minimax/m2.1로 통합; minimax-m1-80k→m1-80k. canonical_map에 10개 매핑 추가(-m2.5/-m2 형태 선제 등록, 프리픽스 없는 minimax-m2.x 포함) → 이후 OpenRouter식 id 인제스트가 자동 정규화됨. 표시명도 정리(minimax/m3 → 'MiniMax M3' 등, type open-weight). Sovereign·Frontier Compare의 minimax-m2.7 참조 2곳 교체. 잔여 minimax/minimax-* 언어 모델 id 0."
  }
 ]

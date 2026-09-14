@@ -1,7 +1,11 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 280 — third re-audit: NL2Repo id merge, V4-Pro-0813 fix (2026-09-10)
-**3,519 models · 4,582 benchmarks · 23,253 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 281 — MiniMax model-id consolidation (2026-09-14)
+**3,516 models · 4,582 benchmarks · 23,247 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-09-14 Session 281 — MiniMax model ids
+- **56 rows moved, 4 duplicate model rows retired, 10 canonical_map entries added.** Same-vendor notation variants only (S268 rule). `minimax-m3` → `m3` (5 overlaps, m3 values kept), `minimax-m2.7` → `m2.7` (1 overlap), `minimax-2.1` + `minimax-m2.1` → new canonical `m2.1` (both are M2.1 per their notes), `minimax-m1-80k` → `m1-80k`. Display names fixed (raw ids → "MiniMax M3" etc.). Backup `data/benchmark.db.pre-s281.bak`.
+- Dashboard: Sovereign and Frontier Compare references to `minimax/minimax-m2.7` switched. No `minimax/minimax-*` language-model ids remain.
 
 ### 2026-09-10 Session 280 — third pass over the DeepSeek-V4.1-Flash sources
 - **No missed scores; two data-quality fixes.** Backup `data/benchmark.db.pre-s280.bak`.

@@ -467,7 +467,7 @@ var FrontierCompare = {
         'openai/gpt-5.4-medium', 'openai/gpt-5.4-high',
         'openai/gpt-5.4-mini-high',
         'moonshot/kimi-k2.5-thinking', 'moonshot/kimi-k2.5-instant',
-        'minimax/minimax-m2.7',
+        'minimax/m2.7',  // S281: was minimax/minimax-m2.7
         'alibaba/qwen3.5-max-preview',
         'google/gemini-3-flash-thinking-minimal',
 
