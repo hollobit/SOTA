@@ -1,8 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 282c — AA Coding Agent Index versions, GDP.pdf metric split (2026-09-23)
-**3,549 models · 4,746 benchmarks · 24,857 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 283 — OpenRouter listings: 4 new models + pricing (2026-09-23)
+**3,553 models · 4,746 benchmarks · 24,869 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-23 Session 283 — 20 OpenRouter links
+- **4 new models, 12 price rows, 0 FK / 0 dup / 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s283_…_scores.json`). OpenRouter pages hold no benchmark data; values come from the public models / endpoints API and were checked field by field. Backup `data/benchmark.db.pre-s283.bak`.
+- New: `alibaba/qwen3.8-omni-flash` (2026-09-21, 1M, omni, $0.15/$0.47), `prism-ml/ternary-bonsai-2-27b` (HF 2026-09-16, Apache-2.0, Qwen3.8-27B ternary, $0.075/$0.50 community host), `zhipu/glm-5.3-flashx` (320B/18B, $0.37/$1.25), `assemblyai/universal-3.5-pro` (STT, $0.21/hr official). Command A+ priced $0.30/$1.50/$0.15. Lineage added for Bonsai and FlashX.
+- Unchanged on check: GPT-6 Sol/Luna (+Pro), Opus 5.5, MiMo-V2.6 ×3. Grok 4.7 OpenRouter xAI endpoint $1.60/$4.80 vs xAI docs $2/$6 — official kept.
+- Skipped: `:batch` variants, `~typesafe/jev-latest`, `typesafe/jev-1.13` (classifier), long-context / flex / fast / 1h-cache tiers (no ids). Tabs: Resources +1; Sovereign/Frontier N/A (speed/omni variants of families not on those rosters).
 ### 2026-09-23 Session 282c — AA Coding Agent Index versions + GDP.pdf metric split
 - **8 rows re-pointed in their source files, 17 rows added (`zzzzzzzzzzzzzzzzzz_s282c_…_scores.json`), 3 new ids.** Backup `data/benchmark.db.pre-s282c.bak`. A full from-scratch rebuild matched the incremental DB exactly (0 differences), so CI will publish the same data.
 - `aa_coding_agent_index` mixed four versions: July v1.1 as labelled in OpenAI's GPT-5.6 table (Sol 80 / Terra 77.4 / Luna 74.6) → `aa_coding_agent_index_v1_1`; the original AA Astra article (Wayback 2026-09-03/04: Astra 67, Fable 5.1 70 — AA's own numbers; Fable's source switched from trendingtopics to the snapshot) → `aa_coding_agent_index_2026_09_03`; June citations (Cursor 62 / 48, version unstated) → `aa_coding_agent_index_2026_06`. The current id now holds the re-based version only: Astra 62, Fable 5.1 62, Opus 5 60, GPT-6 Sol 57, GPT-5.6 Sol 55, Muse Spark 1.3 54, GPT-5.6 Luna 43 (derived), GPT-6 Luna 41; plus Codex-harness components and AA TB 4.0 runs from the current article.

@@ -5151,5 +5151,11 @@
   "type": "fix",
   "title": "S282c — AA Coding Agent Index 버전 분리 + GDP.pdf 지표 분리 (8행 재지정, 17행 추가)",
   "detail": "aa_coding_agent_index에 네 가지 버전이 섞여 있었음을 원문으로 확인해 분리. (1) OpenAI GPT-5.6 발표 표가 'Artificial Analysis Coding Agent Index v1.1'로 명시한 7월 값(GPT-5.6 Sol 80·Terra 77.4·Luna 74.6) → aa_coding_agent_index_v1_1. (2) AA GPT-6 Astra 기사 초판(웹 아카이브 2026-09-03/04: 'GPT-6 Astra scores 67 … Fable 5.1 … 70') → aa_coding_agent_index_2026_09_03; Fable 5.1의 출처를 2차 뉴스에서 AA 원문 스냅샷으로 교체. AA는 지수 재기준 후 기사를 재작성(현재 62/62). (3) 6월 인용(버전 미기재, Cursor Composer 2.5 Fast 62·Composer 2 48) → aa_coding_agent_index_2026_06. (4) 현재 버전 id에는 AA 기사 현재판·GPT-6 Sol 발표 값만: Astra 62, Fable 5.1 62, Opus 5 60, GPT-6 Sol 57, GPT-5.6 Sol 55, Muse Spark 1.3 54, GPT-5.6 Luna 43(‘2점 하락’에서 산출), GPT-6 Luna 41. 같은 기사에서 Codex 하네스 구성요소(Astra TB 4.0 56·SWE-Atlas 62·DeepSWE 68, GPT-5.6 Sol DeepSWE 72)와 Intelligence Index 구성요소 TB 4.0(Astra 59·Fable 5.1 52·GPT-5.6 Sol 40) 추가. GDP.pdf: gdp_pdf는 Surge strict pass rate인데 Anthropic 카드의 평균 기준 통과율(Opus 5 85.5, Fable 5.1 85.4)이 섞여 있었음 → 내부 하네스 mean-criteria id로 이동(Fable 5.1 85.4는 도구 없음, 85.1은 도구 사용 — Fable 5.1 카드 §8.14.4), 같은 문장의 Opus 5 83.4, Fable 5 82.7/87.1 보강. CI와 같은 전체 재구성(빈 DB에서 로드)으로 증분 DB와 차이 0건 확인."
+ },
+ {
+  "date": "2026-09-23",
+  "type": "ingest",
+  "title": "S283 — OpenRouter 20개 링크: 신규 모델 4 (Qwen3.8 Omni Flash · Ternary Bonsai 2 27B · GLM-5.3-FlashX · AssemblyAI Universal-3.5 Pro) + 가격 12행",
+  "detail": "OpenRouter 모델 페이지에는 벤치마크 데이터가 없어(메타데이터·가격·변동성 사용량/지연만) 공개 API의 모델 객체와 엔드포인트별 가격으로 확인. 신규: (1) Qwen3.8-Omni-Flash(Alibaba, 2026-09-21, 1M ctx, 텍스트·이미지·오디오·비디오, Alibaba 엔드포인트 $0.15/$0.47, 캐시 $0.016), (2) Ternary Bonsai 2 27B(PrismML, HF 2026-09-16, Apache-2.0, Qwen3.8-27B 삼진 압축 ~8.5GB, 262K ctx, 유일 호스트 Darkbloom $0.075/$0.50; '기반 대비 98.2% 유지'는 집계 주장이라 점수로 미반영), (3) GLM-5.3-FlashX(Z.ai, 2026-09-18, 320B/18B, 최대 200 tok/s, Z.AI $0.37/$1.25/$0.075), (4) AssemblyAI Universal-3.5 Pro(STT, 공식 비동기 $0.21/hr — OpenRouter Sync API는 $0.225/hr 정가+50% 할인 표시). Command A+ 가격 추가(Cohere $0.30/$1.50/$0.15). 변동 없음 확인: GPT-6 Sol/Luna(+Pro) 표준 요율, Opus 5.5, MiMo-V2.6 3종. Grok 4.7은 OpenRouter xAI 엔드포인트 $1.60/$4.80 vs xAI 문서 $2/$6(오늘 재확인) — 공식가 유지. 미반영: :batch 변형(같은 모델의 50% 과금), ~typesafe/jev-latest(라우터 별칭), Jev 1.13(분류형 결정 모델, S275 분류기 규칙), 장문맥·Flex·Fast·1시간 캐시 요율(id 없음, S273 선례). 계보: Bonsai → Qwen3.8-27B, FlashX → GLM-5.3-Flash."
  }
 ]

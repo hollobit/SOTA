@@ -1,0 +1,189 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-23",
+  "session": "S283",
+  "sources": [
+   "https://openrouter.ai/openai/gpt-6-sol",
+   "https://openrouter.ai/openai/gpt-6-sol:batch",
+   "https://openrouter.ai/openai/gpt-6-sol-pro:batch",
+   "https://openrouter.ai/openai/gpt-6-luna",
+   "https://openrouter.ai/openai/gpt-6-luna:batch",
+   "https://openrouter.ai/openai/gpt-6-luna-pro",
+   "https://openrouter.ai/openai/gpt-6-luna-pro:batch",
+   "https://openrouter.ai/cohere/command-a-plus",
+   "https://openrouter.ai/anthropic/claude-opus-5.5",
+   "https://openrouter.ai/assemblyai/universal-3-5-pro",
+   "https://openrouter.ai/xiaomi/mimo-v2.6-pro-ultraspeed",
+   "https://openrouter.ai/xiaomi/mimo-v2.6-flash",
+   "https://openrouter.ai/xiaomi/mimo-v2.6-pro",
+   "https://openrouter.ai/x-ai/grok-4.7",
+   "https://openrouter.ai/qwen/qwen3.8-omni-flash",
+   "https://openrouter.ai/prism-ml/ternary-bonsai-2-27b",
+   "https://openrouter.ai/z-ai/glm-5.3-flashx",
+   "https://openrouter.ai/typesafe/jev-1.13",
+   "https://openrouter.ai/~typesafe/jev-latest",
+   "https://www.assemblyai.com/pricing",
+   "https://docs.x.ai/developers/pricing"
+  ],
+  "note": "OpenRouter model pages carry no benchmark data (only metadata, pricing and volatile usage/latency). Prices: vendor official list price or the vendor's own OpenRouter endpoint (S274 rule). Checked unchanged: GPT-6 Sol/Luna (+Pro) standard rates, Claude Opus 5.5, MiMo-V2.6 Pro/Flash/UltraSpeed. Grok 4.7: OpenRouter xAI endpoint $1.60/$4.80 vs xAI docs $2/$6 (re-read 2026-09-23) — official kept. Not ingested: :batch variants (50% billing mode of the same model), ~typesafe/jev-latest (router alias), typesafe/jev-1.13 (structured-decision classifier, S275 classifier rule), long-context / flex / fast / 1h-cache-write tiers (no ids; S273 precedent)."
+ },
+ "models": [
+  {
+   "id": "alibaba/qwen3.8-omni-flash",
+   "vendor": "alibaba",
+   "name": "Qwen3.8-Omni-Flash",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image",
+    "audio",
+    "video"
+   ],
+   "release_date": "2026-09-21",
+   "context_window": 1000000,
+   "parameters": null,
+   "_note": "OpenRouter listing 2026-09-21 (S275 convention: OpenRouter listing date). Omni-modal reasoning model with native audio-video understanding, two/four-channel spatial audio; API-only (no HF id). Max output 131,072."
+  },
+  {
+   "id": "prism-ml/ternary-bonsai-2-27b",
+   "vendor": "PrismML",
+   "name": "Ternary Bonsai 2 27B",
+   "type": "open-weight",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-09-16",
+   "context_window": 262144,
+   "parameters": "27B (ternary weights, LM ~8.5 GB)",
+   "_note": "HF prism-ml/Ternary-Bonsai-2-27B-gguf created 2026-09-16, Apache-2.0, base_model Qwen/Qwen3.8-27B; OpenRouter listing 2026-09-18. Vendor claim (OpenRouter description): retains 98.2% of the base model average over PrismML's 14 thinking-mode benchmarks — an aggregate claim, not ingested as a score. Thinks by default (xhigh effort)."
+  },
+  {
+   "id": "zhipu/glm-5.3-flashx",
+   "vendor": "zhipu",
+   "name": "GLM-5.3-FlashX",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image",
+    "video"
+   ],
+   "release_date": "2026-09-18",
+   "context_window": 1048576,
+   "parameters": "320B total / 18B active (same weights class as GLM-5.3-Flash)",
+   "_note": "High-speed variant of GLM-5.3-Flash (up to 200 tok/s per Z.ai description); OpenRouter listing 2026-09-18; Z.AI fp8 endpoint only."
+  },
+  {
+   "id": "assemblyai/universal-3.5-pro",
+   "vendor": "AssemblyAI",
+   "name": "AssemblyAI Universal-3.5 Pro",
+   "type": "audio",
+   "modalities": [
+    "audio"
+   ],
+   "release_date": "2026-09-14",
+   "context_window": null,
+   "parameters": null,
+   "_note": "Speech-to-text; OpenRouter permaslug version date 2026-09-14 (listed 2026-09-22, Sync API, clips up to 120 s, word timestamps). AssemblyAI pricing page: 18 languages, native code switching."
+  }
+ ],
+ "benchmarks": [],
+ "scores": [
+  {
+   "model": "alibaba/qwen3.8-omni-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.15,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/qwen/qwen3.8-omni-flash",
+   "_note": "OpenRouter endpoints API (openrouter.ai/api/v1/models/qwen/qwen3.8-omni-flash/endpoints, read 2026-09-23), Alibaba (vendor) endpoint"
+  },
+  {
+   "model": "alibaba/qwen3.8-omni-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.47,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/qwen/qwen3.8-omni-flash",
+   "_note": "OpenRouter endpoints API (openrouter.ai/api/v1/models/qwen/qwen3.8-omni-flash/endpoints, read 2026-09-23), Alibaba (vendor) endpoint"
+  },
+  {
+   "model": "alibaba/qwen3.8-omni-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.016,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/qwen/qwen3.8-omni-flash",
+   "_note": "OpenRouter endpoints API (openrouter.ai/api/v1/models/qwen/qwen3.8-omni-flash/endpoints, read 2026-09-23), Alibaba (vendor) endpoint"
+  },
+  {
+   "model": "prism-ml/ternary-bonsai-2-27b",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.075,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/prism-ml/ternary-bonsai-2-27b",
+   "_note": "OpenRouter endpoints API (openrouter.ai/api/v1/models/prism-ml/ternary-bonsai-2-27b/endpoints, read 2026-09-23), Darkbloom (int4, community host — only endpoint) endpoint"
+  },
+  {
+   "model": "prism-ml/ternary-bonsai-2-27b",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/prism-ml/ternary-bonsai-2-27b",
+   "_note": "OpenRouter endpoints API (openrouter.ai/api/v1/models/prism-ml/ternary-bonsai-2-27b/endpoints, read 2026-09-23), Darkbloom (int4, community host — only endpoint) endpoint"
+  },
+  {
+   "model": "zhipu/glm-5.3-flashx",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.37,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/z-ai/glm-5.3-flashx",
+   "_note": "OpenRouter endpoints API (openrouter.ai/api/v1/models/z-ai/glm-5.3-flashx/endpoints, read 2026-09-23), Z.AI (vendor, fp8) endpoint"
+  },
+  {
+   "model": "zhipu/glm-5.3-flashx",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.25,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/z-ai/glm-5.3-flashx",
+   "_note": "OpenRouter endpoints API (openrouter.ai/api/v1/models/z-ai/glm-5.3-flashx/endpoints, read 2026-09-23), Z.AI (vendor, fp8) endpoint"
+  },
+  {
+   "model": "zhipu/glm-5.3-flashx",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.075,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/z-ai/glm-5.3-flashx",
+   "_note": "OpenRouter endpoints API (openrouter.ai/api/v1/models/z-ai/glm-5.3-flashx/endpoints, read 2026-09-23), Z.AI (vendor, fp8) endpoint"
+  },
+  {
+   "model": "assemblyai/universal-3.5-pro",
+   "benchmark": "price_per_hour_audio_usd_lower_better",
+   "score": 0.21,
+   "unit": "usd",
+   "_source": "https://www.assemblyai.com/pricing",
+   "_note": "AssemblyAI official pricing page (read 2026-09-23): Universal-3.5 Pro async pay-as-you-go $0.21/hr (add-ons extra: keyterms/prompting $0.05/hr, diarization $0.02/hr). OpenRouter serves the Sync API at $0.0000625/audio-second ($0.225/hr list) with a 50% discount flag."
+  },
+  {
+   "model": "cohere/command-a-plus",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.3,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/cohere/command-a-plus",
+   "_note": "OpenRouter endpoints API (openrouter.ai/api/v1/models/cohere/command-a-plus/endpoints, read 2026-09-23), Cohere (vendor) endpoint; 192K ctx, 64K max output."
+  },
+  {
+   "model": "cohere/command-a-plus",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/cohere/command-a-plus",
+   "_note": "OpenRouter endpoints API (openrouter.ai/api/v1/models/cohere/command-a-plus/endpoints, read 2026-09-23), Cohere (vendor) endpoint"
+  },
+  {
+   "model": "cohere/command-a-plus",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.15,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/cohere/command-a-plus",
+   "_note": "OpenRouter endpoints API (openrouter.ai/api/v1/models/cohere/command-a-plus/endpoints, read 2026-09-23), Cohere (vendor) endpoint"
+  }
+ ]
+}
