@@ -12300,19 +12300,19 @@
     "notes": ""
   },
   "gdp_pdf": {
-    "model_id": "anthropic/claude-opus-5",
+    "model_id": "google/gemini-3.8-flash",
     "benchmark_id": "gdp_pdf",
-    "value": 85.5,
+    "value": 35.0,
     "unit": "%",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
-      "date": "2026-07-25",
+      "type": "leaderboard",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-8-flash/  (official model card Results table p.5, read visually)",
+      "date": "2026-09-03",
       "citation": null
     },
-    "is_sota": true,
-    "collected_at": "2026-07-25",
-    "notes": "§8.12.4 with tools, mean criteria pass rate (no tools 83.4)"
+    "is_sota": false,
+    "collected_at": "2026-09-03",
+    "notes": ""
   },
   "toolathlon": {
     "model_id": "anthropic/claude-opus-5",
@@ -39479,20 +39479,20 @@
     "collected_at": "2026-09-23",
     "notes": ""
   },
-  "aa_coding_agent_index": {
-    "model_id": "openai/gpt-5.6-sol",
-    "benchmark_id": "aa_coding_agent_index",
-    "value": 80.0,
-    "unit": "index",
+  "aa_coding_agent_index_2026_06": {
+    "model_id": "cursor/composer-2.5-fast",
+    "benchmark_id": "aa_coding_agent_index_2026_06",
+    "value": 62.0,
+    "unit": "index_points",
     "source": {
       "type": "leaderboard",
-      "url": "https://openai.com/index/gpt-5-6/",
-      "date": "2026-07-09",
+      "url": "Cognition Devin 2.2 (Feb 24 2026)",
+      "date": "2026-09-23",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-07-09",
-    "notes": "New SOTA per OpenAI card (+2.8 vs Fable 5)."
+    "collected_at": "2026-09-23",
+    "notes": "S282c: moved off the current-version id — value as cited in June 2026 (index version unstated; S133 lists \"Cursor Composer 2.5 AA Coding Agent Index 62\")."
   },
   "swe_bench_pro_hard_aa": {
     "model_id": "cursor/composer-2.5-fast",
@@ -45030,19 +45030,19 @@
     "notes": ""
   },
   "gdp_pdf_internal_harness_mean_criteria_no_tools": {
-    "model_id": "anthropic/claude-mythos-5",
+    "model_id": "anthropic/claude-fable-5.1",
     "benchmark_id": "gdp_pdf_internal_harness_mean_criteria_no_tools",
-    "value": 72.7,
-    "unit": "percent",
+    "value": 85.4,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "system_card_section_8.16.1",
-      "date": "2026-09-23",
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1  (Fable 5.1 & Mythos 5.1 System Card 2026-09-01)",
+      "date": "2026-09-02",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-09-23",
-    "notes": ""
+    "collected_at": "2026-09-02",
+    "notes": "S282c: moved off gdp_pdf (Surge strict pass rate) — Fable 5.1 & Mythos 5.1 card §8.14.4: \"mean criteria pass rate of 85.4% without tools and a score of 85.1% with tools\" (internal harness)."
   },
   "gdp_pdf_internal_harness_mean_criteria_with_tools": {
     "model_id": "anthropic/claude-mythos-5",
@@ -46978,6 +46978,21 @@
     "is_sota": true,
     "collected_at": "2026-07-09",
     "notes": ""
+  },
+  "aa_coding_agent_index_v1_1": {
+    "model_id": "openai/gpt-5.6-sol",
+    "benchmark_id": "aa_coding_agent_index_v1_1",
+    "value": 80.0,
+    "unit": "index",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/index/gpt-5-6/",
+      "date": "2026-07-09",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-09",
+    "notes": "New SOTA per OpenAI card (+2.8 vs Fable 5). | S282c: moved to the v1.1 id — OpenAI's GPT-5.6 table labels it \"Artificial Analysis Coding Agent Index v1.1\"; AA later re-based the index (GPT-5.6 Sol max ≈55 on the September version)."
   },
   "genebench_pro": {
     "model_id": "openai/gpt-5.6-sol",
@@ -55904,6 +55919,21 @@
     "collected_at": "2026-09-03",
     "notes": "AA streaming (Transcribe)"
   },
+  "aa_coding_agent_index_2026_09_03": {
+    "model_id": "anthropic/claude-fable-5.1",
+    "benchmark_id": "aa_coding_agent_index_2026_09_03",
+    "value": 70.0,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://web.archive.org/web/20260903201216/https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+      "date": "2026-09-04",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-09-04",
+    "notes": "Claude Code harness; comparator figure surfaced in GPT-6 Astra coverage | S282c: moved to the 2026-09-03 version id; source replaced by the primary AA article snapshot (was trendingtopics.eu). Same sentence: \"Fable 5.1 in Claude Code leads the Index with a score of 70\"."
+  },
   "sandbox_bench": {
     "model_id": "openai/gpt-6-astra",
     "benchmark_id": "sandbox_bench",
@@ -61694,6 +61724,21 @@
     "collected_at": "2026-09-23",
     "notes": "AA model page RSC payload (https://artificialanalysis.ai/models/gpt-6-astra, read 2026-09-23), tier object anchored on slug 'gpt-6-astra-xhigh' (AA name 'GPT-6 Astra (xhigh)'). Intelligence Index v4.3 era. [S282 merge: routed from draft id terminal_bench_4_0] [fill: comparison-column value for a row the DB lacked]"
   },
+  "aa_coding_agent_index": {
+    "model_id": "openai/gpt-6-astra",
+    "benchmark_id": "aa_coding_agent_index",
+    "value": 62.0,
+    "unit": "index_points",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+      "date": "2026-09-23",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-09-23",
+    "notes": "AA Coding Agent Index, current version (AA re-based it after 2026-09-09; the Astra article was rewritten from 67/70 to 62/62): \"In Codex, GPT-6 Astra scores 62 in the Index\"."
+  },
   "mimo_code_bench": {
     "model_id": "xiaomi/mimo-v2.6-pro",
     "benchmark_id": "mimo_code_bench",
@@ -62790,49 +62835,49 @@
     "notes": "MiMo-V2.6 tech report Table 7 (coding performance across agent harnesses), MiMo-V2.6-Distill-Qwen-9B SFT row, mini-swe-agent column (held-out harness). The four in-house mini-harness columns and the \"+ Multi-Harness RL\" row (unreleased checkpoint) are not ingested; Qwen3.5-9B baseline row not ingested (Xiaomi re-run)."
   },
   "swe_atlas_qna_aa_codex": {
-    "model_id": "openai/gpt-6-sol",
+    "model_id": "openai/gpt-6-astra",
     "benchmark_id": "swe_atlas_qna_aa_codex",
-    "value": 58.0,
+    "value": 62.0,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://x.com/ArtificialAnlys/status/2102462962758033624",
+      "url": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
       "date": "2026-09-23",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-23",
-    "notes": "Artificial Analysis launch post for GPT-6 Sol / Luna (2026-09-22): component of the AA Coding Agent Index run in OpenAI's Codex harness at max effort; AA prints whole percentages."
+    "notes": "AA Coding Agent Index component, Codex harness: \"SWE-Atlas-QnA (62% vs 54%)\"."
   },
   "terminal_bench_4_0_aa_codex": {
-    "model_id": "openai/gpt-6-sol",
+    "model_id": "openai/gpt-6-astra",
     "benchmark_id": "terminal_bench_4_0_aa_codex",
-    "value": 43.0,
+    "value": 56.0,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://x.com/ArtificialAnlys/status/2102462962758033624",
+      "url": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
       "date": "2026-09-23",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-23",
-    "notes": "Artificial Analysis launch post for GPT-6 Sol / Luna (2026-09-22): component of the AA Coding Agent Index run in OpenAI's Codex harness at max effort; AA prints whole percentages."
+    "notes": "AA Coding Agent Index component, Codex harness: \"Terminal-Bench v4.0 (56% vs 37%)\" (vs GPT-5.6 Sol)."
   },
   "deepswe_1_1_aa_codex": {
-    "model_id": "openai/gpt-5.6-luna-max",
+    "model_id": "openai/gpt-5.6-sol-max",
     "benchmark_id": "deepswe_1_1_aa_codex",
-    "value": 66.0,
+    "value": 72.0,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://x.com/ArtificialAnlys/status/2102462962758033624",
+      "url": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
       "date": "2026-09-23",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-09-23",
-    "notes": "Artificial Analysis launch post for GPT-6 Sol / Luna (2026-09-22): component of the AA Coding Agent Index run in OpenAI's Codex harness at max effort; AA prints whole percentages. Comparison value stated for GPT-5.6 Luna (max)."
+    "notes": "AA Coding Agent Index component, Codex harness: GPT-5.6 Sol \"DeepSWE (68% vs 72%)\" comparison value."
   },
   "cti_bench": {
     "model_id": "anthropic/claude-opus-4.7",

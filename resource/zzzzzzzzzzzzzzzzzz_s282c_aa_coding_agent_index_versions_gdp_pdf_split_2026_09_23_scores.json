@@ -1,0 +1,183 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-23",
+  "session": "S282c",
+  "sources": [
+   "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "https://web.archive.org/web/20260903201216/https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "https://x.com/ArtificialAnlys/status/2102462962758033624",
+   "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+   "https://openai.com/index/gpt-5-6/"
+  ],
+  "note": "AA Coding Agent Index version split (v1.1 July / 2026-09-03 article / current) and GDP.pdf metric split (Surge strict pass vs Anthropic internal mean-criteria). Rows re-pointed in their original files; this file adds the current-version and mean-criteria rows. Values checked against the cited lines."
+ },
+ "models": [],
+ "benchmarks": [
+  {
+   "id": "aa_coding_agent_index",
+   "name": "Artificial Analysis Coding Agent Index (current version)",
+   "category": "coding",
+   "metric": "index_points",
+   "description": "AA composite ranking coding agents end-to-end (model + agent harness). Holds the current version only (re-based after 2026-09-09: GPT-5.6 Sol max 55). Earlier versions: aa_coding_agent_index_v1_1 (July 2026, GPT-5.6 Sol 80), aa_coding_agent_index_2026_09_03 (original GPT-6 Astra article), aa_coding_agent_index_2026_06 (June citations, version unstated)."
+  },
+  {
+   "id": "aa_coding_agent_index_v1_1",
+   "name": "Artificial Analysis Coding Agent Index v1.1 (July 2026)",
+   "category": "coding",
+   "metric": "index_points",
+   "description": "AA Coding Agent Index v1.1 as cited in OpenAI's GPT-5.6 launch table (2026-07-09). Not comparable with the current re-based version."
+  },
+  {
+   "id": "aa_coding_agent_index_2026_09_03",
+   "name": "Artificial Analysis Coding Agent Index (2026-09-03 version)",
+   "category": "coding",
+   "metric": "index_points",
+   "description": "Values from the original AA GPT-6 Astra article (archived 2026-09-03/04: Astra 67, Fable 5.1 70). AA rewrote the article after re-basing the index (now Astra 62 / Fable 5.1 62)."
+  },
+  {
+   "id": "aa_coding_agent_index_2026_06",
+   "name": "Artificial Analysis Coding Agent Index (June 2026 citations)",
+   "category": "coding",
+   "metric": "index_points",
+   "description": "AA Coding Agent Index values cited in June 2026 (index version unstated). Kept apart from the current version."
+  }
+ ],
+ "scores": [
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_coding_agent_index",
+   "score": 62,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Coding Agent Index, current version (AA re-based it after 2026-09-09; the Astra article was rewritten from 67/70 to 62/62): \"In Codex, GPT-6 Astra scores 62 in the Index\"."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "aa_coding_agent_index",
+   "score": 62,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Coding Agent Index, current version (AA re-based it after 2026-09-09; the Astra article was rewritten from 67/70 to 62/62): Claude Fable 5.1 in Claude Code (62)."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_coding_agent_index",
+   "score": 60,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Coding Agent Index, current version (AA re-based it after 2026-09-09; the Astra article was rewritten from 67/70 to 62/62): Claude Opus 5 (60), Claude Code harness."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-max",
+   "benchmark": "aa_coding_agent_index",
+   "score": 55,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Coding Agent Index, current version (AA re-based it after 2026-09-09; the Astra article was rewritten from 67/70 to 62/62): GPT-5.6 Sol (55), Codex harness; the AA GPT-6 Sol post agrees (Sol 57 = \"up 2 points\")."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "aa_coding_agent_index",
+   "score": 54,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Coding Agent Index, current version (AA re-based it after 2026-09-09; the Astra article was rewritten from 67/70 to 62/62): Muse Spark 1.3 in Muse Code (54)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-max",
+   "benchmark": "aa_coding_agent_index",
+   "score": 43,
+   "unit": "index_points",
+   "_source": "https://x.com/ArtificialAnlys/status/2102462962758033624",
+   "_note": "AA Coding Agent Index, current version (AA re-based it after 2026-09-09; the Astra article was rewritten from 67/70 to 62/62). DERIVED: AA post says GPT-6 Luna (max) scores 41, \"down 2 points from GPT-5.6 Luna (max)\"."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_aa_codex",
+   "score": 56,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Coding Agent Index component, Codex harness: \"Terminal-Bench v4.0 (56% vs 37%)\" (vs GPT-5.6 Sol)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "swe_atlas_qna_aa_codex",
+   "score": 62,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Coding Agent Index component, Codex harness: \"SWE-Atlas-QnA (62% vs 54%)\"."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "deepswe_1_1_aa_codex",
+   "score": 68,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Coding Agent Index component, Codex harness: \"DeepSWE (68% vs 72%)\"."
+  },
+  {
+   "model": "openai/gpt-5.6-sol-max",
+   "benchmark": "deepswe_1_1_aa_codex",
+   "score": 72,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Coding Agent Index component, Codex harness: GPT-5.6 Sol \"DeepSWE (68% vs 72%)\" comparison value."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 59,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Intelligence Index component (AA harness): \"GPT-6 Astra scores 59% on Terminal-Bench v4.0\"."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 52,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Intelligence Index component (AA harness): Claude Fable 5.1 (52%)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 40,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+   "_note": "AA Intelligence Index component (AA harness): GPT-5.6 Sol (40%); the GPT-6 Sol post gives the same 40%."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "gdp_pdf_internal_harness_mean_criteria_with_tools",
+   "score": 85.1,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+   "_note": "Fable 5.1 & Mythos 5.1 System Card §8.14.4: mean criteria pass rate with tools (internal harness, max effort, 5 runs)."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "gdp_pdf_internal_harness_mean_criteria_no_tools",
+   "score": 83.4,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+   "_note": "Fable 5.1 & Mythos 5.1 System Card §8.14.4: Claude Opus 5 without tools (same sentence gives 85.5 with tools)."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "gdp_pdf_internal_harness_mean_criteria_no_tools",
+   "score": 82.7,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+   "_note": "Fable 5.1 & Mythos 5.1 System Card §8.14.4: Claude Fable 5 without tools (mean criteria; distinct from its Surge strict 29.8 on gdp_pdf)."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "gdp_pdf_internal_harness_mean_criteria_with_tools",
+   "score": 87.1,
+   "unit": "%",
+   "_source": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+   "_note": "Fable 5.1 & Mythos 5.1 System Card §8.14.4: Claude Fable 5 with tools (mean criteria)."
+  }
+ ]
+}
