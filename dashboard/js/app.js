@@ -608,7 +608,10 @@ var App = {
     },
 
     _fetch: function(url) {
-        return fetch(url).then(function(resp) {
+        // Data JSON carries the same build tag as app.js so a deploy invalidates
+        // browser-cached data immediately (GitHub Pages serves max-age=600;
+        // without this, new models stayed invisible for ~10 min after deploy).
+        return fetch(this.dataUrl(url)).then(function(resp) {
             if (!resp.ok) return null;
             return resp.json();
         }).catch(function() { return null; });
@@ -660,6 +663,13 @@ var App = {
     // Read the cache-busting build tag from app.js's own <script> tag.
     // The deploy workflow rewrites `?v=YYYYMMDDx` → `?v=<SHA-first-8>`, so
     // we mirror that on dynamically-injected lazy modules to stay in sync.
+    // Append the build tag to a data JSON URL (see _fetch). Shared by modules
+    // that call fetch() directly.
+    dataUrl: function(url) {
+        var tag = this._getBuildTag();
+        return (tag && /\.json$/.test(url)) ? url + '?v=' + encodeURIComponent(tag) : url;
+    },
+
     _getBuildTag: function() {
         if (this._buildTag !== undefined) return this._buildTag;
         this._buildTag = '';
@@ -3897,7 +3907,7 @@ var App = {
 App.loadEnrichment = function () {
     if (App.data.enrichment !== null) return Promise.resolve(App.data.enrichment);
     if (App._enrichmentPromise) return App._enrichmentPromise;
-    App._enrichmentPromise = fetch('data/model_enrichment.json')
+    App._enrichmentPromise = fetch(App.dataUrl('data/model_enrichment.json'))
         .then(function (r) { return r.ok ? r.json() : { models: {} }; })
         .then(function (d) {
             App.data.enrichment = d.models || {};
@@ -3916,7 +3926,7 @@ App.loadHFMetadata = function () {
         return Promise.resolve(App.data.hfMetadata);
     }
     if (App._hfMetadataPromise) return App._hfMetadataPromise;
-    App._hfMetadataPromise = fetch('data/hf_metadata.json')
+    App._hfMetadataPromise = fetch(App.dataUrl('data/hf_metadata.json'))
         .then(function (r) { return r.ok ? r.json() : { models: {} }; })
         .then(function (d) {
             App.data.hfMetadata = d.models || {};

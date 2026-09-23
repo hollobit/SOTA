@@ -1275,7 +1275,7 @@ var Agent = (function() {
     function _loadUtility(cb) {
         if (Object.keys(UTILITY_METRICS).length) { cb(); return; }
         var base = (window.location.pathname.indexOf('/dashboard/') !== -1) ? '../data' : 'data';
-        fetch(base + '/edge_models_utility.json')
+        fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/edge_models_utility.json') : base + '/edge_models_utility.json')
             .then(function(r) { return r.ok ? r.json() : null; })
             .then(function(d) {
                 UTILITY_METRICS = (d && d.models) || {};

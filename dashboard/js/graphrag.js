@@ -130,7 +130,7 @@
             // - Deployed:   public/index.html with `public/data/` containing
             //               the rsynced export — also `data/graphrag.json`.
             var base = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
-            this._loading = fetch(base + '/graphrag.json')
+            this._loading = fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/graphrag.json') : base + '/graphrag.json')
                 .then(function(r) {
                     if (!r.ok) throw new Error('graphrag.json HTTP ' + r.status);
                     return r.json();

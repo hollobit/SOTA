@@ -126,7 +126,7 @@ var Modal = {
     init: function() {
         var base = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
         Modal._historyDataBase = base;
-        fetch(base + '/bmt_connections.json').then(function(r) {
+        fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/bmt_connections.json') : base + '/bmt_connections.json').then(function(r) {
             return r.ok ? r.json() : {};
         }).then(function(d) {
             Modal._bmtData = d;
@@ -142,7 +142,7 @@ var Modal = {
 
         // Preload the history index (list of snapshot dates). Each date's
         // full snapshot is lazy-loaded on demand inside showScoreSource.
-        fetch(base + '/scores/history/index.json').then(function(r) {
+        fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/scores/history/index.json') : base + '/scores/history/index.json').then(function(r) {
             return r.ok ? r.json() : { dates: [] };
         }).then(function(d) {
             Modal._historyIndex = (d && d.dates) || [];
@@ -206,7 +206,7 @@ var Modal = {
         var base = Modal._historyDataBase;
         var fetches = dates.map(function(d) {
             if (Modal._historySnapshots[d]) return Promise.resolve(Modal._historySnapshots[d]);
-            return fetch(base + '/scores/history/' + d + '.json').then(function(r) {
+            return fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/scores/history/' + d + '.json') : base + '/scores/history/' + d + '.json').then(function(r) {
                 return r.ok ? r.json() : [];
             }).then(function(arr) {
                 Modal._historySnapshots[d] = arr;

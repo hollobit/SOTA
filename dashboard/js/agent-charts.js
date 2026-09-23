@@ -387,7 +387,7 @@ var AgentCharts = (function() {
       }
       AgentCharts._pricingPromise = AgentCharts._pricingPromise || (function() {
         var base = (window.location.pathname.indexOf('/dashboard/') !== -1) ? '../data' : 'data';
-        return fetch(base + '/aa_pricing.json')
+        return fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/aa_pricing.json') : base + '/aa_pricing.json')
           .then(function(r) { return r.ok ? r.json() : { models: [] }; })
           .catch(function() { return { models: [] }; })
           .then(function(d) {
@@ -4348,7 +4348,7 @@ var AgentCharts = (function() {
     function getEdgeUtility() {
       AgentCharts._edgeUtilityPromise = AgentCharts._edgeUtilityPromise || (function() {
         var base = (window.location.pathname.indexOf('/dashboard/') !== -1) ? '../data' : 'data';
-        return fetch(base + '/edge_models_utility.json')
+        return fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/edge_models_utility.json') : base + '/edge_models_utility.json')
           .then(function(r) { return r.ok ? r.json() : { models: {} }; })
           .catch(function() { return { models: {} }; });
       })();
