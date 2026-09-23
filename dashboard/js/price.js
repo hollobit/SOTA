@@ -25,7 +25,8 @@ window.Price = (function () {
     // real coverage among priced models are shown (computed in init()); the
     // dropdown/axis show the category in parentheses after the name.
     var METRICS = [
-        // 종합 (composite)
+        // 종합 (composite) — first entry is the dropdown default
+        ['aa_intelligence_index_v4_3', 'AA Intelligence Index v4.3', '종합'],
         ['aa_intelligence_index',    'AA Intelligence Index (AAII)', '종합'],
         ['aa_intelligence_index_v4_2', 'AA Intelligence Index v4.2', '종합'],
         ['epoch_capabilities_index', 'Epoch Capabilities Index (ECI)', '종합'],
@@ -286,7 +287,7 @@ window.Price = (function () {
         _wire();
         if (!_scoreIdx[PRICE_IDS.output]) _scoreIdx = _idx(App && App.data ? App.data.scores : []);
 
-        var metric = _val('price-metric', 'aa_intelligence_index');
+        var metric = _val('price-metric', 'aa_intelligence_index_v4_3');
         var basis  = _val('price-basis', 'output');
         var months = parseInt(_val('price-period', '12'), 10) || 12;
         var vendorF = _val('price-vendor', 'all');

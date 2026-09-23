@@ -1,8 +1,12 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 283 — OpenRouter listings: 4 new models + pricing (2026-09-23)
-**3,553 models · 4,746 benchmarks · 24,869 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 283b — Price tab shows current frontier models (AAII v4.3) (2026-09-23)
+**3,554 models · 4,746 benchmarks · 24,886 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-23 Session 283b — Price tab: new models missing from the chart
+- **Cause**: the Price scatter only plots models that have the selected metric; the default was legacy AAII and v4.3 was not in the metric list, so Opus 5.5 / GPT-6 Sol / Luna / Grok 4.7 / MiMo-V2.6 (v4.3-only) never appeared. The price table already listed them.
+- **Fix**: `price.js` METRICS gains `aa_intelligence_index_v4_3` as the first (default) entry; 17 v4.3 rows added from the saved AA RSC model objects for the models in AA's v4.3 launch chart (each rounds to the chart's integer), plus new model `stepfun/step-5-preview`. Default chart now plots 35 priced models incl. all new frontier releases. Backup `data/benchmark.db.pre-s283b.bak`.
+- Models with no benchmark score at all (Qwen3.8 Omni Flash, Ternary Bonsai 2 27B, GLM-5.3-FlashX) remain table-only by design.
 ### 2026-09-23 Session 283 — 20 OpenRouter links
 - **4 new models, 12 price rows, 0 FK / 0 dup / 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s283_…_scores.json`). OpenRouter pages hold no benchmark data; values come from the public models / endpoints API and were checked field by field. Backup `data/benchmark.db.pre-s283.bak`.
 - New: `alibaba/qwen3.8-omni-flash` (2026-09-21, 1M, omni, $0.15/$0.47), `prism-ml/ternary-bonsai-2-27b` (HF 2026-09-16, Apache-2.0, Qwen3.8-27B ternary, $0.075/$0.50 community host), `zhipu/glm-5.3-flashx` (320B/18B, $0.37/$1.25), `assemblyai/universal-3.5-pro` (STT, $0.21/hr official). Command A+ priced $0.30/$1.50/$0.15. Lineage added for Bonsai and FlashX.

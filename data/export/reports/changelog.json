@@ -5157,5 +5157,11 @@
   "type": "ingest",
   "title": "S283 — OpenRouter 20개 링크: 신규 모델 4 (Qwen3.8 Omni Flash · Ternary Bonsai 2 27B · GLM-5.3-FlashX · AssemblyAI Universal-3.5 Pro) + 가격 12행",
   "detail": "OpenRouter 모델 페이지에는 벤치마크 데이터가 없어(메타데이터·가격·변동성 사용량/지연만) 공개 API의 모델 객체와 엔드포인트별 가격으로 확인. 신규: (1) Qwen3.8-Omni-Flash(Alibaba, 2026-09-21, 1M ctx, 텍스트·이미지·오디오·비디오, Alibaba 엔드포인트 $0.15/$0.47, 캐시 $0.016), (2) Ternary Bonsai 2 27B(PrismML, HF 2026-09-16, Apache-2.0, Qwen3.8-27B 삼진 압축 ~8.5GB, 262K ctx, 유일 호스트 Darkbloom $0.075/$0.50; '기반 대비 98.2% 유지'는 집계 주장이라 점수로 미반영), (3) GLM-5.3-FlashX(Z.ai, 2026-09-18, 320B/18B, 최대 200 tok/s, Z.AI $0.37/$1.25/$0.075), (4) AssemblyAI Universal-3.5 Pro(STT, 공식 비동기 $0.21/hr — OpenRouter Sync API는 $0.225/hr 정가+50% 할인 표시). Command A+ 가격 추가(Cohere $0.30/$1.50/$0.15). 변동 없음 확인: GPT-6 Sol/Luna(+Pro) 표준 요율, Opus 5.5, MiMo-V2.6 3종. Grok 4.7은 OpenRouter xAI 엔드포인트 $1.60/$4.80 vs xAI 문서 $2/$6(오늘 재확인) — 공식가 유지. 미반영: :batch 변형(같은 모델의 50% 과금), ~typesafe/jev-latest(라우터 별칭), Jev 1.13(분류형 결정 모델, S275 분류기 규칙), 장문맥·Flex·Fast·1시간 캐시 요율(id 없음, S273 선례). 계보: Bonsai → Qwen3.8-27B, FlashX → GLM-5.3-Flash."
+ },
+ {
+  "date": "2026-09-23",
+  "type": "fix",
+  "title": "S283b — Price 탭: 신규 프런티어 모델이 차트에 안 보이던 문제 수정 (AAII v4.3 기본 지표 + 17개 모델 v4.3 점수)",
+  "detail": "원인: Price 탭 산점도는 선택한 성능 지표 점수가 있는 모델만 그리는데, 기본 지표가 구버전 AAII였고 v4.3은 목록에 없었음 → v4.3 점수만 있는 Opus 5.5·GPT-6 Sol/Luna·Grok 4.7·MiMo-V2.6 등이 모두 빠짐(가격 표에는 표시되고 있었음). 수정: price.js에 AA Intelligence Index v4.3을 맨 앞(기본값)으로 추가. 동시에 AA v4.3 출시 차트의 23개 모델 중 v4.3 행이 없던 17개를 AA RSC 모델 객체의 소수점 값으로 추가(Opus 5.5 57.62, Fable 5.1 53.36, Opus 5 50.78, Muse Spark 1.3 48.09, GPT-5.6 Sol 46.97, Qwen3.8 Max 45.42, GLM-5.3 44.78, Step 5 Preview 43.73, Kimi K3 43.59, GPT-5.6 Terra 42.08, GLM-5.3-Flash 41.81, Gemini 3.8 Flash 40.93, DeepSeek V4.1 Flash 39.46, GPT-5.6 Luna 37.32, DeepSeek V4 Pro 0813 36.00, Qwen3.8 27B 33.70, K2 Horizon 30.50) — 모두 AA 트윗 차트의 정수와 반올림 일치. Step 5 Preview(StepFun, 2026-09-18, 600B, 1M) 신규 모델. 결과: 기본 차트 35개 모델(이전 기본 AAII 기준 85개였으나 신규 프런티어 누락). 벤치마크 점수가 없는 모델(Qwen3.8 Omni Flash·Bonsai·FlashX)은 가격 표에만 표시됨."
  }
 ]
