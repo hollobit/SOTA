@@ -79,9 +79,13 @@ var CyberCoding = {
         // 2026-07-28 S212d — Google Gemini 3.5 Flash Cyber (DeepMind blog) V8 vuln-discovery count
         'v8_confirmed_vulns_google',
         // 2026 S217 audit — AgentCyberRange (Fudan, multi-host enterprise ranges)
-        'agentcyberrange_web', 'agentcyberrange_post', 'container_sandbox_escape'
+        'agentcyberrange_web', 'agentcyberrange_post', 'container_sandbox_escape',
+        // 2026-09-23 S282 — Opus 5.5 card §3, GPT-6 Sol/Luna appendix A.8.1, MiMo-V2.6 report
+        'exploitbench_v8_full_ace_pct', 'binary_exploitation_benchmark_cfh_count', 'cyscenariobench_anthropic_10subset_v2', 'exploitbench_internal_port_2026_06_08', 'exploitgym_v1_openai_offline', 'sec_bench_pro_openai_rootcause_grader', 'cybergym_mimo_corrected_env', 'exploitbench_mimo_report', 'mimo_cyber_bench'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
+        // 2026-09-23 S282b — Opus 5.5 card §3.4-3.5 safeguard flag rates / rewind-attacker ASR
+        'anthropic_violative_vuln_discovery_flag_rate', 'anthropic_defensive_vuln_discovery_flag_rate_lower_better', 'anthropic_rewind_attacker_cyber_asr_lower_better',
         // 2026-05-28 AgentDoG 1.5 (arxiv 2605.29801, Shanghai AI Lab) — agentic-trajectory safety judging
         'r_judge', 'atbench',
         // 2026-09-04 S260b — GPT-6 Astra card Table 21: Daybreak Blue trusted-access defensive work
@@ -144,7 +148,11 @@ var CyberCoding = {
         // 2026-08-02 S224b — arxiv benchmark sweep (coding leaderboards)
         'swe_compass', 'nl2repo', 'dataclaweval',
         'terminal_bench_4_0',  // S265
-        'evocode_bench_v2_mt4', 'evocode_bench_v2_case'],  // S270 Terminal-Universe paper
+        'evocode_bench_v2_mt4', 'evocode_bench_v2_case',  // S270 Terminal-Universe paper
+        // 2026-09-23 S282 — TB 4.0 vendor/AA ids, CursorBench 4.0, FrontierSWE v2, MiMo in-house
+        'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'mimo_code_bench', 'mimo_visual_coding',
+        // 2026-09-23 S282b — AA Coding Agent Index components (Codex harness) + MiMo report Table 7 per-harness ids
+        'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness'],  // S270 Terminal-Universe paper
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
@@ -167,7 +175,11 @@ var CyberCoding = {
                 // 2026-06-02 S46 Qwen3.7-Plus coding suite
                 'terminal_bench_2_0', 'swe_multilingual', 'nl2repo', 'qwen_webdev_elo', 'qwen_svg_elo',
                 // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
-                'kernelbench_hard', 'swe_fficiency'
+                'kernelbench_hard', 'swe_fficiency',
+                // 2026-09-23 S282
+                'terminal_bench_4_0', 'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'mimo_code_bench', 'mimo_visual_coding',
+                // 2026-09-23 S282b
+                'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness'
             ]
         },
         {
@@ -231,7 +243,9 @@ var CyberCoding = {
                 // 2026-06-29 S155 Qihoo 360 Yitian Tulong (ISC.AI 2026, news_article-attribution)
                 'cyber_vulnerabilities_disclosed_count', 'cyber_vulnerabilities_confirmed_count',
                 // 2026-07-01 S160 — Sonnet 5 system card §3.2.1 + §3.2.2 detail metrics
-                'exploitbench_mean', 'exploitbench_full_ace', 'oss_fuzz_no_score_pct'
+                'exploitbench_mean', 'exploitbench_full_ace', 'oss_fuzz_no_score_pct',
+                // 2026-09-23 S282
+                'exploitbench_v8_full_ace_pct', 'binary_exploitation_benchmark_cfh_count', 'cyscenariobench_anthropic_10subset_v2', 'exploitbench_internal_port_2026_06_08', 'exploitgym_v1_openai_offline', 'sec_bench_pro_openai_rootcause_grader', 'cybergym_mimo_corrected_env', 'exploitbench_mimo_report', 'mimo_cyber_bench'
             ]
         },
         {
@@ -297,7 +311,10 @@ var CyberCoding = {
                 'external_agent_board_engagement_rate_lower_better',
                 'external_agent_board_instruction_following_rate_lower_better',
                 'codex_deployment_severity12_flag_rate_lower_better',
-                'codex_deployment_eval_awareness_rate_lower_better', 'apollo_false_label_rate_lower_better'
+                'codex_deployment_eval_awareness_rate_lower_better', 'apollo_false_label_rate_lower_better',
+                // 2026-09-23 S282b — Opus 5.5 §3.4-3.5 + GPT-6 appendix A.6 updated alignment evals
+                'anthropic_violative_vuln_discovery_flag_rate', 'anthropic_defensive_vuln_discovery_flag_rate_lower_better', 'anthropic_rewind_attacker_cyber_asr_lower_better',
+                'coding_deception_rate_v2_lower_better', 'broken_search_tool_failure_rate_v2_lower_better', 'auto_review_circumvention_rate_v2_lower_better', 'warning_barrier_persistence_rate_v2_lower_better'
             ]
         },
         {
@@ -607,6 +624,8 @@ var CyberCoding = {
 
     // frontier models to highlight
     FRONTIER_MODELS: [
+        // 2026-09-22 S282 — Opus 5.5 (CursorBench 4.0 57.8, TB 4.0 66.4 xhigh), GPT-6 Sol/Luna (ExploitBench 81.7/43.4), Grok 4.7 (TB 4.0 37.6), MiMo-V2.6 Pro/Flash (CyberGym corrected env 94.0/95.1)
+        'anthropic/claude-opus-5.5', 'openai/gpt-6-sol', 'openai/gpt-6-luna', 'xai/grok-4.7', 'xiaomi/mimo-v2.6-pro', 'xiaomi/mimo-v2.6-flash',
         // 2026-06-09 S65 — Claude Fable 5 (SWE-Bench Pro 80.3 NEW SOTA, FrontierCode Diamond 29.3 NEW SOTA) + Mythos 5 (ExploitBench 78 NEW SOTA)
         'anthropic/claude-fable-5',
         'anthropic/claude-mythos-5',

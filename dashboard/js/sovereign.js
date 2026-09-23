@@ -208,6 +208,7 @@ var Sovereign = {
                 'alibaba-ath/happyhorse-1.0',
                 // Apr 2026 sweep — new Chinese flagships
                 'tencent/hy3-preview', 'tencent/hy-world-2.0',
+                'xiaomi/mimo-v2.6-pro', 'xiaomi/mimo-v2.6-flash',  // 2026-09-22 S282 — 1.02T/42B and 309B/15B, MIT, omnimodal
                 'xiaomi/mimo-v2.5-pro', 'xiaomi/mimo-v2.5',
                 'inclusionai/ling-2.6-1t', 'inclusionai/ling-2.6-flash', 'inclusionai/llada2-uni', 'inclusionai/ring-2.6-1t', // 2026-06-10 S67 — AAII 38
                 // iFlytek Spark (state-backed)
@@ -730,6 +731,7 @@ var Sovereign = {
         'deepseek/deepseek-math-7b': '2024-02', 'deepseek/deepseek-vl2': '2024-12', 'deepseek/janus-pro-7b': '2025-01',
         // China — Apr 2026 sweep
         'tencent/hy3-preview': '2026-04', 'tencent/hy-world-2.0': '2026-04',
+        'xiaomi/mimo-v2.6-pro': '2026-09-22', 'xiaomi/mimo-v2.6-flash': '2026-09-22',
         'xiaomi/mimo-v2.5-pro': '2026-04', 'xiaomi/mimo-v2.5': '2026-04',
         'inclusionai/ling-2.6-1t': '2026-04', 'inclusionai/ling-2.6-flash': '2026-04', 'inclusionai/ring-2.6-1t': '2026-05',
         'inclusionai/llada2-uni': '2026-04',
@@ -1244,6 +1246,7 @@ var Sovereign = {
         'xai/grok-3': 1500, 'xai/grok-4': 1500, 'xai/grok-4-heavy': 1500, 'xai/grok-4.20': 1500,
         // Apr 2026 sweep
         'tencent/hy3-preview': 295, 'tencent/hy-world-2.0': 1.2,
+        'xiaomi/mimo-v2.6-pro': 1020, 'xiaomi/mimo-v2.6-flash': 309,
         'xiaomi/mimo-v2.5-pro': 1000, 'xiaomi/mimo-v2.5': 100,
         'inclusionai/ling-2.6-1t': 1000, 'inclusionai/ling-2.6-flash': 104,
         'inclusionai/llada2-uni': 16

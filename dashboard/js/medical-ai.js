@@ -601,7 +601,9 @@ var MedicalAI = {
                 'healthbench_professional', 'healthbench', 'polaris_safety', 'care_qa',
                 // 2026-05-22 Asa-W1 publication introduced 4 HealthBench Pro use-case + slice IDs
                 'healthbench_professional_consult', 'healthbench_professional_writing',
-                'healthbench_professional_research', 'healthbench_professional_redteaming'
+                'healthbench_professional_research', 'healthbench_professional_redteaming',
+                // 2026-09-23 S282 — length-adjusted HealthBench variants (GPT-6 Astra corrected 2026-09-22: Pro-LA 64.7, Hard 36.6, Consensus 95.5; Opus 5.5 Pro-LA 65.6)
+                'healthbench_professional_length_adjusted', 'healthbench_hard', 'healthbench_consensus'
             ]
         },
         {

@@ -10,6 +10,8 @@ var FrontierCompare = {
         reasoning: [
             'gpqa_diamond', 'hle', 'mmlu_pro', 'mmlu_pro_aa', 'mmlu', 'mmlu_redux', 'mmmlu',
             'arc_agi_2', 'arc_agi_3', 'terminal_bench_4_0', 'terminal_bench_3', 'terminal_bench_science',
+            // 2026-09-23 S282 — TB 4.0 vendor-reported (terminal_bench_4) and Artificial Analysis harness (terminal_bench_4_0_aa)
+            'terminal_bench_4', 'terminal_bench_4_0_aa',
             // 2026-09-05 S271 — TB-Science per-domain rates (decoded from the announcement's radar chart)
             'terminal_bench_science_life', 'terminal_bench_science_earth', 'terminal_bench_science_engineering',
             'terminal_bench_science_mathematical', 'terminal_bench_science_physical',
@@ -108,6 +110,8 @@ var FrontierCompare = {
             'osworld_v2', 'osworld_v2_partial',
             // 2026-07-01 S160 — Sonnet 5 + LongCat 2.0 general-agent benches
             'forte', 'rwsearch', 'aa_briefcase',
+            // 2026-09-23 S282 — AA-Briefcase v1.1 (AA re-based Elo) + CursorBench 4.0 (Opus 5.5 57.8 / Grok 4.7 46.3)
+            'aa_briefcase_v1_1', 'cursorbench_4_0',
             // 2026-07-02 S174 — Microsoft HealthAgentBench (agentic healthcare — 54 tasks × 3 attempts)
             'healthagentbench',
             // 2026-07-08 S175/S176 — Grok 4.5 + GPT-5.6 + ALE-V1 agentic benches
@@ -233,6 +237,10 @@ var FrontierCompare = {
         // https://artificialanalysis.ai/methodology/intelligence-benchmarking
         composite_aaii: [
             'aa_intelligence_index_v4_1', 'aa_intelligence_index',
+            // 2026-09-23 S282 — AAII v4.3 (Sol 47.5 / Luna 37.3 / Astra 52.7 / Grok 4.7 46.5) + GDPval-AA v2.1 re-based Elo / normalized win rate
+            'aa_intelligence_index_v4_3', 'gdpval_aa_v2_1_elo', 'gdpval_aa_v2_1',
+            // 2026-09-23 S282b — AA v4.3 capability indices (GPT-6 Sol/Luna/Astra tiers)
+            'aa_capability_index_finance_accounting_v4_3', 'aa_capability_index_strategy_ops_v4_3', 'aa_capability_index_legal_v4_3', 'aa_capability_index_healthcare_medical_v4_3', 'aa_capability_index_engineering_v4_3', 'aa_capability_index_economics_v4_3',
             // Agents: GDPval-AA v2 + τ³-Banking (v4.1) / GDPval-AA v1 + τ²-Telecom (legacy)
             'gdpval_aa_v2', 'tau3_banking',
             'gdpval_aa', 'tau2_telecom',
@@ -252,6 +260,13 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-09-22/23 S282 — four frontier launches in one day
+        'anthropic/claude-opus-5.5',  // 2026-09-22 — GDPval-AA v2.1 1846, AA-Briefcase v1.1 1822, CursorBench 4.0 57.8, HLE w/ tools 67.7, TB 4.0 66.4 (xhigh); $4/$20, 1M ctx
+        'openai/gpt-6-sol',  // 2026-09-22 — AAII v4.3 47.5, Coding Agent Index 57; ~half GPT-5.6 Sol price ($2/$10), 1.05M ctx
+        'openai/gpt-6-luna',  // 2026-09-22 — AAII v4.3 37.3, Coding Agent Index 41; $0.10/$0.50
+        'xai/grok-4.7',  // 2026-09-21 — AAII v4.3 46.5, GDPval-AA v2.1 1695, CursorBench 4.0 46.3, TB 4.0 37.6 (xAI); $2/$6, 500K ctx
+        'xiaomi/mimo-v2.6-pro',  // 2026-09-22 — 1.02T/42B MIT omnimodal; TB2.1 89.9, DeepSWE 71.9, CyberGym (corrected env) 94.0, GDPval-AA v2.1 1673
+        'xiaomi/mimo-v2.6-flash',  // 2026-09-22 — 309B/15B MIT; TB2.1 87.6, DeepSWE 67.9
         'xai/grok-4.6',  // 2026-08-12 S240 — AAII 61 (frontier, in line w/ GPT-5.6 Sol); GDPval-AA Elo 1753, τ³-Banking 50.7, Terminal-Bench 2.1 88.4; $2/$6, 500K ctx
         'xai/grok-4.5',  // 2026-07-08 S175 — AAII v4.1 54 (#8/186); SWE-Marathon 29 SOTA, AutomationBench-AA 51 SOTA, GDPval+ 29 SOTA; $2/$6 per Mtok, 500K ctx, GB300-trained
         // 2026-06-09 S65 Anthropic Claude Fable 5 + Mythos 5 — 13 NEW SOTAs (SWE-Bench Pro 80.3, ExploitBench 78, GDP.pdf 29.8, OSWorld 85, Toolathlon 61.7, BioMystery 46.1/83.9, LatchBio 69.2/59.3, FrontierCode 29.3/46.3) + S66 Fable 5 AAII 65 #1 NEW SOTA
@@ -741,6 +756,7 @@ var FrontierCompare = {
                 'humaneval', 'mbpp', 'bigcodebench',
                 'aider_polyglot', 'codeforces_rating', 'codeforces_elo',
                 'gdpval_aa', 'scicode',
+                'cursorbench_4_0', 'terminal_bench_4',  // S282
                 'webdev_arena', 'monorepo_bench', 'expert_swe', 'gso',
                 'mle_bench', 'weirdml_v2', 'paperbench', 'nl2repo', 'vibe_code_bench',
                 'repobench'
@@ -784,7 +800,8 @@ var FrontierCompare = {
                 'apex_agents_hard', 'apex_shortlist', 'skills_bench',
                 'arc_agi_3', 'claw_eval',
                 'finance_agent', 'qwen_web_bench', 'android_world',
-                'bfcl', 'bfcl_v3', 'bfcl_v4'
+                'bfcl', 'bfcl_v3', 'bfcl_v4',
+                'gdpval_aa_v2_1_elo', 'aa_briefcase_v1_1'  // S282 — AA v2.1-era Elo boards
             ]
         },
         {
@@ -1255,7 +1272,7 @@ var FrontierCompare = {
             sel.value = prevVal;
         } else {
             // Default per category
-            'swe_bench_verified', 'cybench', 'browsecomp', 'aime_2025', 'mmmu_pro', 'gpqa_diamond'
+            var defaults = { all: 'swe_bench_verified', coding: 'swe_bench_verified', cybersecurity: 'cybench', agent: 'browsecomp', math: 'aime_2025', multimodal: 'mmmu_pro', reasoning: 'gpqa_diamond' };
             var def = defaults[category] || benchIds[0];
             if (benchIds.indexOf(def) >= 0) sel.value = def;
         }
@@ -1487,12 +1504,12 @@ var FrontierCompare = {
                         };
                     })(mid, bid));
                     // Skip color-coding for non-percentage metrics
-                    var isSpecial = (bid === 'vending_bench_2' || bid === 'gdpval_aa' || bid === 'metr_time_horizons' || bid === 'livecodebench');
+                    var isSpecial = (bid === 'vending_bench_2' || bid === 'gdpval_aa' || bid === 'gdpval_aa_v2_1_elo' || bid === 'aa_briefcase_v1_1' || bid === 'metr_time_horizons' || bid === 'livecodebench');
                     var displayVal = v;
 
                     if (isSpecial) {
                         if (bid === 'vending_bench_2') displayVal = '$' + Math.round(v);
-                        else if (bid === 'gdpval_aa' || bid === 'livecodebench') displayVal = Math.round(v);
+                        else if (bid === 'gdpval_aa' || bid === 'gdpval_aa_v2_1_elo' || bid === 'aa_briefcase_v1_1' || bid === 'livecodebench') displayVal = Math.round(v);
                         else displayVal = v.toFixed(1);
                         td.textContent = displayVal;
                         td.style.color = Theme.textSecondary;
@@ -1547,7 +1564,7 @@ var FrontierCompare = {
 
         // Filter benchIds to only those with % scores (exclude vending_bench, gdpval etc)
         var radarBench = benchIds.filter(function(bid) {
-            return bid !== 'vending_bench_2' && bid !== 'gdpval_aa' && bid !== 'metr_time_horizons' && bid !== 'livecodebench';
+            return bid !== 'vending_bench_2' && bid !== 'gdpval_aa' && bid !== 'gdpval_aa_v2_1_elo' && bid !== 'aa_briefcase_v1_1' && bid !== 'metr_time_horizons' && bid !== 'livecodebench';
         });
 
         // Calculate per-axis max dynamically
@@ -1610,7 +1627,7 @@ var FrontierCompare = {
         // Use selected benchmark, or default per category
         var primaryBench = selectedBenchId || benchIds[0];
         if (!selectedBenchId) {
-            'swe_bench_verified', 'cybench', 'browsecomp', 'aime_2025', 'mmmu_pro', 'gpqa_diamond'
+            var defaults = { all: 'swe_bench_verified', coding: 'swe_bench_verified', cybersecurity: 'cybench', agent: 'browsecomp', math: 'aime_2025', multimodal: 'mmmu_pro', reasoning: 'gpqa_diamond' };
             primaryBench = defaults[category] || benchIds[0];
         }
 

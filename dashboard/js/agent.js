@@ -22,6 +22,7 @@ var Agent = (function() {
             benchmarks: [
                 'swe_bench_verified',
                 'swe_bench_pro',
+                'cursorbench_4_0', 'terminal_bench_4',  // 2026-09-23 S282
                 'swe_bench_verified_mini',
                 'swe_bench_multilingual',
                 'swe_bench_multimodal',
@@ -87,7 +88,9 @@ var Agent = (function() {
                 'osworld_v2', 'osworld_v2_partial', 'osworld_v2_150step', 'osworld_v2_300step',
                 'osworld_v2_single_action', 'osworld_v2_single_action_partial',  // 2026-09-09 S276 — paper Table 3 single-action condition
                 // 2026-04 S216 — GUI grounding (MiningLamp Mano-P + others)
-                'screenspot_v2', 'mmbench_gui_l2', 'ui_vision', 'online_mind2web', 'osworld_g_refine', 'osexpert_eval'
+                'screenspot_v2', 'mmbench_gui_l2', 'ui_vision', 'online_mind2web', 'osworld_g_refine', 'osexpert_eval',
+                // 2026-09-23 S282 — OSWorld 2.0 Sep-2026 task set (Anthropic harness) + OpenAI offline set
+                'osworld_v2_partial_sep2026', 'osworld_v2_strict_sep2026', 'osworld_v2_offline_partial'
             ]
         },
         {
@@ -193,7 +196,17 @@ var Agent = (function() {
                 'agentsmith_inf',
                 'apollo_scheming_oversight_subversion',
                 'apollo_scheming_persistence',
-                'agentlab_asr'  // 2026 S217b — long-horizon adaptive attack ASR
+                'agentlab_asr',  // 2026 S217b — long-horizon adaptive attack ASR
+                // 2026-09-23 S282 — Opus 5.5 card §5 prompt-injection ASRs
+                'shade_v2_coding_asr_no_safeguards', 'shade_v2_coding_asr_with_probes', 'shade_v2_computer_use_asr_no_safeguards', 'shade_v2_computer_use_asr_with_probes', 'browser_use_cowork_asr_no_safeguards', 'browser_use_cowork_asr_auto_mode', 'gray_swan_ipi_k1', 'gray_swan_ipi_k10',
+                // 2026-09-23 S282b — Opus 5.5 card §6.2 / §6.5 / §6.6 lower-better rates
+                'anthropic_rl_training_reward_hack_success_rate_lower_better', 'anthropic_rl_training_reward_hack_answer_key_guess_rate_lower_better', 'anthropic_rl_training_reward_hack_copied_solution_rate_lower_better',
+                'anthropic_rl_training_reward_hack_prohibited_method_rate_lower_better', 'anthropic_rl_training_reward_hack_success_rate_excl_toolskip_lower_better', 'anthropic_impossible_task_reward_hack_attempt_rate_lower_better',
+                'anthropic_impossible_task_reward_hack_success_rate_lower_better', 'anthropic_intact_task_reward_hack_attempt_rate_lower_better', 'anthropic_intact_task_reward_hack_success_rate_lower_better',
+                'anthropic_pasted_instruction_compliance_rate_lower_better', 'anthropic_pasted_instruction_compliance_default_effort_rate_lower_better', 'anthropic_claude_code_destructive_action_rate_lower_better',
+                'anthropic_acting_on_presumed_grader_rate_lower_better', 'anthropic_digging_for_grader_clues_rate_lower_better', 'shade_arena_best_prompt_stealth_hidden_reasoning_max_lower_better',
+                'shade_arena_best_prompt_stealth_no_thinking_lower_better', 'shade_arena_best_prompt_stealth_visible_low_effort_lower_better', 'shade_arena_best_prompt_stealth_visible_max_effort_lower_better',
+                'linuxarena_best_prompt_stealth_hidden_reasoning_lower_better', 'linuxarena_best_prompt_stealth_no_thinking_lower_better', 'linuxarena_best_prompt_stealth_visible_reasoning_lower_better'
             ],
             benchmarks: [
                 'agentlab_asr',
@@ -218,7 +231,22 @@ var Agent = (function() {
                 'agentic_influence_voter_suppression',
                 'agentic_influence_domestic_polarization',
                 // 2026-07-20 S189 — Grok 4.5 card: FalseClaimBench (honesty about work actually done; higher = fewer fabricated completion claims)
-                'falseclaimbench'
+                'falseclaimbench',
+                // 2026-09-23 S282 — Opus 5.5 card (prompt injection, agentic influence ops /32) + GPT-6 appendix A.6 updated alignment evals
+                'shade_v2_coding_asr_no_safeguards', 'shade_v2_coding_asr_with_probes', 'shade_v2_computer_use_asr_no_safeguards', 'shade_v2_computer_use_asr_with_probes', 'browser_use_cowork_asr_no_safeguards', 'browser_use_cowork_asr_auto_mode', 'gray_swan_ipi_k1', 'gray_swan_ipi_k10',
+                'agentic_influence_voter_suppression_median32', 'agentic_influence_domestic_polarization_median32', 'anthropic_sandbox_escape_attempt_rate_lower_better',
+                'coding_deception_rate_v2_lower_better', 'broken_search_tool_failure_rate_v2_lower_better', 'auto_review_circumvention_rate_v2_lower_better', 'warning_barrier_persistence_rate_v2_lower_better',
+                // 2026-09-23 S282b — Opus 5.5 card: RL reward hacking, pasted instructions, destructive actions, self-preference, grader awareness, best-prompt SHADE-Arena / LinuxArena stealth, rare-action calibration
+                'anthropic_rl_training_reward_hack_success_rate_lower_better', 'anthropic_rl_training_reward_hack_answer_key_guess_rate_lower_better', 'anthropic_rl_training_reward_hack_copied_solution_rate_lower_better',
+                'anthropic_rl_training_reward_hack_prohibited_method_rate_lower_better', 'anthropic_rl_training_reward_hack_success_rate_excl_toolskip_lower_better', 'anthropic_impossible_task_reward_hack_attempt_rate_lower_better',
+                'anthropic_impossible_task_reward_hack_success_rate_lower_better', 'anthropic_intact_task_reward_hack_attempt_rate_lower_better', 'anthropic_intact_task_reward_hack_success_rate_lower_better',
+                'anthropic_pasted_instruction_compliance_rate_lower_better', 'anthropic_pasted_instruction_compliance_default_effort_rate_lower_better', 'anthropic_claude_code_destructive_action_rate_lower_better',
+                'anthropic_claude_code_ask_instead_of_act_rate', 'anthropic_self_preference_bias_no_system_prompt', 'anthropic_self_preference_bias_claude_identity_prompt',
+                'anthropic_verbalized_grader_awareness_clear_disclosure', 'anthropic_verbalized_grader_awareness_ambiguous_disclosure', 'anthropic_verbalized_grader_awareness_barely_disclosed',
+                'anthropic_acting_on_presumed_grader_rate_lower_better', 'anthropic_digging_for_grader_clues_rate_lower_better', 'shade_arena_best_prompt_stealth_hidden_reasoning_max_lower_better',
+                'shade_arena_best_prompt_stealth_no_thinking_lower_better', 'shade_arena_best_prompt_stealth_visible_low_effort_lower_better', 'shade_arena_best_prompt_stealth_visible_max_effort_lower_better',
+                'linuxarena_best_prompt_stealth_hidden_reasoning_lower_better', 'linuxarena_best_prompt_stealth_no_thinking_lower_better', 'linuxarena_best_prompt_stealth_visible_reasoning_lower_better',
+                'rare_action_strategy_hint_calibration', 'rare_action_no_hint_calibration'
             ]
         },
         {
@@ -274,7 +302,12 @@ var Agent = (function() {
                 // 2026-07-11 S181 — Tencent Hy3 card agentic benches
                 'wildclawbench', 'blind_expert_productivity_eval',
                 // 2026-07-16 S182 — Kimi K3 card agentic benches
-                'job_bench', 'deck_bench'
+                'job_bench', 'deck_bench',
+                // 2026-09-23 S282 — AA v2.1-era boards, AutomationBench 1.0.6, WANDR, CoBench 2.1
+                'gdpval_aa_v2_1_elo', 'aa_briefcase_v1_1', 'automationbench_1_0_6', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
+                // 2026-09-23 S282b — Opus 5.5 card §8.12.3 multi-agent team-size endpoints (1 vs 100 agents)
+                'anthropic_agent_team_knowledge_base_single_agent', 'anthropic_agent_team_knowledge_base_100_agents', 'anthropic_agent_team_lean_single_agent',
+                'anthropic_agent_team_lean_100_agents'
             ]
         },
         {

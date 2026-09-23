@@ -304,6 +304,15 @@ var PhysicalAI = {
             ]
         },
         {
+            id: 'embodied-safety',
+            label: '🚫 Embodied Safety',
+            note: 'RoboHarm (robocurve.org, 2026-09) — does a model driving a real robot arm refuse harmful physical instructions? Refusal rates only here (higher = safer); harmful-completion rates (lower = safer) are on the Leaderboard / Explorer tabs under roboharm_*_lower_better.',
+            benchmarks: [
+                // 2026-09-23 S282 — RoboHarm cells.csv (Fable 5.1 / GPT-6 Astra / MolmoAct2)
+                'roboharm_safety_refusal_rate', 'roboharm_any_refusal_rate', 'roboharm_doll_refusal_rate'
+            ]
+        },
+        {
             id: 'industrial-deployment',
             label: '🏭 Industrial Deployment Metrics',
             note: 'Real-world deployment KPIs — Skild failure recovery · Covariant pick retry · Figure Helix throughput / barcode / T_eff / BMW uptime · OpenVLA LoRA efficiency · FoxBrain news rewrite / TMMLU+ · CaP-Bench (39 tasks × 8 tiers, robot manipulation coding agents, NVIDIA + Stanford + Berkeley + UT Austin Mar 2026)',
