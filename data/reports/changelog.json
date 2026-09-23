@@ -5163,5 +5163,11 @@
   "type": "fix",
   "title": "S283b — Price 탭: 신규 프런티어 모델이 차트에 안 보이던 문제 수정 (AAII v4.3 기본 지표 + 17개 모델 v4.3 점수)",
   "detail": "원인: Price 탭 산점도는 선택한 성능 지표 점수가 있는 모델만 그리는데, 기본 지표가 구버전 AAII였고 v4.3은 목록에 없었음 → v4.3 점수만 있는 Opus 5.5·GPT-6 Sol/Luna·Grok 4.7·MiMo-V2.6 등이 모두 빠짐(가격 표에는 표시되고 있었음). 수정: price.js에 AA Intelligence Index v4.3을 맨 앞(기본값)으로 추가. 동시에 AA v4.3 출시 차트의 23개 모델 중 v4.3 행이 없던 17개를 AA RSC 모델 객체의 소수점 값으로 추가(Opus 5.5 57.62, Fable 5.1 53.36, Opus 5 50.78, Muse Spark 1.3 48.09, GPT-5.6 Sol 46.97, Qwen3.8 Max 45.42, GLM-5.3 44.78, Step 5 Preview 43.73, Kimi K3 43.59, GPT-5.6 Terra 42.08, GLM-5.3-Flash 41.81, Gemini 3.8 Flash 40.93, DeepSeek V4.1 Flash 39.46, GPT-5.6 Luna 37.32, DeepSeek V4 Pro 0813 36.00, Qwen3.8 27B 33.70, K2 Horizon 30.50) — 모두 AA 트윗 차트의 정수와 반올림 일치. Step 5 Preview(StepFun, 2026-09-18, 600B, 1M) 신규 모델. 결과: 기본 차트 35개 모델(이전 기본 AAII 기준 85개였으나 신규 프런티어 누락). 벤치마크 점수가 없는 모델(Qwen3.8 Omni Flash·Bonsai·FlashX)은 가격 표에만 표시됨."
+ },
+ {
+  "date": "2026-09-23",
+  "type": "ingest",
+  "title": "S284 — Artificial Analysis 21개 링크: Claude Opus 5.5 5개 effort 티어 전체 지표 + Grok Build 코딩 에이전트 지수 (133 scores, 신규 모델 1)",
+  "detail": "모델 페이지 18개는 slug로 고정한 RSC currentModel 객체를 현재 id로 매핑하고 DB에 없던 행만 추가. (1) Claude Opus 5.5 max/xhigh/high/medium/low: AAII v4.3(max 57.62), GDPval-AA v2.1, AA-Briefcase v1.1(1822), AutomationBench-AA, AA TB 4.0(59.6), SciCode(66.9), CritPt, AA-LCR, MMMU-Pro, GDP.pdf, AA-Omniscience 3종, 역량 지수 5종, 과제당 비용·토큰(~119k)·시간, 출력 속도, TTFAT, 블렌디드 가격 — 116행. (2) GPT-6 Sol/Luna 12개 티어는 S282 값과 동일(289행 일치), 헬스케어 역량 지수 2행만 추가; 속도·지연·과제당 시간은 변동값이라 S282 스냅샷 유지. (3) Grok 4(2025) AAII v4.3 22.49 등 7행. (4) 기사: Grok 4.7 + Grok Build 코딩 에이전트 지수 56, Grok 4.6(xhigh) 47(신규 티어 id xai/grok-4.6-xhigh), 구성요소 DeepSWE 73/65·TB 4.0 33/18·SWE-Atlas-QnA 63/58. 구성요소 id(*_aa_codex)의 이름을 '네이티브 하네스'로 정정(Codex·Claude Code·Grok Build). Opus 5.5·GPT-6 기사 수치는 페이로드와 일치. 유지(덮어쓰지 않음): Opus 5.5 HLE는 Anthropic 카드값(max 64.4) — AA 측정 61.35; Grok 4 HLE 40.0 — AA 26.69. 미반영: AA-Briefcase 분석/표현 하위 Elo(id 없음)."
  }
 ]
