@@ -1,0 +1,1135 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-23",
+  "session": "S284",
+  "sources": [
+   "https://artificialanalysis.ai/models/grok-4",
+   "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
+   "https://artificialanalysis.ai/articles/claude-opus-5-5",
+   "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+   "https://artificialanalysis.ai/models/gpt-6-luna",
+   "https://artificialanalysis.ai/models/gpt-6-luna-xhigh",
+   "https://artificialanalysis.ai/models/gpt-6-luna-high",
+   "https://artificialanalysis.ai/models/gpt-6-luna-medium",
+   "https://artificialanalysis.ai/models/gpt-6-luna-low",
+   "https://artificialanalysis.ai/models/gpt-6-luna-non-reasoning",
+   "https://artificialanalysis.ai/models/gpt-6-sol",
+   "https://artificialanalysis.ai/models/gpt-6-sol-xhigh",
+   "https://artificialanalysis.ai/models/gpt-6-sol-high",
+   "https://artificialanalysis.ai/models/gpt-6-sol-medium",
+   "https://artificialanalysis.ai/models/gpt-6-sol-low",
+   "https://artificialanalysis.ai/models/gpt-6-sol-non-reasoning",
+   "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "https://artificialanalysis.ai/models/claude-opus-5-5-low"
+  ],
+  "note": "21 Artificial Analysis links. Model pages: currentModel RSC objects (slug-anchored) mapped to the current ids; only rows the DB lacked are added. GPT-6 Sol/Luna tier scores were already stored (S282, identical on re-read); their speed/latency/time-per-task fields drifted (volatile, S282 snapshot kept). Kept, not overwritten: Opus 5.5 HLE from Anthropic's card (64.4 max) vs AA's run (61.35); Grok 4 HLE 40.0 vs AA 26.69. Articles add the Grok Build Coding Agent Index (Grok 4.7 56, Grok 4.6 xhigh 47) and its components; Opus 5.5 article figures match the payload. Withheld: AA-Briefcase analytical/presentation sub-Elos (no ids)."
+ },
+ "models": [
+  {
+   "id": "xai/grok-4.6-xhigh",
+   "vendor": "xai",
+   "name": "Grok 4.6 (xhigh)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-08-12",
+   "context_window": 500000,
+   "parameters": null,
+   "_note": "xhigh reasoning-effort tier of Grok 4.6 (the base xai/grok-4.6 row carries AA's \"high\" tier). Added for the AA Coding Agent Index (Grok Build) values."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "swe_atlas_qna_aa_codex",
+   "name": "SWE-Atlas-QnA (AA Coding Agent Index, native harness)",
+   "category": "coding",
+   "metric": "accuracy_pct",
+   "description": "SWE-Atlas-QnA as run by Artificial Analysis inside its Coding Agent Index, in each model's native agent harness (Codex for OpenAI, Claude Code for Anthropic, Grok Build for xAI). Separate from swe_atlas_qna (vendor-reported). Id keeps its S282b name."
+  },
+  {
+   "id": "terminal_bench_4_0_aa_codex",
+   "name": "Terminal-Bench 4.0 (AA Coding Agent Index, native harness)",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "Terminal-Bench 4.0 inside the AA Coding Agent Index, in each model's native agent harness (Codex / Claude Code / Grok Build). Not the Intelligence Index run (terminal_bench_4_0_aa). Id keeps its S282b name."
+  },
+  {
+   "id": "deepswe_1_1_aa_codex",
+   "name": "DeepSWE v1.1 (AA Coding Agent Index, native harness)",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 inside the AA Coding Agent Index, in each model's native agent harness (Codex / Claude Code / Grok Build); separate from vendor-reported deepswe_1_1. Id keeps its S282b name."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 53.5832,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_omniscience_index",
+   "score": 40.6333,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_omniscience_acc",
+   "score": 64.5833,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 32.3765,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era. Stored as 100 − hallucination rate."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1691.72,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 59.586,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "automationbench_aa",
+   "score": 63.2068,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 56.5657,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "scicode",
+   "score": 60.4167,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "critpt",
+   "score": 30.8571,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_lcr",
+   "score": 82.6667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "mmmu_pro",
+   "score": 85.8382,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "gdp_pdf",
+   "score": 28.8,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.8225,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 35584.0589,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 247.1612,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_output_tps",
+   "score": 90.4451,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 39.8003,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 2.94,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 55.9199,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 59.2481,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 58.9752,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 56.1961,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 60.6235,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-high, read 2026-09-23), anchor slug verified = claude-opus-5-5-high (AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 42.3078,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_omniscience_index",
+   "score": 38.8667,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_omniscience_acc",
+   "score": 63.5333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 32.3583,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era. Stored as 100 − hallucination rate."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1223.51,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 36.1755,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1284.93,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "automationbench_aa",
+   "score": 52.9254,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 31.3131,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "scicode",
+   "score": 58.5648,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "critpt",
+   "score": 17.7143,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_lcr",
+   "score": 80.6667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "mmmu_pro",
+   "score": 84.6821,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "gdp_pdf",
+   "score": 25.6,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.5512,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 10151.2763,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 81.3503,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_output_tps",
+   "score": 77.448,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 7.0314,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 2.94,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 45.9024,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 48.4993,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 51.6208,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 44.5986,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 52.5322,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-low, read 2026-09-23), anchor slug verified = claude-opus-5-5-low (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 51.2435,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_omniscience_index",
+   "score": 40.3167,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_omniscience_acc",
+   "score": 64.55,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 31.6408,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era. Stored as 100 − hallucination rate."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1576.2,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 53.81,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1642.05,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "automationbench_aa",
+   "score": 61.2174,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 52.5253,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "scicode",
+   "score": 59.2593,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "critpt",
+   "score": 27.7143,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_lcr",
+   "score": 84.3333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "mmmu_pro",
+   "score": 85.7225,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "gdp_pdf",
+   "score": 25.6,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.336,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 25745.2869,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 206.0679,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_output_tps",
+   "score": 74.9553,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 24.3453,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 2.94,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 54.1327,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 57.4801,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 57.4364,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 53.7362,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 59.6875,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-medium, read 2026-09-23), anchor slug verified = claude-opus-5-5-medium (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 55.9874,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_omniscience_index",
+   "score": 42.65,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_omniscience_acc",
+   "score": 65.3833,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 34.3284,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era. Stored as 100 − hallucination rate."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 66.0055,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "automationbench_aa",
+   "score": 64.9528,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 59.596,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "scicode",
+   "score": 65.0463,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "critpt",
+   "score": 31.7143,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_lcr",
+   "score": 84.6667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "mmmu_pro",
+   "score": 86.5896,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "gdp_pdf",
+   "score": 26.6,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 3.4591,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 65667.3951,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 441.6605,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_output_tps",
+   "score": 92.6708,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 160.3259,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 2.94,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 58.4289,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 61.6323,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 60.7586,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 58.7413,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 62.9804,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5-xhigh, read 2026-09-23), anchor slug verified = claude-opus-5-5-xhigh (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_omniscience_index",
+   "score": 46.4167,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_omniscience_acc",
+   "score": 66.2167,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 41.3912,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era. Stored as 100 − hallucination rate."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 67.3085,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "automationbench_aa",
+   "score": 69.5387,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 59.596,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "scicode",
+   "score": 66.8981,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "critpt",
+   "score": 31.7143,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_lcr",
+   "score": 84.6667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "mmmu_pro",
+   "score": 87.6879,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "gdp_pdf",
+   "score": 26.2,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 5.982,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 119166.0158,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 2.94,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 60.7295,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 63.6789,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 63.2603,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 60.3546,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 65.6045,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/claude-opus-5-5, read 2026-09-23), anchor slug verified = claude-opus-5-5 (AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "aa_capability_index_healthcare_medical_v4_3",
+   "score": 36.7253,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/gpt-6-luna, read 2026-09-23), anchor slug verified = gpt-6-luna (AA name 'GPT-6 Luna (max)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "aa_capability_index_healthcare_medical_v4_3",
+   "score": 43.4881,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/gpt-6-sol, read 2026-09-23), anchor slug verified = gpt-6-sol (AA name 'GPT-6 Sol (max)'). Intelligence Index v4.3 era. Field capabilities.* (AA v4.3 capability index)."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 22.4867,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/grok-4",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/grok-4, read 2026-09-23), anchor slug verified = grok-4 (AA name 'Grok 4'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "aa_omniscience_index",
+   "score": 2.1,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/grok-4",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/grok-4, read 2026-09-23), anchor slug verified = grok-4 (AA name 'Grok 4'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "aa_omniscience_acc",
+   "score": 40.4833,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/grok-4",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/grok-4, read 2026-09-23), anchor slug verified = grok-4 (AA name 'Grok 4'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 35.5083,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/grok-4",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/grok-4, read 2026-09-23), anchor slug verified = grok-4 (AA name 'Grok 4'). Intelligence Index v4.3 era. Stored as 100 − hallucination rate."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "critpt",
+   "score": 2.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/grok-4",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/grok-4, read 2026-09-23), anchor slug verified = grok-4 (AA name 'Grok 4'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "mmmu_pro",
+   "score": 68.8439,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/grok-4",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/grok-4, read 2026-09-23), anchor slug verified = grok-4 (AA name 'Grok 4'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 4.2,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/grok-4",
+   "_note": "AA model page RSC currentModel payload (artificialanalysis.ai/models/grok-4, read 2026-09-23), anchor slug verified = grok-4 (AA name 'Grok 4'). Intelligence Index v4.3 era."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "aa_coding_agent_index",
+   "score": 56,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+   "_note": "AA article \"Benchmarking Grok 4.7\" (2026-09-21): \"Grok Build with Grok 4.7 (xhigh) scores 56 on the Artificial Analysis Coding Agent Index, up from 47 with Grok 4.6 (xhigh)\" — native Grok Build harness; ranks 4th among models in native harnesses."
+  },
+  {
+   "model": "xai/grok-4.6-xhigh",
+   "benchmark": "aa_coding_agent_index",
+   "score": 47,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+   "_note": "AA article \"Benchmarking Grok 4.7\" (2026-09-21): Grok 4.6 (xhigh) with Grok Build: 47 on the current Coding Agent Index version."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "deepswe_1_1_aa_codex",
+   "score": 73,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+   "_note": "AA article \"Benchmarking Grok 4.7\" (2026-09-21): Coding Agent Index component, Grok Build harness, Grok 4.7 (xhigh): \"DeepSWE v1.1 rises from 65% to 73%\"."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "terminal_bench_4_0_aa_codex",
+   "score": 33,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+   "_note": "AA article \"Benchmarking Grok 4.7\" (2026-09-21): Coding Agent Index component, Grok Build harness, Grok 4.7 (xhigh): \"Terminal-Bench 4.0 from 18% to 33%\"."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "swe_atlas_qna_aa_codex",
+   "score": 63,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+   "_note": "AA article \"Benchmarking Grok 4.7\" (2026-09-21): Coding Agent Index component, Grok Build harness, Grok 4.7 (xhigh): \"SWE-Atlas-QnA from 58% to 63%\"."
+  },
+  {
+   "model": "xai/grok-4.6-xhigh",
+   "benchmark": "deepswe_1_1_aa_codex",
+   "score": 65,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+   "_note": "AA article \"Benchmarking Grok 4.7\" (2026-09-21): Coding Agent Index component, Grok Build harness, Grok 4.6 (xhigh): \"DeepSWE v1.1 rises from 65% to 73%\"."
+  },
+  {
+   "model": "xai/grok-4.6-xhigh",
+   "benchmark": "terminal_bench_4_0_aa_codex",
+   "score": 18,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+   "_note": "AA article \"Benchmarking Grok 4.7\" (2026-09-21): Coding Agent Index component, Grok Build harness, Grok 4.6 (xhigh): \"Terminal-Bench 4.0 from 18% to 33%\"."
+  },
+  {
+   "model": "xai/grok-4.6-xhigh",
+   "benchmark": "swe_atlas_qna_aa_codex",
+   "score": 58,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+   "_note": "AA article \"Benchmarking Grok 4.7\" (2026-09-21): Coding Agent Index component, Grok Build harness, Grok 4.6 (xhigh): \"SWE-Atlas-QnA from 58% to 63%\"."
+  }
+ ]
+}

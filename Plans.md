@@ -1,8 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 283b — Price tab shows current frontier models (AAII v4.3) (2026-09-23)
-**3,554 models · 4,746 benchmarks · 24,886 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 284 — AA pages: Opus 5.5 tiers, Grok Build coding index (2026-09-23)
+**3,555 models · 4,746 benchmarks · 25,019 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-23 Session 284 — 21 Artificial Analysis links
+- **133 scores, 1 new model (`xai/grok-4.6-xhigh`), 0 FK / 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s284_…_scores.json`). Backup `data/benchmark.db.pre-s284.bak`.
+- 18 model pages: slug-anchored RSC `currentModel` objects mapped to current ids (v2.1 GDPval, v1.1 Briefcase, `terminal_bench_4_0_aa`, v4.3 capability indices); only missing rows added. Claude Opus 5.5 ×5 tiers = 116 rows; GPT-6 Sol/Luna tiers identical to S282 (289 rows) — only the two healthcare capability rows were new; Grok 4 (2025) 7 rows.
+- Articles: Grok 4.7 + Grok Build Coding Agent Index 56 (Grok 4.6 xhigh 47) and components DeepSWE 73/65, TB 4.0 33/18, SWE-Atlas-QnA 63/58. `*_aa_codex` component ids renamed to "native harness" (Codex / Claude Code / Grok Build).
+- Kept, not overwritten: Opus 5.5 HLE (card 64.4 vs AA 61.35), Grok 4 HLE (40.0 vs AA 26.69); GPT-6 speed/latency drift (volatile). Withheld: Briefcase analytical/presentation sub-Elos (no ids).
 ### 2026-09-23 Session 283b — Price tab: new models missing from the chart
 - **Cause**: the Price scatter only plots models that have the selected metric; the default was legacy AAII and v4.3 was not in the metric list, so Opus 5.5 / GPT-6 Sol / Luna / Grok 4.7 / MiMo-V2.6 (v4.3-only) never appeared. The price table already listed them.
 - **Fix**: `price.js` METRICS gains `aa_intelligence_index_v4_3` as the first (default) entry; 17 v4.3 rows added from the saved AA RSC model objects for the models in AA's v4.3 launch chart (each rounds to the chart's integer), plus new model `stepfun/step-5-preview`. Default chart now plots 35 priced models incl. all new frontier releases. Backup `data/benchmark.db.pre-s283b.bak`.
