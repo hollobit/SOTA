@@ -5193,5 +5193,11 @@
   "type": "ingest",
   "title": "S286 — resource 2차 감사: 오래된 리더보드 갱신·resource PDF 미추출 표·남은 arXiv (1,294 scores, 신규 모델 4, 신규 벤치 55)",
   "detail": "S285가 '인용 0건' 소스만 봤던 것을 보완. (R1) 마지막 수집이 4–6월인 일반·에이전트 리더보드 16개 갱신 562행: ARC Prize 166(표준/프로바이더 어댑터 하네스 분리 유지), EQ-Bench Creative Writing v3 188(DB Elo와 척도가 달라 신규 id: rubric·2026-09 Elo)·Longform 90, τ-bench 51, ALE-V1 28(Opus 5.5 38.2/63.2), BFCL v4 23, FrontierMath Tier 4 v2 12(Fable 5.1 87.8·Opus 5 73.2), OSWorld-Verified 4(Opus 5 83.39). τ²-bench banking_knowledge: 포크는 기존 값이 '한 모델씩 밀렸다'고 보고했으나 원본 git 이력 확인 결과 v1.0.1(2026-07-16) 채점 수정 후 재게시(2026-08-04)된 것 — 기존 v1.0.0 9행은 유지하고 v1.0.1 값은 새 버전 id(pass@1·pass^4 각 25)로 분리. (R2) 안전·사이버·의료 리더보드 377행: Cisco AI Defense 338(26 → 136개 모델; Opus 5·GPT-5.6·Gemini 3.8 Flash 등, 이미지 안전 점수 신규 id; combined = 두 점수 평균 확인), AgentDojo 17, AILuminate 9, Cybench 8, HalluHard GPT-6 Astra 5. (R3) resource/ PDF 56개(파일명 미인용) 중 42개는 URL로 이미 반영, 11개는 모델 점수 없음, 3개 미추출분 78행: Qwen3.8-Next 아키텍처 리포트 베이스 모델 3종 비교(신규 모델 3)·MRCR, A.X K2 ALM KVoiceBench 10종, CAIBench(사이버 5개 모델). (R4) S285가 남긴 arXiv 50편 중 27편 추출 268행: UI-TARS-2(신규 모델; OSWorld 47.5·AndroidWorld 73.3·Online-Mind2Web 88.2), PolyWorkBench(페이지 이미지 판독 — 대조 확인), MedRealMM(그림 라벨 — 대조 확인), CASTLE, MedLayXplain, ViSTR-Bench, ReportBench, SafeMT, LogicSkills 등. 나머지 23편은 순위 없음·버전 식별 불가·그림 전용·하네스 지배 결과로 제외(사유 기록). 보고된 불일치(미반영): ARC 7·BFCL 5·OSWorld 5(벤더 자체 보고값과 보드값 차이)·ALE 11. 탭: Cyber-Coding 두 레이어, Agent(일반·안전), Medical."
+ },
+ {
+  "date": "2026-09-24",
+  "type": "Feature",
+  "title": "S287 — Price vs Performance 3D 탐색기 (three.js)",
+  "detail": "Price 탭에 2D/3D 전환 추가. 3D '지표 회랑': X = 가격(로그), Y = 지표 내 상대 위치(최저→최고, 낮을수록 좋은 지표는 뒤집음), Z = 성능 지표(가격이 있는 모델 8개 이상인 지표마다 한 층, 현재 31층). 칩·←/→·Space 자동 투어로 지표 간 카메라 비행, 층 간 모델 궤적선, 층별 파레토(가성비) 경계, 상위 3개 라벨, 모델 검색 하이라이트, 호버 툴팁(전 지표 값·순위), 현재 층 클릭 시 모델 상세 모달. 가격 기준·캐시 적중률·기간·개발사·국가 필터는 2D와 공유. three@0.160 import map 동적 로딩, 화면 밖일 땐 렌더 정지(프레임 중앙값 8.3ms)."
  }
 ]
