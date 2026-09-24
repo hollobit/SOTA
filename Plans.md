@@ -3,6 +3,10 @@
 ## Current Status: Session 286 — second resource audit (stale boards · resource PDFs · remaining arXiv) (2026-09-24)
 **3,578 models · 4,914 benchmarks · 32,122 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-25 Session 288 — Price tab "3D 통합 비교" (all-metric skyline)
+- New `dashboard/js/price3d-sky.js` (`PriceSky`), third Price view. Columns = priced models by price (floor stripes = price bands), rows = the 31 metrics + a front "★ 종합" row (mean in-metric percentile), height/colour = percentile (lower-better flipped), purple bars below the floor = log price. "가격대별" collapses columns into bands (best / median). Camera presets bird / front / side / top (top flattens the bars into a model × metric heatmap), auto-rotate, sort (price / composite / value / vendor), min-coverage slider (default 6 → 103 models), hover crosshair with strengths/weaknesses, click → modal, band summary table.
+- `price3d.js`: `pricedModels()` split out of `buildData()` and exposed via `Price3D.util` with the shared helpers; `setView` handles '2d' | '3d' | 'sky'.
+- Both 3D views: wheel zoom only after a click on the canvas (page scroll was being captured as zoom).
 ### 2026-09-24 Session 287 — Price tab 3D explorer (three.js)
 - New `dashboard/js/price3d.js` (lazy, loaded with the price tab) + 2D/3D toggle; `Price.api` exposes the metrics, price and vendor helpers so both views share the same filters.
 - Metric corridor: X = log price, Y = min-max within the metric (lower-better inverted), Z = one slice per metric with ≥ 8 priced models (31 now). Chips, ←/→, Space tour, per-model threads, per-slice Pareto line, top-3 labels, search, hover tooltip with every metric's value and rank, click → model modal. Slices in front of the focused one are hidden (they filled the camera).
