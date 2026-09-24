@@ -304,7 +304,9 @@ var Agent = (function() {
                 // 2026-07-16 S182 — Kimi K3 card agentic benches
                 'job_bench', 'deck_bench',
                 // 2026-09-23 S282 — AA v2.1-era boards, AutomationBench 1.0.6, WANDR, CoBench 2.1
-                'gdpval_aa_v2_1_elo', 'aa_briefcase_v1_1', 'aa_briefcase_v1_1_analytical_quality_elo', 'aa_briefcase_v1_1_presentation_elo', 'aa_briefcase_v1_1_rubric_pass_rate', 'automationbench_1_0_6', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
+                'gdpval_aa_v2_1_elo', 'aa_briefcase_v1_1', 'aa_briefcase_v1_1_analytical_quality_elo', 'aa_briefcase_v1_1_presentation_elo', 'aa_briefcase_v1_1_rubric_pass_rate', 'automationbench_1_0_6',
+                // 2026-09-24 S285 — Mercor APEX boards, HAL reliability, HLE (CAISI), Epoch agentic runs
+                'apex_agents_v1_1_pass1', 'apex_agents_v1_1_mean_score', 'apex_v1_mercor_board_pass1', 'apex_v1_mercor_board_mean_score', 'apex_swe_mercor_board_pass1', 'apex_accounting_pass1', 'hal_reliability_score', 'hal_reliability_accuracy', 'hle_caisi_official', 'remote_labor_index_epoch', 'posttrainbench_epoch', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
                 // 2026-09-23 S282b — Opus 5.5 card §8.12.3 multi-agent team-size endpoints (1 vs 100 agents)
                 'anthropic_agent_team_knowledge_base_single_agent', 'anthropic_agent_team_knowledge_base_100_agents', 'anthropic_agent_team_lean_single_agent',
                 'anthropic_agent_team_lean_100_agents'

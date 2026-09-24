@@ -240,6 +240,8 @@ var FrontierCompare = {
             'aa_intelligence_index_v4_1', 'aa_intelligence_index',
             // 2026-09-23 S282 — AAII v4.3 (Sol 47.5 / Luna 37.3 / Astra 52.7 / Grok 4.7 46.5) + GDPval-AA v2.1 re-based Elo / normalized win rate
             'aa_intelligence_index_v4_3', 'gdpval_aa_v2_1_elo', 'gdpval_aa_v2_1',
+            // 2026-09-24 S285 — LiveBench 2026-06-25 release, HLE official (CAISI), Epoch ECI component runs
+            'livebench_2026_06_25', 'hle_caisi_official', 'gpqa_diamond_epoch', 'hle_epoch', 'frontiermath_tier4_v2',
             // 2026-09-23 S282b — AA v4.3 capability indices (GPT-6 Sol/Luna/Astra tiers)
             'aa_capability_index_finance_accounting_v4_3', 'aa_capability_index_strategy_ops_v4_3', 'aa_capability_index_legal_v4_3', 'aa_capability_index_healthcare_medical_v4_3', 'aa_capability_index_engineering_v4_3', 'aa_capability_index_economics_v4_3',
             // Agents: GDPval-AA v2 + τ³-Banking (v4.1) / GDPval-AA v1 + τ²-Telecom (legacy)

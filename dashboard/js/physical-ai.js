@@ -300,7 +300,8 @@ var PhysicalAI = {
                 'factorybench_l1_state', 'factorybench_l2_intervention',
                 'factorybench_l3_counterfactual', 'factorybench_l4_decision',
                 // 2026-05-30 SHI-Labs PAI-Bench Understanding (arxiv 2512.01989)
-                'pai_bench_u'
+                'pai_bench_u',
+                'physbench'  // 2026-09-24 S285 — PhysBench (ICLR 2025) leaderboard
             ]
         },
         {

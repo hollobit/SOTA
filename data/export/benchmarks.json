@@ -11975,13 +11975,6 @@
     "metric": "score"
   },
   {
-    "id": "medqa",
-    "name": "Medqa",
-    "category": "medical",
-    "description": "",
-    "metric": "score"
-  },
-  {
     "id": "amie_pc_critical_errors",
     "name": "AMIE Primary-Care Critical-Errors (98 queries)",
     "category": "Medical / Conversational Diagnosis",
@@ -19190,27 +19183,6 @@
     "metric": "tok/s"
   },
   {
-    "id": "lifescibench",
-    "name": "LifeSciBench",
-    "category": "medical",
-    "description": "",
-    "metric": "normalized rubric score"
-  },
-  {
-    "id": "lifescibench_pass_rate",
-    "name": "LifeSciBench Task Pass Rate",
-    "category": "medical",
-    "description": "",
-    "metric": "task pass rate (>=70% rubric)"
-  },
-  {
-    "id": "webtailbench",
-    "name": "WebTailBench",
-    "category": "agent",
-    "description": "",
-    "metric": "macro avg accuracy"
-  },
-  {
     "id": "bridge_clinical",
     "name": "BRIDGE",
     "category": "medical",
@@ -21242,13 +21214,6 @@
     "category": "safety",
     "description": "",
     "metric": ""
-  },
-  {
-    "id": "omol25_open_molecules_2025",
-    "name": "OMol25 — Open Molecules 2025",
-    "category": "chemistry-DFT",
-    "description": "",
-    "metric": "score"
   },
   {
     "id": "matbench_discovery_live_leaderboard",
@@ -31702,6 +31667,804 @@
     "category": "legal",
     "description": "Harvey Legal Agent Benchmark as run by Artificial Analysis, mean share of rubric criteria met per task (AA field harveyLab; models score ~85-95%). Distinct from harvey_lab_aa, which stores the task all-pass rate (~5-27%).",
     "metric": "score_pct"
+  },
+  {
+    "id": "apex_agents_v1_1_pass1",
+    "name": "APEX-Agents v1.1 (Mercor leaderboard) — Pass@1",
+    "category": "agentic",
+    "description": "APEX-Agents v1.1 (Mercor leaderboard): share of tasks fully passed on the first attempt (Mercor current leaderboard). Separate from vendor-reported apex_agents / apexswe rows.",
+    "metric": "pass_rate_pct"
+  },
+  {
+    "id": "apex_agents_v1_1_mean_score",
+    "name": "APEX-Agents v1.1 (Mercor leaderboard) — mean rubric score",
+    "category": "agentic",
+    "description": "APEX-Agents v1.1 (Mercor leaderboard): mean rubric score.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "apex_accounting_pass1",
+    "name": "APEX-Accounting (Mercor leaderboard) — Pass@1",
+    "category": "agentic",
+    "description": "APEX-Accounting (Mercor leaderboard): share of tasks fully passed on the first attempt (Mercor current leaderboard). Separate from vendor-reported apex_agents / apexswe rows.",
+    "metric": "pass_rate_pct"
+  },
+  {
+    "id": "apex_accounting_mean_score",
+    "name": "APEX-Accounting (Mercor leaderboard) — mean rubric score",
+    "category": "agentic",
+    "description": "APEX-Accounting (Mercor leaderboard): mean rubric score.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "apex_swe_mercor_board_pass1",
+    "name": "APEX-SWE (Mercor leaderboard) — Pass@1",
+    "category": "coding",
+    "description": "APEX-SWE (Mercor leaderboard): share of tasks fully passed on the first attempt (Mercor current leaderboard). Separate from vendor-reported apex_agents / apexswe rows.",
+    "metric": "pass_rate_pct"
+  },
+  {
+    "id": "apex_swe_mercor_board_mean_score",
+    "name": "APEX-SWE (Mercor leaderboard) — mean rubric score",
+    "category": "coding",
+    "description": "APEX-SWE (Mercor leaderboard): mean rubric score.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "apex_v1_mercor_board_pass1",
+    "name": "APEX-v1 extended (Mercor leaderboard) — Pass@1",
+    "category": "agentic",
+    "description": "APEX-v1 extended (Mercor leaderboard): share of tasks fully passed on the first attempt (Mercor current leaderboard). Separate from vendor-reported apex_agents / apexswe rows.",
+    "metric": "pass_rate_pct"
+  },
+  {
+    "id": "apex_v1_mercor_board_mean_score",
+    "name": "APEX-v1 extended (Mercor leaderboard) — mean rubric score",
+    "category": "agentic",
+    "description": "APEX-v1 extended (Mercor leaderboard): mean rubric score.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "apex_accounting_pass_at_8",
+    "name": "APEX-Accounting (Mercor leaderboard) — pass@8",
+    "category": "agentic",
+    "description": "APEX-Accounting: share of tasks solved in at least one of 8 attempts.",
+    "metric": "pass_rate_pct"
+  },
+  {
+    "id": "apex_accounting_pass_hat_8",
+    "name": "APEX-Accounting (Mercor leaderboard) — pass^8",
+    "category": "agentic",
+    "description": "APEX-Accounting: share of tasks solved in all 8 attempts (consistency).",
+    "metric": "pass_rate_pct"
+  },
+  {
+    "id": "baxbench_generic_security_reminder",
+    "name": "BaxBench — Correct & Secure (generic security reminder)",
+    "category": "cybersecurity",
+    "description": "BaxBench correct-and-secure rate when the prompt carries a generic security reminder.",
+    "metric": "pass_rate_pct"
+  },
+  {
+    "id": "baxbench_oracle_security_reminder",
+    "name": "BaxBench — Correct & Secure (oracle security reminder)",
+    "category": "cybersecurity",
+    "description": "BaxBench correct-and-secure rate when the prompt names the specific CWEs to avoid.",
+    "metric": "pass_rate_pct"
+  },
+  {
+    "id": "baxbench_correct",
+    "name": "BaxBench — functionally correct (no reminder)",
+    "category": "coding",
+    "description": "BaxBench share of functionally correct backends (no security reminder), regardless of security.",
+    "metric": "pass_rate_pct"
+  },
+  {
+    "id": "baxbench_insecure_of_correct_lower_better",
+    "name": "BaxBench — insecure share of correct solutions (no reminder)",
+    "category": "cybersecurity",
+    "description": "Share of functionally correct BaxBench solutions that contain an exploitable vulnerability (no reminder).",
+    "metric": "pct_lower_better"
+  },
+  {
+    "id": "gpqa_diamond_epoch",
+    "name": "GPQA Diamond — Epoch AI run",
+    "category": "reasoning",
+    "description": "GPQA Diamond — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "math_level5_epoch",
+    "name": "MATH Level 5 — Epoch AI run",
+    "category": "math",
+    "description": "MATH Level 5 — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "arc_agi_2_epoch",
+    "name": "ARC-AGI-2 — Epoch AI run",
+    "category": "reasoning",
+    "description": "ARC-AGI-2 — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "simpleqa_verified_epoch",
+    "name": "SimpleQA Verified — Epoch AI run",
+    "category": "knowledge",
+    "description": "SimpleQA Verified — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "mystery_game_puzzles_epoch",
+    "name": "Mystery Game Puzzles — Epoch AI",
+    "category": "reasoning",
+    "description": "Mystery Game Puzzles — Epoch AI: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "frontiermath_tier4_v2",
+    "name": "FrontierMath Tier 4 (v2, private)",
+    "category": "math",
+    "description": "FrontierMath Tier 4 (v2, private): Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "hle_epoch",
+    "name": "Humanity's Last Exam — Epoch AI run",
+    "category": "reasoning",
+    "description": "Humanity's Last Exam — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "frontiermath_2025_02_28_private",
+    "name": "FrontierMath (2025-02-28 private set)",
+    "category": "math",
+    "description": "FrontierMath (2025-02-28 private set): Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "swe_bench_verified_epoch",
+    "name": "SWE-bench Verified — Epoch AI run",
+    "category": "coding",
+    "description": "SWE-bench Verified — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "apex_agents_epoch",
+    "name": "APEX-Agents — Epoch AI run",
+    "category": "agentic",
+    "description": "APEX-Agents — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "frontiermath_tier4_2025_07_01_private",
+    "name": "FrontierMath Tier 4 (2025-07-01 private set)",
+    "category": "math",
+    "description": "FrontierMath Tier 4 (2025-07-01 private set): Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "arc_agi_1_epoch",
+    "name": "ARC-AGI (v1) — Epoch AI run",
+    "category": "reasoning",
+    "description": "ARC-AGI (v1) — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "remote_labor_index_epoch",
+    "name": "Remote Labor Index — Epoch AI run",
+    "category": "agentic",
+    "description": "Remote Labor Index — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "cl_bench_epoch",
+    "name": "CL-bench — Epoch AI run",
+    "category": "reasoning",
+    "description": "CL-bench — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "cl_bench_life_epoch",
+    "name": "CL-bench Life — Epoch AI run",
+    "category": "reasoning",
+    "description": "CL-bench Life — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "ebr_bench_epoch",
+    "name": "EBR-bench — Epoch AI run",
+    "category": "reasoning",
+    "description": "EBR-bench — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "posttrainbench_epoch",
+    "name": "PostTrainBench — Epoch AI run",
+    "category": "agentic",
+    "description": "PostTrainBench — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "mirrorcode_epoch",
+    "name": "MirrorCode — Epoch AI run",
+    "category": "coding",
+    "description": "MirrorCode — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "exploitbench_epoch",
+    "name": "ExploitBench — Epoch AI run",
+    "category": "cybersecurity",
+    "description": "ExploitBench — Epoch AI run: Epoch AI Benchmarking Hub's own evaluation (ECI component data, epoch.ai/data/eci_benchmarks.csv). Kept separate from vendor-reported ids because Epoch uses its own harness/settings.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "hal_reliability_accuracy",
+    "name": "HAL Reliability Dashboard — accuracy",
+    "category": "agentic",
+    "description": "Accuracy of each agent across the HAL reliability task suite (Princeton HAL).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "hal_reliability_score",
+    "name": "HAL Reliability Dashboard — aggregate reliability",
+    "category": "agentic",
+    "description": "HAL aggregate reliability score (0–1): consistency, predictability, robustness and safety of repeated agent runs.",
+    "metric": "index_0_1"
+  },
+  {
+    "id": "hle_caisi_official",
+    "name": "Humanity's Last Exam — official CAISI/Scale leaderboard",
+    "category": "reasoning",
+    "description": "Accuracy on the official HLE leaderboard at agi.safe.ai (o3-mini judge, dataset of 2025-04-03). Single-source id; the generic hle id mixes vendor cards, AA runs and aggregators.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "hle_caisi_calibration_error_lower_better",
+    "name": "Humanity's Last Exam — calibration error (official board)",
+    "category": "reasoning",
+    "description": "RMS calibration error reported on the official HLE leaderboard (lower is better).",
+    "metric": "calibration_error_pct"
+  },
+  {
+    "id": "terminal_bench_2_kilo_harness",
+    "name": "Terminal-Bench 2.0 — Kilo Code harness (Kilo Benchmark)",
+    "category": "coding",
+    "description": "Terminal-Bench 2.0 completion rate run by Kilo in its own agent harness (kilo.ai leaderboard, top 10 shown).",
+    "metric": "completion_pct"
+  },
+  {
+    "id": "livebench_2026_06_25",
+    "name": "LiveBench (release 2026-06-25) — overall",
+    "category": "reasoning",
+    "description": "LiveBench overall average on the 2026-06-25 question release (23 tasks, 7 categories). Versioned id: the generic livebench id mixes earlier releases (e.g. GPT-5.5 80.71 there vs 80.2 on this release).",
+    "metric": "score_pct"
+  },
+  {
+    "id": "livebench_2026_06_25_reasoning",
+    "name": "LiveBench (release 2026-06-25) — Reasoning",
+    "category": "reasoning",
+    "description": "LiveBench Reasoning category average on the 2026-06-25 release.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "livebench_2026_06_25_coding",
+    "name": "LiveBench (release 2026-06-25) — Coding",
+    "category": "coding",
+    "description": "LiveBench Coding category average on the 2026-06-25 release.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "livebench_2026_06_25_agentic_coding",
+    "name": "LiveBench (release 2026-06-25) — Agentic Coding",
+    "category": "coding",
+    "description": "LiveBench Agentic Coding category average on the 2026-06-25 release.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "livebench_2026_06_25_mathematics",
+    "name": "LiveBench (release 2026-06-25) — Mathematics",
+    "category": "reasoning",
+    "description": "LiveBench Mathematics category average on the 2026-06-25 release.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "livebench_2026_06_25_data_analysis",
+    "name": "LiveBench (release 2026-06-25) — Data Analysis",
+    "category": "reasoning",
+    "description": "LiveBench Data Analysis category average on the 2026-06-25 release.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "livebench_2026_06_25_language",
+    "name": "LiveBench (release 2026-06-25) — Language",
+    "category": "reasoning",
+    "description": "LiveBench Language category average on the 2026-06-25 release.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "livebench_2026_06_25_instruction_following",
+    "name": "LiveBench (release 2026-06-25) — Instruction Following",
+    "category": "reasoning",
+    "description": "LiveBench Instruction Following category average on the 2026-06-25 release.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "sonar_leaderboard_java_pass_pct",
+    "name": "SonarSource LLM leaderboard — Java pass %",
+    "category": "coding",
+    "description": "Functional pass rate on SonarSource's Java code-generation suite (live leaderboard). Kept apart from the 2025-report ids (sonar_weighted_pass1_java).",
+    "metric": "pass_rate_pct"
+  },
+  {
+    "id": "sonar_leaderboard_java_issue_density_kloc_lower_better",
+    "name": "SonarSource LLM leaderboard — Java issue density (issues/KLOC)",
+    "category": "coding",
+    "description": "SonarQube issues per KLOC of generated Java (live leaderboard).",
+    "metric": "issues_per_kloc_lower_better"
+  },
+  {
+    "id": "swe_rebench_2026_05_15_to_07_01",
+    "name": "SWE-rebench (window 2026-05-15 → 07-01) — resolved rate",
+    "category": "coding",
+    "description": "SWE-rebench resolved rate on the 111 fresh problems (65 repositories) of the 2026-05-15 → 2026-07-01 window. Window-specific id; the generic swe_rebench holds earlier windows.",
+    "metric": "resolved_pct"
+  },
+  {
+    "id": "swe_rebench_2026_05_15_to_07_01_pass5",
+    "name": "SWE-rebench (window 2026-05-15 → 07-01) — pass@5",
+    "category": "coding",
+    "description": "SWE-rebench pass@5 on the same window.",
+    "metric": "pass_rate_pct"
+  },
+  {
+    "id": "vulcanbench_frontier_v4_combined",
+    "name": "VulcanBench Frontier v4 — combined score",
+    "category": "coding",
+    "description": "VulcanBench Frontier v4 (23 behavioral-reconstruction tasks). Combined score = functional correctness 50%, lint+complexity 8.5%, security 8.5%, Code quality 33% (LLM-judge panel). Code-quality protocol version differs per report (v3.6–v3.11); not comparable to earlier VulcanBench suites.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "wiz_cyber_arena_overall_claude_code",
+    "name": "Wiz Cyber Model Arena — Overall (macro-average of the 4 categories), Claude Code harness",
+    "category": "cybersecurity",
+    "description": "Wiz Cyber Model Arena (wiz.io/cyber-model-arena): offensive-security agent tasks, pass@1 per category, Claude Code harness, reasoning set to high, 1000 s per run, no CVE databases. Scores depend on the harness, so each harness has its own id.",
+    "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "wiz_cyber_arena_code_vulns_claude_code",
+    "name": "Wiz Cyber Model Arena — Code Vulns (221 challenges), Claude Code harness",
+    "category": "cybersecurity",
+    "description": "Wiz Cyber Model Arena (wiz.io/cyber-model-arena): offensive-security agent tasks, pass@1 per category, Claude Code harness, reasoning set to high, 1000 s per run, no CVE databases. Scores depend on the harness, so each harness has its own id.",
+    "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "wiz_cyber_arena_api_security_claude_code",
+    "name": "Wiz Cyber Model Arena — API Security (54 challenges), Claude Code harness",
+    "category": "cybersecurity",
+    "description": "Wiz Cyber Model Arena (wiz.io/cyber-model-arena): offensive-security agent tasks, pass@1 per category, Claude Code harness, reasoning set to high, 1000 s per run, no CVE databases. Scores depend on the harness, so each harness has its own id.",
+    "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "wiz_cyber_arena_websec_ctf_claude_code",
+    "name": "Wiz Cyber Model Arena — Websec.fr CTFs (29 challenges), Claude Code harness",
+    "category": "cybersecurity",
+    "description": "Wiz Cyber Model Arena (wiz.io/cyber-model-arena): offensive-security agent tasks, pass@1 per category, Claude Code harness, reasoning set to high, 1000 s per run, no CVE databases. Scores depend on the harness, so each harness has its own id.",
+    "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "wiz_cyber_arena_cloud_security_claude_code",
+    "name": "Wiz Cyber Model Arena — Cloud Security (23 challenges), Claude Code harness",
+    "category": "cybersecurity",
+    "description": "Wiz Cyber Model Arena (wiz.io/cyber-model-arena): offensive-security agent tasks, pass@1 per category, Claude Code harness, reasoning set to high, 1000 s per run, no CVE databases. Scores depend on the harness, so each harness has its own id.",
+    "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "wiz_cyber_arena_overall_adk_react",
+    "name": "Wiz Cyber Model Arena — Overall (macro-average of the 4 categories), ADK React harness",
+    "category": "cybersecurity",
+    "description": "Wiz Cyber Model Arena (wiz.io/cyber-model-arena): offensive-security agent tasks, pass@1 per category, ADK React harness, reasoning set to high, 1000 s per run, no CVE databases. Scores depend on the harness, so each harness has its own id.",
+    "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "wiz_cyber_arena_code_vulns_adk_react",
+    "name": "Wiz Cyber Model Arena — Code Vulns (221 challenges), ADK React harness",
+    "category": "cybersecurity",
+    "description": "Wiz Cyber Model Arena (wiz.io/cyber-model-arena): offensive-security agent tasks, pass@1 per category, ADK React harness, reasoning set to high, 1000 s per run, no CVE databases. Scores depend on the harness, so each harness has its own id.",
+    "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "wiz_cyber_arena_api_security_adk_react",
+    "name": "Wiz Cyber Model Arena — API Security (54 challenges), ADK React harness",
+    "category": "cybersecurity",
+    "description": "Wiz Cyber Model Arena (wiz.io/cyber-model-arena): offensive-security agent tasks, pass@1 per category, ADK React harness, reasoning set to high, 1000 s per run, no CVE databases. Scores depend on the harness, so each harness has its own id.",
+    "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "wiz_cyber_arena_websec_ctf_adk_react",
+    "name": "Wiz Cyber Model Arena — Websec.fr CTFs (29 challenges), ADK React harness",
+    "category": "cybersecurity",
+    "description": "Wiz Cyber Model Arena (wiz.io/cyber-model-arena): offensive-security agent tasks, pass@1 per category, ADK React harness, reasoning set to high, 1000 s per run, no CVE databases. Scores depend on the harness, so each harness has its own id.",
+    "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "wiz_cyber_arena_cloud_security_adk_react",
+    "name": "Wiz Cyber Model Arena — Cloud Security (23 challenges), ADK React harness",
+    "category": "cybersecurity",
+    "description": "Wiz Cyber Model Arena (wiz.io/cyber-model-arena): offensive-security agent tasks, pass@1 per category, ADK React harness, reasoning set to high, 1000 s per run, no CVE databases. Scores depend on the harness, so each harness has its own id.",
+    "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "htb_ai_range_owasp_top10_success_rate",
+    "name": "HTB AI Range — OWASP Top 10 challenge pack (success rate)",
+    "category": "cybersecurity",
+    "description": "Hack The Box AI Range benchmark: 10 OWASP Top 10 web challenges (very easy to hard) × 10 attempts per model, identical agent (todo / shell / check-flag tools), 100-turn limit, binary flag capture. Stored value = total solves / 100 runs, summed from the published per-challenge matrix.",
+    "metric": "success_rate_pct"
+  },
+  {
+    "id": "putnambench_lean_solved",
+    "name": "PutnamBench — Lean problems solved (leaderboard)",
+    "category": "math",
+    "description": "Number of PutnamBench Lean 4 problems (with answer placeholders filled) solved, as listed on the official PutnamBench leaderboard (results.json). The problem set grew over time (640 → 657 → 672); each row notes the entry date, benchmark commit and compute budget.",
+    "metric": "count_higher_better"
+  },
+  {
+    "id": "physbench",
+    "name": "PhysBench (test, overall accuracy)",
+    "category": "multimodal",
+    "description": "PhysBench (ICLR 2025, arXiv 2501.16411): 10,002 video-image-text test entries on VLM physical-world understanding across object property, relationships (spatial), scene (environment) and dynamics (phenomena). Official leaderboard overall accuracy; human 95.87.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "aa_speech_to_speech_quality_index",
+    "name": "Artificial Analysis Speech-to-Speech Quality Index",
+    "category": "audio",
+    "description": "AA composite for native speech-to-speech models: equal-weight mean of Big Bench Audio (reasoning), τ³-Voice (agentic voice tasks) and Full-Duplex-Bench (conversational dynamics).",
+    "metric": "index_points"
+  },
+  {
+    "id": "simulacrabench",
+    "name": "SimulacraBench (NeurIPS 2026 competition)",
+    "category": "social_science",
+    "description": "NeurIPS 2026 competition track: predict survey responses of hard-to-reach populations on three unreleased UNHCR, UNICEF and World Bank microdata sets; code-to-data evaluation with a calibration-first normalised log score (uniform guess 0, perfect 1). Public launch 2026-08-18; no scores published yet.",
+    "metric": "normalized_log_score"
+  },
+  {
+    "id": "runebench",
+    "name": "RuneBench (RuneScape agent benchmark)",
+    "category": "agentic",
+    "description": "AI coding agents play RuneScape by writing TypeScript against an emulated game server (rs-sdk), with wiki-derived markdown knowledge files; tasks are scored by XP rate per skill within a fixed window. Framework published; no model results table yet.",
+    "metric": "xp_rate"
+  },
+  {
+    "id": "medqa",
+    "name": "MedQA (USMLE)",
+    "category": "medical",
+    "description": "MedQA (Jin et al., 2021): USMLE-style multiple-choice medical exam questions (US English subset; 4-option test set is the common setting). Accuracy; variants with 5 options, 0-shot or best-of-N are stored under medqa_* ids.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "lifescibench",
+    "name": "LifeSciBench",
+    "category": "medical",
+    "description": "LifeSciBench (OpenAI + Tacit Labs, 2026): 750 expert-authored life-science research tasks across seven workflows and seven domains, each graded against an expert rubric; problem-weighted normalized rubric score (GPT-Rosalind 0.576 in the preprint).",
+    "metric": "normalized rubric score"
+  },
+  {
+    "id": "lifescibench_pass_rate",
+    "name": "LifeSciBench Task Pass Rate",
+    "category": "medical",
+    "description": "LifeSciBench task pass rate: share of the 750 tasks on which the model meets the pass threshold (>=70% of rubric points); GPT-Rosalind 36.1% in the preprint.",
+    "metric": "task pass rate (>=70% rubric)"
+  },
+  {
+    "id": "webtailbench",
+    "name": "WebTailBench",
+    "category": "agent",
+    "description": "Microsoft WebTailBench (Fara-7B release): 609 long-tail web tasks across 11 segments (shopping, flights, hotels, restaurants, activities, ticketing, real estate, jobs, shopping lists, comparison shopping, compositional). Stored values are the micro-average success rate from the dataset card.",
+    "metric": "macro avg accuracy"
+  },
+  {
+    "id": "omol25_open_molecules_2025",
+    "name": "OMol25 — Open Molecules 2025",
+    "category": "chemistry-DFT",
+    "description": "Meta FAIR Open Molecules 2025 dataset and leaderboard for machine-learned interatomic potentials on DFT-labelled molecular systems (fair-chem). No scores stored yet.",
+    "metric": "score"
+  },
+  {
+    "id": "general365",
+    "name": "General365",
+    "category": "reasoning",
+    "description": "General365 (arXiv 2604.11778): 365 diverse, challenging general-reasoning tasks; accuracy on the complete benchmark.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "fintrace_overall",
+    "name": "FinTrace (overall score)",
+    "category": "agentic",
+    "description": "FinTrace (arXiv 2604.10015, COLM 2026): 800 financial tool-calling trajectories scored on a nine-metric rubric; overall = mean of the nine metrics normalized to [0,1].",
+    "metric": "score_0_1"
+  },
+  {
+    "id": "livenewsbench_human_verified",
+    "name": "LiveNewsBench (human-verified test set)",
+    "category": "agentic",
+    "description": "LiveNewsBench (arXiv 2602.13543): agentic web-search QA on freshly curated news; human-verified test set, local agent framework (<=5 searches, <=5 page visits per question).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "burmese_san",
+    "name": "BURMESE-SAN",
+    "category": "multilingual",
+    "description": "BURMESE-SAN (arXiv 2602.18788, AI Singapore et al.): Burmese NLP benchmark (NLU, reasoning, NLG, cultural tasks); MY = overall Burmese score, zero-shot.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "supchain_bench_qa_with_context",
+    "name": "SupChain-Bench QA (with context)",
+    "category": "domain",
+    "description": "SupChain-Bench (arXiv 2602.07342): real-world supply-chain management QA; accuracy with the proprietary context documents provided.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "supchain_bench_tool_calling_with_sop",
+    "name": "SupChain-Bench tool calling (with SOP)",
+    "category": "agentic",
+    "description": "SupChain-Bench (arXiv 2602.07342): multi-step supply-chain tool calling (up to 7 tools, 30+ steps); information-retrieval accuracy when the Standard Operating Procedure is provided.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "olfactory_perception_op",
+    "name": "Olfactory Perception (OP) benchmark",
+    "category": "science",
+    "description": "OP benchmark (arXiv 2604.00002): LLM olfactory perception — odor classification, descriptors, intensity, pleasantness, RATA, similarity, receptor activation, smell identification; overall = unweighted mean of 8 task scores, compound-name prompts.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "bequ_knowledge_expression_f1",
+    "name": "BeQu (Beyond Questions) knowledge-expression F1",
+    "category": "knowledge",
+    "description": "Beyond Questions (arXiv 2605.26937): LLM knowledge expression via elicited triples; Experiment 1 overall F1 against entailment judgments (0-1).",
+    "metric": "f1_0_1"
+  },
+  {
+    "id": "structured_output_benchmark_overall",
+    "name": "Structured Output Benchmark (overall, coverage-adjusted)",
+    "category": "coding",
+    "description": "Structured Output Benchmark (arXiv 2604.25359): multi-source (text/image/audio) structured-output quality; coverage-adjusted Overall across seven per-record metrics (0-1).",
+    "metric": "score_0_1"
+  },
+  {
+    "id": "ahb_overall_asr_lower_better",
+    "name": "Adversarial Humanities Benchmark — overall ASR",
+    "category": "safety",
+    "description": "Adversarial Humanities Benchmark (arXiv 2604.18487): attack success rate of humanities-style (stylistic) transformations of harmful prompts, EU GPAI CoP risk taxonomy; overall ASR across risks (lower = safer).",
+    "metric": "asr_pct_lower_better"
+  },
+  {
+    "id": "monitorbench_cot_only_monitorability",
+    "name": "MonitorBench — CoT-only monitorability",
+    "category": "safety",
+    "description": "MonitorBench (arXiv 2603.28590, COLM 2026): 1,514 instances / 19 tasks / 7 categories testing whether chain-of-thought reveals decision-critical factors; average monitorability score over tasks, CoT-only monitor scope, standard setting (Qwen3-32B monitor). Tasks refused by a model are excluded from its average.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "alpsbench_memory_extraction_f1",
+    "name": "AlpsBench Task 1 — memory extraction F1",
+    "category": "agentic",
+    "description": "AlpsBench (arXiv 2603.26680, SIGIR 2026): LLM personalization from real dialogues; Task 1 = personalized-memory extraction, semantic-matching F1.",
+    "metric": "f1_0_1"
+  },
+  {
+    "id": "alpsbench_memory_update_f1",
+    "name": "AlpsBench Task 2 — memory update F1",
+    "category": "agentic",
+    "description": "AlpsBench (arXiv 2603.26680, SIGIR 2026): Task 2 = updating persistent memory with evolving user information, semantic-matching F1.",
+    "metric": "f1_0_1"
+  },
+  {
+    "id": "prepbench_prep_code_acc",
+    "name": "PrepBench — end-to-end Prep-Code accuracy",
+    "category": "coding",
+    "description": "PrepBench (arXiv 2605.08687): natural-language-driven data preparation; end-to-end Prep-Code setting accuracy (Table 6 RQ1).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "pancanbench_rubric_score",
+    "name": "PanCanBench — average rubric score",
+    "category": "medical",
+    "description": "PanCanBench (arXiv 2603.01343): real patient questions on pancreatic cancer, expert-rubric grading; average rubric score per model (Figure 4a; only the values named in §3.3.1 text are ingested).",
+    "metric": "score_pct"
+  },
+  {
+    "id": "locobench_lcbs",
+    "name": "LoCoBench — LCBS (LoCoBench Score)",
+    "category": "coding",
+    "description": "LoCoBench (arXiv 2509.09614, Salesforce): long-context software-engineering benchmark (8 task categories, 10 languages, 10K-1M tokens); LCBS aggregate score over 17 metrics in 4 dimensions (higher is better, ~0-5 scale).",
+    "metric": "score_0_5"
+  },
+  {
+    "id": "infoops_bench_compliance_rate_lower_better",
+    "name": "InfoOps Bench — compliance rate (lower better)",
+    "category": "safety",
+    "description": "Live information-operations safety benchmark (arXiv 2607.28503): share of prompts where the model amplifies or preserves a false political claim in a social-media post. Lower = more resistant.",
+    "metric": "rate_pct"
+  },
+  {
+    "id": "infoops_bench_fact_checked_rate",
+    "name": "InfoOps Bench — fact-checked rate",
+    "category": "safety",
+    "description": "InfoOps Bench (arXiv 2607.28503): share of responses that fact-check the claim. Higher = better.",
+    "metric": "rate_pct"
+  },
+  {
+    "id": "orca_bench_rca_depth",
+    "name": "ORCA-bench — RCA depth (884 incidents)",
+    "category": "agentic",
+    "description": "ORCA-bench (arXiv 2607.28545): on-call root-cause analysis over 884 injected incidents in a microservice system (Terminus-2 harness, code + Grafana telemetry). RCA depth gives partial credit toward the root causes.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "orca_bench_rca_accuracy",
+    "name": "ORCA-bench — RCA accuracy (884 incidents)",
+    "category": "agentic",
+    "description": "ORCA-bench (arXiv 2607.28545): share of incidents where the agent names all root causes correctly.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "orca_bench_hallucination_rate_lower_better",
+    "name": "ORCA-bench — hallucination rate (lower better)",
+    "category": "agentic",
+    "description": "ORCA-bench (arXiv 2607.28545): share of RCA reports with hallucinated causes.",
+    "metric": "rate_pct"
+  },
+  {
+    "id": "orca_bench_verified_rca_depth",
+    "name": "ORCA-bench Verified — RCA depth (32 tasks)",
+    "category": "agentic",
+    "description": "ORCA-bench Verified subset (arXiv 2607.28545, 32 human-verified incident tasks): RCA depth.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "orca_bench_verified_rca_accuracy",
+    "name": "ORCA-bench Verified — RCA accuracy (32 tasks)",
+    "category": "agentic",
+    "description": "ORCA-bench Verified subset (arXiv 2607.28545): RCA accuracy.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "memebench_vikr_success",
+    "name": "MemeBench — VIKR success (closed-book, overall)",
+    "category": "multimodal",
+    "description": "MemeBench (arXiv 2607.27798): culture-dependent meme interpretation, 1,253 memes (768 Chinese, 485 English). Success requires Visual, Identity, Knowledge and Reasoning coverage; dual-judge intersection (Gemini-3.1-Pro ∩ GPT-5.1).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "memebench_vikr_success_english",
+    "name": "MemeBench — VIKR success (English)",
+    "category": "multimodal",
+    "description": "MemeBench (arXiv 2607.27798) English split, 485 memes.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "memebench_vikr_success_chinese",
+    "name": "MemeBench — VIKR success (Chinese)",
+    "category": "multimodal",
+    "description": "MemeBench (arXiv 2607.27798) Chinese split, 768 memes.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "hof_bench_strict_rediscovery",
+    "name": "HoF-Bench — strict CVE rediscovery (pass@4)",
+    "category": "cybersecurity",
+    "description": "HoF-Bench (arXiv 2607.27030): can inexpensive non-frontier models rediscover 95 real AI-discovered CVEs inside a systematic scaffold? Best of context / no-context condition, strict rediscovery, pass@4.",
+    "metric": "rate_pct"
+  },
+  {
+    "id": "trek_task_perfect_feasible",
+    "name": "TREK — task-perfect rate on feasible trips",
+    "category": "agentic",
+    "description": "TREK (arXiv 2607.26977): travel-planning agent benchmark, 800 tasks over a RESTful API. Headline: share of the 533 feasible tasks where every applicable correctness dimension = 1.0 and all hard gates pass.",
+    "metric": "rate_pct"
+  },
+  {
+    "id": "trek_task_perfect_infeasible",
+    "name": "TREK — correct handling of infeasible trips",
+    "category": "agentic",
+    "description": "TREK (arXiv 2607.26977): share of the 267 infeasible tasks handled correctly (refusal/explanation).",
+    "metric": "rate_pct"
+  },
+  {
+    "id": "biosecbench_surveillance_endpoint_pass_rate",
+    "name": "BioSecBench-Surveillance — endpoint pass rate",
+    "category": "science",
+    "description": "BioSecBench-Surveillance (arXiv 2607.19262): 100 verifiable pathogen genomic-surveillance evaluations from raw sequencing data. Mean per-evaluation pass rate over gradable attempts; value is the model's best model-harness configuration (harness in note).",
+    "metric": "rate_pct"
+  },
+  {
+    "id": "inferencebench_aggregate_speedup",
+    "name": "InferenceBench — aggregate serving speedup (×)",
+    "category": "coding",
+    "description": "InferenceBench (arXiv 2607.20468): AI agents optimise an LLM inference server (Mistral-7B on one H100, 2-hour budget); geometric-mean speedup over the naive PyTorch baseline across four scenarios (TTFT, TPOT, throughput, geomean). Failed runs count as 1.00×. Higher is better.",
+    "metric": "speedup_x"
+  },
+  {
+    "id": "docops_pass_rate_terminus2",
+    "name": "DocOps — task pass rate (Terminus-2 harness)",
+    "category": "agentic",
+    "description": "DocOps (arXiv 2607.19865): 210 verifiable document-operation tasks (xlsx/docx/pptx/pdf), deterministic verifier. Pass rate under the shared Terminus-2 bash harness (the one harness every model ran); paper also reports DocTools, Codex and Claude Code with/without skills (best: GPT-5.5 + Codex + skills 67.1%).",
+    "metric": "rate_pct"
+  },
+  {
+    "id": "medcta_outcome_gacc",
+    "name": "MedCTA — outcome accuracy (Gacc)",
+    "category": "medical",
+    "description": "MedCTA (arXiv 2606.11702): clinical tool-agent benchmark — the model must drive medical imaging/analysis tools step by step and produce a final clinical answer. Official outcome score Gacc.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "openskillrisk_fsafe",
+    "name": "OpenSkillRisk — safe-completion score (Fsafe)",
+    "category": "safety",
+    "description": "OpenSkillRisk (arXiv 2607.20121): agents using real-world risky third-party skills (exfiltration, authority expansion, data harvesting, persistence, control-plane hijacking). Fsafe combines risk avoidance and task completion; value is the model's best CLI-harness configuration (harness in note).",
+    "metric": "score_pct"
+  },
+  {
+    "id": "openskillrisk_asr_lower_better",
+    "name": "OpenSkillRisk — attack success rate (lower better)",
+    "category": "safety",
+    "description": "OpenSkillRisk (arXiv 2607.20121): share of runs executing the risky skill path, same configuration as openskillrisk_fsafe.",
+    "metric": "rate_pct"
+  },
+  {
+    "id": "jigshape_4x4_piece_accuracy",
+    "name": "JigShape — 4×4 piece accuracy (zero-shot)",
+    "category": "multimodal",
+    "description": "JigShape (arXiv 2607.27670): jigsaw puzzles with shaped (tab/blank) pieces testing visual-geometric reasoning in VLMs; piece accuracy on the 4×4 grid, 250 samples, zero-shot (random 6.25).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "jigshape_4x4_exact_match",
+    "name": "JigShape — 4×4 exact match (zero-shot)",
+    "category": "multimodal",
+    "description": "JigShape (arXiv 2607.27670): whole-puzzle exact match on the 4×4 grid, zero-shot.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "deploybench_success_rate",
+    "name": "DeployBench — research-artifact deployment success rate",
+    "category": "agentic",
+    "description": "DeployBench (arXiv 2606.05238): LLM agents set up and run research-paper artifacts (environment setup, GPU/CUDA, native builds) until a task-specific verifier passes.",
+    "metric": "rate_pct"
+  },
+  {
+    "id": "mcpevol_bench_ecs",
+    "name": "MCPEvol-Bench — evolution consistency score (ECS)",
+    "category": "agentic",
+    "description": "MCPEvol-Bench (arXiv 2607.14642): LLM agents on tasks whose MCP servers evolve over 0/3/5 mutation rounds (MCP-Bench evaluation framework); ECS summarises task fulfilment and planning effectiveness across the three stages (0–10 scale, higher better).",
+    "metric": "score_0_10"
+  },
+  {
+    "id": "vector_bench_full_spec_success",
+    "name": "Vector-Bench — full specification success (SVG edit)",
+    "category": "coding",
+    "description": "Vector-Bench (arXiv 2607.19056): 40 surgical SVG-code repair tasks with a deterministic verifier; share of tasks meeting the full specification (one decoded response per model-task, via OpenRouter). Only endpoints with <50% truncated outputs are recorded.",
+    "metric": "rate_pct"
+  },
+  {
+    "id": "vector_bench_soft_progress",
+    "name": "Vector-Bench — soft progress (SVG edit)",
+    "category": "coding",
+    "description": "Vector-Bench (arXiv 2607.19056): soft progress toward the specification (partial credit), same runs as vector_bench_full_spec_success.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "imcbench_overall",
+    "name": "IMCBench — image-grounded medical conversation (overall, 1–5)",
+    "category": "medical",
+    "description": "IMCBench (arXiv 2606.28556): multimodal LLMs in image-grounded patient conversations, 155 scenarios per model; mean of Safety, Accuracy and Uncertainty rubric scores (1–5) from an LLM jury (Claude Opus 4.6 + GPT-5.2 — both also evaluated, so self-judging bias is possible).",
+    "metric": "score_1_5"
   },
   {
     "id": "caibench",

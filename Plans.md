@@ -1,8 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 284c — AA v4.3 comparison objects mapped (2026-09-24)
-**3,555 models · 4,750 benchmarks · 28,226 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 285 — resource/seed_sources audit (leaderboards · arXiv · datasets) (2026-09-24)
+**3,574 models · 4,859 benchmarks · 30,828 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-24 Session 285 — audit of the leaderboards, arXiv papers and dataset sites in seed_sources
+- **2,602 scores, 19 new models, 109 new benchmarks (+5 description updates), 0 FK / 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s285_…_scores.json`). Backup `data/benchmark.db.pre-s285.bak`. Targets: sources no DB row cites (leaderboards 122 / arXiv 127 / datasets 34; policy/institution pages excluded). Five parallel passes; each draft checked line-by-line (verify.py) and spot-checked here (LiveBench column order, KMMMU mean±std split, General365 overall column) before merging.
+- L1 general/coding/agent 1,688 (Epoch ECI CSV 560, LiveBench 2026-06-25 440, APEX 363, BaxBench 150, METR, HAL, SWE-rebench, HLE CAISI, Sonar, Kilo, VulcanBench v4, FrontierSWE, Vending-Bench, SRE-bench, Harvey, ITBench); L2 cyber/safety 168 (Wiz Cyber Arena 140, HTB AI Range, Irregular, AISI RealityTest); L3 science/multimodal/datasets 218 (AA video arenas 108 with 6 new video models, AA speech-to-speech 35, IMO-ProofBench, PutnamBench Lean, OpenVLM, PhysBench, ProteinGym; SimulacraBench/RuneBench definitions); A1/A2 arXiv 528 from 31 papers.
+- Conflicts reported, not overwritten: Irregular GPT-5.6 Sol re-measure, Epoch ×10, llm-stats BrowseComp ×4.
+- **Follow-ups**: Irregular id fragmentation (up to 4 spellings per Atomic category + 0–1 scale id); `putnambench` / `ocrbench` mixed scales; AA video-arena ids fragmented (~12); duplicate model ids (varco-vision-2-14b vs 2.0-14b, ltx-2.3-pro ×2, grok-voice-think-fast vs -1.0, nova-2-lite vs 2.0-lite); dead URLs without a known replacement (3 AISI blog posts, OpenAI cyber-range, HUMAN report, PurpleLlama CSE4); arXiv papers not processed (UI-TARS-2, PolyWorkBench, SecRespond and ~35 lower-value ones).
 ### 2026-09-24 Session 284c — the 673 AA model objects in the S284 page payloads
 - **3,117 scores for 281 models, 0 FK, 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s284c_…_scores.json`). Closes the "AA v4.3 672-object mapping" follow-up. Backup `data/benchmark.db.pre-s284c.bak`.
 - Exact normalized slug↔id match (vendor prefix dropped, dots→dashes, duplicates collapsed via the canonical map). Excluded: AA Non-reasoning variants of DB base ids (162 rows) and dated AA variants whose DB model is a separate id (115 rows). Score fields only; cost/time/tokens/speed/price left out. `aa_intelligence_index_v4_3` now covers 301 models.
