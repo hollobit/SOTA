@@ -6,9 +6,11 @@
     <title>LLM/Frontier Model's Benchmark & SOTA Dashboard</title>
     <link rel="stylesheet" href="css/tailwind.css">
     <link rel="stylesheet" href="css/tokens.css">
-    <link rel="stylesheet" href="css/style.css?v=20260528c">
+    <link rel="stylesheet" href="css/style.css?v=20260924d">
     <link rel="stylesheet" href="css/print.css?v=20260520a" media="print">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js" defer></script>
+    <!-- three.js for the Price tab 3D explorer; imported lazily by js/price3d.js only when the 3D view is opened -->
+    <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen">
     <header class="border-b border-gray-800 px-6 py-4 flex justify-between items-start">
@@ -286,6 +288,32 @@
                         <input type="checkbox" id="price-pareto" class="accent-blue-500"> Pareto 경계선(斬殺線)
                     </label>
                 </div>
+            </div>
+            <div class="flex items-center gap-2 mb-2">
+                <button id="price-view-2d" class="p3d-tab p3d-tab-on" type="button">📈 2D 차트</button>
+                <button id="price-view-3d" class="p3d-tab" type="button">🧊 3D 탐색 <span class="text-xs text-gray-400">지표 사이를 날아다니기</span></button>
+                <span id="price3d-status" class="text-xs text-gray-400"></span>
+            </div>
+            <div id="price3d-wrap" style="display:none;position:relative">
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                    <button id="price3d-prev" class="p3d-btn" type="button" title="이전 지표 (←)">◀</button>
+                    <div id="price3d-chips" class="p3d-chips"></div>
+                    <button id="price3d-next" class="p3d-btn" type="button" title="다음 지표 (→)">▶</button>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 mb-2 text-sm text-gray-300">
+                    <button id="price3d-tour" class="p3d-btn" type="button" title="지표를 자동으로 순회 (Space)">▶ 자동 투어</button>
+                    <button id="price3d-reset" class="p3d-btn" type="button" title="현재 지표 정면 시점으로">⟲ 시점 초기화</button>
+                    <label class="flex items-center gap-1.5 cursor-pointer select-none"><input type="checkbox" id="price3d-threads" class="accent-blue-500" checked> 지표 간 궤적</label>
+                    <label class="flex items-center gap-1.5 cursor-pointer select-none"><input type="checkbox" id="price3d-pareto" class="accent-blue-500" checked> Pareto 경계</label>
+                    <label class="flex items-center gap-1.5 cursor-pointer select-none"><input type="checkbox" id="price3d-labels" class="accent-blue-500" checked> 상위 3개 이름</label>
+                    <input id="price3d-search" list="price3d-search-list" placeholder="모델 찾기 (예: Opus 5.5)" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm w-56">
+                    <datalist id="price3d-search-list"></datalist>
+                </div>
+                <div id="price3d-canvas" style="width:100%;height:640px;border-radius:10px;overflow:hidden;background:#0b1220"></div>
+                <div id="price3d-tip" class="p3d-tip" style="display:none"></div>
+                <p id="price3d-info" class="text-xs text-gray-400 mt-2"></p>
+                <div id="price3d-legend" class="text-xs text-gray-400 mt-1"></div>
+                <p class="text-xs text-gray-500 mt-1">X = 가격(로그) · Y = 지표 내 상대 위치(최저→최고, 낮을수록 좋은 지표는 뒤집음) · Z = 성능 지표. 드래그: 회전 · 휠: 확대 · 우클릭 드래그: 이동 · ←/→: 지표 이동 · Space: 자동 투어 · 다른 층의 점 클릭: 그 지표로 이동 · 현재 층의 점 클릭: 모델 상세. 위의 가격 기준·기간·개발사·국가 필터가 그대로 적용됩니다.</p>
             </div>
             <div id="price-chart" style="width:100%;height:560px;"></div>
             <p id="price-note" class="text-xs text-gray-500 mt-2"></p>
@@ -1022,6 +1050,6 @@
     <script defer src="js/charts.js?v=20260504c"></script>
     <script defer src="js/filters.js?v=20260424"></script>
     <script defer src="js/explorer.js?v=20260822a"></script>
-    <script defer src="js/app.js?v=20260924c"></script>
+    <script defer src="js/app.js?v=20260924d"></script>
 </body>
 </html>

@@ -637,7 +637,7 @@ var App = {
         // to a blank pane.
         'video-gen':       ['js/image-gen.js', 'js/video-gen.js'],
         timeline:          ['js/frontier-compare.js', 'js/timeline.js'],
-        price:             ['js/frontier-compare.js', 'js/timeline.js', 'js/price.js']
+        price:             ['js/frontier-compare.js', 'js/timeline.js', 'js/price.js', 'js/price3d.js']
     },
 
     // Per-tab init runner — called once the module's scripts are loaded
@@ -655,7 +655,10 @@ var App = {
         'image-gen':   function(self) { if (typeof ImageGen !== 'undefined' && ImageGen.init) ImageGen.init(self.data.models, self.data.benchmarks, self.data.scores); },
         'video-gen':   function(self) { if (typeof VideoGen !== 'undefined' && VideoGen.init) VideoGen.init(self.data.models, self.data.benchmarks, self.data.scores); },
         timeline:      function(self) { if (typeof Timeline !== 'undefined') Timeline.init(self.data.models, self.data.benchmarks, self.data.scores); },
-        price:         function(self) { if (typeof Price !== 'undefined' && Price.init) Price.init(self.data.models, self.data.benchmarks, self.data.scores); }
+        price:         function(self) {
+            if (typeof Price !== 'undefined' && Price.init) Price.init(self.data.models, self.data.benchmarks, self.data.scores);
+            if (typeof Price3D !== 'undefined' && Price3D.init) Price3D.init();
+        }
     },
 
     _scriptCache: {}, // src -> Promise<void>

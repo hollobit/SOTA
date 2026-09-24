@@ -3,6 +3,10 @@
 ## Current Status: Session 286 — second resource audit (stale boards · resource PDFs · remaining arXiv) (2026-09-24)
 **3,578 models · 4,914 benchmarks · 32,122 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-24 Session 287 — Price tab 3D explorer (three.js)
+- New `dashboard/js/price3d.js` (lazy, loaded with the price tab) + 2D/3D toggle; `Price.api` exposes the metrics, price and vendor helpers so both views share the same filters.
+- Metric corridor: X = log price, Y = min-max within the metric (lower-better inverted), Z = one slice per metric with ≥ 8 priced models (31 now). Chips, ←/→, Space tour, per-model threads, per-slice Pareto line, top-3 labels, search, hover tooltip with every metric's value and rank, click → model modal. Slices in front of the focused one are hidden (they filled the camera).
+- three@0.160.0 via import map (jsdelivr); render loop gated by an IntersectionObserver; median frame 8.3 ms locally.
 ### 2026-09-24 Session 286 — second audit of resource/ and seed_sources
 - **1,294 scores, 4 new models, 55 new benchmarks, 0 FK / 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s286_…_scores.json`). Backup `data/benchmark.db.pre-s286.bak`.
 - R1 stale general/agent boards (562): ARC Prize, EQ-Bench CW v3 (new rubric + 2026-09 Elo ids — the stored Elo is a different scale) + Longform, τ-bench, ALE-V1, BFCL v4, FrontierMath T4 v2, OSWorld-Verified. **τ²-bench banking_knowledge**: the fork's "shifted by one" claim was wrong — git history shows the v1.0.1 grading fix (2026-07-16, re-published 2026-08-04); v1.0.0 rows kept, v1.0.1 on `tau2_bench_banking_knowledge_pass{1,4}_v1_0_1`.

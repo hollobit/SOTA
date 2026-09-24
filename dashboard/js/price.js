@@ -555,5 +555,22 @@ window.Price = (function () {
         });
     }
 
-    return { init: init, render: render };
+    // Read-only helpers shared with the 3D explorer (price3d.js) so both views
+    // price, colour and date models identically.
+    var api = {
+        metrics: METRICS, priceIds: PRICE_IDS,
+        vendor: _vendor, vendorColor: _vendorColor, country: _country, flag: _flag,
+        family: _family, relDate: _relDate,
+        price: function (id, basis, hitRate) {
+            if (!_scoreIdx[PRICE_IDS.output]) _scoreIdx = _idx(App && App.data ? App.data.scores : []);
+            return _price(id, basis, hitRate);
+        },
+        scoreIdx: function () {
+            if (!_scoreIdx[PRICE_IDS.output]) _scoreIdx = _idx(App && App.data ? App.data.scores : []);
+            return _scoreIdx;
+        },
+        modelsById: function () { return _modelsById; }
+    };
+
+    return { init: init, render: render, api: api };
 })();
