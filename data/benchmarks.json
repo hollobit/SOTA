@@ -32467,6 +32467,391 @@
     "metric": "score_1_5"
   },
   {
+    "id": "tau2_bench_banking_knowledge_pass4",
+    "name": "tau2-bench Banking Knowledge pass^4 (AllTools)",
+    "category": "agentic",
+    "description": "τ-bench (taubench.com) banking_knowledge domain, pass^4 over four trials, AllTools retrieval config, official Sierra submissions.",
+    "metric": "pass_hat_4_pct"
+  },
+  {
+    "id": "eqbench_creative_writing_v3_rubric",
+    "name": "EQ-Bench Creative Writing v3 (rubric score)",
+    "category": "creative",
+    "description": "EQ-Bench Creative Writing v3 leaderboard rubric score (0-100 scale).",
+    "metric": "score"
+  },
+  {
+    "id": "eqbench_creative_writing_v3_elo_2026_09",
+    "name": "EQ-Bench Creative Writing v3 (Elo, 2026-09 snapshot)",
+    "category": "creative",
+    "description": "EQ-Bench Creative Writing v3 Elo from the live board read 2026-09-24. Elo is relative to the current model pool, so it is versioned by snapshot and not mixed with creativity_eqbench_cw_v3 (a paper-reported Elo on a different scale).",
+    "metric": "elo"
+  },
+  {
+    "id": "cisco_image_safety_score",
+    "name": "Cisco AI Defense — image (multimodal) safety score",
+    "category": "safety",
+    "description": "Cisco AI Defense LLM Security Leaderboard image-prompt safety score (higher is safer); reported only for models with image data.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "multipl_e",
+    "name": "MultiPL-E",
+    "category": "coding",
+    "description": "MultiPL-E (Cassano et al., 2023): HumanEval/MBPP translated to many programming languages; Qwen reports 0-shot average over Python, C++, Java, PHP, TypeScript, C#, Bash, JavaScript.",
+    "metric": "pass@1"
+  },
+  {
+    "id": "swe_bench_pretrain_qwen",
+    "name": "SWE-bench (pre-training variant, Qwen)",
+    "category": "coding",
+    "description": "Qwen's 'SWEBench-Pretrain', a pre-training (base-model) variant of SWE-bench used in Qwen base-model reports; not comparable with agentic SWE-bench scores.",
+    "metric": "resolved_pct"
+  },
+  {
+    "id": "kvoicebench_advbench",
+    "name": "KVoiceBench — AdvBench",
+    "category": "audio",
+    "description": "AdvBench subset of KVoiceBench (SK Telecom's Korean adaptation of VoiceBench; spoken prompts). LLM-judged open-ended score, 1-5 rescaled to 0-100.",
+    "metric": "llm_judged_0_100"
+  },
+  {
+    "id": "kvoicebench_alpacaeval_full",
+    "name": "KVoiceBench — AlpacaEval-Full",
+    "category": "audio",
+    "description": "AlpacaEval-Full subset of KVoiceBench (SK Telecom's Korean adaptation of VoiceBench; spoken prompts). LLM-judged open-ended score, 1-5 rescaled to 0-100.",
+    "metric": "llm_judged_0_100"
+  },
+  {
+    "id": "kvoicebench_alpacaeval",
+    "name": "KVoiceBench — AlpacaEval",
+    "category": "audio",
+    "description": "AlpacaEval subset of KVoiceBench (SK Telecom's Korean adaptation of VoiceBench; spoken prompts). LLM-judged open-ended score, 1-5 rescaled to 0-100.",
+    "metric": "llm_judged_0_100"
+  },
+  {
+    "id": "kvoicebench_bbh",
+    "name": "KVoiceBench — BBH",
+    "category": "audio",
+    "description": "BBH subset of KVoiceBench (SK Telecom's Korean adaptation of VoiceBench; spoken prompts). answer accuracy.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "kvoicebench_commoneval",
+    "name": "KVoiceBench — CommonEval",
+    "category": "audio",
+    "description": "CommonEval subset of KVoiceBench (SK Telecom's Korean adaptation of VoiceBench; spoken prompts). LLM-judged open-ended score, 1-5 rescaled to 0-100.",
+    "metric": "llm_judged_0_100"
+  },
+  {
+    "id": "kvoicebench_mmsu",
+    "name": "KVoiceBench — MMSU",
+    "category": "audio",
+    "description": "MMSU subset of KVoiceBench (SK Telecom's Korean adaptation of VoiceBench; spoken prompts). answer accuracy.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "kvoicebench_openbookqa",
+    "name": "KVoiceBench — OpenBookQA",
+    "category": "audio",
+    "description": "OpenBookQA subset of KVoiceBench (SK Telecom's Korean adaptation of VoiceBench; spoken prompts). answer accuracy.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "kvoicebench_sd_qa",
+    "name": "KVoiceBench — SD-QA",
+    "category": "audio",
+    "description": "SD-QA subset of KVoiceBench (SK Telecom's Korean adaptation of VoiceBench; spoken prompts). answer accuracy.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "kvoicebench_wildvoice",
+    "name": "KVoiceBench — WildVoice",
+    "category": "audio",
+    "description": "WildVoice subset of KVoiceBench (SK Telecom's Korean adaptation of VoiceBench; spoken prompts). LLM-judged open-ended score, 1-5 rescaled to 0-100.",
+    "metric": "llm_judged_0_100"
+  },
+  {
+    "id": "kvoicebench_ifeval",
+    "name": "KVoiceBench — IFEval",
+    "category": "audio",
+    "description": "IFEval subset of KVoiceBench (SK Telecom's Korean adaptation of VoiceBench; spoken prompts). LLM-judged open-ended score, 1-5 rescaled to 0-100.",
+    "metric": "llm_judged_0_100"
+  },
+  {
+    "id": "caibench_base_ctf",
+    "name": "CAIBench — Base Jeopardy CTF (23 challenges, pass100@1)",
+    "category": "cybersecurity",
+    "description": "CAIBench (Alias Robotics, arXiv 2510.24317) Base set: 23 foundational jeopardy CTF challenges, pass100@1 with one tool-using agent in Kali Linux.",
+    "metric": "solve_rate_pct"
+  },
+  {
+    "id": "caibench_cybench_cai_agent",
+    "name": "Cybench (CAIBench one-tool agent, pass100@1)",
+    "category": "cybersecurity",
+    "description": "Cybench's 35 challenges as run inside CAIBench with the CAI one-tool agent, pass100@1. Harness differs from the official cybench id.",
+    "metric": "solve_rate_pct"
+  },
+  {
+    "id": "caibench_cyber_ranges",
+    "name": "CAIBench — Cyber Ranges (pass200@1, red-team agent)",
+    "category": "cybersecurity",
+    "description": "CAIBench Cyber Range challenges, pass200@1 with the CAI red-team agent.",
+    "metric": "solve_rate_pct"
+  },
+  {
+    "id": "ctibench_rcm",
+    "name": "CTIBench — RCM (root-cause mapping)",
+    "category": "cybersecurity",
+    "description": "CTIBench RCM component: map CVE descriptions to CWE root causes (threat-intelligence reasoning).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cybermetric_4500",
+    "name": "CyberMetric-4500",
+    "category": "cybersecurity",
+    "description": "First 4,500 questions of CyberMetric-10000 (cybersecurity knowledge MCQ), as used in CAIBench.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "terminal_bench_1_0",
+    "name": "Terminal-Bench v1 (80-task original set)",
+    "category": "coding",
+    "description": "Original Terminal-Bench (Terminal-Bench-Core v0.1, 80 terminal tasks, 2025), before the 2.x task sets. Separate from terminal_bench_2 / 2_1 / 4 ids.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "polyworkbench_pass1_peak",
+    "name": "PolyWorkBench — Pass@1 (best harness)",
+    "category": "agentic",
+    "description": "PolyWorkBench (arXiv 2607.06008): 67 cross-lingual long-horizon workplace tasks, 10 languages; Pass@1 = best-run mean per-task Grade (structural rubric, 0-1, stored x100). Value is the model's peak across four harnesses (ClaudeCode, OpenClaw, Hermes, Codex); the harness is named in each note.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "reportbench_reference_precision",
+    "name": "ReportBench — reference precision",
+    "category": "research",
+    "description": "ReportBench (ByteDance, arXiv 2508.15804): survey-report generation; precision of cited references against the ground-truth reference list of the source survey (0-1).",
+    "metric": "precision"
+  },
+  {
+    "id": "reportbench_citation_match_rate",
+    "name": "ReportBench — cited-statement match rate",
+    "category": "research",
+    "description": "ReportBench (arXiv 2508.15804): share of cited statements semantically consistent with their cited sources.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "reportbench_noncited_factual_accuracy",
+    "name": "ReportBench — non-cited statement factual accuracy",
+    "category": "research",
+    "description": "ReportBench (arXiv 2508.15804): share of non-cited statements verified as factually correct by web-connected LLMs.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "mscore_rouge_avg",
+    "name": "MSCoRe — average ROUGE",
+    "category": "reasoning",
+    "description": "MSCoRe (arXiv 2509.17628): multi-stage collaborative reasoning over industrial value chains (automotive, pharmaceutical, electronics, energy); average ROUGE across domains and difficulty levels.",
+    "metric": "rouge"
+  },
+  {
+    "id": "safemt_safety_index",
+    "name": "SafeMT — Safety Index (multi-turn multimodal jailbreak)",
+    "category": "safety",
+    "description": "SafeMT (arXiv 2510.12133): multi-turn image-grounded harmful dialogues (2-8 turns); Safety Index (SI, 0-1, higher = safer) combining attack success rate and degree across turn lengths.",
+    "metric": "index"
+  },
+  {
+    "id": "logicskills_validity_english",
+    "name": "LogicSkills — argument validity (English)",
+    "category": "reasoning",
+    "description": "LogicSkills (arXiv 2602.06533): first-order logic skills; argument-validity task with English vocabulary, 300 problems.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "logicskills_countermodel",
+    "name": "LogicSkills — countermodel construction",
+    "category": "reasoning",
+    "description": "LogicSkills (arXiv 2602.06533): construct a countermodel showing an argument is invalid (hardest task), 300 problems.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "eri_mean_score",
+    "name": "ERI — engineering reasoning mean score",
+    "category": "reasoning",
+    "description": "Engineering Reasoning and Instruction benchmark (arXiv 2603.02239): 9 engineering fields x 7 question types; mean 1-5 score from a three-judge panel (Claude Haiku 4.5, GPT-4.1 Mini, Mistral Small 3).",
+    "metric": "score_1_5"
+  },
+  {
+    "id": "legalbench_br_accuracy",
+    "name": "LegalBench-BR — Brazilian legal decision classification accuracy",
+    "category": "legal",
+    "description": "LegalBench-BR (arXiv 2604.18878): zero-shot classification of Brazilian court decisions by legal area; accuracy (macro-F1 in notes).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "fintoolbench_soft_score",
+    "name": "FinToolBench — Soft Score",
+    "category": "agentic",
+    "description": "FinToolBench (arXiv 2603.08262): 760 executable financial tools, 295 tool-required queries; Soft Score (graded answer correctness, 0-1, stored x100). The existing fintoolbench id carries no metric-specific rows.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "wikivqabench_accuracy",
+    "name": "WikiVQABench — accuracy",
+    "category": "multimodal",
+    "description": "WikiVQABench (arXiv 2605.21479): 344 knowledge-grounded visual questions built from Wikidata facts; accuracy.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "assertllm2_bug_kill_ratio",
+    "name": "AssertLLM2 — bug kill ratio",
+    "category": "coding",
+    "description": "AssertLLM2 (arXiv 2605.27472): SystemVerilog assertion generation from specs, verified by formal property verification; bug kill ratio (share of mutated buggy RTL variants detected), average over three runs.",
+    "metric": "ratio_pct"
+  },
+  {
+    "id": "vistr_bench_accuracy",
+    "name": "ViSTR-Bench (Avg.)",
+    "category": "multimodal",
+    "description": "ViSTR-Bench visual spatio-temporal reasoning benchmark; Table II average accuracy across tasks. arXiv:2607.20868.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medrealmm_score",
+    "name": "MedRealMM (overall)",
+    "category": "medical",
+    "description": "MedRealMM real-world clinical multimodal benchmark; overall score from Figure 4(a). arXiv:2607.09142.",
+    "metric": "score"
+  },
+  {
+    "id": "guardianagentbench_overall_avg_llamaindex",
+    "name": "GuardianAgentBench Overall (LlamaIndex)",
+    "category": "safety",
+    "description": "GuardianAgentBench guardian-agent benchmark; Table 5 averaged Overall (O) with the LlamaIndex framework. arXiv:2607.20982.",
+    "metric": "score"
+  },
+  {
+    "id": "copyright_bench_violation_rate_lower_better",
+    "name": "Copyright-Bench violation rate (lower better)",
+    "category": "safety",
+    "description": "Copyright-Bench; Table 2 mean copyright-violation rate across tasks (lower is better). arXiv:2607.21799.",
+    "metric": "violation rate"
+  },
+  {
+    "id": "agents4d_backend_casr_lower_better",
+    "name": "AgentS4D backend cASR (lower better)",
+    "category": "safety",
+    "description": "AgentS4D agent security benchmark; Table S21 backend-model cumulative attack success rate pooled over Hermes/OpenClaw/Claude Code/Codex harnesses (lower is better). arXiv:2607.27294.",
+    "metric": "attack success rate"
+  },
+  {
+    "id": "pause_log_tracking_hard_tc",
+    "name": "PAUSE log tracking (Hard) TC",
+    "category": "agent",
+    "description": "PAUSE benchmark; Table 6 Hard-level task completion. arXiv:2607.27354.",
+    "metric": "task completion"
+  },
+  {
+    "id": "pause_shopping_score",
+    "name": "PAUSE shopping score",
+    "category": "agent",
+    "description": "PAUSE benchmark; Table 7 shopping aggregate score (0-1). arXiv:2607.27354.",
+    "metric": "score"
+  },
+  {
+    "id": "medlayxplain_s_score",
+    "name": "MedLayXplain S (MedLayEval)",
+    "category": "medical",
+    "description": "MedLayXplain-122K Task A lay-register medical image explanation; Table 1 MedLayEval overall S. arXiv:2606.21194.",
+    "metric": "score"
+  },
+  {
+    "id": "longjudgebench_vanilla_avg_acc",
+    "name": "LongJudgeBench (Vanilla, Avg. w/ WP)",
+    "category": "reasoning",
+    "description": "LongJudgeBench long-context LLM-as-judge benchmark; Table 3 vanilla setting average accuracy with position swap. arXiv:2606.01629.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "castle_overall_safety_zh",
+    "name": "CASTLE overall (zh)",
+    "category": "safety",
+    "description": "CASTLE education-safety benchmark; Table 3 overall average (Chinese), 1-5 scale. arXiv:2602.05633.",
+    "metric": "score"
+  },
+  {
+    "id": "castle_overall_safety_en",
+    "name": "CASTLE overall (en)",
+    "category": "safety",
+    "description": "CASTLE education-safety benchmark; Table 3 overall average (English), 1-5 scale. arXiv:2602.05633.",
+    "metric": "score"
+  },
+  {
+    "id": "clinhallu_avg_acc",
+    "name": "ClinHallu (AVG Acc)",
+    "category": "medical",
+    "description": "ClinHallu clinical multimodal hallucination benchmark; Table 2 average accuracy. arXiv:2606.14697.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "issuetrojanbench_eem_rate_lower_better",
+    "name": "IssueTrojanBench exploit execution rate (lower better)",
+    "category": "cybersecurity",
+    "description": "IssueTrojanBench malicious-issue prompt injection against coding agents; per-LLM exploit-execution rate pooled across agents (lower is better). arXiv:2607.20759.",
+    "metric": "rate"
+  },
+  {
+    "id": "janus_average_distortion_lower_better",
+    "name": "Janus average distortion (lower better)",
+    "category": "safety",
+    "description": "Janus framing-distortion benchmark; Table 2 average distortion (lower is better). arXiv:2606.10852.",
+    "metric": "distortion"
+  },
+  {
+    "id": "lomevqa_test_average",
+    "name": "LoMeVQA-test (Average)",
+    "category": "medical",
+    "description": "LoMeVQA longitudinal medical VQA; Table 3 average over tasks. arXiv:2607.27806.",
+    "metric": "score"
+  },
+  {
+    "id": "muppet_multiparty_leak_rate_lower_better",
+    "name": "MuPPET multi-party privacy leaks (lower better)",
+    "category": "safety",
+    "description": "MuPPET multi-party conversational privacy benchmark; Table 2 multi-party privacy-leak rate (lower is better). arXiv:2606.23217.",
+    "metric": "leak rate"
+  },
+  {
+    "id": "muppet_utility_undefended",
+    "name": "MuPPET utility (undefended)",
+    "category": "safety",
+    "description": "MuPPET; Table 3 utility score without defence. arXiv:2606.23217.",
+    "metric": "utility"
+  },
+  {
+    "id": "evoclawbench_nanobot_baseline",
+    "name": "EvoClawBench (nanobot, baseline)",
+    "category": "agent",
+    "description": "EvoClawBench 101-task suite; Table 2 execution-only mean task score, nanobot runtime, BASELINE mode. arXiv:2607.09711.",
+    "metric": "score"
+  },
+  {
+    "id": "tau2_bench_banking_knowledge_pass1_v1_0_1",
+    "name": "tau2-bench banking_knowledge pass^1 (v1.0.1 grading)",
+    "category": "agentic",
+    "description": "tau2-bench banking_knowledge domain (AllTools retrieval) pass^1 after the v1.0.1 grading fixes (2026-07-16; submissions re-published 2026-08-04). Not comparable with tau2_bench_banking_knowledge_pass1 (v1.0.0, May 2026).",
+    "metric": "pass1_pct"
+  },
+  {
+    "id": "tau2_bench_banking_knowledge_pass4_v1_0_1",
+    "name": "tau2-bench banking_knowledge pass^4 (v1.0.1 grading)",
+    "category": "agentic",
+    "description": "tau2-bench banking_knowledge domain (AllTools retrieval) pass^4 after the v1.0.1 grading fixes (2026-07-16; submissions re-published 2026-08-04). Not comparable with tau2_bench_banking_knowledge_pass4 (v1.0.0, May 2026).",
+    "metric": "pass4_pct"
+  },
+  {
     "id": "caibench",
     "name": "CAIBench (Cybersecurity AI Meta-Benchmark)",
     "category": "cyber",
