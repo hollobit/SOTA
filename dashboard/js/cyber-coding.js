@@ -83,7 +83,9 @@ var CyberCoding = {
         // 2026-09-23 S282 — Opus 5.5 card §3, GPT-6 Sol/Luna appendix A.8.1, MiMo-V2.6 report
         'exploitbench_v8_full_ace_pct', 'binary_exploitation_benchmark_cfh_count', 'cyscenariobench_anthropic_10subset_v2', 'exploitbench_internal_port_2026_06_08', 'exploitgym_v1_openai_offline', 'sec_bench_pro_openai_rootcause_grader', 'cybergym_mimo_corrected_env', 'exploitbench_mimo_report', 'mimo_cyber_bench',
         // 2026-09-24 S285 — Wiz AI Cyber Model Arena (Claude Code / ADK-ReAct harness) + HackTheBox AI Range
-        'wiz_cyber_arena_overall_claude_code', 'wiz_cyber_arena_code_vulns_claude_code', 'wiz_cyber_arena_api_security_claude_code', 'wiz_cyber_arena_websec_ctf_claude_code', 'wiz_cyber_arena_cloud_security_claude_code', 'wiz_cyber_arena_overall_adk_react', 'wiz_cyber_arena_code_vulns_adk_react', 'wiz_cyber_arena_api_security_adk_react', 'wiz_cyber_arena_websec_ctf_adk_react', 'wiz_cyber_arena_cloud_security_adk_react', 'htb_ai_range_owasp_top10_success_rate'
+        'wiz_cyber_arena_overall_claude_code', 'wiz_cyber_arena_code_vulns_claude_code', 'wiz_cyber_arena_api_security_claude_code', 'wiz_cyber_arena_websec_ctf_claude_code', 'wiz_cyber_arena_cloud_security_claude_code', 'wiz_cyber_arena_overall_adk_react', 'wiz_cyber_arena_code_vulns_adk_react', 'wiz_cyber_arena_api_security_adk_react', 'wiz_cyber_arena_websec_ctf_adk_react', 'wiz_cyber_arena_cloud_security_adk_react', 'htb_ai_range_owasp_top10_success_rate',
+        // 2026-09-24 S286 — CAIBench (Alias Robotics), CTIBench RCM, CyberMetric-4500, IssueTrojanBench, Cisco image safety
+        'caibench_base_ctf', 'caibench_cybench_cai_agent', 'caibench_cyber_ranges', 'ctibench_rcm', 'cybermetric_4500', 'issuetrojanbench_eem_rate_lower_better', 'cisco_image_safety_score'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
         // 2026-09-23 S282b — Opus 5.5 card §3.4-3.5 safeguard flag rates / rewind-attacker ASR
@@ -156,7 +158,7 @@ var CyberCoding = {
         // 2026-09-23 S282b — AA Coding Agent Index components (Codex harness) + MiMo report Table 7 per-harness ids
         'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness',
         // 2026-09-24 S285 — BaxBench, Sonar, SWE-rebench window, Kilo harness, VulcanBench v4, Epoch SWE-V run
-        'baxbench_correct', 'baxbench_insecure_of_correct_lower_better', 'baxbench_generic_security_reminder', 'baxbench_oracle_security_reminder', 'sonar_leaderboard_java_pass_pct', 'sonar_leaderboard_java_issue_density_kloc_lower_better', 'swe_rebench_2026_05_15_to_07_01', 'swe_rebench_2026_05_15_to_07_01_pass5', 'terminal_bench_2_kilo_harness', 'vulcanbench_frontier_v4_combined', 'swe_bench_verified_epoch'],  // S270 Terminal-Universe paper
+        'baxbench_correct', 'baxbench_insecure_of_correct_lower_better', 'baxbench_generic_security_reminder', 'baxbench_oracle_security_reminder', 'sonar_leaderboard_java_pass_pct', 'sonar_leaderboard_java_issue_density_kloc_lower_better', 'swe_rebench_2026_05_15_to_07_01', 'swe_rebench_2026_05_15_to_07_01_pass5', 'terminal_bench_2_kilo_harness', 'vulcanbench_frontier_v4_combined', 'swe_bench_verified_epoch', 'terminal_bench_1_0', 'multipl_e', 'assertllm2_bug_kill_ratio'],  // S270 Terminal-Universe paper
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
@@ -185,7 +187,7 @@ var CyberCoding = {
                 // 2026-09-23 S282b
                 'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness',
                 // 2026-09-24 S285 — BaxBench, Sonar, SWE-rebench window, Kilo harness, VulcanBench v4, Epoch SWE-V run
-                'baxbench_correct', 'baxbench_insecure_of_correct_lower_better', 'baxbench_generic_security_reminder', 'baxbench_oracle_security_reminder', 'sonar_leaderboard_java_pass_pct', 'sonar_leaderboard_java_issue_density_kloc_lower_better', 'swe_rebench_2026_05_15_to_07_01', 'swe_rebench_2026_05_15_to_07_01_pass5', 'terminal_bench_2_kilo_harness', 'vulcanbench_frontier_v4_combined', 'swe_bench_verified_epoch'
+                'baxbench_correct', 'baxbench_insecure_of_correct_lower_better', 'baxbench_generic_security_reminder', 'baxbench_oracle_security_reminder', 'sonar_leaderboard_java_pass_pct', 'sonar_leaderboard_java_issue_density_kloc_lower_better', 'swe_rebench_2026_05_15_to_07_01', 'swe_rebench_2026_05_15_to_07_01_pass5', 'terminal_bench_2_kilo_harness', 'vulcanbench_frontier_v4_combined', 'swe_bench_verified_epoch', 'terminal_bench_1_0', 'multipl_e', 'assertllm2_bug_kill_ratio'
             ]
         },
         {
@@ -253,7 +255,9 @@ var CyberCoding = {
                 // 2026-09-23 S282
                 'exploitbench_v8_full_ace_pct', 'binary_exploitation_benchmark_cfh_count', 'cyscenariobench_anthropic_10subset_v2', 'exploitbench_internal_port_2026_06_08', 'exploitgym_v1_openai_offline', 'sec_bench_pro_openai_rootcause_grader', 'cybergym_mimo_corrected_env', 'exploitbench_mimo_report', 'mimo_cyber_bench',
                 // 2026-09-24 S285 — Wiz AI Cyber Model Arena + HackTheBox AI Range
-                'wiz_cyber_arena_overall_claude_code', 'wiz_cyber_arena_code_vulns_claude_code', 'wiz_cyber_arena_api_security_claude_code', 'wiz_cyber_arena_websec_ctf_claude_code', 'wiz_cyber_arena_cloud_security_claude_code', 'wiz_cyber_arena_overall_adk_react', 'wiz_cyber_arena_code_vulns_adk_react', 'wiz_cyber_arena_api_security_adk_react', 'wiz_cyber_arena_websec_ctf_adk_react', 'wiz_cyber_arena_cloud_security_adk_react', 'htb_ai_range_owasp_top10_success_rate'
+                'wiz_cyber_arena_overall_claude_code', 'wiz_cyber_arena_code_vulns_claude_code', 'wiz_cyber_arena_api_security_claude_code', 'wiz_cyber_arena_websec_ctf_claude_code', 'wiz_cyber_arena_cloud_security_claude_code', 'wiz_cyber_arena_overall_adk_react', 'wiz_cyber_arena_code_vulns_adk_react', 'wiz_cyber_arena_api_security_adk_react', 'wiz_cyber_arena_websec_ctf_adk_react', 'wiz_cyber_arena_cloud_security_adk_react', 'htb_ai_range_owasp_top10_success_rate',
+                // 2026-09-24 S286 — CAIBench (Alias Robotics), CTIBench RCM, CyberMetric-4500, IssueTrojanBench, Cisco image safety
+                'caibench_base_ctf', 'caibench_cybench_cai_agent', 'caibench_cyber_ranges', 'ctibench_rcm', 'cybermetric_4500', 'issuetrojanbench_eem_rate_lower_better', 'cisco_image_safety_score'
             ]
         },
         {

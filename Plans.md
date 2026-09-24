@@ -1,8 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 285 — resource/seed_sources audit (leaderboards · arXiv · datasets) (2026-09-24)
-**3,574 models · 4,859 benchmarks · 30,828 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 286 — second resource audit (stale boards · resource PDFs · remaining arXiv) (2026-09-24)
+**3,578 models · 4,914 benchmarks · 32,122 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-24 Session 286 — second audit of resource/ and seed_sources
+- **1,294 scores, 4 new models, 55 new benchmarks, 0 FK / 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s286_…_scores.json`). Backup `data/benchmark.db.pre-s286.bak`.
+- R1 stale general/agent boards (562): ARC Prize, EQ-Bench CW v3 (new rubric + 2026-09 Elo ids — the stored Elo is a different scale) + Longform, τ-bench, ALE-V1, BFCL v4, FrontierMath T4 v2, OSWorld-Verified. **τ²-bench banking_knowledge**: the fork's "shifted by one" claim was wrong — git history shows the v1.0.1 grading fix (2026-07-16, re-published 2026-08-04); v1.0.0 rows kept, v1.0.1 on `tau2_bench_banking_knowledge_pass{1,4}_v1_0_1`.
+- R2 stale safety/cyber/medical boards (377): Cisco AI Defense 26 → 136 models (+ image-safety id), AgentDojo, AILuminate, Cybench, HalluHard (GPT-6 Astra).
+- R3 resource/ PDFs not cited by filename: 42/56 already covered via URL, 11 without model scores; 3 mined (Qwen3.8-Next base comparison + MRCR, A.X K2 ALM KVoiceBench, CAIBench) = 78.
+- R4 remaining arXiv: 27 of 50 papers → 268 rows (UI-TARS-2 new model; PolyWorkBench and MedRealMM image-read values checked against the rendered pages here); 23 skipped with reasons.
+- Conflicts reported, not applied: ARC 7, BFCL 5, OSWorld 5 (vendor-reported vs board), ALE 11. Still out of reach: TAC / Video-MME / Vibe-Bench / Opper / WorldScore (JS-only), ReXrank (tab split not in static HTML), MAST category scores (computed client-side).
 ### 2026-09-24 Session 285 — audit of the leaderboards, arXiv papers and dataset sites in seed_sources
 - **2,602 scores, 19 new models, 109 new benchmarks (+5 description updates), 0 FK / 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s285_…_scores.json`). Backup `data/benchmark.db.pre-s285.bak`. Targets: sources no DB row cites (leaderboards 122 / arXiv 127 / datasets 34; policy/institution pages excluded). Five parallel passes; each draft checked line-by-line (verify.py) and spot-checked here (LiveBench column order, KMMMU mean±std split, General365 overall column) before merging.
 - L1 general/coding/agent 1,688 (Epoch ECI CSV 560, LiveBench 2026-06-25 440, APEX 363, BaxBench 150, METR, HAL, SWE-rebench, HLE CAISI, Sonar, Kilo, VulcanBench v4, FrontierSWE, Vending-Bench, SRE-bench, Harvey, ITBench); L2 cyber/safety 168 (Wiz Cyber Arena 140, HTB AI Range, Irregular, AISI RealityTest); L3 science/multimodal/datasets 218 (AA video arenas 108 with 6 new video models, AA speech-to-speech 35, IMO-ProofBench, PutnamBench Lean, OpenVLM, PhysBench, ProteinGym; SimulacraBench/RuneBench definitions); A1/A2 arXiv 528 from 31 papers.

@@ -236,6 +236,8 @@ var Agent = (function() {
                 'shade_v2_coding_asr_no_safeguards', 'shade_v2_coding_asr_with_probes', 'shade_v2_computer_use_asr_no_safeguards', 'shade_v2_computer_use_asr_with_probes', 'browser_use_cowork_asr_no_safeguards', 'browser_use_cowork_asr_auto_mode', 'gray_swan_ipi_k1', 'gray_swan_ipi_k10',
                 'agentic_influence_voter_suppression_median32', 'agentic_influence_domestic_polarization_median32', 'anthropic_sandbox_escape_attempt_rate_lower_better',
                 'coding_deception_rate_v2_lower_better', 'broken_search_tool_failure_rate_v2_lower_better', 'auto_review_circumvention_rate_v2_lower_better', 'warning_barrier_persistence_rate_v2_lower_better',
+                // 2026-09-24 S286 — agent-safety papers
+                'agents4d_backend_casr_lower_better', 'guardianagentbench_overall_avg_llamaindex', 'muppet_multiparty_leak_rate_lower_better', 'muppet_utility_undefended', 'cisco_image_safety_score',
                 // 2026-09-23 S282b — Opus 5.5 card: RL reward hacking, pasted instructions, destructive actions, self-preference, grader awareness, best-prompt SHADE-Arena / LinuxArena stealth, rare-action calibration
                 'anthropic_rl_training_reward_hack_success_rate_lower_better', 'anthropic_rl_training_reward_hack_answer_key_guess_rate_lower_better', 'anthropic_rl_training_reward_hack_copied_solution_rate_lower_better',
                 'anthropic_rl_training_reward_hack_prohibited_method_rate_lower_better', 'anthropic_rl_training_reward_hack_success_rate_excl_toolskip_lower_better', 'anthropic_impossible_task_reward_hack_attempt_rate_lower_better',
@@ -305,6 +307,8 @@ var Agent = (function() {
                 'job_bench', 'deck_bench',
                 // 2026-09-23 S282 — AA v2.1-era boards, AutomationBench 1.0.6, WANDR, CoBench 2.1
                 'gdpval_aa_v2_1_elo', 'aa_briefcase_v1_1', 'aa_briefcase_v1_1_analytical_quality_elo', 'aa_briefcase_v1_1_presentation_elo', 'aa_briefcase_v1_1_rubric_pass_rate', 'automationbench_1_0_6',
+                // 2026-09-24 S286 — tau2-bench v1.0.1 banking re-grade, PolyWorkBench, FinToolBench, PAUSE, EvoClawBench
+                'tau2_bench_banking_knowledge_pass1_v1_0_1', 'tau2_bench_banking_knowledge_pass4_v1_0_1', 'polyworkbench_pass1_peak', 'fintoolbench_soft_score', 'pause_log_tracking_hard_tc', 'pause_shopping_score', 'evoclawbench_nanobot_baseline',
                 // 2026-09-24 S285 — Mercor APEX boards, HAL reliability, HLE (CAISI), Epoch agentic runs
                 'apex_agents_v1_1_pass1', 'apex_agents_v1_1_mean_score', 'apex_v1_mercor_board_pass1', 'apex_v1_mercor_board_mean_score', 'apex_swe_mercor_board_pass1', 'apex_accounting_pass1', 'hal_reliability_score', 'hal_reliability_accuracy', 'hle_caisi_official', 'remote_labor_index_epoch', 'posttrainbench_epoch', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
                 // 2026-09-23 S282b — Opus 5.5 card §8.12.3 multi-agent team-size endpoints (1 vs 100 agents)
