@@ -1,8 +1,12 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 284b — re-audit of the S284 AA sources (2026-09-24)
-**3,555 models · 4,750 benchmarks · 25,109 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 284c — AA v4.3 comparison objects mapped (2026-09-24)
+**3,555 models · 4,750 benchmarks · 28,226 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-24 Session 284c — the 673 AA model objects in the S284 page payloads
+- **3,117 scores for 281 models, 0 FK, 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s284c_…_scores.json`). Closes the "AA v4.3 672-object mapping" follow-up. Backup `data/benchmark.db.pre-s284c.bak`.
+- Exact normalized slug↔id match (vendor prefix dropped, dots→dashes, duplicates collapsed via the canonical map). Excluded: AA Non-reasoning variants of DB base ids (162 rows) and dated AA variants whose DB model is a separate id (115 rows). Score fields only; cost/time/tokens/speed/price left out. `aa_intelligence_index_v4_3` now covers 301 models.
+- 333 AA objects unmatched — mostly effort tiers / non-reasoning variants without DB ids (not created).
 ### 2026-09-24 Session 284b — re-audit of the 21 S284 AA links
 - **4 new benchmarks, 90 scores, 1 row re-pointed, 0 FK** (`resource/zzzzzzzzzzzzzzzzzz_s284b_…_scores.json`). Backup `data/benchmark.db.pre-s284b.bak`.
 - Unmapped currentModel fields: AA-Briefcase v1.1 analytical / presentation Elo + rubric pass rate (new ids, 21 models); `harveyLab` is a mean-criteria score (0.89–0.95 for every model) → new `harvey_lab_aa_mean_criteria` (Opus 5.5 ×5) and Gemini 3.7 Flash 90.7 moved there from the all-pass id (`harvey_lab_aa`, 5–27%).

@@ -5175,5 +5175,11 @@
   "type": "ingest",
   "title": "S284b — S284 AA 소스 재감사: Briefcase 세부 점수·Harvey 평균 기준·Opus 5.5 티어 가격·GPT-5.6 Omniscience (90 scores, 신규 벤치 4)",
   "detail": "currentModel에서 매핑하지 않았던 필드와 기사 비교값을 점검. (1) AA-Briefcase v1.1 세부 점수 3종(분석 품질 Elo·표현 Elo·루브릭 통과율) 신규 id — 21개 모델(Opus 5.5 5티어, GPT-6 Sol/Luna 12티어, Grok 4.7·4.6, GPT-5.6 Sol/Luna); Opus 5.5 max 분석 품질 2206.92로 1위, Grok 4.7 1994/1499는 기사와 일치. (2) Harvey LAB-AA 평균 기준 점수 신규 id: AA의 harveyLab 필드는 모든 모델이 0.89–0.95(평균 기준)로, harvey_lab_aa에 저장된 all-pass 비율(5–27%)과 다른 지표 — Opus 5.5 5티어 추가, Gemini 3.7 Flash 90.7(DeepMind 카드 'Harvey LAB-AA 90.7%')을 all-pass id에서 이 id로 이동. (3) Opus 5.5 xhigh/high/medium/low 티어 id에 공식 가격($4/$20, 캐시 읽기 $0.20, 쓰기 $5) — GPT-6 티어와 같은 방식. (4) GPT-5.6 Sol/Luna(max) AA-Omniscience 3종(지수 21.97/−10.28, 정확도 59.4/42.7, 비환각 7.8/7.4) — AA 기사 수치와 일치, DB에 없던 행. 확인 후 미반영: 기사의 '~73k/~78k 토큰' 등 근사치, Fable 5.1 AA HLE 59.1(카드값 유지), GPT-5.6 과제당 비용 $1.99(v4.2 시점 1.2495 저장 — 버전 재기준은 AA 672개 매핑 작업에서 처리)."
+ },
+ {
+  "date": "2026-09-24",
+  "type": "ingest",
+  "title": "S284c — AA 모델 페이지에 함께 실린 비교 모델 673개 매핑: 281개 모델 3,117 scores (AAII v4.3 38 → 301개 모델)",
+  "detail": "S284/S284b는 각 페이지의 currentModel만 사용했으나, 모든 AA 모델 페이지 RSC 데이터에는 v4.3 시점 모델 객체 673개가 함께 들어 있음. slug를 DB id와 정규화 일치(벤더 접두사 제거, 점→대시, 중복 id는 canonical map으로 통합)로 매핑 — 직접 일치 330개. 제외: AA 객체가 DB 기본 id의 Non-reasoning 변형인 경우(Claude Opus 4.6·Sonnet 4.6·GLM-4.6·Gemini 3 Flash·DeepSeek V3.2 등 162행)와 날짜 변형이 DB에서 별도 id인 경우(DeepSeek V4 Flash 0731·V4 Pro 0813·Grok 4.20 0309·GPT-4o Nov '24 등 115행). 점수형 필드만 반영(비용·시간·토큰·속도·가격은 버전/측정마다 변동): AAII v4.3 295행, AA-Omniscience 3종, HLE, CritPt, AA-LCR, GDPval-AA v2.1(Elo·정규화), AA-Briefcase v1.1(+세부 3종), 역량 지수 6종, AA TB 4.0, AutomationBench-AA, MMMU-Pro, GDP.pdf, SciCode, Harvey 평균 기준. DB에 이미 있던 931행은 덮어쓰지 않음. 매칭 안 된 333개는 대부분 DB에 별도 id가 없는 effort 티어·비추론 변형."
  }
 ]
