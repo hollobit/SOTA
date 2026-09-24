@@ -1,0 +1,768 @@
+{
+ "_meta": {
+  "collected_at": "2026-09-24",
+  "session": "S284b",
+  "sources": [
+   "https://www.anthropic.com/claude-opus-5-5",
+   "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "https://artificialanalysis.ai/models/grok-4-7",
+   "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+   "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
+   "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+  ],
+  "note": "Re-audit of the S284 AA sources: currentModel fields left unmapped (Briefcase sub-scores, harveyLab), article comparison values (GPT-5.6 Omniscience), and tier prices for Opus 5.5. Gemini 3.7 Flash Harvey 90.7 moved to the mean-criteria id in its own file."
+ },
+ "models": [],
+ "benchmarks": [
+  {
+   "id": "aa_briefcase_v1_1_analytical_quality_elo",
+   "name": "AA-Briefcase v1.1 — analytical quality (Elo)",
+   "category": "agentic",
+   "metric": "elo",
+   "description": "Analytical-quality sub-Elo of Artificial Analysis AA-Briefcase v1.1 (long-horizon professional knowledge work)."
+  },
+  {
+   "id": "aa_briefcase_v1_1_presentation_elo",
+   "name": "AA-Briefcase v1.1 — presentation quality (Elo)",
+   "category": "agentic",
+   "metric": "elo",
+   "description": "Presentation-quality sub-Elo of AA-Briefcase v1.1."
+  },
+  {
+   "id": "aa_briefcase_v1_1_rubric_pass_rate",
+   "name": "AA-Briefcase v1.1 — rubric pass rate",
+   "category": "agentic",
+   "metric": "pass_rate_pct",
+   "description": "Share of AA-Briefcase v1.1 task-requirement rubric items met."
+  },
+  {
+   "id": "harvey_lab_aa_mean_criteria",
+   "name": "Harvey LAB-AA (mean criteria score)",
+   "category": "legal",
+   "metric": "score_pct",
+   "description": "Harvey Legal Agent Benchmark as run by Artificial Analysis, mean share of rubric criteria met per task (AA field harveyLab; models score ~85-95%). Distinct from harvey_lab_aa, which stores the task all-pass rate (~5-27%)."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 2206.92,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA RSC model page (slug claude-opus-5-5, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1709.91,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA RSC model page (slug claude-opus-5-5, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 61.2121,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA RSC model page (slug claude-opus-5-5, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "harvey_lab_aa_mean_criteria",
+   "score": 91.1999,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5",
+   "_note": "AA RSC model page (slug claude-opus-5-5, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)', read 2026-09-23). Field harveyLab (0.89-0.95 across models: mean criteria score, not the all-pass rate stored on harvey_lab_aa)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 2039.5,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA RSC model page (slug claude-opus-5-5-high, AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1555.41,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA RSC model page (slug claude-opus-5-5-high, AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 58.8889,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA RSC model page (slug claude-opus-5-5-high, AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "harvey_lab_aa_mean_criteria",
+   "score": 90.8815,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-high",
+   "_note": "AA RSC model page (slug claude-opus-5-5-high, AA name 'Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)', read 2026-09-23). Field harveyLab (0.89-0.95 across models: mean criteria score, not the all-pass rate stored on harvey_lab_aa)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1459.11,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA RSC model page (slug claude-opus-5-5-low, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1147.38,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA RSC model page (slug claude-opus-5-5-low, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 42.5253,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA RSC model page (slug claude-opus-5-5-low, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "harvey_lab_aa_mean_criteria",
+   "score": 89.1301,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-low",
+   "_note": "AA RSC model page (slug claude-opus-5-5-low, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)', read 2026-09-23). Field harveyLab (0.89-0.95 across models: mean criteria score, not the all-pass rate stored on harvey_lab_aa)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1924.77,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA RSC model page (slug claude-opus-5-5-medium, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1504.23,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA RSC model page (slug claude-opus-5-5-medium, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 56.9697,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA RSC model page (slug claude-opus-5-5-medium, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "harvey_lab_aa_mean_criteria",
+   "score": 90.2591,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-medium",
+   "_note": "AA RSC model page (slug claude-opus-5-5-medium, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)', read 2026-09-23). Field harveyLab (0.89-0.95 across models: mean criteria score, not the all-pass rate stored on harvey_lab_aa)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 2150.85,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA RSC model page (slug claude-opus-5-5-xhigh, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1640.07,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA RSC model page (slug claude-opus-5-5-xhigh, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 60.6061,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA RSC model page (slug claude-opus-5-5-xhigh, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "harvey_lab_aa_mean_criteria",
+   "score": 91.2433,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5-5-xhigh",
+   "_note": "AA RSC model page (slug claude-opus-5-5-xhigh, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)', read 2026-09-23). Field harveyLab (0.89-0.95 across models: mean criteria score, not the all-pass rate stored on harvey_lab_aa)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1369.21,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug gpt-5-6-luna, AA name 'GPT-5.6 Luna (max)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1475.61,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug gpt-5-6-luna, AA name 'GPT-5.6 Luna (max)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 37.9798,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug gpt-5-6-luna, AA name 'GPT-5.6 Luna (max)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1558.97,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug gpt-5-6-sol, AA name 'GPT-5.6 Sol (max)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1652.53,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug gpt-5-6-sol, AA name 'GPT-5.6 Sol (max)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 41.8484,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug gpt-5-6-sol, AA name 'GPT-5.6 Sol (max)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1381.73,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna",
+   "_note": "AA RSC model page (slug gpt-6-luna, AA name 'GPT-6 Luna (max)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1346.98,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna",
+   "_note": "AA RSC model page (slug gpt-6-luna, AA name 'GPT-6 Luna (max)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 37.3737,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna",
+   "_note": "AA RSC model page (slug gpt-6-luna, AA name 'GPT-6 Luna (max)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-luna-high",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1172.88,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-high",
+   "_note": "AA RSC model page (slug gpt-6-luna-high, AA name 'GPT-6 Luna (high)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna-high",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1261.35,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-high",
+   "_note": "AA RSC model page (slug gpt-6-luna-high, AA name 'GPT-6 Luna (high)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna-high",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 32.0202,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-high",
+   "_note": "AA RSC model page (slug gpt-6-luna-high, AA name 'GPT-6 Luna (high)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-luna-low",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 654.1,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-low",
+   "_note": "AA RSC model page (slug gpt-6-luna-low, AA name 'GPT-6 Luna (low)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna-low",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 724.46,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-low",
+   "_note": "AA RSC model page (slug gpt-6-luna-low, AA name 'GPT-6 Luna (low)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna-low",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 15.8586,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-low",
+   "_note": "AA RSC model page (slug gpt-6-luna-low, AA name 'GPT-6 Luna (low)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-luna-medium",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1033.02,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-medium",
+   "_note": "AA RSC model page (slug gpt-6-luna-medium, AA name 'GPT-6 Luna (medium)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna-medium",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1157.22,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-medium",
+   "_note": "AA RSC model page (slug gpt-6-luna-medium, AA name 'GPT-6 Luna (medium)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna-medium",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 26.1905,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-medium",
+   "_note": "AA RSC model page (slug gpt-6-luna-medium, AA name 'GPT-6 Luna (medium)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-luna-non-reasoning",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 865.9,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-non-reasoning",
+   "_note": "AA RSC model page (slug gpt-6-luna-non-reasoning, AA name 'GPT-6 Luna (Non-reasoning)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna-non-reasoning",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 919.27,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-non-reasoning",
+   "_note": "AA RSC model page (slug gpt-6-luna-non-reasoning, AA name 'GPT-6 Luna (Non-reasoning)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna-non-reasoning",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 20.8081,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-non-reasoning",
+   "_note": "AA RSC model page (slug gpt-6-luna-non-reasoning, AA name 'GPT-6 Luna (Non-reasoning)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-luna-xhigh",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1246.25,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-xhigh",
+   "_note": "AA RSC model page (slug gpt-6-luna-xhigh, AA name 'GPT-6 Luna (xhigh)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna-xhigh",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1273.21,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-xhigh",
+   "_note": "AA RSC model page (slug gpt-6-luna-xhigh, AA name 'GPT-6 Luna (xhigh)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-luna-xhigh",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 34.9495,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-luna-xhigh",
+   "_note": "AA RSC model page (slug gpt-6-luna-xhigh, AA name 'GPT-6 Luna (xhigh)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1652.11,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol",
+   "_note": "AA RSC model page (slug gpt-6-sol, AA name 'GPT-6 Sol (max)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1473.3,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol",
+   "_note": "AA RSC model page (slug gpt-6-sol, AA name 'GPT-6 Sol (max)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 46.8687,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol",
+   "_note": "AA RSC model page (slug gpt-6-sol, AA name 'GPT-6 Sol (max)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-sol-high",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1383.32,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-high",
+   "_note": "AA RSC model page (slug gpt-6-sol-high, AA name 'GPT-6 Sol (high)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol-high",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1280.8,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-high",
+   "_note": "AA RSC model page (slug gpt-6-sol-high, AA name 'GPT-6 Sol (high)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol-high",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 39.3939,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-high",
+   "_note": "AA RSC model page (slug gpt-6-sol-high, AA name 'GPT-6 Sol (high)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-sol-low",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 904.36,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-low",
+   "_note": "AA RSC model page (slug gpt-6-sol-low, AA name 'GPT-6 Sol (low)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol-low",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 884.82,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-low",
+   "_note": "AA RSC model page (slug gpt-6-sol-low, AA name 'GPT-6 Sol (low)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol-low",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 22.6263,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-low",
+   "_note": "AA RSC model page (slug gpt-6-sol-low, AA name 'GPT-6 Sol (low)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-sol-medium",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1190.81,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-medium",
+   "_note": "AA RSC model page (slug gpt-6-sol-medium, AA name 'GPT-6 Sol (medium)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol-medium",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1168.94,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-medium",
+   "_note": "AA RSC model page (slug gpt-6-sol-medium, AA name 'GPT-6 Sol (medium)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol-medium",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 30.8081,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-medium",
+   "_note": "AA RSC model page (slug gpt-6-sol-medium, AA name 'GPT-6 Sol (medium)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-sol-non-reasoning",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1154.69,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-non-reasoning",
+   "_note": "AA RSC model page (slug gpt-6-sol-non-reasoning, AA name 'GPT-6 Sol (Non-reasoning)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol-non-reasoning",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1063.35,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-non-reasoning",
+   "_note": "AA RSC model page (slug gpt-6-sol-non-reasoning, AA name 'GPT-6 Sol (Non-reasoning)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol-non-reasoning",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 29.2228,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-non-reasoning",
+   "_note": "AA RSC model page (slug gpt-6-sol-non-reasoning, AA name 'GPT-6 Sol (Non-reasoning)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-6-sol-xhigh",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1491.36,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-xhigh",
+   "_note": "AA RSC model page (slug gpt-6-sol-xhigh, AA name 'GPT-6 Sol (xhigh)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol-xhigh",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1366.8,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-xhigh",
+   "_note": "AA RSC model page (slug gpt-6-sol-xhigh, AA name 'GPT-6 Sol (xhigh)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "openai/gpt-6-sol-xhigh",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 41.3131,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-6-sol-xhigh",
+   "_note": "AA RSC model page (slug gpt-6-sol-xhigh, AA name 'GPT-6 Sol (xhigh)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1690.43,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/grok-4-6",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug grok-4-6, AA name 'Grok 4.6 (high)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1519.22,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/grok-4-6",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug grok-4-6, AA name 'Grok 4.6 (high)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 52.8283,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/grok-4-6",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug grok-4-6, AA name 'Grok 4.6 (high)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1994.09,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/grok-4-7",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug grok-4-7, AA name 'Grok 4.7 (xhigh)', read 2026-09-23). AA-Briefcase v1.1 analytical-quality Elo."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1498.6,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/grok-4-7",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug grok-4-7, AA name 'Grok 4.7 (xhigh)', read 2026-09-23). AA-Briefcase v1.1 presentation-quality Elo."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 55.3535,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/grok-4-7",
+   "_note": "AA RSC comparison object in the grok-4-7 page payload (slug grok-4-7, AA name 'Grok 4.7 (xhigh)', read 2026-09-23). AA-Briefcase v1.1 rubric pass rate."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_omniscience_index",
+   "score": 21.9667,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+   "_note": "AA RSC comparison object (slug gpt-5-6-sol, 'GPT-5.6 Sol (max)') in the grok-4-7 page payload; matches the AA GPT-6 Sol/Luna article (index 22, accuracy 59%, hallucination 92%)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_omniscience_acc",
+   "score": 59.4,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+   "_note": "AA RSC comparison object (slug gpt-5-6-sol, 'GPT-5.6 Sol (max)') in the grok-4-7 page payload; matches the AA GPT-6 Sol/Luna article (index 22, accuracy 59%, hallucination 92%)."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 7.7997,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+   "_note": "AA RSC comparison object (slug gpt-5-6-sol, 'GPT-5.6 Sol (max)') in the grok-4-7 page payload; matches the AA GPT-6 Sol/Luna article (index 22, accuracy 59%, hallucination 92%). Stored as 100 − hallucination rate."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "aa_omniscience_index",
+   "score": -10.2833,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+   "_note": "AA RSC comparison object (slug gpt-5-6-luna, 'GPT-5.6 Luna (max)') in the grok-4-7 page payload; matches the AA GPT-6 Sol/Luna article (index -10, accuracy 43%, hallucination 93%)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "aa_omniscience_acc",
+   "score": 42.7333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+   "_note": "AA RSC comparison object (slug gpt-5-6-luna, 'GPT-5.6 Luna (max)') in the grok-4-7 page payload; matches the AA GPT-6 Sol/Luna article (index -10, accuracy 43%, hallucination 93%)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 7.4214,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+   "_note": "AA RSC comparison object (slug gpt-5-6-luna, 'GPT-5.6 Luna (max)') in the grok-4-7 page payload; matches the AA GPT-6 Sol/Luna article (index -10, accuracy 43%, hallucination 93%). Stored as 100 − hallucination rate."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-xhigh",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 5.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-high",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 5.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-medium",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 5.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 4.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 20.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.2,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5-low",
+   "benchmark": "cache_write_price_per_mtok_lower_better",
+   "score": 5.0,
+   "unit": "USD/1M",
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_note": "Anthropic official pricing ($4 / $20, cache read $0.20, 5-minute cache write $5; AA article confirms). Same model at every effort tier — matches the base anthropic/claude-opus-5.5 rows, as done for the GPT-6 tier ids in S282."
+  }
+ ]
+}

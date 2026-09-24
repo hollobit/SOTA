@@ -1,8 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 284 — AA pages: Opus 5.5 tiers, Grok Build coding index (2026-09-23)
-**3,555 models · 4,746 benchmarks · 25,019 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 284b — re-audit of the S284 AA sources (2026-09-24)
+**3,555 models · 4,750 benchmarks · 25,109 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-24 Session 284b — re-audit of the 21 S284 AA links
+- **4 new benchmarks, 90 scores, 1 row re-pointed, 0 FK** (`resource/zzzzzzzzzzzzzzzzzz_s284b_…_scores.json`). Backup `data/benchmark.db.pre-s284b.bak`.
+- Unmapped currentModel fields: AA-Briefcase v1.1 analytical / presentation Elo + rubric pass rate (new ids, 21 models); `harveyLab` is a mean-criteria score (0.89–0.95 for every model) → new `harvey_lab_aa_mean_criteria` (Opus 5.5 ×5) and Gemini 3.7 Flash 90.7 moved there from the all-pass id (`harvey_lab_aa`, 5–27%).
+- Opus 5.5 tier ids priced at the official $4/$20/$0.20/$5 (as GPT-6 tiers). GPT-5.6 Sol/Luna AA-Omniscience ×3 from the comparison objects (match the AA article).
+- Skipped: approximate token counts, Fable 5.1 AA HLE 59.1 (card kept), GPT-5.6 v4.3 cost per task (belongs to the AA 672-object re-base task).
 ### 2026-09-23 Session 284 — 21 Artificial Analysis links
 - **133 scores, 1 new model (`xai/grok-4.6-xhigh`), 0 FK / 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s284_…_scores.json`). Backup `data/benchmark.db.pre-s284.bak`.
 - 18 model pages: slug-anchored RSC `currentModel` objects mapped to current ids (v2.1 GDPval, v1.1 Briefcase, `terminal_bench_4_0_aa`, v4.3 capability indices); only missing rows added. Claude Opus 5.5 ×5 tiers = 116 rows; GPT-6 Sol/Luna tiers identical to S282 (289 rows) — only the two healthcare capability rows were new; Grok 4 (2025) 7 rows.

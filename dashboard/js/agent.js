@@ -176,7 +176,7 @@ var Agent = (function() {
                 // 2026-05-31 S40 — Zapier AutomationBench (47-app E2E business workflow)
                 'automationbench',
                 // 2026-07-08 S175 — Grok 4.5 launch: AA agentic SaaS + Harvey legal + business-ops + Snorkel GDPval+
-                'automationbench_aa', 'harvey_lab_aa', 'enterpriseops_gym_aa', 'gdpval_plus_snorkel',
+                'automationbench_aa', 'harvey_lab_aa', 'harvey_lab_aa_mean_criteria', 'enterpriseops_gym_aa', 'gdpval_plus_snorkel',
                 // 2026-07-20 S189 — Grok 4.5 card: RelBench (ML over multi-table relational DBs; Stanford)
                 'relbench'
             ]
@@ -304,7 +304,7 @@ var Agent = (function() {
                 // 2026-07-16 S182 — Kimi K3 card agentic benches
                 'job_bench', 'deck_bench',
                 // 2026-09-23 S282 — AA v2.1-era boards, AutomationBench 1.0.6, WANDR, CoBench 2.1
-                'gdpval_aa_v2_1_elo', 'aa_briefcase_v1_1', 'automationbench_1_0_6', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
+                'gdpval_aa_v2_1_elo', 'aa_briefcase_v1_1', 'aa_briefcase_v1_1_analytical_quality_elo', 'aa_briefcase_v1_1_presentation_elo', 'aa_briefcase_v1_1_rubric_pass_rate', 'automationbench_1_0_6', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
                 // 2026-09-23 S282b — Opus 5.5 card §8.12.3 multi-agent team-size endpoints (1 vs 100 agents)
                 'anthropic_agent_team_knowledge_base_single_agent', 'anthropic_agent_team_knowledge_base_100_agents', 'anthropic_agent_team_lean_single_agent',
                 'anthropic_agent_team_lean_100_agents'

@@ -5169,5 +5169,11 @@
   "type": "ingest",
   "title": "S284 — Artificial Analysis 21개 링크: Claude Opus 5.5 5개 effort 티어 전체 지표 + Grok Build 코딩 에이전트 지수 (133 scores, 신규 모델 1)",
   "detail": "모델 페이지 18개는 slug로 고정한 RSC currentModel 객체를 현재 id로 매핑하고 DB에 없던 행만 추가. (1) Claude Opus 5.5 max/xhigh/high/medium/low: AAII v4.3(max 57.62), GDPval-AA v2.1, AA-Briefcase v1.1(1822), AutomationBench-AA, AA TB 4.0(59.6), SciCode(66.9), CritPt, AA-LCR, MMMU-Pro, GDP.pdf, AA-Omniscience 3종, 역량 지수 5종, 과제당 비용·토큰(~119k)·시간, 출력 속도, TTFAT, 블렌디드 가격 — 116행. (2) GPT-6 Sol/Luna 12개 티어는 S282 값과 동일(289행 일치), 헬스케어 역량 지수 2행만 추가; 속도·지연·과제당 시간은 변동값이라 S282 스냅샷 유지. (3) Grok 4(2025) AAII v4.3 22.49 등 7행. (4) 기사: Grok 4.7 + Grok Build 코딩 에이전트 지수 56, Grok 4.6(xhigh) 47(신규 티어 id xai/grok-4.6-xhigh), 구성요소 DeepSWE 73/65·TB 4.0 33/18·SWE-Atlas-QnA 63/58. 구성요소 id(*_aa_codex)의 이름을 '네이티브 하네스'로 정정(Codex·Claude Code·Grok Build). Opus 5.5·GPT-6 기사 수치는 페이로드와 일치. 유지(덮어쓰지 않음): Opus 5.5 HLE는 Anthropic 카드값(max 64.4) — AA 측정 61.35; Grok 4 HLE 40.0 — AA 26.69. 미반영: AA-Briefcase 분석/표현 하위 Elo(id 없음)."
+ },
+ {
+  "date": "2026-09-24",
+  "type": "ingest",
+  "title": "S284b — S284 AA 소스 재감사: Briefcase 세부 점수·Harvey 평균 기준·Opus 5.5 티어 가격·GPT-5.6 Omniscience (90 scores, 신규 벤치 4)",
+  "detail": "currentModel에서 매핑하지 않았던 필드와 기사 비교값을 점검. (1) AA-Briefcase v1.1 세부 점수 3종(분석 품질 Elo·표현 Elo·루브릭 통과율) 신규 id — 21개 모델(Opus 5.5 5티어, GPT-6 Sol/Luna 12티어, Grok 4.7·4.6, GPT-5.6 Sol/Luna); Opus 5.5 max 분석 품질 2206.92로 1위, Grok 4.7 1994/1499는 기사와 일치. (2) Harvey LAB-AA 평균 기준 점수 신규 id: AA의 harveyLab 필드는 모든 모델이 0.89–0.95(평균 기준)로, harvey_lab_aa에 저장된 all-pass 비율(5–27%)과 다른 지표 — Opus 5.5 5티어 추가, Gemini 3.7 Flash 90.7(DeepMind 카드 'Harvey LAB-AA 90.7%')을 all-pass id에서 이 id로 이동. (3) Opus 5.5 xhigh/high/medium/low 티어 id에 공식 가격($4/$20, 캐시 읽기 $0.20, 쓰기 $5) — GPT-6 티어와 같은 방식. (4) GPT-5.6 Sol/Luna(max) AA-Omniscience 3종(지수 21.97/−10.28, 정확도 59.4/42.7, 비환각 7.8/7.4) — AA 기사 수치와 일치, DB에 없던 행. 확인 후 미반영: 기사의 '~73k/~78k 토큰' 등 근사치, Fable 5.1 AA HLE 59.1(카드값 유지), GPT-5.6 과제당 비용 $1.99(v4.2 시점 1.2495 저장 — 버전 재기준은 AA 672개 매핑 작업에서 처리)."
  }
 ]

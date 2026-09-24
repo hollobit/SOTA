@@ -112,10 +112,11 @@ var FrontierCompare = {
             'forte', 'rwsearch', 'aa_briefcase',
             // 2026-09-23 S282 — AA-Briefcase v1.1 (AA re-based Elo) + CursorBench 4.0 (Opus 5.5 57.8 / Grok 4.7 46.3)
             'aa_briefcase_v1_1', 'cursorbench_4_0',
+            'aa_briefcase_v1_1_analytical_quality_elo', 'aa_briefcase_v1_1_presentation_elo', 'aa_briefcase_v1_1_rubric_pass_rate',  // S284b
             // 2026-07-02 S174 — Microsoft HealthAgentBench (agentic healthcare — 54 tasks × 3 attempts)
             'healthagentbench',
             // 2026-07-08 S175/S176 — Grok 4.5 + GPT-5.6 + ALE-V1 agentic benches
-            'agents_last_exam', 'agents_last_exam_score', 'automationbench_aa', 'harvey_lab_aa',
+            'agents_last_exam', 'agents_last_exam_score', 'automationbench_aa', 'harvey_lab_aa', 'harvey_lab_aa_mean_criteria',
             'enterpriseops_gym_aa', 'gdpval_plus_snorkel', 'big_finance_bench', 'rsi_index'
         ],
         cybersecurity: [
@@ -1504,12 +1505,12 @@ var FrontierCompare = {
                         };
                     })(mid, bid));
                     // Skip color-coding for non-percentage metrics
-                    var isSpecial = (bid === 'vending_bench_2' || bid === 'gdpval_aa' || bid === 'gdpval_aa_v2_1_elo' || bid === 'aa_briefcase_v1_1' || bid === 'metr_time_horizons' || bid === 'livecodebench');
+                    var isSpecial = (bid === 'vending_bench_2' || bid === 'gdpval_aa' || bid === 'gdpval_aa_v2_1_elo' || bid === 'aa_briefcase_v1_1' || bid === 'aa_briefcase_v1_1_analytical_quality_elo' || bid === 'aa_briefcase_v1_1_presentation_elo' || bid === 'metr_time_horizons' || bid === 'livecodebench');
                     var displayVal = v;
 
                     if (isSpecial) {
                         if (bid === 'vending_bench_2') displayVal = '$' + Math.round(v);
-                        else if (bid === 'gdpval_aa' || bid === 'gdpval_aa_v2_1_elo' || bid === 'aa_briefcase_v1_1' || bid === 'livecodebench') displayVal = Math.round(v);
+                        else if (bid === 'gdpval_aa' || bid === 'gdpval_aa_v2_1_elo' || bid === 'aa_briefcase_v1_1' || bid === 'aa_briefcase_v1_1_analytical_quality_elo' || bid === 'aa_briefcase_v1_1_presentation_elo' || bid === 'livecodebench') displayVal = Math.round(v);
                         else displayVal = v.toFixed(1);
                         td.textContent = displayVal;
                         td.style.color = Theme.textSecondary;
@@ -1564,7 +1565,7 @@ var FrontierCompare = {
 
         // Filter benchIds to only those with % scores (exclude vending_bench, gdpval etc)
         var radarBench = benchIds.filter(function(bid) {
-            return bid !== 'vending_bench_2' && bid !== 'gdpval_aa' && bid !== 'gdpval_aa_v2_1_elo' && bid !== 'aa_briefcase_v1_1' && bid !== 'metr_time_horizons' && bid !== 'livecodebench';
+            return bid !== 'vending_bench_2' && bid !== 'gdpval_aa' && bid !== 'gdpval_aa_v2_1_elo' && bid !== 'aa_briefcase_v1_1' && bid !== 'aa_briefcase_v1_1_analytical_quality_elo' && bid !== 'aa_briefcase_v1_1_presentation_elo' && bid !== 'metr_time_horizons' && bid !== 'livecodebench';
         });
 
         // Calculate per-axis max dynamically
