@@ -52,14 +52,13 @@ window.Price3D = (function () {
     function fmtVal(v) { return Math.abs(v) >= 100 ? v.toFixed(0) : Math.abs(v) >= 10 ? v.toFixed(1) : v.toFixed(2); }
 
     // ------------------------------------------------------------------ data
-    function buildData() {
+    // Priced models passing the page's shared filters (basis, hit rate, period, vendor, country).
+    function pricedModels() {
         var api = Price.api, idx = api.scoreIdx(), byId = api.modelsById();
         var basis = val('price-basis', 'output'), hit = parseInt(val('price-hitrate', '0'), 10) || 0;
         var months = parseInt(val('price-period', '12'), 10) || 12;
         var vendorF = val('price-vendor', 'all'), countryF = val('price-country', 'all');
         var now = new Date(), cut = new Date(now.getFullYear(), now.getMonth() - months, now.getDate()).toISOString().slice(0, 10);
-
-        // Priced models passing the page filters.
         var priced = {};
         Object.keys(idx[api.priceIds.input] || {}).concat(Object.keys(idx[api.priceIds.output] || {})).forEach(function (id) {
             if (priced[id] !== undefined) return;
@@ -71,6 +70,12 @@ window.Price3D = (function () {
             var p = api.price(id, basis, hit); if (p == null || p <= 0) return;
             priced[id] = { id: id, name: m.name || id, vendor: ven, color: vendorColor(ven), price: p, rel: rel || '' };
         });
+        return { models: priced, basis: basis };
+    }
+
+    function buildData() {
+        var api = Price.api, idx = api.scoreIdx();
+        var pm = pricedModels(), priced = pm.models, basis = pm.basis;
 
         // One slice per metric with enough coverage, in the 2D dropdown's order.
         var slices = [];
@@ -174,7 +179,10 @@ window.Price3D = (function () {
         }).observe(host);
 
         r.domElement.addEventListener('pointermove', onPointerMove);
-        r.domElement.addEventListener('pointerleave', function () { setHover(null); });
+        r.domElement.addEventListener('pointerleave', function () { setHover(null); controls.enableZoom = false; });
+        // Wheel zoom only after the canvas is clicked, so scrolling the page past the view never gets trapped.
+        controls.enableZoom = false;
+        r.domElement.addEventListener('pointerdown', function () { controls.enableZoom = true; });
         r.domElement.addEventListener('click', onClick);
         r.domElement.addEventListener('pointerdown', stopTour);
         r.domElement.addEventListener('wheel', stopTour, { passive: true });
@@ -508,18 +516,25 @@ window.Price3D = (function () {
         });
     }
 
+    // '2d' = ECharts scatter, '3d' = metric corridor (this module), 'sky' = all-metric skyline (PriceSky).
     function setView(mode) {
-        var is3d = mode === '3d';
-        $('price-view-2d').classList.toggle('p3d-tab-on', !is3d);
+        var is3d = mode === '3d', isSky = mode === 'sky' && typeof PriceSky !== 'undefined';
+        if (!is3d && !isSky) mode = '2d';
+        $('price-view-2d').classList.toggle('p3d-tab-on', mode === '2d');
         $('price-view-3d').classList.toggle('p3d-tab-on', is3d);
-        $('price-chart').style.display = is3d ? 'none' : '';
-        $('price-note').style.display = is3d ? 'none' : '';
+        if ($('price-view-sky')) $('price-view-sky').classList.toggle('p3d-tab-on', isSky);
+        $('price-chart').style.display = mode === '2d' ? '' : 'none';
+        $('price-note').style.display = mode === '2d' ? '' : 'none';
         $('price3d-wrap').style.display = is3d ? '' : 'none';
+        if ($('pricesky-wrap')) $('pricesky-wrap').style.display = isSky ? '' : 'none';
         try { localStorage.setItem('price_view', mode); } catch (e) { /* storage unavailable */ }
-        if (!is3d) { visible = false; stopTour(); return; }
+        if (!is3d) { visible = false; stopTour(); }
+        if (!isSky && typeof PriceSky !== 'undefined') PriceSky.hide();
+        if (mode === '2d') return;
         $('price3d-status').textContent = '3D 엔진 로딩 중…';
         loadThree().then(function () {
             $('price3d-status').textContent = '';
+            if (isSky) { PriceSky.show(); return; }
             if (!st) { initScene(); if (!wired) { wireHud(); wired = true; } }
             // current 2D metric becomes the starting slice
             var ms = $('price-metric'); build();
@@ -536,11 +551,16 @@ window.Price3D = (function () {
         b2.dataset.wired = '1';
         b2.addEventListener('click', function () { setView('2d'); });
         b3.addEventListener('click', function () { setView('3d'); });
+        var bs = $('price-view-sky'); if (bs) bs.addEventListener('click', function () { setView('sky'); });
         var saved = null; try { saved = localStorage.getItem('price_view'); } catch (e) { saved = null; }
-        if (saved === '3d') setView('3d');
+        if (saved === '3d' || saved === 'sky') setView(saved);
     }
 
     document.addEventListener('visibilitychange', function () { if (document.hidden) visible = false; });
 
-    return { init: init, setView: setView };
+    // Shared with PriceSky (price3d-sky.js) so every Price view filters, prices and colours alike.
+    var util = { pricedModels: pricedModels, vendorKey: vendorKey, vendorColor: vendorColor, lowerBetter: lowerBetter,
+                 fmtPrice: fmtPrice, fmtVal: fmtVal, esc: esc, loadThree: loadThree, textSprite: textSprite, disposeGroup: disposeGroup,
+                 three: function () { return THREE; }, controls: function () { return OrbitControls; } };
+    return { init: init, setView: setView, util: util };
 })();

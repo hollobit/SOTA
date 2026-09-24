@@ -6,7 +6,7 @@
     <title>LLM/Frontier Model's Benchmark & SOTA Dashboard</title>
     <link rel="stylesheet" href="css/tailwind.css">
     <link rel="stylesheet" href="css/tokens.css">
-    <link rel="stylesheet" href="css/style.css?v=20260924d">
+    <link rel="stylesheet" href="css/style.css?v=20260925a">
     <link rel="stylesheet" href="css/print.css?v=20260520a" media="print">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js" defer></script>
     <!-- three.js for the Price tab 3D explorer; imported lazily by js/price3d.js only when the 3D view is opened -->
@@ -292,6 +292,7 @@
             <div class="flex items-center gap-2 mb-2">
                 <button id="price-view-2d" class="p3d-tab p3d-tab-on" type="button">📈 2D 차트</button>
                 <button id="price-view-3d" class="p3d-tab" type="button">🧊 3D 탐색 <span class="text-xs text-gray-400">지표 사이를 날아다니기</span></button>
+                <button id="price-view-sky" class="p3d-tab" type="button">🏙️ 3D 통합 비교 <span class="text-xs text-gray-400">모든 지표 × 가격대</span></button>
                 <span id="price3d-status" class="text-xs text-gray-400"></span>
             </div>
             <div id="price3d-wrap" style="display:none;position:relative">
@@ -313,7 +314,53 @@
                 <div id="price3d-tip" class="p3d-tip" style="display:none"></div>
                 <p id="price3d-info" class="text-xs text-gray-400 mt-2"></p>
                 <div id="price3d-legend" class="text-xs text-gray-400 mt-1"></div>
-                <p class="text-xs text-gray-500 mt-1">X = 가격(로그) · Y = 지표 내 상대 위치(최저→최고, 낮을수록 좋은 지표는 뒤집음) · Z = 성능 지표. 드래그: 회전 · 휠: 확대 · 우클릭 드래그: 이동 · ←/→: 지표 이동 · Space: 자동 투어 · 다른 층의 점 클릭: 그 지표로 이동 · 현재 층의 점 클릭: 모델 상세. 위의 가격 기준·기간·개발사·국가 필터가 그대로 적용됩니다.</p>
+                <p class="text-xs text-gray-500 mt-1">X = 가격(로그) · Y = 지표 내 상대 위치(최저→최고, 낮을수록 좋은 지표는 뒤집음) · Z = 성능 지표. 드래그: 회전 · 클릭 후 휠: 확대 · 우클릭 드래그: 이동 · ←/→: 지표 이동 · Space: 자동 투어 · 다른 층의 점 클릭: 그 지표로 이동 · 현재 층의 점 클릭: 모델 상세. 위의 가격 기준·기간·개발사·국가 필터가 그대로 적용됩니다.</p>
+            </div>
+            <div id="pricesky-wrap" style="display:none;position:relative">
+                <div class="flex flex-wrap items-center gap-3 mb-2 text-sm text-gray-300">
+                    <div id="pricesky-modes" class="flex gap-1.5">
+                        <button data-mode="model" class="p3d-chip p3d-chip-on" type="button" title="열 = 모델 (가격순)">모델별</button>
+                        <button data-mode="band" class="p3d-chip" type="button" title="열 = 가격대 (가격대 안 최고/중앙값)">가격대별</button>
+                    </div>
+                    <label class="flex items-center gap-1.5">정렬
+                        <select id="pricesky-sort" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm">
+                            <option value="price">가격순</option><option value="comp">종합 점수순</option><option value="value">가성비순</option><option value="vendor">개발사순</option>
+                        </select></label>
+                    <label class="flex items-center gap-1.5" style="display:none">가격대 집계
+                        <select id="pricesky-agg" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm">
+                            <option value="max">최고 모델</option><option value="median">중앙값</option>
+                        </select></label>
+                    <label class="flex items-center gap-1.5">색상
+                        <select id="pricesky-color" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm">
+                            <option value="perf">성능 (백분위)</option><option value="vendor">개발사</option>
+                        </select></label>
+                    <label class="flex items-center gap-1.5" title="이 수 이상의 지표 점수를 가진 모델만 표시">최소 지표 수
+                        <input id="pricesky-cov" type="range" min="2" max="15" value="6" class="accent-blue-500" style="width:110px"><span id="pricesky-cov-val" class="text-gray-400 w-5">6</span></label>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 mb-2 text-sm text-gray-300">
+                    <div id="pricesky-cams" class="flex gap-1.5">
+                        <button data-cam="bird" class="p3d-chip p3d-chip-on" type="button">조감</button>
+                        <button data-cam="front" class="p3d-chip" type="button" title="정면: 가격순 종합 점수 스카이라인">정면</button>
+                        <button data-cam="side" class="p3d-chip" type="button" title="측면: 지표별 높이 비교">측면</button>
+                        <button data-cam="top" class="p3d-chip" type="button" title="위에서: 모델 × 지표 히트맵">위에서</button>
+                    </div>
+                    <label class="flex items-center gap-1.5 cursor-pointer select-none"><input type="checkbox" id="pricesky-spin" class="accent-blue-500"> 자동 회전</label>
+                    <input id="pricesky-search" list="pricesky-search-list" placeholder="모델 찾기 (예: Opus 5.5)" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm w-56">
+                    <datalist id="pricesky-search-list"></datalist>
+                </div>
+                <div id="pricesky-canvas" style="width:100%;height:680px;border-radius:10px;overflow:hidden;background:#0b1220"></div>
+                <div id="pricesky-tip" class="p3d-tip" style="display:none"></div>
+                <p id="pricesky-info" class="text-xs text-gray-400 mt-2"></p>
+                <div class="flex items-center gap-2 text-xs text-gray-400 mt-1">
+                    <span>하위</span><span style="display:inline-block;width:180px;height:8px;border-radius:4px;background:linear-gradient(90deg,#1e3a8a,#0ea5e9 30%,#22c55e 55%,#facc15 75%,#f97316 90%,#ef4444)"></span><span>상위 (백분위)</span>
+                    <span style="display:inline-block;width:10px;height:10px;background:#273449;border-radius:2px;margin-left:12px"></span><span>점수 없음</span>
+                    <span style="display:inline-block;width:10px;height:10px;background:#a78bfa;border-radius:2px;margin-left:12px"></span><span>토큰 가격 (바닥 아래, log)</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-1">X = 모델(가격순, 바닥 줄무늬 = 가격대) · Z = 지표 (맨 앞 ★ 종합 = 보유 지표 평균 백분위) · 높이 = 지표 안 백분위 (↓ 표시 지표는 낮을수록 좋음 → 뒤집음). 막대에 올리면 해당 모델 열과 지표 행이 강조되고 강점·약점이 나옵니다. 드래그: 회전 · 클릭 후 휠: 확대 · 우클릭 드래그: 이동 · 클릭: 모델 상세. 위의 가격 기준·기간·개발사·국가 필터가 그대로 적용됩니다.</p>
+                <div class="mt-3">
+                    <h4 class="text-xs font-semibold text-gray-300 mb-1">가격대별 요약</h4>
+                    <div id="pricesky-bands" class="overflow-x-auto"></div>
+                </div>
             </div>
             <div id="price-chart" style="width:100%;height:560px;"></div>
             <p id="price-note" class="text-xs text-gray-500 mt-2"></p>
@@ -1050,6 +1097,6 @@
     <script defer src="js/charts.js?v=20260504c"></script>
     <script defer src="js/filters.js?v=20260424"></script>
     <script defer src="js/explorer.js?v=20260822a"></script>
-    <script defer src="js/app.js?v=20260924d"></script>
+    <script defer src="js/app.js?v=20260925a"></script>
 </body>
 </html>
