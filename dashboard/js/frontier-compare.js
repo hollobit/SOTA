@@ -12,6 +12,8 @@ var FrontierCompare = {
             'arc_agi_2', 'arc_agi_3', 'terminal_bench_4_0', 'terminal_bench_3', 'terminal_bench_science',
             // 2026-09-23 S282 — TB 4.0 vendor-reported (terminal_bench_4) and Artificial Analysis harness (terminal_bench_4_0_aa)
             'terminal_bench_4', 'terminal_bench_4_0_aa',
+            // 2026-09-30 S290 — Gemini 4 Argon table: LABBench2, GraphWalks BFS F1 (≤128K / 256K–1M, Google-run)
+            'labbench2', 'graphwalks_bfs_128k', 'graphwalks_bfs_256k_1m_f1',
             // 2026-09-30 S289 — TB-Science by channel: AA run, OpenAI GPT-6.1 Sol launch chart
             'terminal_bench_science_aa', 'terminal_bench_science_openai_launch',
             // 2026-09-30 S289b — AA-run GPQA / TB 2.1 (separate from vendor-reported ids)
@@ -72,7 +74,7 @@ var FrontierCompare = {
             // 2026-07-08 S175/S176 — Grok 4.5 + GPT-5.6 launch coding benches
             'deepswe_1_0', 'deepswe_1_1', 'swe_marathon', 'aa_coding_agent_index'
         ],
-        math: ['aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026',
+        math: ['riemannbench', 'aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026',
             // 2026-06-02 S46 — Qwen3.7-Plus HMMT 2026 Feb + IMOAnswerBench (existing id) + PolyMATH
             'hmmt_2026_feb', 'imoanswerbench', 'polymath',
             // 2026-06-02 S48 — Microsoft MAI math/sci benches
@@ -121,12 +123,16 @@ var FrontierCompare = {
             'healthagentbench',
             // 2026-07-08 S175/S176 — Grok 4.5 + GPT-5.6 + ALE-V1 agentic benches
             'agents_last_exam', 'agents_last_exam_score', 'automationbench_aa', 'harvey_lab_aa', 'harvey_lab_aa_mean_criteria',
-            'enterpriseops_gym_aa', 'gdpval_plus_snorkel', 'big_finance_bench', 'rsi_index'
+            'enterpriseops_gym_aa', 'gdpval_plus_snorkel', 'big_finance_bench', 'rsi_index',
+            // 2026-09-30 S290 — Gemini 4 Argon launch table: Vals boards, Zapier AutomationBench, Google-run PostTrainBench v1.1
+            'vals_index_sep2026', 'finance_agent_v2', 'legal_agent_benchmark_harvey', 'automationbench_1_0_6', 'osworld_v2_offline_partial', 'posttrainbench_v1_1_google'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
             // 2026-09-28 S289 — AA Cyber Index v1
             'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa',
+            // 2026-09-30 S290 — CWE-bench v1 official board + Google/Wiz internal evals (Gemini 4 Argon launch)
+            'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
             'evmbench_exploit', 'evmbench_detect', 'cvebench',
             'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range',
             'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion',
@@ -212,6 +218,8 @@ var FrontierCompare = {
             'countqa', 'omnidocbench_v1_5_composite', 'odinw13',
             'lingoqa_driving', 'ego3d_bench', 'surds', 'vladbench',
             'videommmu_test', 'tvbench', 'lvbench',
+            // 2026-09-30 S290 — Chartography (Surge board, no tools) from the Gemini 4 Argon table
+            'chartography_surge_no_tools',
             // 2026-06-02 S46 Cosmos 3 video-gen NEW datasets — surfaced on FC multimodal axis
             'cosmos_hue_t2v', 'cosmos_hue_i2v', 'human_world_bench_i2v'],
         // 2026-05 — Composite "general capability" indices (cross-benchmark)
@@ -269,6 +277,8 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-09-30 S290
+        'google/gemini-4-argon',  // 2026-09-30 — AAII v4.3 52.6 (high = highest; ties GPT-6 Astra), AutomationBench-AA 77.5 (#1), AA-Omniscience hallucination 15%; DeepSWE 77.9, LVBench 91.7, CWE-bench v1 68; $2/$10 intro (list $4/$20); trusted testers only
         // 2026-09-28/29 S289
         'openai/gpt-6.1-sol',  // 2026-09-29 — AAII v4.3 51.8 (1 pt below Astra at <1/4 cost per task); DeepSWE 71.9, OSWorld 2.0 offline 71.4, TB-Science 57.0; $2/$10, cached $0.10
         'anthropic/claude-sonnet-5.5',  // 2026-09-28 — AAII v4.3 56.0 (#2), AA TB 4.0 63.6, Briefcase 1811, GDPval-AA 1844; ~193k output tokens/task; $2/$10

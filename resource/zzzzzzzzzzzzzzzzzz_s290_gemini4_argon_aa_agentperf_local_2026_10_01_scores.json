@@ -1,0 +1,3035 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-01",
+  "session": "S290",
+  "sources": [
+   "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "https://artificialanalysis.ai/models/gemini-4-argon",
+   "https://artificialanalysis.ai/articles/gemini-4-argon-google-top-three-labs",
+   "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "https://artificialanalysis.ai/hardware-inference-stack/laptops-workstations",
+   "https://github.com/ArtificialAnalysis/aa-agentperf-local"
+  ],
+  "note": "Argon rows from Google table/charts and AA currentModel; other models fill-missing only (conflicts reported in s290_conflicts.json)."
+ },
+ "models": [
+  {
+   "id": "google/gemini-4-argon",
+   "vendor": "google",
+   "name": "Gemini 4 Argon",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image",
+    "video",
+    "audio"
+   ],
+   "release_date": "2026-09-30",
+   "context_window": 1000000,
+   "parameters": null,
+   "_note": "Gemini 4 Argon (Google DeepMind, announced 2026-09-30). Limited rollout to trusted cyber defenders (Fairwind Program); not publicly available yet (AA 'Not publicly available'). Base id = highest thinking setting: AA tests 'high', which AA says is the highest available; Google's table uses 'highest thinking settings'. 1M context, output limit 1M tokens (up from 64K). Introductory price $2 / $10 per 1M, cached input 95% off ($0.10); list price afterwards $4 / $20. Input text/image/video/speech, text output (AA)."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "vals_index_sep2026",
+   "name": "Vals Index (Vals AI, Sep 2026 board)",
+   "category": "knowledge_work",
+   "metric": "accuracy_pct",
+   "description": "Vals AI GDP-weighted index across finance, coding, legal and tax work, as on the Vals AI board in Sep 2026 (quoted in Google's Gemini 4 Argon launch table). Separate from `vals-index` / `vals_index`: those rows come from an earlier board version (Fable 5 = 75.1 there vs Fable 5.1 = 65.8 here)."
+  },
+  {
+   "id": "posttrainbench_v1_1_google",
+   "name": "PostTrainBench v1.1 (Google self-run, OpenCode, 10h H100)",
+   "category": "ml_engineering",
+   "metric": "accuracy_pct",
+   "description": "PostTrainBench v1.1 run by Google for every model in the Gemini 4 Argon table: OpenCode harness, 10-hour budget on one NVIDIA H100, weighted aggregate over four base models and seven benchmarks. Kept apart from `posttrainbench` (vendor self-reports on other versions / 0-1 scale)."
+  },
+  {
+   "id": "graphwalks_bfs_256k_1m_f1",
+   "name": "GraphWalks BFS 256K–1M (F1)",
+   "category": "long_context",
+   "metric": "f1_pct",
+   "description": "GraphWalks BFS F1 on the 200 problems with context length between 256K and 1M tokens (Google's Gemini 4 Argon table, all models self-computed by Google). Not the same subset as `graphwalks_bfs_256k` / `graphwalks_bfs_1m`."
+  },
+  {
+   "id": "chartography_surge_no_tools",
+   "name": "Chartography (Surge AI leaderboard, no tools)",
+   "category": "multimodal",
+   "metric": "accuracy_pct",
+   "description": "Surge AI Chartography official leaderboard, no tools, as quoted in Google's Gemini 4 Argon table. Separate from the Anthropic-card ids graded with a Gemini 3.5 Flash judge (`chartography_gemini_judge_*`), whose values differ."
+  },
+  {
+   "id": "cwe_bench_v1",
+   "name": "CWE-bench v1 (official leaderboard, pass@1)",
+   "category": "cybersecurity",
+   "metric": "accuracy_pct",
+   "description": "CWE-bench v1 official public leaderboard: remediate security vulnerabilities, pass@1 with ties broken by pass@4; each entry run in a named coding-agent harness (opencode, Codex, Claude Code, Antigravity). Values are the rounded percentages in Google's leaderboard chart. v0 values sit on `cwe_bench`; AA's run is `cwe_bench_aa`."
+  },
+  {
+   "id": "google_realworld_vuln_discovery_internal",
+   "name": "Real-world Vulnerability Discovery (Google internal, pass@1)",
+   "category": "cybersecurity",
+   "metric": "accuracy_pct",
+   "description": "Google internal dataset: recall over recent, confirmed historical vulnerabilities in popular open-source projects across 20 programming languages; model has the source code and runs in an internal, not cyber-specialized Antigravity harness. Reported only for Google models."
+  },
+  {
+   "id": "wiz_pentest_benchmark_internal",
+   "name": "Wiz Penetration Test Benchmark (internal, black-box, pass@1)",
+   "category": "cybersecurity",
+   "metric": "accuracy_pct",
+   "description": "Wiz internal black-box penetration-testing benchmark: write exploits against real web-application vulnerabilities without source code (attack-surface discovery, vulnerability identification, proof-of-concept). Reported by Google for Gemini models only."
+  },
+  {
+   "id": "aa_agentperf_local_completion_min_macbook_pro_m5_pro_64gb_lower_better",
+   "name": "AA-AgentPerf-Local completion time (min) — MacBook Pro (M5 Pro, 64 GB unified)",
+   "category": "inference",
+   "metric": "minutes",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: MacBook Pro (M5 Pro, 64 GB unified). Metric: end-to-end completion time of the workload, minutes, lower is better."
+  },
+  {
+   "id": "aa_agentperf_local_prefill_tps_macbook_pro_m5_pro_64gb",
+   "name": "AA-AgentPerf-Local prefill speed (tok/s) — MacBook Pro (M5 Pro, 64 GB unified)",
+   "category": "inference",
+   "metric": "tokens_per_second",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: MacBook Pro (M5 Pro, 64 GB unified). Metric: new input tokens processed per second (prefill)."
+  },
+  {
+   "id": "aa_agentperf_local_decode_tps_macbook_pro_m5_pro_64gb",
+   "name": "AA-AgentPerf-Local decode speed (tok/s) — MacBook Pro (M5 Pro, 64 GB unified)",
+   "category": "inference",
+   "metric": "tokens_per_second",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: MacBook Pro (M5 Pro, 64 GB unified). Metric: tokens generated per second after the first token (decode)."
+  },
+  {
+   "id": "aa_agentperf_local_completion_min_ryzen_ai_halo_lower_better",
+   "name": "AA-AgentPerf-Local completion time (min) — AMD Ryzen AI Halo (128 GB unified)",
+   "category": "inference",
+   "metric": "minutes",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: AMD Ryzen AI Halo (128 GB unified). Metric: end-to-end completion time of the workload, minutes, lower is better."
+  },
+  {
+   "id": "aa_agentperf_local_prefill_tps_ryzen_ai_halo",
+   "name": "AA-AgentPerf-Local prefill speed (tok/s) — AMD Ryzen AI Halo (128 GB unified)",
+   "category": "inference",
+   "metric": "tokens_per_second",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: AMD Ryzen AI Halo (128 GB unified). Metric: new input tokens processed per second (prefill)."
+  },
+  {
+   "id": "aa_agentperf_local_decode_tps_ryzen_ai_halo",
+   "name": "AA-AgentPerf-Local decode speed (tok/s) — AMD Ryzen AI Halo (128 GB unified)",
+   "category": "inference",
+   "metric": "tokens_per_second",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: AMD Ryzen AI Halo (128 GB unified). Metric: tokens generated per second after the first token (decode)."
+  },
+  {
+   "id": "aa_agentperf_local_completion_min_dgx_spark_lower_better",
+   "name": "AA-AgentPerf-Local completion time (min) — NVIDIA DGX Spark (128 GB unified)",
+   "category": "inference",
+   "metric": "minutes",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA DGX Spark (128 GB unified). Metric: end-to-end completion time of the workload, minutes, lower is better."
+  },
+  {
+   "id": "aa_agentperf_local_prefill_tps_dgx_spark",
+   "name": "AA-AgentPerf-Local prefill speed (tok/s) — NVIDIA DGX Spark (128 GB unified)",
+   "category": "inference",
+   "metric": "tokens_per_second",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA DGX Spark (128 GB unified). Metric: new input tokens processed per second (prefill)."
+  },
+  {
+   "id": "aa_agentperf_local_decode_tps_dgx_spark",
+   "name": "AA-AgentPerf-Local decode speed (tok/s) — NVIDIA DGX Spark (128 GB unified)",
+   "category": "inference",
+   "metric": "tokens_per_second",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA DGX Spark (128 GB unified). Metric: tokens generated per second after the first token (decode)."
+  },
+  {
+   "id": "aa_agentperf_local_completion_min_rtx_5090_lower_better",
+   "name": "AA-AgentPerf-Local completion time (min) — NVIDIA GeForce RTX 5090 (32 GB VRAM)",
+   "category": "inference",
+   "metric": "minutes",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA GeForce RTX 5090 (32 GB VRAM). Metric: end-to-end completion time of the workload, minutes, lower is better."
+  },
+  {
+   "id": "aa_agentperf_local_prefill_tps_rtx_5090",
+   "name": "AA-AgentPerf-Local prefill speed (tok/s) — NVIDIA GeForce RTX 5090 (32 GB VRAM)",
+   "category": "inference",
+   "metric": "tokens_per_second",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA GeForce RTX 5090 (32 GB VRAM). Metric: new input tokens processed per second (prefill)."
+  },
+  {
+   "id": "aa_agentperf_local_decode_tps_rtx_5090",
+   "name": "AA-AgentPerf-Local decode speed (tok/s) — NVIDIA GeForce RTX 5090 (32 GB VRAM)",
+   "category": "inference",
+   "metric": "tokens_per_second",
+   "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA GeForce RTX 5090 (32 GB VRAM). Metric: tokens generated per second after the first token (decode)."
+  }
+ ],
+ "scores": [
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "vals_index_sep2026",
+   "score": 68.9,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). Vals Index, sourced from Vals AI."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "vals_index_sep2026",
+   "score": 63.1,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Vals Index, sourced from Vals AI."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "vals_index_sep2026",
+   "score": 65.8,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Vals Index, sourced from Vals AI."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "vals_index_sep2026",
+   "score": 67.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Vals Index, sourced from Vals AI."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "automationbench_1_0_6",
+   "score": 51.3,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). AutomationBench Score, private set, from the official Zapier public leaderboard."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "finance_agent_v2",
+   "score": 65.4,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). Vals Finance Agent v2, sourced from Vals AI."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "finance_agent_v2",
+   "score": 53.5,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Vals Finance Agent v2, sourced from Vals AI."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "finance_agent_v2",
+   "score": 58.9,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Vals Finance Agent v2, sourced from Vals AI."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "finance_agent_v2",
+   "score": 58.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Vals Finance Agent v2, sourced from Vals AI."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "legal_agent_benchmark_harvey",
+   "score": 19.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). Harvey's Legal Agent Benchmark, sourced from Vals AI."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "legal_agent_benchmark_harvey",
+   "score": 5.4,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Harvey's Legal Agent Benchmark, sourced from Vals AI."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "legal_agent_benchmark_harvey",
+   "score": 6.7,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Harvey's Legal Agent Benchmark, sourced from Vals AI."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "legal_agent_benchmark_harvey",
+   "score": 3.8,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Harvey's Legal Agent Benchmark, sourced from Vals AI."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "deepswe_1_1",
+   "score": 77.9,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). DeepSWE v1.1; Argon self-computed with mini-swe-agent; Astra from the Datacurve board, Fable 5.1 / Opus 5.5 from their system cards; highest-scoring thinking level."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "frontierswe_v2",
+   "score": 55.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). FrontierSWE v2 from Proximal's official public leaderboard."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "vibe_code_bench",
+   "score": 91.9,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). Vibe Code Bench from the official Vals AI public leaderboard."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "vibe_code_bench",
+   "score": 89.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Vibe Code Bench from the official Vals AI public leaderboard."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "vibe_code_bench",
+   "score": 90.3,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Vibe Code Bench from the official Vals AI public leaderboard."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "vibe_code_bench",
+   "score": 90.3,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Vibe Code Bench from the official Vals AI public leaderboard."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "terminal_bench_4_0",
+   "score": 57.4,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). Terminal-Bench 4.0; Argon self-computed, others from the official public leaderboard (highest-scoring thinking level)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0",
+   "score": 66.4,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Terminal-Bench 4.0; Argon self-computed, others from the official public leaderboard (highest-scoring thinking level)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "posttrainbench_v1_1_google",
+   "score": 45.3,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). PostTrainBench v1.1, all models self-computed by Google (OpenCode, 10h, 1x H100)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "posttrainbench_v1_1_google",
+   "score": 44.3,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). PostTrainBench v1.1, all models self-computed by Google (OpenCode, 10h, 1x H100)."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "posttrainbench_v1_1_google",
+   "score": 40.2,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). PostTrainBench v1.1, all models self-computed by Google (OpenCode, 10h, 1x H100)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "posttrainbench_v1_1_google",
+   "score": 49.3,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). PostTrainBench v1.1, all models self-computed by Google (OpenCode, 10h, 1x H100)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "terminal_bench_science",
+   "score": 57.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). Terminal-Bench Science 0.1; Argon self-computed with 6x verifier timeout, others from the official public leaderboard."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_science",
+   "score": 68.1,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Terminal-Bench Science 0.1; Argon self-computed with 6x verifier timeout, others from the official public leaderboard."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "labbench2",
+   "score": 88.8,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). LABBench2, all models self-computed by Google (Linux terminal with bioinfo tools, Python, R, internet)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "labbench2",
+   "score": 85.4,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). LABBench2, all models self-computed by Google (Linux terminal with bioinfo tools, Python, R, internet)."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "labbench2",
+   "score": 68.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). LABBench2, all models self-computed by Google (Linux terminal with bioinfo tools, Python, R, internet)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "labbench2",
+   "score": 73.1,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). LABBench2, all models self-computed by Google (Linux terminal with bioinfo tools, Python, R, internet)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "riemannbench",
+   "score": 76.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). RiemannBench from the official Surge public leaderboard."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "riemannbench",
+   "score": 72.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). RiemannBench from the official Surge public leaderboard."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "riemannbench",
+   "score": 65.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). RiemannBench from the official Surge public leaderboard."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "riemannbench",
+   "score": 69.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). RiemannBench from the official Surge public leaderboard."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "graphwalks_bfs_128k",
+   "score": 99.7,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). GraphWalks BFS F1, up to 128K (650 items), all models self-computed by Google."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "graphwalks_bfs_128k",
+   "score": 98.7,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). GraphWalks BFS F1, up to 128K (650 items), all models self-computed by Google."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "graphwalks_bfs_128k",
+   "score": 91.4,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). GraphWalks BFS F1, up to 128K (650 items), all models self-computed by Google."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "graphwalks_bfs_128k",
+   "score": 90.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). GraphWalks BFS F1, up to 128K (650 items), all models self-computed by Google."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "graphwalks_bfs_256k_1m_f1",
+   "score": 84.2,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). GraphWalks BFS F1, 256K–1M (200 problems), all models self-computed by Google."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "graphwalks_bfs_256k_1m_f1",
+   "score": 71.8,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). GraphWalks BFS F1, 256K–1M (200 problems), all models self-computed by Google."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "graphwalks_bfs_256k_1m_f1",
+   "score": 65.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). GraphWalks BFS F1, 256K–1M (200 problems), all models self-computed by Google."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "graphwalks_bfs_256k_1m_f1",
+   "score": 66.8,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). GraphWalks BFS F1, 256K–1M (200 problems), all models self-computed by Google."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "agents_last_exam",
+   "score": 39.5,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). Agent's Last Exam binary pass rate; Argon self-computed (ALE-Claw, 5h, safety filters on); Astra / Opus from the official board; Fable 5.1 not on the board."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "osworld_v2_offline_partial",
+   "score": 69.2,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). OSWorld 2.0 offline subset partial score; Argon self-computed (max over 3 runs, Gemini CUA harness, 08.08 patch); Astra from the OpenAI blog; Anthropic reports online+offline combined only."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "chartography_surge_no_tools",
+   "score": 71.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). Chartography without tools, from the official Surge public leaderboard."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "chartography_surge_no_tools",
+   "score": 71.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Chartography without tools, from the official Surge public leaderboard."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "chartography_surge_no_tools",
+   "score": 46.2,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Chartography without tools, from the official Surge public leaderboard."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "chartography_surge_no_tools",
+   "score": 66.3,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). Chartography without tools, from the official Surge public leaderboard."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "lvbench",
+   "score": 91.7,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). LVBench without tools, self-computed by Google (1 FPS Gemini; 800 frames Astra, 300 Fable 5.1, 600 Opus 5.5 due to API limits)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "lvbench",
+   "score": 87.5,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). LVBench without tools, self-computed by Google (1 FPS Gemini; 800 frames Astra, 300 Fable 5.1, 600 Opus 5.5 due to API limits)."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "lvbench",
+   "score": 79.7,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). LVBench without tools, self-computed by Google (1 FPS Gemini; 800 frames Astra, 300 Fable 5.1, 600 Opus 5.5 due to API limits)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "lvbench",
+   "score": 83.7,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). LVBench without tools, self-computed by Google (1 FPS Gemini; 800 frames Astra, 300 Fable 5.1, 600 Opus 5.5 due to API limits)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "cwe_bench_v1",
+   "score": 68.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026). CWE-bench v1 from the official public leaderboard (pass@1, ties broken by pass@4)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "cwe_bench_v1",
+   "score": 68.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). CWE-bench v1 from the official public leaderboard (pass@1, ties broken by pass@4)."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "cwe_bench_v1",
+   "score": 58.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). CWE-bench v1 from the official public leaderboard (pass@1, ties broken by pass@4)."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "cwe_bench_v1",
+   "score": 67.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/evals-methodology/gemini-4-argon",
+   "_note": "Google Gemini 4 Argon launch table (blog image gemini-4-argon_table_blog.gif = evals-methodology PDF p.5, results as of Oct 2026) (comparison column; Google methodology: non-Gemini results are provider self-reports or the named public leaderboard, max thinking where available). CWE-bench v1 from the official public leaderboard (pass@1, ties broken by pass@4)."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "cwe_bench_v1",
+   "score": 68,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"CWE-bench v1 leaderboard\" (pass@1, ties broken by pass@4; rounded labels). Harness: opencode."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "cwe_bench_v1",
+   "score": 57,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"CWE-bench v1 leaderboard\" (pass@1, ties broken by pass@4; rounded labels). Harness: opencode."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "cwe_bench_v1",
+   "score": 55,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"CWE-bench v1 leaderboard\" (pass@1, ties broken by pass@4; rounded labels). Harness: opencode."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "cwe_bench_v1",
+   "score": 55,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"CWE-bench v1 leaderboard\" (pass@1, ties broken by pass@4; rounded labels). Harness: opencode."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "cwe_bench_v1",
+   "score": 53,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"CWE-bench v1 leaderboard\" (pass@1, ties broken by pass@4; rounded labels). Harness: opencode."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "cwe_bench_v1",
+   "score": 52,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"CWE-bench v1 leaderboard\" (pass@1, ties broken by pass@4; rounded labels). Harness: Codex."
+  },
+  {
+   "model": "thinking-machines/inkling",
+   "benchmark": "cwe_bench_v1",
+   "score": 37,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"CWE-bench v1 leaderboard\" (pass@1, ties broken by pass@4; rounded labels). Harness: opencode."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "google_realworld_vuln_discovery_internal",
+   "score": 85.8,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Discovering security vulnerabilities\" (pass@1), Real-world Vulnerability Discovery panel."
+  },
+  {
+   "model": "google/gemini-3.8-flash-cyber",
+   "benchmark": "google_realworld_vuln_discovery_internal",
+   "score": 71.0,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Discovering security vulnerabilities\" (pass@1), Real-world Vulnerability Discovery panel."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "wiz_pentest_benchmark_internal",
+   "score": 70.9,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Discovering security vulnerabilities\" (pass@1), Wiz Penetration Test Benchmark panel."
+  },
+  {
+   "model": "google/gemini-3.8-flash-cyber",
+   "benchmark": "wiz_pentest_benchmark_internal",
+   "score": 58.2,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Discovering security vulnerabilities\" (pass@1), Wiz Penetration Test Benchmark panel."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "gray_swan_ipi",
+   "score": 0.7,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Gray Swan IPI\" — attack success rate at k=15 attempts (bar label), results sourced from Gray Swan. k=1 / k=10 segments are unlabelled and not recorded."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "gray_swan_ipi",
+   "score": 5.5,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Gray Swan IPI\" — attack success rate at k=15 attempts (bar label), results sourced from Gray Swan. k=1 / k=10 segments are unlabelled and not recorded."
+  },
+  {
+   "model": "google/gemini-3.8-flash-cyber",
+   "benchmark": "gray_swan_ipi",
+   "score": 6.0,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Gray Swan IPI\" — attack success rate at k=15 attempts (bar label), results sourced from Gray Swan. k=1 / k=10 segments are unlabelled and not recorded."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "gray_swan_ipi",
+   "score": 10.1,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Gray Swan IPI\" — attack success rate at k=15 attempts (bar label), results sourced from Gray Swan. k=1 / k=10 segments are unlabelled and not recorded."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "gray_swan_ipi",
+   "score": 15.9,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Gray Swan IPI\" — attack success rate at k=15 attempts (bar label), results sourced from Gray Swan. k=1 / k=10 segments are unlabelled and not recorded."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "gray_swan_ipi",
+   "score": 31.5,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Gray Swan IPI\" — attack success rate at k=15 attempts (bar label), results sourced from Gray Swan. k=1 / k=10 segments are unlabelled and not recorded."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "gray_swan_ipi",
+   "score": 51.8,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Gray Swan IPI\" — attack success rate at k=15 attempts (bar label), results sourced from Gray Swan. k=1 / k=10 segments are unlabelled and not recorded."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "gray_swan_ipi",
+   "score": 52.7,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog chart \"Gray Swan IPI\" — attack success rate at k=15 attempts (bar label), results sourced from Gray Swan. k=1 / k=10 segments are unlabelled and not recorded."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 52.560566,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field intelligenceIndex. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 60.41936,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field capabilities.economics. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 55.217169,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field capabilities.engineering. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 53.791831,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field capabilities.financeAndAccounting. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 60.024885,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field capabilities.legal. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 56.241201,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field capabilities.strategyAndOps. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_omniscience_index",
+   "score": 42.35,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field omniscience. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_omniscience_acc",
+   "score": 49.9,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field omniscienceAccuracy. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 84.93014,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field omniscienceHallucinationRate. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "gdp_pdf",
+   "score": 21.8,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field gdpPdfAllPass. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1611.33,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field gdpval. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 55.5665,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field gdpvalNormalized. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 57.070707,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field terminalBench40. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "scicode",
+   "score": 61.805556,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field scicode. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_lcr",
+   "score": 79.666667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field lcr. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "hle",
+   "score": 57.089898,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field hle. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "critpt",
+   "score": 27.142857,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field critpt. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "automationbench_aa",
+   "score": 77.513469,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field automationBenchPartialScore. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1493.84,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field briefcaseBreakdown.overall.elo. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1575.53,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field briefcaseBreakdown.analyticalQuality.elo. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1308.29,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field briefcaseBreakdown.presentation.elo. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 64.634146,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field briefcaseBreakdown.rubricPassRate. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.990322,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field intelligenceIndexCostPerTask.cost.total. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 61557.626208,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field intelligenceIndexOutputTokensPerTask.output. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 1.47,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA model page RSC currentModel (https://artificialanalysis.ai/models/gemini-4-argon, read 2026-10-01), slug verified = gemini-4-argon (AA name 'Gemini 4 Argon (High)'), field price1mBlended7To2To1. AA Intelligence Index v4.3.2 era. High is the highest reasoning setting AA could test."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2,
+   "unit": "USD/1M",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog: introductory price $2 / $10 per 1M input / output tokens, cached input 95% off ($0.10, also AA). After the introductory period $4 / $20 (end date not announced)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 10,
+   "unit": "USD/1M",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog: introductory price $2 / $10 per 1M input / output tokens, cached input 95% off ($0.10, also AA). After the introductory period $4 / $20 (end date not announced)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.1,
+   "unit": "USD/1M",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_note": "Google blog: introductory price $2 / $10 per 1M input / output tokens, cached input 95% off ($0.10, also AA). After the introductory period $4 / $20 (end date not announced)."
+  },
+  {
+   "model": "xiaomi/mimo-v2.5-pro",
+   "benchmark": "itbench_aa",
+   "score": 38.229755,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mimo-v2-5-pro, AA name 'MiMo-V2.5-Pro', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "anthropic/claude-3.5-haiku",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 10.11236,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug claude-3-5-haiku, AA name 'Claude 3.5 Haiku', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-3-270m",
+   "benchmark": "aa_openness_index",
+   "score": 44.444444,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-3-270m, AA name 'Gemma 3 270M', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "mistral/mistral-medium-3.1",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 13.857678,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mistral-medium-3-1, AA name 'Mistral Medium 3.1', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "mistral/mistral-medium-3.1",
+   "benchmark": "tau2_banking_aa",
+   "score": 8.247423,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mistral-medium-3-1, AA name 'Mistral Medium 3.1', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "mistral/mistral-medium-3.1",
+   "benchmark": "aa_openness_index",
+   "score": 11.111111,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mistral-medium-3-1, AA name 'Mistral Medium 3.1', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "stepfun/step-5-preview",
+   "benchmark": "apex_agents",
+   "score": 37.979351,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug step-5, AA name 'Step 5 Preview', read 2026-10-01), field apexAgents. Fill-missing only."
+  },
+  {
+   "model": "stepfun/step-5-preview",
+   "benchmark": "aa_analyst_agent",
+   "score": 35.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug step-5, AA name 'Step 5 Preview', read 2026-10-01), field analystAgent. Fill-missing only."
+  },
+  {
+   "model": "stepfun/step-5-preview",
+   "benchmark": "enterpriseops_gym_aa",
+   "score": 47.179946,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug step-5, AA name 'Step 5 Preview', read 2026-10-01), field enterpriseOpsGym. Fill-missing only."
+  },
+  {
+   "model": "stepfun/step-5-preview",
+   "benchmark": "harvey_lab_aa_mean_criteria",
+   "score": 93.443335,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug step-5, AA name 'Step 5 Preview', read 2026-10-01), field harveyLab. Fill-missing only."
+  },
+  {
+   "model": "stepfun/step-5-preview",
+   "benchmark": "itbench_aa",
+   "score": 55.555556,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug step-5, AA name 'Step 5 Preview', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3-omni-30b-a3b-instruct",
+   "benchmark": "aa_openness_index",
+   "score": 44.444444,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-omni-30b-a3b-instruct, AA name 'Qwen3 Omni 30B A3B Instruct', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "itbench_aa",
+   "score": 31.186441,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k2-6, AA name 'Kimi K2.6', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.5-397b-a17b",
+   "benchmark": "itbench_aa",
+   "score": 34.086629,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-5-397b-a17b, AA name 'Qwen3.5 397B A17B (Reasoning)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-oss-20b-low",
+   "benchmark": "aa_openness_index",
+   "score": 38.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-oss-20b-low, AA name 'gpt-oss-20b (Low)', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.5-27b",
+   "benchmark": "itbench_aa",
+   "score": 35.499058,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-5-27b, AA name 'Qwen3.5 27B (Reasoning)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "aa_openness_index",
+   "score": 5.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug o3, AA name 'o3', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 963.793781,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug glm-5-3-flash, AA name 'GLM 5.3 Flash', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "aa_output_tps",
+   "score": 44.800088,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug glm-5-3-flash, AA name 'GLM 5.3 Flash', read 2026-10-01), field timescaleData.medianOutputSpeed. Fill-missing only."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 47.955714,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug glm-5-3-flash, AA name 'GLM 5.3 Flash', read 2026-10-01), field timeToFirstAnswerToken.total. Fill-missing only."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.0982,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug glm-5-3-flash, AA name 'GLM 5.3 Flash', read 2026-10-01), field price1mBlended7To2To1. Fill-missing only."
+  },
+  {
+   "model": "ibm/granite-4.0-micro",
+   "benchmark": "aa_openness_index",
+   "score": 55.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug granite-4-0-micro, AA name 'Granite 4.0 Micro', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-3-4b",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 0.374532,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-3-4b, AA name 'Gemma 3 4B Instruct', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-3-4b",
+   "benchmark": "tau2_banking_aa",
+   "score": 0.412371,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-3-4b, AA name 'Gemma 3 4B Instruct', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-3-4b",
+   "benchmark": "aa_openness_index",
+   "score": 50,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-3-4b, AA name 'Gemma 3 4B Instruct', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "mistral/mistral-small-3.1",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 26.217228,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mistral-small-3-1, AA name 'Mistral Small 3.1', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "mistral/mistral-small-3.1",
+   "benchmark": "tau2_banking_aa",
+   "score": 7.42268,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mistral-small-3-1, AA name 'Mistral Small 3.1', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "aa_capability_index_healthcare_medical_v4_3",
+   "score": 41.82043,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mimo-v2-6-pro, AA name 'MiMo-V2.6-Pro', read 2026-10-01), field capabilities.healthcareAndMedical. Fill-missing only."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 1406.170371,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mimo-v2-6-pro, AA name 'MiMo-V2.6-Pro', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "aa_output_tps",
+   "score": 43.612968,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mimo-v2-6-pro, AA name 'MiMo-V2.6-Pro', read 2026-10-01), field timescaleData.medianOutputSpeed. Fill-missing only."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 50.062889,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mimo-v2-6-pro, AA name 'MiMo-V2.6-Pro', read 2026-10-01), field timeToFirstAnswerToken.total. Fill-missing only."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.17652,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mimo-v2-6-pro, AA name 'MiMo-V2.6-Pro', read 2026-10-01), field price1mBlended7To2To1. Fill-missing only."
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 28.464419,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemini-2-5-pro, AA name 'Gemini 2.5 Pro', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "tau2_banking_aa",
+   "score": 9.690722,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemini-2-5-pro, AA name 'Gemini 2.5 Pro', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "aa_openness_index",
+   "score": 5.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemini-2-5-pro, AA name 'Gemini 2.5 Pro', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 494.563741,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug minimax-m3, AA name 'MiniMax-M3', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 21.74483,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug minimax-m3, AA name 'MiniMax-M3', read 2026-10-01), field timeToFirstAnswerToken.total. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 3.745318,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-mini, AA name 'GPT-5 mini (High)', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "tau2_banking_aa",
+   "score": 15.463918,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-mini, AA name 'GPT-5 mini (High)', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "aa_openness_index",
+   "score": 5.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-mini, AA name 'GPT-5 mini (High)', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-3-27b",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 4.494382,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-3-27b, AA name 'Gemma 3 27B Instruct', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-3-27b",
+   "benchmark": "tau2_banking_aa",
+   "score": 0.824742,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-3-27b, AA name 'Gemma 3 27B Instruct', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-3-27b",
+   "benchmark": "aa_openness_index",
+   "score": 50,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-3-27b, AA name 'Gemma 3 27B Instruct', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "microsoft/phi-4-multimodal",
+   "benchmark": "aa_openness_index",
+   "score": 50,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug phi-4-multimodal, AA name 'Phi-4 Multimodal Instruct', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-3-12b",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-3-12b, AA name 'Gemma 3 12B Instruct', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-3-12b",
+   "benchmark": "tau2_banking_aa",
+   "score": 0.824742,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-3-12b, AA name 'Gemma 3 12B Instruct', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-3-12b",
+   "benchmark": "aa_openness_index",
+   "score": 50,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-3-12b, AA name 'Gemma 3 12B Instruct', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_capability_index_healthcare_medical_v4_3",
+   "score": 60.535987,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug claude-opus-5-5, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)', read 2026-10-01), field capabilities.healthcareAndMedical. Fill-missing only."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 824.112216,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug claude-opus-5-5, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_output_tps",
+   "score": 92.158924,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug claude-opus-5-5, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)', read 2026-10-01), field timescaleData.medianOutputSpeed. Fill-missing only."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 702.554261,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug claude-opus-5-5, AA name 'Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)', read 2026-10-01), field timeToFirstAnswerToken.total. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3-235b-a22b-instruct-2507",
+   "benchmark": "aa_openness_index",
+   "score": 44.444444,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-235b-a22b-instruct-2507, AA name 'Qwen3 235B A22B 2507 Instruct', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "amazon/nova-micro",
+   "benchmark": "aa_openness_index",
+   "score": 11.111111,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug nova-micro, AA name 'Nova Micro', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 13.857678,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-oss-20b, AA name 'gpt-oss-20b (High)', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "tau2_banking_aa",
+   "score": 7.010309,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-oss-20b, AA name 'gpt-oss-20b (High)', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "aa_openness_index",
+   "score": 38.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-oss-20b, AA name 'gpt-oss-20b (High)', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "cohere/command-a",
+   "benchmark": "aa_openness_index",
+   "score": 33.333333,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug command-a, AA name 'Command A', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "inclusionai/ling-mini-2.0",
+   "benchmark": "aa_openness_index",
+   "score": 44.444444,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ling-mini-2-0, AA name 'Ling-mini-2.0', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "itbench_aa",
+   "score": 40.320151,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-6-luna, AA name 'GPT-5.6 Luna (Max)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "mistral/mistral-small-3.2",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 5.617978,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mistral-small-3-2, AA name 'Mistral Small 3.2', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "mistral/mistral-small-3.2",
+   "benchmark": "tau2_banking_aa",
+   "score": 6.185567,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mistral-small-3-2, AA name 'Mistral Small 3.2', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "mistral/mistral-small-3.2",
+   "benchmark": "aa_openness_index",
+   "score": 38.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug mistral-small-3-2, AA name 'Mistral Small 3.2', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "deepseek/deepseek-v3",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 16.853933,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug deepseek-v3, AA name 'DeepSeek V3 (Dec '24)', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "deepseek/deepseek-v3",
+   "benchmark": "tau2_banking_aa",
+   "score": 4.742268,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug deepseek-v3, AA name 'DeepSeek V3 (Dec '24)', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k2",
+   "benchmark": "aa_openness_index",
+   "score": 44.444444,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k2, AA name 'Kimi K2', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.5-35b-a3b",
+   "benchmark": "itbench_aa",
+   "score": 21.516008,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-5-35b-a3b, AA name 'Qwen3.5 35B A3B (Reasoning)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "inclusionai/ring-flash-2.0",
+   "benchmark": "aa_openness_index",
+   "score": 38.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ring-flash-2-0, AA name 'Ring-flash-2.0', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 35.205993,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5, AA name 'GPT-5 (High)', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "tau2_banking_aa",
+   "score": 22.061856,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5, AA name 'GPT-5 (High)', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "aa_openness_index",
+   "score": 5.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5, AA name 'GPT-5 (High)', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "swiss-ai/apertus-70b-instruct",
+   "benchmark": "aa_openness_index",
+   "score": 88.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug apertus-70b-instruct, AA name 'Apertus 70B Instruct', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "deepseek/deepseek-r1-distill-llama-70b",
+   "benchmark": "aa_openness_index",
+   "score": 36.111111,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug deepseek-r1-distill-llama-70b, AA name 'DeepSeek R1 Distill Llama 70B', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "minimax/m2.7",
+   "benchmark": "itbench_aa",
+   "score": 26.45951,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug minimax-m2-7, AA name 'MiniMax-M2.7', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 30.066699,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k3-low, AA name 'Kimi K3 (Low)', read 2026-10-01), field intelligenceIndex. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 37.024737,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k3-low, AA name 'Kimi K3 (Low)', read 2026-10-01), field capabilities.economics. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 29.663393,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k3-low, AA name 'Kimi K3 (Low)', read 2026-10-01), field capabilities.engineering. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 32.262368,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k3-low, AA name 'Kimi K3 (Low)', read 2026-10-01), field capabilities.financeAndAccounting. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 34.322982,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k3-low, AA name 'Kimi K3 (Low)', read 2026-10-01), field capabilities.legal. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 38.905238,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k3-low, AA name 'Kimi K3 (Low)', read 2026-10-01), field capabilities.strategyAndOps. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1118.6,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k3-low, AA name 'Kimi K3 (Low)', read 2026-10-01), field gdpval. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 30.93,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k3-low, AA name 'Kimi K3 (Low)', read 2026-10-01), field gdpvalNormalized. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 326.777497,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k3-low, AA name 'Kimi K3 (Low)', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "amazon/nova-pro",
+   "benchmark": "aa_openness_index",
+   "score": 11.111111,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug nova-pro, AA name 'Nova Pro', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 144.870091,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug nvidia-nemotron-3-ultra-550b-a55b, AA name 'Nemotron 3 Ultra 550B A55B (Reasoning)', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 13.378122,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug nvidia-nemotron-3-ultra-550b-a55b, AA name 'Nemotron 3 Ultra 550B A55B (Reasoning)', read 2026-10-01), field timeToFirstAnswerToken.total. Fill-missing only."
+  },
+  {
+   "model": "amazon/nova-lite",
+   "benchmark": "aa_openness_index",
+   "score": 11.111111,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug nova-lite, AA name 'Nova Lite', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5-codex",
+   "benchmark": "aa_openness_index",
+   "score": 5.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-codex, AA name 'GPT-5 Codex (High)', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "zhipu/glm-4.5-air",
+   "benchmark": "aa_openness_index",
+   "score": 55.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug glm-4-5-air, AA name 'GLM-4.5-Air', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "ibm/granite-4.0-h-small",
+   "benchmark": "aa_openness_index",
+   "score": 55.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug granite-4-0-h-small, AA name 'Granite 4.0 H Small', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5-medium",
+   "benchmark": "aa_openness_index",
+   "score": 5.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-medium, AA name 'GPT-5 (Medium)', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "aa_openness_index",
+   "score": 5.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug grok-4, AA name 'Grok 4', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "benchmark": "itbench_aa",
+   "score": 1.129944,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug nvidia-nemotron-3-super-120b-a12b, AA name 'Nemotron 3 Super 120B A12B (Reasoning)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "moonshot/kimi-k2-0905",
+   "benchmark": "aa_openness_index",
+   "score": 27.777778,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug kimi-k2-0905, AA name 'Kimi K2 0905', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "stepfun/step-3.7-flash",
+   "benchmark": "itbench_aa",
+   "score": 30.27307,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug step-3-7-flash, AA name 'Step 3.7 Flash', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-26b-a4b",
+   "benchmark": "itbench_aa",
+   "score": 23.634652,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-26b-a4b, AA name 'Gemma 4 26B A4B (Reasoning)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 37.720406,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug inkling-small, AA name 'Inkling Small', read 2026-10-01), field capabilities.economics. Fill-missing only."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 28.916705,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug inkling-small, AA name 'Inkling Small', read 2026-10-01), field capabilities.engineering. Fill-missing only."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 27.664064,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug inkling-small, AA name 'Inkling Small', read 2026-10-01), field capabilities.financeAndAccounting. Fill-missing only."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 28.216663,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug inkling-small, AA name 'Inkling Small', read 2026-10-01), field capabilities.legal. Fill-missing only."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 21.311722,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug inkling-small, AA name 'Inkling Small', read 2026-10-01), field capabilities.strategyAndOps. Fill-missing only."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1108.58,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug inkling-small, AA name 'Inkling Small', read 2026-10-01), field gdpval. Fill-missing only."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 30.429,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug inkling-small, AA name 'Inkling Small', read 2026-10-01), field gdpvalNormalized. Fill-missing only."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 134.805587,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug inkling-small, AA name 'Inkling Small', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-4.1-nano",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 3.745318,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-4-1-nano, AA name 'GPT-4.1 nano', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-4.1-nano",
+   "benchmark": "tau2_banking_aa",
+   "score": 3.505155,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-4-1-nano, AA name 'GPT-4.1 nano', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "liquid-ai/lfm2-2.6b",
+   "benchmark": "aa_openness_index",
+   "score": 33.333333,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug lfm2-2-6b, AA name 'LFM2 2.6B', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "ai21/jamba-1.7-large",
+   "benchmark": "aa_openness_index",
+   "score": 22.222222,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug jamba-1-7-large, AA name 'Jamba 1.7 Large', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3-max",
+   "benchmark": "aa_openness_index",
+   "score": 16.666667,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-max, AA name 'Qwen3 Max', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "inclusionai/ling-3.0-tiny",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 21.074005,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ling-3-0-tiny, AA name 'Ling 3.0 Tiny', read 2026-10-01), field capabilities.economics. Fill-missing only."
+  },
+  {
+   "model": "inclusionai/ling-3.0-tiny",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 15.846027,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ling-3-0-tiny, AA name 'Ling 3.0 Tiny', read 2026-10-01), field capabilities.engineering. Fill-missing only."
+  },
+  {
+   "model": "inclusionai/ling-3.0-tiny",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 9.590191,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ling-3-0-tiny, AA name 'Ling 3.0 Tiny', read 2026-10-01), field capabilities.financeAndAccounting. Fill-missing only."
+  },
+  {
+   "model": "inclusionai/ling-3.0-tiny",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 14.23706,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ling-3-0-tiny, AA name 'Ling 3.0 Tiny', read 2026-10-01), field capabilities.legal. Fill-missing only."
+  },
+  {
+   "model": "inclusionai/ling-3.0-tiny",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 4.210699,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ling-3-0-tiny, AA name 'Ling 3.0 Tiny', read 2026-10-01), field capabilities.strategyAndOps. Fill-missing only."
+  },
+  {
+   "model": "inclusionai/ling-3.0-tiny",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 554.78,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ling-3-0-tiny, AA name 'Ling 3.0 Tiny', read 2026-10-01), field gdpval. Fill-missing only."
+  },
+  {
+   "model": "inclusionai/ling-3.0-tiny",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 2.739,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ling-3-0-tiny, AA name 'Ling 3.0 Tiny', read 2026-10-01), field gdpvalNormalized. Fill-missing only."
+  },
+  {
+   "model": "inclusionai/ling-3.0-tiny",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 1220.618523,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ling-3-0-tiny, AA name 'Ling 3.0 Tiny', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5-low",
+   "benchmark": "aa_openness_index",
+   "score": 5.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-low, AA name 'GPT-5 (Low)', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "skt/ax-k2",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 953.52,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug a-x-k2, AA name 'A.X-K2', read 2026-10-01), field gdpval. Fill-missing only."
+  },
+  {
+   "model": "skt/ax-k2",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 22.676,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug a-x-k2, AA name 'A.X-K2', read 2026-10-01), field gdpvalNormalized. Fill-missing only."
+  },
+  {
+   "model": "skt/ax-k2",
+   "benchmark": "automationbench_aa",
+   "score": 2.479417,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug a-x-k2, AA name 'A.X-K2', read 2026-10-01), field automationBenchPartialScore. Fill-missing only."
+  },
+  {
+   "model": "inclusionai/ling-flash-2.0",
+   "benchmark": "aa_openness_index",
+   "score": 44.444444,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ling-flash-2-0, AA name 'Ling-flash-2.0', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "swiss-ai/apertus-8b-instruct",
+   "benchmark": "aa_openness_index",
+   "score": 88.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug apertus-8b-instruct, AA name 'Apertus 8B Instruct', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 287.014927,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemini-3-8-flash, AA name 'Gemini 3.8 Flash (High)', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_output_tps",
+   "score": 244.693868,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemini-3-8-flash, AA name 'Gemini 3.8 Flash (High)', read 2026-10-01), field timescaleData.medianOutputSpeed. Fill-missing only."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 21.762274,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemini-3-8-flash, AA name 'Gemini 3.8 Flash (High)', read 2026-10-01), field timeToFirstAnswerToken.total. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 1365.113188,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-8-2-4t-a95b, AA name 'Qwen3.8 2.4T A95B', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "aa_output_tps",
+   "score": 39.615572,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-8-2-4t-a95b, AA name 'Qwen3.8 2.4T A95B', read 2026-10-01), field timescaleData.medianOutputSpeed. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 53.381617,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-8-2-4t-a95b, AA name 'Qwen3.8 2.4T A95B', read 2026-10-01), field timeToFirstAnswerToken.total. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 1.175,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-8-2-4t-a95b, AA name 'Qwen3.8 2.4T A95B', read 2026-10-01), field price1mBlended7To2To1. Fill-missing only."
+  },
+  {
+   "model": "meta/llama-4-maverick",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 7.865169,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug llama-4-maverick, AA name 'Llama 4 Maverick', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "meta/llama-4-maverick",
+   "benchmark": "tau2_banking_aa",
+   "score": 3.71134,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug llama-4-maverick, AA name 'Llama 4 Maverick', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "meta/llama-4-maverick",
+   "benchmark": "aa_openness_index",
+   "score": 27.777778,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug llama-4-maverick, AA name 'Llama 4 Maverick', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "xai/grok-4.3",
+   "benchmark": "itbench_aa",
+   "score": 32.721281,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug grok-4-3, AA name 'Grok 4.3 (High)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "perplexity/r1-1776",
+   "benchmark": "aa_openness_index",
+   "score": 38.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug r1-1776, AA name 'R1 1776', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "itbench_aa",
+   "score": 33.239171,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug muse-spark-1-3, AA name 'Muse Spark 1.3 (Max)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "minimax/m1-80k",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.715,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug minimax-m1-80k, AA name 'MiniMax M1 80k', read 2026-10-01), field price1mBlended7To2To1. Fill-missing only."
+  },
+  {
+   "model": "nvidia/nemotron-3-nano-4b",
+   "benchmark": "automationbench_aa",
+   "score": 0.448389,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug nvidia-nemotron-3-nano-4b, AA name 'NVIDIA Nemotron 3 Nano 4B', read 2026-10-01), field automationBenchPartialScore. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-4.1-mini",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 10.11236,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-4-1-mini, AA name 'GPT-4.1 mini', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-4.1-mini",
+   "benchmark": "tau2_banking_aa",
+   "score": 5.360825,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-4-1-mini, AA name 'GPT-4.1 mini', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "microsoft/phi-4-mini",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 0.374532,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug phi-4-mini, AA name 'Phi-4 Mini Instruct', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "microsoft/phi-4-mini",
+   "benchmark": "aa_openness_index",
+   "score": 50,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug phi-4-mini, AA name 'Phi-4 Mini Instruct', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "xai/grok-code-fast-1",
+   "benchmark": "aa_openness_index",
+   "score": 5.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug grok-code-fast-1, AA name 'Grok Code Fast 1', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "deepseek/deepseek-r1-0528",
+   "benchmark": "aa_openness_index",
+   "score": 50,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug deepseek-r1, AA name 'DeepSeek R1 0528 (May '25)', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "mistral/devstral-medium",
+   "benchmark": "aa_openness_index",
+   "score": 11.111111,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug devstral-medium, AA name 'Devstral Medium', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "meta/llama-4-scout",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 3.745318,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug llama-4-scout, AA name 'Llama 4 Scout', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "meta/llama-4-scout",
+   "benchmark": "tau2_banking_aa",
+   "score": 3.298969,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug llama-4-scout, AA name 'Llama 4 Scout', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "meta/llama-4-scout",
+   "benchmark": "aa_openness_index",
+   "score": 27.777778,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug llama-4-scout, AA name 'Llama 4 Scout', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5.4-mini-non-reasoning",
+   "benchmark": "itbench_aa",
+   "score": 18.644068,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-4-mini-non-reasoning, AA name 'GPT-5.4 mini (Non-reasoning)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "baidu/ernie-4.5-300b-a47b",
+   "benchmark": "aa_openness_index",
+   "score": 55.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug ernie-4-5-300b-a47b, AA name 'ERNIE 4.5 300B A47B', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "allenai/molmo-7b-d",
+   "benchmark": "aa_openness_index",
+   "score": 88.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug molmo-7b-d, AA name 'Molmo 7B-D', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 1233.15116,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-8-27b, AA name 'Qwen3.8 27B (Xhigh)', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_output_tps",
+   "score": 43.818851,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-8-27b, AA name 'Qwen3.8 27B (Xhigh)', read 2026-10-01), field timescaleData.medianOutputSpeed. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 49.559606,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-8-27b, AA name 'Qwen3.8 27B (Xhigh)', read 2026-10-01), field timeToFirstAnswerToken.total. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.47,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-8-27b, AA name 'Qwen3.8 27B (Xhigh)', read 2026-10-01), field price1mBlended7To2To1. Fill-missing only."
+  },
+  {
+   "model": "motif/motif-3",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 42.297852,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug motif-3, AA name 'Motif 3', read 2026-10-01), field capabilities.economics. Fill-missing only."
+  },
+  {
+   "model": "motif/motif-3",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1118.66,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug motif-3, AA name 'Motif 3', read 2026-10-01), field gdpval. Fill-missing only."
+  },
+  {
+   "model": "motif/motif-3",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 30.933,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug motif-3, AA name 'Motif 3', read 2026-10-01), field gdpvalNormalized. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "itbench_aa",
+   "score": 40.254237,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-8-max, AA name 'Qwen3.8 Max (0902)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "ai21/jamba-1.7-mini",
+   "benchmark": "aa_openness_index",
+   "score": 22.222222,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug jamba-1-7-mini, AA name 'Jamba 1.7 Mini', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-4o-mini",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 5.617978,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-4o-mini, AA name 'GPT-4o mini', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-4o-mini",
+   "benchmark": "tau2_banking_aa",
+   "score": 2.886598,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-4o-mini, AA name 'GPT-4o mini', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "itbench_aa",
+   "score": 35.216573,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-4-mini, AA name 'GPT-5.4 mini (Xhigh)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 403.48507,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-6-terra, AA name 'GPT-5.6 Terra (Max)', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "aa_output_tps",
+   "score": 95.105159,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-6-terra, AA name 'GPT-5.6 Terra (Max)', read 2026-10-01), field timescaleData.medianOutputSpeed. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 185.469005,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-6-terra, AA name 'GPT-5.6 Terra (Max)', read 2026-10-01), field timeToFirstAnswerToken.total. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 1.74,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-6-terra, AA name 'GPT-5.6 Terra (Max)', read 2026-10-01), field price1mBlended7To2To1. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5.4-nano-non-reasoning",
+   "benchmark": "itbench_aa",
+   "score": 12.909605,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-4-nano-non-reasoning, AA name 'GPT-5.4 nano (Non-reasoning)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 13.857678,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-oss-120b-low, AA name 'gpt-oss-120b (Low)', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "tau2_banking_aa",
+   "score": 2.886598,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-oss-120b-low, AA name 'gpt-oss-120b (Low)', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-oss-120b-low",
+   "benchmark": "aa_openness_index",
+   "score": 38.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-oss-120b-low, AA name 'gpt-oss-120b (Low)', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-31b",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 13.568476,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-31b, AA name 'Gemma 4 31B (Reasoning)', read 2026-10-01), field capabilities.financeAndAccounting. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-31b",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 13.937541,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-31b, AA name 'Gemma 4 31B (Reasoning)', read 2026-10-01), field capabilities.legal. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-31b",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 9.323308,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-31b, AA name 'Gemma 4 31B (Reasoning)', read 2026-10-01), field capabilities.strategyAndOps. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-31b",
+   "benchmark": "gdp_pdf",
+   "score": 6.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-31b, AA name 'Gemma 4 31B (Reasoning)', read 2026-10-01), field gdpPdfAllPass. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-31b",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 346.516412,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-31b, AA name 'Gemma 4 31B (Reasoning)', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-3-1b",
+   "benchmark": "aa_openness_index",
+   "score": 50,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-3-1b, AA name 'Gemma 3 1B Instruct', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5.4-nano",
+   "benchmark": "itbench_aa",
+   "score": 24.387947,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-4-nano, AA name 'GPT-5.4 nano (Xhigh)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 54.865408,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug muse-spark-1-3-xhigh, AA name 'Muse Spark 1.3 (Xhigh)', read 2026-10-01), field capabilities.economics. Fill-missing only."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 45.619652,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug muse-spark-1-3-xhigh, AA name 'Muse Spark 1.3 (Xhigh)', read 2026-10-01), field capabilities.engineering. Fill-missing only."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 47.788667,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug muse-spark-1-3-xhigh, AA name 'Muse Spark 1.3 (Xhigh)', read 2026-10-01), field capabilities.financeAndAccounting. Fill-missing only."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 48.838627,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug muse-spark-1-3-xhigh, AA name 'Muse Spark 1.3 (Xhigh)', read 2026-10-01), field capabilities.legal. Fill-missing only."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 49.063428,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug muse-spark-1-3-xhigh, AA name 'Muse Spark 1.3 (Xhigh)', read 2026-10-01), field capabilities.strategyAndOps. Fill-missing only."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 55.932,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug muse-spark-1-3-xhigh, AA name 'Muse Spark 1.3 (Xhigh)', read 2026-10-01), field gdpvalNormalized. Fill-missing only."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 363.539959,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug muse-spark-1-3-xhigh, AA name 'Muse Spark 1.3 (Xhigh)', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "aa_output_tps",
+   "score": 146.352756,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug muse-spark-1-3-xhigh, AA name 'Muse Spark 1.3 (Xhigh)', read 2026-10-01), field timescaleData.medianOutputSpeed. Fill-missing only."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 46.311439,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug muse-spark-1-3-xhigh, AA name 'Muse Spark 1.3 (Xhigh)', read 2026-10-01), field timeToFirstAnswerToken.total. Fill-missing only."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.78,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug muse-spark-1-3-xhigh, AA name 'Muse Spark 1.3 (Xhigh)', read 2026-10-01), field price1mBlended7To2To1. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+   "benchmark": "aa_openness_index",
+   "score": 50,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug qwen3-vl-235b-a22b-instruct, AA name 'Qwen3 VL 235B A22B Instruct', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-e4b",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 17.928716,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-e4b, AA name 'Gemma 4 E4B (Reasoning)', read 2026-10-01), field capabilities.economics. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-e4b",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 14.788736,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-e4b, AA name 'Gemma 4 E4B (Reasoning)', read 2026-10-01), field capabilities.engineering. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-e4b",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-e4b, AA name 'Gemma 4 E4B (Reasoning)', read 2026-10-01), field terminalBench40. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-e4b",
+   "benchmark": "automationbench_aa",
+   "score": 0.461545,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-e4b, AA name 'Gemma 4 E4B (Reasoning)', read 2026-10-01), field automationBenchPartialScore. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-e4b",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 0,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-e4b, AA name 'Gemma 4 E4B (Reasoning)', read 2026-10-01), field briefcaseBreakdown.overall.elo. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-e4b",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 0,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-e4b, AA name 'Gemma 4 E4B (Reasoning)', read 2026-10-01), field briefcaseBreakdown.analyticalQuality.elo. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-e4b",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 0,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-e4b, AA name 'Gemma 4 E4B (Reasoning)', read 2026-10-01), field briefcaseBreakdown.presentation.elo. Fill-missing only."
+  },
+  {
+   "model": "google/gemma-4-e4b",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 1.919192,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gemma-4-e4b, AA name 'Gemma 4 E4B (Reasoning)', read 2026-10-01), field briefcaseBreakdown.rubricPassRate. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "itbench_aa",
+   "score": 56.214689,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-6-sol, AA name 'GPT-5.6 Sol (Max)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "reka/reka-flash-3",
+   "benchmark": "aa_openness_index",
+   "score": 38.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug reka-flash-3, AA name 'Reka Flash 3', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 304.115217,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug deepseek-v4-1-flash, AA name 'DeepSeek V4.1 Flash (Max)', read 2026-10-01), field intelligenceIndexTimePerTask. Fill-missing only."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_output_tps",
+   "score": 210.536295,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug deepseek-v4-1-flash, AA name 'DeepSeek V4.1 Flash (Max)', read 2026-10-01), field timescaleData.medianOutputSpeed. Fill-missing only."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 10.449555,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug deepseek-v4-1-flash, AA name 'DeepSeek V4.1 Flash (Max)', read 2026-10-01), field timeToFirstAnswerToken.total. Fill-missing only."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.1842,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug deepseek-v4-1-flash, AA name 'DeepSeek V4.1 Flash (Max)', read 2026-10-01), field price1mBlended7To2To1. Fill-missing only."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "itbench_aa",
+   "score": 39.80226,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug claude-sonnet-4-6-adaptive, AA name 'Claude Sonnet 4.6 (Adaptive Reasoning, Max Effort)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "aa_openness_index",
+   "score": 5.555556,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-5-nano, AA name 'GPT-5 nano (High)', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "amazon/nova-premier",
+   "benchmark": "aa_openness_index",
+   "score": 11.111111,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug nova-premier, AA name 'Nova Premier', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "microsoft/phi-4",
+   "benchmark": "aa_openness_index",
+   "score": 50,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug phi-4, AA name 'Phi-4', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "terminal_bench_2_1_aa",
+   "score": 26.217228,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-oss-120b, AA name 'gpt-oss-120b (High)', read 2026-10-01), field terminalBench21. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "itbench_aa",
+   "score": 5.649718,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-oss-120b, AA name 'gpt-oss-120b (High)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "tau2_banking_aa",
+   "score": 12.783505,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-oss-120b, AA name 'gpt-oss-120b (High)', read 2026-10-01), field tauBanking. Fill-missing only."
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "aa_openness_index",
+   "score": 38.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug gpt-oss-120b, AA name 'gpt-oss-120b (High)', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "itbench_aa",
+   "score": 42.655367,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug glm-5-2, AA name 'GLM-5.2 (Max)', read 2026-10-01), field itBenchSre. Fill-missing only."
+  },
+  {
+   "model": "allenai/olmo-2-7b",
+   "benchmark": "aa_openness_index",
+   "score": 88.888889,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-argon",
+   "_note": "AA RSC comparison object in the gemini-4-argon page payload (slug olmo-2-7b, AA name 'OLMo 2 7B', read 2026-10-01), field openness.opennessIndex. Fill-missing only."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_completion_min_macbook_pro_m5_pro_64gb_lower_better",
+   "score": 15.7,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_prefill_tps_macbook_pro_m5_pro_64gb",
+   "score": 636,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_decode_tps_macbook_pro_m5_pro_64gb",
+   "score": 49,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_completion_min_ryzen_ai_halo_lower_better",
+   "score": 13.0,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_prefill_tps_ryzen_ai_halo",
+   "score": 775,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_decode_tps_ryzen_ai_halo",
+   "score": 58,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_completion_min_dgx_spark_lower_better",
+   "score": 13.0,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_prefill_tps_dgx_spark",
+   "score": 2161,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_decode_tps_dgx_spark",
+   "score": 46,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_completion_min_rtx_5090_lower_better",
+   "score": 2.2,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_prefill_tps_rtx_5090",
+   "score": 4980,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.5-9b",
+   "benchmark": "aa_agentperf_local_decode_tps_rtx_5090",
+   "score": 331,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.5 9B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_completion_min_macbook_pro_m5_pro_64gb_lower_better",
+   "score": 37.6,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_prefill_tps_macbook_pro_m5_pro_64gb",
+   "score": 212,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_decode_tps_macbook_pro_m5_pro_64gb",
+   "score": 23,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_completion_min_ryzen_ai_halo_lower_better",
+   "score": 34.5,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_prefill_tps_ryzen_ai_halo",
+   "score": 261,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_decode_tps_ryzen_ai_halo",
+   "score": 23,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_completion_min_dgx_spark_lower_better",
+   "score": 24.2,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_prefill_tps_dgx_spark",
+   "score": 612,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_decode_tps_dgx_spark",
+   "score": 28,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_completion_min_rtx_5090_lower_better",
+   "score": 4.9,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_prefill_tps_rtx_5090",
+   "score": 2156,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_agentperf_local_decode_tps_rtx_5090",
+   "score": 151,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.8 27B (xhigh)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_completion_min_macbook_pro_m5_pro_64gb_lower_better",
+   "score": 11.9,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_prefill_tps_macbook_pro_m5_pro_64gb",
+   "score": 718,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_decode_tps_macbook_pro_m5_pro_64gb",
+   "score": 70,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_completion_min_ryzen_ai_halo_lower_better",
+   "score": 11.7,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_prefill_tps_ryzen_ai_halo",
+   "score": 687,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_decode_tps_ryzen_ai_halo",
+   "score": 74,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_completion_min_dgx_spark_lower_better",
+   "score": 7.3,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_prefill_tps_dgx_spark",
+   "score": 1308,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_decode_tps_dgx_spark",
+   "score": 119,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_completion_min_rtx_5090_lower_better",
+   "score": 2.0,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_prefill_tps_rtx_5090",
+   "score": 5101,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "aa_agentperf_local_decode_tps_rtx_5090",
+   "score": 381,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "aa_agentperf_local_completion_min_ryzen_ai_halo_lower_better",
+   "score": 25.1,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Ling 3.0 Flash', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "aa_agentperf_local_prefill_tps_ryzen_ai_halo",
+   "score": 313,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Ling 3.0 Flash', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "aa_agentperf_local_decode_tps_ryzen_ai_halo",
+   "score": 35,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Ling 3.0 Flash', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "aa_agentperf_local_completion_min_dgx_spark_lower_better",
+   "score": 14.9,
+   "unit": "min",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Ling 3.0 Flash', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "aa_agentperf_local_prefill_tps_dgx_spark",
+   "score": 467,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Ling 3.0 Flash', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  {
+   "model": "inclusionai/ling-3.0-flash",
+   "benchmark": "aa_agentperf_local_decode_tps_dgx_spark",
+   "score": 65,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/articles/aa-agentperf-local",
+   "_note": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Ling 3.0 Flash', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  }
+ ]
+}

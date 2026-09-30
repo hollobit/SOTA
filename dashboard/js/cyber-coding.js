@@ -88,6 +88,8 @@ var CyberCoding = {
         'caibench_base_ctf', 'caibench_cybench_cai_agent', 'caibench_cyber_ranges', 'ctibench_rcm', 'cybermetric_4500', 'issuetrojanbench_eem_rate_lower_better', 'cisco_image_safety_score'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
+        // 2026-09-30 S290 — CWE-bench v1 official board (vulnerability remediation) + Google internal vuln discovery / Wiz black-box pentest (Gemini 4 Argon launch)
+        'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
         // 2026-09-28 S289 — Artificial Analysis Cyber Index v1 (CWE-Bench-AA / DeepsecBench-AA / CyberGym-E2E-AA + safety-block rates)
         'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa', 'cwe_bench_aa_refusal_rate_lower_better', 'deepsecbench_aa_refusal_rate_lower_better', 'cybergym_e2e_aa_refusal_rate_lower_better',
         // 2026-09-23 S282b — Opus 5.5 card §3.4-3.5 safeguard flag rates / rewind-attacker ASR
@@ -268,6 +270,8 @@ var CyberCoding = {
             note: 'ZeroDayBench · SecRepoBench · EVMbench Patch · DFIR-Metric · Apollo Sabotage / Impossible-Task Lying / Eval-Awareness / Strategic Deception / Sandbagging · Dynamic Self-Harm / Mental Health / Emotional Reliance · CoT Controllability / Monitorability · Prompt Injection · First-Person Fairness · CyberSocEval · AutoPatchBench · Simbian Cyber Defense · CyberTeam (blue-team) · CTI-REALM (detection rule gen)',
             benchmarks: [
                 'zerodaybench', 'secrepobench', 'evmbench_patch', 'dfir_metric',
+                // 2026-09-30 S290 — CWE-bench v1 board · Google real-world vuln discovery · Wiz black-box pentest
+                'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
                 // 2026-09-28 S289 — AA Cyber Index v1 (defensive loop: find · reproduce · patch)
                 'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa', 'cwe_bench_aa_refusal_rate_lower_better', 'deepsecbench_aa_refusal_rate_lower_better', 'cybergym_e2e_aa_refusal_rate_lower_better',
                 'apollo_sabotage_mean', 'apollo_impossible_task_lying', 'apollo_eval_awareness',
@@ -640,6 +644,8 @@ var CyberCoding = {
 
     // frontier models to highlight
     FRONTIER_MODELS: [
+        // 2026-09-30 S290 — Gemini 4 Argon (CWE-bench v1 68 tie #1, DeepSWE 77.9, Gray Swan IPI k=15 0.7%; released without cyber guardrails to Fairwind defenders)
+        'google/gemini-4-argon',
         // 2026-09-22 S282 — Opus 5.5 (CursorBench 4.0 57.8, TB 4.0 66.4 xhigh), GPT-6 Sol/Luna (ExploitBench 81.7/43.4), Grok 4.7 (TB 4.0 37.6), MiMo-V2.6 Pro/Flash (CyberGym corrected env 94.0/95.1)
         'anthropic/claude-opus-5.5', 'openai/gpt-6-sol', 'openai/gpt-6-luna', 'xai/grok-4.7', 'xiaomi/mimo-v2.6-pro', 'xiaomi/mimo-v2.6-flash',
         // 2026-09-28/29 S289 — GPT-6.1 Sol (ExploitBench 99.7, SEC-Bench Pro 78.8, ExploitGym 35.1, DeepSWE 71.9) + Claude Sonnet 5.5 (AA TB 4.0 63.6)

@@ -310,6 +310,8 @@ var Agent = (function() {
                 // 2026-09-24 S286 — tau2-bench v1.0.1 banking re-grade, PolyWorkBench, FinToolBench, PAUSE, EvoClawBench
                 'tau2_bench_banking_knowledge_pass1_v1_0_1', 'tau2_bench_banking_knowledge_pass4_v1_0_1', 'polyworkbench_pass1_peak', 'fintoolbench_soft_score', 'pause_log_tracking_hard_tc', 'pause_shopping_score', 'evoclawbench_nanobot_baseline',
                 // 2026-09-24 S285 — Mercor APEX boards, HAL reliability, HLE (CAISI), Epoch agentic runs
+                // 2026-09-30 S290 — Gemini 4 Argon table: Vals Index (Sep 2026 board), Vals Finance Agent v2, Harvey LAB (Vals), Google-run PostTrainBench v1.1
+                'vals_index_sep2026', 'finance_agent_v2', 'legal_agent_benchmark_harvey', 'posttrainbench_v1_1_google',
                 'apex_agents_v1_1_pass1', 'apex_agents_v1_1_mean_score', 'apex_v1_mercor_board_pass1', 'apex_v1_mercor_board_mean_score', 'apex_swe_mercor_board_pass1', 'apex_accounting_pass1', 'hal_reliability_score', 'hal_reliability_accuracy', 'hle_caisi_official', 'remote_labor_index_epoch', 'posttrainbench_epoch', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
                 // 2026-09-23 S282b — Opus 5.5 card §8.12.3 multi-agent team-size endpoints (1 vs 100 agents)
                 'anthropic_agent_team_knowledge_base_single_agent', 'anthropic_agent_team_knowledge_base_100_agents', 'anthropic_agent_team_lean_single_agent',
