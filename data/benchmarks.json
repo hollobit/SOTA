@@ -33272,6 +33272,139 @@
     "metric": "pct"
   },
   {
+    "id": "vals_index_sep2026",
+    "name": "Vals Index (Vals AI, Sep 2026 board)",
+    "category": "knowledge_work",
+    "description": "Vals AI GDP-weighted index across finance, coding, legal and tax work, as on the Vals AI board in Sep 2026 (quoted in Google's Gemini 4 Argon launch table). Separate from `vals-index` / `vals_index`: those rows come from an earlier board version (Fable 5 = 75.1 there vs Fable 5.1 = 65.8 here).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "posttrainbench_v1_1_google",
+    "name": "PostTrainBench v1.1 (Google self-run, OpenCode, 10h H100)",
+    "category": "ml_engineering",
+    "description": "PostTrainBench v1.1 run by Google for every model in the Gemini 4 Argon table: OpenCode harness, 10-hour budget on one NVIDIA H100, weighted aggregate over four base models and seven benchmarks. Kept apart from `posttrainbench` (vendor self-reports on other versions / 0-1 scale).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "graphwalks_bfs_256k_1m_f1",
+    "name": "GraphWalks BFS 256K–1M (F1)",
+    "category": "long_context",
+    "description": "GraphWalks BFS F1 on the 200 problems with context length between 256K and 1M tokens (Google's Gemini 4 Argon table, all models self-computed by Google). Not the same subset as `graphwalks_bfs_256k` / `graphwalks_bfs_1m`.",
+    "metric": "f1_pct"
+  },
+  {
+    "id": "chartography_surge_no_tools",
+    "name": "Chartography (Surge AI leaderboard, no tools)",
+    "category": "multimodal",
+    "description": "Surge AI Chartography official leaderboard, no tools, as quoted in Google's Gemini 4 Argon table. Separate from the Anthropic-card ids graded with a Gemini 3.5 Flash judge (`chartography_gemini_judge_*`), whose values differ.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "cwe_bench_v1",
+    "name": "CWE-bench v1 (official leaderboard, pass@1)",
+    "category": "cybersecurity",
+    "description": "CWE-bench v1 official public leaderboard: remediate security vulnerabilities, pass@1 with ties broken by pass@4; each entry run in a named coding-agent harness (opencode, Codex, Claude Code, Antigravity). Values are the rounded percentages in Google's leaderboard chart. v0 values sit on `cwe_bench`; AA's run is `cwe_bench_aa`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "google_realworld_vuln_discovery_internal",
+    "name": "Real-world Vulnerability Discovery (Google internal, pass@1)",
+    "category": "cybersecurity",
+    "description": "Google internal dataset: recall over recent, confirmed historical vulnerabilities in popular open-source projects across 20 programming languages; model has the source code and runs in an internal, not cyber-specialized Antigravity harness. Reported only for Google models.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "wiz_pentest_benchmark_internal",
+    "name": "Wiz Penetration Test Benchmark (internal, black-box, pass@1)",
+    "category": "cybersecurity",
+    "description": "Wiz internal black-box penetration-testing benchmark: write exploits against real web-application vulnerabilities without source code (attack-surface discovery, vulnerability identification, proof-of-concept). Reported by Google for Gemini models only.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "aa_agentperf_local_completion_min_macbook_pro_m5_pro_64gb_lower_better",
+    "name": "AA-AgentPerf-Local completion time (min) — MacBook Pro (M5 Pro, 64 GB unified)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: MacBook Pro (M5 Pro, 64 GB unified). Metric: end-to-end completion time of the workload, minutes, lower is better.",
+    "metric": "minutes"
+  },
+  {
+    "id": "aa_agentperf_local_prefill_tps_macbook_pro_m5_pro_64gb",
+    "name": "AA-AgentPerf-Local prefill speed (tok/s) — MacBook Pro (M5 Pro, 64 GB unified)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: MacBook Pro (M5 Pro, 64 GB unified). Metric: new input tokens processed per second (prefill).",
+    "metric": "tokens_per_second"
+  },
+  {
+    "id": "aa_agentperf_local_decode_tps_macbook_pro_m5_pro_64gb",
+    "name": "AA-AgentPerf-Local decode speed (tok/s) — MacBook Pro (M5 Pro, 64 GB unified)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: MacBook Pro (M5 Pro, 64 GB unified). Metric: tokens generated per second after the first token (decode).",
+    "metric": "tokens_per_second"
+  },
+  {
+    "id": "aa_agentperf_local_completion_min_ryzen_ai_halo_lower_better",
+    "name": "AA-AgentPerf-Local completion time (min) — AMD Ryzen AI Halo (128 GB unified)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: AMD Ryzen AI Halo (128 GB unified). Metric: end-to-end completion time of the workload, minutes, lower is better.",
+    "metric": "minutes"
+  },
+  {
+    "id": "aa_agentperf_local_prefill_tps_ryzen_ai_halo",
+    "name": "AA-AgentPerf-Local prefill speed (tok/s) — AMD Ryzen AI Halo (128 GB unified)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: AMD Ryzen AI Halo (128 GB unified). Metric: new input tokens processed per second (prefill).",
+    "metric": "tokens_per_second"
+  },
+  {
+    "id": "aa_agentperf_local_decode_tps_ryzen_ai_halo",
+    "name": "AA-AgentPerf-Local decode speed (tok/s) — AMD Ryzen AI Halo (128 GB unified)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: AMD Ryzen AI Halo (128 GB unified). Metric: tokens generated per second after the first token (decode).",
+    "metric": "tokens_per_second"
+  },
+  {
+    "id": "aa_agentperf_local_completion_min_dgx_spark_lower_better",
+    "name": "AA-AgentPerf-Local completion time (min) — NVIDIA DGX Spark (128 GB unified)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA DGX Spark (128 GB unified). Metric: end-to-end completion time of the workload, minutes, lower is better.",
+    "metric": "minutes"
+  },
+  {
+    "id": "aa_agentperf_local_prefill_tps_dgx_spark",
+    "name": "AA-AgentPerf-Local prefill speed (tok/s) — NVIDIA DGX Spark (128 GB unified)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA DGX Spark (128 GB unified). Metric: new input tokens processed per second (prefill).",
+    "metric": "tokens_per_second"
+  },
+  {
+    "id": "aa_agentperf_local_decode_tps_dgx_spark",
+    "name": "AA-AgentPerf-Local decode speed (tok/s) — NVIDIA DGX Spark (128 GB unified)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA DGX Spark (128 GB unified). Metric: tokens generated per second after the first token (decode).",
+    "metric": "tokens_per_second"
+  },
+  {
+    "id": "aa_agentperf_local_completion_min_rtx_5090_lower_better",
+    "name": "AA-AgentPerf-Local completion time (min) — NVIDIA GeForce RTX 5090 (32 GB VRAM)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA GeForce RTX 5090 (32 GB VRAM). Metric: end-to-end completion time of the workload, minutes, lower is better.",
+    "metric": "minutes"
+  },
+  {
+    "id": "aa_agentperf_local_prefill_tps_rtx_5090",
+    "name": "AA-AgentPerf-Local prefill speed (tok/s) — NVIDIA GeForce RTX 5090 (32 GB VRAM)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA GeForce RTX 5090 (32 GB VRAM). Metric: new input tokens processed per second (prefill).",
+    "metric": "tokens_per_second"
+  },
+  {
+    "id": "aa_agentperf_local_decode_tps_rtx_5090",
+    "name": "AA-AgentPerf-Local decode speed (tok/s) — NVIDIA GeForce RTX 5090 (32 GB VRAM)",
+    "category": "inference",
+    "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA GeForce RTX 5090 (32 GB VRAM). Metric: tokens generated per second after the first token (decode).",
+    "metric": "tokens_per_second"
+  },
+  {
     "id": "caibench",
     "name": "CAIBench (Cybersecurity AI Meta-Benchmark)",
     "category": "cyber",
