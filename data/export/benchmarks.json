@@ -32852,6 +32852,132 @@
     "metric": "pass4_pct"
   },
   {
+    "id": "aa_cyber_index_v1",
+    "name": "Artificial Analysis Cyber Index v1",
+    "category": "cybersecurity",
+    "description": "AA Cyber Index v1 (launched 2026-09-28 with the Cyber Index Alliance: Collinear AI, IBM, NVIDIA, Vercel). Combines CWE-Bench-AA, DeepsecBench-AA and CyberGym-E2E-AA, all run on AA's Stirrup harness. Defensive loop only (find, reproduce, patch); no exploit building.",
+    "metric": "index_points"
+  },
+  {
+    "id": "cwe_bench_aa",
+    "name": "CWE-Bench-AA (Collinear AI, 120 held-out tasks, pass@1)",
+    "category": "cybersecurity",
+    "description": "AA implementation of Collinear AI's CWE-bench: audit a real repository for a vulnerability in a described area and patch it without breaking legitimate behavior. 120 private held-out tasks covering all ten OWASP Top 10 (2025) categories. Programmatic verifier, no partial credit. Separate from cwe_bench (vendor-reported).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "deepsecbench_aa",
+    "name": "DeepsecBench-AA (Vercel, F2 vs expert-verified findings)",
+    "category": "cybersecurity",
+    "description": "AA implementation of Vercel's DeepsecBench: review scanner-flagged files in open-source application code and report every confirmed vulnerability; F2 (recall weighted above precision) against an expert-verified golden set, median of three runs.",
+    "metric": "f2_pct"
+  },
+  {
+    "id": "cybergym_e2e_aa",
+    "name": "CyberGym-E2E-AA (Berkeley RDI, 131 tasks, pass@1)",
+    "category": "cybersecurity",
+    "description": "AA implementation of CyberGym-E2E (Berkeley RDI): locate a memory-safety bug in a C/C++ project, write a crashing PoC and patch it so the project still passes its tests. 131 tasks, one per project. Frontier models (GPT-6 Astra/Sol, Claude Fable 5.1/Opus 5.5, Qwen3.8) refuse >=98% of tasks, so their scores mostly reflect refusals. Separate from the cybergym ids (CyberGym v1 reproduction).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "cwe_bench_aa_refusal_rate_lower_better",
+    "name": "CWE-Bench-AA — safety-block (refusal) rate",
+    "category": "cybersecurity",
+    "description": "Share of CWE-Bench-AA tasks the model or provider declined on safety grounds, reported by AA separately from the score (Cyber Index \"safety blocks\").",
+    "metric": "pct"
+  },
+  {
+    "id": "deepsecbench_aa_refusal_rate_lower_better",
+    "name": "DeepsecBench-AA — safety-block (refusal) rate",
+    "category": "cybersecurity",
+    "description": "Share of DeepsecBench-AA tasks the model or provider declined on safety grounds, reported by AA separately from the score (Cyber Index \"safety blocks\").",
+    "metric": "pct"
+  },
+  {
+    "id": "cybergym_e2e_aa_refusal_rate_lower_better",
+    "name": "CyberGym-E2E-AA — safety-block (refusal) rate",
+    "category": "cybersecurity",
+    "description": "Share of CyberGym-E2E-AA tasks the model or provider declined on safety grounds, reported by AA separately from the score (Cyber Index \"safety blocks\").",
+    "metric": "pct"
+  },
+  {
+    "id": "terminal_bench_science_aa",
+    "name": "Terminal-Bench-Science (Artificial Analysis run)",
+    "category": "agent",
+    "description": "Terminal-Bench-Science as run by Artificial Analysis (AA leaderboard; not part of the Intelligence Index). Kept separate from terminal_bench_science, which mixes the official board with vendor self-reports.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "terminal_bench_science_openai_launch",
+    "name": "Terminal-Bench Science 0.1 (OpenAI GPT-6.1 Sol launch chart)",
+    "category": "agent",
+    "description": "Terminal-Bench Science 0.1 as reported in OpenAI's GPT-6.1 Sol launch chart (per reasoning effort, OpenAI-run; Opus 5.5 shown with fallback). Separate channel from terminal_bench_science and terminal_bench_science_aa.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "terminal_bench_science_openai_launch_cost_per_task_usd_lower_better",
+    "name": "Terminal-Bench Science 0.1 — cost per task (OpenAI launch chart, USD)",
+    "category": "cost",
+    "description": "Average cost per task on Terminal-Bench Science 0.1 in OpenAI's GPT-6.1 Sol launch chart.",
+    "metric": "usd"
+  },
+  {
+    "id": "gdp_pdf_openai_launch",
+    "name": "GDP.pdf (OpenAI GPT-6.1 Sol launch chart)",
+    "category": "knowledge_work",
+    "description": "GDP.pdf (complex professional PDFs across 10 domains) as reported in OpenAI's GPT-6.1 Sol launch chart, per reasoning effort; Opus 5.5 run with Opus 5 / Opus 4.8 fallback. OpenAI-run channel, separate from gdp_pdf (AA) and the gdp_pdf_internal_* (Anthropic) ids.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "gdp_pdf_openai_launch_cost_per_task_usd_lower_better",
+    "name": "GDP.pdf — cost per task (OpenAI launch chart, USD)",
+    "category": "cost",
+    "description": "Cost per task on GDP.pdf in OpenAI's GPT-6.1 Sol launch chart.",
+    "metric": "usd"
+  },
+  {
+    "id": "agentic_misaligned_outcome_rate_v2_lower_better",
+    "name": "Misaligned outcomes in realistic work environments v2 (OpenAI, harder subset)",
+    "category": "safety",
+    "description": "OpenAI realistic-workplace agent evaluation, updated version introduced in the GPT-6.1 Sol system card: \"a more challenging version ... subselected to the cases more likely to result in misalignment\". Not comparable with agentic_misaligned_outcome_rate_base_lower_better (GPT-6 Astra card version: Astra 3.4 there vs 1.10 here). Lower is better.",
+    "metric": "pct"
+  },
+  {
+    "id": "computer_use_safety_stress_test_rate_lower_better",
+    "name": "Computer-use safety stress test — unauthorized outcome rate (OpenAI)",
+    "category": "safety",
+    "description": "OpenAI GPT-6.1 Sol launch page \"컴퓨터 사용 안전성 스트레스 테스트\" chart (xhigh effort): share of agentic computer-use tasks ending in an unauthorized outcome. Deliberately adversarial; lower is better.",
+    "metric": "pct"
+  },
+  {
+    "id": "mentalhealthbench",
+    "name": "MentalHealthBench (overall)",
+    "category": "safety",
+    "description": "Open benchmark of 1,215 synthetic mental-health conversations (650 non-acute, 221 high-acuity, 344 emergent) with clinician-authored rubrics; rubric score clipped to 0-100%, 4 responses per task averaged. Reported at maximum reasoning effort in the GPT-6.1 Sol system card.",
+    "metric": "pct"
+  },
+  {
+    "id": "mentalhealthbench_non_acute",
+    "name": "MentalHealthBench (non-acute)",
+    "category": "safety",
+    "description": "MentalHealthBench non-acute subset (see mentalhealthbench).",
+    "metric": "pct"
+  },
+  {
+    "id": "mentalhealthbench_high_acuity",
+    "name": "MentalHealthBench (high acuity)",
+    "category": "safety",
+    "description": "MentalHealthBench high acuity subset (see mentalhealthbench).",
+    "metric": "pct"
+  },
+  {
+    "id": "mentalhealthbench_emergent",
+    "name": "MentalHealthBench (emergent)",
+    "category": "safety",
+    "description": "MentalHealthBench emergent subset (see mentalhealthbench).",
+    "metric": "pct"
+  },
+  {
     "id": "caibench",
     "name": "CAIBench (Cybersecurity AI Meta-Benchmark)",
     "category": "cyber",

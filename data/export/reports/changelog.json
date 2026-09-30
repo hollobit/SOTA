@@ -5205,5 +5205,11 @@
   "type": "Feature",
   "title": "S288 — Price 탭 '3D 통합 비교': 모든 지표 × 가격대 스카이라인",
   "detail": "Price 탭 세 번째 보기. 열 = 모델(가격순, 바닥 줄무늬 = 가격대 <$0.1 … ≥$30), 행 = 성능 지표 31개 + 맨 앞 '★ 종합'(보유 지표 평균 백분위), 높이·색 = 지표 안 백분위(낮을수록 좋은 지표는 뒤집음), 바닥 아래로 매달린 보라 막대 = 토큰 가격(log). '가격대별' 모드는 가격대마다 최고/중앙값 백분위로 접음. 시점 프리셋(조감·정면 스카이라인·측면·위에서 = 막대가 납작해져 모델×지표 히트맵), 자동 회전, 정렬(가격·종합·가성비·개발사), 최소 지표 수 슬라이더(기본 6 → 현재 103개 모델), 호버 시 모델 열·지표 행 강조 + 강점·약점 3개씩, 클릭 시 모델 상세, 가격대별 요약 표(모델 수·종합 중앙값·종합 1–3위). 가격 기준·기간·개발사·국가 필터는 2D/3D 탐색과 공유(Price3D.util.pricedModels). 두 3D 보기 모두 캔버스를 클릭한 뒤에만 휠 확대 — 페이지 스크롤이 3D 줌에 갇히던 문제 방지."
+ },
+ {
+  "date": "2026-09-30",
+  "type": "ingest",
+  "title": "S289 — GPT-6.1 Sol · Claude Sonnet 5.5 · AA Cyber Index v1 (1,801 scores, 신규 모델 11, 신규 벤치 18)",
+  "detail": "(1) OpenAI GPT-6.1 Sol 출시 페이지(ko-KR, curl 403 → 브라우저로 수집)의 Vega-Lite 차트 10종을 effort별로 반영: DeepSWE 1.1(max 71.9·high 75.2), OSWorld 2.0 offline 71.4, AutomationBench 36.1, 사실 오류율 4.6%, Terminal-Bench Science 0.1(57.0, $5.47/작업 — 기존 terminal_bench_science는 채널이 섞여 있어 신규 id terminal_bench_science_openai_launch), GDP.pdf(OpenAI 실행분 신규 id gdp_pdf_openai_launch), 정렬 차트 4종(검색 도구 2.1%, 리뷰 우회 0, 경고 우회 23.5%, 컴퓨터 사용 안전성 스트레스 테스트 4.3% — 신규 id). (2) GPT-6.1 Sol 시스템 카드(45쪽, resource/에 보관): 안전 표 1–12, MentalHealthBench(신규 벤치 4종), 생물·사이버 Preparedness(ExploitBench 99.7, Internal Port 21.5, SEC-Bench Pro 78.8, ExploitGym 35.1, Internal Research Debugging 75.52, KernelGen 1P 60.44 — 그림 라벨은 쪽 이미지로 직접 판독), 실제 업무 환경 오정렬 v2(평가가 '더 어려운 버전'으로 바뀌어 신규 id). 비교 열(이전 모델)은 '이후 버전일 수 있음' 명시라 빈 칸만 채움. (3) AA: GPT-6.1 Sol 5티어(II v4.3.2 51.8/51.0/50.2/47.8/42.1, 작업당 $0.72–$0.13), Claude Sonnet 5.5 5티어(max II 56.0 #2, AA TB 4.0 63.6, Briefcase 1811, GDPval-AA 1844, 작업당 출력 19.3만 토큰·$7.60; low는 II 미측정), AA Cyber Index v1 출시(17개 모델: Grok 4.7 56.4 선두, CWE-Bench-AA / DeepsecBench-AA / CyberGym-E2E-AA + 거부율 — GPT-6·Opus 5.5·Fable 5.1은 CyberGym-E2E 98% 이상 거부), Terminal-Bench-Science AA 실행분 신규 id. 페이지에 내장된 AA 비교 객체 685개로 253개 모델의 빈 칸 채움(AA 추정 II 제외). (4) 반영하지 않은 값 차이 743건: 대부분 반올림(차트 원값 vs DB 1자리)·AA 재측정(LCR·속도·시간)·같은 id의 출처 차이(HLE 벤더 vs AA). 눈여겨볼 것: 카드의 GPT-6 Astra 생물 High 표(MTV 63.11 vs DB 55.78 등)와 OSWorld 비용 재측정. Coding Agent Index는 페이지에 수치가 없어(클라이언트 로드) 미반영. 탭: Frontier Compare/Timeline(두 모델 추가), Cyber-Coding(방어 목록·스위트·모델), Price(AA Cyber Index v1, TB 4.0 AA 지표 추가), Resources, seed_sources."
  }
 ]

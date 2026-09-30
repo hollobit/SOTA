@@ -1,8 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 286 — second resource audit (stale boards · resource PDFs · remaining arXiv) (2026-09-24)
-**3,578 models · 4,914 benchmarks · 32,122 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 289 — GPT-6.1 Sol, Claude Sonnet 5.5, AA Cyber Index (2026-09-30)
+**3,589 models · 4,932 benchmarks · 33,923 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-30 Session 289 — GPT-6.1 Sol · Claude Sonnet 5.5 · AA Cyber Index v1
+- **1,801 scores, 11 models, 18 benchmarks, 0 FK / 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s289_gpt61_sol_sonnet55_aa_cyber_index_2026_09_30_scores.json`); backup `data/benchmark.db.pre-s289.bak`. GPT-6.1 Sol card archived as `resource/openai_gpt-6.1-sol_system-card_2026-09.pdf`.
+- OpenAI launch page (ko-KR; curl 403, read via browser): 10 Vega-Lite charts parsed per effort (Max → base id, 매우 높음 → -xhigh …). New ids: `terminal_bench_science_openai_launch` (+cost), `gdp_pdf_openai_launch` (+cost), `computer_use_safety_stress_test_rate_lower_better`.
+- System card: Tables 1–12 into the S282 ids; prose + figure labels (Fig 3/6/7/11/38 read from page images). New: `mentalhealthbench` (+non_acute/high_acuity/emergent), `agentic_misaligned_outcome_rate_v2_lower_better` (card says the eval was replaced by a harder version). Prior-model columns filled only where missing.
+- AA: 10 new tier models from currentModel; Cyber Index v1 (17 models) → `aa_cyber_index_v1`, `cwe_bench_aa`, `deepsecbench_aa`, `cybergym_e2e_aa` + `*_refusal_rate_lower_better`; `terminal_bench_science_aa` (AA run). 685 embedded comparison objects → fill-missing for 253 models (AA-estimated II skipped). New tier model `meta/muse-spark-1.3-xhigh`.
+- **Not applied, 743 differences** (report only): rounding vs chart raw values, AA re-measurements in v4.3.2 (LCR, speed, time per task), mixed-source ids (HLE vendor vs AA). Worth a look: GPT-6 Astra bio High table in this card (MTV 63.11 / ProtocolQA 45.37 / TKT 92.55 / TroubleshootingBench 63.46) vs DB (55.78 / 41.36 / 63.33 / 48.44); OSWorld 2.0 cost per task re-measured for GPT-6 Sol/Astra.
+- Not captured: AA Coding Agent Index for GPT-6.1 Sol (client-loaded; article gives only relative "1 point above Astra"); multiturn-jailbreak and hallucination curves (no labels); GPT-6 Astra Ultrafast / GPT-6.1 Sol Ultrafast (announced, no numbers).
 ### 2026-09-25 Session 288 — Price tab "3D 통합 비교" (all-metric skyline)
 - New `dashboard/js/price3d-sky.js` (`PriceSky`), third Price view. Columns = priced models by price (floor stripes = price bands), rows = the 31 metrics + a front "★ 종합" row (mean in-metric percentile), height/colour = percentile (lower-better flipped), purple bars below the floor = log price. "가격대별" collapses columns into bands (best / median). Camera presets bird / front / side / top (top flattens the bars into a model × metric heatmap), auto-rotate, sort (price / composite / value / vendor), min-coverage slider (default 6 → 103 models), hover crosshair with strengths/weaknesses, click → modal, band summary table.
 - `price3d.js`: `pricedModels()` split out of `buildData()` and exposed via `Price3D.util` with the shared helpers; `setView` handles '2d' | '3d' | 'sky'.

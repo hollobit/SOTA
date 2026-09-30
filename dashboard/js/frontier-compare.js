@@ -12,6 +12,8 @@ var FrontierCompare = {
             'arc_agi_2', 'arc_agi_3', 'terminal_bench_4_0', 'terminal_bench_3', 'terminal_bench_science',
             // 2026-09-23 S282 — TB 4.0 vendor-reported (terminal_bench_4) and Artificial Analysis harness (terminal_bench_4_0_aa)
             'terminal_bench_4', 'terminal_bench_4_0_aa',
+            // 2026-09-30 S289 — TB-Science by channel: AA run, OpenAI GPT-6.1 Sol launch chart
+            'terminal_bench_science_aa', 'terminal_bench_science_openai_launch',
             // 2026-09-05 S271 — TB-Science per-domain rates (decoded from the announcement's radar chart)
             'terminal_bench_science_life', 'terminal_bench_science_earth', 'terminal_bench_science_engineering',
             'terminal_bench_science_mathematical', 'terminal_bench_science_physical',
@@ -121,6 +123,8 @@ var FrontierCompare = {
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
+            // 2026-09-28 S289 — AA Cyber Index v1
+            'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa',
             'evmbench_exploit', 'evmbench_detect', 'cvebench',
             'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range',
             'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion',
@@ -263,6 +267,9 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-09-28/29 S289
+        'openai/gpt-6.1-sol',  // 2026-09-29 — AAII v4.3 51.8 (1 pt below Astra at <1/4 cost per task); DeepSWE 71.9, OSWorld 2.0 offline 71.4, TB-Science 57.0; $2/$10, cached $0.10
+        'anthropic/claude-sonnet-5.5',  // 2026-09-28 — AAII v4.3 56.0 (#2), AA TB 4.0 63.6, Briefcase 1811, GDPval-AA 1844; ~193k output tokens/task; $2/$10
         // 2026-09-22/23 S282 — four frontier launches in one day
         'anthropic/claude-opus-5.5',  // 2026-09-22 — GDPval-AA v2.1 1846, AA-Briefcase v1.1 1822, CursorBench 4.0 57.8, HLE w/ tools 67.7, TB 4.0 66.4 (xhigh); $4/$20, 1M ctx
         'openai/gpt-6-sol',  // 2026-09-22 — AAII v4.3 47.5, Coding Agent Index 57; ~half GPT-5.6 Sol price ($2/$10), 1.05M ctx

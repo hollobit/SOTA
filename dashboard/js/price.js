@@ -48,12 +48,14 @@ window.Price = (function () {
         ['terminal_bench_2_1',       'Terminal-Bench 2.1', '코딩'],
         ['aider_polyglot',           'Aider Polyglot', '코딩'],
         ['deepswe_1_1',              'DeepSWE 1.1', '코딩'],
+        ['terminal_bench_4_0_aa',    'Terminal-Bench 4.0 (AA)', '코딩'],
         // 에이전트 (agent)
         ['gaia',                     'GAIA', '에이전트'],
         ['osworld_verified',         'OSWorld-Verified', '에이전트'],
         ['browsecomp',               'BrowseComp', '에이전트'],
         ['tau2_telecom',             'τ²-Bench Telecom', '에이전트'],
         // 사이버 (cyber)
+        ['aa_cyber_index_v1',        'AA Cyber Index v1', '사이버'],
         ['cybench',                  'Cybench (CTF)', '사이버'],
         ['nyu_ctf',                  'NYU CTF Bench', '사이버'],
         ['cybergym_success_rate',    'CyberGym Success Rate', '사이버'],
