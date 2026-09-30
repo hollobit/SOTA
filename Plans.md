@@ -1,8 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 289c — third pass over the S289 AA objects (2026-09-30)
-**3,614 models · 4,974 benchmarks · 36,480 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 289d — dated-snapshot / preview misattribution fixed (2026-09-30)
+**3,616 models · 4,974 benchmarks · 36,780 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-30 Session 289d — dated snapshots and preview objects on base ids
+- **Dated snapshots:** AA's bare slug is the *latest* snapshot for several models (`deepseek-v4-flash` = V4 Flash 0731, `deepseek-v4-pro` = V4 Pro 0813, `step-3-5-flash` = Step 3.5 Flash 2603, `qwen3-8-max` = Qwen3.8 Max (0902), `deepseek-r1` = R1 0528) but had been matched to the base (original-release) id in S284c / S289 / S289b and one S283b row. 106 + 1 rows moved to the snapshot ids (new: `stepfun/step-3.5-flash-2603`, `alibaba/qwen3.8-max-0902`); base ids refilled from the original-version objects (0424 / 0420 / 0202 / 0803).
+- **Preview:** "Qwen3.6 Max Preview" rows sat on the malformed id `qwen3-6-max` (defined in S107, now score-less) and "Gemini 3 Pro Preview" on `google/gemini-3-pro` → moved to `alibaba/qwen3.6-max-preview` / `google/gemini-3-pro-preview` (21 moved, 5 dropped where the target already had a value).
+- **Removed:** old dated variants on base ids (GPT-4o Nov '24, Gemini 1.5 Flash/Pro Sep '24, Mistral Large 2 Nov '24, Reka Flash Sep '24) — 19 rows.
+- **+451 scores** (`resource/zzzzzzzzzzzzzzzzzz_s289d_aa_dated_preview_variants_2026_09_30_scores.json`); 17 more curated slug mappings. Resolver guards now: non-reasoning / minimal, 4-digit snapshot token, (Mon 'YY) dated names — all refused unless the target id carries the same marker or an explicit mapping exists. Backup `data/benchmark.db.pre-s289d.bak`.
+- Kept on purpose: "Grok 4.20 0309 v2 (Reasoning)" → `xai/grok-4.20` (GA of the 0309 beta).
+- Follow-ups: HealthBench id convention — plain `healthbench*` ids hold OpenAI's length-adjusted headline since GPT-5.4 while `*_length_adjusted` hold Anthropic-grader rows; the GPT-6.1 Sol card's unadjusted values were therefore not stored. Remove the dead `qwen3-6-max` model entry (S107 file). DB release-date metadata off vs AA for Kimi K2.5 (2025-09-15 vs 2026-01-27), Claude Sonnet 5 (04-01 vs 06-30), Sarvam 30B/105B, Solar Pro 3, Mercury 2.
 ### 2026-09-30 Session 289c — AA objects missed by the slug matcher; non-reasoning misattribution fixed
 - **Fix (−207 rows):** S289/S289b had matched 22 AA "(Non-reasoning)" objects to the reasoning/default model id because the AA base slug is the non-reasoning variant (e.g. `grok-4-1-fast` = "Grok 4.1 Fast (Non-reasoning)" → `xai/grok-4.1-fast`; AIME 34.3 vs 89.3 in reasoning mode). Rows removed from both resource files and the DB; resolver now refuses a non-reasoning / minimal AA object unless the target id says so. S284c was checked — unaffected.
 - **+1,179 scores, 25 models** (`resource/zzzzzzzzzzzzzzzzzz_s289c_aa_unmatched_objects_tiers_2026_09_30_scores.json`); backup `data/benchmark.db.pre-s289c.bak`. 26 curated one-to-one slug→id mappings among the 169 unmatched objects from the last 12 months; 25 new effort-tier ids (Fable 5.1 / Opus 5 / Sonnet 5 ×4, GPT-5.6 Luna low/high, Terra medium, Gemini 3.8/3.7 Flash medium/low, Grok 4.6 medium/low, Kimi K3 low, GLM-5.3 low, Qwen3.8 27B medium/low).
