@@ -5229,5 +5229,11 @@
   "type": "Correction",
   "title": "S289d — AA 객체 4차 점검: 날짜 스냅샷·preview 오귀속 수정, 매칭 17개 추가 (+451, 이동 128, 제거 21)",
   "detail": "(1) 날짜 스냅샷 오귀속: AA의 기본 slug가 최신 스냅샷을 가리키는 모델이 기본 id에 매칭되어 있었음 — deepseek-v4-flash = 'V4 Flash 0731', deepseek-v4-pro = 'V4 Pro 0813', step-3-5-flash = 'Step 3.5 Flash 2603', qwen3-8-max = 'Qwen3.8 Max (0902)', deepseek-r1 = 'R1 0528'. S284c/S289/S289b(및 S283b의 Qwen3.8 Max 1행)에서 해당 행을 전용 id로 이동(DeepSeek V4 Flash 0731·V4 Pro 0813·R1 0528은 기존 id, Step 3.5 Flash 2603·Qwen3.8 Max 0902는 신규). 기본 id에는 원본 버전(0424/0420/0202/0803) 값을 채움 — Qwen3.8 Max II 45.42(0902)→40.15(0803). (2) preview 오귀속: 'Qwen3.6 Max Preview'가 벤더 접두사 없는 잘못된 id(qwen3-6-max)에, 'Gemini 3 Pro Preview'가 정식 id에 들어가 있어 preview id로 이동. (3) 오래된 날짜 변형(GPT-4o Nov '24, Gemini 1.5 Sep '24, Mistral Large 2 Nov '24, Reka Flash Sep '24)은 기본 id에서 제거. (4) 추가 매칭 17개: Step 3.5 Flash(0202), Solar Pro 4, MiMo-V2.5, DeepSeek V4 Pro/Flash 4월판 max/high/nonthink 티어, Nemotron 3 Super 120B·Nano 4B, Mi:dm K 2.5 Pro, Opus 4.6·Sonnet 4.6(adaptive max), DeepSeek V3.2·GLM-4.6V(reasoning). 매칭기에 날짜 토큰·(Mon 'YY) 가드 추가. (5) 기록만: HealthBench 기본 id는 GPT-5.4 이후 OpenAI의 길이 보정 헤드라인을 담는 관례(★_length_adjusted는 Anthropic 채점기 행) — 구조 정리는 후속 과제."
+ },
+ {
+  "date": "2026-09-30",
+  "type": "ingest",
+  "title": "S289e — S289 AA 페이지에만 있던 최근 모델 17개 신규 추가 (+391 scores)",
+  "detail": "지금까지의 점검은 DB에 이미 있는 모델만 매칭했음. 이번에는 AA 페이지 내장 객체 중 DB에 없는 2026년 출시 모델을 새로 추가: Ling-3.0-flash-VL(InclusionAI, 124B), MiniCPM5-2B·MiniCPM-V 4.6 1.3B(OpenBMB), Mercury 2.5 정식판(Inception — DB에는 preview만 있었음), Apodex 1.1, Granite 4.2 3B/30B(IBM), G9v3-39A5B(AI9Stars), Motif 3 정식판(314B — DB에는 Beta만), Quasar 438B·HyperNova 60B 2605(Multiverse Computing), Celeris-1, JT-4.1 Flash 236B-A21B(China Mobile), KAT Coder Pro V2(Kuaishou), Tiny Aya Global(Cohere), Olmo 3.1 32B Instruct(Ai2), Grok Build 0.1 0616(xAI). HyperCLOVA X SEED Think 32B는 canonical map상 기존 naver/hcx-seed-think-32b라 그 id에 빈 칸만 채움(덮어쓰기 0 확인), K-EXAONE 2.0 0803은 기존 750B id, Step3 VL 10B는 기존 id에 연결. AA가 '추정치'로 표시한 Intelligence Index는 제외하고 실측 필드만. 2025년 출시 소형 모델(Olmo 3 7B, Granite 4.0 1B 등)은 최신 모델 중심 원칙에 따라 제외."
  }
 ]
