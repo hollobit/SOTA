@@ -1,8 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 289e — new models from the S289 AA pages (2026-09-30)
-**3,633 models · 4,974 benchmarks · 37,171 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 289f — non-reasoning variants on explicit ids (2026-09-30)
+**3,670 models · 4,974 benchmarks · 37,811 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-30 Session 289f — 2026 non-reasoning variants as their own ids
+- **37 new variant ids, +640 scores** (`resource/zzzzzzzzzzzzzzzzzz_s289f_aa_non_reasoning_variants_2026_09_30_scores.json`); backup `data/benchmark.db.pre-s289f.bak`. Id rule: `<base>-non-reasoning`; Anthropic "Non-reasoning, High Effort" → `<base>-non-reasoning-high` (matches the existing `claude-opus-4.7-non-reasoning-high`). Existing ids reused for GPT-6 Sol/Luna and GPT-5.4/5.5 non-reasoning. No canonical-map collisions.
+- Not added: Qwen3.5 2B (no base id), Grok 4.20 0309 beta non-reasoning (dated beta), 2025 releases.
+- Checked and empty: Cyber Index `safetyBlocks` objects are chart titles only.
+- Tooling note: the block-no-verify hook reads ` -n...` in an inline commit message as `git commit -n`; pass messages with `-F <file>`.
 ### 2026-09-30 Session 289e — models on the S289 AA pages that the DB did not have
 - **17 new models, +391 scores** (`resource/zzzzzzzzzzzzzzzzzz_s289e_aa_new_models_2026_09_30_scores.json`); backup `data/benchmark.db.pre-s289e.bak`. 2026 releases only: Ling-3.0-flash-VL, MiniCPM5-2B, MiniCPM-V 4.6 1.3B, Mercury 2.5 (GA; DB had only the preview), Apodex 1.1, Granite 4.2 3B / 30B, G9v3-39A5B, Motif 3 (GA; DB had the Beta), Quasar 438B, HyperNova 60B 2605, Celeris-1, JT-4.1 Flash 236B-A21B, KAT Coder Pro V2, Tiny Aya Global, Olmo 3.1 32B Instruct, Grok Build 0.1 0616.
 - HyperCLOVA X SEED Think 32B already existed as `naver/hcx-seed-think-32b` (canonical map) → rows put there directly (13 fills, 0 overwrites verified against the backup). K-EXAONE 2.0 0803 → `lg/k-exaone-2.0-750b-a37b`; Step3 VL 10B → existing `stepfun/step3-vl-10b`.
