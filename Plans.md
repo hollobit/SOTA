@@ -1,8 +1,12 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 289b — re-audit of the S289 sources (2026-09-30)
-**3,589 models · 4,974 benchmarks · 35,508 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 289c — third pass over the S289 AA objects (2026-09-30)
+**3,614 models · 4,974 benchmarks · 36,480 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-30 Session 289c — AA objects missed by the slug matcher; non-reasoning misattribution fixed
+- **Fix (−207 rows):** S289/S289b had matched 22 AA "(Non-reasoning)" objects to the reasoning/default model id because the AA base slug is the non-reasoning variant (e.g. `grok-4-1-fast` = "Grok 4.1 Fast (Non-reasoning)" → `xai/grok-4.1-fast`; AIME 34.3 vs 89.3 in reasoning mode). Rows removed from both resource files and the DB; resolver now refuses a non-reasoning / minimal AA object unless the target id says so. S284c was checked — unaffected.
+- **+1,179 scores, 25 models** (`resource/zzzzzzzzzzzzzzzzzz_s289c_aa_unmatched_objects_tiers_2026_09_30_scores.json`); backup `data/benchmark.db.pre-s289c.bak`. 26 curated one-to-one slug→id mappings among the 169 unmatched objects from the last 12 months; 25 new effort-tier ids (Fable 5.1 / Opus 5 / Sonnet 5 ×4, GPT-5.6 Luna low/high, Terra medium, Gemini 3.8/3.7 Flash medium/low, Grok 4.6 medium/low, Kimi K3 low, GLM-5.3 low, Qwen3.8 27B medium/low).
+- Left unmatched on purpose (~140): preview vs GA, quantized builds, dated snapshots, ambiguous reasoning/non-reasoning variants, older non-reasoning variants with no DB id, duplicates whose release date disagrees. Follow-up: consider explicit `-non-reasoning` ids for GPT-5.6 Sol/Luna/Terra, Sonnet 5, Claude Haiku 4.5, DeepSeek V3.2, Gemini 3 Flash if those rows are wanted.
 ### 2026-09-30 Session 289b — re-audit of the S289 sources
 - **1,585 scores, 42 benchmarks** (`resource/zzzzzzzzzzzzzzzzzz_s289b_reaudit_aa_objects_card_figures_2026_09_30_scores.json`); backup `data/benchmark.db.pre-s289b.bak`.
 - AA embedded objects, fields S289 had not mapped: `aa_openness_index`, `terminal_bench_2_1_aa`, `tau2_banking_aa`, legacy-index evals as AA-run ids (`gpqa_diamond_aa`, `aime_2025_aa`, `ifbench_aa`, `tau2_telecom_aa`, `terminal_bench_hard_aa`, `livecodebench_aa`; models released >= 2025-10 only — AA runs can differ sharply from vendor numbers, so they stay out of the vendor ids), `terminal_bench_science_aa_*` (5 domains), `mlcr_aa_*` (3), `aa_omniscience_index_*` (6 domains), `gdp_pdf_aa_criterion_pass_*` (10) + macro, `aa_analyst_agent(_pass1)`, `apex_agents`, `enterpriseops_gym_aa`.
