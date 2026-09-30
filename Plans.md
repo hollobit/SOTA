@@ -1,8 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 289d — dated-snapshot / preview misattribution fixed (2026-09-30)
-**3,616 models · 4,974 benchmarks · 36,780 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 289e — new models from the S289 AA pages (2026-09-30)
+**3,633 models · 4,974 benchmarks · 37,171 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-30 Session 289e — models on the S289 AA pages that the DB did not have
+- **17 new models, +391 scores** (`resource/zzzzzzzzzzzzzzzzzz_s289e_aa_new_models_2026_09_30_scores.json`); backup `data/benchmark.db.pre-s289e.bak`. 2026 releases only: Ling-3.0-flash-VL, MiniCPM5-2B, MiniCPM-V 4.6 1.3B, Mercury 2.5 (GA; DB had only the preview), Apodex 1.1, Granite 4.2 3B / 30B, G9v3-39A5B, Motif 3 (GA; DB had the Beta), Quasar 438B, HyperNova 60B 2605, Celeris-1, JT-4.1 Flash 236B-A21B, KAT Coder Pro V2, Tiny Aya Global, Olmo 3.1 32B Instruct, Grok Build 0.1 0616.
+- HyperCLOVA X SEED Think 32B already existed as `naver/hcx-seed-think-32b` (canonical map) → rows put there directly (13 fills, 0 overwrites verified against the backup). K-EXAONE 2.0 0803 → `lg/k-exaone-2.0-750b-a37b`; Step3 VL 10B → existing `stepfun/step3-vl-10b`.
+- Lesson: check `data/model_canonical_map.json` before minting a new id — the loader rewrites map keys and INSERT OR REPLACE could overwrite the canonical target.
+- Skipped: AA-estimated Intelligence Index values; 2025 small models (Olmo 3 7B/32B Think, Granite 4.0 1B, Apriel 1.6, KAT-Coder-Pro V1, ERNIE 5.0 Thinking Preview).
 ### 2026-09-30 Session 289d — dated snapshots and preview objects on base ids
 - **Dated snapshots:** AA's bare slug is the *latest* snapshot for several models (`deepseek-v4-flash` = V4 Flash 0731, `deepseek-v4-pro` = V4 Pro 0813, `step-3-5-flash` = Step 3.5 Flash 2603, `qwen3-8-max` = Qwen3.8 Max (0902), `deepseek-r1` = R1 0528) but had been matched to the base (original-release) id in S284c / S289 / S289b and one S283b row. 106 + 1 rows moved to the snapshot ids (new: `stepfun/step-3.5-flash-2603`, `alibaba/qwen3.8-max-0902`); base ids refilled from the original-version objects (0424 / 0420 / 0202 / 0803).
 - **Preview:** "Qwen3.6 Max Preview" rows sat on the malformed id `qwen3-6-max` (defined in S107, now score-less) and "Gemini 3 Pro Preview" on `google/gemini-3-pro` → moved to `alibaba/qwen3.6-max-preview` / `google/gemini-3-pro-preview` (21 moved, 5 dropped where the target already had a value).
