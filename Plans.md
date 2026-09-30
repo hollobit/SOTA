@@ -1,8 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 289 — GPT-6.1 Sol, Claude Sonnet 5.5, AA Cyber Index (2026-09-30)
-**3,589 models · 4,932 benchmarks · 33,923 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 289b — re-audit of the S289 sources (2026-09-30)
+**3,589 models · 4,974 benchmarks · 35,508 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-09-30 Session 289b — re-audit of the S289 sources
+- **1,585 scores, 42 benchmarks** (`resource/zzzzzzzzzzzzzzzzzz_s289b_reaudit_aa_objects_card_figures_2026_09_30_scores.json`); backup `data/benchmark.db.pre-s289b.bak`.
+- AA embedded objects, fields S289 had not mapped: `aa_openness_index`, `terminal_bench_2_1_aa`, `tau2_banking_aa`, legacy-index evals as AA-run ids (`gpqa_diamond_aa`, `aime_2025_aa`, `ifbench_aa`, `tau2_telecom_aa`, `terminal_bench_hard_aa`, `livecodebench_aa`; models released >= 2025-10 only — AA runs can differ sharply from vendor numbers, so they stay out of the vendor ids), `terminal_bench_science_aa_*` (5 domains), `mlcr_aa_*` (3), `aa_omniscience_index_*` (6 domains), `gdp_pdf_aa_criterion_pass_*` (10) + macro, `aa_analyst_agent(_pass1)`, `apex_agents`, `enterpriseops_gym_aa`.
+- OpenAI page: Opus 5.5 effort-tier points (with fallback) on GDP.pdf / AutomationBench; Fable 5.1 AutomationBench score (cost skipped — excludes ~40% fallback cost).
+- Card: comparison-model figure labels (Fig 8/9/10/13/29/34/35), Fig 12 category breakdown (7 new ids), Fig 14 awareness-free subset (new id), prose comparisons (deployment sim, CoT, bio). Card inconsistency: Fig 31 labels Astra AAV 0.5282, table/prose 0.528 → table used.
+- Corrected two S289 rows: GPT-6.1 Sol external-agent engagement 38 → 37.66, unauthorized action 3 → 2.60 (Fig 13 labels; prose rounds).
+- Skipped by design: automationBench / Harvey per-app & per-practice-area breakdowns, token / tool-call telemetry, CI bounds, severity-3+ / 1-2 per-category bars (Fig 15/16), CoT-controllability and monitor-evasion curves (no labels).
 ### 2026-09-30 Session 289 — GPT-6.1 Sol · Claude Sonnet 5.5 · AA Cyber Index v1
 - **1,801 scores, 11 models, 18 benchmarks, 0 FK / 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s289_gpt61_sol_sonnet55_aa_cyber_index_2026_09_30_scores.json`); backup `data/benchmark.db.pre-s289.bak`. GPT-6.1 Sol card archived as `resource/openai_gpt-6.1-sol_system-card_2026-09.pdf`.
 - OpenAI launch page (ko-KR; curl 403, read via browser): 10 Vega-Lite charts parsed per effort (Max → base id, 매우 높음 → -xhigh …). New ids: `terminal_bench_science_openai_launch` (+cost), `gdp_pdf_openai_launch` (+cost), `computer_use_safety_stress_test_rate_lower_better`.

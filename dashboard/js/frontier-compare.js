@@ -14,6 +14,8 @@ var FrontierCompare = {
             'terminal_bench_4', 'terminal_bench_4_0_aa',
             // 2026-09-30 S289 — TB-Science by channel: AA run, OpenAI GPT-6.1 Sol launch chart
             'terminal_bench_science_aa', 'terminal_bench_science_openai_launch',
+            // 2026-09-30 S289b — AA-run GPQA / TB 2.1 (separate from vendor-reported ids)
+            'gpqa_diamond_aa', 'terminal_bench_2_1_aa',
             // 2026-09-05 S271 — TB-Science per-domain rates (decoded from the announcement's radar chart)
             'terminal_bench_science_life', 'terminal_bench_science_earth', 'terminal_bench_science_engineering',
             'terminal_bench_science_mathematical', 'terminal_bench_science_physical',
