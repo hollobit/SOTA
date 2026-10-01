@@ -50,6 +50,7 @@ var FrontierCompare = {
             'gmmlu_average', 'milu_average', 'include_average', 'live_math'
         ],
         coding: [
+            'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5',  // S290b — FrontierSWE v2 board trial spread
             'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
             'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'swe_rebench',
             'gdpval_aa', 'nl2repo', 'expert_swe',
@@ -125,7 +126,7 @@ var FrontierCompare = {
             'agents_last_exam', 'agents_last_exam_score', 'automationbench_aa', 'harvey_lab_aa', 'harvey_lab_aa_mean_criteria',
             'enterpriseops_gym_aa', 'gdpval_plus_snorkel', 'big_finance_bench', 'rsi_index',
             // 2026-09-30 S290 — Gemini 4 Argon launch table: Vals boards, Zapier AutomationBench, Google-run PostTrainBench v1.1
-            'vals_index_sep2026', 'finance_agent_v2', 'legal_agent_benchmark_harvey', 'automationbench_1_0_6', 'osworld_v2_offline_partial', 'posttrainbench_v1_1_google'
+            'vals_index_sep2026', 'vals_index_v2_1_cost_per_test_usd_lower_better', 'finance_agent_v2', 'legal_agent_benchmark_harvey', 'automationbench_1_0_6', 'osworld_v2_offline_partial', 'posttrainbench_v1_1_google'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
@@ -133,6 +134,7 @@ var FrontierCompare = {
             'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa',
             // 2026-09-30 S290 — CWE-bench v1 official board + Google/Wiz internal evals (Gemini 4 Argon launch)
             'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
+            'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench',  // S290b — cwe-bench.com board columns, v0
             'evmbench_exploit', 'evmbench_detect', 'cvebench',
             'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range',
             'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion',

@@ -1,7 +1,16 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 290 — Gemini 4 Argon + AA-AgentPerf-Local (2026-10-01)
-**3,671 models · 4,993 benchmarks · 38,169 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 290b — primary boards behind the Argon write-ups (2026-10-01)
+**3,671 models · 5,001 benchmarks · 38,396 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-10-01 Session 290b — Kingy.ai / BenchLM / DeepMind page / evaluation PDF → primary boards
+- **441 rows (227 new, 214 refreshed), 8 new benchmarks** (`resource/zzzzzzzzzzzzzzzzzz_s290b_arena_vals_eci_frontierswe_cwebench_2026_10_01_scores.json`); backup `data/benchmark.db.pre-s290b.bak`.
+- DeepMind Gemini page table and `gemini_4_argon_model_evaluation.pdf` = S290 sources (PDF SHA-1 identical) → URLs registered only. Kingy.ai and BenchLM are secondary: nothing taken from them directly; their pointers were followed. BenchLM FrontierSWE "55.1" for Argon is a typo (board 55.0); BenchAlign composite not stored (derived).
+- **Live boards refreshed (newer snapshot overwrites):** arena.ai Text `arena_ai_text_elo` (58; Argon high 1524.8 #1), Agent Arena `arena_agent_net_improvement` (45; relative to the average orchestrator, so older values moved a lot — e.g. Fable 5 12.6 → 5.5; models no longer on the board keep their 07-20/08-02 values), Vals Index v2.1 on `vals_index_sep2026` (renamed "Vals Index v2.1", 38) + new `vals_index_v2_1_cost_per_test_usd_lower_better`, Epoch ECI (170; new Opus 5.5 167.35, Astra 166.51, Sonnet 5.5 165.20; name map takes the Epoch name stored in older notes first — the plain name match had moved `deepseek/deepseek-v3` from "V3 (Mar 2025)" to the Dec 2024 row). ECI rows for Mythos 5.1, MiMo-V2.5-Pro, Qwen3.5-122B, GLM-4.6, GPT-5.1 Codex Max, Mistral Medium 3.1 left on the 09-03 fit (dropped from the CSV).
+- Arena tier rule: one tier on the board → base id; several tiers → top/max on base, others on tier ids; tier always in the note.
+- **Fill-missing:** cwe-bench.com v1 pass@4, judge-panel pass@1/@4, cost per rollout (5 ids incl. v0 cost); v0 board → `cwe_bench` (renamed "CWE-bench v0", 1 → 16 rows incl. Astra/Fable 5.1 v0 from the v0-vs-v1 table); FrontierSWE v2 `frontierswe_v2_worst5` / `_best5`.
+- Skipped: Vals "Muse Spark 1.3" (default effort unknown) and "Qwen 3.8 Max" (alias moved to 0902); Agent Arena "DeepSeek V4 Pro (High) (0813)" (no id); CWE v0 "DeepSeek-V4-Flash" (snapshot unknown on Sept 1).
+- Tabs: Cyber & Coding (both layers), Frontier Compare (cyber + coding + agent axes), Agent, Resources (+6), seed_sources (+7).
 
 ### 2026-10-01 Session 290 — Gemini 4 Argon (Google blog + evals methodology PDF + AA) and AA-AgentPerf-Local
 - **358 scores, 1 model, 19 benchmarks, 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s290_gemini4_argon_aa_agentperf_local_2026_10_01_scores.json`); backup `data/benchmark.db.pre-s290.bak`. Methodology PDF archived as `resource/Gemini-4-Argon-Evals-Methodology.pdf` (the URL serves a PDF, not HTML; p.5 table = blog table image).

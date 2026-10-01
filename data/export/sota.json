@@ -3510,19 +3510,19 @@
     "notes": "AILuminate v1.0 leaderboard — Claude 3.5 Haiku 20241022 = Very Good (4/5) overall."
   },
   "epoch_capabilities_index": {
-    "model_id": "anthropic/claude-fable-5.1",
+    "model_id": "anthropic/claude-opus-5.5",
     "benchmark_id": "epoch_capabilities_index",
-    "value": 162.96,
+    "value": 167.35,
     "unit": "eci",
     "source": {
       "type": "leaderboard",
-      "url": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, audit 2026-09-03)",
-      "date": "2026-09-03",
+      "url": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+      "date": "2026-10-01",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-09-03",
-    "notes": "Epoch ECI; 95% CI [160.33,166.46]."
+    "collected_at": "2026-10-01",
+    "notes": "Epoch ECI ('Claude Opus 5.5', date 2026-09-22); 95% CI [164.0,172.0]. Refit of 2026-10-01 replaces the 2026-09-03 values."
   },
   "the_agent_company": {
     "model_id": "deepseek/deepseek-v3.2",
@@ -7048,21 +7048,6 @@
     "is_sota": true,
     "collected_at": "2026-10-01",
     "notes": "PolyMATH #1 in panel by 3.8pts (next: K2.6 Thinking 82.7)."
-  },
-  "arena_ai_text_elo": {
-    "model_id": "anthropic/claude-fable-5",
-    "benchmark_id": "arena_ai_text_elo",
-    "value": 1509.0,
-    "unit": "elo",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arena.ai/leaderboard",
-      "date": "2026-08-02",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-08-02",
-    "notes": ""
   },
   "arena_webdev_elo": {
     "model_id": "anthropic/claude-opus-5",
@@ -46844,6 +46829,21 @@
     "collected_at": "2026-08-02",
     "notes": ""
   },
+  "arena_ai_text_elo": {
+    "model_id": "google/gemini-4-argon",
+    "benchmark_id": "arena_ai_text_elo",
+    "value": 1524.839562,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arena.ai/leaderboard/text",
+      "date": "2026-10-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-01",
+    "notes": "arena.ai Text Arena Elo (gemini-4-argon-high), snapshot read 2026-10-01: rank 1, 95% CI [1516.0, 1533.7], 4942 votes."
+  },
   "arena_video_edit_elo": {
     "model_id": "bytedance/dreamina-seedance-2.0-720p",
     "benchmark_id": "arena_video_edit_elo",
@@ -46860,19 +46860,19 @@
     "notes": "arena.ai video_edit leaderboard 2026-07-20"
   },
   "arena_agent_net_improvement": {
-    "model_id": "anthropic/claude-fable-5",
+    "model_id": "anthropic/claude-fable-5.1",
     "benchmark_id": "arena_agent_net_improvement",
-    "value": 12.58,
-    "unit": "pct",
+    "value": 17.45547,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://arena.ai/leaderboard",
-      "date": "2026-08-02",
+      "url": "https://arena.ai/leaderboard/agent",
+      "date": "2026-10-01",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-08-02",
-    "notes": ""
+    "collected_at": "2026-10-01",
+    "notes": "arena.ai Agent Arena net improvement vs the average orchestrator (Claude Fable 5.1 (Max), contender claude-fable-5.1-max-agent), board dated 2026-09-30: rank 1, 95% CI [14.56, 20.35]. Relative metric: values shift with the pool."
   },
   "coffeebench_net_profit_90d_usd": {
     "model_id": "openai/gpt-5.5",
@@ -55875,19 +55875,19 @@
     "notes": "Opus 5.5 System Card (2026-09-22) §8.5 / Table 8.1.A (66.4): Terminal-Bench 4.0 internal, xhigh effort, 5 trials/task (330), SE ±2.6; safeguards fallback on 2.5% of requests."
   },
   "cwe_bench": {
-    "model_id": "google/gemini-3.8-flash-cyber",
+    "model_id": "anthropic/claude-fable-5.1",
     "benchmark_id": "cwe_bench",
-    "value": 47.2,
+    "value": 52.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
-      "date": "2026-09-03",
+      "url": "https://cwe-bench.com/",
+      "date": "2026-10-01",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-09-03",
-    "notes": "Real-world vuln discovery >70% across 20 languages (not exact, omitted). CyberGym: no primary number (llm-stats 86.2 rejected as misattribution of base CharXiv)."
+    "collected_at": "2026-10-01",
+    "notes": "CWE-bench 'Claude Fable 5.1' v0 pass@1 from the site's v0-vs-v1 comparison table (models that ran on both sets)."
   },
   "fleurs_wer_streaming_lower_better": {
     "model_id": "google/gemini-3.5-audio",
@@ -66733,6 +66733,126 @@
     "is_sota": true,
     "collected_at": "2026-10-01",
     "notes": "AA article chart 'Completion Time by Model and System' (https://artificialanalysis.ai/articles/aa-agentperf-local, 2026-09-29), row 'Qwen3.6 35B A3B (Reasoning)', 4-bit, speculative decoding. Qwen3.8 27B prefill/decode also in the separate bar charts (same values)."
+  },
+  "vals_index_v2_1_cost_per_test_usd_lower_better": {
+    "model_id": "anthropic/claude-opus-5.5",
+    "benchmark_id": "vals_index_v2_1_cost_per_test_usd_lower_better",
+    "value": 32.14,
+    "unit": "usd",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.vals.ai/benchmarks/vals_index",
+      "date": "2026-10-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-01",
+    "notes": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 3 'Claude Opus 5.5' (Vals slug anthropic_claude-opus-5-5); token rates $4 / $20; tokens 28.76B / 491.89M; duration 1h19m."
+  },
+  "frontierswe_v2_worst5": {
+    "model_id": "openai/gpt-6-astra",
+    "benchmark_id": "frontierswe_v2_worst5",
+    "value": 55.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.frontierswe.com/",
+      "date": "2026-10-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-01",
+    "notes": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'OpenAI GPT-6 Astra' + proximus: mean@5 65.5, worst@5 55.1, best@5 73.0."
+  },
+  "frontierswe_v2_best5": {
+    "model_id": "openai/gpt-6-astra",
+    "benchmark_id": "frontierswe_v2_best5",
+    "value": 73.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.frontierswe.com/",
+      "date": "2026-10-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-01",
+    "notes": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'OpenAI GPT-6 Astra' + proximus: mean@5 65.5, worst@5 55.1, best@5 73.0."
+  },
+  "cwe_bench_v1_pass4": {
+    "model_id": "xai/grok-4.7",
+    "benchmark_id": "cwe_bench_v1_pass4",
+    "value": 81.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cwe-bench.com/",
+      "date": "2026-10-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-01",
+    "notes": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Grok 4.7'. Integer percentages as published."
+  },
+  "cwe_bench_v1_judge_pass1": {
+    "model_id": "anthropic/claude-opus-5.5",
+    "benchmark_id": "cwe_bench_v1_judge_pass1",
+    "value": 67.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cwe-bench.com/",
+      "date": "2026-10-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-01",
+    "notes": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Claude Opus 5.5'. Integer percentages as published."
+  },
+  "cwe_bench_v1_judge_pass4": {
+    "model_id": "xai/grok-4.7",
+    "benchmark_id": "cwe_bench_v1_judge_pass4",
+    "value": 82.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cwe-bench.com/",
+      "date": "2026-10-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-01",
+    "notes": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Grok 4.7'. Integer percentages as published."
+  },
+  "cwe_bench_v1_cost_per_rollout_usd_lower_better": {
+    "model_id": "google/gemini-4-argon",
+    "benchmark_id": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+    "value": 6.63,
+    "unit": "usd",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cwe-bench.com/",
+      "date": "2026-10-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-01",
+    "notes": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Gemini 4 Argon'. Integer percentages as published."
+  },
+  "cwe_bench_v0_cost_per_rollout_usd_lower_better": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+    "value": 10.27,
+    "unit": "usd",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cwe-bench.com/",
+      "date": "2026-10-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-01",
+    "notes": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Claude Fable 5' in Claude Code, high reasoning, deterministic verifier."
   },
   "cti_bench": {
     "model_id": "anthropic/claude-opus-4.7",

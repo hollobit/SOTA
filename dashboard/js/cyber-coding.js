@@ -90,6 +90,8 @@ var CyberCoding = {
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
         // 2026-09-30 S290 — CWE-bench v1 official board (vulnerability remediation) + Google internal vuln discovery / Wiz black-box pentest (Gemini 4 Argon launch)
         'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
+        // 2026-10-01 S290b — cwe-bench.com: v1 pass@4 / judge-panel / cost columns, v0 board (100 tasks)
+        'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench_v1_judge_pass4', 'cwe_bench_v1_cost_per_rollout_usd_lower_better', 'cwe_bench', 'cwe_bench_v0_cost_per_rollout_usd_lower_better',
         // 2026-09-28 S289 — Artificial Analysis Cyber Index v1 (CWE-Bench-AA / DeepsecBench-AA / CyberGym-E2E-AA + safety-block rates)
         'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa', 'cwe_bench_aa_refusal_rate_lower_better', 'deepsecbench_aa_refusal_rate_lower_better', 'cybergym_e2e_aa_refusal_rate_lower_better',
         // 2026-09-23 S282b — Opus 5.5 card §3.4-3.5 safeguard flag rates / rewind-attacker ASR
@@ -158,7 +160,7 @@ var CyberCoding = {
         'terminal_bench_4_0',  // S265
         'evocode_bench_v2_mt4', 'evocode_bench_v2_case',  // S270 Terminal-Universe paper
         // 2026-09-23 S282 — TB 4.0 vendor/AA ids, CursorBench 4.0, FrontierSWE v2, MiMo in-house
-        'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'mimo_code_bench', 'mimo_visual_coding',
+        'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'mimo_code_bench', 'mimo_visual_coding',
         // 2026-09-23 S282b — AA Coding Agent Index components (Codex harness) + MiMo report Table 7 per-harness ids
         'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness',
         // 2026-09-24 S285 — BaxBench, Sonar, SWE-rebench window, Kilo harness, VulcanBench v4, Epoch SWE-V run
@@ -187,7 +189,7 @@ var CyberCoding = {
                 // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
                 'kernelbench_hard', 'swe_fficiency',
                 // 2026-09-23 S282
-                'terminal_bench_4_0', 'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'mimo_code_bench', 'mimo_visual_coding',
+                'terminal_bench_4_0', 'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'mimo_code_bench', 'mimo_visual_coding',
                 // 2026-09-23 S282b
                 'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness',
                 // 2026-09-24 S285 — BaxBench, Sonar, SWE-rebench window, Kilo harness, VulcanBench v4, Epoch SWE-V run
@@ -272,6 +274,7 @@ var CyberCoding = {
                 'zerodaybench', 'secrepobench', 'evmbench_patch', 'dfir_metric',
                 // 2026-09-30 S290 — CWE-bench v1 board · Google real-world vuln discovery · Wiz black-box pentest
                 'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
+                'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench_v1_judge_pass4', 'cwe_bench_v1_cost_per_rollout_usd_lower_better', 'cwe_bench', 'cwe_bench_v0_cost_per_rollout_usd_lower_better',
                 // 2026-09-28 S289 — AA Cyber Index v1 (defensive loop: find · reproduce · patch)
                 'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa', 'cwe_bench_aa_refusal_rate_lower_better', 'deepsecbench_aa_refusal_rate_lower_better', 'cybergym_e2e_aa_refusal_rate_lower_better',
                 'apollo_sabotage_mean', 'apollo_impossible_task_lying', 'apollo_eval_awareness',

@@ -1,0 +1,3622 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-01",
+  "session": "S290b",
+  "sources": [
+   "https://kingy.ai/blog/frontier-ai-models-gemini-4-argon-gpt-6-astra-sol-claude/",
+   "https://deepmind.google/models/gemini/",
+   "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_argon_model_evaluation.pdf",
+   "https://benchlm.ai/models/gemini-4-argon",
+   "https://arena.ai/leaderboard/text",
+   "https://arena.ai/leaderboard/agent",
+   "https://www.vals.ai/benchmarks/vals_index",
+   "https://epoch.ai/data/eci_scores.csv",
+   "https://www.frontierswe.com/",
+   "https://cwe-bench.com/"
+  ],
+  "note": "Kingy.ai / BenchLM are secondary: no values taken from them; their pointers were followed to the primary boards. DeepMind page table and the model-evaluation PDF are identical to the S290 sources (PDF sha1 882932ed…)."
+ },
+ "models": [],
+ "benchmarks": [
+  {
+   "id": "vals_index_sep2026",
+   "name": "Vals Index v2.1 (Vals AI)",
+   "category": "knowledge_work",
+   "metric": "accuracy_pct",
+   "description": "Vals AI Vals Index v2.1 (board updated 2026-09-29/30): GDP-weighted index across finance, coding, legal and tax work, including Terminal-Bench 4.0 after the 2026-09-25 revision. Quoted in Google's Gemini 4 Argon launch table. Separate from `vals-index` / `vals_index` (earlier versions: Fable 5 = 75.1 there vs 61.4 on v2.1)."
+  },
+  {
+   "id": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "name": "Vals Index v2.1 — cost per test (USD)",
+   "category": "knowledge_work",
+   "metric": "usd",
+   "description": "Vals AI Vals Index v2.1 'Cost / Test' column: billed API cost per test at the token rates Vals lists for each model (Gemini 4 Argon at the $4/$20 list price, not the introductory rate). Lower is better."
+  },
+  {
+   "id": "frontierswe_v2_worst5",
+   "name": "FrontierSWE v2 (Proximal) — worst@5",
+   "category": "coding",
+   "metric": "accuracy_pct",
+   "description": "Proximal FrontierSWE v2 board, worst of 5 trials (same runs as the mean@5 headline `frontierswe_v2`), proximus harness."
+  },
+  {
+   "id": "frontierswe_v2_best5",
+   "name": "FrontierSWE v2 (Proximal) — best@5",
+   "category": "coding",
+   "metric": "accuracy_pct",
+   "description": "Proximal FrontierSWE v2 board, best of 5 trials (same runs as the mean@5 headline `frontierswe_v2`), proximus harness."
+  },
+  {
+   "id": "cwe_bench_v1_pass4",
+   "name": "CWE-bench v1 — pass@4 (programmatic verifier)",
+   "category": "cybersecurity",
+   "metric": "accuracy_pct",
+   "description": "CWE-bench v1 (Collinear AI, 120 held-out audit-and-patch tasks, 4 rollouts at high reasoning, 1h each): share of tasks solved in any of 4 rollouts by the deterministic verifier."
+  },
+  {
+   "id": "cwe_bench_v1_judge_pass1",
+   "name": "CWE-bench v1 — pass@1 (three-judge agentic panel)",
+   "category": "cybersecurity",
+   "metric": "accuracy_pct",
+   "description": "CWE-bench v1 pass@1 graded by the three-judge agentic panel instead of the deterministic verifier."
+  },
+  {
+   "id": "cwe_bench_v1_judge_pass4",
+   "name": "CWE-bench v1 — pass@4 (three-judge agentic panel)",
+   "category": "cybersecurity",
+   "metric": "accuracy_pct",
+   "description": "CWE-bench v1 pass@4 graded by the three-judge agentic panel."
+  },
+  {
+   "id": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "name": "CWE-bench v1 — average cost per rollout (USD)",
+   "category": "cybersecurity",
+   "metric": "usd",
+   "description": "CWE-bench v1 mean billed API spend for one rollout on one task (Gemini 4 Argon priced at $2 / $0.20 cached / $10). Lower is better."
+  },
+  {
+   "id": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "name": "CWE-bench v0 — average cost per rollout (USD)",
+   "category": "cybersecurity",
+   "metric": "usd",
+   "description": "CWE-bench v0 (Sept 1, 100 tasks) mean billed API spend per rollout. Lower is better."
+  },
+  {
+   "id": "cwe_bench",
+   "name": "CWE-bench v0 (Collinear AI, 100 tasks, pass@1)",
+   "category": "cybersecurity",
+   "metric": "accuracy_pct",
+   "description": "CWE-bench v0 (Collinear AI, released Sept 1 2026): 100 held-out audit-and-patch tasks, 54 CWEs, deterministic programmatic verifier only, each model in a named harness at high reasoning. Superseded by v1 (`cwe_bench_v1`, 120 tasks, reviewed verifiers)."
+  }
+ ],
+ "scores": [
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1524.839562,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gemini-4-argon-high), snapshot read 2026-10-01: rank 1, 95% CI [1516.0, 1533.7], 4942 votes."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1503.981567,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-opus-5.5-high), snapshot read 2026-10-01: rank 4, 95% CI [1494.3, 1513.6], 3932 votes."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1501.246587,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-fable-5.1-max), snapshot read 2026-10-01: rank 6, 95% CI [1494.7, 1507.7], 11241 votes."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1504.870411,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-fable-5-high), snapshot read 2026-10-01: rank 3, 95% CI [1500.5, 1509.3], 37900 votes."
+  },
+  {
+   "model": "anthropic/claude-opus-4.6-thinking",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1505.485513,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-opus-4-6-high), snapshot read 2026-10-01: rank 2, 95% CI [1502.1, 1508.9], 77193 votes."
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1497.365163,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-opus-4-6), snapshot read 2026-10-01: rank 7, 95% CI [1494.0, 1500.7], 81769 votes."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7-thinking",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1501.690563,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-opus-4-7-high), snapshot read 2026-10-01: rank 5, 95% CI [1497.9, 1505.5], 64607 votes."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1494.343255,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-opus-4-7), snapshot read 2026-10-01: rank 9, 95% CI [1490.6, 1498.1], 65705 votes."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8-thinking",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1481.286825,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-opus-4-8-high), snapshot read 2026-10-01: rank 23, 95% CI [1477.4, 1485.2], 63577 votes."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1474.521955,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-opus-4-8), snapshot read 2026-10-01: rank 36, 95% CI [1470.7, 1478.4], 64711 votes."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1489.082282,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-opus-5-max), snapshot read 2026-10-01: rank 14, 95% CI [1484.1, 1494.1], 28351 votes."
+  },
+  {
+   "model": "anthropic/claude-opus-5-high",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1491.192803,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-opus-5-high), snapshot read 2026-10-01: rank 13, 95% CI [1487.4, 1495.0], 58380 votes."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1461.828185,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (claude-sonnet-5-high), snapshot read 2026-10-01: rank 55, 95% CI [1457.6, 1466.1], 45191 votes."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1494.651954,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (muse-spark-1.3-max), snapshot read 2026-10-01: rank 8, 95% CI [1488.4, 1500.9], 11698 votes."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1494.152956,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (muse-spark-1.2 (xHigh)), snapshot read 2026-10-01: rank 10, 95% CI [1484.5, 1503.8], 3833 votes."
+  },
+  {
+   "model": "meta/muse-spark-1.1",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1491.82995,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (muse-spark-1.1), snapshot read 2026-10-01: rank 12, 95% CI [1487.4, 1496.3], 36558 votes."
+  },
+  {
+   "model": "meta/muse-spark",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1489.053291,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (muse-spark), snapshot read 2026-10-01: rank 15, 95% CI [1483.3, 1494.8], 14128 votes."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1494.090611,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gemini-3.8-flash-high), snapshot read 2026-10-01: rank 11, 95% CI [1489.0, 1499.2], 24828 votes."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1488.303927,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gemini-3.7-flash-high), snapshot read 2026-10-01: rank 16, 95% CI [1483.1, 1493.5], 20851 votes."
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1483.085793,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gemini-3.6-flash-high), snapshot read 2026-10-01: rank 21, 95% CI [1478.6, 1487.5], 35640 votes."
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1477.067417,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gemini-3.5-flash-high), snapshot read 2026-10-01: rank 27, 95% CI [1473.2, 1481.0], 47981 votes."
+  },
+  {
+   "model": "google/gemini-3.5-flash-medium",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1476.198775,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gemini-3.5-flash-medium), snapshot read 2026-10-01: rank 29, 95% CI [1472.0, 1480.4], 46735 votes."
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1454.112391,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gemini-3.5-flash-lite), snapshot read 2026-10-01: rank 70, 95% CI [1449.6, 1458.6], 35335 votes."
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1486.964079,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gemini-3.1-pro-preview), snapshot read 2026-10-01: rank 18, 95% CI [1483.9, 1490.0], 121225 votes."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1488.027768,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (kimi-k3-max), snapshot read 2026-10-01: rank 17, 95% CI [1483.2, 1492.8], 27719 votes."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1461.01164,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (kimi-k2.6), snapshot read 2026-10-01: rank 56, 95% CI [1456.6, 1465.4], 39950 votes."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1476.18434,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gpt-6-astra-max), snapshot read 2026-10-01: rank 30, 95% CI [1469.2, 1483.2], 8565 votes."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1455.820838,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gpt-6-sol-max), snapshot read 2026-10-01: rank 66, 95% CI [1448.5, 1463.1], 7574 votes."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1443.842647,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gpt-6-luna-max), snapshot read 2026-10-01: rank 85, 95% CI [1436.7, 1451.0], 7654 votes."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1483.763079,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gpt-5.6-sol-xhigh), snapshot read 2026-10-01: rank 20, 95% CI [1479.3, 1488.2], 36002 votes."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1465.130385,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gpt-5.6-terra-xhigh), snapshot read 2026-10-01: rank 50, 95% CI [1460.7, 1469.6], 37056 votes."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1453.40641,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gpt-5.6-luna-xhigh), snapshot read 2026-10-01: rank 72, 95% CI [1449.0, 1457.8], 37593 votes."
+  },
+  {
+   "model": "openai/gpt-5.5-high",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1481.343588,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gpt-5.5-high), snapshot read 2026-10-01: rank 22, 95% CI [1477.6, 1485.1], 69312 votes."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1476.725368,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gpt-5.5), snapshot read 2026-10-01: rank 28, 95% CI [1473.0, 1480.4], 70894 votes."
+  },
+  {
+   "model": "openai/gpt-5.4-high",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1475.18251,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gpt-5.4-high), snapshot read 2026-10-01: rank 33, 95% CI [1471.4, 1479.0], 64648 votes."
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1464.862594,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gpt-5.4), snapshot read 2026-10-01: rank 51, 95% CI [1461.2, 1468.6], 67753 votes."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1480.855548,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (qwen3.8-max), snapshot read 2026-10-01: rank 24, 95% CI [1475.6, 1486.1], 22809 votes."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1438.52797,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (qwen3.8-27b), snapshot read 2026-10-01: rank 94, 95% CI [1433.1, 1444.0], 17777 votes."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1455.886082,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (qwen3.7-plus), snapshot read 2026-10-01: rank 65, 95% CI [1451.5, 1460.2], 42001 votes."
+  },
+  {
+   "model": "alibaba/qwen3.6-plus",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1443.354783,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (qwen3.6-plus), snapshot read 2026-10-01: rank 86, 95% CI [1439.2, 1447.5], 48092 votes."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1479.615142,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (mimo-v2.6-pro), snapshot read 2026-10-01: rank 25, 95% CI [1470.2, 1489.0], 4074 votes."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-flash",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1453.727154,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (mimo-v2.6-flash), snapshot read 2026-10-01: rank 71, 95% CI [1445.5, 1461.9], 5465 votes."
+  },
+  {
+   "model": "xiaomi/mimo-v2.5-pro",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1467.370812,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (mimo-v2.5-pro), snapshot read 2026-10-01: rank 47, 95% CI [1463.7, 1471.0], 70317 votes."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1479.393895,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (glm-5.3-max), snapshot read 2026-10-01: rank 26, 95% CI [1473.8, 1485.0], 17268 votes."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1473.671056,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (glm-5.3-flash), snapshot read 2026-10-01: rank 38, 95% CI [1468.2, 1479.1], 21644 votes."
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1475.426372,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (glm-5.2-max), snapshot read 2026-10-01: rank 32, 95% CI [1471.1, 1479.7], 44949 votes."
+  },
+  {
+   "model": "zhipu/glm-5.1",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1464.51898,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (glm-5.1), snapshot read 2026-10-01: rank 53, 95% CI [1460.8, 1468.2], 57877 votes."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1472.765508,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (deepseek-v4.1-flash-max), snapshot read 2026-10-01: rank 40, 95% CI [1465.7, 1479.8], 8125 votes."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1457.720783,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (deepseek-v4-pro), snapshot read 2026-10-01: rank 60, 95% CI [1453.8, 1461.6], 57549 votes."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1435.884601,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (deepseek-v4-flash), snapshot read 2026-10-01: rank 100, 95% CI [1431.8, 1439.9], 51869 votes."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1442.450326,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (grok-4.7-xhigh), snapshot read 2026-10-01: rank 88, 95% CI [1434.3, 1450.6], 5675 votes."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1453.36402,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (grok-4.6-high), snapshot read 2026-10-01: rank 73, 95% CI [1448.2, 1458.5], 23012 votes."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1465.840693,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (grok-4.5), snapshot read 2026-10-01: rank 48, 95% CI [1461.5, 1470.2], 39339 votes."
+  },
+  {
+   "model": "tencent/hy3",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1457.440395,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (hy3), snapshot read 2026-10-01: rank 62, 95% CI [1450.9, 1464.0], 10239 votes."
+  },
+  {
+   "model": "thinking-machines/inkling",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1441.748598,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (inkling), snapshot read 2026-10-01: rank 89, 95% CI [1437.2, 1446.3], 34594 votes."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1439.738387,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (minimax-m3), snapshot read 2026-10-01: rank 93, 95% CI [1435.8, 1443.7], 58171 votes."
+  },
+  {
+   "model": "google/gemma-4-31b",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1452.725187,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gemma-4-31b), snapshot read 2026-10-01: rank 74, 95% CI [1445.3, 1460.2], 6137 votes."
+  },
+  {
+   "model": "google/gemma-4-26b-a4b",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1437.492244,
+   "unit": "elo",
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai Text Arena Elo (gemma-4-26b-a4b), snapshot read 2026-10-01: rank 97, 95% CI [1430.1, 1444.9], 6083 votes."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 17.45547,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Claude Fable 5.1 (Max), contender claude-fable-5.1-max-agent), board dated 2026-09-30: rank 1, 95% CI [14.56, 20.35]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 14.148027,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Gemini 4 Argon (High), contender barium-bb-v2-4xts-agent), board dated 2026-09-30: rank 2, 95% CI [9.08, 19.22]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 13.954902,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Claude Opus 5.5 (High), contender claude-opus-5.5-high-vertex-agent), board dated 2026-09-30: rank 3, 95% CI [9.71, 18.20]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 12.025671,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GPT 6 Astra (Max), contender gpt-6-astra-max-agent), board dated 2026-09-30: rank 4, 95% CI [8.00, 16.05]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 10.089851,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Claude Opus 5 (Max), contender claude-opus-5-max-agent), board dated 2026-09-30: rank 5, 95% CI [6.85, 13.33]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 9.869409,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GPT 6 Sol (Max), contender gpt-6-sol-max-agent), board dated 2026-09-30: rank 6, 95% CI [5.32, 14.42]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 8.654854,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Deepseek V4.1 Flash (Max), contender deepseek-v4.1-flash-max-20260910-agent), board dated 2026-09-30: rank 7, 95% CI [7.55, 9.76]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 7.406438,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Gemini 3.8 Flash (High), contender skimaki-kwc6-agent), board dated 2026-09-30: rank 8, 95% CI [5.59, 9.23]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 7.324153,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Kimi K3 (Max), contender kivine-wxzc-agent), board dated 2026-09-30: rank 9, 95% CI [6.14, 8.51]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "anthropic/claude-opus-5-high",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 6.844589,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Claude Opus 5 (High), contender claude-opus-5-high-agent), board dated 2026-09-30: rank 10, 95% CI [3.66, 10.03]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 6.370855,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Hy4 preview, contender phoenix-qcs2-agent), board dated 2026-09-30: rank 11, 95% CI [4.63, 8.11]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 6.249521,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Muse Spark 1.3 (Max), contender muse-spark-1-3-max-agent), board dated 2026-09-30: rank 12, 95% CI [4.96, 7.54]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 6.225218,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Grok 4.7 (xHigh), contender grok-4.7-xhigh-public-agent), board dated 2026-09-30: rank 13, 95% CI [2.80, 9.65]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 5.635886,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GPT 5.6 Sol (xHigh), contender gpt-5.6-sol-xhigh-agent), board dated 2026-09-30: rank 14, 95% CI [2.85, 8.42]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 5.553451,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GLM 5.3 (Max), contender glm-5.3-agent), board dated 2026-09-30: rank 15, 95% CI [3.96, 7.15]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 5.498725,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Claude Fable 5 (High), contender claude-fable-5-agent), board dated 2026-09-30: rank 16, 95% CI [2.74, 8.26]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 5.235102,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Qwen3.8 Max, contender paisley-n9x0), board dated 2026-09-30: rank 17, 95% CI [3.78, 6.69]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 5.227993,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GLM 5.2 (Max), contender glm-5.2-agent), board dated 2026-09-30: rank 18, 95% CI [3.68, 6.77]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 4.878112,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Claude Opus 4.8 (High), contender claude-opus-4-8-thinking-agent), board dated 2026-09-30: rank 19, 95% CI [2.11, 7.65]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 4.635372,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GLM 5.3 Flash, contender glm-5.3-flash-agent), board dated 2026-09-30: rank 20, 95% CI [3.51, 5.76]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 3.557545,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Qwen3.8 Flash Next, contender farris-ees5-agent), board dated 2026-09-30: rank 21, 95% CI [2.04, 5.07]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 1.506157,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Qwen 3.8 27B, contender qwen3.8-27b-code-agent), board dated 2026-09-30: rank 22, 95% CI [0.05, 2.96]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 1.470678,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Grok 4.5, contender grok-4.5-agent), board dated 2026-09-30: rank 23, 95% CI [-0.88, 3.82]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 1.29875,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Claude Sonnet 5 (High), contender claude-sonnet-5-agent), board dated 2026-09-30: rank 24, 95% CI [-2.47, 5.06]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 1.078879,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Gemini 3.7 Flash (High), contender andwise-evfd-agent), board dated 2026-09-30: rank 25, 95% CI [-0.74, 2.90]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 0.379859,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GPT 6 Luna (Max), contender gpt-6-luna-max-agent), board dated 2026-09-30: rank 26, 95% CI [-2.72, 3.48]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "openai/gpt-5.5-xhigh",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -0.435142,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GPT 5.5 (xHigh), contender gpt-5.5-xhigh-agent), board dated 2026-09-30: rank 27, 95% CI [-2.68, 1.81]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -0.734793,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Grok 4.6 (xHigh), contender grok-4.6-xhigh-public-agent), board dated 2026-09-30: rank 28, 95% CI [-3.16, 1.69]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -2.646391,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GPT 5.4 (High), contender gpt-5.4-high-code-arena-harness-agent), board dated 2026-09-30: rank 30, 95% CI [-4.75, -0.54]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -2.883084,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GPT 5.6 Luna (xHigh), contender gpt-5.6-luna-xhigh-agent), board dated 2026-09-30: rank 31, 95% CI [-4.53, -1.23]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "meta/muse-spark-1.1",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -3.905505,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Muse Spark 1.1, contender super-nova-ext-3tam-agent), board dated 2026-09-30: rank 32, 95% CI [-5.02, -2.79]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -4.227018,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GPT 5.6 Terra (xHigh), contender gpt-5.6-terra-xhigh-agent), board dated 2026-09-30: rank 33, 95% CI [-6.93, -1.53]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -4.592239,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (GPT 5.5, contender gpt-5.5-agent), board dated 2026-09-30: rank 34, 95% CI [-6.72, -2.47]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -4.777483,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Muse Spark 1.2 (xHigh), contender muse-spark-1.2-xhigh-agent), board dated 2026-09-30: rank 35, 95% CI [-6.60, -2.95]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -5.555065,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Gemini 3.6 Flash (High), contender gemini-3.6-flash-agent), board dated 2026-09-30: rank 36, 95% CI [-8.17, -2.94]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "alibaba/qwen3.7-max",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -9.068646,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Qwen3.7 Max, contender qwen3.7-max-agent), board dated 2026-09-30: rank 37, 95% CI [-11.50, -6.63]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -9.368969,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Gemini 3.1 Pro Preview, contender gemini-3.1-pro-preview-agent), board dated 2026-09-30: rank 38, 95% CI [-11.52, -7.22]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "xiaomi/mimo-v2.5-pro",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -9.401769,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Mimo V2.5 Pro, contender mimo-v2.5-pro-agent), board dated 2026-09-30: rank 39, 95% CI [-11.74, -7.07]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -10.140156,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Qwen3.7 Plus, contender qwen3.7-plus-agent), board dated 2026-09-30: rank 40, 95% CI [-13.51, -6.77]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "tencent/hy3",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -11.46575,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Hy3, contender hy3-tencent-cloud-agent), board dated 2026-09-30: rank 41, 95% CI [-14.31, -8.62]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -13.06096,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Minimax M3, contender minimax-m3-first-party), board dated 2026-09-30: rank 42, 95% CI [-15.55, -10.57]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "mistral/mistral-medium-3.5",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -13.523539,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Mistral Medium 3.5, contender mistral-medium-3.5-v2-agent), board dated 2026-09-30: rank 43, 95% CI [-17.32, -9.73]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -19.512971,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Inkling Small, contender inkling-small), board dated 2026-09-30: rank 44, 95% CI [-23.84, -15.19]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "thinking-machines/inkling",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -20.738292,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Inkling, contender inkling-agent), board dated 2026-09-30: rank 45, 95% CI [-23.75, -17.73]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "upstage/solar-pro-4",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -20.844275,
+   "unit": "%",
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai Agent Arena net improvement vs the average orchestrator (Solar Pro 4, contender solar-pro4-agent), board dated 2026-09-30: rank 46, 95% CI [-26.32, -15.37]. Relative metric: values shift with the pool."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 15.68,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 1 'Gemini 4 Argon' (Vals slug google_gemini-4-argon); token rates $4 / $20; tokens 13.40B / 142.01M; duration 46m33s."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "vals_index_sep2026",
+   "score": 67.04,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 2 'Claude Sonnet 5.5' (Vals slug anthropic_claude-sonnet-5-5); token rates $2 / $10; tokens 40.47B / 604.71M; duration 1h18m."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 21.34,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 2 'Claude Sonnet 5.5' (Vals slug anthropic_claude-sonnet-5-5); token rates $2 / $10; tokens 40.47B / 604.71M; duration 1h18m."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "vals_index_sep2026",
+   "score": 66.97,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 3 'Claude Opus 5.5' (Vals slug anthropic_claude-opus-5-5); token rates $4 / $20; tokens 28.76B / 491.89M; duration 1h19m."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 32.14,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 3 'Claude Opus 5.5' (Vals slug anthropic_claude-opus-5-5); token rates $4 / $20; tokens 28.76B / 491.89M; duration 1h19m."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "vals_index_sep2026",
+   "score": 65.83,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 4 'Claude Fable 5.1' (Vals slug anthropic_claude-fable-5-1); token rates $10 / $50; tokens 18.95B / 202.71M; duration 1h17m."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 28.71,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 4 'Claude Fable 5.1' (Vals slug anthropic_claude-fable-5-1); token rates $10 / $50; tokens 18.95B / 202.71M; duration 1h17m."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "vals_index_sep2026",
+   "score": 63.67,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 5 'Claude Opus 5' (Vals slug anthropic_claude-opus-5); token rates $5 / $25; tokens 14.71B / 146.95M; duration 57m41s."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 19.31,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 5 'Claude Opus 5' (Vals slug anthropic_claude-opus-5); token rates $5 / $25; tokens 14.71B / 146.95M; duration 57m41s."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "vals_index_sep2026",
+   "score": 63.13,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 6 'GPT-6 Astra' (Vals slug openai_gpt-6-astra); token rates $10 / $50; tokens 3.93B / 94.52M; duration 27m48s."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 18.46,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 6 'GPT-6 Astra' (Vals slug openai_gpt-6-astra); token rates $10 / $50; tokens 3.93B / 94.52M; duration 27m48s."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "vals_index_sep2026",
+   "score": 61.39,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 7 'Claude Fable 5' (Vals slug anthropic_claude-fable-5); token rates $10 / $50; tokens 10.43B / 124.29M; duration 42m24s."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 29.59,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 7 'Claude Fable 5' (Vals slug anthropic_claude-fable-5); token rates $10 / $50; tokens 10.43B / 124.29M; duration 42m24s."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "vals_index_sep2026",
+   "score": 61.15,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 8 'GPT-6.1 Sol' (Vals slug openai_gpt-6.1-sol); token rates $2 / $10; tokens 4.50B / 104.77M; duration 43m10s."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 3.24,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 8 'GPT-6.1 Sol' (Vals slug openai_gpt-6.1-sol); token rates $2 / $10; tokens 4.50B / 104.77M; duration 43m10s."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "vals_index_sep2026",
+   "score": 58.16,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 9 'Muse Spark 1.3 Max' (Vals slug meta_muse_spark_1_3_max); token rates $1.25 / $4.25; tokens 11.28B / 94.28M; duration 23m33s."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 3.79,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 9 'Muse Spark 1.3 Max' (Vals slug meta_muse_spark_1_3_max); token rates $1.25 / $4.25; tokens 11.28B / 94.28M; duration 23m33s."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "vals_index_sep2026",
+   "score": 58.01,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 10 'GPT-5.6 Sol' (Vals slug openai_gpt-5.6-sol); token rates $4 / $20; tokens 6.46B / 145.31M; duration 37m23s."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 14.24,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 10 'GPT-5.6 Sol' (Vals slug openai_gpt-5.6-sol); token rates $4 / $20; tokens 6.46B / 145.31M; duration 37m23s."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "vals_index_sep2026",
+   "score": 57.54,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 11 'GPT-6 Sol' (Vals slug openai_gpt-6-sol); token rates $2 / $10; tokens 8.97B / 104.59M; duration 29m16s."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 7.58,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 11 'GPT-6 Sol' (Vals slug openai_gpt-6-sol); token rates $2 / $10; tokens 8.97B / 104.59M; duration 29m16s."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "vals_index_sep2026",
+   "score": 55.2,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 12 'MiMo V2.6 Pro' (Vals slug xiaomi_mimo-v2.6-pro); token rates $0.435 / $0.87; tokens 8.35B / 118.02M; duration 1h07m."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 0.41,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 12 'MiMo V2.6 Pro' (Vals slug xiaomi_mimo-v2.6-pro); token rates $0.435 / $0.87; tokens 8.35B / 118.02M; duration 1h07m."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "vals_index_sep2026",
+   "score": 55.1,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 13 'Claude Opus 4.8' (Vals slug anthropic_claude-opus-4-8); token rates $5 / $25; tokens 7.98B / 118.22M; duration 39m48s."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 13.14,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 13 'Claude Opus 4.8' (Vals slug anthropic_claude-opus-4-8); token rates $5 / $25; tokens 7.98B / 118.22M; duration 39m48s."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "vals_index_sep2026",
+   "score": 54.95,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 14 'Grok 4.7' (Vals slug grok_grok-4.7); token rates $2 / $6; tokens 7.28B / 114.00M; duration 35m31s."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 12.12,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 14 'Grok 4.7' (Vals slug grok_grok-4.7); token rates $2 / $6; tokens 7.28B / 114.00M; duration 35m31s."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "vals_index_sep2026",
+   "score": 54.83,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 15 'Gemini 3.8 Flash' (Vals slug google_gemini-3.8-flash); token rates $1.5 / $7.5; tokens 13.01B / 114.57M; duration 51m57s."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 5.73,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 15 'Gemini 3.8 Flash' (Vals slug google_gemini-3.8-flash); token rates $1.5 / $7.5; tokens 13.01B / 114.57M; duration 51m57s."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "vals_index_sep2026",
+   "score": 53.51,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 16 'GLM 5.3' (Vals slug zai_glm-5.3); token rates $1.4 / $4.4; tokens 12.09B / 211.64M; duration 1h13m."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 7.25,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 16 'GLM 5.3' (Vals slug zai_glm-5.3); token rates $1.4 / $4.4; tokens 12.09B / 211.64M; duration 1h13m."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-flash",
+   "benchmark": "vals_index_sep2026",
+   "score": 53.23,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 17 'MiMo V2.6 Flash' (Vals slug xiaomi_mimo-v2.6-flash); token rates $0.14 / $0.28; tokens 11.54B / 122.72M; duration 58m02s."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-flash",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 0.2,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 17 'MiMo V2.6 Flash' (Vals slug xiaomi_mimo-v2.6-flash); token rates $0.14 / $0.28; tokens 11.54B / 122.72M; duration 58m02s."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "vals_index_sep2026",
+   "score": 53.09,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 19 'GPT-5.6 Terra' (Vals slug openai_gpt-5.6-terra); token rates $2 / $12; tokens 6.56B / 175.28M; duration 35m39s."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 5.78,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 19 'GPT-5.6 Terra' (Vals slug openai_gpt-5.6-terra); token rates $2 / $12; tokens 6.56B / 175.28M; duration 35m39s."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "vals_index_sep2026",
+   "score": 52.09,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 20 'Grok 4.6' (Vals slug grok_grok-4.6); token rates $2 / $6; tokens 4.42B / 103.26M; duration 37m01s."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 4.49,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 20 'Grok 4.6' (Vals slug grok_grok-4.6); token rates $2 / $6; tokens 4.42B / 103.26M; duration 37m01s."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "vals_index_sep2026",
+   "score": 51.77,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 21 'Claude Sonnet 5' (Vals slug anthropic_claude-sonnet-5); token rates $2 / $10; tokens 26.64B / 166.76M; duration 54m16s."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 13.72,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 21 'Claude Sonnet 5' (Vals slug anthropic_claude-sonnet-5); token rates $2 / $10; tokens 26.64B / 166.76M; duration 54m16s."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "vals_index_sep2026",
+   "score": 51.69,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 22 'GPT-5.6 Luna' (Vals slug openai_gpt-5.6-luna); token rates $0.2 / $1.2; tokens 9.48B / 226.96M; duration 29m27s."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 0.82,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 22 'GPT-5.6 Luna' (Vals slug openai_gpt-5.6-luna); token rates $0.2 / $1.2; tokens 9.48B / 226.96M; duration 29m27s."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "vals_index_sep2026",
+   "score": 51.32,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 23 'DeepSeek V4.1 Flash' (Vals slug deepseek_deepseek-v4.1-flash); token rates $0.3 / $1.2; tokens 10.05B / 138.82M; duration 27m53s."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 0.33,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 23 'DeepSeek V4.1 Flash' (Vals slug deepseek_deepseek-v4.1-flash); token rates $0.3 / $1.2; tokens 10.05B / 138.82M; duration 27m53s."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "vals_index_sep2026",
+   "score": 51.27,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 24 'Gemini 3.7 Flash' (Vals slug google_gemini-3.7-flash); token rates $1.5 / $7.5; tokens 9.20B / 89.09M; duration 47m27s."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 4.71,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 24 'Gemini 3.7 Flash' (Vals slug google_gemini-3.7-flash); token rates $1.5 / $7.5; tokens 9.20B / 89.09M; duration 47m27s."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "vals_index_sep2026",
+   "score": 51.22,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 25 'GPT-6 Luna' (Vals slug openai_gpt-6-luna); token rates $0.1 / $0.5; tokens 9.75B / 201.12M; duration 30m34s."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 0.43,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 25 'GPT-6 Luna' (Vals slug openai_gpt-6-luna); token rates $0.1 / $0.5; tokens 9.75B / 201.12M; duration 30m34s."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "vals_index_sep2026",
+   "score": 50.7,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 26 'Kimi K3' (Vals slug kimi_kimi-k3); token rates $3 / $15; tokens 7.55B / 98.66M; duration 1h32m."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 7.26,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 26 'Kimi K3' (Vals slug kimi_kimi-k3); token rates $3 / $15; tokens 7.55B / 98.66M; duration 1h32m."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "vals_index_sep2026",
+   "score": 49.94,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 27 'Hy4 Preview' (Vals slug tencent_hy4-preview); token rates $0.834 / $2.501; tokens 10.71B / 179.91M; duration 1h01m."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 1.44,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 27 'Hy4 Preview' (Vals slug tencent_hy4-preview); token rates $0.834 / $2.501; tokens 10.71B / 179.91M; duration 1h01m."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "vals_index_sep2026",
+   "score": 49.29,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 28 'Muse Spark 1.2' (Vals slug meta_muse_spark_1_2); token rates $1.25 / $4.25; tokens 5.06B / 63.06M; duration 22m56s."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 1.94,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 28 'Muse Spark 1.2' (Vals slug meta_muse_spark_1_2); token rates $1.25 / $4.25; tokens 5.06B / 63.06M; duration 22m56s."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "vals_index_sep2026",
+   "score": 47.96,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 30 'DeepSeek V4 Flash 0731' (Vals slug deepseek_deepseek-v4-flash-0731); token rates $0.44 / $1.32; tokens 14.50B / 131.10M; duration 43m06s."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 0.85,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 30 'DeepSeek V4 Flash 0731' (Vals slug deepseek_deepseek-v4-flash-0731); token rates $0.44 / $1.32; tokens 14.50B / 131.10M; duration 43m06s."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "vals_index_sep2026",
+   "score": 47.63,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 31 'DeepSeek V4 Pro 0813' (Vals slug deepseek_deepseek-v4-pro-0813); token rates $1.32 / $3.96; tokens 18.05B / 152.97M; duration 1h04m."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 3.35,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 31 'DeepSeek V4 Pro 0813' (Vals slug deepseek_deepseek-v4-pro-0813); token rates $1.32 / $3.96; tokens 18.05B / 152.97M; duration 1h04m."
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "vals_index_sep2026",
+   "score": 44.79,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 32 'Gemini 3.5 Flash' (Vals slug google_gemini-3.5-flash); token rates $1.5 / $9; tokens 6.87B / 85.98M; duration 18m17s."
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 3.3,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 32 'Gemini 3.5 Flash' (Vals slug google_gemini-3.5-flash); token rates $1.5 / $9; tokens 6.87B / 85.98M; duration 18m17s."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "vals_index_sep2026",
+   "score": 44.72,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 33 'Grok 4.5' (Vals slug grok_grok-4.5); token rates $2 / $6; tokens 2.29B / 55.53M; duration 15m44s."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 2.46,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 33 'Grok 4.5' (Vals slug grok_grok-4.5); token rates $2 / $6; tokens 2.29B / 55.53M; duration 15m44s."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "vals_index_sep2026",
+   "score": 38.63,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 34 'DeepSeek V4' (Vals slug deepseek_deepseek-v4-pro); token rates $1.32 / $3.96; tokens 8.06B / 94.40M; duration 32m09s."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 1.31,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 34 'DeepSeek V4' (Vals slug deepseek_deepseek-v4-pro); token rates $1.32 / $3.96; tokens 8.06B / 94.40M; duration 32m09s."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "vals_index_sep2026",
+   "score": 36.53,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 35 'MiniMax-M3' (Vals slug minimax_MiniMax-M3); token rates $0.6 / $2.4; tokens 9.64B / 70.31M; duration 38m55s."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 3.08,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 35 'MiniMax-M3' (Vals slug minimax_MiniMax-M3); token rates $0.6 / $2.4; tokens 9.64B / 70.31M; duration 38m55s."
+  },
+  {
+   "model": "xiaomi/mimo-v2.5-pro",
+   "benchmark": "vals_index_sep2026",
+   "score": 33.84,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 36 'MiMo V2.5 Pro' (Vals slug xiaomi_mimo-v2.5-pro); token rates $0.435 / $0.87; tokens 3.11B / 46.63M; duration 34m33s."
+  },
+  {
+   "model": "xiaomi/mimo-v2.5-pro",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 0.16,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 36 'MiMo V2.5 Pro' (Vals slug xiaomi_mimo-v2.5-pro); token rates $0.435 / $0.87; tokens 3.11B / 46.63M; duration 34m33s."
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "vals_index_sep2026",
+   "score": 33.44,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 37 'Gemini 3.1 Pro Preview (02/26)' (Vals slug google_gemini-3.1-pro-preview); token rates $2 / $12; tokens 3.12B / 27.31M; duration 9m52s."
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 2.18,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 37 'Gemini 3.1 Pro Preview (02/26)' (Vals slug google_gemini-3.1-pro-preview); token rates $2 / $12; tokens 3.12B / 27.31M; duration 9m52s."
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "vals_index_sep2026",
+   "score": 33.17,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 38 'GPT 5.4 Mini' (Vals slug openai_gpt-5.4-mini-2026-03-17); token rates $0.75 / $4.5; tokens 5.45B / 209.15M; duration 29m49s."
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 1.45,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 38 'GPT 5.4 Mini' (Vals slug openai_gpt-5.4-mini-2026-03-17); token rates $0.75 / $4.5; tokens 5.45B / 209.15M; duration 29m49s."
+  },
+  {
+   "model": "thinking-machines/inkling",
+   "benchmark": "vals_index_sep2026",
+   "score": 28.67,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 39 'Inkling' (Vals slug thinkingmachines_inkling); token rates $1 / $4.05; tokens 4.51B / 69.32M; duration 20m06s."
+  },
+  {
+   "model": "thinking-machines/inkling",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 1.46,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 39 'Inkling' (Vals slug thinkingmachines_inkling); token rates $1 / $4.05; tokens 4.51B / 69.32M; duration 20m06s."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "vals_index_sep2026",
+   "score": 25.46,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 40 'Inkling Small' (Vals slug thinkingmachines_inkling-small); token rates $0.3 / $1.2; tokens 2.53B / 67.04M; duration 21m02s."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 0.28,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 40 'Inkling Small' (Vals slug thinkingmachines_inkling-small); token rates $0.3 / $1.2; tokens 2.53B / 67.04M; duration 21m02s."
+  },
+  {
+   "model": "inception/mercury-2.5",
+   "benchmark": "vals_index_sep2026",
+   "score": 8.86,
+   "unit": "%",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 41 'Mercury 2.5' (Vals slug inception_mercury-2.5); token rates $0.2 / $0.75; tokens N/A; duration 5m41s."
+  },
+  {
+   "model": "inception/mercury-2.5",
+   "benchmark": "vals_index_v2_1_cost_per_test_usd_lower_better",
+   "score": 0.29,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/benchmarks/vals_index",
+   "_note": "Vals Index v2.1 table (https://www.vals.ai/benchmarks/vals_index, updated 2026-09-30), row 41 'Mercury 2.5' (Vals slug inception_mercury-2.5); token rates $0.2 / $0.75; tokens N/A; duration 5m41s."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 167.35,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Opus 5.5', date 2026-09-22); 95% CI [164.0,172.0]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "epoch_capabilities_index",
+   "score": 166.51,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-6 Astra', date 2026-09-03); 95% CI [163.14,171.05]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 165.2,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Sonnet 5.5', date 2026-09-28); 95% CI [161.81,169.39]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 164.82,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Fable 5.1', date 2026-09-01); 95% CI [161.8,169.07]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 162.94,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Opus 5', date 2026-07-24); 95% CI [160.2,166.7]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.5-pro",
+   "benchmark": "epoch_capabilities_index",
+   "score": 162.38,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.5 Pro', date 2026-04-23); 95% CI [159.03,165.99]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 162.22,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Fable 5', date 2026-06-09); 95% CI [159.61,166.11]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "epoch_capabilities_index",
+   "score": 161.8,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.6 Sol', date 2026-07-09); 95% CI [159.26,165.26]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "epoch_capabilities_index",
+   "score": 159.79,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.6 Terra', date 2026-07-09); 95% CI [157.1,162.83]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 159.22,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.5', date 2026-04-23); 95% CI [156.87,162.37]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.4-pro",
+   "benchmark": "epoch_capabilities_index",
+   "score": 159.12,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.4 Pro', date 2026-03-05); 95% CI [156.47,161.92]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "epoch_capabilities_index",
+   "score": 158.34,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Opus 4.8', date 2026-05-28); 95% CI [156.08,160.74]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "epoch_capabilities_index",
+   "score": 157.61,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Kimi K3', date 2026-07-16); 95% CI [154.92,160.41]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "epoch_capabilities_index",
+   "score": 157.44,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 3.7 Flash', date 2026-08-13); 95% CI [155.41,160.06]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "epoch_capabilities_index",
+   "score": 156.93,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 3.8 Flash', date 2026-09-02); 95% CI [154.64,160.42]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "epoch_capabilities_index",
+   "score": 156.91,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.4', date 2026-03-05); 95% CI [154.91,159.1]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "epoch_capabilities_index",
+   "score": 156.86,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Muse Spark 1.3', date 2026-09-02); 95% CI [154.73,159.56]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.3-codex",
+   "benchmark": "epoch_capabilities_index",
+   "score": 156.82,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.3 Codex', date 2026-02-05); 95% CI [153.5,160.81]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "epoch_capabilities_index",
+   "score": 156.61,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Grok 4.6', date 2026-08-12); 95% CI [154.66,158.93]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "epoch_capabilities_index",
+   "score": 156.55,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen 3.8 Max', date 2026-08-02); 95% CI [154.54,158.81]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "epoch_capabilities_index",
+   "score": 156.45,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.6 Luna', date 2026-07-09); 95% CI [154.13,158.6]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "epoch_capabilities_index",
+   "score": 156.35,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Opus 4.7', date 2026-04-16); 95% CI [154.37,158.39]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 156.34,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Sonnet 5', date 2026-06-30); 95% CI [153.61,158.81]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "epoch_capabilities_index",
+   "score": 155.76,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GLM-5.3', date 2026-08-14); 95% CI [153.65,158.34]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.2-pro",
+   "benchmark": "epoch_capabilities_index",
+   "score": 155.41,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.2 Pro', date 2025-12-11); 95% CI [153.03,158.23]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "epoch_capabilities_index",
+   "score": 155.38,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('DeepSeek V4 Pro 0813', date 2026-08-13); 95% CI [153.66,157.56]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "epoch_capabilities_index",
+   "score": 155.31,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Opus 4.6', date 2026-02-05); 95% CI [153.43,157.25]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "epoch_capabilities_index",
+   "score": 155.17,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3.8 Max (0902)', date 2026-09-01); 95% CI [153.24,157.33]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "epoch_capabilities_index",
+   "score": 155.0,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('DeepSeek V4.1 Flash', date 2026-09-09); 95% CI [148.77,157.56]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "epoch_capabilities_index",
+   "score": 154.99,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Muse Spark 1.2', date 2026-08-05); 95% CI [152.8,157.47]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "epoch_capabilities_index",
+   "score": 154.84,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 3.1 Pro', date 2026-02-19); 95% CI [152.58,157.34]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "benchmark": "epoch_capabilities_index",
+   "score": 154.53,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('DeepSeek V4 Flash 0731', date 2026-07-31); 95% CI [152.02,156.56]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "epoch_capabilities_index",
+   "score": 154.51,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 3.5 Flash', date 2026-05-19); 95% CI [152.53,156.62]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "epoch_capabilities_index",
+   "score": 154.32,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 3.6 Flash', date 2026-07-21); 95% CI [152.62,156.28]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/muse-spark-1.1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 154.31,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Muse Spark 1.1', date 2026-07-09); 95% CI [152.17,157.1]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 153.99,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Grok 4.5', date 2026-07-08); 95% CI [152.34,156.08]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.7-max",
+   "benchmark": "epoch_capabilities_index",
+   "score": 153.72,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3.7-Max', date 2026-05-19); 95% CI [151.88,156.02]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.2",
+   "benchmark": "epoch_capabilities_index",
+   "score": 153.49,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.2', date 2025-12-11); 95% CI [151.7,155.37]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "epoch_capabilities_index",
+   "score": 152.95,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 3 Pro', date 2025-11-18); 95% CI [150.6,155.17]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "epoch_capabilities_index",
+   "score": 152.26,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Sonnet 4.6', date 2026-02-17); 95% CI [149.61,154.69]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/muse-spark",
+   "benchmark": "epoch_capabilities_index",
+   "score": 152.09,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Muse Spark', date 2026-04-08); 95% CI [149.77,155.11]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "xai/grok-4.20",
+   "benchmark": "epoch_capabilities_index",
+   "score": 152.02,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Grok 4.20', date 2026-02-17); 95% CI [149.32,154.38]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "epoch_capabilities_index",
+   "score": 151.94,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GLM-5.3-Flash', date 2026-08-20); 95% CI [149.38,154.28]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "epoch_capabilities_index",
+   "score": 151.82,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 3 Flash', date 2025-12-17); 95% CI [150.39,153.73]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "epoch_capabilities_index",
+   "score": 151.78,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GLM-5.2', date 2026-06-16); 95% CI [149.83,153.95]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "epoch_capabilities_index",
+   "score": 151.05,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Kimi K2.6', date 2026-04-20); 95% CI [149.12,152.81]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5-pro",
+   "benchmark": "epoch_capabilities_index",
+   "score": 150.26,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5 Pro', date 2025-10-07); 95% CI [148.45,152.8]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "thinking-machines/inkling-small",
+   "benchmark": "epoch_capabilities_index",
+   "score": 150.16,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Inkling-Small', date 2026-07-15); 95% CI [147.51,152.05]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 150.1,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Opus 4.5', date 2025-11-24); 95% CI [147.87,152.97]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "epoch_capabilities_index",
+   "score": 150.01,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Kimi K2.7 Code', date 2026-06-12); 95% CI [148.05,151.75]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "zhipu/glm-5.1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 149.9,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GLM-5.1', date 2026-04-07); 95% CI [147.97,151.61]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 149.65,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.1', date 2025-11-13); 95% CI [148.28,151.12]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 149.41,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen 3.8 27B', date 2026-08-14); 95% CI [147.45,151.63]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.6-max-preview",
+   "benchmark": "epoch_capabilities_index",
+   "score": 149.24,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen 3.6 Max (Preview)', date 2026-04-20); 95% CI [147.57,151.99]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "epoch_capabilities_index",
+   "score": 149.13,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('DeepSeek-V4-Pro', date 2026-04-24); 95% CI [147.44,150.93]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "epoch_capabilities_index",
+   "score": 148.83,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.4 Mini', date 2026-03-17); 95% CI [147.06,150.46]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "thinky/inkling",
+   "benchmark": "epoch_capabilities_index",
+   "score": 148.59,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Inkling', date 2026-07-15); 95% CI [145.68,150.63]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 148.04,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Kimi K2.5', date 2026-01-27); 95% CI [146.45,149.32]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.6-plus",
+   "benchmark": "epoch_capabilities_index",
+   "score": 147.63,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen 3.6 Plus', date 2026-03-31); 95% CI [145.41,149.31]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/o3-pro",
+   "benchmark": "epoch_capabilities_index",
+   "score": 147.43,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('o3-pro', date 2025-06-10); 95% CI [145.75,149.73]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "epoch_capabilities_index",
+   "score": 147.38,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3.7-Plus', date 2026-06-02); 95% CI [145.72,148.94]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "epoch_capabilities_index",
+   "score": 147.03,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('MiniMax-M3', date 2026-06-01); 95% CI [142.71,149.82]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "epoch_capabilities_index",
+   "score": 146.86,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('o3', date 2025-04-16); 95% CI [144.89,148.62]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 146.84,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Sonnet 4.5', date 2025-09-29); 95% CI [145.34,148.51]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.5-plus",
+   "benchmark": "epoch_capabilities_index",
+   "score": 146.79,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen 3.5 Plus (hosted 397B-A17B)', date 2026-02-16); 95% CI [144.58,148.08]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "minimax/m2.5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 146.69,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('MiniMax-M2.5', date 2026-02-12); 95% CI [142.27,147.91]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.5-397b-a17b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 146.66,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3.5 397B-A17B', date 2026-02-13); 95% CI [144.82,148.18]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.6-27b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 146.47,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3.6 27B', date 2026-04-22); 95% CI [144.24,147.92]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "epoch_capabilities_index",
+   "score": 146.45,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Grok 4', date 2025-07-09); 95% CI [144.65,148.19]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "deepseek/deepseek-v3.2",
+   "benchmark": "epoch_capabilities_index",
+   "score": 146.27,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('DeepSeek-V3.2', date 2025-12-01); 95% CI [144.42,147.49]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra",
+   "benchmark": "epoch_capabilities_index",
+   "score": 146.19,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Nemotron 3 Ultra', date 2026-06-04); 95% CI [143.9,148.11]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "epoch_capabilities_index",
+   "score": 146.09,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('DeepSeek-V4-Flash', date 2026-04-24); 95% CI [143.61,147.91]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking",
+   "benchmark": "epoch_capabilities_index",
+   "score": 146.02,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Kimi K2 Thinking', date 2025-11-06); 95% CI [143.35,147.6]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "minimax/m2.7",
+   "benchmark": "epoch_capabilities_index",
+   "score": 145.86,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('MiniMax-M2.7', date 2026-03-18); 95% CI [138.24,148.04]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "zhipu/glm-5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 145.84,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GLM-5', date 2026-02-11); 95% CI [143.88,147.68]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.4-nano",
+   "benchmark": "epoch_capabilities_index",
+   "score": 145.8,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.4 Nano', date 2026-03-17); 95% CI [143.21,147.7]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "epoch_capabilities_index",
+   "score": 145.63,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('o4-mini', date 2025-04-16); 95% CI [143.04,147.4]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "epoch_capabilities_index",
+   "score": 145.51,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5 mini', date 2025-08-07); 95% CI [143.64,146.99]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "epoch_capabilities_index",
+   "score": 145.31,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 2.5 Pro (Jun 2025)', date 2025-06-05); 95% CI [143.62,146.87]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-3.5-flash-lite",
+   "benchmark": "epoch_capabilities_index",
+   "score": 145.11,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 3.5 Flash-Lite', date 2026-07-21); 95% CI [142.46,146.69]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "deepseek/deepseek-v3.2-exp",
+   "benchmark": "epoch_capabilities_index",
+   "score": 145.01,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('DeepSeek-V3.2-Exp', date 2025-09-29); 95% CI [142.4,147.3]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.7-flash",
+   "benchmark": "epoch_capabilities_index",
+   "score": 144.62,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3.7 Flash', date 2026-07-27); 95% CI [142.42,147.6]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite",
+   "benchmark": "epoch_capabilities_index",
+   "score": 144.45,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 3.1 Flash-Lite', date 2026-03-03); 95% CI [142.37,146.15]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "xai/grok-4-fast",
+   "benchmark": "epoch_capabilities_index",
+   "score": 144.21,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Grok 4 Fast', date 2025-09-19); 95% CI [141.89,146.43]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-opus-4.1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 144.11,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Opus 4.1', date 2025-08-05); 95% CI [141.64,146.04]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.6-35b-a3b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 143.92,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen 3.6 35B-A3B', date 2026-04-14); 95% CI [141.2,145.97]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+   "benchmark": "epoch_capabilities_index",
+   "score": 143.84,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3-235B-A22B-Thinking (Jul 2025)', date 2025-07-25); 95% CI [141.96,145.28]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "zhipu/glm-4.7",
+   "benchmark": "epoch_capabilities_index",
+   "score": 143.51,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GLM-4.7', date 2025-12-22); 95% CI [141.25,145.6]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-2.5-flash",
+   "benchmark": "epoch_capabilities_index",
+   "score": 143.03,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 2.5 Flash (Sep 2025)', date 2025-09-25); 95% CI [139.69,146.33]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "benchmark": "epoch_capabilities_index",
+   "score": 142.75,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemma 4 31B IT', date 2026-04-02); 95% CI [140.27,144.94]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-opus-4",
+   "benchmark": "epoch_capabilities_index",
+   "score": 142.67,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Opus 4', date 2025-05-22); 95% CI [140.19,144.22]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3.5-35b-a3b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 142.52,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3.5-35B-A3B', date 2026-02-24); 95% CI [140.16,144.75]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5.5-instant",
+   "benchmark": "epoch_capabilities_index",
+   "score": 142.49,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5.5 Instant', date 2026-05-05); 95% CI [140.03,145.3]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 142.42,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Haiku 4.5', date 2025-10-15); 95% CI [139.54,144.3]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3-max",
+   "benchmark": "epoch_capabilities_index",
+   "score": 142.36,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3-Max', date 2025-09-24); 95% CI [140.03,144.61]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 141.9,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('o1', date 2024-12-17); 95% CI [139.7,143.08]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemma-4-26b-a4b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 141.85,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemma 4 26B A4B', date 2026-04-02); 95% CI [138.39,143.39]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4",
+   "benchmark": "epoch_capabilities_index",
+   "score": 141.69,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude Sonnet 4', date 2025-05-22); 95% CI [139.19,142.94]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "mistral/mistral-medium-3.5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 141.39,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Mistral Medium 3.5', date 2026-04-28); 95% CI [138.38,143.65]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "deepseek/deepseek-r1-0528",
+   "benchmark": "epoch_capabilities_index",
+   "score": 141.29,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('DeepSeek-R1 (May 2025)', date 2025-05-28); 95% CI [138.78,142.79]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-3.7-sonnet",
+   "benchmark": "epoch_capabilities_index",
+   "score": 141.16,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude 3.7 Sonnet', date 2025-02-24); 95% CI [138.68,142.85]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "xai/grok-3-mini",
+   "benchmark": "epoch_capabilities_index",
+   "score": 140.35,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Grok-3 mini', date 2025-06-24); 95% CI [137.66,142.15]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "epoch_capabilities_index",
+   "score": 140.34,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('o3-mini', date 2025-01-31); 95% CI [137.44,141.85]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 139.95,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('gpt-oss-120b', date 2025-08-05); 95% CI [135.29,142.26]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "deepseek/deepseek-v3.1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 139.92,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('DeepSeek-V3.1', date 2025-08-21); 95% CI [136.05,143.34]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "epoch_capabilities_index",
+   "score": 139.38,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-5 nano', date 2025-08-07); 95% CI [134.94,141.66]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3-235b-a22b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 139.35,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3-235B-A22B', date 2025-04-28); 95% CI [135.22,140.8]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "deepseek/deepseek-r1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 138.97,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('DeepSeek-R1', date 2025-01-20); 95% CI [136.2,140.39]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3-235b-a22b-instruct-2507",
+   "benchmark": "epoch_capabilities_index",
+   "score": 138.92,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3-235B-A22B-Instruct (Jul 2025)', date 2025-07-25); 95% CI [135.78,140.57]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3-32b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 138.51,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3-32B', date 2025-04-29); 95% CI [135.05,140.36]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "xai/grok-3",
+   "benchmark": "epoch_capabilities_index",
+   "score": 138.33,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Grok 3', date 2025-04-09); 95% CI [135.34,139.77]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3-14b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 138.24,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3-14B', date 2025-04-29); 95% CI [133.48,140.14]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-oss-20b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 137.81,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('gpt-oss-20b', date 2025-08-05); 95% CI [133.03,139.64]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwq-32b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 137.6,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('QwQ-32B', date 2025-03-05); 95% CI [133.14,141.7]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 136.78,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-4.1', date 2025-04-14); 95% CI [133.64,138.38]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-4.5",
+   "benchmark": "epoch_capabilities_index",
+   "score": 136.74,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-4.5', date 2025-02-27); 95% CI [133.81,138.87]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3-30b-a3b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 136.18,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3-30B-A3B', date 2025-04-29); 95% CI [130.31,138.72]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen3-8b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 136.17,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen3-8B', date 2025-04-28); 95% CI [129.67,138.1]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "deepseek/deepseek-v3",
+   "benchmark": "epoch_capabilities_index",
+   "score": 135.94,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('DeepSeek-V3 (Mar 2025)', date 2025-03-24); 95% CI [132.43,137.96]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/o1-mini",
+   "benchmark": "epoch_capabilities_index",
+   "score": 135.82,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('o1-mini', date 2024-09-12); 95% CI [131.83,137.17]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-2.0-flash-thinking",
+   "benchmark": "epoch_capabilities_index",
+   "score": 135.36,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 2.0 Flash Thinking (Jan 2025)', date 2025-01-21); 95% CI [129.72,137.98]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-2.0-pro",
+   "benchmark": "epoch_capabilities_index",
+   "score": 135.06,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 2.0 Pro', date 2025-02-05); 95% CI [131.83,136.78]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-4.1-mini",
+   "benchmark": "epoch_capabilities_index",
+   "score": 135.0,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-4.1 mini', date 2025-04-14); 95% CI [131.24,136.63]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/o1-preview",
+   "benchmark": "epoch_capabilities_index",
+   "score": 134.78,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('o1-preview', date 2024-09-12); 95% CI [131.13,138.01]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-2.0-flash",
+   "benchmark": "epoch_capabilities_index",
+   "score": 134.69,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 2.0 Flash (Feb 2025)', date 2025-02-05); 95% CI [130.95,136.65]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "mistral/mistral-medium-3",
+   "benchmark": "epoch_capabilities_index",
+   "score": 134.07,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Mistral Medium 3', date 2025-05-07); 95% CI [130.45,135.62]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen2.5-max",
+   "benchmark": "epoch_capabilities_index",
+   "score": 132.53,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen2.5-Max', date 2025-01-25); 95% CI [128.07,135.52]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-4-maverick",
+   "benchmark": "epoch_capabilities_index",
+   "score": 132.2,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 4 Maverick', date 2025-04-06); 95% CI [127.95,134.11]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "mistral/mistral-small-3.2",
+   "benchmark": "epoch_capabilities_index",
+   "score": 131.74,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Mistral Small 3.2', date 2025-06-20); 95% CI [126.64,133.93]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "microsoft/phi-4",
+   "benchmark": "epoch_capabilities_index",
+   "score": 130.43,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Phi-4', date 2024-12-12); 95% CI [124.77,131.99]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemma-3-27b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 130.04,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemma 3 27B', date 2025-03-12); 95% CI [124.11,132.24]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-4-scout",
+   "benchmark": "epoch_capabilities_index",
+   "score": 129.65,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 4 Scout', date 2025-04-05); 95% CI [124.76,131.35]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-4.1-nano",
+   "benchmark": "epoch_capabilities_index",
+   "score": 129.62,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-4.1 nano', date 2025-04-14); 95% CI [123.23,131.97]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen2.5-72b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 129.0,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen2.5-72B', date 2024-09-19); 95% CI [123.78,130.71]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-3.1-405b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 128.75,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 3.1-405B', date 2024-07-23); 95% CI [123.92,130.66]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "mistral/mistral-small-3.1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 127.49,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Mistral Small 3.1', date 2025-03-17); 95% CI [122.58,129.41]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-3.3-70b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 127.33,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 3.3 70B', date 2024-12-06); 95% CI [122.53,129.5]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-3.5-haiku",
+   "benchmark": "epoch_capabilities_index",
+   "score": 127.16,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude 3.5 Haiku', date 2024-10-22); 95% CI [120.74,129.67]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "mistral/mistral-small-3",
+   "benchmark": "epoch_capabilities_index",
+   "score": 127.08,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Mistral Small 3', date 2025-01-30); 95% CI [122.33,128.99]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-3-opus",
+   "benchmark": "epoch_capabilities_index",
+   "score": 126.91,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude 3 Opus', date 2024-02-29); 95% CI [121.96,129.53]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-4o-mini",
+   "benchmark": "epoch_capabilities_index",
+   "score": 126.56,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('GPT-4o mini', date 2024-07-18); 95% CI [120.47,128.54]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-3.1-70b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 125.93,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 3.1-70B', date 2024-07-23); 95% CI [121.02,128.09]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-3.2-90b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 125.51,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 3.2 90B', date 2024-09-24); 95% CI [119.94,127.31]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemma-3-12b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 123.52,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemma 3 12B', date 2025-03-12); 95% CI [115.6,129.26]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-3-70b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 122.94,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 3-70B', date 2024-04-18); 95% CI [116.88,125.82]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemma-2-27b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 122.09,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemma 2 27B', date 2024-06-24); 95% CI [115.16,124.21]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "mistral/mixtral-8x22b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 122.03,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Mixtral 8x22B', date 2024-04-17); 95% CI [115.14,124.35]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "mistral/mistral-large",
+   "benchmark": "epoch_capabilities_index",
+   "score": 122.02,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Mistral Large', date 2024-02-26); 95% CI [114.6,125.03]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-3-sonnet",
+   "benchmark": "epoch_capabilities_index",
+   "score": 120.71,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude 3 Sonnet', date 2024-02-29); 95% CI [113.62,123.68]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemma-2-9b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 119.84,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemma 2 9B', date 2024-06-24); 95% CI [111.83,122.22]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen2.5-coder-32b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 119.5,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen2.5-Coder-32B', date 2024-09-18); 95% CI [110.29,125.13]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-2.1",
+   "benchmark": "epoch_capabilities_index",
+   "score": 119.28,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude 2.1', date 2023-11-21); 95% CI [112.07,121.85]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "mistral/mistral-nemo",
+   "benchmark": "epoch_capabilities_index",
+   "score": 118.7,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Mistral NeMo', date 2024-07-18); 95% CI [111.27,121.49]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "mistral/mixtral-8x7b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 118.48,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Mixtral 8x7B', date 2023-12-11); 95% CI [111.32,121.29]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "anthropic/claude-3-haiku",
+   "benchmark": "epoch_capabilities_index",
+   "score": 118.36,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Claude 3 Haiku', date 2024-03-07); 95% CI [110.53,121.19]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemini-1.0-pro",
+   "benchmark": "epoch_capabilities_index",
+   "score": 117.05,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemini 1.0 Pro', date 2023-12-13); 95% CI [108.89,119.91]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-3.1-8b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 116.58,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 3.1-8B', date 2024-07-23); 95% CI [106.25,121.63]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-3-8b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 116.47,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 3-8B', date 2024-04-18); 95% CI [107.69,119.29]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemma-3-4b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 116.05,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemma 3 4B', date 2025-03-12); 95% CI [97.68,124.29]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-2-70b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 113.81,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 2-70B', date 2023-07-18); 95% CI [105.73,117.38]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "alibaba/qwen2.5-coder-7b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 113.16,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Qwen2.5-Coder (7B)', date 2024-09-18); 95% CI [102.38,119.04]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "tii/falcon-180b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 112.15,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Falcon-180B', date 2023-09-06); 95% CI [103.49,119.15]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "google/gemma-7b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 112.01,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Gemma 7B', date 2024-02-21); 95% CI [103.39,116.52]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "tii/falcon2-11b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 109.58,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Falcon 2 11B', date 2024-05-09); 95% CI [100.89,114.77]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-2-13b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 106.19,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 2-13B', date 2023-07-18); 95% CI [96.54,111.2]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "bigcode/starcoder2-15b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 105.03,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('StarCoder 2 15B', date 2024-02-20); 95% CI [92.48,112.21]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "baichuan/baichuan-2-13b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 103.22,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Baichuan2-13B', date 2023-09-06); 95% CI [90.99,110.55]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "meta/llama-2-7b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 99.09,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Llama 2-7B', date 2023-07-18); 95% CI [88.29,105.61]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "baichuan/baichuan-2-7b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 96.36,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('Baichuan 2-7B', date 2023-09-20); 95% CI [82.67,104.33]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "bigcode/starcoder2-7b",
+   "benchmark": "epoch_capabilities_index",
+   "score": 93.6,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv  (Epoch Capabilities Index canonical CSV, read 2026-10-01)",
+   "_note": "Epoch ECI ('StarCoder 2 7B', date 2024-02-20); 95% CI [77.97,102.53]. Refit of 2026-10-01 replaces the 2026-09-03 values."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "frontierswe_v2_worst5",
+   "score": 55.1,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'OpenAI GPT-6 Astra' + proximus: mean@5 65.5, worst@5 55.1, best@5 73.0."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "frontierswe_v2_best5",
+   "score": 73.0,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'OpenAI GPT-6 Astra' + proximus: mean@5 65.5, worst@5 55.1, best@5 73.0."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "frontierswe_v2_worst5",
+   "score": 52.0,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Anthropic Claude Opus 5.5' + proximus: mean@5 62.3, worst@5 52.0, best@5 71.5."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "frontierswe_v2_best5",
+   "score": 71.5,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Anthropic Claude Opus 5.5' + proximus: mean@5 62.3, worst@5 52.0, best@5 71.5."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "frontierswe_v2_worst5",
+   "score": 44.5,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Google Gemini 4 Argon' + proximus: mean@5 55.0, worst@5 44.5, best@5 64.3."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "frontierswe_v2_best5",
+   "score": 64.3,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Google Gemini 4 Argon' + proximus: mean@5 55.0, worst@5 44.5, best@5 64.3."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "frontierswe_v2_worst5",
+   "score": 17.7,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Z.ai GLM-5.3' + proximus: mean@5 30.2, worst@5 17.7, best@5 40.6."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "frontierswe_v2_best5",
+   "score": 40.6,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Z.ai GLM-5.3' + proximus: mean@5 30.2, worst@5 17.7, best@5 40.6."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "frontierswe_v2_worst5",
+   "score": 15.9,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'xAI Grok 4.7' + proximus: mean@5 29.5, worst@5 15.9, best@5 41.1."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "frontierswe_v2_best5",
+   "score": 41.1,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'xAI Grok 4.7' + proximus: mean@5 29.5, worst@5 15.9, best@5 41.1."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "frontierswe_v2_worst5",
+   "score": 13.9,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Moonshot AI Kimi K3' + proximus: mean@5 25.9, worst@5 13.9, best@5 37.6."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "frontierswe_v2_best5",
+   "score": 37.6,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Moonshot AI Kimi K3' + proximus: mean@5 25.9, worst@5 13.9, best@5 37.6."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "frontierswe_v2_worst5",
+   "score": 8.7,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Qwen Qwen3.8-Max' + proximus: mean@5 15.8, worst@5 8.7, best@5 24.3."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "frontierswe_v2_best5",
+   "score": 24.3,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Qwen Qwen3.8-Max' + proximus: mean@5 15.8, worst@5 8.7, best@5 24.3."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "frontierswe_v2_worst5",
+   "score": 7.0,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'DeepSeek DeepSeek V4 Flash Vision Exp' + proximus: mean@5 14.8, worst@5 7.0, best@5 26.5."
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "frontierswe_v2_best5",
+   "score": 26.5,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'DeepSeek DeepSeek V4 Flash Vision Exp' + proximus: mean@5 14.8, worst@5 7.0, best@5 26.5."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "frontierswe_v2_worst5",
+   "score": 6.8,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Meta Muse Spark 1.2' + proximus: mean@5 12.0, worst@5 6.8, best@5 18.4."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "frontierswe_v2_best5",
+   "score": 18.4,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Meta Muse Spark 1.2' + proximus: mean@5 12.0, worst@5 6.8, best@5 18.4."
+  },
+  {
+   "model": "thinking-machines/inkling",
+   "benchmark": "frontierswe_v2_worst5",
+   "score": 0.1,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Thinking Machines Inkling' + proximus: mean@5 4.1, worst@5 0.1, best@5 10.8."
+  },
+  {
+   "model": "thinking-machines/inkling",
+   "benchmark": "frontierswe_v2_best5",
+   "score": 10.8,
+   "unit": "%",
+   "_source": "https://www.frontierswe.com/",
+   "_note": "FrontierSWE v2 board (https://www.frontierswe.com/, read 2026-10-01), 'Thinking Machines Inkling' + proximus: mean@5 4.1, worst@5 0.1, best@5 10.8."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "cwe_bench_v1_pass4",
+   "score": 81,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Grok 4.7'. Integer percentages as published."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "cwe_bench_v1_judge_pass1",
+   "score": 64,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Grok 4.7'. Integer percentages as published."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "cwe_bench_v1_judge_pass4",
+   "score": 82,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Grok 4.7'. Integer percentages as published."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "score": 2.75,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Grok 4.7'. Integer percentages as published."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "cwe_bench_v1_pass4",
+   "score": 75,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Gemini 4 Argon'. Integer percentages as published."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "cwe_bench_v1_judge_pass1",
+   "score": 62,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Gemini 4 Argon'. Integer percentages as published."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "cwe_bench_v1_judge_pass4",
+   "score": 73,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Gemini 4 Argon'. Integer percentages as published."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "score": 6.63,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Gemini 4 Argon'. Integer percentages as published."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "cwe_bench_v1_pass4",
+   "score": 74,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'GPT-6 Astra'. Integer percentages as published."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "cwe_bench_v1_judge_pass1",
+   "score": 66,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'GPT-6 Astra'. Integer percentages as published."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "cwe_bench_v1_judge_pass4",
+   "score": 77,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'GPT-6 Astra'. Integer percentages as published."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "score": 2.85,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'GPT-6 Astra'. Integer percentages as published."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "cwe_bench_v1_pass4",
+   "score": 79,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Claude Opus 5.5'. Integer percentages as published."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "cwe_bench_v1_judge_pass1",
+   "score": 67,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Claude Opus 5.5'. Integer percentages as published."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "cwe_bench_v1_judge_pass4",
+   "score": 81,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Claude Opus 5.5'. Integer percentages as published."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "score": 0.79,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Claude Opus 5.5'. Integer percentages as published."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "cwe_bench_v1_pass4",
+   "score": 73,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Claude Fable 5.1'. Integer percentages as published."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "cwe_bench_v1_judge_pass1",
+   "score": 60,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Claude Fable 5.1'. Integer percentages as published."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "cwe_bench_v1_judge_pass4",
+   "score": 77,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Claude Fable 5.1'. Integer percentages as published."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "score": 3.47,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Claude Fable 5.1'. Integer percentages as published."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "cwe_bench_v1_pass4",
+   "score": 72,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Grok 4.6'. Integer percentages as published."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "cwe_bench_v1_judge_pass1",
+   "score": 55,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Grok 4.6'. Integer percentages as published."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "cwe_bench_v1_judge_pass4",
+   "score": 73,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Grok 4.6'. Integer percentages as published."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "score": 1.09,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Grok 4.6'. Integer percentages as published."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "cwe_bench_v1_pass4",
+   "score": 74,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'DeepSeek-V4.1-Flash'. Integer percentages as published."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "cwe_bench_v1_judge_pass1",
+   "score": 53,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'DeepSeek-V4.1-Flash'. Integer percentages as published."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "cwe_bench_v1_judge_pass4",
+   "score": 75,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'DeepSeek-V4.1-Flash'. Integer percentages as published."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "score": 0.09,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'DeepSeek-V4.1-Flash'. Integer percentages as published."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "cwe_bench_v1_pass4",
+   "score": 69,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Muse Spark 1.3'. Integer percentages as published."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "cwe_bench_v1_judge_pass1",
+   "score": 51,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Muse Spark 1.3'. Integer percentages as published."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "cwe_bench_v1_judge_pass4",
+   "score": 68,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Muse Spark 1.3'. Integer percentages as published."
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "score": 3.95,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Muse Spark 1.3'. Integer percentages as published."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "cwe_bench_v1_pass4",
+   "score": 75,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Hy4 Preview'. Integer percentages as published."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "cwe_bench_v1_judge_pass1",
+   "score": 50,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Hy4 Preview'. Integer percentages as published."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "cwe_bench_v1_judge_pass4",
+   "score": 73,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Hy4 Preview'. Integer percentages as published."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "score": 0.47,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Hy4 Preview'. Integer percentages as published."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "cwe_bench_v1_pass4",
+   "score": 68,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'GPT-6 Sol'. Integer percentages as published."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "cwe_bench_v1_judge_pass1",
+   "score": 52,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'GPT-6 Sol'. Integer percentages as published."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "cwe_bench_v1_judge_pass4",
+   "score": 72,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'GPT-6 Sol'. Integer percentages as published."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "score": 0.96,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'GPT-6 Sol'. Integer percentages as published."
+  },
+  {
+   "model": "thinking-machines/inkling",
+   "benchmark": "cwe_bench_v1_judge_pass1",
+   "score": 33,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Inkling'. Integer percentages as published."
+  },
+  {
+   "model": "thinking-machines/inkling",
+   "benchmark": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+   "score": 3.0,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v1 leaderboard (https://cwe-bench.com/, v1 Sept 25, read 2026-10-01), 'Inkling'. Integer percentages as published."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "cwe_bench",
+   "score": 47.8,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Claude Fable 5' in Claude Code, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 10.27,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Claude Fable 5' in Claude Code, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "google/gemini-3.8-flash-cyber",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 3.64,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Gemini 3.8 Flash Cyber' in Antigravity, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "cwe_bench",
+   "score": 44.2,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'GPT-5.6 Sol' in Codex, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 2.29,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'GPT-5.6 Sol' in Codex, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "cwe_bench",
+   "score": 44.0,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Gemini 3.7 Flash' in Antigravity, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 1.43,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Gemini 3.7 Flash' in Antigravity, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "cwe_bench",
+   "score": 42.0,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Claude Opus 4.8' in Claude Code, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 2.43,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Claude Opus 4.8' in Claude Code, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "cwe_bench",
+   "score": 38.2,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Grok 4.6' in grok-cli, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 1.77,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Grok 4.6' in grok-cli, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "cwe_bench",
+   "score": 37.5,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Qwen3.8-Max' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 1.45,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Qwen3.8-Max' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "cwe_bench",
+   "score": 33.8,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Hy4 preview' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "tencent/hy4-preview",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 0.75,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Hy4 preview' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "cwe_bench",
+   "score": 31.1,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'GLM-5.3' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 1.86,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'GLM-5.3' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "cwe_bench",
+   "score": 30.3,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Muse Spark 1.2' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "meta/muse-spark-1.2",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 2.09,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Muse Spark 1.2' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "cwe_bench",
+   "score": 22.7,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'MiniMax M3' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 0.69,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'MiniMax M3' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "cwe_bench",
+   "score": 22.5,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Kimi K3' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 1.18,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Kimi K3' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "benchmark": "cwe_bench",
+   "score": 18.5,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'NVIDIA Nemotron 3 Ultra (550B-A55B)' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 1.17,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'NVIDIA Nemotron 3 Ultra (550B-A55B)' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "thinking-machines/inkling",
+   "benchmark": "cwe_bench",
+   "score": 15.6,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Inkling' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "thinking-machines/inkling",
+   "benchmark": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+   "score": 1.76,
+   "unit": "usd",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench v0 leaderboard (https://cwe-bench.com/, v0 Sept 1 tab, read 2026-10-01), 'Inkling' in opencode, high reasoning, deterministic verifier."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "cwe_bench",
+   "score": 52.3,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench 'GPT-6 Astra' v0 pass@1 from the site's v0-vs-v1 comparison table (models that ran on both sets)."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "cwe_bench",
+   "score": 52.8,
+   "unit": "%",
+   "_source": "https://cwe-bench.com/",
+   "_note": "CWE-bench 'Claude Fable 5.1' v0 pass@1 from the site's v0-vs-v1 comparison table (models that ran on both sets)."
+  }
+ ]
+}
