@@ -28351,13 +28351,6 @@
     "metric": "score"
   },
   {
-    "id": "cwe_bench",
-    "name": "CWE-Bench (vulnerability patching, pass@1)",
-    "category": "cyber_defense",
-    "description": "",
-    "metric": "pass_at_1"
-  },
-  {
     "id": "fleurs_wer_streaming_lower_better",
     "name": "FLEURS WER (streaming)",
     "category": "audio",
@@ -33272,13 +33265,6 @@
     "metric": "pct"
   },
   {
-    "id": "vals_index_sep2026",
-    "name": "Vals Index (Vals AI, Sep 2026 board)",
-    "category": "knowledge_work",
-    "description": "Vals AI GDP-weighted index across finance, coding, legal and tax work, as on the Vals AI board in Sep 2026 (quoted in Google's Gemini 4 Argon launch table). Separate from `vals-index` / `vals_index`: those rows come from an earlier board version (Fable 5 = 75.1 there vs Fable 5.1 = 65.8 here).",
-    "metric": "accuracy_pct"
-  },
-  {
     "id": "posttrainbench_v1_1_google",
     "name": "PostTrainBench v1.1 (Google self-run, OpenCode, 10h H100)",
     "category": "ml_engineering",
@@ -33403,6 +33389,76 @@
     "category": "inference",
     "description": "AA-AgentPerf-Local (Artificial Analysis, open source, launched 2026-09-29): replays the default workload of 8 recorded agentic tasks (168 model turns, 172 tool calls, context growing to ~56K tokens) with tool execution skipped, single agent using the whole system. Models at 4-bit quantization with speculative decoding (MTP / DFlash / DSpark); serving configs published in the repo. System: NVIDIA GeForce RTX 5090 (32 GB VRAM). Metric: tokens generated per second after the first token (decode).",
     "metric": "tokens_per_second"
+  },
+  {
+    "id": "vals_index_sep2026",
+    "name": "Vals Index v2.1 (Vals AI)",
+    "category": "knowledge_work",
+    "description": "Vals AI Vals Index v2.1 (board updated 2026-09-29/30): GDP-weighted index across finance, coding, legal and tax work, including Terminal-Bench 4.0 after the 2026-09-25 revision. Quoted in Google's Gemini 4 Argon launch table. Separate from `vals-index` / `vals_index` (earlier versions: Fable 5 = 75.1 there vs 61.4 on v2.1).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "vals_index_v2_1_cost_per_test_usd_lower_better",
+    "name": "Vals Index v2.1 — cost per test (USD)",
+    "category": "knowledge_work",
+    "description": "Vals AI Vals Index v2.1 'Cost / Test' column: billed API cost per test at the token rates Vals lists for each model (Gemini 4 Argon at the $4/$20 list price, not the introductory rate). Lower is better.",
+    "metric": "usd"
+  },
+  {
+    "id": "frontierswe_v2_worst5",
+    "name": "FrontierSWE v2 (Proximal) — worst@5",
+    "category": "coding",
+    "description": "Proximal FrontierSWE v2 board, worst of 5 trials (same runs as the mean@5 headline `frontierswe_v2`), proximus harness.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "frontierswe_v2_best5",
+    "name": "FrontierSWE v2 (Proximal) — best@5",
+    "category": "coding",
+    "description": "Proximal FrontierSWE v2 board, best of 5 trials (same runs as the mean@5 headline `frontierswe_v2`), proximus harness.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "cwe_bench_v1_pass4",
+    "name": "CWE-bench v1 — pass@4 (programmatic verifier)",
+    "category": "cybersecurity",
+    "description": "CWE-bench v1 (Collinear AI, 120 held-out audit-and-patch tasks, 4 rollouts at high reasoning, 1h each): share of tasks solved in any of 4 rollouts by the deterministic verifier.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "cwe_bench_v1_judge_pass1",
+    "name": "CWE-bench v1 — pass@1 (three-judge agentic panel)",
+    "category": "cybersecurity",
+    "description": "CWE-bench v1 pass@1 graded by the three-judge agentic panel instead of the deterministic verifier.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "cwe_bench_v1_judge_pass4",
+    "name": "CWE-bench v1 — pass@4 (three-judge agentic panel)",
+    "category": "cybersecurity",
+    "description": "CWE-bench v1 pass@4 graded by the three-judge agentic panel.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "cwe_bench_v1_cost_per_rollout_usd_lower_better",
+    "name": "CWE-bench v1 — average cost per rollout (USD)",
+    "category": "cybersecurity",
+    "description": "CWE-bench v1 mean billed API spend for one rollout on one task (Gemini 4 Argon priced at $2 / $0.20 cached / $10). Lower is better.",
+    "metric": "usd"
+  },
+  {
+    "id": "cwe_bench_v0_cost_per_rollout_usd_lower_better",
+    "name": "CWE-bench v0 — average cost per rollout (USD)",
+    "category": "cybersecurity",
+    "description": "CWE-bench v0 (Sept 1, 100 tasks) mean billed API spend per rollout. Lower is better.",
+    "metric": "usd"
+  },
+  {
+    "id": "cwe_bench",
+    "name": "CWE-bench v0 (Collinear AI, 100 tasks, pass@1)",
+    "category": "cybersecurity",
+    "description": "CWE-bench v0 (Collinear AI, released Sept 1 2026): 100 held-out audit-and-patch tasks, 54 CWEs, deterministic programmatic verifier only, each model in a named harness at high reasoning. Superseded by v1 (`cwe_bench_v1`, 120 tasks, reviewed verifiers).",
+    "metric": "accuracy_pct"
   },
   {
     "id": "caibench",
