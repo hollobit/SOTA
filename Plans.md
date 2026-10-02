@@ -1,7 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 290b — primary boards behind the Argon write-ups (2026-10-01)
-**3,671 models · 5,001 benchmarks · 38,396 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 291 — Blueprint-Bench 2 board (2026-10-02)
+**3,671 models · 5,002 benchmarks · 38,451 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-10-02 Session 291 — Blueprint-Bench 2 (Andon Labs)
+- **55 scores, 1 new benchmark, 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s291_blueprint_bench_2_andon_board_2026_10_02_scores.json`); backup `data/benchmark.db.pre-s291.bak`. v1 paper archived as `resource/arxiv_2509.25229_blueprint-bench_andon-labs.pdf`.
+- Andon board (primary): 31 models, normalized ×100 on `blueprint_bench_2` (the 7 vendor-card rows already matched the board → 24 new); raw composite ± SE from the page bundle (`nodes/23.*.js`, CSV literal) on new `blueprint_bench_2_raw_composite` (31). All displayed values equal max(0, (raw − 0.539) / 0.461) within rounding. Human 0.586 (12-apartment subset) in the description — no human model id convention.
+- Epoch / BenchLM / llm-stats mirror the board (llm-stats stale, 2 models); X post (2026-09-07, "Astra #1") has no number. arXiv 2509.25229 = v1 (2025 models, unlabelled bars) → archived only.
+- Follow-up: `blueprint_bench_2_andon_labs` (1 row, Fable 5 38.6) duplicates `blueprint_bench_2`; `blueprint_bench_2_human_baseline` defined with 0 rows.
+- Tabs: Physical AI Embodied Reasoning (both lists + note), Frontier Compare multimodal, Resources (+2), seed_sources (+3).
+
 
 ### 2026-10-01 Session 290b — Kingy.ai / BenchLM / DeepMind page / evaluation PDF → primary boards
 - **441 rows (227 new, 214 refreshed), 8 new benchmarks** (`resource/zzzzzzzzzzzzzzzzzz_s290b_arena_vals_eci_frontierswe_cwebench_2026_10_01_scores.json`); backup `data/benchmark.db.pre-s290b.bak`.

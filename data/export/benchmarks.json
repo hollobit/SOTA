@@ -8554,13 +8554,6 @@
     "metric": "score"
   },
   {
-    "id": "blueprint_bench_2",
-    "name": "Blueprint Bench 2",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
     "id": "gdp_pdf_internal_no_tools",
     "name": "Gdp Pdf Internal No Tools",
     "category": "general",
@@ -33458,6 +33451,20 @@
     "name": "CWE-bench v0 (Collinear AI, 100 tasks, pass@1)",
     "category": "cybersecurity",
     "description": "CWE-bench v0 (Collinear AI, released Sept 1 2026): 100 held-out audit-and-patch tasks, 54 CWEs, deterministic programmatic verifier only, each model in a named harness at high reasoning. Superseded by v1 (`cwe_bench_v1`, 120 tasks, reviewed verifiers).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "blueprint_bench_2",
+    "name": "Blueprint-Bench 2 (Andon Labs, normalized connectivity score)",
+    "category": "multimodal",
+    "description": "Andon Labs Blueprint-Bench 2 (May 2026): agents turn ~20 interior photos per apartment into a 2D floor plan, 50 apartments in sequence with a persistent notepad. Composite of six connectivity-graph sub-metrics (Jaccard 50%, degree 20%, density 10%, room count 10%, door count 5%, orientation 5%) under D4 symmetry, normalized so the random baseline (raw 0.539) = 0 and perfect = 1; ×100 here. Human baseline 58.6 (raw 0.809) on a 12-apartment subset. Raw composite on `blueprint_bench_2_raw_composite`. Successor of Blueprint-Bench (arXiv 2509.25229, Sept 2025).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "blueprint_bench_2_raw_composite",
+    "name": "Blueprint-Bench 2 — raw composite similarity (before baseline normalization)",
+    "category": "multimodal",
+    "description": "Blueprint-Bench 2 raw composite connectivity similarity (0–1, ×100 here) from the Andon Labs board data, before normalization; random baseline 53.9, human 80.9 (12-apartment subset). Standard errors in the row notes.",
     "metric": "accuracy_pct"
   },
   {

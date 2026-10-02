@@ -286,13 +286,15 @@ var PhysicalAI = {
         {
             id: 'embodied-reasoning',
             label: '🧠 Embodied Reasoning',
-            note: 'Cosmos Reason 1 (PCS · Embodied · Intuitive Physics) · Gemini Robotics-ER · ERQA · Pixmo-Point · LingoQA · RoboVQA',
+            note: 'Cosmos Reason 1 (PCS · Embodied · Intuitive Physics) · Gemini Robotics-ER · ERQA · Pixmo-Point · LingoQA · RoboVQA · Blueprint-Bench 2 (photos → floor plan)',
             benchmarks: [
                 'cosmos_physical_common_sense', 'cosmos_embodied_reasoning', 'cosmos_intuitive_physics',
                 'intuitive_physics_spatial_puzzle', 'intuitive_physics_arrow_of_time', 'intuitive_physics_object_permanence',
                 'gemini_instrument_reading', 'instrument_reading_agentic_vision',
                 'erqa', 'pixmo_point', 'physical_ai_bench', 'physical_reasoning_leaderboard',
                 'robovqa', 'lingoqa',
+                // 2026-10-02 S291 — Andon Labs Blueprint-Bench 2 (photos → floor plan spatial reasoning; Gemini Robotics-ER 1.6 scores 0)
+                'blueprint_bench_2', 'blueprint_bench_2_raw_composite',
                 // 2026-05 Meta Physical Reasoning Leaderboard + V-JEPA 2 video understanding (Section 45)
                 'intphys2', 'mvpbench', 'causalvqa',
                 'ss_v2_top1', 'epic_kitchens_recall5', 'perception_test', 'tempcompass',
@@ -956,7 +958,8 @@ var PhysicalAI = {
                 'gemini_instrument_reading', 'skild_failure_recovery',
                 'cosmos_physical_common_sense', 'cosmos_embodied_reasoning', 'cosmos_intuitive_physics',
                 'intuitive_physics_spatial_puzzle', 'intuitive_physics_arrow_of_time', 'intuitive_physics_object_permanence',
-                'erqa', 'pixmo_point', 'physical_ai_bench', 'robovqa', 'lingoqa'
+                'erqa', 'pixmo_point', 'physical_ai_bench', 'robovqa', 'lingoqa',
+                'blueprint_bench_2'
             ] },
             { name: 'Industrial Integration', benches: [
                 'mfg_news_rewrite', 'tmmlu_plus',

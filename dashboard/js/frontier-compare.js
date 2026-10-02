@@ -222,6 +222,8 @@ var FrontierCompare = {
             'videommmu_test', 'tvbench', 'lvbench',
             // 2026-09-30 S290 — Chartography (Surge board, no tools) from the Gemini 4 Argon table
             'chartography_surge_no_tools',
+            // 2026-10-02 S291 — Blueprint-Bench 2 (Andon Labs spatial reasoning: apartment photos → 2D floor plan)
+            'blueprint_bench_2',
             // 2026-06-02 S46 Cosmos 3 video-gen NEW datasets — surfaced on FC multimodal axis
             'cosmos_hue_t2v', 'cosmos_hue_i2v', 'human_world_bench_i2v'],
         // 2026-05 — Composite "general capability" indices (cross-benchmark)
