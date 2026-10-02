@@ -126,7 +126,10 @@ var FrontierCompare = {
             'agents_last_exam', 'agents_last_exam_score', 'automationbench_aa', 'harvey_lab_aa', 'harvey_lab_aa_mean_criteria',
             'enterpriseops_gym_aa', 'gdpval_plus_snorkel', 'big_finance_bench', 'rsi_index',
             // 2026-09-30 S290 — Gemini 4 Argon launch table: Vals boards, Zapier AutomationBench, Google-run PostTrainBench v1.1
-            'vals_index_sep2026', 'vals_index_v2_1_cost_per_test_usd_lower_better', 'finance_agent_v2', 'legal_agent_benchmark_harvey', 'automationbench_1_0_6', 'osworld_v2_offline_partial', 'posttrainbench_v1_1_google'
+            'vals_index_sep2026', 'vals_index_v2_1_cost_per_test_usd_lower_better', 'finance_agent_v2', 'legal_agent_benchmark_harvey', 'automationbench_1_0_6', 'osworld_v2_offline_partial', 'posttrainbench_v1_1_google',
+            // 2026-10-02 S292 — six-month agentic sweep, headline ids with frontier-model coverage
+            'osworld_science', 'osworld_pro', 'tobench_avg', 'thinkingbox_bench', 'pdeu_bench_qual_score', 'odysseys_rubrics_avg',
+            'mineexplorer_overall_tsr', 'frontierchallenge_pass_rate', 'dynamicmcpbench_pass1', 'incident_arena_pass1', 'telco_gaia', 'embodied_agent_arena_index'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
@@ -224,6 +227,8 @@ var FrontierCompare = {
             'chartography_surge_no_tools',
             // 2026-10-02 S291 — Blueprint-Bench 2 (Andon Labs spatial reasoning: apartment photos → 2D floor plan)
             'blueprint_bench_2',
+            // 2026-10-02 S292 — spatial / physics reasoning suites with frontier VLM coverage
+            'epic_bench_overall', 'mvvbench_overall', 'physvista_reasoning_avg', 'sfi_bench_avg', 'ovo_s_bench_overall', 'archsibench_overall',
             // 2026-06-02 S46 Cosmos 3 video-gen NEW datasets — surfaced on FC multimodal axis
             'cosmos_hue_t2v', 'cosmos_hue_i2v', 'human_world_bench_i2v'],
         // 2026-05 — Composite "general capability" indices (cross-benchmark)

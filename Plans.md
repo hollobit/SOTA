@@ -1,7 +1,19 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 291 — Blueprint-Bench 2 board (2026-10-02)
-**3,671 models · 5,002 benchmarks · 38,451 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 292 — six-month physical / embodied / agentic sweep (2026-10-02)
+**3,676 models · 5,908 benchmarks · 45,125 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-10-02 Session 292 — six-month sweep: physical AI · embodied AI · agentic AI (arXiv 2604–2610)
+- **6,674 scores, 906 benchmarks, 5 models, 171 papers, 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s292_physical_embodied_agentic_6mo_sweep_2026_10_02_scores.json`); backup `data/benchmark.db.pre-s292.bak`. PDFs + pdftotext in the session scratchpad (`s292/pdf/`), not committed.
+- Method: five parallel readers (manipulation / embodied reasoning / GUI-web agents / tool-longhorizon agents / world models-driving) under one spec (models.tsv, benchmarks.tsv, known_arxiv.json, strict model rule). Each row carries the verbatim pdftotext line; `verify.py` re-checked every line against the PDF text (page found + number present) — 6,728 passed, 0 failed after allowing printed fractions ("9/10"). Spot-checked 15 rows by hand.
+- Channel rule (S289b): rows from Qwen-CUA / Qwen-UI-Agent / Qwen-RobotManip / RLDX-1 / JoyAI-RA papers that re-run *other* vendors' models on vendor-number ids (osworld_v2, browsecomp, screenspot_pro, libero_plus, robotwin_*, robocasa365, …) moved to `<id>_rerun_<paper>` (22 ids, 55 rows); the papers' own models stay on the base ids. 19 value differences vs the DB on those ids reported only (e.g. MiniMax M3 OSWorld 2.0 8.3 vendor vs 4.6 Qwen re-run).
+- Cross-agent duplicates (4 papers read twice): 9 id pairs merged after confirming identical values; KNOWS "check fraction" vs "ASC" kept apart (values differ — different metrics).
+- Latest-models rule: general models < 2025-06 dropped (none survived verification anyway); domain policies / video models (π0, OpenVLA, RDT, Wan 2.1, CogVideoX, Holo3) kept as the comparison set.
+- New models: `alibaba/qwen-cua` (2608.02352), `alibaba/qwen-ui-agent-{27b,35b-a3b,4b}` (2607.28227), `jd/joyai-ra-0.1` (2604.20100) — weight-release status unverified for the last four.
+- Not stored (~1,100 unmapped rows in the agents' files): driving policies / world models not in the DB (TransFuser, SimLingo, Orion, UniAD, Alpamayo-1.5, Vista, GEM), GUI-only models (OpenCUA, UI-Venus-1.5, MAI-UI, GUI-Owl, ScaleCUA, AutoGLM-Phone), unspecified tiers ("Qwen-3.7", "GPT-5"), DS-V4-Pro-Preview, planner+executor combos. Papers with figure-only results skipped (Colosseum V2, MBABench, 2608.13417, 2609.15940). Noted per row: judge bias (Gemini 3.1 Pro as judge in What-If World / AV-Phys / ObsDriveBench), arena scores depending on the opponent pool (CEO / Business / ERPBench arenas), DroneCATS PDF repaired with ghostscript, BilliardPhys numbers from prose.
+- Tabs: Physical AI (VLA Manipulation +32 incl. driving, World Model +10, Embodied Reasoning +36, VLA models +JoyAI-RA), Agent (web / OS-mobile / tool-use / MCP / domain / general, 54 headline ids), Frontier Compare (agent +12, multimodal +6), Resources (+5 area entries), seed_sources (+170 papers). Sub-split ids (≈850) stay data-driven. Sovereign / Medical / AI4S / Image / Video N/A; Timeline unchanged (no frontier model added).
+- Follow-ups: April–mid-May arXiv coverage was title-search only (rate limits); official leaderboards (RoboArena, Gemini Robotics-ER 2, OSWorld boards) not crawled this pass; VLAQuantBench / ActiveArena / DexVerse / Bench2Dex / SpreadsheetBench 2 / DV-World / OSGuard / WorldLens identified but not processed.
+
 
 ### 2026-10-02 Session 291 — Blueprint-Bench 2 (Andon Labs)
 - **55 scores, 1 new benchmark, 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s291_blueprint_bench_2_andon_board_2026_10_02_scores.json`); backup `data/benchmark.db.pre-s291.bak`. v1 paper archived as `resource/arxiv_2509.25229_blueprint-bench_andon-labs.pdf`.

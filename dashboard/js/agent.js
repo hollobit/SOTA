@@ -52,6 +52,8 @@ var Agent = (function() {
             icon: '🌐',
             label: 'Web & Browsing',
             benchmarks: [
+                // 2026-10-02 S292 — web / deep-research suites (2604–2610)
+                'odysseys_rubrics_avg', 'stressweb_avg', 'ko_widesearch_table_success', 'mr_lhdr_oa', 'knows_overall_sf_axtree', 'webarena_corrected',
                 'browsecomp',
                 'browsecomp_multiagent',
                 'browsecomp_multi_agent',  // 2026-06-14 S112 Mythos 5 = 93.3 SOTA
@@ -77,6 +79,10 @@ var Agent = (function() {
             icon: '🖥️',
             label: 'OS / Computer Use',
             benchmarks: [
+                // 2026-10-02 S292 — desktop / mobile computer-use suites (2604–2610)
+                'osworld_science', 'osworld_pro', 'macagentbench', 'cua_speedrun_osworld50', 'cua_swe_web', 'longpuzzlebench_native_gui',
+                'mypcbench_rubric', 'cadworld', 'cua_world_test_avg_score', 'androiddaily', 'appsim_bench', 'mobilepa_bench', 'mobileworld_real',
+                'mobiflow_base_sr', 'knowu_bench',
                 'osworld',
                 'osworld_verified',
                 'windows_agent_arena',
@@ -98,6 +104,9 @@ var Agent = (function() {
             icon: '🔧',
             label: 'Tool Use & Function Calling',
             benchmarks: [
+                // 2026-10-02 S292 — tool-use / reliability suites (2604–2610)
+                'tobench_avg', 'vakra_avg', 'thinkingbox_bench', 'thinkingbox_bench_pass_hat_20', 'incident_arena_pass1', 'telco_gaia',
+                'tautau_bench', 'timeline_bench_opencode', 'era_by_eon_fintech_small',
                 'bfcl',
                 'bfcl_v3',
                 'bfcl_v3_live',
@@ -119,6 +128,8 @@ var Agent = (function() {
             icon: '🔌',
             label: 'MCP (Model Context Protocol)',
             benchmarks: [
+                // 2026-10-02 S292 — MCP suites (2604–2610)
+                'dynamicmcpbench_pass1', 'dynamicmcpbench_pass3', 'mcpgen_workflow_reconstruction', 'mcpgen_workflow_extension_e2e',
                 'mcp_bench',
                 'mcp_atlas',
                 'mcpatlas_public',
@@ -161,6 +172,10 @@ var Agent = (function() {
             label: 'Domain-Specific Agents',
             crossListed: ['medical-ai', 'ai4s'],
             benchmarks: [
+                // 2026-10-02 S292 — enterprise / research / embodied-agent suites (2604–2610)
+                'ceo_arena_mean_score_usd_k', 'business_arena_net_worth_usd', 'erpbench_gair_arena_valuation', 'bi_bench_sql_no_tools',
+                'eurekabench_conditioned_score', 'autodatabench_overall', 'frontierchallenge_pass_rate', 'bluefin_heldout_overall',
+                'mineexplorer_overall_tsr', 'spatialworld_tsr_physical_overall', 'libero_agent_score', 'codeactionbench_success_rate', 'embodied_agent_arena_index',
                 'finance_agent',
                 'scienceagentbench',
                 'agentclinic_medqa',
@@ -256,6 +271,9 @@ var Agent = (function() {
             icon: '🚀',
             label: 'General / Composite',
             benchmarks: [
+                // 2026-10-02 S292 — general / composite agent suites (2604–2610)
+                'pdeu_bench_qual_score', 'pdeu_bench_pref_score', 'clawmark_score', 'force_bench_overall', 'agentworld_collab_main_sr',
+                'babelarena_vitabench_pass1', 'contextweave_workspace_no_recall', 'jarvisbench_multi_agent_baseline',
                 // 2026-07-20 S190 — arena.ai Agent Arena (human-preference Net Improvement %)
                 'arena_agent_net_improvement',
                 'apex_agents',

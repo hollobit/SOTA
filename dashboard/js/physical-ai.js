@@ -62,6 +62,7 @@ var PhysicalAI = {
             icon: '🦾',
             note: 'Vision-Language-Action 일반 로봇 정책 — GR00T N1/N1.5/N1.6/N1.7 · Pi-Zero/Pi-0.5 · OpenVLA + OFT · Octo-Base · Gemini Robotics-ER',
             models: [
+                'jd/joyai-ra-0.1',  // 2026-10-02 S292 — JoyAI-RA 0.1 (JD, arXiv 2604.20100; RoboTwin easy/hard 90.5/89.3, RoboCasa GR1 63.2)
                 'nvidia/gr00t-n1.7', 'nvidia/gr00t-n1.6', 'nvidia/gr00t-n1.5', 'nvidia/gr00t-n1',
                 'physical-intelligence/pi-zero', 'physical-intelligence/pi-zero-fast', 'physical-intelligence/pi-0.5', 'physical-intelligence/rdt-1b',
                 'openvla/openvla-7b', 'openvla/openvla-oft',
@@ -215,6 +216,15 @@ var PhysicalAI = {
             benchmarks: [
                 'libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long',
                 'libero_plus', 'calvin_abcd_avg_length', 'navsim_v1_pdms', 'navsim_v2_epdms', 'embodiedworldbench',
+                // 2026-10-02 S292 — six-month sweep of manipulation suites (2604–2610), headline ids
+                'robodojo_sim_avg_sr', 'robodojo_real_avg_sr', 'libero_vpro_overall', 'libero_occ_avg', 'libero_max_dynamic_sr',
+                'safevla_bench_libero_sr', 'vla_replica_id_avg', 'vla_replica_ood_avg', 'ebench_overall_sr', 'atom_bench_franka_instruction_sr',
+                'robochallenge_table30_v1_sr', 'memobench_k5_avg_sr', 'bicoord_multi_task_sr', 'x2real_all_ood_sr', 'duobench_sim_overall',
+                'duobench_real_overall', 'cohub_2humanoid_avg', 'robosemanticbench_tsr_avg', 'umi_bench_t9_overall_score', 'conflictvla_delta_sr',
+                'hazardarena_safe_sr', 'phail_rmst_s_lower_better', 'imbench_policy_zs_mean_sr', 'robotwin_xe_total', 'roborecover_robotwin_initial_sr',
+                'libero_agent_score', 'fiatlux_weighted_score',
+                // driving (DriveHierarchy / CausalDriveBench / ObsDriveBench / DriveSpatial)
+                'drivehierarchy_openloop_score', 'drivehierarchy_closedloop_r4_score', 'causaldrivebench_overall', 'obsdrivebench_risk_decision_avg', 'drivespatial_avg',
                 'robocasa', 'robocasa365', 'robotwin2', 'vlabench', 'vlabench_track1_primitive',
                 'bridge_v2', 'aloha_4task_avg',
                 'open_x_embodiment', 'dexmimicgen', 'gr1_tabletop',
@@ -235,6 +245,9 @@ var PhysicalAI = {
             note: 'PAI-Bench · WorldScore (Stanford) · WorldModelBench (NeurIPS 2025) · EWMBench (AgiBot) · 1X World Model Challenge · AV/Robot FVD-FID-PSNR · World-model real-time FPS / consistency horizon',
             benchmarks: [
                 'pai_bench_text2world', 'pai_bench_image2world',
+                // 2026-10-02 S292 — world-model / physics-in-video benchmarks (2604–2610), headline ids
+                'phyground_overall', 'worldolympiad_overall', 'applepi_avg', 'principia_gen_overall', 'principia_vlm_overall',
+                'worldjen_vlm_avg_score', 'iworldbench_avg', 'whatifworld_apeo_single_avg', 'avphys_overall_both', 'pqsg_finephyeval_overall',
                 'pai_bench_text2world_post', 'pai_bench_image2world_overall',  // 2026-05 NVIDIA Cosmos Predict 2.5 paper
                 'fvd_av_multiview',  // 2026-05 Cosmos Predict 2.5 FVD
                 'worldscore_static', 'worldscore_dynamic', 'worldscore_3d_consistency',
@@ -295,6 +308,17 @@ var PhysicalAI = {
                 'robovqa', 'lingoqa',
                 // 2026-10-02 S291 — Andon Labs Blueprint-Bench 2 (photos → floor plan spatial reasoning; Gemini Robotics-ER 1.6 scores 0)
                 'blueprint_bench_2', 'blueprint_bench_2_raw_composite',
+                // 2026-10-02 S292 — six-month sweep of embodied / spatial reasoning papers (2604–2610), one headline id per paper;
+                // sub-splits stay data-driven (Explorer / model modal)
+                'epic_bench_overall', 'mvvbench_overall', 'archsibench_overall', 'sfi_bench_avg', 'ovo_s_bench_overall',
+                'robostressbench_overall', 'sis_bench_overall', 'gst_bench_avg', 'airgroundbench_vqa_avg', 'links2bench_overall',
+                'aeroground_avg', 'spatialuav_avg', 'causal_plan_bench_overall', 'embodied_agent_arena_index', 'egomemreason_overall',
+                'revsi_avg', 'beyond3d_macro_avg', 'embodied3dbench_avg', 'metric_bench_mra_avg', 'erqa_plus_mcq_overall',
+                'omnicot_b_overall', 'egopoint_bench_overall_avg', 'cocobench_overall_sr', 'embodiedmemory_bench_avg_sr',
+                'failbench_macro_overall', 'robographbench_tabletop_sr', 'dronecats_search_and_track_sr', 'agos_bench_hard_sr',
+                'intentionnav_sr', 'r2r_ce_100_zero_shot_sr', 'spacedg_bench_degraded_avg', 'scbench_overall_no_tools',
+                // physics / intuitive-physics reasoning for VLMs
+                'physvista_reasoning_avg', 'physvista_perception_avg', 'physfieldbench_overall', 'billiardphys_total',
                 // 2026-05 Meta Physical Reasoning Leaderboard + V-JEPA 2 video understanding (Section 45)
                 'intphys2', 'mvpbench', 'causalvqa',
                 'ss_v2_top1', 'epic_kitchens_recall5', 'perception_test', 'tempcompass',
@@ -959,7 +983,10 @@ var PhysicalAI = {
                 'cosmos_physical_common_sense', 'cosmos_embodied_reasoning', 'cosmos_intuitive_physics',
                 'intuitive_physics_spatial_puzzle', 'intuitive_physics_arrow_of_time', 'intuitive_physics_object_permanence',
                 'erqa', 'pixmo_point', 'physical_ai_bench', 'robovqa', 'lingoqa',
-                'blueprint_bench_2'
+                'blueprint_bench_2',
+                // 2026-10-02 S292 six-month sweep — headline ids
+                'epic_bench_overall', 'mvvbench_overall', 'archsibench_overall', 'ovo_s_bench_overall', 'sfi_bench_avg',
+                'embodied_agent_arena_index', 'causal_plan_bench_overall', 'physvista_reasoning_avg'
             ] },
             { name: 'Industrial Integration', benches: [
                 'mfg_news_rewrite', 'tmmlu_plus',

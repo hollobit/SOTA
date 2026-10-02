@@ -5259,5 +5259,11 @@
   "type": "ingest",
   "title": "S291 — Blueprint-Bench 2 (Andon Labs) 공식 보드 전체 반영 (+55 scores, 31개 모델)",
   "detail": "Andon Labs 공식 리더보드(2026-10-02)의 정규화 점수 31개 모델을 blueprint_bench_2에 반영(기존 벤더 카드 7개는 보드 값과 일치 → 24개 신규): Gemini 4 Argon 54.4(1위), Claude Opus 5.5 51.2, GPT-6 Astra 49.7, Fable 5.1 41.9 … 랜덤 이하 5개(Gemini 3 Flash, Grok 4.3, Gemini Robotics-ER 1.6, Claude Haiku 4.5, Grok 4.20)는 0. 페이지 번들의 원점수(raw composite ± 표준오차)를 새 id blueprint_bench_2_raw_composite로 31개 추가하고, 표시값이 정규화 공식 max(0,(raw−0.539)/0.461)과 모두 일치함을 확인. 사람 기준선 58.6(12개 아파트 부분집합)은 설명에 기록. Epoch·BenchLM·llm-stats는 같은 보드의 사본, X 게시물(9/7, Astra 1위)은 수치 없음. arXiv 2509.25229(v1 논문, 2025년 모델, 값 라벨 없는 막대그래프)는 resource/에 보관만. Physical AI 'Embodied Reasoning'·Frontier Compare multimodal에 추가."
+ },
+ {
+  "date": "2026-10-02",
+  "type": "ingest",
+  "title": "S292 — 최근 6개월(2026-04~10) Physical AI·Embodied AI·Agentic AI 벤치마크 전수 조사: 논문 171편, 벤치마크 906개, 점수 6,674개, 모델 5개",
+  "detail": "arXiv 2604~2610 논문을 5개 영역(로봇 조작/VLA, 임바디드·공간 추론·내비게이션, 컴퓨터 사용·GUI·웹·모바일 에이전트, 도구 사용·MCP·장기 과제·엔터프라이즈 에이전트, 월드 모델·물리 추론·자율주행·드론)으로 나눠 병렬로 읽고, 모든 수치는 PDF의 pdftotext 원문 줄과 대조해 기계 검증(불일치 0). 주요 신규 벤치마크: RoboDojo(정책 30개 sim/real), LIBERO-VPro/Occ/MAX/Safety, SafeVLA-Bench, X2Real, UMI-Bench 1.0, PhAIL, Embodied Agent Arena, EPIC-Bench(VLM 89개), ArchSIBench, MVVBench, OVO-S-Bench, SFI-Bench, OSWorld-Science, OSWorld-Pro, MacAgentBench, CUA-SWE, cua-speedrun, MobileWorld-Real, AndroidDaily, Odysseys, Mr.LHDR, DynamicMCPBench, TOBench, ThinkingBox-Bench(pass^20), Incident-Arena, CEO Arena, Business Arena, PDEU-Bench, FrontierChallenge, PhyGround, WorldOlympiad, Principia, PhysVista(GPT-6 Sol·Opus 5.5), DriveHierarchy, CausalDriveBench, DroneCATS 등. 신규 모델: Qwen-CUA, Qwen-UI-Agent 27B/35B-A3B/4B, JoyAI-RA 0.1. 규칙: 일반 LLM은 2025-06 이후 출시 모델만, 도메인 정책(π0·OpenVLA 등)은 예외; 벤더 수치가 있는 id(OSWorld/BrowseComp/LIBERO/RoboTwin 등)에 대한 제3자 재측정은 *_rerun_* id로 분리(55행); 두 에이전트가 같은 논문에서 뽑은 중복 id 9쌍은 값 일치 확인 후 병합. 제외: 2025-06 이전 일반 모델 행, DB에 없는 도메인 모델(자율주행 정책·GUI 전용 모델 등 ~1,100행 unmapped), 그림으로만 결과를 제공하는 논문. 탭 반영: Physical AI(VLA 조작·월드 모델·임바디드 추론), Agent(웹·OS·도구·MCP·도메인·종합), Frontier Compare(agent·multimodal 축), Resources 5건, seed_sources +170."
  }
 ]
