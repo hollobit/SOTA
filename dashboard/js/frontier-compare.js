@@ -129,7 +129,8 @@ var FrontierCompare = {
             'vals_index_sep2026', 'vals_index_v2_1_cost_per_test_usd_lower_better', 'finance_agent_v2', 'legal_agent_benchmark_harvey', 'automationbench_1_0_6', 'osworld_v2_offline_partial', 'posttrainbench_v1_1_google',
             // 2026-10-02 S292 — six-month agentic sweep, headline ids with frontier-model coverage
             'osworld_science', 'osworld_pro', 'tobench_avg', 'thinkingbox_bench', 'pdeu_bench_qual_score', 'odysseys_rubrics_avg',
-            'mineexplorer_overall_tsr', 'frontierchallenge_pass_rate', 'dynamicmcpbench_pass1', 'incident_arena_pass1', 'telco_gaia', 'embodied_agent_arena_index'
+            'mineexplorer_overall_tsr', 'frontierchallenge_pass_rate', 'dynamicmcpbench_pass1', 'incident_arena_pass1', 'telco_gaia', 'embodied_agent_arena_index',
+            'saas_bench_resolved', 'occubench', 'osworld_v2_1', 'osworld_verified_50step', 'riskwebworld', 'gameworld_sr_generalist'  // S292b
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
@@ -229,6 +230,7 @@ var FrontierCompare = {
             'blueprint_bench_2',
             // 2026-10-02 S292 — spatial / physics reasoning suites with frontier VLM coverage
             'epic_bench_overall', 'mvvbench_overall', 'physvista_reasoning_avg', 'sfi_bench_avg', 'ovo_s_bench_overall', 'archsibench_overall',
+            'robochrono_choice_avg', 'spatialbabel_reconstruct_json', 'gr_er2_generalized_instrument_reading_acc',  // S292b
             // 2026-06-02 S46 Cosmos 3 video-gen NEW datasets — surfaced on FC multimodal axis
             'cosmos_hue_t2v', 'cosmos_hue_i2v', 'human_world_bench_i2v'],
         // 2026-05 — Composite "general capability" indices (cross-benchmark)

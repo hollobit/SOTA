@@ -63,6 +63,7 @@ var PhysicalAI = {
             note: 'Vision-Language-Action 일반 로봇 정책 — GR00T N1/N1.5/N1.6/N1.7 · Pi-Zero/Pi-0.5 · OpenVLA + OFT · Octo-Base · Gemini Robotics-ER',
             models: [
                 'jd/joyai-ra-0.1',  // 2026-10-02 S292 — JoyAI-RA 0.1 (JD, arXiv 2604.20100; RoboTwin easy/hard 90.5/89.3, RoboCasa GR1 63.2)
+                'usc-psi/psi0',  // 2026-10-03 S292b — Ψ0 (USC PSI Lab, arXiv 2603.12263) via SIMPLE benchmark
                 'nvidia/gr00t-n1.7', 'nvidia/gr00t-n1.6', 'nvidia/gr00t-n1.5', 'nvidia/gr00t-n1',
                 'physical-intelligence/pi-zero', 'physical-intelligence/pi-zero-fast', 'physical-intelligence/pi-0.5', 'physical-intelligence/rdt-1b',
                 'openvla/openvla-7b', 'openvla/openvla-oft',
@@ -225,6 +226,8 @@ var PhysicalAI = {
                 'libero_agent_score', 'fiatlux_weighted_score',
                 // driving (DriveHierarchy / CausalDriveBench / ObsDriveBench / DriveSpatial)
                 'drivehierarchy_openloop_score', 'drivehierarchy_closedloop_r4_score', 'causaldrivebench_overall', 'obsdrivebench_risk_decision_avg', 'drivespatial_avg',
+                // 2026-10-03 S292b — leftovers + April–May gap (SIMPLE, Bench2Dex, DexVerse, VLAQuantBench, …) and V2X-QA / CCTVBench driving QA
+                'simple_grasp_dr0', 'bench2dex_sr_4channel_mean', 'dexverse_baseline_mean_sr', 'vlaquantbench_libero_spatial_w4a4', 'robofoldex_foldchallenge_avg_sr', 'activearena_real_avg', 'robomemarena_tsr', 'oopsiebench_b1k_ignite_wood_completion', 'v2x_qa_cooperative_avg', 'cctvbench_quadacc',
                 'robocasa', 'robocasa365', 'robotwin2', 'vlabench', 'vlabench_track1_primitive',
                 'bridge_v2', 'aloha_4task_avg',
                 'open_x_embodiment', 'dexmimicgen', 'gr1_tabletop',
@@ -248,6 +251,7 @@ var PhysicalAI = {
                 // 2026-10-02 S292 — world-model / physics-in-video benchmarks (2604–2610), headline ids
                 'phyground_overall', 'worldolympiad_overall', 'applepi_avg', 'principia_gen_overall', 'principia_vlm_overall',
                 'worldjen_vlm_avg_score', 'iworldbench_avg', 'whatifworld_apeo_single_avg', 'avphys_overall_both', 'pqsg_finephyeval_overall',
+                'robowm_bench_robot_pick_object', 'robowm_bench_human_pick_object',  // S292b RoboWM-Bench
                 'pai_bench_text2world_post', 'pai_bench_image2world_overall',  // 2026-05 NVIDIA Cosmos Predict 2.5 paper
                 'fvd_av_multiview',  // 2026-05 Cosmos Predict 2.5 FVD
                 'worldscore_static', 'worldscore_dynamic', 'worldscore_3d_consistency',
@@ -319,6 +323,8 @@ var PhysicalAI = {
                 'intentionnav_sr', 'r2r_ce_100_zero_shot_sr', 'spacedg_bench_degraded_avg', 'scbench_overall_no_tools',
                 // physics / intuitive-physics reasoning for VLMs
                 'physvista_reasoning_avg', 'physvista_perception_avg', 'physfieldbench_overall', 'billiardphys_total',
+                // 2026-10-03 S292b — April–May gap, leftovers, Gemini Robotics ER 2 charts
+                'robochrono_choice_avg', 'prism_embodied_sr', 'spatialbabel_reconstruct_json', 'scenefunri_cacc50', 'e3vs_bench_avg', 'pinpointqa_avg_micro', 'gr_er2_generalized_instrument_reading_acc', 'gr_er2_progress_classification_acc', 'gr_er2_physical_agent_real_vla_sr', 'asimov_agentic_safety_tool_calling_acc', 'mirror_self_id_e1_tsa', 'vla_illusion_spatial_top',
                 // 2026-05 Meta Physical Reasoning Leaderboard + V-JEPA 2 video understanding (Section 45)
                 'intphys2', 'mvpbench', 'causalvqa',
                 'ss_v2_top1', 'epic_kitchens_recall5', 'perception_test', 'tempcompass',

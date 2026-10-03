@@ -52,6 +52,8 @@ var Agent = (function() {
             icon: '🌐',
             label: 'Web & Browsing',
             benchmarks: [
+                // 2026-10-03 S292b
+                'clawbench', 'geobrowse_l1_gate', 'interlv_search_l1_tool',
                 // 2026-10-02 S292 — web / deep-research suites (2604–2610)
                 'odysseys_rubrics_avg', 'stressweb_avg', 'ko_widesearch_table_success', 'mr_lhdr_oa', 'knows_overall_sf_axtree', 'webarena_corrected',
                 'browsecomp',
@@ -79,6 +81,8 @@ var Agent = (function() {
             icon: '🖥️',
             label: 'OS / Computer Use',
             benchmarks: [
+                // 2026-10-03 S292b — SaaS-Bench, OSWorld official boards, GameWorld, RiskWebWorld, …
+                'saas_bench_resolved', 'osworld_verified_50step', 'osworld_verified_15step', 'osworld_v2_standard_tool', 'osworld_v2_1', 'osworld_v2_20260808_offline', 'gameworld_sr_generalist', 'riskwebworld', 'healthadminbench_dme', 'autogui_v2_region_captioning', 'cocoabench', 'androidworld', 'osguard_action_level_acc',
                 // 2026-10-02 S292 — desktop / mobile computer-use suites (2604–2610)
                 'osworld_science', 'osworld_pro', 'macagentbench', 'cua_speedrun_osworld50', 'cua_swe_web', 'longpuzzlebench_native_gui',
                 'mypcbench_rubric', 'cadworld', 'cua_world_test_avg_score', 'androiddaily', 'appsim_bench', 'mobilepa_bench', 'mobileworld_real',
@@ -104,6 +108,8 @@ var Agent = (function() {
             icon: '🔧',
             label: 'Tool Use & Function Calling',
             benchmarks: [
+                // 2026-10-03 S292b
+                'occubench', 'pi_bench_comp', 'agentescapebench_d5', 'kellybench_avg_roi', 'dataclawbench', 'dv_world_sheet_score',
                 // 2026-10-02 S292 — tool-use / reliability suites (2604–2610)
                 'tobench_avg', 'vakra_avg', 'thinkingbox_bench', 'thinkingbox_bench_pass_hat_20', 'incident_arena_pass1', 'telco_gaia',
                 'tautau_bench', 'timeline_bench_opencode', 'era_by_eon_fintech_small',

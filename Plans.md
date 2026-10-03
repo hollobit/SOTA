@@ -1,7 +1,17 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 292 — six-month physical / embodied / agentic sweep (2026-10-02)
-**3,676 models · 5,908 benchmarks · 45,125 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+## Current Status: Session 292b — sweep follow-ups: April–May gap, leftover papers, official boards (2026-10-03)
+**3,677 models · 6,204 benchmarks · 46,885 scores** (export counts; S179–S259 entries live in git log / changelog.json)
+
+### 2026-10-03 Session 292b — S292 follow-ups
+- **1,763 rows (1,761 new, 2 RoboArena Elo refreshes), 298 benchmarks, 1 model (`usc-psi/psi0`), 42 sources** (`resource/zzzzzzzzzzzzzzzzzz_s292b_sweep_followups_boards_april_may_2026_10_02_scores.json`); backup `data/benchmark.db.pre-s292b.bak`. Same pipeline as S292 (SPEC + verify.py), plus web-board evidence (`web/*.txt` verbatim lines).
+- April–mid-May gap (arXiv listing API, 28 kept / 9 skipped), leftover papers (12 kept; WorldLens + 2609.22582 skipped — only pre-2026 driving policies with no DB ids), official boards (RoboArena, OSWorld-Verified xlsx, OSWorld 2.0 official-results.json, AndroidWorld sheet, LIBERO-Plus README), Gemini Robotics ER 2 charts read from the images (4 labelled charts; moment-finding scatter unlabelled → skipped).
+- Verifier fixes this round: printed fractions, values glued to a subscript std ("67.02.1"), Unicode minus, leading-dot decimals. 10 rows rejected on purpose: WebSP-Eval % derived from printed counts. Cross-agent duplicates: DV-World (2 pairs merged after value match).
+- Channel decisions: OSWorld 2.0 board "standard" tool rows → `osworld_v2_standard_tool{,_partial,_150step,_300step…}` (stored single_action/150/300 values differ, e.g. Sonnet 4.6 partial 41.5 vs 33.9); batched-tool 500-step rows on `osworld_v2` fill-missing only; OSWorld-Verified board vs vendor numbers reported only (Fable 5 85.0 vendor vs 85.96 board, MiniMax M3 70.1 vs 75.19). RoboArena Elo overwritten (live arena). SpreadsheetBench 2 paper rows kept on `spreadsheetbench_v2` (benchmark authors' own harness; existing Kimi K3 vendor row noted).
+- Not stored: AndroidWorld framework entries (MobileRun w/ Astra 100, Artemis 99.1 …) and GUI-only models without ids; RoboArena policies without ids (Apricot, ReDROID, G0.5); OSWorld-Verified agentic frameworks (Intelligence-Indeed 90.19, Pointer, Coasty…); GPT-5.6 Sol offline cost (unit unclear). `nvidia/cosmos3-nano-policy` RoboArena 1881 (older ingest) is not on the current official tab — left as is, worth a re-check.
+- Blueprint-Bench cleanup (S291 follow-up): `blueprint_bench_2_andon_labs` (1 row = `blueprint_bench_2` value) and empty `blueprint_bench_2_human_baseline` removed from the S154 resource file and the DB.
+- Tabs: Physical AI, Agent, Frontier Compare headline ids, VLA models +Ψ0, Resources +3, seed_sources +39. Still open: OSWorld-Pro / -Science / RoboArena per-category have no public boards; Gemini Robotics-ER 2 moment-finding comparison values unlabelled.
+
 
 ### 2026-10-02 Session 292 — six-month sweep: physical AI · embodied AI · agentic AI (arXiv 2604–2610)
 - **6,674 scores, 906 benchmarks, 5 models, 171 papers, 0 overwrites** (`resource/zzzzzzzzzzzzzzzzzz_s292_physical_embodied_agentic_6mo_sweep_2026_10_02_scores.json`); backup `data/benchmark.db.pre-s292.bak`. PDFs + pdftotext in the session scratchpad (`s292/pdf/`), not committed.
