@@ -23,6 +23,8 @@ var Agent = (function() {
                 'swe_bench_verified',
                 'swe_bench_pro',
                 'cursorbench_4_0', 'terminal_bench_4',  // 2026-09-23 S282
+                // 2026-10-03 — Terminal-Bench 4.0 (official board / AA harness), DeepSWE 1.1, FrontierSWE v2, SWE-Bench Pro public board
+                'terminal_bench_4_0', 'terminal_bench_4_0_aa', 'deepswe_1_1', 'frontierswe_v2', 'swe_bench_pro_scale_public',
                 'swe_bench_verified_mini',
                 'swe_bench_multilingual',
                 'swe_bench_multimodal',
@@ -157,19 +159,24 @@ var Agent = (function() {
                 'tau3_telecom',
                 // 2026-06-23 S142 — tau3 full family (Banking replaces Telecom in AAII v4.1)
                 'tau3_banking', 'tau3_airline', 'tau3_retail',
-                't1_bench'  // 2026 S217 — Capital One multi-domain
+                't1_bench',  // 2026 S217 — Capital One multi-domain
+                // 2026-10-03 — τ^τ-Bench (developer builds the CS agent), ThinkingBox-Bench (5 service domains, pass^20), BabelArena multilingual VitaBench, AA τ²-Bench runs
+                'tautau_bench', 'thinkingbox_bench', 'thinkingbox_bench_pass_hat_20', 'babelarena_vitabench_pass1', 'tau2_telecom_aa', 'tau2_banking_aa'
             ]
         },
         {
             key: 'finance',
             icon: '💰',
-            label: 'Finance Agent / Tool-use (S142)',
+            label: 'Finance & Business Agents',
             benchmarks: [
                 'fintrace',
                 'finmcp_bench',
                 'fintoolbench',
-                'finance_agent_benchmark',
-                'vals_financial_agent_1_1'
+                'finance_agent_v2',            // 2026-10-03 — Vals Finance Agent v2 (replaces the never-defined finance_agent_benchmark id)
+                'vals_financial_agent_1_1',
+                // 2026-10-03 — recent finance / business agent suites (S290–S292b)
+                'vals_index_sep2026', 'big_finance_bench', 'bluefin_heldout_overall', 'dataclawbench',
+                'business_arena_net_worth_usd', 'ceo_arena_mean_score_usd_k', 'kellybench_avg_roi'
             ]
         },
         {
@@ -220,6 +227,8 @@ var Agent = (function() {
                 'agentlab_asr',  // 2026 S217b — long-horizon adaptive attack ASR
                 // 2026-09-23 S282 — Opus 5.5 card §5 prompt-injection ASRs
                 'shade_v2_coding_asr_no_safeguards', 'shade_v2_coding_asr_with_probes', 'shade_v2_computer_use_asr_no_safeguards', 'shade_v2_computer_use_asr_with_probes', 'browser_use_cowork_asr_no_safeguards', 'browser_use_cowork_asr_auto_mode', 'gray_swan_ipi_k1', 'gray_swan_ipi_k10',
+                // 2026-10-03 — Gray Swan IPI k=15 (13 models incl. Gemini 4 Argon 0.7%), OpenAI realistic-work misalignment v2, prompt-injection connectors, OSGuard
+                'gray_swan_ipi', 'agentic_misaligned_outcome_rate_v2_lower_better', 'prompt_injection_connectors', 'indirect_prompt_injection_defender_success', 'osguard_action_level_acc',
                 // 2026-09-23 S282b — Opus 5.5 card §6.2 / §6.5 / §6.6 lower-better rates
                 'anthropic_rl_training_reward_hack_success_rate_lower_better', 'anthropic_rl_training_reward_hack_answer_key_guess_rate_lower_better', 'anthropic_rl_training_reward_hack_copied_solution_rate_lower_better',
                 'anthropic_rl_training_reward_hack_prohibited_method_rate_lower_better', 'anthropic_rl_training_reward_hack_success_rate_excl_toolskip_lower_better', 'anthropic_impossible_task_reward_hack_attempt_rate_lower_better',
@@ -363,12 +372,19 @@ var Agent = (function() {
         }
     ];
 
-    // SOTA Watch tiles — 4 headline benchmarks shown at the top of the tab.
+    // SOTA Watch tiles — headline benchmarks shown at the top of the tab (4 per row).
+    // 2026-10-03 refresh: SWE-bench Verified (saturated, Opus 5 96.0) → SWE-bench Pro; OSWorld-Verified → OSWorld 2.0;
+    // AgentDojo (last frontier entry Claude 3.7 Sonnet, 2025) → Gray Swan IPI k=15 ASR (lower is better; 13 models, 2026-09);
+    // + Terminal-Bench 4.0, GDPval-AA v2.1, AutomationBench-AA, Agents' Last Exam.
     var SOTA_WATCH = [
-        { benchmark: 'swe_bench_verified', label: 'Top Coder', icon: '💻' },
+        { benchmark: 'swe_bench_pro', label: 'Top Coder', icon: '💻' },
+        { benchmark: 'terminal_bench_4_0', label: 'Top Terminal Agent', icon: '⌨️' },
         { benchmark: 'browsecomp', label: 'Top Web Agent', icon: '🌐' },
-        { benchmark: 'osworld_verified', label: 'Top OS Agent', icon: '🖥️' },
-        { benchmark: 'agentdojo_utility', label: 'Best Defense', icon: '🛡️' }
+        { benchmark: 'osworld_v2', label: 'Top OS Agent (OSWorld 2.0)', icon: '🖥️' },
+        { benchmark: 'gdpval_aa_v2_1_elo', label: 'Knowledge Work (GDPval-AA)', icon: '📊' },
+        { benchmark: 'automationbench_aa', label: 'Workflow Automation', icon: '⚙️' },
+        { benchmark: 'agents_last_exam_score', label: "Agents' Last Exam", icon: '🎓' },
+        { benchmark: 'gray_swan_ipi', label: 'Injection-Robust (lowest ASR)', icon: '🛡️', lower: true }
     ];
 
     // Curated list of 10 production agent products for the compare panel.
@@ -462,7 +478,10 @@ var Agent = (function() {
         'mistral/ministral-3-3b', 'mistral/ministral-3-8b', 'mistral/ministral-3-14b',
         'liquid/lfm2.5-8b-a1b',
         'liquid/lfm2.5-vl-1.6b', 'liquid/lfm2.5-vl-450m',
-        'liquid/lfm2.5-audio-1.5b', 'liquid/lfm2.5-1.2b-jp'
+        'liquid/lfm2.5-audio-1.5b', 'liquid/lfm2.5-1.2b-jp',
+        // 2026-10-03 — small models released 2026-06+ that carry agent scores in the DB
+        'ifm/k2-horizon-7b', 'openbmb/minicpm-5-2b', 'ibm/granite-4.2-8b', 'ibm/granite-4.2-3b', 'google/gemma-4-12b',
+        'xiaomi/mimo-v2.6-distill-qwen-9b', 'alibaba/qwen-ui-agent-4b', 'kakao/kanana-2-3b-instruct', 'xhtoken/spark-x2.5-4b'
     ];
 
     // Utility-vs-cost / latency metrics map. Filled by _loadUtility (Task 17).
@@ -473,6 +492,29 @@ var Agent = (function() {
     var COMPARE_BENCHMARKS = [
         { id: 'swe_bench_verified',   label: 'SWE-bench Verified' },
         { id: 'swe_bench_pro',        label: 'SWE-bench Pro' },
+        // 2026-10-03 — current-generation agent suites (S282–S292b)
+        { id: 'terminal_bench_4_0',   label: 'Terminal-Bench 4.0' },
+        { id: 'terminal_bench_4_0_aa', label: 'Terminal-Bench 4.0 (AA harness)' },
+        { id: 'osworld_v2',           label: 'OSWorld 2.0 (500 steps)' },
+        { id: 'osworld_v2_partial',   label: 'OSWorld 2.0 (partial credit)' },
+        { id: 'osworld_pro',          label: 'OSWorld-Pro' },
+        { id: 'osworld_science',      label: 'OSWorld-Science' },
+        { id: 'agents_last_exam_score', label: "Agents' Last Exam (score)" },
+        { id: 'automationbench_aa',   label: 'AutomationBench-AA' },
+        { id: 'aa_briefcase_v1_1',    label: 'AA-Briefcase v1.1 (Elo)' },
+        { id: 'gdpval_aa_v2_1_elo',   label: 'GDPval-AA v2.1 (Elo)' },
+        { id: 'aa_agentic_index',     label: 'AA Agentic Index' },
+        { id: 'vals_index_sep2026',   label: 'Vals Index v2.1' },
+        { id: 'arena_agent_net_improvement', label: 'Agent Arena (net improvement %)' },
+        { id: 'tobench_avg',          label: 'TOBench' },
+        { id: 'dynamicmcpbench_pass1', label: 'DynamicMCPBench' },
+        { id: 'thinkingbox_bench',    label: 'ThinkingBox-Bench' },
+        { id: 'saas_bench_resolved',  label: 'SaaS-Bench' },
+        { id: 'occubench',            label: 'OccuBench' },
+        { id: 'mobileworld_real',     label: 'MobileWorld-Real' },
+        { id: 'androidworld',         label: 'AndroidWorld' },
+        { id: 'deepswe_1_1',          label: 'DeepSWE 1.1' },
+        { id: 'frontierswe_v2',       label: 'FrontierSWE v2' },
         { id: 'terminal_bench_2',     label: 'Terminal-Bench 2.0' },
         { id: 'osworld_verified',     label: 'OSWorld-Verified' },
         { id: 'gaia',                 label: 'GAIA' },
@@ -912,7 +954,7 @@ var Agent = (function() {
 
         for (var i = 0; i < SOTA_WATCH.length; i++) {
             var w = SOTA_WATCH[i];
-            var top = _topModel(w.benchmark, false);
+            var top = _topModel(w.benchmark, !!w.lower);
             var benchName = _benchmarkName(w.benchmark);
 
             if (!top) {
@@ -960,7 +1002,7 @@ var Agent = (function() {
 
             var valueEl = document.createElement('div');
             valueEl.className = 'text-2xl font-bold mt-1 text-blue-400';
-            valueEl.textContent = top.value;
+            valueEl.textContent = (typeof top.value === 'number' && !Number.isInteger(top.value)) ? top.value.toFixed(1) : top.value;  // 2026-10-03 — AA values carry 6 decimals
             tile.appendChild(valueEl);
 
             var benchEl = document.createElement('div');

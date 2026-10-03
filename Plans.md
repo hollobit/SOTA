@@ -3,6 +3,12 @@
 ## Current Status: Session 292b — sweep follow-ups: April–May gap, leftover papers, official boards (2026-10-03)
 **3,677 models · 6,204 benchmarks · 46,885 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-10-03 Session 293 — Agent tab refresh
+- SOTA Watch 4 → 8 tiles (SWE-bench Pro, Terminal-Bench 4.0, BrowseComp, OSWorld 2.0, GDPval-AA v2.1, AutomationBench-AA, Agents' Last Exam, Gray Swan IPI k=15 lowest ASR via a new `lower: true` tile flag); values shown to 1 decimal.
+- Compare dropdown +24 current suites after the SWE-bench defaults; category lists refreshed (coding / customer-service / safety / finance / edge); `finance_agent_benchmark` (never defined) → `finance_agent_v2`, so the boot warning is gone; finance label lost its session tag.
+- agent-charts.js: `_HEATMAP_BENCHMARKS`, `DOT_PLOT_BENCHMARKS`, `AGENTIC_BENCHMARKS` and the recommender-wizard tooltips moved from Terminal-Bench 2.0 / Aider to TB 4.0, OSWorld 2.0, ALE, AutomationBench-AA, GDPval-AA. Chart default selections (`swe_bench_verified`) unchanged — user state persists.
+- Known quirk left as is: the composite leaderboard ranks DeepRare (agent product, 5 benchmarks) first because coverage is ≥ 3; a coverage-weighted composite is a separate change.
+
 ### 2026-10-03 Session 292b — S292 follow-ups
 - **1,763 rows (1,761 new, 2 RoboArena Elo refreshes), 298 benchmarks, 1 model (`usc-psi/psi0`), 42 sources** (`resource/zzzzzzzzzzzzzzzzzz_s292b_sweep_followups_boards_april_may_2026_10_02_scores.json`); backup `data/benchmark.db.pre-s292b.bak`. Same pipeline as S292 (SPEC + verify.py), plus web-board evidence (`web/*.txt` verbatim lines).
 - April–mid-May gap (arXiv listing API, 28 kept / 9 skipped), leftover papers (12 kept; WorldLens + 2609.22582 skipped — only pre-2026 driving policies with no DB ids), official boards (RoboArena, OSWorld-Verified xlsx, OSWorld 2.0 official-results.json, AndroidWorld sheet, LIBERO-Plus README), Gemini Robotics ER 2 charts read from the images (4 labelled charts; moment-finding scatter unlabelled → skipped).

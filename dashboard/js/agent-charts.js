@@ -668,9 +668,10 @@ var AgentCharts = (function() {
   // Click → Modal.showModel(modelId) for drilldown.
   // ======================================================================
   var _HEATMAP_BENCHMARKS = [
-    'swe_bench_verified', 'swe_bench_pro', 'terminal_bench_2', 'osworld_verified',
-    'gaia', 'tau2_bench', 'bfcl_v4', 'browsecomp', 'aider_polyglot', 'usaco',
-    'mobile_actions', 'agentdojo_utility',
+    'swe_bench_verified', 'swe_bench_pro', 'terminal_bench_4_0', 'osworld_verified', 'osworld_v2',
+    'gaia', 'tau2_bench', 'bfcl_v4', 'browsecomp', 'agents_last_exam_score', 'automationbench_aa',
+    'gdpval_aa_v2_1_elo', 'aa_briefcase_v1_1', 'mobile_actions', 'agentdojo_utility',  // 2026-10-03 refresh: TB 4.0, OSWorld 2.0, ALE, AA agentic suites
+    'terminal_bench_2', 'aider_polyglot', 'usaco',
     // 2026-04-05 — Recent agent benchmark additions (Sections 36, 40, 43)
     'mcpmark', 'tau3_bench', 'prdbench',
     'corebench_hard', 'tau_bench_airline', 'assistantbench',
@@ -1178,9 +1179,9 @@ var AgentCharts = (function() {
   // Widget 4 — Frontier-Product-Edge Diverging Dot Plot
   // ======================================================================
   // Curated 10-benchmark list shared by Widgets 4 and 6.
-  var DOT_PLOT_BENCHMARKS = [
-    'swe_bench_verified', 'swe_bench_pro', 'terminal_bench_2', 'osworld_verified',
-    'gaia', 'tau2_bench', 'bfcl_v4', 'browsecomp', 'aider_polyglot', 'mobile_actions'
+  var DOT_PLOT_BENCHMARKS = [  // 2026-10-03 refresh — Terminal-Bench 4.0 / OSWorld 2.0 / ALE / AutomationBench-AA replace TB 2.0, Aider
+    'swe_bench_verified', 'swe_bench_pro', 'terminal_bench_4_0', 'osworld_verified', 'osworld_v2',
+    'gaia', 'tau2_bench', 'bfcl_v4', 'browsecomp', 'agents_last_exam_score', 'automationbench_aa', 'mobile_actions'
   ];
 
   function _classLabelLong(k) {
@@ -1363,8 +1364,13 @@ var AgentCharts = (function() {
   var AGENTIC_BENCHMARKS = [
     'swe_bench_verified',
     'swe_bench_pro',
+    'terminal_bench_4_0',       // 2026-10-03 — replaces Terminal-Bench 2.0 as the default terminal suite
     'terminal_bench_2',
     'osworld_verified',
+    'osworld_v2',               // 2026-10-03 — OSWorld 2.0
+    'agents_last_exam_score',   // 2026-10-03
+    'automationbench_aa',       // 2026-10-03
+    'gdpval_aa_v2_1_elo',       // 2026-10-03
     'gaia',
     'tau2_bench',
     'bfcl_v4',
@@ -2942,19 +2948,19 @@ var AgentCharts = (function() {
 
   var _WIZARD_SLIDERS = [
     { key: 'coding',           label: 'Coding',
-      tooltip: 'SWE-Bench Verified, SWE-Bench Pro, Aider Polyglot, USACO. 코드 생성·디버깅·복잡한 PR 작업 능력.' },
+      tooltip: 'SWE-Bench Verified/Pro, Terminal-Bench 4.0, DeepSWE 1.1, FrontierSWE v2, CursorBench 4.0. 코드 생성·디버깅·장기 PR 작업 능력.' },
     { key: 'web-browse',       label: 'Web & Browsing',
       tooltip: 'BrowseComp, Online-Mind2Web, VisualWebArena, WebShop. 실제 웹사이트 탐색·검색·정보 수집 능력.' },
     { key: 'os-computer',      label: 'OS / Computer Use',
-      tooltip: 'OSWorld Verified, ScreenSpot-Pro, OSCopilot-GAIA. GUI 클릭, 데스크톱 자동화, OS 환경 조작.' },
+      tooltip: 'OSWorld-Verified, OSWorld 2.0 / -Pro / -Science, ScreenSpot-Pro, MobileWorld-Real, AndroidWorld. GUI 조작, 데스크톱·모바일 자동화.' },
     { key: 'tool-use',         label: 'Tool Use & Function Calling',
-      tooltip: 'BFCL v4, GAIA, Tau2-Bench, AppWorld. API 호출, 함수 시그니처 매칭, 다단계 도구 조합.' },
+      tooltip: 'BFCL v4, GAIA, TOBench, Toolathlon, DynamicMCPBench, ThinkingBox-Bench. API 호출, 다단계 도구 조합, 반복 신뢰성(pass^k).' },
     { key: 'mcp',              label: 'MCP',
       tooltip: 'Model Context Protocol — Anthropic 표준. 툴/리소스/프롬프트 등 컨텍스트 인터페이스 호환성.' },
     { key: 'customer-service', label: 'Customer Service',
-      tooltip: 'Tau2-Bench (Retail/Telecom/Airline). 멀티턴 대화, 정책 준수, 사용자 의도 파악.' },
+      tooltip: 'τ²/τ³-Bench (Retail/Telecom/Airline/Banking), τ^τ-Bench, T1-Bench. 멀티턴 대화, 정책 준수, 사용자 의도 파악.' },
     { key: 'safety',           label: 'Safety',
-      tooltip: 'AgentDojo (lower=better ASR), Apollo scheming oversight. 프롬프트 인젝션·탈옥·은폐 시도 저항.' }
+      tooltip: 'Gray Swan IPI (k=15 ASR, lower=better), AgentDojo, SHADE-Arena, OpenAI 현실 업무 misalignment v2, Apollo scheming. 프롬프트 인젝션·은폐·권한 남용 저항.' }
   ];
 
   // Mean of _normalizedScore() across the category's benchmarks for a model.
