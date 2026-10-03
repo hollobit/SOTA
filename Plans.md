@@ -3,6 +3,11 @@
 ## Current Status: Session 292b — sweep follow-ups: April–May gap, leftover papers, official boards (2026-10-03)
 **3,677 models · 6,204 benchmarks · 46,885 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-10-04 Session 294 — Physical AI tab refresh
+- CATEGORIES models[]: VLA +DreamZero, RLDX-1, PHIZERO, π0.7, Cosmos3-Nano-Policy; World Foundation Models +Cosmos-Predict2 2B/14B; two duplicate ids removed. Section notes rewritten around the S290–S292b suites. VENDOR_GROUPS +8 colours (exact DB vendor strings).
+- physical-ai-charts.js: `_PHY_BREAKTHROUGHS` +5 2026 entries (ER 2, Qwen-RobotManip, RLDX-1, Spirit v1.6 / DreamZero, π0.7) and the GR00T-N1.7 / ER 1.6 years corrected to the DB dates; `_FAMILY_MAP` +4 families (Qwen Robotics, MolmoAct, Xiaomi·Spirit·LingBot·JD·RLWRLD·PHIZERO, Open VLA toolkits) and world-model keywords for Genie / Wan / Veo / HY-World / V-JEPA / Marble / GAIA-2 / Matrix-Game.
+- Left as is: `nvidia/cosmos3-nano-policy` (RoboArena 1881, 2026-05-29) and `nvidia/cosmos-3-nano-policy-droid` (stub date 2026-01-01, RoboLab rows) look like one model under two ids — canonical-map candidate; `_localReleaseDates` fallback map still carries pre-2026 dates for GR00T N1.7 / π0.5 (DB dates win, so harmless).
+
 ### 2026-10-03 Session 293 — Agent tab refresh
 - SOTA Watch 4 → 8 tiles (SWE-bench Pro, Terminal-Bench 4.0, BrowseComp, OSWorld 2.0, GDPval-AA v2.1, AutomationBench-AA, Agents' Last Exam, Gray Swan IPI k=15 lowest ASR via a new `lower: true` tile flag); values shown to 1 decimal.
 - Compare dropdown +24 current suites after the SWE-bench defaults; category lists refreshed (coding / customer-service / safety / finance / edge); `finance_agent_benchmark` (never defined) → `finance_agent_v2`, so the boot warning is gone; finance label lost its session tag.

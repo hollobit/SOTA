@@ -10,8 +10,9 @@ var PhysicalAI = {
             code: 'world-models',
             label: 'World Foundation Models',
             icon: '🌐',
-            note: 'Cosmos Predict / Reason · DeepMind Genie · Tencent HY-World · WonderWorld · CogVideoX-I2V · Runway Gen-3 · AgiBot · Omniverse Mega',
+            note: 'Cosmos 3 / Predict 2.5 / Predict2 / Reason 2 · DeepMind Genie 3 · Wan 2.6 / 2.7 · Veo 3.1 · Tencent HY-World 2.0 · V-JEPA 2.1 · World Labs Marble · Wayve GAIA-2 · Matrix-Game 3.0 · 1X World Model · AgiBot Genie Envisioner',
             models: [
+                'nvidia/cosmos-predict2-2b', 'nvidia/cosmos-predict2-14b',  // 2026-10-04 S294 — Cosmos-Predict2 Video2World (What-If World, VehDyn)
                 'nvidia/cosmos-predict-2.5', 'nvidia/cosmos-predict-2.5-2b', 'nvidia/cosmos-predict-2.5-14b', 'nvidia/cosmos-predict-1-7b',
                 'nvidia/cosmos-reason-2', 'nvidia/cosmos-reason-1', 'nvidia/cosmos-reason-1-56b', 'nvidia/cosmos-reason-1-8b',
                 'nvidia/cosmos-policy-robocasa',
@@ -60,8 +61,10 @@ var PhysicalAI = {
             code: 'vla-policies',
             label: 'VLA Policies (generalist robots)',
             icon: '🦾',
-            note: 'Vision-Language-Action 일반 로봇 정책 — GR00T N1/N1.5/N1.6/N1.7 · Pi-Zero/Pi-0.5 · OpenVLA + OFT · Octo-Base · Gemini Robotics-ER',
+            note: 'Vision-Language-Action 일반 로봇 정책 — Gemini Robotics 2 / ER 2 · GR00T N1.7 / N2 · π0.5 / π0.7 · Qwen-RobotManip · DreamZero · Spirit v1.6 · RLDX-1 · MolmoAct 2 · Xiaomi-Robotics-0 · OpenVLA-OFT (RoboArena · LIBERO · RoboCasa365 · RoboTwin · RoboDojo)',
             models: [
+                // 2026-10-04 S294 — 2026 policies with scores: DreamZero (RoboArena 1735), RLDX-1 (LIBERO 97.8), PHIZERO, π0.7, Cosmos3-Nano-Policy (RoboArena 1881)
+                'nvidia/dreamzero', 'rlwrld/rldx-1', 'casia/phizero', 'physical-intelligence/pi-0.7', 'nvidia/cosmos3-nano-policy',
                 'jd/joyai-ra-0.1',  // 2026-10-02 S292 — JoyAI-RA 0.1 (JD, arXiv 2604.20100; RoboTwin easy/hard 90.5/89.3, RoboCasa GR1 63.2)
                 'usc-psi/psi0',  // 2026-10-03 S292b — Ψ0 (USC PSI Lab, arXiv 2603.12263) via SIMPLE benchmark
                 'nvidia/gr00t-n1.7', 'nvidia/gr00t-n1.6', 'nvidia/gr00t-n1.5', 'nvidia/gr00t-n1',
@@ -81,7 +84,7 @@ var PhysicalAI = {
                 'mininglamp/mano-p',         // MiningLamp GUI-VLA — ScreenSpot-V2 93.5
                 // May 2026 additions — Allen AI MolmoAct2 family + NVIDIA CaP-X coding-agent for manipulation
                 'allenai/molmoact-2', 'allenai/molmoer', 'nvidia/cap-agent0',
-                'allenai/molmoact-2',  // canonical id used in newer ingest (Section 38)
+                // canonical id used in newer ingest (Section 38)
                 // 2026-05-20 Alibaba Qwen robotics — quadruped robot dog control + navigation FM
                 'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav',
                 // 2026-06-16 S137 — Qwen RobotSuite (RobotManip Qwen3.5-4B VLM+DiT: LIBERO-Plus 91.4 / RoboTwin-C2R Hard 69.4 / RoboCasa365 35.9 SOTA; RobotWorld 20B MMDiT WorldModelBench 8.99 / EWMBench 4.60 open-source SOTA)
@@ -107,8 +110,7 @@ var PhysicalAI = {
                 'huggingface/smolvla', 'robotics-diffusion-transformer/rdt-1b',
                 'alibaba/qwen-vla-instruct',
                 // 2026-06-01 S45 — Alibaba Qwen-VLA paper (arxiv 2605.30280): unified VLA across tasks/environments/embodiments
-                'alibaba/qwen-vla-base', 'alibaba/qwen-vla-instruct',
-                'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',
+                'alibaba/qwen-vla-base', 'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',
                 'amap-cvlab/abot-m0', 'starvla/starvla-oft',
                 // 2026-06-09 S64 — Generalist AI GEN-1 (99% multi-task success vs π0 64%, box-folding 2.8x faster)
                 'generalistai/gen-1', 'generalistai/gen-0',
@@ -203,7 +205,10 @@ var PhysicalAI = {
         'Autodesk':                        '#0284c7',
         'Landing AI':                      '#facc15',
         'PTC':                             '#16a34a',
-        'Dassault Systèmes':               '#9333ea'
+        'Dassault Systèmes':               '#9333ea',
+        // 2026-10-04 S294 — 2026 VLA / world-model labs (vendor strings as stored in the DB)
+        'Alibaba (Qwen)': '#f97316', 'Xiaomi': '#fb923c', 'Allen AI (AI2)': '#f472b6', 'nvidia research': '#a3e635',
+        'rlwrld (korea)': '#2dd4bf', 'spirit ai (china)': '#c084fc', 'robby ant': '#38bdf8', 'casia': '#fcd34d'
     },
 
     // Benchmarks grouped into thematic sub-suites so the leaderboard renders
@@ -213,7 +218,7 @@ var PhysicalAI = {
         {
             id: 'vla-manipulation',
             label: '🦾 VLA Manipulation Suites',
-            note: 'LIBERO 4-suite + LIBERO-Plus + RoboCasa + RoboTwin + VLABench + ALOHA + Bridge V2 + Open X-Embodiment + DexMimicGen + CALVIN + NAVSIM (driving) + EmbodiedWorldBench',
+            note: 'LIBERO 4-suite + LIBERO-Plus / -VPro / -Occ / -MAX + RoboCasa365 + RoboTwin + RoboDojo (sim · real) + RoboArena + VLABench + SIMPLE + Bench2Dex + UMI-Bench + ATOM-Bench + CALVIN + NAVSIM / DriveHierarchy (driving)',
             benchmarks: [
                 'libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long',
                 'libero_plus', 'calvin_abcd_avg_length', 'navsim_v1_pdms', 'navsim_v2_epdms', 'embodiedworldbench',
@@ -245,7 +250,7 @@ var PhysicalAI = {
         {
             id: 'world-model',
             label: '🌐 World Model Quality',
-            note: 'PAI-Bench · WorldScore (Stanford) · WorldModelBench (NeurIPS 2025) · EWMBench (AgiBot) · 1X World Model Challenge · AV/Robot FVD-FID-PSNR · World-model real-time FPS / consistency horizon',
+            note: 'PAI-Bench · WorldScore · WorldModelBench · EWMBench · PhyGround · WorldOlympiad · Principia · Apple-π · What-If World · iWorld-Bench · RoboWM-Bench · 1X World Model Challenge · FVD / FID / PSNR',
             benchmarks: [
                 'pai_bench_text2world', 'pai_bench_image2world',
                 // 2026-10-02 S292 — world-model / physics-in-video benchmarks (2604–2610), headline ids
@@ -303,7 +308,7 @@ var PhysicalAI = {
         {
             id: 'embodied-reasoning',
             label: '🧠 Embodied Reasoning',
-            note: 'Cosmos Reason 1 (PCS · Embodied · Intuitive Physics) · Gemini Robotics-ER · ERQA · Pixmo-Point · LingoQA · RoboVQA · Blueprint-Bench 2 (photos → floor plan)',
+            note: 'ERQA / ERQA-Plus · Gemini Robotics-ER 2 release evals · EPIC-Bench (89 VLMs) · ArchSIBench · MVVBench · OVO-S-Bench · PhysVista · RoboChrono · Blueprint-Bench 2 (photos → floor plan) · Cosmos Reason 1 (PCS · Embodied · Intuitive Physics)',
             benchmarks: [
                 'cosmos_physical_common_sense', 'cosmos_embodied_reasoning', 'cosmos_intuitive_physics',
                 'intuitive_physics_spatial_puzzle', 'intuitive_physics_arrow_of_time', 'intuitive_physics_object_permanence',

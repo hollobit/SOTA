@@ -13,7 +13,7 @@
   // ====================================================================
   var _FAMILY_MAP = [
     { key: 'gr00t',         label: 'NVIDIA GR00T',
-      keywords: ['nvidia/gr00t','isaac-gr00t','cosmos'] },
+      keywords: ['nvidia/gr00t','isaac-gr00t','cosmos','nvidia/dreamzero'] },
     { key: 'pi',            label: 'Physical Intelligence (π)',
       keywords: ['physical-intelligence/pi','rdt-1b'] },
     { key: 'openvla',       label: 'OpenVLA',
@@ -27,11 +27,20 @@
     { key: 'industrial-fm', label: 'Industrial Foundation Models',
       keywords: ['foxbrain','foxconn','siemens','hitachi','bosch','aveva','autodesk','ge-vernova','landing-ai','ptc/','dassault'] },
     { key: 'world-model',   label: 'World Models',
-      keywords: ['genesis','dreamerv','iss-world','nvidia/cosmos'] },
+      keywords: ['genesis','dreamerv','iss-world','nvidia/cosmos','genie','/wan','veo','hy-world','v-jepa','marble','gaia-2','matrix-game','lingbot-world','infinite-world','1xwm','sana-wm','irasim','ctrl-world'] },
     { key: 'human-vision',  label: 'Human-Centric Vision',
       keywords: ['sapiens','reka/reka-edge'] },
     { key: 'industrial-vendor', label: 'Industrial Vendor (other)',
-      keywords: ['skild','covariant','rfm'] }
+      keywords: ['skild','covariant','rfm'] },
+    // 2026-10-04 S294 — 2026 VLA labs that previously fell into "Other"
+    { key: 'qwen-robotics',  label: 'Qwen Robotics (Alibaba)',
+      keywords: ['alibaba/qwen-robot','alibaba/qwen-vla','amap-cvlab/abot','alibaba/abot'] },
+    { key: 'molmoact',       label: 'MolmoAct (Ai2)',
+      keywords: ['allenai/molmo'] },
+    { key: 'asia-vla',       label: 'Xiaomi · Spirit · LingBot · JD · RLWRLD · PHIZERO',
+      keywords: ['xiaomi/xiaomi-robotics','spirit-ai','robbyant','lerobot/lingbot','jd/joyai','rlwrld','byd/','cas-sia','mininglamp','unitree/unifolm','casia/phizero','chungang'] },
+    { key: 'open-vla',       label: 'Open VLA toolkits (X-VLA · SmolVLA · Ψ0 · FLOWER)',
+      keywords: ['lerobot/xvla','huggingface/smolvla','starvla','intuitive-robots','usc-psi','futurevla','bagel/','generalistai'] }
   ];
   var _OTHER_FAMILY = { key: 'other', label: 'Other', keywords: [] };
 
@@ -1137,6 +1146,57 @@
   // Physical AI breakthroughs — milestone events featured in W1 SOTA Watch.
   // ====================================================================
   var _PHY_BREAKTHROUGHS = [
+    // 2026-10-04 S294 — 2026 entries (dates from the DB; values from the suites ingested in S290–S292b)
+    {
+      title: 'Gemini Robotics 2 / ER 2',
+      narrative: 'Second-generation embodied-reasoning model: ERQA 78.5, success detection 87.7, physical-agent control of a real VLA 60.0 (2026-07-30)',
+      value: 'ERQA 78.5',
+      domain: 'vla-policies',
+      model_id: 'google/gemini-robotics-er-2',
+      benchmark_id: 'erqa',
+      source_url: 'https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-robotics-er-2/',
+      year: 2026
+    },
+    {
+      title: 'Qwen-RobotManip',
+      narrative: 'Alibaba manipulation VLA: LIBERO-Plus 91.4, RoboCasa365 35.9, RoboTwin clean-to-random hard 69.4 (2026-06)',
+      value: 'LIBERO-Plus 91.4',
+      domain: 'vla-policies',
+      model_id: 'alibaba/qwen-robotmanip',
+      benchmark_id: 'libero_plus',
+      source_url: 'https://arxiv.org/abs/2606.17846',
+      year: 2026
+    },
+    {
+      title: 'RLWRLD RLDX-1',
+      narrative: 'Korean generalist policy: LIBERO 97.8 average, LIBERO-Plus 86.7 (2026-06)',
+      value: 'LIBERO 97.8',
+      domain: 'vla-policies',
+      model_id: 'rlwrld/rldx-1',
+      benchmark_id: 'libero_avg',
+      source_url: 'https://arxiv.org/abs/2605.03269',
+      year: 2026
+    },
+    {
+      title: 'Spirit v1.6 · DreamZero (RoboArena)',
+      narrative: 'Real-robot arena: Spirit v1.6 1788 Elo on the official tab, NVIDIA DreamZero 1735, π0.5 1608 (board 2026-10-02)',
+      value: 'RoboArena 1788',
+      domain: 'vla-policies',
+      model_id: 'spirit-ai/spirit-v1.6',
+      benchmark_id: 'roboarena_elo',
+      source_url: 'https://robo-arena.github.io/leaderboard',
+      year: 2026
+    },
+    {
+      title: 'π0.7 (Physical Intelligence)',
+      narrative: 'Fourth π release (2026-04-16); no public suite numbers in the DB yet — RoboArena still lists π0.5',
+      value: 'π0.7 release',
+      domain: 'vla-policies',
+      model_id: 'physical-intelligence/pi-0.7',
+      benchmark_id: 'roboarena_elo',
+      source_url: 'https://arxiv.org/abs/2604.15483',
+      year: 2026
+    },
     {
       title: 'NVIDIA GR00T-N1.7',
       narrative: 'Foundation model for general-purpose humanoid robots',
@@ -1145,17 +1205,17 @@
       model_id: 'nvidia/gr00t-n1.7',
       benchmark_id: 'libero',
       source_url: 'https://developer.nvidia.com/isaac/gr00t',
-      year: 2025
+      year: 2026  // DB release_date 2026-03 (was 2025)
     },
     {
       title: 'Gemini Robotics ER 1.6',
       narrative: 'Vision-language-action with embodied reasoning',
       value: 'Robot Arena top',
       domain: 'vla-policies',
-      model_id: 'google-deepmind/gemini-robotics-er-1.6',
-      benchmark_id: 'roboarena_elo',
+      model_id: 'google/gemini-robotics-er-1.6',
+      benchmark_id: 'erqa',
       source_url: 'https://deepmind.google/discover/blog/gemini-robotics/',
-      year: 2025
+      year: 2026  // DB release_date 2026-04-14 (was 2025); ERQA 72.5
     },
     {
       title: 'π-zero (Physical Intelligence)',
