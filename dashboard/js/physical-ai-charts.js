@@ -93,10 +93,27 @@
     'embodied_planning': 'embodied-reasoning'
   };
 
+  // 2026-10-04 S294b — the static map above only knew the 2025 ids; merge it with the tab's own
+  // BENCHMARK_SUITES (PhysicalAI, physical-ai.js) so every id wired into a suite there is a catalog /
+  // matrix / ranking member too. Static entries win on conflict. Cached after the first call.
+  var _suiteMapCache = null;
+  function _suiteMap() {
+    if (_suiteMapCache) return _suiteMapCache;
+    var m = {};
+    var P = (typeof window !== 'undefined') ? window.PhysicalAI : null;
+    if (P && P.BENCHMARK_SUITES) {
+      P.BENCHMARK_SUITES.forEach(function(s) {
+        (s.benchmarks || []).forEach(function(bid) { if (!m[bid]) m[bid] = s.id; });
+      });
+    }
+    Object.keys(_BENCHMARK_FAMILY_MAP).forEach(function(bid) { m[bid] = _BENCHMARK_FAMILY_MAP[bid]; });
+    if (P && P.BENCHMARK_SUITES) _suiteMapCache = m;   // only cache once the tab lists were available
+    return m;
+  }
   function _resolveSuite(benchmarkId) {
     if (!benchmarkId) return null;
-    return Object.prototype.hasOwnProperty.call(_BENCHMARK_FAMILY_MAP, benchmarkId)
-      ? _BENCHMARK_FAMILY_MAP[benchmarkId] : null;
+    var m = _suiteMap();
+    return Object.prototype.hasOwnProperty.call(m, benchmarkId) ? m[benchmarkId] : null;
   }
 
   // ====================================================================
@@ -230,11 +247,13 @@
     var famOrder = _FAMILY_MAP.map(function(f) { return f.key; }).concat(['other']);
     var famLabel = {}; _FAMILY_MAP.forEach(function(f) { famLabel[f.key] = f.label; });
     famLabel['other'] = 'Other';
-    var suites = ['vla-manipulation','world-model','embodied-reasoning'];
+    var suites = ['vla-manipulation','world-model','embodied-reasoning','embodied-safety','industrial-deployment'];
     var suiteLabel = {
       'vla-manipulation': 'VLA Manipulation',
       'world-model': 'World Model Quality',
-      'embodied-reasoning': 'Embodied Reasoning'
+      'embodied-reasoning': 'Embodied Reasoning',
+      'embodied-safety': 'Embodied Safety',          // 2026-10-04 S294b
+      'industrial-deployment': 'Industrial Deployment'
     };
 
     var scoresByModel = {};
@@ -509,7 +528,7 @@
     if (existing) return;
     if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.benchmarks) return;
 
-    var domainBenches = Object.keys(_BENCHMARK_FAMILY_MAP);
+    var domainBenches = Object.keys(_suiteMap());
     var rows = window.App.data.benchmarks
       .filter(function(b) { return domainBenches.indexOf(b.id) !== -1; })
       .map(function(b) {
@@ -517,7 +536,7 @@
         return {
           id: b.id,
           name: b.name || b.id,
-          suite: _BENCHMARK_FAMILY_MAP[b.id] || '?',
+          suite: _suiteMap()[b.id] || '?',
           n: n,
           paper: b.paper_url || b.url || ''
         };
@@ -634,16 +653,17 @@
   function renderWorldModelRadar() {
     _ensureMountPoint('physical-ai-chart-world-model-radar',
       'World Model Quality Radar',
-      'Top 5 models on world-model + cosmos sub-benches. Coverage threshold ≥2.');
+      'Top 5 world models on PhyGround · Apple-π · What-If World · Principia · WorldJen · AV-Phys (2026 physics-in-video suites, S292). Each axis scaled to its own best score; coverage threshold ≥2.');
     if (typeof echarts === 'undefined') return;
 
+    // 2026-10-04 S294b — the cosmos_* / world_model_* ids hold 1–2 models each; these six suites hold 4–9 models each.
     var subs = [
-      'cosmos_embodied_reasoning',
-      'cosmos_intuitive_physics',
-      'cosmos_physical_common_sense',
-      'world_model_consistency',
-      'world_model_fps',
-      'world_model_visual_memory'
+      'phyground_overall',
+      'applepi_avg',
+      'whatifworld_apeo_single_avg',
+      'principia_gen_overall',
+      'worldjen_vlm_avg_score',
+      'avphys_overall_both'
     ];
 
     var byModel = {};
@@ -680,8 +700,14 @@
 
     var chart = Charts._getOrCreate('physical-ai-chart-world-model-radar');
     if (!chart) return;
-    var subLabels = ['Embodied Reasoning','Intuitive Physics','Common Sense','Consistency','FPS','Visual Memory'];
-    var indicators = subLabels.map(function(label) { return { name: label, max: 100 }; });
+    var subLabels = ['PhyGround (1-5)','Apple-π','What-If World','Principia Gen','WorldJen','AV-Phys'];
+    var axisMax = {};
+    subs.forEach(function(b) {
+      var mx = 0;
+      Object.keys(byModel).forEach(function(mid) { var v = byModel[mid][b]; if (typeof v === 'number' && v > mx) mx = v; });
+      axisMax[b] = mx > 0 ? mx : 100;
+    });
+    var indicators = subLabels.map(function(label, i) { return { name: label, max: axisMax[subs[i]] }; });
     var palette = ['#60a5fa','#a78bfa','#34d399','#f59e0b','#fb7185'];
     var series = [{
       type: 'radar', emphasis: { focus: 'series' },
@@ -732,8 +758,8 @@
     var suite = suiteMap[categoryCode];
     if (!suite) return [];
     var out = [];
-    Object.keys(_BENCHMARK_FAMILY_MAP).forEach(function(bid) {
-      if (_BENCHMARK_FAMILY_MAP[bid] === suite) out.push(bid);
+    Object.keys(_suiteMap()).forEach(function(bid) {
+      if (_suiteMap()[bid] === suite) out.push(bid);
     });
     return out;
   }
@@ -769,7 +795,7 @@
 
     // Rank using ALL physical-AI benchmarks (any benchmark in _BENCHMARK_FAMILY_MAP)
     // — gives richer ranking than only the category-suite benchmarks.
-    var allPhyBenches = Object.keys(_BENCHMARK_FAMILY_MAP);
+    var allPhyBenches = Object.keys(_suiteMap());
     var rows = [];
     if (window.App && window.App.data && window.App.data.models) {
       var modelsById = {};
@@ -845,10 +871,10 @@
   function renderSimToRealCompare() {
     _ensureMountPoint('physical-ai-chart-sim-to-real',
       'Sim-to-Real Compare',
-      'Top model on each sim-to-real benchmark — simpler_env_avg / robocasa / robocasa365.');
+      'Top model on each benchmark — RoboDojo sim vs real (same 30-policy board), SimplerEnv, RoboCasa / RoboCasa365, LIBERO-Plus, RoboTwin hard. Percent scales only (RoboArena Elo is on the leaderboard).');
     if (typeof echarts === 'undefined') return;
 
-    var benches = ['simpler_env_avg', 'robocasa', 'robocasa365'];
+    var benches = ['robodojo_sim_avg_sr', 'robodojo_real_avg_sr', 'simpler_env_avg', 'robocasa', 'robocasa365', 'libero_plus', 'robotwin_hard'];  // 2026-10-04 S294b
     var data = [];
     benches.forEach(function(bid) {
       var rows = _scoresFor(bid);
@@ -1029,10 +1055,12 @@
   function renderEmbodiedHeatmap() {
     _ensureMountPoint('physical-ai-chart-embodied-heatmap',
       'Embodied Reasoning Heatmap',
-      'Top 8 models × cosmos embodied/intuitive/common-sense sub-benches. Cell = score (higher = better).');
+      'Top 12 models × 2026 embodied / spatial / physics suites (EPIC-Bench, Blueprint-Bench 2, MVVBench, ArchSIBench, OVO-S-Bench, SFI-Bench, PhysVista, RoboChrono, ERQA, PhysFieldBench). Cell = score, higher = better; ranked by mean over ≥2 suites.');
     if (typeof echarts === 'undefined') return;
 
-    var subs = ['cosmos_embodied_reasoning','cosmos_intuitive_physics','cosmos_physical_common_sense'];
+    // 2026-10-04 S294b — the three cosmos_* ids hold one model each; these ten suites hold 10–51 models (S291–S292b).
+    var subs = ['epic_bench_overall','blueprint_bench_2','mvvbench_overall','archsibench_overall','ovo_s_bench_overall',
+                'sfi_bench_avg','physvista_reasoning_avg','robochrono_choice_avg','erqa','physfieldbench_overall'];
 
     var byModel = {};
     subs.forEach(function(b) {
@@ -1050,9 +1078,9 @@
         if (typeof v === 'number') { sum += v; cov++; }
       });
       return { model_id: mid, mean: cov > 0 ? sum / cov : 0, coverage: cov };
-    }).filter(function(r) { return r.coverage >= 1; })
+    }).filter(function(r) { return r.coverage >= 2; })   // S294b: ≥2 suites so a single-benchmark model cannot top the grid
       .sort(function(a, b) { return b.mean - a.mean; })
-      .slice(0, 8);
+      .slice(0, 12);
 
     var mountEl = document.getElementById('physical-ai-chart-embodied-heatmap');
     if (ranked.length < 2) {
@@ -1060,13 +1088,13 @@
         while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
         var msg = document.createElement('div');
         msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
-        msg.textContent = 'Insufficient embodied reasoning scores — need ≥2 models with ≥1 cosmos sub-bench';
+        msg.textContent = 'Insufficient embodied reasoning scores — need ≥2 models covering ≥2 of the embodied suites';
         mountEl.appendChild(msg);
       }
       return;
     }
 
-    var subLabels = ['Embodied Reasoning','Intuitive Physics','Common Sense'];
+    var subLabels = ['EPIC-Bench','Blueprint-Bench 2','MVVBench','ArchSIBench','OVO-S-Bench','SFI-Bench','PhysVista','RoboChrono','ERQA','PhysFieldBench'];
     var data = [];
     var maxV = 0;
     ranked.forEach(function(r, ri) {

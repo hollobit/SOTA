@@ -980,14 +980,19 @@ var PhysicalAI = {
                 'libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long',
                 'robocasa', 'robocasa365', 'robotwin2', 'vlabench', 'vlabench_track1_primitive',
                 'bridge_v2', 'aloha_4task_avg', 'open_x_embodiment', 'simpler_env_avg',
-                'gr1_real_lang_following', 'unitree_g1_1k_demos', 'realworld_language_following'
+                'gr1_real_lang_following', 'unitree_g1_1k_demos', 'realworld_language_following',
+                // 2026-10-04 S294b — 2026 manipulation suites on 0–100 scales (RoboArena Elo and the 0–13% RoboDojo rates stay out of this raw mean; see Sim-to-Real chart)
+                'libero_plus', 'libero_avg', 'libero_vpro_overall', 'libero_occ_avg', 'robotwin_hard'
             ] },
             { name: 'World Model Coherence', benches: [
                 'world_model_consistency', 'world_model_fps', 'world_model_visual_memory',
                 'pai_bench_text2world', 'pai_bench_image2world',
                 'worldscore_static', 'worldscore_dynamic', 'worldscore_3d_consistency',
                 'ewmbench', 'worldmodelbench_avg',
-                'humanoid_sampling_psnr', 'robot_manip_psnr'
+                'humanoid_sampling_psnr', 'robot_manip_psnr',
+                // 2026-10-04 S294b — What-If World is the only 2026 physics-in-video suite stored as a percentage; Apple-π / Principia / AV-Phys / iWorld (0–1)
+                // and PhyGround / WorldJen (1–5) are on the World Model Quality Radar, which scales per axis
+                'whatifworld_apeo_single_avg'
             ] },
             { name: 'Embodied Reasoning', benches: [
                 'gemini_instrument_reading', 'skild_failure_recovery',

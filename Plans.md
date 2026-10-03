@@ -3,6 +3,12 @@
 ## Current Status: Session 292b — sweep follow-ups: April–May gap, leftover papers, official boards (2026-10-03)
 **3,677 models · 6,204 benchmarks · 46,885 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-10-04 Session 294b — Physical AI charts refresh
+- `physical-ai-charts.js`: `_suiteMap()` merges the 27-entry static `_BENCHMARK_FAMILY_MAP` with `PhysicalAI.BENCHMARK_SUITES` (static wins), so the catalog (26 → 268 rows), family matrix (+Embodied Safety / Industrial Deployment columns) and hero rankings follow the tab lists automatically. World-model radar re-axed to PhyGround · Apple-π · What-If World · Principia · WorldJen · AV-Phys with per-axis max (mixed 1–5 / 0–1 / % scales). Embodied heatmap re-axed to the ten 2026 spatial / physics suites (all 0–100), top 12, coverage ≥ 2. Sim-to-real bars + RoboDojo sim/real, LIBERO-Plus, RoboTwin hard.
+- `physical-ai.js` capability radar: VLA axis +LIBERO-Plus / avg / VPro / Occ + RoboTwin hard; World axis +What-If World only (the other 2026 physics suites are 0–1 or 1–5 and the axis is a raw mean; RoboDojo 0–13% left out for the same reason).
+- Not touched: LIBERO suite radar / progression (still the 4 LIBERO splits, 10 models), `_DEPLOYMENT_STATUS` (2025 deployment notes, no new sourced statuses), industrial deployment map.
+- Gotcha: `index.html` pins `physical-ai-charts.js` to a fixed `?v=` tag, so a local check needs a fresh `<script>` injection (or a tag bump); production gets the HEAD-SHA tag on deploy.
+
 ### 2026-10-04 Session 294 — Physical AI tab refresh
 - CATEGORIES models[]: VLA +DreamZero, RLDX-1, PHIZERO, π0.7, Cosmos3-Nano-Policy; World Foundation Models +Cosmos-Predict2 2B/14B; two duplicate ids removed. Section notes rewritten around the S290–S292b suites. VENDOR_GROUPS +8 colours (exact DB vendor strings).
 - physical-ai-charts.js: `_PHY_BREAKTHROUGHS` +5 2026 entries (ER 2, Qwen-RobotManip, RLDX-1, Spirit v1.6 / DreamZero, π0.7) and the GR00T-N1.7 / ER 1.6 years corrected to the DB dates; `_FAMILY_MAP` +4 families (Qwen Robotics, MolmoAct, Xiaomi·Spirit·LingBot·JD·RLWRLD·PHIZERO, Open VLA toolkits) and world-model keywords for Genie / Wan / Veo / HY-World / V-JEPA / Marble / GAIA-2 / Matrix-Game.
