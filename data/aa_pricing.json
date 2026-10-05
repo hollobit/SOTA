@@ -1,35 +1,2784 @@
 {
-  "_meta": {
-    "source": "https://artificialanalysis.ai/leaderboards/models",
-    "collected_at": "2026-04-25",
-    "notes": "Intelligence Index + USD per 1M tokens (input/output) + output tokens/sec. Standard / high-reasoning variants where multiple tiers exist. 2026-04-25 update: confirmed DeepSeek V4 pricing from techcrunch.com + api-docs.deepseek.com. GPT-5.5 / Kimi K2.6 / Qwen3.6-27B remain provisional pending AA confirmation."
+ "_meta": {
+  "source": "data/benchmark.db price scores (input_price_per_mtok_lower_better / output_price_per_mtok_lower_better / cached_input_price_per_mtok_lower_better; AA Intelligence Index v4.3, AA output tok/s where present)",
+  "collected_at": "2026-10-06",
+  "generated_by": "S295 regen_agent_data.py",
+  "notes": "318 models from DB price scores (official API list prices as ingested per model; see _source/_as_of), 0 entries carried over from the 2026-04-25 hand-curated file for models without a DB price. Effort-tier ids share the base model price."
+ },
+ "models": [
+  {
+   "model_id": "ai21/jamba-large-1.7",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 8.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
   },
-  "models": [
-    { "model_id": "anthropic/claude-opus-4.7",   "intelligence_index": 57, "price_per_1m_input": 5.00,  "price_per_1m_output": 25.00,  "tokens_per_second": 49.7 },
-    { "model_id": "deepseek/deepseek-v4-pro",    "price_per_1m_input": 0.145, "price_per_1m_output": 3.48, "_note": "Confirmed via api-docs.deepseek.com/updates 2026-04-24 + TechCrunch coverage; deepseek-v4-pro endpoint" },
-    { "model_id": "deepseek/deepseek-v4-flash",  "price_per_1m_input": 0.14,  "price_per_1m_output": 0.28, "_note": "Confirmed; deepseek-v4-flash endpoint. Lowest-cost frontier tier; legacy deepseek-chat/-reasoner deprecated 2026-07-24" },
-    { "model_id": "openai/gpt-5.5",              "price_per_1m_input": 2.50,  "price_per_1m_output": 15.00, "_provisional": true, "_note": "Pricing matches GPT-5.4 tier — awaiting AA confirmation" },
-    { "model_id": "openai/gpt-5.5-pro",          "price_per_1m_input": 30.00, "price_per_1m_output": 180.00, "_provisional": true, "_note": "Matches GPT-5.4 Pro tier (parallel test-time compute variant)" },
-    { "model_id": "moonshot/kimi-k2.6",          "price_per_1m_input": 0.60,  "price_per_1m_output": 3.00,  "_provisional": true, "_note": "Same tier as Kimi K2.5 per platform.kimi.ai/pricing/chat-k26" },
-    { "model_id": "alibaba/qwen3.6-27b",         "price_per_1m_input": 0.20,  "price_per_1m_output": 0.80,  "_provisional": true, "_note": "Open-weight, Apache 2.0 — typical hosted pricing across providers" },
-    { "model_id": "anthropic/claude-opus-4.6",   "intelligence_index": 46, "price_per_1m_input": 5.00,  "price_per_1m_output": 25.00,  "tokens_per_second": 38.2 },
-    { "model_id": "anthropic/claude-sonnet-4.5", "intelligence_index": 37, "price_per_1m_input": 3.00,  "price_per_1m_output": 15.00,  "tokens_per_second": 39.3 },
-    { "model_id": "anthropic/claude-sonnet-4.6", "intelligence_index": 44, "price_per_1m_input": 3.00,  "price_per_1m_output": 15.00,  "tokens_per_second": 44.4 },
-    { "model_id": "openai/gpt-5",                "intelligence_index": 45, "price_per_1m_input": 1.25,  "price_per_1m_output": 10.00,  "tokens_per_second": 76.7 },
-    { "model_id": "openai/gpt-5.4",              "intelligence_index": 57, "price_per_1m_input": 2.50,  "price_per_1m_output": 15.00,  "tokens_per_second": 73.2 },
-    { "model_id": "openai/gpt-5.4-pro",          "price_per_1m_input": 30.00, "price_per_1m_output": 180.00 },
-    { "model_id": "openai/gpt-5.3-codex",        "intelligence_index": 54, "price_per_1m_input": 1.75,  "price_per_1m_output": 14.00,  "tokens_per_second": 82.6 },
-    { "model_id": "openai/o3",                   "intelligence_index": 38, "price_per_1m_input": 2.00,  "price_per_1m_output": 8.00,   "tokens_per_second": 82.3 },
-    { "model_id": "google/gemini-3-pro",         "intelligence_index": 48, "price_per_1m_input": 2.00,  "price_per_1m_output": 12.00,  "tokens_per_second": 133.8 },
-    { "model_id": "google/gemini-3.1-pro",       "intelligence_index": 57, "price_per_1m_input": 2.00,  "price_per_1m_output": 12.00,  "tokens_per_second": 129.6 },
-    { "model_id": "google/gemini-3-flash",       "intelligence_index": 35, "price_per_1m_input": 0.50,  "price_per_1m_output": 3.00,   "tokens_per_second": 158.9 },
-    { "model_id": "moonshot/kimi-k2.5",          "intelligence_index": 47, "price_per_1m_input": 0.60,  "price_per_1m_output": 3.00,   "tokens_per_second": 38.3 },
-    { "model_id": "moonshot/kimi-k2-thinking",   "intelligence_index": 41, "price_per_1m_input": 0.60,  "price_per_1m_output": 2.50,   "tokens_per_second": 75.4 },
-    { "model_id": "deepseek/deepseek-v3.2",      "intelligence_index": 32, "price_per_1m_input": 0.28,  "price_per_1m_output": 0.42,   "tokens_per_second": 31.1 },
-    { "model_id": "zhipu/glm-4.7",               "intelligence_index": 42, "price_per_1m_input": 0.60,  "price_per_1m_output": 2.20,   "tokens_per_second": 106.5 },
-    { "model_id": "zhipu/glm-5",                 "intelligence_index": 50, "price_per_1m_input": 1.00,  "price_per_1m_output": 3.20,   "tokens_per_second": 66.7 },
-    { "model_id": "xai/grok-4",                  "intelligence_index": 42, "price_per_1m_input": 3.00,  "price_per_1m_output": 15.00,  "tokens_per_second": 56.7 },
-    { "model_id": "xai/grok-4.20",               "intelligence_index": 49, "price_per_1m_input": 2.00,  "price_per_1m_output": 6.00,   "tokens_per_second": 168.3 },
-    { "model_id": "meta/llama-4-maverick",       "intelligence_index": 18, "price_per_1m_input": 0.35,  "price_per_1m_output": 0.85,   "tokens_per_second": 106.5 }
-  ]
+  {
+   "model_id": "alibaba/qwen2.5-72b",
+   "price_per_1m_input": 0.36,
+   "price_per_1m_output": 0.4,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen-2.5-72b-instruct/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen2.5-vl-72b",
+   "price_per_1m_input": 0.8,
+   "price_per_1m_output": 1.0,
+   "price_per_1m_cached_input": 0.4,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen2.5-vl-72b-instruct/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3-14b",
+   "price_per_1m_input": 0.2275,
+   "price_per_1m_output": 0.91,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-14b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3-235b-a22b",
+   "price_per_1m_input": 0.455,
+   "price_per_1m_output": 1.82,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3-235b-a22b-instruct-2507",
+   "price_per_1m_input": 0.1495,
+   "price_per_1m_output": 0.598,
+   "intelligence_index": 12.0,
+   "tokens_per_second": 58.4,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-235b-a22b-2507/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3-235b-a22b-thinking-2507",
+   "price_per_1m_input": 0.23,
+   "price_per_1m_output": 2.3,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3-30b-a3b",
+   "price_per_1m_input": 0.12,
+   "price_per_1m_output": 0.5,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3-30b-thinking-2507",
+   "price_per_1m_input": 0.2,
+   "price_per_1m_output": 2.4,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-30b-a3b-thinking-2507/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3-32b",
+   "price_per_1m_input": 0.08,
+   "price_per_1m_output": 0.28,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3-8b",
+   "price_per_1m_input": 0.117,
+   "price_per_1m_output": 0.455,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3-coder",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 1.0,
+   "price_per_1m_cached_input": 0.1,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3-coder-next",
+   "price_per_1m_input": 0.12,
+   "price_per_1m_output": 0.8,
+   "price_per_1m_cached_input": 0.07,
+   "intelligence_index": 9.2,
+   "tokens_per_second": 101.9,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3-max",
+   "price_per_1m_input": 0.78,
+   "price_per_1m_output": 3.9,
+   "price_per_1m_cached_input": 0.156,
+   "intelligence_index": 15.6,
+   "tokens_per_second": 54.6,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3-vl-235b-a22b-instruct",
+   "price_per_1m_input": 0.26,
+   "price_per_1m_output": 1.04,
+   "intelligence_index": 9.9,
+   "tokens_per_second": 52.6,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-235b-a22b-instruct/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3-vl-235b-a22b-thinking",
+   "price_per_1m_input": 0.4,
+   "price_per_1m_output": 4.0,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-235b-a22b-thinking/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3-vl-30b-a3b",
+   "price_per_1m_input": 0.2,
+   "price_per_1m_output": 2.4,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3-vl-30b-a3b-instruct",
+   "price_per_1m_input": 0.13,
+   "price_per_1m_output": 0.52,
+   "intelligence_index": 7.9,
+   "tokens_per_second": 113.4,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-30b-a3b-instruct/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3-vl-32b",
+   "price_per_1m_input": 0.104,
+   "price_per_1m_output": 0.416,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3-vl-8b",
+   "price_per_1m_input": 0.117,
+   "price_per_1m_output": 0.455,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-vl-8b-instruct/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.5-122b-a10b",
+   "price_per_1m_input": 0.26,
+   "price_per_1m_output": 2.08,
+   "intelligence_index": 15.6,
+   "tokens_per_second": 125.5,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-122b-a10b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.5-27b",
+   "price_per_1m_input": 0.195,
+   "price_per_1m_output": 1.56,
+   "intelligence_index": 22.9,
+   "tokens_per_second": 75.6,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3.5-35b-a3b",
+   "price_per_1m_input": 0.1625,
+   "price_per_1m_output": 1.3,
+   "intelligence_index": 19.3,
+   "tokens_per_second": 146.7,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-35b-a3b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.5-397b-a17b",
+   "price_per_1m_input": 0.39,
+   "price_per_1m_output": 2.34,
+   "intelligence_index": 18.4,
+   "tokens_per_second": 89.4,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-397b-a17b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.5-9b",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.15,
+   "intelligence_index": 13.7,
+   "tokens_per_second": 34.8,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3.5-flash",
+   "price_per_1m_input": 0.065,
+   "price_per_1m_output": 0.26,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.5-flash-02-23/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.5-plus",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 1.8,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "alibaba/qwen3.6-27b",
+   "price_per_1m_input": 0.45,
+   "price_per_1m_output": 2.7,
+   "price_per_1m_cached_input": 0.12,
+   "intelligence_index": 21.4,
+   "tokens_per_second": 56.2,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-27b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.6-35b-a3b",
+   "price_per_1m_input": 0.05,
+   "price_per_1m_output": 0.7,
+   "intelligence_index": 18.2,
+   "tokens_per_second": 124.1,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-35b-a3b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.6-flash",
+   "price_per_1m_input": 0.1875,
+   "price_per_1m_output": 1.125,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-flash/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.6-max-preview",
+   "price_per_1m_input": 1.027,
+   "price_per_1m_output": 6.162,
+   "intelligence_index": 28.4,
+   "tokens_per_second": 70.6,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-max-preview/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.6-plus",
+   "price_per_1m_input": 0.325,
+   "price_per_1m_output": 1.95,
+   "intelligence_index": 27.0,
+   "tokens_per_second": 56.1,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.6-plus/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.7-flash",
+   "price_per_1m_input": 0.03,
+   "price_per_1m_output": 0.13,
+   "price_per_1m_cached_input": 0.006,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.7-flash/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.7-max",
+   "price_per_1m_input": 1.475,
+   "price_per_1m_output": 4.425,
+   "price_per_1m_cached_input": 0.295,
+   "intelligence_index": 29.5,
+   "tokens_per_second": 201.5,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.7-max/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.7-plus",
+   "price_per_1m_input": 0.32,
+   "price_per_1m_output": 1.28,
+   "price_per_1m_cached_input": 0.064,
+   "intelligence_index": 25.2,
+   "tokens_per_second": 56.8,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.7-plus/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.8-2.4t-a95b",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 6.0,
+   "price_per_1m_cached_input": 0.25,
+   "intelligence_index": 39.9,
+   "tokens_per_second": 39.6,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-2.4t-a95b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.8-27b",
+   "price_per_1m_input": 0.425,
+   "price_per_1m_output": 2.55,
+   "price_per_1m_cached_input": 0.085,
+   "intelligence_index": 33.7,
+   "tokens_per_second": 43.8,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-27b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.8-flash-next",
+   "price_per_1m_input": 0.15,
+   "price_per_1m_output": 0.47,
+   "price_per_1m_cached_input": 0.016,
+   "intelligence_index": 39.8,
+   "tokens_per_second": 57.6,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-flash/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.8-max",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 6.0,
+   "price_per_1m_cached_input": 0.25,
+   "intelligence_index": 40.2,
+   "tokens_per_second": 39.7,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3.8-max/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "alibaba/qwen3.8-omni-flash",
+   "price_per_1m_input": 0.15,
+   "price_per_1m_output": 0.47,
+   "price_per_1m_cached_input": 0.016,
+   "_source": "https://openrouter.ai/qwen/qwen3.8-omni-flash",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "amazon/nova-2-lite",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 2.5,
+   "_source": "https://openrouter.ai/api/v1/models/amazon/nova-2-lite-v1/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "amazon/nova-premier",
+   "price_per_1m_input": 2.5,
+   "price_per_1m_output": 12.5,
+   "price_per_1m_cached_input": 0.625,
+   "intelligence_index": 9.2,
+   "_source": "https://openrouter.ai/api/v1/models/amazon/nova-premier-v1/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "amazon/nova-pro-v1",
+   "price_per_1m_input": 0.8,
+   "price_per_1m_output": 3.2,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "anthropic/claude-3-haiku",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 1.25,
+   "price_per_1m_cached_input": 0.03,
+   "intelligence_index": 5.6,
+   "_source": "https://openrouter.ai/api/v1/models/anthropic/claude-3-haiku/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-fable-5",
+   "price_per_1m_input": 10.0,
+   "price_per_1m_output": 50.0,
+   "price_per_1m_cached_input": 1.0,
+   "intelligence_index": 49.6,
+   "tokens_per_second": 60.3,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-fable-5.1",
+   "price_per_1m_input": 10.0,
+   "price_per_1m_output": 50.0,
+   "price_per_1m_cached_input": 0.25,
+   "intelligence_index": 53.4,
+   "tokens_per_second": 67.1,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-haiku-4.5",
+   "price_per_1m_input": 1.0,
+   "price_per_1m_output": 5.0,
+   "price_per_1m_cached_input": 0.1,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-mythos-5",
+   "price_per_1m_input": 10.0,
+   "price_per_1m_output": 50.0,
+   "price_per_1m_cached_input": 1.0,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-mythos-5.1",
+   "price_per_1m_input": 10.0,
+   "price_per_1m_output": 50.0,
+   "price_per_1m_cached_input": 0.25,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-opus-4",
+   "price_per_1m_input": 15.0,
+   "price_per_1m_output": 75.0,
+   "price_per_1m_cached_input": 1.5,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-opus-4.1",
+   "price_per_1m_input": 15.0,
+   "price_per_1m_output": 75.0,
+   "price_per_1m_cached_input": 1.5,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-opus-4.5",
+   "price_per_1m_input": 5.0,
+   "price_per_1m_output": 25.0,
+   "price_per_1m_cached_input": 0.5,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-opus-4.6",
+   "price_per_1m_input": 5.0,
+   "price_per_1m_output": 25.0,
+   "price_per_1m_cached_input": 0.5,
+   "tokens_per_second": 37.6,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-opus-4.7",
+   "price_per_1m_input": 5.0,
+   "price_per_1m_output": 25.0,
+   "price_per_1m_cached_input": 0.5,
+   "intelligence_index": 40.7,
+   "tokens_per_second": 45.9,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-opus-4.8",
+   "price_per_1m_input": 5.0,
+   "price_per_1m_output": 25.0,
+   "price_per_1m_cached_input": 0.5,
+   "intelligence_index": 41.8,
+   "tokens_per_second": 67.0,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-opus-5",
+   "price_per_1m_input": 5.0,
+   "price_per_1m_output": 25.0,
+   "price_per_1m_cached_input": 0.5,
+   "intelligence_index": 50.8,
+   "tokens_per_second": 57.5,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-opus-5.5",
+   "price_per_1m_input": 4.0,
+   "price_per_1m_output": 20.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 57.6,
+   "tokens_per_second": 92.2,
+   "_source": "https://www-cdn.anthropic.com/fc1b44717c85dc068bc6ba5024219938094694bd/Claude%20Opus%205.5%20System%20Card.pdf",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "anthropic/claude-opus-5.5-high",
+   "price_per_1m_input": 4.0,
+   "price_per_1m_output": 20.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 53.6,
+   "tokens_per_second": 90.4,
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_as_of": "2026-09-24"
+  },
+  {
+   "model_id": "anthropic/claude-opus-5.5-low",
+   "price_per_1m_input": 4.0,
+   "price_per_1m_output": 20.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 42.3,
+   "tokens_per_second": 77.4,
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_as_of": "2026-09-24"
+  },
+  {
+   "model_id": "anthropic/claude-opus-5.5-medium",
+   "price_per_1m_input": 4.0,
+   "price_per_1m_output": 20.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 51.2,
+   "tokens_per_second": 75.0,
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_as_of": "2026-09-24"
+  },
+  {
+   "model_id": "anthropic/claude-opus-5.5-xhigh",
+   "price_per_1m_input": 4.0,
+   "price_per_1m_output": 20.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 56.0,
+   "tokens_per_second": 92.7,
+   "_source": "https://www.anthropic.com/claude-opus-5-5",
+   "_as_of": "2026-09-24"
+  },
+  {
+   "model_id": "anthropic/claude-sonnet-4",
+   "price_per_1m_input": 3.0,
+   "price_per_1m_output": 15.0,
+   "price_per_1m_cached_input": 0.3,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-sonnet-4.5",
+   "price_per_1m_input": 3.0,
+   "price_per_1m_output": 15.0,
+   "price_per_1m_cached_input": 0.3,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-sonnet-4.6",
+   "price_per_1m_input": 3.0,
+   "price_per_1m_output": 15.0,
+   "price_per_1m_cached_input": 0.3,
+   "intelligence_index": 30.1,
+   "tokens_per_second": 47.6,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-sonnet-5",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 38.2,
+   "tokens_per_second": 74.6,
+   "_source": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "anthropic/claude-sonnet-5.5",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 56.0,
+   "tokens_per_second": 136.5,
+   "_source": "https://artificialanalysis.ai/models/claude-sonnet-5-5",
+   "_as_of": "2026-09-30"
+  },
+  {
+   "model_id": "anthropic/claude-sonnet-5.5-high",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 46.7,
+   "tokens_per_second": 89.5,
+   "_source": "https://artificialanalysis.ai/models/claude-sonnet-5-5-high",
+   "_as_of": "2026-09-30"
+  },
+  {
+   "model_id": "anthropic/claude-sonnet-5.5-low",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "tokens_per_second": 82.8,
+   "_source": "https://artificialanalysis.ai/models/claude-sonnet-5-5-low",
+   "_as_of": "2026-09-30"
+  },
+  {
+   "model_id": "anthropic/claude-sonnet-5.5-medium",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 40.7,
+   "tokens_per_second": 91.4,
+   "_source": "https://artificialanalysis.ai/models/claude-sonnet-5-5-medium",
+   "_as_of": "2026-09-30"
+  },
+  {
+   "model_id": "anthropic/claude-sonnet-5.5-xhigh",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 51.9,
+   "tokens_per_second": 104.9,
+   "_source": "https://artificialanalysis.ai/models/claude-sonnet-5-5-xhigh",
+   "_as_of": "2026-09-30"
+  },
+  {
+   "model_id": "arcee-ai/trinity-large-thinking",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 0.8,
+   "price_per_1m_cached_input": 0.06,
+   "intelligence_index": 10.8,
+   "tokens_per_second": 323.5,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "bytedance/doubao-seed-2.0-code",
+   "price_per_1m_input": 0.5,
+   "price_per_1m_output": 3.0,
+   "_source": "https://openrouter.ai/api/v1/models/bytedance-seed/seed-2.0-code/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "bytedance/doubao-seed-2.0-mini",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.4,
+   "_source": "https://openrouter.ai/api/v1/models/bytedance-seed/seed-2.0-mini/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "bytedance/seed-1.6",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 2.0,
+   "_source": "https://openrouter.ai/api/v1/models/bytedance-seed/seed-1.6/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "bytedance/seed-2.0-lite",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 2.0,
+   "_source": "https://openrouter.ai/api/v1/models/bytedance-seed/seed-2.0-lite/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "bytedance/seed-2.1-turbo",
+   "price_per_1m_input": 0.5,
+   "price_per_1m_output": 2.5,
+   "_source": "https://openrouter.ai/api/v1/models/bytedance-seed/seed-2-1-turbo/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "bytedance/ui-tars-1.5-7b",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.2,
+   "price_per_1m_cached_input": 0.1,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "cohere/command-a",
+   "price_per_1m_input": 2.5,
+   "price_per_1m_output": 10.0,
+   "intelligence_index": 7.0,
+   "tokens_per_second": 59.8,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "cohere/command-a-plus",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 1.5,
+   "price_per_1m_cached_input": 0.15,
+   "intelligence_index": 13.1,
+   "tokens_per_second": 209.3,
+   "_source": "https://openrouter.ai/cohere/command-a-plus",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "cohere/command-r-plus-08-2024",
+   "price_per_1m_input": 2.5,
+   "price_per_1m_output": 10.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "deepseek/deepseek-r1",
+   "price_per_1m_input": 0.7,
+   "price_per_1m_output": 2.5,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "deepseek/deepseek-r1-0528",
+   "price_per_1m_input": 0.5,
+   "price_per_1m_output": 2.15,
+   "price_per_1m_cached_input": 0.35,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "deepseek/deepseek-r1-distill-llama-70b",
+   "price_per_1m_input": 0.8,
+   "price_per_1m_output": 0.8,
+   "intelligence_index": 7.9,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "deepseek/deepseek-v3.1",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 0.95,
+   "price_per_1m_cached_input": 0.13,
+   "_source": "https://openrouter.ai/api/v1/models/deepseek/deepseek-chat-v3.1/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "deepseek/deepseek-v3.1-terminus",
+   "price_per_1m_input": 0.27,
+   "price_per_1m_output": 1.0,
+   "price_per_1m_cached_input": 0.135,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "deepseek/deepseek-v3.2",
+   "price_per_1m_input": 0.269,
+   "price_per_1m_output": 0.4,
+   "price_per_1m_cached_input": 0.1345,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "deepseek/deepseek-v3.2-exp",
+   "price_per_1m_input": 0.27,
+   "price_per_1m_output": 0.41,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "deepseek/deepseek-v4-flash",
+   "price_per_1m_input": 0.44,
+   "price_per_1m_output": 1.32,
+   "price_per_1m_cached_input": 0.014,
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "deepseek/deepseek-v4-flash-0731",
+   "price_per_1m_input": 0.44,
+   "price_per_1m_output": 1.32,
+   "price_per_1m_cached_input": 0.014,
+   "intelligence_index": 34.3,
+   "tokens_per_second": 218.0,
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "deepseek/deepseek-v4-flash-vision-exp",
+   "price_per_1m_input": 0.44,
+   "price_per_1m_output": 1.32,
+   "price_per_1m_cached_input": 0.014,
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "deepseek/deepseek-v4-pro",
+   "price_per_1m_input": 1.32,
+   "price_per_1m_output": 3.96,
+   "price_per_1m_cached_input": 0.044,
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "deepseek/deepseek-v4-pro-0813",
+   "price_per_1m_input": 1.32,
+   "price_per_1m_output": 3.96,
+   "price_per_1m_cached_input": 0.044,
+   "intelligence_index": 36.0,
+   "tokens_per_second": 81.0,
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "deepseek/deepseek-v4.1-flash",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 1.2,
+   "price_per_1m_cached_input": 0.006,
+   "intelligence_index": 39.5,
+   "tokens_per_second": 210.5,
+   "_source": "https://api-docs.deepseek.com/quick_start/pricing",
+   "_as_of": "2026-09-10"
+  },
+  {
+   "model_id": "google/gemini-2.5-flash",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 2.5,
+   "price_per_1m_cached_input": 0.03,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-2.5-flash-image",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 2.5,
+   "price_per_1m_cached_input": 0.03,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "google/gemini-2.5-flash-lite",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.4,
+   "price_per_1m_cached_input": 0.01,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-2.5-pro",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.125,
+   "intelligence_index": 16.1,
+   "tokens_per_second": 123.9,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-2.5-pro-preview-05-06",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.125,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "google/gemini-3-flash",
+   "price_per_1m_input": 0.5,
+   "price_per_1m_output": 3.0,
+   "price_per_1m_cached_input": 0.05,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3-pro",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 12.0,
+   "_source": "https://artificialanalysis.ai/leaderboards/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "google/gemini-3-pro-image",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 12.0,
+   "price_per_1m_cached_input": 0.2,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.1-flash-image",
+   "price_per_1m_input": 0.5,
+   "price_per_1m_output": 3.0,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.1-flash-image-preview",
+   "price_per_1m_input": 0.5,
+   "price_per_1m_output": 3.0,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.1-flash-lite",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 1.5,
+   "price_per_1m_cached_input": 0.025,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.1-flash-lite-image",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 1.5,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.1-flash-lite-preview",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 1.5,
+   "price_per_1m_cached_input": 0.025,
+   "intelligence_index": 15.6,
+   "tokens_per_second": 265.5,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.1-pro",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 12.0,
+   "price_per_1m_cached_input": 0.2,
+   "tokens_per_second": 134.0,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.1-pro-preview",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 12.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 29.7,
+   "tokens_per_second": 113.2,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.5-flash",
+   "price_per_1m_input": 1.5,
+   "price_per_1m_output": 9.0,
+   "price_per_1m_cached_input": 0.15,
+   "intelligence_index": 32.6,
+   "tokens_per_second": 195.0,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.5-flash-lite",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 2.5,
+   "price_per_1m_cached_input": 0.03,
+   "intelligence_index": 22.2,
+   "tokens_per_second": 320.0,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.6-flash",
+   "price_per_1m_input": 0.75,
+   "price_per_1m_output": 3.75,
+   "price_per_1m_cached_input": 0.075,
+   "intelligence_index": 34.0,
+   "tokens_per_second": 183.9,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.7-flash",
+   "price_per_1m_input": 0.75,
+   "price_per_1m_output": 3.75,
+   "price_per_1m_cached_input": 0.075,
+   "intelligence_index": 39.1,
+   "tokens_per_second": 289.5,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-3.8-flash",
+   "price_per_1m_input": 0.75,
+   "price_per_1m_output": 3.75,
+   "price_per_1m_cached_input": 0.075,
+   "intelligence_index": 40.9,
+   "tokens_per_second": 244.7,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemini-4-argon",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.1,
+   "intelligence_index": 52.6,
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+   "_as_of": "2026-10-01"
+  },
+  {
+   "model_id": "google/gemini-robotics-er-2",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "_source": "https://ai.google.dev/gemini-api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemma-3-12b",
+   "price_per_1m_input": 0.05,
+   "price_per_1m_output": 0.15,
+   "intelligence_index": 3.8,
+   "_source": "https://openrouter.ai/api/v1/models/google/gemma-3-12b-it/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemma-3-27b",
+   "price_per_1m_input": 0.08,
+   "price_per_1m_output": 0.16,
+   "intelligence_index": 4.9,
+   "_source": "https://openrouter.ai/api/v1/models/google/gemma-3-27b-it/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemma-3-4b",
+   "price_per_1m_input": 0.05,
+   "price_per_1m_output": 0.1,
+   "intelligence_index": 4.8,
+   "_source": "https://openrouter.ai/api/v1/models/google/gemma-3-4b-it/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "price_per_1m_input": 0.07,
+   "price_per_1m_output": 0.34,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "price_per_1m_input": 0.09,
+   "price_per_1m_output": 0.34,
+   "price_per_1m_cached_input": 0.05,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "ibm/granite-4.0-h-micro",
+   "price_per_1m_input": 0.017,
+   "price_per_1m_output": 0.112,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "ibm/granite-4.2-8b",
+   "price_per_1m_input": 0.06,
+   "price_per_1m_output": 0.25,
+   "price_per_1m_cached_input": 0.015,
+   "intelligence_index": 11.1,
+   "tokens_per_second": 66.4,
+   "_source": "https://openrouter.ai/api/v1/models/ibm-granite/granite-4.2-8b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "inception/mercury-2",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 0.75,
+   "price_per_1m_cached_input": 0.025,
+   "intelligence_index": 13.8,
+   "tokens_per_second": 776.8,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "inception/mercury-2.5-preview",
+   "price_per_1m_input": 0.04,
+   "price_per_1m_output": 0.15,
+   "price_per_1m_cached_input": 0.004,
+   "_source": "https://openrouter.ai/api/v1/models/inception/mercury-2.5-preview/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "inclusionai/ling-2.6-1t",
+   "price_per_1m_input": 0.075,
+   "price_per_1m_output": 0.625,
+   "price_per_1m_cached_input": 0.015,
+   "intelligence_index": 17.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "inclusionai/ling-2.6-flash",
+   "price_per_1m_input": 0.01,
+   "price_per_1m_output": 0.03,
+   "price_per_1m_cached_input": 0.002,
+   "intelligence_index": 9.7,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "inclusionai/ling-3.0-flash",
+   "price_per_1m_input": 0.021,
+   "price_per_1m_output": 0.063,
+   "price_per_1m_cached_input": 0.0042,
+   "intelligence_index": 24.9,
+   "tokens_per_second": 330.6,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "inclusionai/ling-3.0-flash-fin",
+   "price_per_1m_input": 0.06,
+   "price_per_1m_output": 0.18,
+   "price_per_1m_cached_input": 0.012,
+   "intelligence_index": 22.6,
+   "tokens_per_second": 179.2,
+   "_source": "https://openrouter.ai/api/v1/models/inclusionai/ling-3.0-flash-fin/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "inclusionai/ling-3.0-tiny",
+   "price_per_1m_input": 0.0,
+   "price_per_1m_output": 0.0,
+   "intelligence_index": 15.3,
+   "tokens_per_second": 48.7,
+   "_source": "https://openrouter.ai/inclusionai/ling-3.0-tiny:free",
+   "_as_of": "2026-08-07"
+  },
+  {
+   "model_id": "inclusionai/ring-2.6-1t",
+   "price_per_1m_input": 0.075,
+   "price_per_1m_output": 0.625,
+   "price_per_1m_cached_input": 0.015,
+   "intelligence_index": 16.6,
+   "tokens_per_second": 117.6,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "kuaishou/kat-coder-v2.5",
+   "price_per_1m_input": 0.74,
+   "price_per_1m_output": 2.96,
+   "price_per_1m_cached_input": 0.15,
+   "_source": "https://openrouter.ai/api/v1/models/kwaipilot/kat-coder-pro-v2.5/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "meituan/longcat-2.0",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 1.2,
+   "price_per_1m_cached_input": 0.006,
+   "intelligence_index": 19.1,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "meta/llama-3.1-70b",
+   "price_per_1m_input": 0.4,
+   "price_per_1m_output": 0.4,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "meta/llama-3.1-8b",
+   "price_per_1m_input": 0.05,
+   "price_per_1m_output": 0.08,
+   "price_per_1m_cached_input": 0.025,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "meta/llama-3.2-1b",
+   "price_per_1m_input": 0.027,
+   "price_per_1m_output": 0.201,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "meta/llama-3.2-3b",
+   "price_per_1m_input": 0.05,
+   "price_per_1m_output": 0.33,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "meta/llama-3.2-3b-instruct",
+   "price_per_1m_input": 0.05,
+   "price_per_1m_output": 0.33,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "meta/llama-3.3-70b",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.32,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "meta/llama-3.3-70b-instruct",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.32,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "meta/llama-4-maverick",
+   "price_per_1m_input": 0.2,
+   "price_per_1m_output": 0.696,
+   "intelligence_index": 10.0,
+   "tokens_per_second": 100.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "meta/llama-4-scout",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.3,
+   "intelligence_index": 8.1,
+   "tokens_per_second": 132.7,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "meta/muse-glimmer-30b",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 1.1,
+   "price_per_1m_cached_input": 0.04,
+   "intelligence_index": 17.5,
+   "tokens_per_second": 143.8,
+   "_source": "https://openrouter.ai/api/v1/models/meta/muse-glimmer-30b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "meta/muse-spark-1.1",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 4.25,
+   "price_per_1m_cached_input": 0.15,
+   "intelligence_index": 33.7,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "meta/muse-spark-1.2",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 4.25,
+   "price_per_1m_cached_input": 0.15,
+   "intelligence_index": 39.6,
+   "tokens_per_second": 260.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "meta/muse-spark-1.3",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 4.25,
+   "price_per_1m_cached_input": 0.15,
+   "intelligence_index": 48.1,
+   "tokens_per_second": 190.1,
+   "_source": "https://developer.meta.com/ai/models/muse-spark/  (standard tier; contributor tier $0.10/$0.20)",
+   "_as_of": "2026-09-03"
+  },
+  {
+   "model_id": "microsoft/phi-4",
+   "price_per_1m_input": 0.07,
+   "price_per_1m_output": 0.14,
+   "intelligence_index": 5.9,
+   "tokens_per_second": 40.5,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "minimax/m2",
+   "price_per_1m_input": 0.255,
+   "price_per_1m_output": 1.02,
+   "intelligence_index": 18.6,
+   "tokens_per_second": 85.7,
+   "_source": "https://openrouter.ai/api/v1/models/minimax/minimax-m2/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "minimax/m2.1",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 1.2,
+   "price_per_1m_cached_input": 0.03,
+   "intelligence_index": 20.9,
+   "tokens_per_second": 90.7,
+   "_source": "https://openrouter.ai/api/v1/models/minimax/minimax-m2.1/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "minimax/m2.5",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 1.2,
+   "price_per_1m_cached_input": 0.03,
+   "intelligence_index": 22.8,
+   "tokens_per_second": 83.9,
+   "_source": "https://openrouter.ai/api/v1/models/minimax/minimax-m2.5/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "minimax/m2.7",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 1.2,
+   "price_per_1m_cached_input": 0.06,
+   "intelligence_index": 22.8,
+   "tokens_per_second": 59.0,
+   "_source": "https://openrouter.ai/api/v1/models/minimax/minimax-m2.7/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "minimax/m3",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 1.2,
+   "price_per_1m_cached_input": 0.06,
+   "intelligence_index": 29.2,
+   "tokens_per_second": 44.9,
+   "_source": "https://openrouter.ai/api/v1/models/minimax/minimax-m3/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/codestral-25.08",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 0.9,
+   "price_per_1m_cached_input": 0.03,
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/codestral-2508/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/devstral-2-2512",
+   "price_per_1m_input": 0.4,
+   "price_per_1m_output": 2.0,
+   "price_per_1m_cached_input": 0.04,
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/devstral-2512/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/ministral-3-14b",
+   "price_per_1m_input": 0.2,
+   "price_per_1m_output": 0.2,
+   "price_per_1m_cached_input": 0.02,
+   "intelligence_index": 6.0,
+   "tokens_per_second": 79.0,
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-14b-2512/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/ministral-3-3b",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.1,
+   "price_per_1m_cached_input": 0.01,
+   "intelligence_index": 4.8,
+   "tokens_per_second": 200.7,
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-3b-2512/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/ministral-3-8b",
+   "price_per_1m_input": 0.15,
+   "price_per_1m_output": 0.15,
+   "price_per_1m_cached_input": 0.015,
+   "intelligence_index": 5.5,
+   "tokens_per_second": 105.2,
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/ministral-8b-2512/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/mistral-large",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 6.0,
+   "price_per_1m_cached_input": 0.2,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "mistral/mistral-large-2407",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 6.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 6.8,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "mistral/mistral-large-3",
+   "price_per_1m_input": 0.5,
+   "price_per_1m_output": 1.5,
+   "price_per_1m_cached_input": 0.05,
+   "intelligence_index": 9.3,
+   "tokens_per_second": 78.0,
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-large-2512/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/mistral-medium-3",
+   "price_per_1m_input": 0.4,
+   "price_per_1m_output": 2.0,
+   "price_per_1m_cached_input": 0.04,
+   "intelligence_index": 9.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "mistral/mistral-medium-3.1",
+   "price_per_1m_input": 0.4,
+   "price_per_1m_output": 2.0,
+   "price_per_1m_cached_input": 0.04,
+   "intelligence_index": 9.2,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "mistral/mistral-medium-3.5",
+   "price_per_1m_input": 1.5,
+   "price_per_1m_output": 7.5,
+   "intelligence_index": 14.2,
+   "tokens_per_second": 165.4,
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-medium-3-5/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/mistral-nemo",
+   "price_per_1m_input": 0.019,
+   "price_per_1m_output": 0.03,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "mistral/mistral-saba-24b",
+   "price_per_1m_input": 0.2,
+   "price_per_1m_output": 0.6,
+   "price_per_1m_cached_input": 0.02,
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-saba/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/mistral-small-24b-instruct-2501",
+   "price_per_1m_input": 0.05,
+   "price_per_1m_output": 0.08,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "mistral/mistral-small-3.1",
+   "price_per_1m_input": 0.351,
+   "price_per_1m_output": 0.555,
+   "intelligence_index": 7.1,
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-small-3.1-24b-instruct/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/mistral-small-3.2-24b-instruct",
+   "price_per_1m_input": 0.075,
+   "price_per_1m_output": 0.2,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/mistral-small-4",
+   "price_per_1m_input": 0.15,
+   "price_per_1m_output": 0.6,
+   "price_per_1m_cached_input": 0.015,
+   "intelligence_index": 11.3,
+   "tokens_per_second": 179.3,
+   "_source": "https://openrouter.ai/api/v1/models/mistralai/mistral-small-2603/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "mistral/mixtral-8x22b",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 6.0,
+   "price_per_1m_cached_input": 0.2,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "mistral/voxtral-small-24b-2507",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.3,
+   "price_per_1m_cached_input": 0.01,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "mistralai/mistral-small-3.2-24b",
+   "price_per_1m_input": 0.0938,
+   "price_per_1m_output": 0.25,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "moonshot/kimi-k2",
+   "price_per_1m_input": 0.57,
+   "price_per_1m_output": 2.3,
+   "price_per_1m_cached_input": 0.15,
+   "intelligence_index": 12.7,
+   "tokens_per_second": 53.3,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "moonshot/kimi-k2-0905",
+   "price_per_1m_input": 0.6,
+   "price_per_1m_output": 2.5,
+   "intelligence_index": 15.3,
+   "tokens_per_second": 53.3,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "moonshot/kimi-k2-thinking",
+   "price_per_1m_input": 0.6,
+   "price_per_1m_output": 2.5,
+   "price_per_1m_cached_input": 0.15,
+   "intelligence_index": 22.0,
+   "tokens_per_second": 123.8,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "moonshot/kimi-k2.5",
+   "price_per_1m_input": 0.45,
+   "price_per_1m_output": 2.25,
+   "price_per_1m_cached_input": 0.07,
+   "intelligence_index": 23.5,
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.5/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "moonshot/kimi-k2.6",
+   "price_per_1m_input": 0.95,
+   "price_per_1m_output": 4.0,
+   "price_per_1m_cached_input": 0.16,
+   "intelligence_index": 27.0,
+   "tokens_per_second": 57.0,
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.6/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "moonshot/kimi-k2.7-code",
+   "price_per_1m_input": 0.95,
+   "price_per_1m_output": 4.0,
+   "price_per_1m_cached_input": 0.19,
+   "intelligence_index": 25.8,
+   "tokens_per_second": 81.3,
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k2.7-code/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "moonshot/kimi-k3",
+   "price_per_1m_input": 3.0,
+   "price_per_1m_output": 15.0,
+   "price_per_1m_cached_input": 0.3,
+   "intelligence_index": 43.6,
+   "tokens_per_second": 40.3,
+   "_source": "https://openrouter.ai/api/v1/models/moonshotai/kimi-k3/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "nex/nex-n2-mini",
+   "price_per_1m_input": 0.025,
+   "price_per_1m_output": 0.1,
+   "price_per_1m_cached_input": 0.0025,
+   "_source": "https://openrouter.ai/api/v1/models/nex-agi/nex-n2-mini/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "nex/nex-n2-pro",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 1.0,
+   "price_per_1m_cached_input": 0.025,
+   "intelligence_index": 28.2,
+   "_source": "https://openrouter.ai/api/v1/models/nex-agi/nex-n2-pro/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "nousresearch/hermes-4-405b",
+   "price_per_1m_input": 1.0,
+   "price_per_1m_output": 3.0,
+   "_source": "https://openrouter.ai/api/v1/models/nousresearch/hermes-4-405b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "nousresearch/hermes-4-70b",
+   "price_per_1m_input": 0.13,
+   "price_per_1m_output": 0.4,
+   "_source": "https://openrouter.ai/api/v1/models/nousresearch/hermes-4-70b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+   "price_per_1m_input": 0.05,
+   "price_per_1m_output": 0.2,
+   "price_per_1m_cached_input": 0.03,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "nvidia/nemotron-3-super-120b-a12b",
+   "price_per_1m_input": 0.085,
+   "price_per_1m_output": 0.4,
+   "intelligence_index": 12.8,
+   "tokens_per_second": 164.6,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "nvidia/nemotron-3-ultra-550b-a55b",
+   "price_per_1m_input": 0.625,
+   "price_per_1m_output": 3.125,
+   "price_per_1m_cached_input": 0.1875,
+   "intelligence_index": 22.9,
+   "tokens_per_second": 420.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "nvidia/nemotron-3.5-lightning-30b-a3b-nvfp4",
+   "price_per_1m_input": 0.08,
+   "price_per_1m_output": 0.2,
+   "price_per_1m_cached_input": 0.04,
+   "_source": "https://openrouter.ai/api/v1/models/nvidia/nemotron-3.5-lightning/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-3.5-turbo",
+   "price_per_1m_input": 0.5,
+   "price_per_1m_output": 1.5,
+   "_source": "https://openrouter.ai/api/v1/models/openai/gpt-3.5-turbo/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-3.5-turbo-0613",
+   "price_per_1m_input": 1.0,
+   "price_per_1m_output": 2.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-4",
+   "price_per_1m_input": 30.0,
+   "price_per_1m_output": 60.0,
+   "intelligence_index": 6.7,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-4.1",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 8.0,
+   "price_per_1m_cached_input": 0.5,
+   "intelligence_index": 12.7,
+   "tokens_per_second": 154.1,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-4.1-mini",
+   "price_per_1m_input": 0.4,
+   "price_per_1m_output": 1.6,
+   "price_per_1m_cached_input": 0.1,
+   "intelligence_index": 10.2,
+   "tokens_per_second": 151.6,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-4.1-nano",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.4,
+   "price_per_1m_cached_input": 0.025,
+   "intelligence_index": 7.8,
+   "tokens_per_second": 181.9,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-4o",
+   "price_per_1m_input": 2.5,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 1.25,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-4o-mini",
+   "price_per_1m_input": 0.15,
+   "price_per_1m_output": 0.6,
+   "price_per_1m_cached_input": 0.075,
+   "intelligence_index": 6.7,
+   "tokens_per_second": 119.7,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-4o-mini-transcribe",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 5.0,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-4o-transcribe",
+   "price_per_1m_input": 2.5,
+   "price_per_1m_output": 10.0,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-5",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.125,
+   "intelligence_index": 23.0,
+   "tokens_per_second": 95.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5-mini",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 2.0,
+   "price_per_1m_cached_input": 0.025,
+   "intelligence_index": 16.8,
+   "tokens_per_second": 113.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5-nano",
+   "price_per_1m_input": 0.05,
+   "price_per_1m_output": 0.4,
+   "price_per_1m_cached_input": 0.005,
+   "intelligence_index": 13.0,
+   "tokens_per_second": 158.8,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5-pro",
+   "price_per_1m_input": 15.0,
+   "price_per_1m_output": 120.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.1",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.125,
+   "intelligence_index": 24.7,
+   "tokens_per_second": 112.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.1-codex",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.13,
+   "intelligence_index": 23.7,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.1-codex-max",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.125,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.1-codex-mini",
+   "price_per_1m_input": 0.25,
+   "price_per_1m_output": 2.0,
+   "price_per_1m_cached_input": 0.03,
+   "intelligence_index": 20.4,
+   "_source": "https://openrouter.ai/api/v1/models/openai/gpt-5.1-codex-mini/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-5.2",
+   "price_per_1m_input": 1.75,
+   "price_per_1m_output": 14.0,
+   "price_per_1m_cached_input": 0.175,
+   "intelligence_index": 30.4,
+   "tokens_per_second": 68.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.2-chat-latest",
+   "price_per_1m_input": 1.75,
+   "price_per_1m_output": 14.0,
+   "price_per_1m_cached_input": 0.175,
+   "_source": "https://openrouter.ai/api/v1/models/openai/gpt-5.2-chat/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-5.2-codex",
+   "price_per_1m_input": 1.75,
+   "price_per_1m_output": 14.0,
+   "price_per_1m_cached_input": 0.175,
+   "intelligence_index": 28.5,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.2-pro",
+   "price_per_1m_input": 21.0,
+   "price_per_1m_output": 168.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.3-chat",
+   "price_per_1m_input": 1.75,
+   "price_per_1m_output": 14.0,
+   "price_per_1m_cached_input": 0.175,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.3-codex",
+   "price_per_1m_input": 1.75,
+   "price_per_1m_output": 14.0,
+   "price_per_1m_cached_input": 0.175,
+   "intelligence_index": 32.5,
+   "tokens_per_second": 96.9,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.4",
+   "price_per_1m_input": 2.5,
+   "price_per_1m_output": 15.0,
+   "price_per_1m_cached_input": 0.25,
+   "intelligence_index": 39.0,
+   "tokens_per_second": 103.3,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.4-mini",
+   "price_per_1m_input": 0.75,
+   "price_per_1m_output": 4.5,
+   "price_per_1m_cached_input": 0.075,
+   "intelligence_index": 24.1,
+   "tokens_per_second": 224.4,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.4-nano",
+   "price_per_1m_input": 0.2,
+   "price_per_1m_output": 1.25,
+   "price_per_1m_cached_input": 0.02,
+   "intelligence_index": 20.7,
+   "tokens_per_second": 164.2,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.4-pro",
+   "price_per_1m_input": 30.0,
+   "price_per_1m_output": 180.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.5",
+   "price_per_1m_input": 5.0,
+   "price_per_1m_output": 30.0,
+   "price_per_1m_cached_input": 0.5,
+   "intelligence_index": 38.4,
+   "tokens_per_second": 93.6,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.5-pro",
+   "price_per_1m_input": 30.0,
+   "price_per_1m_output": 180.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-5.6-cyber",
+   "price_per_1m_input": 12.5,
+   "price_per_1m_output": 75.0,
+   "price_per_1m_cached_input": 1.25,
+   "_source": "https://developers.openai.com/api/docs/models/gpt-5.6-cyber",
+   "_as_of": "2026-08-12"
+  },
+  {
+   "model_id": "openai/gpt-5.6-luna",
+   "price_per_1m_input": 0.2,
+   "price_per_1m_output": 1.2,
+   "price_per_1m_cached_input": 0.02,
+   "intelligence_index": 37.3,
+   "tokens_per_second": 118.2,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-5.6-luna-pro",
+   "price_per_1m_input": 0.2,
+   "price_per_1m_output": 0.02,
+   "price_per_1m_cached_input": 1.2,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-5.6-sol",
+   "price_per_1m_input": 4.0,
+   "price_per_1m_output": 20.0,
+   "price_per_1m_cached_input": 0.4,
+   "intelligence_index": 47.0,
+   "tokens_per_second": 85.5,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-5.6-sol-pro",
+   "price_per_1m_input": 4.0,
+   "price_per_1m_output": 0.4,
+   "price_per_1m_cached_input": 20.0,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-5.6-terra",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 12.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 42.1,
+   "tokens_per_second": 95.1,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-5.6-terra-pro",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 0.2,
+   "price_per_1m_cached_input": 12.0,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-6-astra",
+   "price_per_1m_input": 10.0,
+   "price_per_1m_output": 50.0,
+   "price_per_1m_cached_input": 1.0,
+   "intelligence_index": 52.7,
+   "tokens_per_second": 62.5,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-6-astra-high",
+   "price_per_1m_input": 10.0,
+   "price_per_1m_output": 50.0,
+   "price_per_1m_cached_input": 1.0,
+   "intelligence_index": 50.9,
+   "tokens_per_second": 60.8,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-6-astra-low",
+   "price_per_1m_input": 10.0,
+   "price_per_1m_output": 50.0,
+   "price_per_1m_cached_input": 1.0,
+   "intelligence_index": 45.8,
+   "tokens_per_second": 59.3,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-6-astra-medium",
+   "price_per_1m_input": 10.0,
+   "price_per_1m_output": 50.0,
+   "price_per_1m_cached_input": 1.0,
+   "intelligence_index": 49.6,
+   "tokens_per_second": 57.8,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-6-astra-non-reasoning",
+   "price_per_1m_input": 10.0,
+   "price_per_1m_output": 50.0,
+   "price_per_1m_cached_input": 1.0,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-6-astra-pro",
+   "price_per_1m_input": 10.0,
+   "price_per_1m_output": 50.0,
+   "price_per_1m_cached_input": 1.0,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-6-astra-xhigh",
+   "price_per_1m_input": 10.0,
+   "price_per_1m_output": 50.0,
+   "price_per_1m_cached_input": 1.0,
+   "intelligence_index": 52.4,
+   "tokens_per_second": 56.8,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-6-luna",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.5,
+   "price_per_1m_cached_input": 0.01,
+   "intelligence_index": 37.3,
+   "tokens_per_second": 157.2,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-luna-high",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.5,
+   "price_per_1m_cached_input": 0.01,
+   "intelligence_index": 32.1,
+   "tokens_per_second": 127.0,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-luna-low",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.5,
+   "price_per_1m_cached_input": 0.01,
+   "intelligence_index": 20.9,
+   "tokens_per_second": 151.6,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-luna-medium",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.5,
+   "price_per_1m_cached_input": 0.01,
+   "intelligence_index": 29.5,
+   "tokens_per_second": 142.8,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-luna-non-reasoning",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.5,
+   "price_per_1m_cached_input": 0.01,
+   "intelligence_index": 18.3,
+   "tokens_per_second": 130.6,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-luna-pro",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.5,
+   "price_per_1m_cached_input": 0.01,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-luna-xhigh",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.5,
+   "price_per_1m_cached_input": 0.01,
+   "intelligence_index": 33.9,
+   "tokens_per_second": 152.8,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-sol",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 47.5,
+   "tokens_per_second": 104.4,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-sol-high",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 42.8,
+   "tokens_per_second": 138.3,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-sol-low",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 33.9,
+   "tokens_per_second": 123.8,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-sol-medium",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 39.8,
+   "tokens_per_second": 114.3,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-sol-non-reasoning",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 28.1,
+   "tokens_per_second": 103.3,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-sol-pro",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6-sol-xhigh",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 44.1,
+   "tokens_per_second": 136.1,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "openai/gpt-6.1-sol",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.1,
+   "intelligence_index": 51.8,
+   "tokens_per_second": 66.8,
+   "_source": "https://artificialanalysis.ai/models/gpt-6-1-sol",
+   "_as_of": "2026-09-30"
+  },
+  {
+   "model_id": "openai/gpt-6.1-sol-high",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.1,
+   "intelligence_index": 50.2,
+   "tokens_per_second": 65.4,
+   "_source": "https://artificialanalysis.ai/models/gpt-6-1-sol-high",
+   "_as_of": "2026-09-30"
+  },
+  {
+   "model_id": "openai/gpt-6.1-sol-low",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.1,
+   "intelligence_index": 42.1,
+   "tokens_per_second": 71.2,
+   "_source": "https://artificialanalysis.ai/models/gpt-6-1-sol-low",
+   "_as_of": "2026-09-30"
+  },
+  {
+   "model_id": "openai/gpt-6.1-sol-medium",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.1,
+   "intelligence_index": 47.8,
+   "tokens_per_second": 60.7,
+   "_source": "https://artificialanalysis.ai/models/gpt-6-1-sol-medium",
+   "_as_of": "2026-09-30"
+  },
+  {
+   "model_id": "openai/gpt-6.1-sol-xhigh",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 10.0,
+   "price_per_1m_cached_input": 0.1,
+   "intelligence_index": 51.0,
+   "tokens_per_second": 63.6,
+   "_source": "https://artificialanalysis.ai/models/gpt-6-1-sol-xhigh",
+   "_as_of": "2026-09-30"
+  },
+  {
+   "model_id": "openai/gpt-audio",
+   "price_per_1m_input": 2.5,
+   "price_per_1m_output": 10.0,
+   "_source": "https://openrouter.ai/api/v1/models/openai/gpt-audio/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-audio-mini",
+   "price_per_1m_input": 0.6,
+   "price_per_1m_output": 2.4,
+   "_source": "https://openrouter.ai/api/v1/models/openai/gpt-audio-mini/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-oss-120b",
+   "price_per_1m_input": 0.037,
+   "price_per_1m_output": 0.17,
+   "intelligence_index": 11.6,
+   "tokens_per_second": 351.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-oss-20b",
+   "price_per_1m_input": 0.03,
+   "price_per_1m_output": 0.13,
+   "price_per_1m_cached_input": 0.03,
+   "intelligence_index": 9.0,
+   "tokens_per_second": 166.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/gpt-oss-safeguard-20b",
+   "price_per_1m_input": 0.075,
+   "price_per_1m_output": 0.3,
+   "price_per_1m_cached_input": 0.0375,
+   "_source": "https://openrouter.ai/api/v1/models/openai/gpt-oss-safeguard-20b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-realtime-2.1",
+   "price_per_1m_input": 4.0,
+   "price_per_1m_output": 24.0,
+   "price_per_1m_cached_input": 0.4,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/gpt-realtime-2.1-mini",
+   "price_per_1m_input": 0.6,
+   "price_per_1m_output": 2.4,
+   "price_per_1m_cached_input": 0.06,
+   "_source": "https://developers.openai.com/api/docs/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "openai/o1",
+   "price_per_1m_input": 15.0,
+   "price_per_1m_output": 60.0,
+   "price_per_1m_cached_input": 7.5,
+   "intelligence_index": 15.2,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/o3",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 8.0,
+   "price_per_1m_cached_input": 0.5,
+   "intelligence_index": 20.2,
+   "tokens_per_second": 135.7,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/o3-mini",
+   "price_per_1m_input": 1.1,
+   "price_per_1m_output": 4.4,
+   "price_per_1m_cached_input": 0.55,
+   "intelligence_index": 12.5,
+   "tokens_per_second": 223.4,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/o3-pro",
+   "price_per_1m_input": 20.0,
+   "price_per_1m_output": 80.0,
+   "intelligence_index": 21.9,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/o4-mini",
+   "price_per_1m_input": 1.1,
+   "price_per_1m_output": 4.4,
+   "price_per_1m_cached_input": 0.275,
+   "intelligence_index": 16.7,
+   "tokens_per_second": 141.2,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "openai/o4-mini-high",
+   "price_per_1m_input": 1.1,
+   "price_per_1m_output": 4.4,
+   "price_per_1m_cached_input": 0.275,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "perceptron/perceptron-mk1",
+   "price_per_1m_input": 0.15,
+   "price_per_1m_output": 1.5,
+   "_source": "https://openrouter.ai/api/v1/models/perceptron/perceptron-mk1/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "perplexity/sonar-deep-research",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 8.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "perplexity/sonar-pro",
+   "price_per_1m_input": 3.0,
+   "price_per_1m_output": 15.0,
+   "intelligence_index": 7.6,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "perplexity/sonar-pro-search",
+   "price_per_1m_input": 3.0,
+   "price_per_1m_output": 15.0,
+   "_source": "https://openrouter.ai/api/v1/models/perplexity/sonar-pro-search/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "perplexity/sonar-reasoning-pro",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 8.0,
+   "intelligence_index": 11.8,
+   "_source": "https://openrouter.ai/api/v1/models/perplexity/sonar-reasoning-pro/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "poolside/laguna-s-2.1",
+   "price_per_1m_input": 0.09,
+   "price_per_1m_output": 0.18,
+   "price_per_1m_cached_input": 0.009,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "poolside/laguna-xs-2.1",
+   "price_per_1m_input": 0.06,
+   "price_per_1m_output": 0.12,
+   "price_per_1m_cached_input": 0.03,
+   "_source": "https://openrouter.ai/api/v1/models/poolside/laguna-xs-2.1/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "prism-ml/ternary-bonsai-2-27b",
+   "price_per_1m_input": 0.075,
+   "price_per_1m_output": 0.5,
+   "_source": "https://openrouter.ai/prism-ml/ternary-bonsai-2-27b",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "qwen/qwen3-next-80b",
+   "price_per_1m_input": 0.0975,
+   "price_per_1m_output": 0.78,
+   "_source": "https://openrouter.ai/api/v1/models/qwen/qwen3-next-80b-a3b-instruct/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "reka/reka-edge",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.1,
+   "_source": "https://openrouter.ai/api/v1/models/rekaai/reka-edge/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "reka/reka-flash-3",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.2,
+   "intelligence_index": 5.6,
+   "_source": "https://openrouter.ai/api/v1/models/rekaai/reka-flash-3/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "sakana/fugu-ultra",
+   "price_per_1m_input": 5.0,
+   "price_per_1m_output": 30.0,
+   "price_per_1m_cached_input": 0.5,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "sakana/namazu",
+   "price_per_1m_input": 0.95,
+   "price_per_1m_output": 4.0,
+   "price_per_1m_cached_input": 0.15,
+   "_source": "https://openrouter.ai/api/v1/models/sakana/sakana-namazu/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "stepfun/step-3.5-flash",
+   "price_per_1m_input": 0.1,
+   "price_per_1m_output": 0.3,
+   "tokens_per_second": 141.9,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "stepfun/step-3.7-flash",
+   "price_per_1m_input": 0.2,
+   "price_per_1m_output": 1.15,
+   "price_per_1m_cached_input": 0.04,
+   "intelligence_index": 19.5,
+   "tokens_per_second": 182.8,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "tencent/hy-mt2-1.8b",
+   "price_per_1m_input": 0.044,
+   "price_per_1m_output": 0.177,
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy-mt2-1.8b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "tencent/hy-mt2-30b-a3b",
+   "price_per_1m_input": 0.074,
+   "price_per_1m_output": 0.295,
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy-mt2-30b-a3b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "tencent/hy-mt2-7b",
+   "price_per_1m_input": 0.074,
+   "price_per_1m_output": 0.295,
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy-mt2-7b/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "tencent/hy3",
+   "price_per_1m_input": 0.132,
+   "price_per_1m_output": 0.528,
+   "price_per_1m_cached_input": 0.033,
+   "intelligence_index": 25.3,
+   "tokens_per_second": 89.6,
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy3/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "tencent/hy3-preview",
+   "price_per_1m_input": 0.18,
+   "price_per_1m_output": 0.6,
+   "price_per_1m_cached_input": 0.06,
+   "intelligence_index": 22.7,
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy3-preview/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "tencent/hy4-preview",
+   "price_per_1m_input": 0.834,
+   "price_per_1m_output": 2.501,
+   "price_per_1m_cached_input": 0.042,
+   "_source": "https://openrouter.ai/api/v1/models/tencent/hy4-preview/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "thinking-machines/inkling",
+   "price_per_1m_input": 0.95,
+   "price_per_1m_output": 4.05,
+   "price_per_1m_cached_input": 0.16,
+   "intelligence_index": 25.0,
+   "tokens_per_second": 177.4,
+   "_source": "https://openrouter.ai/api/v1/models/thinkingmachines/inkling/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "thinking-machines/inkling-small",
+   "price_per_1m_input": 0.45,
+   "price_per_1m_output": 1.2,
+   "price_per_1m_cached_input": 0.1,
+   "intelligence_index": 27.8,
+   "tokens_per_second": 207.8,
+   "_source": "https://openrouter.ai/api/v1/models/thinkingmachines/inkling-small/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "upstage/solar-pro-3",
+   "price_per_1m_input": 0.15,
+   "price_per_1m_output": 0.6,
+   "price_per_1m_cached_input": 0.015,
+   "intelligence_index": 7.8,
+   "tokens_per_second": 141.4,
+   "_source": "https://www.upstage.ai/pricing/api",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "upstage/solar-pro-4",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 1.2,
+   "price_per_1m_cached_input": 0.06,
+   "tokens_per_second": 82.9,
+   "_source": "https://www.upstage.ai/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "writer/palmyra-x5",
+   "price_per_1m_input": 0.6,
+   "price_per_1m_output": 6.0,
+   "_source": "https://openrouter.ai/api/v1/models/writer/palmyra-x5/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "xai/grok-4",
+   "price_per_1m_input": 3.0,
+   "price_per_1m_output": 15.0,
+   "intelligence_index": 22.5,
+   "_source": "https://artificialanalysis.ai/leaderboards/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "xai/grok-4.1-fast",
+   "price_per_1m_input": 0.2,
+   "price_per_1m_output": 0.5,
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3-1_flash-lite_model_evaluation.pdf",
+   "_as_of": "2026-10-03"
+  },
+  {
+   "model_id": "xai/grok-4.20",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 2.5,
+   "price_per_1m_cached_input": 0.2,
+   "tokens_per_second": 104.5,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "xai/grok-4.20-multi-agent-beta-0309",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 2.5,
+   "price_per_1m_cached_input": 0.2,
+   "_source": "https://openrouter.ai/api/v1/models/x-ai/grok-4.20-multi-agent/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "xai/grok-4.3",
+   "price_per_1m_input": 1.25,
+   "price_per_1m_output": 2.5,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 24.9,
+   "tokens_per_second": 184.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "xai/grok-4.5",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 6.0,
+   "price_per_1m_cached_input": 0.3,
+   "intelligence_index": 38.8,
+   "tokens_per_second": 57.8,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "xai/grok-4.6",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 6.0,
+   "price_per_1m_cached_input": 0.5,
+   "intelligence_index": 44.3,
+   "tokens_per_second": 63.9,
+   "_source": "https://openrouter.ai/x-ai/grok-4.6",
+   "_as_of": "2026-08-12"
+  },
+  {
+   "model_id": "xai/grok-4.7",
+   "price_per_1m_input": 2.0,
+   "price_per_1m_output": 6.0,
+   "price_per_1m_cached_input": 0.5,
+   "intelligence_index": 46.4,
+   "tokens_per_second": 39.3,
+   "_source": "https://docs.x.ai/developers/models/grok-4.7",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "xai/grok-4.7-fast",
+   "price_per_1m_input": 4.0,
+   "price_per_1m_output": 12.0,
+   "price_per_1m_cached_input": 1.0,
+   "_source": "https://docs.x.ai/developers/pricing",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "xai/grok-build-0.1",
+   "price_per_1m_input": 1.0,
+   "price_per_1m_output": 2.0,
+   "price_per_1m_cached_input": 0.2,
+   "_source": "https://openrouter.ai/api/v1/models/x-ai/grok-build-0.1/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "xiaomi/mimo-v2.5",
+   "price_per_1m_input": 0.14,
+   "price_per_1m_output": 0.28,
+   "price_per_1m_cached_input": 0.0028,
+   "tokens_per_second": 44.5,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "xiaomi/mimo-v2.5-pro",
+   "price_per_1m_input": 0.435,
+   "price_per_1m_output": 0.87,
+   "price_per_1m_cached_input": 0.0036,
+   "intelligence_index": 26.0,
+   "tokens_per_second": 43.0,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "xiaomi/mimo-v2.6-flash",
+   "price_per_1m_input": 0.14,
+   "price_per_1m_output": 0.28,
+   "price_per_1m_cached_input": 0.0028,
+   "intelligence_index": 37.9,
+   "tokens_per_second": 55.4,
+   "_source": "https://mimo.xiaomi.com/mimo-v2-6",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "xiaomi/mimo-v2.6-pro",
+   "price_per_1m_input": 0.435,
+   "price_per_1m_output": 0.87,
+   "price_per_1m_cached_input": 0.0036,
+   "intelligence_index": 46.3,
+   "tokens_per_second": 43.6,
+   "_source": "https://mimo.xiaomi.com/mimo-v2-6",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "xiaomi/mimo-v2.6-pro-ultraspeed",
+   "price_per_1m_input": 4.35,
+   "price_per_1m_output": 8.7,
+   "price_per_1m_cached_input": 0.036,
+   "_source": "https://mimo.xiaomi.com/mimo-v2-6",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "zai/glm-4.7-flash",
+   "price_per_1m_input": 0.06,
+   "price_per_1m_output": 0.4,
+   "price_per_1m_cached_input": 0.01,
+   "intelligence_index": 14.9,
+   "tokens_per_second": 63.3,
+   "_source": "https://openrouter.ai/api/v1/models/z-ai/glm-4.7-flash/endpoints",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-4.5",
+   "price_per_1m_input": 0.6,
+   "price_per_1m_output": 2.2,
+   "price_per_1m_cached_input": 0.11,
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-4.5-air",
+   "price_per_1m_input": 0.2,
+   "price_per_1m_output": 1.1,
+   "price_per_1m_cached_input": 0.03,
+   "intelligence_index": 11.1,
+   "tokens_per_second": 78.9,
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-4.5v",
+   "price_per_1m_input": 0.6,
+   "price_per_1m_output": 1.8,
+   "price_per_1m_cached_input": 0.11,
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-4.6",
+   "price_per_1m_input": 0.6,
+   "price_per_1m_output": 2.2,
+   "price_per_1m_cached_input": 0.11,
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-4.6v",
+   "price_per_1m_input": 0.3,
+   "price_per_1m_output": 0.9,
+   "price_per_1m_cached_input": 0.05,
+   "tokens_per_second": 80.0,
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-4.7",
+   "price_per_1m_input": 0.6,
+   "price_per_1m_output": 2.2,
+   "price_per_1m_cached_input": 0.11,
+   "intelligence_index": 22.2,
+   "tokens_per_second": 87.3,
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-5",
+   "price_per_1m_input": 1.0,
+   "price_per_1m_output": 3.2,
+   "price_per_1m_cached_input": 0.2,
+   "intelligence_index": 27.9,
+   "tokens_per_second": 77.7,
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-5-turbo",
+   "price_per_1m_input": 1.2,
+   "price_per_1m_output": 4.0,
+   "price_per_1m_cached_input": 0.24,
+   "intelligence_index": 26.6,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  },
+  {
+   "model_id": "zhipu/glm-5.1",
+   "price_per_1m_input": 1.4,
+   "price_per_1m_output": 4.4,
+   "price_per_1m_cached_input": 0.26,
+   "intelligence_index": 26.1,
+   "tokens_per_second": 65.3,
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-5.2",
+   "price_per_1m_input": 1.4,
+   "price_per_1m_output": 4.4,
+   "price_per_1m_cached_input": 0.26,
+   "intelligence_index": 33.7,
+   "tokens_per_second": 79.1,
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-5.3",
+   "price_per_1m_input": 1.4,
+   "price_per_1m_output": 4.4,
+   "price_per_1m_cached_input": 0.26,
+   "intelligence_index": 44.8,
+   "tokens_per_second": 84.2,
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-5.3-flash",
+   "price_per_1m_input": 0.075,
+   "price_per_1m_output": 0.25,
+   "price_per_1m_cached_input": 0.015,
+   "intelligence_index": 41.8,
+   "tokens_per_second": 44.8,
+   "_source": "https://docs.z.ai/guides/overview/pricing",
+   "_as_of": "2026-09-05"
+  },
+  {
+   "model_id": "zhipu/glm-5.3-flashx",
+   "price_per_1m_input": 0.37,
+   "price_per_1m_output": 1.25,
+   "price_per_1m_cached_input": 0.075,
+   "_source": "https://openrouter.ai/z-ai/glm-5.3-flashx",
+   "_as_of": "2026-09-23"
+  },
+  {
+   "model_id": "zhipu/glm-5v-turbo",
+   "price_per_1m_input": 1.2,
+   "price_per_1m_output": 4.0,
+   "price_per_1m_cached_input": 0.24,
+   "intelligence_index": 23.5,
+   "_source": "https://openrouter.ai/api/v1/models",
+   "_as_of": "2026-08-06"
+  }
+ ]
 }

@@ -5289,5 +5289,11 @@
   "type": "ui",
   "title": "S294b — Physical AI 그래프 최신화: 월드 모델 레이더·임바디드 히트맵·Sim-to-Real·카탈로그(26→268행)·패밀리 매트릭스·능력 레이더",
   "detail": "그래프가 참조하던 벤치마크 세트가 2025년 id(cosmos_*, world_model_*: 모델 1~2개)에 묶여 있어 거의 빈 차트였음. 월드 모델 품질 레이더 → PhyGround(1-5)·Apple-π·What-If World·Principia·WorldJen·AV-Phys 6축(모델 4~9개), 축마다 최고값 기준으로 정규화해 척도가 달라도 비교 가능. 임바디드 추론 히트맵 → EPIC-Bench(51)·Blueprint-Bench 2(32)·MVVBench·ArchSIBench·OVO-S-Bench·SFI-Bench·PhysVista·RoboChrono·ERQA·PhysFieldBench 10열 × 상위 12개 모델, 2개 이상 스위트를 가진 모델만 순위에 포함(GPT-6 Astra 1위). Sim-to-Real 막대 → RoboDojo sim/real 쌍(동일 정책 30개 보드)·SimplerEnv·RoboCasa·RoboCasa365·LIBERO-Plus·RoboTwin hard. 벤치마크 카탈로그·패밀리×스위트 매트릭스·히어로 랭킹이 쓰던 정적 스위트 맵(27개)을 탭의 BENCHMARK_SUITES와 병합해 268개 벤치마크(VLA 78·월드 모델 102·임바디드 74·안전 3·산업 11)를 인식; 매트릭스에 Embodied Safety·Industrial Deployment 열 추가, 패밀리 15행. 탭 본체의 능력 레이더 축은 원시 평균을 쓰므로 0-100 척도 id만 추가(LIBERO-Plus/avg/VPro/Occ·RoboTwin hard·What-If World); 0-1·1-5 척도와 RoboDojo(0~13%)는 제외하고 사유를 주석에 기록."
+ },
+ {
+  "date": "2026-10-06",
+  "type": "ui",
+  "title": "S295 — Agent 탭 그래프 데이터 최신화: 가격 데이터 26→318개 모델(DB 가격 점수로 재생성), 엣지 모델 용량 데이터 9→36개, 엣지 벤더 색상",
+  "detail": "비용 대 성능 산점도·비용 시뮬레이터·추천 마법사(비용 반영 옵션)가 읽는 data/export/aa_pricing.json이 2026-05-19 수작업본(모델 26개)에 멈춰 있어 Opus 5.5·Sonnet 5.5·GPT-6 Astra/Sol/6.1 Sol·Gemini 4 Argon 등 9월 모델이 가격 축에 전혀 올라가지 않았음. DB의 가격 점수(input/output/cached_input_price_per_mtok, AA Intelligence Index v4.3, AA 출력 tok/s)로 재생성해 318개 모델(effort-tier id 포함)로 확장, 각 항목에 출처 URL과 기준일 기록 → 산점도 frontier 점 26→193개. 엣지 SLM 활용도 산점도의 edge_models_utility.json(9개 항목)에 S293에서 추가한 엣지 모델 9개와 기존 목록의 미등록 모델 18개의 size_gb를 파라미터 수 기반 추정치(파일 기존 관례인 1 GB/B)로 추가하고 추정임을 명시; 엣지 벤더 10곳(IBM·Alibaba·Mistral·OpenBMB·IFM·Xiaomi·Kakao·xhToken·Liquid·Amazon) 색상 추가. 나머지 위젯(히트맵·레이더·도트플롯·SOTA 타임라인·벤더 매트릭스·Sankey·커버리지 매트릭스·궤적 재생·신뢰구간)은 S293에서 갱신한 카테고리 목록을 그대로 따르므로 추가 변경 없음. 구독형 제품 가격표(Devin·Manus)는 새 출처가 없어 유지."
  }
 ]
