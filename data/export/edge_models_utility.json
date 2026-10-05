@@ -1,81 +1,297 @@
 {
-  "_meta": {
-    "collected_at": "2026-05-08",
-    "_note": "Edge model utility metrics (size_gb, ttft_ms, tok_s, power_mw, battery). Strict-attribution: every value cites a primary source URL. Use null for unpublished metrics."
+ "_meta": {
+  "collected_at": "2026-05-08",
+  "_note": "Edge model utility metrics (size_gb, ttft_ms, tok_s, power_mw, battery). Strict-attribution: every value cites a primary source URL. Use null for unpublished metrics."
+ },
+ "models": {
+  "apple/foundation-3b": {
+   "size_gb": 3.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "https://machinelearning.apple.com/research/introducing-apple-foundation-models",
+   "_note": "Apple WWDC 2024 stated ~3B parameter on-device model."
   },
-  "models": {
-    "apple/foundation-3b": {
-      "size_gb": 3.0,
-      "ttft_ms": null,
-      "tok_s": null,
-      "power_mw": null,
-      "_source": "https://machinelearning.apple.com/research/introducing-apple-foundation-models",
-      "_note": "Apple WWDC 2024 stated ~3B parameter on-device model."
-    },
-    "apple/foundation-private-cloud": {
-      "size_gb": null,
-      "ttft_ms": null,
-      "tok_s": null,
-      "power_mw": null,
-      "_source": "https://security.apple.com/blog/private-cloud-compute/",
-      "_note": "Server-side; size not disclosed."
-    },
-    "microsoft/phi-4-mini-instruct": {
-      "size_gb": 3.8,
-      "ttft_ms": null,
-      "tok_s": null,
-      "power_mw": null,
-      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
-      "_note": "3.8B parameters; FP16 weights ~7.6 GB, INT4 ~3.8 GB."
-    },
-    "microsoft/phi-4": {
-      "size_gb": 7.0,
-      "ttft_ms": null,
-      "tok_s": null,
-      "power_mw": null,
-      "_source": "https://huggingface.co/microsoft/phi-4",
-      "_note": "14B parameters; INT8 ~14 GB, INT4 ~7 GB."
-    },
-    "google/gemma-3-270m": {
-      "size_gb": 0.5,
-      "ttft_ms": null,
-      "tok_s": null,
-      "power_mw": null,
-      "battery_pct_per_25_conversations": 0.75,
-      "_source": "https://huggingface.co/google/gemma-3-270m",
-      "_note": "Pixel 9 Pro: 0.75% battery per 25 conversations (per Google blog)."
-    },
-    "google/gemma-3n": {
-      "size_gb": 4.4,
-      "ttft_ms": null,
-      "tok_s": null,
-      "power_mw": null,
-      "_source": "https://huggingface.co/google/gemma-3n-E4B",
-      "_note": "Mobile-optimized vision+audio variant."
-    },
-    "google/function-gemma": {
-      "size_gb": null,
-      "ttft_ms": null,
-      "tok_s": null,
-      "power_mw": null,
-      "_source": "https://github.com/google-ai-edge/LiteRT-LM",
-      "_note": "LiteRT-LM Tool Use APIs. Size depends on quantization."
-    },
-    "meta/llama-3.2-1b-instruct": {
-      "size_gb": 2.0,
-      "ttft_ms": null,
-      "tok_s": null,
-      "power_mw": null,
-      "_source": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
-      "_note": "1B parameters, FP16 weights ~2 GB."
-    },
-    "meta/llama-3.2-3b-instruct": {
-      "size_gb": 6.4,
-      "ttft_ms": null,
-      "tok_s": null,
-      "power_mw": null,
-      "_source": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
-      "_note": "3B parameters, FP16 weights ~6.4 GB."
-    }
+  "apple/foundation-private-cloud": {
+   "size_gb": null,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "https://security.apple.com/blog/private-cloud-compute/",
+   "_note": "Server-side; size not disclosed."
+  },
+  "microsoft/phi-4-mini-instruct": {
+   "size_gb": 3.8,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+   "_note": "3.8B parameters; FP16 weights ~7.6 GB, INT4 ~3.8 GB."
+  },
+  "microsoft/phi-4": {
+   "size_gb": 7.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "https://huggingface.co/microsoft/phi-4",
+   "_note": "14B parameters; INT8 ~14 GB, INT4 ~7 GB."
+  },
+  "google/gemma-3-270m": {
+   "size_gb": 0.5,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "battery_pct_per_25_conversations": 0.75,
+   "_source": "https://huggingface.co/google/gemma-3-270m",
+   "_note": "Pixel 9 Pro: 0.75% battery per 25 conversations (per Google blog)."
+  },
+  "google/gemma-3n": {
+   "size_gb": 4.4,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "https://huggingface.co/google/gemma-3n-E4B",
+   "_note": "Mobile-optimized vision+audio variant."
+  },
+  "google/function-gemma": {
+   "size_gb": null,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "https://github.com/google-ai-edge/LiteRT-LM",
+   "_note": "LiteRT-LM Tool Use APIs. Size depends on quantization."
+  },
+  "meta/llama-3.2-1b-instruct": {
+   "size_gb": 2.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+   "_note": "1B parameters, FP16 weights ~2 GB."
+  },
+  "meta/llama-3.2-3b-instruct": {
+   "size_gb": 6.4,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+   "_note": "3B parameters, FP16 weights ~6.4 GB."
+  },
+  "ifm/k2-horizon-7b": {
+   "size_gb": 7.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: 7B. No measured TTFT / tok/s / power yet."
+  },
+  "openbmb/minicpm-5-2b": {
+   "size_gb": 2.6,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: 2.6B. No measured TTFT / tok/s / power yet."
+  },
+  "ibm/granite-4.2-8b": {
+   "size_gb": 8.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "ibm/granite-4.2-3b": {
+   "size_gb": 3.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: 3B. No measured TTFT / tok/s / power yet."
+  },
+  "google/gemma-4-12b": {
+   "size_gb": 12.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "xiaomi/mimo-v2.6-distill-qwen-9b": {
+   "size_gb": 9.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: 9B (SFT of Qwen/Qwen3.5-9B on 77.4B tokens of MiMo-V2.6-generated data). No measured TTFT / tok/s / power yet."
+  },
+  "alibaba/qwen-ui-agent-4b": {
+   "size_gb": 4.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "kakao/kanana-2-3b-instruct": {
+   "size_gb": 3.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: 3B. No measured TTFT / tok/s / power yet."
+  },
+  "xhtoken/spark-x2.5-4b": {
+   "size_gb": 4.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: 4B. No measured TTFT / tok/s / power yet."
+  },
+  "alibaba/qwen-3.5-0.8b": {
+   "size_gb": 0.8,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "alibaba/qwen-3.5-2b": {
+   "size_gb": 2.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "alibaba/qwen-3.5-4b": {
+   "size_gb": 4.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "alibaba/qwen-3.5-9b": {
+   "size_gb": 9.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "mistral/ministral-3-3b": {
+   "size_gb": 3.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "mistral/ministral-3-8b": {
+   "size_gb": 8.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "mistral/ministral-3-14b": {
+   "size_gb": 14.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "liquid/lfm2.5-8b-a1b": {
+   "size_gb": 8.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "liquid/lfm2.5-vl-1.6b": {
+   "size_gb": 1.6,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "liquid/lfm2.5-vl-450m": {
+   "size_gb": 0.45,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "liquid/lfm2.5-audio-1.5b": {
+   "size_gb": 1.5,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "liquid/lfm2.5-1.2b-jp": {
+   "size_gb": 1.2,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "openbmb/minicpm-5-1b": {
+   "size_gb": 1.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "microsoft/phi-4-multimodal": {
+   "size_gb": 5.6,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "microsoft/phi-4-reasoning-vision-15b": {
+   "size_gb": 15.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "amazon/nova-micro": {
+   "size_gb": 1.3,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "apple/afm-3-core-3b": {
+   "size_gb": 3.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
+  },
+  "google/gemma-4-e2b-qat": {
+   "size_gb": 1.0,
+   "ttft_ms": null,
+   "tok_s": null,
+   "power_mw": null,
+   "_source": "estimate",
+   "_note": "ESTIMATE (S295, 2026-10-06): size_gb ≈ parameter count × 1 GB/B (8-bit), same convention as apple/foundation-3b = 3.0 in this file; DB parameters field: n/a. No measured TTFT / tok/s / power yet."
   }
+ }
 }

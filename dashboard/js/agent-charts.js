@@ -4326,7 +4326,10 @@ var AgentCharts = (function() {
       'meta':      '#60a5fa', // blue-400
       'microsoft': '#fbbf24', // amber-400
       'openai':    '#a78bfa', // violet-400
-      'anthropic': '#f87171'  // red-400
+      'anthropic': '#f87171', // red-400
+      // 2026-10-06 S295 — vendors of the edge SLMs added in S293 (were falling back to gray)
+      'ibm': '#38bdf8', 'alibaba': '#fb923c', 'mistral': '#f59e0b', 'openbmb': '#4ade80', 'ifm': '#2dd4bf',
+      'xiaomi': '#fdba74', 'kakao': '#facc15', 'xhtoken': '#c084fc', 'liquid': '#67e8f9', 'amazon': '#fcd34d'
     };
     return map[(vendor || '').toLowerCase()] || '#9ca3af'; // gray-400 fallback
   }
