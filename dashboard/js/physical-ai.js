@@ -220,6 +220,10 @@ var PhysicalAI = {
             label: '🦾 VLA Manipulation Suites',
             note: 'LIBERO 4-suite + LIBERO-Plus / -VPro / -Occ / -MAX + RoboCasa365 + RoboTwin + RoboDojo (sim · real) + RoboArena + VLABench + SIMPLE + Bench2Dex + UMI-Bench + ATOM-Bench + CALVIN + NAVSIM / DriveHierarchy (driving)',
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids (12)
+                'flatlab_grasp_sr_test_beta', 'flatlab_grasp_sr_train', 'humanoidtoolbench_sim_standard_l0_icebreak_sr', 'humanoidtoolbench_sim_standard_l2_icebreak_sr',
+                'longbench_manip_cd_avg', 'longbench_manip_ci_avg', 'rmmbench_nav_bev_sr', 'rmmbench_nav_no_bev_sr', 'surgvla_bench_t1_3_sr', 'surgvla_bench_t2_1_sr',
+                'urban_aerial_goalnav_sr', 'urban_aerial_goalnav_sr_long',
                 'libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long',
                 'libero_plus', 'calvin_abcd_avg_length', 'navsim_v1_pdms', 'navsim_v2_epdms', 'embodiedworldbench',
                 // 2026-10-02 S292 — six-month sweep of manipulation suites (2604–2610), headline ids
@@ -252,6 +256,15 @@ var PhysicalAI = {
             label: '🌐 World Model Quality',
             note: 'PAI-Bench · WorldScore · WorldModelBench · EWMBench · PhyGround · WorldOlympiad · Principia · Apple-π · What-If World · iWorld-Bench · RoboWM-Bench · 1X World Model Challenge · FVD / FID / PSNR',
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids (34)
+                'cronos_physical_plausibility', 'cronos_success_rate', 'ego2act_human_panel_final', 'ego2act_judge_agg', 'gigaworld_wmbench_rollout_avg',
+                'gigaworld_wmbench_rollout_jepa', 'h2r_bench_core_dex_hand', 'h2r_bench_core_gripper', 'imagetime_overall_mean', 'memobench_camctrl', 'memobench_ors',
+                'opis_score', 'pawbench_calibration_tvd_lower_better', 'pawbench_coverage', 'pdi_bench_human_expert_score_lower_better',
+                'pdi_bench_pdi_score_lower_better', 'phyprobe_physical_pairwise_accuracy_avg', 'playworld_basic_ability_score', 'playworld_vqa_overall',
+                'r2m_bench_overall_nmr', 'rigidbench_iou', 'rigidbench_ssim', 'robotrustbench_constraint_overall', 'robotrustbench_normal_overall',
+                'tailor_predictive_regular_ia', 'tailor_predictive_regular_phys', 'wbench_nav_physical', 'wbench_nav_setting', 'worldexam_static_overall',
+                'worldexam_static_task', 'worldmark_fp_real_direction_accuracy_trans', 'worldmark_fp_real_local_memory', 'worldroambench_fpv_memory',
+                'worldroambench_fpv_overall',
                 'pai_bench_text2world', 'pai_bench_image2world',
                 // 2026-10-02 S292 — world-model / physics-in-video benchmarks (2604–2610), headline ids
                 'phyground_overall', 'worldolympiad_overall', 'applepi_avg', 'principia_gen_overall', 'principia_vlm_overall',
@@ -310,6 +323,19 @@ var PhysicalAI = {
             label: '🧠 Embodied Reasoning',
             note: 'ERQA / ERQA-Plus · Gemini Robotics-ER 2 release evals · EPIC-Bench (89 VLMs) · ArchSIBench · MVVBench · OVO-S-Bench · PhysVista · RoboChrono · Blueprint-Bench 2 (photos → floor plan) · Cosmos Reason 1 (PCS · Embodied · Intuitive Physics)',
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids (60)
+                'act2answer_shape', 'act2answer_time', 'aerialdojo_base_sr_3m', 'aerialdojo_base_sr_5m', 'affectsim_p_init_macro_f1', 'affectsim_p_ref_macro_f1',
+                'am_bench_sr', 'am_bench_subtask_completion', 'barista_ego_hoi_f1', 'bigym2_9task_mean_sr', 'capmem_videoqa', 'dsv_mem_category_avg',
+                'egogapbench_direct_acc', 'egogapbench_overall_acc', 'egointrospect_t1_1_photo_acc', 'egointrospect_t1_1_recording_acc', 'egopathbench_point_path_sr',
+                'egopathbench_score', 'ember_bench_causal_traceback', 'ember_bench_overall', 'embodimentsemantic_agentview_mf1', 'embodimentsemantic_eye_in_hand_mf1',
+                'fireworldbench_sim_capability_s_track_acc', 'fireworldbench_sim_task_s_track_acc', 'gca_bench_clutter_tsr', 'gca_bench_semantic_tsr', 'hide_avg_sr',
+                'hide_rc_avg_sr', 'hygienerobobench_osr', 'hygienerobobench_sr', 'imitator_game_sim_pft_sr', 'imitator_game_sim_zs_sr', 'jrdb_avr_answer_acc',
+                'jrdb_avr_combined_acc', 'labrobfail_bench_seen_q2_failure_detection', 'labrobfail_bench_seen_q6_rouge_l', 'longegorefer_mtiou', 'longegorefer_mviou',
+                'motionforge_ood_joint_sr', 'motionforge_ood_speed_sr', 'nureasoning_driving_choice_acc', 'nureasoning_motion_choice_acc', 'nutribench_kitchen_avg',
+                'phycheck_accuracy', 'phyeditbench_antiphysics_overall', 'polybridgebench_loose_success_at_3', 'polybridgebench_strict_success_at_3',
+                'robogazebench_desc_f1_vanilla', 'robogazebench_f1xiou_robogaze', 'robointer_vqa_spatial_contact_tf', 'robointer_vqa_spatial_grounding_choice',
+                'robolab_120', 'robolab_120_score', 'roboprocessbench_t1', 'roboprocessbench_t4', 'roboteq_video_a_avg', 'robotworld_overall_sr', 'rt_safe_sr',
+                'viser_agent_score', 'watchact_plan_sr',
                 'cosmos_physical_common_sense', 'cosmos_embodied_reasoning', 'cosmos_intuitive_physics',
                 'intuitive_physics_spatial_puzzle', 'intuitive_physics_arrow_of_time', 'intuitive_physics_object_permanence',
                 'gemini_instrument_reading', 'instrument_reading_agentic_vision',

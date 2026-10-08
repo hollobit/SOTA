@@ -20,6 +20,16 @@ var Agent = (function() {
             icon: '💻',
             label: 'Coding Agents',
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (42)
+                '4dcodebench_overall', '4dcodebench_vqa', 'aarri_bench_mini_swe_agent', 'active_swe_resolved', 'active_swe_revealed', 'appworld_ul_isgc',
+                'appworld_ul_itgc', 'asyncodebench_final_success_async_manager', 'asyncodebench_final_success_single', 'e_bench_code_avg3', 'gameenginebench_pass1',
+                'gamelogicbench_claude_code', 'gamelogicbench_claude_code_atom', 'gamexpert_gamegen_overall', 'loopsbench_resolve_rate_claude_code',
+                'loopsbench_test_pass_rate_claude_code', 'mattoolbench_code_sr', 'mmskillrisk_ncva_tsr_claude_code', 'mtac_ifbench_cisr', 'mtac_ifbench_csr',
+                'openharmony_bench_task_completion_bug_fix', 'secprobe_pass_rate_mini_swe_agent', 'swe_bench_pro_verified', 'swe_bench_promax_resolve_mini_swe_agent',
+                'swe_bench_promax_resolve_openhands', 'swe_cc_resolve_openhands', 'swe_cc_triggering_openhands', 'swe_interact_multi_turn_resolve',
+                'swe_interact_single_turn_resolve', 'swe_polyvision_e2e_text_only', 'swe_polyvision_vrr_text_only', 'swe_refactor_bench_accepted_runs',
+                'swe_refactor_bench_score', 'swe_rpg_resolved_codex', 'swe_rpg_resolved_opencode', 'swe_serve', 'swe_serve_pass3', 'swe_touch_pro_counter_edit_resolve',
+                'swe_touch_verified_retention', 'terminal_bench_lilt', 'webgamebench_excellent_rate', 'webgamebench_usable_rate',
                 'swe_bench_verified',
                 'swe_bench_pro',
                 'cursorbench_4_0', 'terminal_bench_4',  // 2026-09-23 S282
@@ -54,6 +64,11 @@ var Agent = (function() {
             icon: '🌐',
             label: 'Web & Browsing',
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (18)
+                'deepweb_bench', 'deepweb_bench_reasoning', 'lohosearch', 'lohosearch_calibration_error_lower_better', 'longwebbench_vfr_multi_image',
+                'longwebbench_vfr_single_image', 'mt_web2code_macro_score', 'mt_web2code_micro_score', 'teleswebench_localization_em',
+                'teleswebench_localization_em_easy', 'tsbench_complex', 'tsbench_simple', 'vibesearchbench_f1', 'vibesearchbench_pro_f1', 'webforge_bench',
+                'webforge_bench_l3', 'webuiproof_general_accuracy', 'webuiproof_general_build_failure_lower_better',
                 // 2026-10-03 S292b
                 'clawbench', 'geobrowse_l1_gate', 'interlv_search_l1_tool',
                 // 2026-10-02 S292 — web / deep-research suites (2604–2610)
@@ -83,6 +98,11 @@ var Agent = (function() {
             icon: '🖥️',
             label: 'OS / Computer Use',
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (16)
+                'biostudybench_prior_knowledge', 'biostudybench_with_data', 'capmem_captionqa_30s', 'd2k_bench_correct_no_guidance', 'd2k_bench_sperf_no_guidance',
+                'ddb_single_action_macro_f1', 'emailbench_pass_rate', 'gui_cc_offline_overall_no_history', 'gui_cc_online_overall_no_history', 'hypertrack_step_em',
+                'iosworld_vision_only', 'iosworld_vision_xml', 'mattoolbench_gui_sr', 'mobilecybench_malicious_app_apk_only', 'mobilecybench_pass_at_2',
+                'skillscriptbench_overall_avg_raw_ast',
                 // 2026-10-03 S292b — SaaS-Bench, OSWorld official boards, GameWorld, RiskWebWorld, …
                 'saas_bench_resolved', 'osworld_verified_50step', 'osworld_verified_15step', 'osworld_v2_standard_tool', 'osworld_v2_1', 'osworld_v2_20260808_offline', 'gameworld_sr_generalist', 'riskwebworld', 'healthadminbench_dme', 'autogui_v2_region_captioning', 'cocoabench', 'androidworld', 'osguard_action_level_acc',
                 // 2026-10-02 S292 — desktop / mobile computer-use suites (2604–2610)
@@ -110,6 +130,11 @@ var Agent = (function() {
             icon: '🔧',
             label: 'Tool Use & Function Calling',
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (18)
+                'agrotools_e2e_fas', 'agrotools_step_toolacc', 'apiflow_bench_all', 'apiflow_bench_solo', 'imaging_101_module_overall',
+                'moldesignbench_generation_success', 'moldesignbench_optimization_success', 'phreeqc_mcq_200_direct', 'sci_mmr_agentic_acc', 'toolbench_x',
+                'toolbench_x_output', 'toolprivacybench_private_task_success', 'toolprivacybench_public_task_success', 'toolrobustbench', 'toolrobustbench_clean',
+                'usertoolbench_exact_acc_single_tool', 'usertoolbench_relaxed_acc', 'video2world_functionality_success',
                 // 2026-10-03 S292b
                 'occubench', 'pi_bench_comp', 'agentescapebench_d5', 'kellybench_avg_roi', 'dataclawbench', 'dv_world_sheet_score',
                 // 2026-10-02 S292 — tool-use / reliability suites (2604–2610)
@@ -136,6 +161,8 @@ var Agent = (function() {
             icon: '🔌',
             label: 'MCP (Model Context Protocol)',
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (1)
+                'hw_mcp_bench_ecc',
                 // 2026-10-02 S292 — MCP suites (2604–2610)
                 'dynamicmcpbench_pass1', 'dynamicmcpbench_pass3', 'mcpgen_workflow_reconstruction', 'mcpgen_workflow_extension_e2e',
                 'mcp_bench',
@@ -169,6 +196,8 @@ var Agent = (function() {
             icon: '💰',
             label: 'Finance & Business Agents',
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (5)
+                'dayjob_finance_strict_pass1', 'ecommerce_bench_cse_plus', 'ecommerce_bench_final_assets', 'mmshopbench_id_at_1', 'mmshopbench_judge_at_1',
                 'fintrace',
                 'finmcp_bench',
                 'fintoolbench',
@@ -185,6 +214,10 @@ var Agent = (function() {
             label: 'Domain-Specific Agents',
             crossListed: ['medical-ai', 'ai4s'],
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (15)
+                'cadengbench_a_a2_e2e', 'cadengbench_a_typed_at_1', 'earthverse_core', 'gna_bench_all_103', 'gna_bench_main_93', 'hle_phy_chem_subset_260618648',
+                'omnicad_agentic_2dvis_pa', 'omnicad_oneshot_colorview_pa', 'plcworld_execution_gap_lower_better', 'plcworld_pooled_sr',
+                'power_systems_agent_bench_public', 'powerbench_fa', 'powerbench_macro_ja', 'ppt_eval_sr', 'startupbench_score_stem',
                 // 2026-10-02 S292 — enterprise / research / embodied-agent suites (2604–2610)
                 'ceo_arena_mean_score_usd_k', 'business_arena_net_worth_usd', 'erpbench_gair_arena_valuation', 'bi_bench_sql_no_tools',
                 'eurekabench_conditioned_score', 'autodatabench_overall', 'frontierchallenge_pass_rate', 'bluefin_heldout_overall',
@@ -239,6 +272,24 @@ var Agent = (function() {
                 'linuxarena_best_prompt_stealth_hidden_reasoning_lower_better', 'linuxarena_best_prompt_stealth_no_thinking_lower_better', 'linuxarena_best_prompt_stealth_visible_reasoning_lower_better'
             ],
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (66)
+                'actbench_asr_lower_better', 'actbench_not_ags_mal', 'adepts_bench_score_desktop', 'adepts_bench_score_mobile', 'agentboundary_safety_all',
+                'agentboundary_utility_all', 'agentprivarena_leak_rate_lower_better', 'baitbench_reward_hacking_rate_lower_better', 'blindspot_bcr', 'blindspot_crr',
+                'boiling_the_frog_safe_agency_score', 'boiling_the_frog_strict_asr_lower_better', 'cheatbench_general_harness_avg_lower_better',
+                'cheatbench_overall_cheating_rate_lower_better', 'cosec_hermes_overall_bcr', 'cosec_openclaw_overall_bcr', 'credleakbench_autonomous_balanced_accuracy',
+                'credleakbench_directed_balanced_accuracy', 'decepeval_coding_induced_deception_rate_lower_better',
+                'decepeval_coding_neutral_deception_rate_lower_better', 'decompbench_decomposed_asr_lower_better', 'decompbench_monolithic_asr_lower_better',
+                'delegationbench_4way_agreement', 'delegationbench_over_intervention_lower_better', 'dgf_bench_score', 'duma_bench_dual_asr_lower_better',
+                'duma_bench_solo_asr_lower_better', 'egosafetybench_sequential_caught_rate', 'egosafetybench_video_balanced_acc',
+                'fta_false_success_rate_baseline_lower_better', 'fta_false_success_rate_contract_lower_better', 'guardianbench_acc', 'guardianbench_pair_acc',
+                'harnessrisk_openclaw_detection', 'hvtb_hack_rate_l2_lower_better', 'hvtb_hack_rate_l3_lower_better', 'litmus_asr_lower_better',
+                'litmus_ehr_lower_better', 'livepi_asr_lower_better', 'memevobench_qa_asr_lower_better', 'memevobench_workflow_asr_lower_better',
+                'mobileworldsafety_asr_lower_better', 'mobileworldsafety_tcr', 'nrt_bench_paired_asr_lower_better', 'overact_baseline_pvs_lower_better',
+                'pastabench_on_time_rate', 'pastabench_perfect_interruption', 'patchbench_poc_pass_openhands', 'patchbench_solved_openhands',
+                'physical_privacy_tier2_mae_lower_better', 'physical_privacy_tier2_selection_acc', 'realm_asr_coa', 'realm_clean_acc',
+                'rha_safety_over_refusal_rate_lower_better', 'robojailbench_su_hm', 'robojailbench_utility_rate', 'rt_safe_safe_sr', 'saferelbench_proximity_sr',
+                'saferelbench_supporting_sr', 'scammer4u_plr_crit_c0_lower_better', 'scammer4u_plr_crit_c3_lower_better', 'scopebench_scope_adherence',
+                'spade_bench_deception_rate_lower_better', 'steerbench_work_accuracy', 'stepjack_asr_k1_lower_better', 'stepjack_asr_union_lower_better',
                 'agentlab_asr',
                 'agentdojo_targeted_asr',
                 'agentdojo_utility',
@@ -286,6 +337,23 @@ var Agent = (function() {
             icon: '🚀',
             label: 'General / Composite',
             benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (80)
+                'ai4ai_bench_avg', 'dayjob_healthcare_strict_pass1', 'sqbench_simple_pass1', 'sqbench_weighted_pass1', 'agentideabench_active', 'agentideabench_static',
+                'handbook_md_strict_pass1', 'vloc_bench_file_f1', 'vloc_bench_phase_b_tnr', 'rideway_efficiency_utility_custom14', 'rideway_sr58', 'agenthop_accuracy',
+                'lhtb_pass1_r09', 'lhtb_pass1_r10', 'qstrbench_combined_acc', 'tua_bench_terminus2', 'tua_bench_terminus2_all5', 'fm_bench_arena_final_score',
+                'fm_bench_solo_final_score', 'gamexpert_gameopt_overall', 'argo_bench_score', 'argo_bench_solved', 'dexholdem_perception_avg',
+                'dexholdem_perception_overall', 'dyadmem_capture_f1', 'dyadmem_recall_all', 'lmbuild_design', 'lmbuild_soundness', 'code4scene_public_overall',
+                'code4scene_public_t2s', 'deskcraft_interactive', 'deskcraft_standard', 'halluworld_chess_nofen_hallucination_rate_lower_better',
+                'opengameeval_core_pass1', 'opengameeval_core_pass5', 'dsv_mem_total_avg', 'kalibench_unrestricted_exact_correct', 'kalibench_unrestricted_total_score',
+                'scbench_long', 'alem_easy_total', 'alem_hard_total', 'e_bench_avg3', 'rle_bench_f07', 'rle_bench_index', 'smh_bench_dr_avg', 'smh_bench_eia_avg',
+                'xiangqibench_restricted_pass1', 'xiangqibench_sighted_pass1', 'autoscibench_generated_avg_gpt56sol', 'autoscibench_generated_avg_opus48',
+                'dynaschedbench_subset_makespan_gap_lower_better', 'omnigamearena_cuechase', 'omnigamearena_laststand', 'weavebench_overall_score',
+                'weavebench_passrate', 'a2z_gamespec_gdd_fidelity', 'a2z_gamespec_gdd_fidelity_big', 'adaplanbench_accuracy', 'adaplanbench_valid_plan_rate',
+                'frontier_eng_avg_rank_lower_better', 'frontier_eng_win_rate_over_baseline', 'halluworld_grid_hallucination_rate_lower_better', 'learn2play_max',
+                'learn2play_mean', 'librarydesignbench_score', 'librarydesignbench_simplicity', 'mindedit_bench_overall_acc', 'omnismarthome_goal_acc',
+                'omnismarthome_grounding_acc', 'secprobe_pass_rate_terminus2', 'uniclawbench_avg_score', 'uniclawbench_pass_rate', 'vex_bench_justification_accuracy',
+                'vex_bench_status_accuracy', 'video2world_v2wscore', 'intentflux_general_clean_car', 'intentflux_general_hard_drift_car', 'k_bench_majority_success',
+                'k_bench_overall', 'm3exam_overall_score',
                 // 2026-10-02 S292 — general / composite agent suites (2604–2610)
                 'pdeu_bench_qual_score', 'pdeu_bench_pref_score', 'clawmark_score', 'force_bench_overall', 'agentworld_collab_main_sr',
                 'babelarena_vitabench_pass1', 'contextweave_workspace_no_recall', 'jarvisbench_multi_agent_baseline',

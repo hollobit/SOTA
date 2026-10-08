@@ -50,6 +50,11 @@ var FrontierCompare = {
             'gmmlu_average', 'milu_average', 'include_average', 'live_math'
         ],
         coding: [
+            // 2026-10-09 S297 sweep #2 — frontier-scored headline ids (20)
+            'swe_serve', 'swe_serve_pass3', 'swe_refactor_bench_accepted_runs', 'swe_refactor_bench_score', '4dcodebench_overall', '4dcodebench_vqa',
+            'active_swe_resolved', 'active_swe_revealed', 'gamexpert_gamegen_overall', 'webgamebench_excellent_rate', 'webgamebench_usable_rate',
+            'gamelogicbench_claude_code', 'gamelogicbench_claude_code_atom', 'loopsbench_resolve_rate_claude_code', 'loopsbench_test_pass_rate_claude_code',
+            'e_bench_code_avg3', 'mtac_ifbench_cisr', 'mtac_ifbench_csr', 'swe_polyvision_e2e_text_only', 'swe_polyvision_vrr_text_only',
             'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5',  // S290b — FrontierSWE v2 board trial spread
             'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
             'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'swe_rebench',
@@ -89,6 +94,12 @@ var FrontierCompare = {
             // 2026-07-09 S176 — GPT-5.6 card FrontierMath v2 Tier 1-3 split
             'frontiermath_tier1_3_v2'],
         agent: [
+            // 2026-10-09 S297 sweep #2 — frontier-scored headline ids (25)
+            'ai4ai_bench_avg', 'dayjob_finance_strict_pass1', 'dayjob_healthcare_strict_pass1', 'sqbench_simple_pass1', 'sqbench_weighted_pass1',
+            'agentideabench_active', 'agentideabench_static', 'handbook_md_strict_pass1', 'apiflow_bench_all', 'apiflow_bench_solo', 'vloc_bench_file_f1',
+            'vloc_bench_phase_b_tnr', 'rideway_efficiency_utility_custom14', 'rideway_sr58', 'agenthop_accuracy', 'lhtb_pass1_r09', 'lhtb_pass1_r10',
+            'ecommerce_bench_cse_plus', 'ecommerce_bench_final_assets', 'qstrbench_combined_acc', 'tua_bench_terminus2', 'tua_bench_terminus2_all5',
+            'fm_bench_arena_final_score', 'fm_bench_solo_final_score', 'gamexpert_gameopt_overall',
             'browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench',
             'mcp_atlas', 'mcpatlas_public', 'mcpmark', 'webarena',
             'deepsearchqa', 'vending_bench_2', 'toolathlon',
@@ -133,6 +144,9 @@ var FrontierCompare = {
             'saas_bench_resolved', 'occubench', 'osworld_v2_1', 'osworld_verified_50step', 'riskwebworld', 'gameworld_sr_generalist'  // S292b
         ],
         cybersecurity: [
+            // 2026-10-09 S297 sweep #2 — frontier-scored headline ids (10)
+            'steerbench_work_accuracy', 'actbench_not_ags_mal', 'actbench_asr_lower_better', 'guardianbench_acc', 'guardianbench_pair_acc', 'realm_asr_coa',
+            'realm_clean_acc', 'agentboundary_safety_all', 'agentboundary_utility_all', 'delegationbench_4way_agreement',
             'cybench', 'openai_ctf_professional', 'cybergym',
             // 2026-09-28 S289 — AA Cyber Index v1
             'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa',
@@ -214,7 +228,8 @@ var FrontierCompare = {
             // 2026-07-01 S162 — Sonnet 5 SC prompt injection bug bounty (Sonnet 5 + Opus 4.8 = 0.19% tied)
             'prompt_injection_bug_bounty_all', 'bbq_disambiguated_accuracy'
         ],
-        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'compass_multimodal_avg', 'mmbench_v1_1', 'mmstar', 'mmmu', 'mathvista', 'hallusionbench', 'mmvet', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en',
+        multimodal: ['roboteq_video_a_avg', 'ember_bench_causal_traceback', 'ember_bench_overall', 'fireworldbench_sim_capability_s_track_acc', 'fireworldbench_sim_task_s_track_acc', 'dsv_mem_category_avg', 'egointrospect_t1_1_photo_acc', 'egointrospect_t1_1_recording_acc', 'capmem_videoqa', 'egopathbench_point_path_sr',  // 2026-10-09 S297 sweep #2
+            'mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'compass_multimodal_avg', 'mmbench_v1_1', 'mmstar', 'mmmu', 'mathvista', 'hallusionbench', 'mmvet', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en',
             // 2026-06-01 S43 Nemotron RAG visual document retrieval + Parse document understanding
             'vidore_v1', 'vidore_v2', 'vidore_v3', 'omnidocbench_en', 'omnidocbench_zh',
             // 2026-06-02 S46 Qwen3.7-Plus multimodal benches
