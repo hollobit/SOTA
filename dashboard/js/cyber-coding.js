@@ -647,6 +647,8 @@ var CyberCoding = {
 
     // frontier models to highlight
     FRONTIER_MODELS: [
+        // 2026-10-06 S296 — Mistral Large 4 Preview (Cybench 93%, CyberGym-E2E reproduce+patch 82%, AA Cyber Index 50 successes with 0 safety blocks, Lakera B3 93.3; separate cyber-permissive build for vetted partners) + Claude Haiku 5.5 (TB 4.0 39.2, SWE-bench Pro 64.8, FrontierCode Main 46.4 at $0.10/$0.50)
+        'mistral/mistral-large-4-preview', 'anthropic/claude-haiku-5.5',
         // 2026-09-30 S290 — Gemini 4 Argon (CWE-bench v1 68 tie #1, DeepSWE 77.9, Gray Swan IPI k=15 0.7%; released without cyber guardrails to Fairwind defenders)
         'google/gemini-4-argon',
         // 2026-09-22 S282 — Opus 5.5 (CursorBench 4.0 57.8, TB 4.0 66.4 xhigh), GPT-6 Sol/Luna (ExploitBench 81.7/43.4), Grok 4.7 (TB 4.0 37.6), MiMo-V2.6 Pro/Flash (CyberGym corrected env 94.0/95.1)

@@ -73,6 +73,7 @@ var Sovereign = {
             note: '프랑스 sovereign frontier — Mistral 풀라인업 (Mistral 7B·Mixtral·Nemo·Saba·Codestral·Mathstral·Pixtral·Magistral·Devstral·Ministral·Voxtral) + PleIAs · Lucie · CroissantLLM · HuggingFace SmolLM',
             models: [
                 // Mistral — flagship & frontier
+                'mistral/mistral-large-4-preview',  // 2026-10-06 S296 — 1T / 52B-active MoE trained on 3,800 Grace Blackwell GPUs in Mistral's EU datacenters; AAII 38.4, Vals Index 48.05, Cybench 93
                 'mistral/mistral-large-3', 'mistral/mistral-medium-3.5', 'mistral/mistral-medium-3.5-eagle', 'mistral/mistral-medium-3.1', 'mistral/mistral-medium-3',
                 'cohere-alephalpha/command-pharia-1',  // 2026-04-24 S145 — Cohere+Aleph Alpha merger; Command-Pharia 1 Q4 2026 EU sovereign
                 'aleph-alpha/pharia-1-llm-7b-control',  // 2026 S151 audit — Aleph Alpha Pharia-1 LLM Control variant
@@ -454,12 +455,14 @@ var Sovereign = {
         },
         {
             code: 'de', label: 'Germany', flag: '🇩🇪',
-            note: 'OpenGPT-X Teuken (Fraunhofer EU sovereign LLM, 24 EU 언어) + Aleph Alpha Pharia/TFree-HAT + Black Forest Labs FLUX 1/2 + TNG Chimera + Ellamind Propella + Occiglot',
+            note: 'OpenGPT-X Teuken (Fraunhofer EU sovereign LLM, 24 EU 언어) + Aleph Alpha Kolibri (2026-10, 78B-A3.5B Apache 2.0 DE/EN)/Pharia/TFree-HAT + Black Forest Labs FLUX 1/2 + TNG Chimera + Ellamind Propella + Occiglot',
             models: [
                 // OpenGPT-X Teuken (Fraunhofer + Jülich + TU Dresden + DFKI)
                 'opengpt-x/teuken-7b-instruct-v0.6', 'opengpt-x/teuken-7b-base-v0.6',
                 'opengpt-x/teuken-7b-instruct-commercial-v0.4',
                 // Aleph Alpha
+                'aleph-alpha/kolibri-1', 'aleph-alpha/kolibri-origin',  // 2026-10 S296 — Kolibri: 78.1B / 3.46B-active MoE trained from scratch in Germany, Apache 2.0, DE/EN, 1M ctx; GPQA-D 84.3 / AIME 2025 96.9 / τ²-telecom 94.7 (tech report Tables 28/29)
+                'aleph-alpha/kolibri-1-base', 'aleph-alpha/kolibri-origin-base',
                 'aleph-alpha/pharia-1-7b-control', 'aleph-alpha/pharia-1-7b-control-aligned',
                 'aleph-alpha/pharia-2-tfree', 'aleph-alpha/luminous',
                 'aleph-alpha/tfree-hat-pretrained-7b-base',
@@ -739,7 +742,7 @@ var Sovereign = {
         'freedomintelligence/huatuogpt-ii': '2024-05',
 
         // France — Mistral flagship + reasoning
-        'mistral/mistral-large-3': '2025-12', 'mistral/mistral-large-2': '2024-07', 'mistral/mistral-large-1': '2024-02',
+        'mistral/mistral-large-4-preview': '2026-10', 'mistral/mistral-large-3': '2025-12', 'mistral/mistral-large-2': '2024-07', 'mistral/mistral-large-1': '2024-02',
         'mistral/mistral-medium-3.5': '2026-05', 'mistral/mistral-medium-3.1': '2025-09', 'mistral/mistral-medium-3': '2025-05',
         'mistral/mistral-small-4': '2026-02', 'mistral/mistral-small-3.2': '2025-07', 'mistral/mistral-small-3.1': '2025-03', 'mistral/mistral-small-3': '2025-01', 'mistral/mistral-small-2': '2024-09', 'mistral/mistral-small-1': '2023-09',
         'mistral/magistral-medium-1.2': '2025-09', 'mistral/magistral-small-1.2': '2025-09',
@@ -824,6 +827,7 @@ var Sovereign = {
         'tbank/t-pro-1': '2024-12', 'tbank/t-lite-1': '2024-12',
 
         // Germany
+        'aleph-alpha/kolibri-1': '2026-10', 'aleph-alpha/kolibri-origin': '2026-10', 'aleph-alpha/kolibri-1-base': '2026-10', 'aleph-alpha/kolibri-origin-base': '2026-10',
         'aleph-alpha/pharia-1-7b-control': '2024-08', 'aleph-alpha/pharia-1-7b-control-aligned': '2024-08',
         'aleph-alpha/pharia-2-tfree': '2025-09', 'aleph-alpha/luminous': '2022-04',
         'black-forest-labs/flux.1-pro': '2024-08', 'black-forest-labs/flux.1-dev': '2024-08', 'black-forest-labs/flux.1-schnell': '2024-08',
@@ -1192,6 +1196,7 @@ var Sovereign = {
         'sber/gigachat-1.5': 30,
         'tbank/t-pro-1': 30, 'tbank/t-lite-1': 8,
         // Germany
+        'aleph-alpha/kolibri-1': 78, 'aleph-alpha/kolibri-origin': 31, 'aleph-alpha/kolibri-1-base': 78, 'aleph-alpha/kolibri-origin-base': 31,  // S296 — total params (3.46B / 3.27B active)
         'aleph-alpha/luminous': 70, 'aleph-alpha/pharia-2-tfree': 70,
         'black-forest-labs/flux.1-pro': 12, 'black-forest-labs/flux.1-dev': 12,
         'black-forest-labs/flux.1-schnell': 12,

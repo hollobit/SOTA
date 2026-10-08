@@ -377,7 +377,7 @@
   ];
   var _SOV_SPECIALIST_IDS = [
     'deepseek/deepseek-v4-pro','alibaba/qwen-3.6-plus','moonshot/kimi-k2.6',
-    'mistral/mistral-large-3','tii/falcon-h1-arabic-34b','cohere/aya-23',
+    'mistral/mistral-large-4-preview','tii/falcon-h1-arabic-34b','cohere/aya-23',  // S296: Mistral Large 3 → Large 4 Preview
     'ai-singapore/apertus-sea-lion-v4-8b','naver/hyperclova-x'
   ];
 

@@ -41882,6 +41882,496 @@
     "metric": "accuracy_pct"
   },
   {
+    "id": "surge_human_coding_eval",
+    "name": "Surge AI blind human evaluation of coding quality (1–5)",
+    "category": "coding",
+    "description": "Blind human evaluation run by Surge AI for Mistral (Oct 2026): professional annotators rated model outputs on coding tasks on a 1–5 scale with model identities hidden. Reported in the Mistral Large 4 launch post.",
+    "metric": "score"
+  },
+  {
+    "id": "lakera_b3_attack_resistance",
+    "name": "Lakera B3 Agent Security Benchmark — attack resistance",
+    "category": "safety",
+    "description": "Lakera's public B3 (backbone breaker) AI security benchmark: share of adversarial attacks the model resists (higher = more robust). Values as reported in the Mistral Large 4 launch post.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "korabench_aggregate",
+    "name": "KORABench aggregate score",
+    "category": "safety",
+    "description": "KORA benchmark aggregate score (Mistral launch chart \"KORA Aggregate Score\", higher better; Mistral Large 4 1.691). Comparison values are the chart labels (one decimal).",
+    "metric": "score"
+  },
+  {
+    "id": "harmful_cyber_refusal_avg_jbb_strongreject_agentharm",
+    "name": "Refusal of harmful cyber requests — avg. of JailbreakBench, StrongREJECT, AgentHarm",
+    "category": "safety",
+    "description": "Average refusal rate on harmful cyber requests across JailbreakBench, StrongREJECT and AgentHarm, as reported in the Mistral Large 4 launch post (higher = more refusals of harmful requests).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "scicode_verified_pass1",
+    "name": "SciCode-Verified pass@1 (n=6)",
+    "category": "science",
+    "description": "SciCode-Verified pass@1 averaged over 6 samples, as reported in the Mistral Large 4 launch post. Different scale from the AA SciCode sub-problem score on `scicode`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "cybergym_e2e",
+    "name": "CyberGym-E2E (vendor-run reproduce + patch)",
+    "category": "cyber",
+    "description": "End-to-end CyberGym variant: reproduce a real open-source vulnerability and then patch it. Vendor-run numbers (Mistral Large 4 post: 82%, \"the highest of any model\"); AA's own CyberGym-E2E-AA board is on `cybergym_e2e_aa`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "hle_de",
+    "name": "Humanity's Last Exam — German translation (ellamind)",
+    "category": "reasoning",
+    "description": "HLE in German (ellamind multilingual translation), as used in the Aleph Alpha Kolibri tech report.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "aime_2025_de",
+    "name": "AIME 2025 — German translation",
+    "category": "math",
+    "description": "AIME 2025 problems translated to German (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "aime_2026_de",
+    "name": "AIME 2026 — German translation",
+    "category": "math",
+    "description": "AIME 2026 problems translated to German (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "mmlu_prox_de",
+    "name": "MMLU-ProX (German) CoT",
+    "category": "knowledge",
+    "description": "MMLU-ProX German split with chain-of-thought (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "hellaswag_de",
+    "name": "HellaSwag — German translation",
+    "category": "reasoning",
+    "description": "HellaSwag German (Kolibri tech report base-model suite).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "global_mmlu_de",
+    "name": "Global MMLU — German",
+    "category": "knowledge",
+    "description": "Global MMLU German subset (Kolibri tech report base-model suite).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "aa_omniscience_accuracy_public_set",
+    "name": "AA-Omniscience accuracy (public set, self-run)",
+    "category": "knowledge",
+    "description": "AA-Omniscience accuracy on the public question set, run by the model developer (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "aa_omniscience_index_public_set",
+    "name": "AA-Omniscience Index (public set, self-run)",
+    "category": "knowledge",
+    "description": "AA-Omniscience Index (−100…100) on the public set, developer-run (Kolibri tech report). The Aleph Alpha product page shows a rescaled 0–100 version.",
+    "metric": "score"
+  },
+  {
+    "id": "aa_omniscience_non_hall_public_set",
+    "name": "AA-Omniscience non-hallucination rate (public set, self-run)",
+    "category": "knowledge",
+    "description": "Non-hallucination rate on the public AA-Omniscience set, developer-run (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "squad_ma_grounding_score",
+    "name": "SQuAD 2.0 M/A grounding score",
+    "category": "retrieval",
+    "description": "Kolibri tech report grounding eval on SQuAD: must-answer / abstain grounding score (how often the model answers only from the given context and abstains otherwise).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "squad_utility_accuracy",
+    "name": "SQuAD 2.0 utility accuracy",
+    "category": "retrieval",
+    "description": "Kolibri tech report grounding eval on SQuAD: answer accuracy when the context supports an answer.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "rgb_closed_book",
+    "name": "RGB — closed-book",
+    "category": "retrieval",
+    "description": "RGB (Retrieval-Augmented Generation Benchmark) closed-book split (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "rgb_negative_abstention",
+    "name": "RGB — negative rejection (abstention)",
+    "category": "retrieval",
+    "description": "RGB negative-rejection split: abstaining when the retrieved documents do not contain the answer (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "rgb_fact_check",
+    "name": "RGB — counterfactual fact-check (error correction)",
+    "category": "retrieval",
+    "description": "RGB counterfactual robustness split: detecting and correcting errors in retrieved documents (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "frames_lt24k",
+    "name": "FRAMES (<24k-token contexts)",
+    "category": "retrieval",
+    "description": "FRAMES multi-hop RAG benchmark, prompts under 24k tokens (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "frames_gt24k",
+    "name": "FRAMES (>24k-token contexts)",
+    "category": "retrieval",
+    "description": "FRAMES multi-hop RAG benchmark, prompts over 24k tokens (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "sealqa_lt24k_no_distractors",
+    "name": "SealQA (<24k, no distractors)",
+    "category": "retrieval",
+    "description": "SealQA with gold documents only, prompts under 24k tokens (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "sealqa_lt24k_12_distractors",
+    "name": "SealQA (<24k, 12 distractors)",
+    "category": "retrieval",
+    "description": "SealQA with 12 distractor documents, prompts under 24k tokens (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "sealqa_gt24k_no_distractors",
+    "name": "SealQA (>24k, no distractors)",
+    "category": "retrieval",
+    "description": "SealQA with gold documents only, prompts over 24k tokens (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "sealqa_gt24k_12_distractors",
+    "name": "SealQA (>24k, 12 distractors)",
+    "category": "retrieval",
+    "description": "SealQA with 12 distractor documents, prompts over 24k tokens (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "honeypot_en_de",
+    "name": "Honeypot agentic retrieval (EN/DE)",
+    "category": "agentic",
+    "description": "Aleph Alpha Honeypot: bilingual multi-hop agentic search benchmark from the Kolibri tech report.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "agentic_wiki_qa_de",
+    "name": "Agentic Wiki QA (German)",
+    "category": "agentic",
+    "description": "Aleph Alpha German agentic Wikipedia QA benchmark (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "industry_rag_semiconductors_en",
+    "name": "Industry RAG — semiconductors (EN)",
+    "category": "retrieval",
+    "description": "Aleph Alpha customer-proxy agentic RAG eval over an unseen semiconductor corpus (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "industry_rag_german_public_sector_de",
+    "name": "Industry RAG — German public sector (DE)",
+    "category": "retrieval",
+    "description": "Aleph Alpha customer-proxy agentic RAG eval over a German public-sector corpus (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "industry_rag_aerospace_de",
+    "name": "Industry RAG — aerospace (DE)",
+    "category": "retrieval",
+    "description": "Aleph Alpha customer-proxy agentic RAG eval over an aerospace corpus in German (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "industry_rag_automotive_supplier_en",
+    "name": "Industry RAG — automotive supplier (EN)",
+    "category": "retrieval",
+    "description": "Aleph Alpha customer-proxy agentic RAG eval over an automotive-supplier corpus (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "industry_rag_industrial_drive_de",
+    "name": "Industry RAG — industrial drive technology (DE)",
+    "category": "retrieval",
+    "description": "Aleph Alpha customer-proxy agentic RAG eval over an industrial-drive-technology corpus in German (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "longbench_pro",
+    "name": "LongBench Pro",
+    "category": "long_context",
+    "description": "LongBench Pro long-context benchmark (Kolibri tech report).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "ruler_4k",
+    "name": "RULER @4k",
+    "category": "long_context",
+    "description": "RULER synthetic long-context suite at 4k context (Kolibri tech report, base models).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "ruler_8k",
+    "name": "RULER @8k",
+    "category": "long_context",
+    "description": "RULER synthetic long-context suite at 8k context (Kolibri tech report, base models).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "ruler_16k",
+    "name": "RULER @16k",
+    "category": "long_context",
+    "description": "RULER synthetic long-context suite at 16k context (Kolibri tech report, base models).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "ruler_256k",
+    "name": "RULER @256k",
+    "category": "long_context",
+    "description": "RULER synthetic long-context suite at 256k context (Kolibri tech report, base models).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "helmet_8k",
+    "name": "HELMET @8k",
+    "category": "long_context",
+    "description": "HELMET long-context suite at 8k context (Kolibri tech report, base models).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "helmet_16k",
+    "name": "HELMET @16k",
+    "category": "long_context",
+    "description": "HELMET long-context suite at 16k context (Kolibri tech report, base models).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "helmet_32k",
+    "name": "HELMET @32k",
+    "category": "long_context",
+    "description": "HELMET long-context suite at 32k context (Kolibri tech report, base models).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "helmet_64k",
+    "name": "HELMET @64k",
+    "category": "long_context",
+    "description": "HELMET long-context suite at 64k context (Kolibri tech report, base models).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "helmet_128k",
+    "name": "HELMET @128k",
+    "category": "long_context",
+    "description": "HELMET long-context suite at 128k context (Kolibri tech report, base models).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "osworld_v2_1_offline_partial_rerun_anthropic",
+    "name": "OSWorld 2.1 offline set partial score — Anthropic re-run (Haiku 5.5 card)",
+    "category": "computer_use",
+    "description": "Competitor models run by Anthropic on the 82-task OSWorld 2.1 offline subset through the vendor API (own context compaction), as reported in the Claude Haiku 5.5 system card. Vendor-reported values stay on `osworld_v2_1_offline_partial`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "physicianbench_rerun_anthropic",
+    "name": "PhysicianBench — Anthropic re-run (Haiku 5.5 card)",
+    "category": "medical",
+    "description": "Competitor models run by Anthropic through the public API at max reasoning effort with Claude Opus 5 as grader (Claude Haiku 5.5 system card). Vendor values stay on `physicianbench`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "gpqa_diamond_rerun_kolibri_report",
+    "name": "GPQA Diamond — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "GPQA Diamond as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `gpqa_diamond`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "hle_rerun_kolibri_report",
+    "name": "Humanity's Last Exam — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "Humanity's Last Exam as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `hle`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "mmlu_pro_rerun_kolibri_report",
+    "name": "MMLU-Pro (CoT) — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "MMLU-Pro (CoT) as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `mmlu_pro`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "aime_2025_rerun_kolibri_report",
+    "name": "AIME 2025 — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "AIME 2025 as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `aime_2025`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "aime_2026_rerun_kolibri_report",
+    "name": "AIME 2026 — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "AIME 2026 as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `aime_2026`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "gpqa_diamond_de_rerun_kolibri_report",
+    "name": "GPQA Diamond (DE) — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "GPQA Diamond (DE) as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `gpqa_diamond_de`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "hle_de_rerun_kolibri_report",
+    "name": "HLE (DE) — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "HLE (DE) as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `hle_de`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "mmlu_prox_de_rerun_kolibri_report",
+    "name": "MMLU-ProX (DE) CoT — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "MMLU-ProX (DE) CoT as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `mmlu_prox_de`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "aime_2025_de_rerun_kolibri_report",
+    "name": "AIME 2025 (DE) — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "AIME 2025 (DE) as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `aime_2025_de`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "aime_2026_de_rerun_kolibri_report",
+    "name": "AIME 2026 (DE) — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "AIME 2026 (DE) as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `aime_2026_de`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "tau2_bench_telecom_rerun_kolibri_report",
+    "name": "τ²-bench Telecom — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "τ²-bench Telecom as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `tau2_bench_telecom`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "tau2_bench_retail_rerun_kolibri_report",
+    "name": "τ²-bench Retail — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "τ²-bench Retail as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `tau2_bench_retail`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "tau2_bench_airline_rerun_kolibri_report",
+    "name": "τ²-bench Airline — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "τ²-bench Airline as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `tau2_bench_airline`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "tau3_bench_banking_rerun_kolibri_report",
+    "name": "τ³-bench Banking — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "τ³-bench Banking as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `tau3_bench_banking`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "bfcl_v4_rerun_kolibri_report",
+    "name": "BFCL v4 (overall) — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "BFCL v4 (overall) as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `bfcl_v4`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "bfcl_v3_multi_turn_rerun_kolibri_report",
+    "name": "BFCL v3 multi-turn — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "BFCL v3 multi-turn as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `bfcl_v3_multi_turn`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "browsecomp_rerun_kolibri_report",
+    "name": "BrowseComp — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "BrowseComp as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `browsecomp`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "livecodebench_v6_rerun_kolibri_report",
+    "name": "LiveCodeBench v6 — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "LiveCodeBench v6 as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `livecodebench_v6`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "humaneval_plus_rerun_kolibri_report",
+    "name": "HumanEval+ — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "HumanEval+ as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `humaneval_plus`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "swe_bench_verified_rerun_kolibri_report",
+    "name": "SWE-bench Verified — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "SWE-bench Verified as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `swe_bench_verified`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "ifbench_prompt_loose_rerun_kolibri_report",
+    "name": "IFBench (loose prompt) — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "IFBench (loose prompt) as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `ifbench_prompt_loose`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "aa_lcr_rerun_kolibri_report",
+    "name": "AA-LCR — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "AA-LCR as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `aa_lcr`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "terminal_bench_2_1_rerun_kolibri_report",
+    "name": "Terminal-Bench 2.1 — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "Terminal-Bench 2.1 as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `terminal_bench_2_1`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "longbench_pro_rerun_kolibri_report",
+    "name": "LongBench Pro — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "LongBench Pro as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `longbench_pro`.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "musique_rerun_kolibri_report",
+    "name": "MuSiQue — re-run in the Aleph Alpha Kolibri tech report (Oct 2026)",
+    "category": "rerun",
+    "description": "MuSiQue as re-evaluated by Aleph Alpha for the twelve open baseline models in Tables 28/29 of the Kolibri tech report (each model at its model-card context and sampling settings; some rows incomplete/grey in the report). Vendor-reported values stay on `musique`.",
+    "metric": "accuracy_pct"
+  },
+  {
     "id": "caibench",
     "name": "CAIBench (Cybersecurity AI Meta-Benchmark)",
     "category": "cyber",

@@ -288,6 +288,9 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-10-07/06 S296
+        'anthropic/claude-haiku-5.5',  // 2026-10-07 — AAII v4.3 43.4 (max), GDPval-AA v2.1 1620, Briefcase 1578, OSWorld 2.1 offline 72.4 partial, TB 4.0 39.2, HLE 45.9/57.4 tools; $0.10/$0.50 (≤100K), 1M ctx
+        'mistral/mistral-large-4-preview',  // 2026-10-06 — 1T/52B-active MoE public preview, AAII v4.3 38.4, Coding Agent Index 49.8, DeepSWE 61.7, Cybench 93, AA Cyber Index 50 (#1 no blocks), Vals Index 48.05; $1.36/$4.18 list
         // 2026-09-30 S290
         'google/gemini-4-argon',  // 2026-09-30 — AAII v4.3 52.6 (high = highest; ties GPT-6 Astra), AutomationBench-AA 77.5 (#1), AA-Omniscience hallucination 15%; DeepSWE 77.9, LVBench 91.7, CWE-bench v1 68; $2/$10 intro (list $4/$20); trusted testers only
         // 2026-09-28/29 S289
