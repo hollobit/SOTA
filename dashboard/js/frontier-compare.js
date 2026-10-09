@@ -439,6 +439,7 @@ var FrontierCompare = {
         'upstage/solar-open2-250b',
         'upstage/solar-open-100b',
         'upstage/solar-pro-4',  // 2026-08-10 S241 — Korea flagship; AAII 42 (+27 vs Pro 3); Timeline frontier version-up currency
+        'upstage/solar-mini-4', // 2026-09-22 S299 — 35B-A3B; AAII v4.3.2 24.05 (top 3B-active model on AA)
         'upstage/solar-pro-3',
         'google/gemma-4-31b',
         'mimo/mimo-v2-pro',

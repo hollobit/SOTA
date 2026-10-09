@@ -1,0 +1,312 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-09",
+  "session": "S299",
+  "sources": [
+   "https://www.upstage.ai/blog/ko/solar-mini-4",
+   "https://console.upstage.ai/docs/capabilities/generate",
+   "https://console.upstage.ai/docs/models/solar-mini-4",
+   "https://console.upstage.ai/docs/models/solar-pro-4",
+   "https://artificialanalysis.ai/models/solar-pro4",
+   "https://artificialanalysis.ai/models/solar-mini4",
+   "https://www.orcarouter.ai/ko/blog/solar-mini-4-artificial-analysis"
+  ],
+  "note": "Primary sources: Upstage launch blog (KO), Upstage console docs (Solar Mini 4 / Solar Pro 4 / Generate), Artificial Analysis model pages (RSC model objects for solar-mini4 and solar-pro4). OrcaRouter blog is a secondary write-up used only as a cross-check — no values taken (its GDPval 1072 / Briefcase 872 / AA-LCR 83 / speed 204 tok/s differ from or round the live AA object). Upstage blog chart \"Solar Mini 4: Built for High-Volume Agent Workloads\" shows integer AAII labels for comparison models — not stored (AA precise values exist or the AA objects are estimated). Solar Pro 4 AA II now reads 28.15 on v4.3.2 but is AA-estimated → skipped."
+ },
+ "models": [
+  {
+   "id": "upstage/solar-mini-4",
+   "vendor": "upstage",
+   "name": "Solar Mini 4",
+   "type": "proprietary",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2026-09-22",
+   "context_window": 524288,
+   "parameters": "35B-A3B",
+   "knowledge_cutoff": "2026-02",
+   "languages": [
+    "en",
+    "ko",
+    "ja"
+   ],
+   "_note": "Upstage Solar Mini 4 (API model solar-mini4, version solar-mini4-260922 \"Released on 2026-09-22\" per the Upstage console docs; launch blog 2026-10-01). Pretrained in-house by Upstage, MoE with 35B total / 3B active parameters, 512K context and up to 128K output tokens (AA lists 1,048,576 context — Upstage docs value used), training cutoff Feb 2026, Korean / English / Japanese. Reasoning off by default, adjustable via reasoning_effort; JSON mode, JSON Schema structured outputs, tool calling and parallel tool calls. Not open-weight (AA: proprietary) but available on-premises (quantized fits one H100 80GB). List price $0.10 input / $0.01 cached input / $0.40 output per M tokens (Upstage console 70% off through 2026-10-10 UTC). Available on Upstage Console API, Solar Chat, OpenRouter and on-prem. AA Intelligence Index v4.3.2 24.05 — highest of the 3B-active models AA has scored."
+  }
+ ],
+ "benchmarks": [],
+ "scores": [
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.1,
+   "unit": "USD/M",
+   "_source": "https://console.upstage.ai/docs/models/solar-mini-4",
+   "_note": "Upstage console docs https://console.upstage.ai/docs/models/solar-mini-4 (read 2026-10-09): \"$0.10/1M tokens Input Token\"; same list price in the launch blog (https://www.upstage.ai/blog/ko/solar-mini-4). Console promo 70% off through 2026-10-10 UTC (not stored)."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.4,
+   "unit": "USD/M",
+   "_source": "https://console.upstage.ai/docs/models/solar-mini-4",
+   "_note": "Upstage console docs https://console.upstage.ai/docs/models/solar-mini-4 (read 2026-10-09): \"$0.40/1M tokens Output Token\"; same list price in the launch blog (https://www.upstage.ai/blog/ko/solar-mini-4)."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.01,
+   "unit": "USD/M",
+   "_source": "https://console.upstage.ai/docs/models/solar-mini-4",
+   "_note": "Upstage console docs https://console.upstage.ai/docs/models/solar-mini-4 (read 2026-10-09): \"$0.01/1M tokens Cached Token\"; same list price in the launch blog (https://www.upstage.ai/blog/ko/solar-mini-4)."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 24.0522,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field intelligenceIndex. Intelligence Index v4.3.2 (stored on the v4.3 id like other v4.3.x reads)."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "critpt",
+   "score": 1.4286,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field critpt."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1090.19,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field gdpval."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 29.5095,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field gdpvalNormalized."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "hle",
+   "score": 25.7646,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field hle."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_lcr",
+   "score": 83.3333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field lcr."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_omniscience_index",
+   "score": -10.8167,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field omniscience."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_omniscience_acc",
+   "score": 18.4167,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field omniscienceAccuracy."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "gdp_pdf",
+   "score": 5.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field gdpPdfAllPass."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "scicode",
+   "score": 47.5694,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field scicode."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 1.0101,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field terminalBench40."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "automationbench_aa",
+   "score": 22.2524,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field automationBenchPartialScore."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.067,
+   "unit": "USD/M",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field price1mBlended7To2To1. AA blended price (7:2:1 input:cached:output weighting)."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 64.1675,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field omniscienceHallucinationRate. Stored as 100 − hallucination rate."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 870.83,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field briefcaseBreakdown.overall.elo. 95% CI 859.69–881.53."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 22.4242,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field briefcaseBreakdown.rubricPassRate."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 794.06,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field briefcaseBreakdown.analyticalQuality.elo."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 880.67,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field briefcaseBreakdown.presentation.elo."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 35.1796,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field capabilities.economics."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 25.3792,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field capabilities.engineering."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 24.044,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field capabilities.financeAndAccounting."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 25.8458,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field capabilities.legal."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 21.7885,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field capabilities.strategyAndOps."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.3634,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field intelligenceIndexCostPerTask.cost.total. v4.3.2 basis; cache-write share $0.300 of the total."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 88301,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field intelligenceIndexOutputTokensPerTask.output. v4.3.2 basis; reasoning 71617 tokens."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 1117.45,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field intelligenceIndexTimePerTask. v4.3.2 basis."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_output_tps",
+   "score": 76.01,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field timescaleData.medianOutputSpeed."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 28.215,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/solar-mini4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-mini4 (read 2026-10-09), model object \"Solar Mini 4\" (slug solar-mini4), field timeToFirstAnswerToken.total."
+  },
+  {
+   "model": "upstage/solar-pro-4",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1109.82,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/solar-pro4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-pro4 (read 2026-10-09), model object \"Solar Pro 4\" (slug solar-pro4), field gdpval."
+  },
+  {
+   "model": "upstage/solar-pro-4",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 30.491,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/solar-pro4",
+   "_note": "Artificial Analysis https://artificialanalysis.ai/models/solar-pro4 (read 2026-10-09), model object \"Solar Pro 4\" (slug solar-pro4), field gdpvalNormalized."
+  },
+  {
+   "model": "upstage/solar-mini-4",
+   "benchmark": "tau3_banking",
+   "score": 47.2,
+   "unit": "%",
+   "_source": "https://www.upstage.ai/blog/ko/solar-mini-4",
+   "_note": "Upstage Solar Mini 4 launch blog (2026-10-01): \"τ³-Banking에서 47.2점\" — Upstage states this is a separate evaluation, not part of the AA Intelligence Index v4.3.2 run (AA shows no τ-Banking value for Solar Mini 4). Vendor-run; harness not described."
+  }
+ ]
+}
