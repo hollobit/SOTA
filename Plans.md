@@ -3,6 +3,12 @@
 ## Current Status: Session 292b — sweep follow-ups: April–May gap, leftover papers, official boards (2026-10-03)
 **3,677 models · 6,204 benchmarks · 46,885 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-10-09 Session 298b — Cyber & Coding tab: AA Cyber Index section + cyber board views
+- `index.html`: two new sections at the top of the tab — "Artificial Analysis Cyber Index" (`aa-cyber-index-chart` / `-table` / `-method`, `aa-cyber-policy-pairs`) and "Cyber Defense Leaderboards" (`cyber-boards-grid`, `cyber-boards-table`); defense section blurb updated.
+- `cyber-coding.js`: `AA_CYBER` (components + refusal ids + methodology text), `POLICY_PAIRS` (default vs trusted-access), `CYBER_BOARDS` (12 headline ids, 4 charted), `RADAR_AXES` (8); renderers `_renderAACyberIndex`, `_renderCyberBoards`; helpers `_isLowerBetter`, `_isAuxBench`, `_fmtScore`, `_cellColor`, `_variantOf`. Safety-block share = mean of the three component refusal rates (matches AA's chart: GPT-6 Sol 36, Astra 38, Opus 5.5 36).
+- Generic fixes: bar charts drop refusal / cost / sub-metric columns and cap at 14 best-covered headline ids; tables format by unit (were all "%"), invert colour on lower-better columns, drop empty columns, rank models with >= 3 headline scores first, cap 60 rows; radar on 8 axes with all-model axis max; suites unit-aware + lower-better aware, `_models.some` → `_modelById`. Render ~200 ms warm.
+- Local check needs a staging dir that mirrors the deployed layout (`dashboard/*` + `data -> data/export`), since `index.html` fetches `data/...`; Playwright screenshots hang on this page (continuous animation elsewhere) — verify with DOM queries instead.
+
 ### 2026-10-09 Session 298 — cybersecurity capability benchmarks & indices (AA Cyber Index thread + primary boards)
 - **415 rows, 18 benchmarks, 4 models, 0 conflicts** (`resource/zzzzzzzzzzzzzzzzzz_s298_cyber_boards_aa_index_cybergym_e2e_deepsec_vals_2026_10_09_scores.json`); backup `data/benchmark.db.pre-s298.bak`. DB 3,762 / 7,880 / 56,312.
 - AA Cyber Index board refreshed as live (19 models; RSC objects on the evaluation pages, fields cyberIndex / cweBench / deepsecBench / cybergymE2e + *RefusalRate). New: `openai/gpt-6-sol-daybreak-blue` 68.66 (#1, 0 safety blocks; AA mitigationStatus "unmitigated"), Mistral Large 4 board value 49.51 replaces the 50 read off Mistral's chart. GPT-6 Sol DeepsecBench-AA moved 36.9→46.3 on the board (live value taken).

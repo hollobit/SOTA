@@ -271,7 +271,7 @@ var CyberCoding = {
         {
             id: 'cyber-defense',
             label: '🔒 Cyber Defense / Safety',
-            note: 'ZeroDayBench · SecRepoBench · EVMbench Patch · DFIR-Metric · Apollo Sabotage / Impossible-Task Lying / Eval-Awareness / Strategic Deception / Sandbagging · Dynamic Self-Harm / Mental Health / Emotional Reliance · CoT Controllability / Monitorability · Prompt Injection · First-Person Fairness · CyberSocEval · AutoPatchBench · Simbian Cyber Defense · CyberTeam (blue-team) · CTI-REALM (detection rule gen)',
+            note: 'AA Cyber Index v1 (CWE-Bench-AA · DeepsecBench-AA · CyberGym-E2E-AA + 거절률) · Vercel DeepsecBench · Vals CyberBench v1.1 · CyberGym-E2E 공식 S1–S4 · CWE-bench v1 · ZeroDayBench · SecRepoBench · EVMbench Patch · DFIR-Metric · Apollo Sabotage / Impossible-Task Lying / Eval-Awareness / Strategic Deception / Sandbagging · Dynamic Self-Harm / Mental Health / Emotional Reliance · CoT Controllability / Monitorability · Prompt Injection · First-Person Fairness · CyberSocEval · AutoPatchBench · Simbian Cyber Defense · CyberTeam (blue-team) · CTI-REALM (detection rule gen)',
             benchmarks: [
                 'zerodaybench', 'secrepobench', 'evmbench_patch', 'dfir_metric',
                 // 2026-09-30 S290 — CWE-bench v1 board · Google real-world vuln discovery · Wiz black-box pentest
@@ -402,6 +402,42 @@ var CyberCoding = {
     ],
 
     BENCH_DESCRIPTIONS: {
+        // 2026-10-09 S298 — cyber defense boards
+        aa_cyber_index_v1: {
+            name: 'Artificial Analysis Cyber Index v1',
+            desc: '방어형 사이버 종합 지수 (2026-09-28, Cyber Index Alliance: Collinear AI · IBM · NVIDIA · Vercel). CWE-Bench-AA · DeepsecBench-AA · CyberGym-E2E-AA 1/3씩, AA Stirrup 하네스, 안전 거절 과제는 0점(거절률 별도 공개). 10/9 보드: GPT-6 Sol (Daybreak Blue) 68.7, Grok 4.7 56.4, MiMo-V2.6-Pro 56.1, GPT-6 Luna 52.7 — 기본 GPT-6 Sol 36.8 / Opus 5.5 28.7은 CyberGym-E2E 거절(100% / 98%)로 하락.',
+            source: 'artificialanalysis.ai/methodology/cyber-index'
+        },
+        cwe_bench_aa: {
+            name: 'CWE-Bench-AA',
+            desc: 'Collinear AI CWE-bench의 AA 구현 — 비공개 120과제, OWASP Top 10 (2025) 전 범주, C/C++·Go·Java·JS/TS·Python·Rust. 저장소 감사 후 패치, 결정적 검증기(익스플로잇 차단 + 정상 동작 유지), pass@1. Grok 4.7 · DeepSeek V4.1 Flash 68.3.',
+            source: 'artificialanalysis.ai/evaluations/cwe-bench-aa'
+        },
+        deepsecbench_aa: {
+            name: 'DeepsecBench-AA',
+            desc: 'Vercel DeepsecBench의 AA 구현 — Deepsec 스캐너가 표시한 최대 5개 파일을 조사해 실제 취약점을 보고, 전문가 검증 골든셋 대비 F2 (재현율 가중), 3회 중앙값, 판정 GPT-5.6 Sol (high). GPT-6 Sol 계열 46–48로 최고.',
+            source: 'artificialanalysis.ai/evaluations/deepsecbench-aa'
+        },
+        cybergym_e2e_aa: {
+            name: 'CyberGym-E2E-AA',
+            desc: 'Berkeley RDI CyberGym-E2E의 AA 구현 — 131개 C/C++ OSS-Fuzz 과제(프로젝트당 1개): 메모리 안전 버그 발견 → 크래시 PoC → 패치 후 개발자 테스트 통과(S1–S3) 시 성공, 90분. 기본 GPT-6 Sol/Astra는 전 과제 거절, Daybreak Blue 93.1.',
+            source: 'artificialanalysis.ai/evaluations/cybergym-e2e-aa'
+        },
+        deepsecbench: {
+            name: 'DeepsecBench (Vercel board)',
+            desc: 'Vercel 원본 보드 (2026-07-27 공개) — 비공개 오픈소스 코드베이스 50개 진입 파일, 231개 인간 판정 발견 골든셋, 점수 = 100·5PR/(4P+R), 3회 중앙값, 모델별 벤더 하네스(Codex·Claude Code·Pi). GPT-6 Sol xhigh 40.9 (재현율 35.8%, 정밀도 96%, $12.76).',
+            source: 'vercel.com/ai-gateway/leaderboards/deepsecbench'
+        },
+        vals_cyberbench_v1_1: {
+            name: 'Vals CyberBench v1.1',
+            desc: 'Vals AI (2026-10-07) — CyberGym 이후 수집된 OSS-Fuzz/ARVO 회귀 버그: PoC 트랙 60 (크래시 입력 생성) + Patch 트랙 56 (패치 후 숨은 입력이 유지보수자 수정과 일치), mini-swe-agent, 거절 = 실패. GPT-6 Sol 78.0, Gemini 4 Argon 77.9, GPT-6 Luna 76.3 ($0.13/과제); Opus 5.5 CVP 74.6 vs 기본 55.4.',
+            source: 'vals.ai/benchmarks/cyber'
+        },
+        cybergym_e2e_official_s3: {
+            name: 'CyberGym-E2E (official, S3)',
+            desc: 'cybergym.io 공식 보드 — 920 취약점 / 139 프로젝트, S1 PoC → S2 패치 → S3 테스트 통과 (헤드라인) → S4 정답 취약점 수정. $10 예산: GPT-5.4 Codex 65.9, Gemini 3.1 Pro 43.8; 무제한: AWS Continuum·Opus 5 89.0 (S4 37.8).',
+            source: 'cybergym.io/cybergym-e2e'
+        },
         toolathlon_verified: {
             name: 'Toolathlon-Verified',
             desc: 'Toolathlon 에이전트 도구 사용 벤치마크의 검증(Verified) 서브셋 — 다양한 도구 + MCP 서비스에 걸친 통합 도구 사용 능력. 높을수록 우수. DeepSeek-V4-Flash-0731 70.3 / V4-Pro(preview) 55.9.',
@@ -837,6 +873,341 @@ var CyberCoding = {
         return th;
     },
 
+    // ─────────────── S298 — Artificial Analysis Cyber Index + cross-board cyber defense views ───────────────
+    AA_CYBER: {
+        index: 'aa_cyber_index_v1',
+        components: [
+            { id: 'cwe_bench_aa', refusal: 'cwe_bench_aa_refusal_rate_lower_better', label: 'CWE-Bench-AA', what: '감사 + 패치 (Collinear AI, 120 OWASP 과제, pass@1)' },
+            { id: 'deepsecbench_aa', refusal: 'deepsecbench_aa_refusal_rate_lower_better', label: 'DeepsecBench-AA', what: '취약점 발견 (Vercel, 골든셋 대비 F2 중앙값 ×3)' },
+            { id: 'cybergym_e2e_aa', refusal: 'cybergym_e2e_aa_refusal_rate_lower_better', label: 'CyberGym-E2E-AA', what: '발견 → PoC → 패치 (Berkeley RDI, 131 OSS-Fuzz 과제)' }
+        ],
+        methodology: [
+            ['출시', '2026-09-28 — Cyber Index Alliance (Collinear AI · IBM · NVIDIA · Vercel) 와 함께 발표, 방법론 v1.0'],
+            ['범위', '방어 업무만 측정: 소스 코드 감사 · 재현 · 패치. 모든 과제가 소스 접근에서 시작하며 익스플로잇 작성은 요구하지 않음. 사고 대응·보안 코드 작성·바이너리/라이브 서버는 범위 밖'],
+            ['구성', 'CWE-Bench-AA · DeepsecBench-AA · CyberGym-E2E-AA 를 각 1/3 가중 평균'],
+            ['하네스', 'AA 오픈소스 Stirrup (모든 모델 동일 프롬프트·도구). 샌드박스 인터넷 차단, CWE 2시간 · CyberGym 90분 · Deepsec 500턴 제한'],
+            ['거절 처리', '모델/제공사가 안전상 거절한 과제는 0점, 거절률은 실패와 분리해 별도 공개 → 아래 막대의 빗금 부분'],
+            ['주의', '각 구성은 AA 자체 구현이라 원 보드(cwe-bench.com · Vercel · cybergym.io)와 수치 직접 비교 불가']
+        ],
+        url: 'https://artificialanalysis.ai/methodology/cyber-index'
+    },
+    // Same weights, cyber safeguards relaxed (trusted-access tiers) vs the default deployment.
+    POLICY_PAIRS: [
+        { base: 'openai/gpt-6-sol', variant: 'openai/gpt-6-sol-daybreak-blue', bench: 'aa_cyber_index_v1', access: 'OpenAI Daybreak Blue', board: 'AA Cyber Index' },
+        { base: 'anthropic/claude-opus-5.5', variant: 'anthropic/claude-opus-5.5-cyber-range', bench: 'vals_cyberbench_v1_1', access: 'Anthropic Cyber Verification Program', board: 'Vals CyberBench v1.1' },
+        { base: 'anthropic/claude-sonnet-5', variant: 'anthropic/claude-sonnet-5-cyber-range', bench: 'vals_cyberbench_v1_1', access: 'Anthropic Cyber Range (CVP)', board: 'Vals CyberBench v1.1' }
+    ],
+    // Headline id per primary cyber board (small multiples + cross-board table).
+    CYBER_BOARDS: [
+        { id: 'aa_cyber_index_v1', label: 'AA Cyber Index v1', sub: '발견·재현·패치 종합 (거절=0점)', chart: true },
+        { id: 'vals_cyberbench_v1_1', label: 'Vals CyberBench v1.1', sub: 'OSS-Fuzz PoC 60 + Patch 56 (10/7)', chart: true },
+        { id: 'deepsecbench', label: 'DeepsecBench (Vercel)', sub: '발견 F2 — 231 골든 발견', chart: true },
+        { id: 'cybergym_e2e_official_s3', label: 'CyberGym-E2E (공식, $10)', sub: 'S3 = PoC + 패치 + 테스트 통과', chart: true },
+        { id: 'cwe_bench_v1', label: 'CWE-bench v1', sub: '감사 + 패치 (Collinear 공식)' },
+        { id: 'cybergym_e2e_aa', label: 'CyberGym-E2E-AA', sub: 'AA 구현 131 과제' },
+        { id: 'deepsecbench_aa', label: 'DeepsecBench-AA', sub: 'AA 구현' },
+        { id: 'cwe_bench_aa', label: 'CWE-Bench-AA', sub: 'AA 구현' },
+        { id: 'cybergym', label: 'CyberGym', sub: '취약점 재현 (벤더 보고)' },
+        { id: 'sec-bench-pro', label: 'SEC-bench Pro', sub: 'V8 · Firefox · Linux 버그 헌팅' },
+        { id: 'cybench', label: 'Cybench', sub: '40 CTF (상위권 포화)' },
+        { id: 'exploitbench_v8_cap_pct', label: 'ExploitBench V8', sub: 'N-day 익스플로잇 능력' }
+    ],
+    // Radar: a small set of comparable headline axes instead of every cyber + coding id.
+    RADAR_AXES: ['aa_cyber_index_v1', 'vals_cyberbench_v1_1', 'deepsecbench', 'cwe_bench_v1', 'cybergym', 'cybench', 'swe_bench_pro', 'terminal_bench_4_0'],
+
+    _isLowerBetter: function(bid) {
+        if (/lower_better/.test(bid)) return true;
+        var b = this._benchById(bid);
+        return !!(b && /lower/i.test(b.metric || ''));
+    },
+    _isAuxBench: function(bid) {
+        // refusal / cost / flag-rate / count columns — shown in tables, never averaged or charted
+        if (this._isLowerBetter(bid)) return true;
+        var b = this._benchById(bid);
+        var m = (b && b.metric || '').toLowerCase();
+        return /usd|cost|count|tokens|seconds/.test(m) || /_cost_|_usd|refusal|flag_rate/.test(bid);
+    },
+    _fmtScore: function(entry, bid) {
+        if (!entry) return '—';
+        var v = entry.value, u = (entry.unit || '').toLowerCase();
+        var b = this._benchById(bid);
+        var m = (b && b.metric || '').toLowerCase();
+        if (u === 'usd' || /usd/.test(m)) return '$' + (v >= 100 ? v.toFixed(0) : v.toFixed(2));
+        if (u === 'elo' || /elo/.test(m)) return v.toFixed(0);
+        if (u === '%' || /pct|percent|accuracy|rate|%/.test(m)) return v.toFixed(1) + '%';
+        return v.toFixed(v >= 100 ? 0 : 1);
+    },
+    // Colour by rank within the column; lower-better columns invert.
+    _cellColor: function(v, min, max, lowerBetter) {
+        if (max <= min) return Theme.series[0];
+        var r = (v - min) / (max - min);
+        if (lowerBetter) r = 1 - r;
+        if (r >= 0.95) return Theme.series[0];
+        if (r >= 0.7) return Theme.series[1];
+        if (r >= 0.4) return Theme.series[2];
+        return Theme.series[3];
+    },
+    _variantOf: function(mid) {
+        for (var i = 0; i < this.POLICY_PAIRS.length; i++) if (this.POLICY_PAIRS[i].variant === mid) return this.POLICY_PAIRS[i];
+        return null;
+    },
+    _el: function(tag, cls, text) {
+        var e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text != null) e.textContent = text;
+        return e;
+    },
+
+    _renderAACyberIndex: function() {
+        var self = this, A = this.AA_CYBER;
+        var rows = this._getScoresForBenchmarks([A.index].concat(A.components.map(function(c) { return c.id; }), A.components.map(function(c) { return c.refusal; })));
+        var mids = Object.keys(rows).filter(function(mid) { return rows[mid][A.index] != null; });
+        mids.sort(function(a, b) { return rows[b][A.index] - rows[a][A.index]; });
+        // Safety-block share of the index = mean of the three component refusal rates (each eval weighs 1/3).
+        function blockShare(mid) {
+            var s = 0, n = 0;
+            A.components.forEach(function(c) { var v = rows[mid][c.refusal]; if (v != null) { s += v; n++; } });
+            return n ? s / A.components.length : 0;
+        }
+
+        // Stacked bar: successes + safety blocks (AA chart replica).
+        var el = document.getElementById('aa-cyber-index-chart');
+        if (el) {
+            var chart = echarts.init(el);
+            var names = mids.map(function(mid) { return self._getModelName(mid); });
+            chart.setOption({
+                backgroundColor: 'transparent',
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' },
+                    formatter: function(p) {
+                        var mid = mids[p[0].dataIndex], v = self._variantOf(mid);
+                        var lines = [names[p[0].dataIndex]];
+                        lines.push('Cyber Index ' + rows[mid][A.index].toFixed(1));
+                        A.components.forEach(function(c) {
+                            var sv = rows[mid][c.id], rv = rows[mid][c.refusal];
+                            lines.push(c.label + ': ' + (sv != null ? sv.toFixed(1) : '—') + (rv ? '  (거절 ' + rv.toFixed(0) + '%)' : ''));
+                        });
+                        lines.push('안전 거절 비중 ' + blockShare(mid).toFixed(0) + '%');
+                        if (v) lines.push('⚑ ' + v.access + ' (가드레일 완화 변형)');
+                        return lines.join('<br>');
+                    } },
+                legend: { data: ['Successes (Cyber Index)', 'Safety blocks'], textStyle: { color: Theme.textMuted, fontSize: 11 }, top: 0 },
+                grid: { left: 8, right: 24, top: 30, bottom: 8, containLabel: true },
+                xAxis: { type: 'value', max: 100, axisLabel: { color: Theme.textMuted, formatter: '{value}%' }, splitLine: { lineStyle: { color: Theme.border } } },
+                yAxis: { type: 'category', inverse: true, data: names, axisLabel: { color: Theme.textMuted, fontSize: 10,
+                    formatter: function(val, i) { return (self._variantOf(mids[i]) ? '⚑ ' : '') + (val.length > 34 ? val.slice(0, 32) + '…' : val); } } },
+                series: [
+                    { name: 'Successes (Cyber Index)', type: 'bar', stack: 'ci', barWidth: '62%',
+                      data: mids.map(function(mid) { return +rows[mid][A.index].toFixed(1); }),
+                      itemStyle: { color: function(p) { return self._variantOf(mids[p.dataIndex]) ? Theme.series[4] : Theme.series[1]; } },
+                      label: { show: true, position: 'insideRight', color: '#fff', fontSize: 10, formatter: function(p) { return p.value.toFixed(0); } } },
+                    { name: 'Safety blocks', type: 'bar', stack: 'ci',
+                      data: mids.map(function(mid) { return +blockShare(mid).toFixed(1); }),
+                      itemStyle: { color: 'transparent', borderColor: Theme.series[3], borderWidth: 1, decal: { symbol: 'rect', dashArrayX: [1, 0], dashArrayY: [2, 4], rotation: -0.785, color: Theme.series[3] } },
+                      label: { show: true, position: 'insideLeft', color: Theme.series[3], fontSize: 10, formatter: function(p) { return p.value >= 1 ? p.value.toFixed(0) + '%' : ''; } } }
+                ],
+                aria: { enabled: true, decal: { show: false } }
+            });
+            window.addEventListener('resize', function() { chart.resize(); });
+        }
+
+        // Component table.
+        var tc = document.getElementById('aa-cyber-index-table');
+        if (tc) {
+            tc.textContent = '';
+            var cols = [{ id: A.index, label: 'Cyber Index' }];
+            A.components.forEach(function(c) { cols.push({ id: c.id, label: c.label }); cols.push({ id: c.refusal, label: '거절률', lower: true }); });
+            var colStats = {};
+            cols.forEach(function(c) {
+                var vs = mids.map(function(mid) { return rows[mid][c.id]; }).filter(function(v) { return v != null; });
+                colStats[c.id] = { min: Math.min.apply(null, vs), max: Math.max.apply(null, vs) };
+            });
+            var table = this._el('table', 'sota-table text-sm');
+            var thead = this._el('thead'), hr = this._el('tr');
+            ['#', 'Model'].forEach(function(h) { hr.appendChild(self._el('th', null, h)); });
+            cols.forEach(function(c) { var th = self._el('th', null, c.label); th.style.fontSize = '11px'; th.style.whiteSpace = 'nowrap'; hr.appendChild(th); });
+            var thB = this._el('th', null, '안전 거절 비중'); thB.style.fontSize = '11px'; hr.appendChild(thB);
+            thead.appendChild(hr); table.appendChild(thead);
+            var tbody = this._el('tbody');
+            mids.forEach(function(mid, i) {
+                var tr = self._el('tr');
+                tr.appendChild(self._el('td', 'text-gray-500', String(i + 1)));
+                var v = self._variantOf(mid);
+                var tdN = self._el('td', null, (v ? '⚑ ' : '') + self._getModelName(mid));
+                tdN.style.whiteSpace = 'nowrap'; tdN.style.cursor = 'pointer';
+                tdN.title = mid + (v ? ' — ' + v.access + ': 같은 가중치, 사이버 가드레일 완화' : '') + ' — 클릭하면 모델 상세';
+                tdN.addEventListener('click', function() { if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid); });
+                tr.appendChild(tdN);
+                cols.forEach(function(c) {
+                    var e = self._scoreEntry(mid, c.id);
+                    var td = self._el('td', null, e ? (c.lower ? e.value.toFixed(0) + '%' : e.value.toFixed(1)) : '—');
+                    td.style.textAlign = 'center';
+                    if (e) {
+                        td.style.color = c.lower ? (e.value > 0 ? Theme.series[3] : Theme.textMuted) : self._cellColor(e.value, colStats[c.id].min, colStats[c.id].max, false);
+                        if (!c.lower && e.value >= colStats[c.id].max - 1e-9) td.style.fontWeight = 'bold';
+                        td.style.cursor = 'pointer'; td.title = '클릭하면 검증 소스';
+                        td.addEventListener('click', function() { if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(mid, c.id); });
+                    } else td.style.color = Theme.textDisabled;
+                    tr.appendChild(td);
+                });
+                var bs = blockShare(mid);
+                var tdB = self._el('td', null, bs >= 0.5 ? bs.toFixed(0) + '%' : '0');
+                tdB.style.textAlign = 'center'; tdB.style.color = bs >= 0.5 ? Theme.series[3] : Theme.textMuted;
+                if (bs >= 20) tdB.style.fontWeight = 'bold';
+                tr.appendChild(tdB);
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            tc.appendChild(table);
+        }
+
+        // Methodology card.
+        var mc = document.getElementById('aa-cyber-index-method');
+        if (mc) {
+            mc.textContent = '';
+            var dl = this._el('dl', 'grid grid-cols-1 md:grid-cols-[7rem_1fr] gap-x-4 gap-y-2 text-sm');
+            A.methodology.forEach(function(kv) {
+                dl.appendChild(self._el('dt', 'text-gray-500 text-xs uppercase tracking-wider', kv[0]));
+                dl.appendChild(self._el('dd', 'text-gray-300', kv[1]));
+            });
+            mc.appendChild(dl);
+            var ul = this._el('ul', 'mt-3 space-y-1 text-sm text-gray-400');
+            A.components.forEach(function(c) {
+                var li = self._el('li');
+                li.appendChild(self._el('strong', 'text-gray-200', c.label));
+                li.appendChild(document.createTextNode(' — ' + c.what));
+                ul.appendChild(li);
+            });
+            mc.appendChild(ul);
+            var a = this._el('a', 'text-xs text-blue-400 hover:underline mt-2 inline-block', 'AA 방법론 원문 ↗');
+            a.href = A.url; a.target = '_blank'; a.rel = 'noopener';
+            mc.appendChild(a);
+        }
+
+        // Default vs trusted-access pairs.
+        var pc = document.getElementById('aa-cyber-policy-pairs');
+        if (pc) {
+            pc.textContent = '';
+            this.POLICY_PAIRS.forEach(function(p) {
+                var b = self._scoreEntry(p.base, p.bench), v = self._scoreEntry(p.variant, p.bench);
+                if (!b || !v) return;
+                var card = self._el('div', 'rounded-lg border border-gray-800 p-3');
+                card.appendChild(self._el('div', 'text-xs text-gray-500 mb-1', p.board + ' · ' + p.access));
+                var row = self._el('div', 'flex items-baseline gap-3');
+                row.appendChild(self._el('span', 'text-gray-400 text-sm', self._getModelName(p.base) + ' ' + b.value.toFixed(1)));
+                row.appendChild(self._el('span', 'text-gray-600', '→'));
+                var vs = self._el('span', 'text-lg font-semibold', v.value.toFixed(1));
+                vs.style.color = Theme.series[4];
+                row.appendChild(vs);
+                var d = v.value - b.value;
+                var ds = self._el('span', 'text-sm font-semibold', (d >= 0 ? '+' : '') + d.toFixed(1));
+                ds.style.color = d >= 0 ? Theme.series[0] : Theme.series[3];
+                row.appendChild(ds);
+                card.appendChild(row);
+                pc.appendChild(card);
+            });
+        }
+    },
+
+    _renderCyberBoards: function() {
+        var self = this, boards = this.CYBER_BOARDS;
+        var grid = document.getElementById('cyber-boards-grid');
+        if (grid) {
+            grid.textContent = '';
+            boards.filter(function(b) { return b.chart; }).forEach(function(bd) {
+                var sc = self._getScoresForBenchmarks([bd.id]);
+                var mids = Object.keys(sc).sort(function(a, b) { return sc[b][bd.id] - sc[a][bd.id]; }).slice(0, 12);
+                if (!mids.length) return;
+                var box = self._el('div', 'rounded-lg border border-gray-800 p-3');
+                box.appendChild(self._el('div', 'text-sm font-semibold text-gray-200', bd.label));
+                box.appendChild(self._el('div', 'text-xs text-gray-500 mb-1', bd.sub + ' · ' + Object.keys(sc).length + ' models'));
+                var c = self._el('div'); c.style.height = '320px';
+                box.appendChild(c); grid.appendChild(box);
+                var ch = echarts.init(c);
+                ch.setOption({
+                    backgroundColor: 'transparent',
+                    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                    grid: { left: 4, right: 36, top: 6, bottom: 4, containLabel: true },
+                    xAxis: { type: 'value', axisLabel: { color: Theme.textMuted, fontSize: 9 }, splitLine: { lineStyle: { color: Theme.border } } },
+                    yAxis: { type: 'category', inverse: true, data: mids.map(function(m) { return (self._variantOf(m) ? '⚑ ' : '') + self._getModelName(m); }),
+                             axisLabel: { color: Theme.textMuted, fontSize: 9, formatter: function(v) { return v.length > 26 ? v.slice(0, 24) + '…' : v; } } },
+                    series: [{ type: 'bar', barWidth: '60%', data: mids.map(function(m, i) {
+                        return { value: +sc[m][bd.id].toFixed(2), itemStyle: { color: self._variantOf(m) ? Theme.series[4] : Theme.rankColor(Math.min(i, 3)) } };
+                    }), label: { show: true, position: 'right', color: Theme.textMuted, fontSize: 9, formatter: function(p) { return p.value.toFixed(1); } } }]
+                });
+                window.addEventListener('resize', function() { ch.resize(); });
+            });
+        }
+
+        var tc = document.getElementById('cyber-boards-table');
+        if (!tc) return;
+        tc.textContent = '';
+        var ids = boards.map(function(b) { return b.id; });
+        var sc = this._getScoresForBenchmarks(ids);
+        // Rows: frontier-list models (incl. trusted-access variants) with >= 3 boards.
+        var mids = Object.keys(sc).filter(function(mid) {
+            var n = ids.filter(function(b) { return sc[mid][b] != null; }).length;
+            return n >= 3 && (self.FRONTIER_MODELS.indexOf(mid) >= 0 || n >= 4);
+        });
+        var stats = {};
+        ids.forEach(function(b) {
+            var vs = Object.keys(sc).map(function(m) { return sc[m][b]; }).filter(function(v) { return v != null; });
+            stats[b] = vs.length ? { min: Math.min.apply(null, vs), max: Math.max.apply(null, vs) } : null;
+        });
+        // Default order: mean percentile rank over available boards (board scales differ).
+        function pr(mid) {
+            var s = 0, n = 0;
+            ids.forEach(function(b) {
+                var v = sc[mid][b]; if (v == null || !stats[b] || stats[b].max === stats[b].min) return;
+                s += (v - stats[b].min) / (stats[b].max - stats[b].min); n++;
+            });
+            return n ? s / n : 0;
+        }
+        var TID = 'cyber-boards-table', st = this._sortStates[TID];
+        if (st && st.key && st.dir) {
+            mids.sort(function(a, b) {
+                var va = st.key === 'model' ? self._getModelName(a) : sc[a][st.key], vb = st.key === 'model' ? self._getModelName(b) : sc[b][st.key];
+                if (va == null && vb == null) return 0; if (va == null) return 1; if (vb == null) return -1;
+                if (typeof va === 'string') return st.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                return st.dir === 'asc' ? va - vb : vb - va;
+            });
+        } else mids.sort(function(a, b) { return pr(b) - pr(a); });
+        var table = this._el('table', 'sota-table text-sm');
+        var thead = this._el('thead'), hr = this._el('tr');
+        hr.appendChild(this._makeSortableTh(TID, 'model', 'Model', 'asc', function() { self._cycleSort(TID, 'model', 'asc'); self._renderCyberBoards(); }));
+        var thP = this._el('th', null, '평균 상대순위'); thP.style.fontSize = '11px'; thP.title = '보드마다 척도가 달라 (min–max 정규화) 평균'; hr.appendChild(thP);
+        boards.forEach(function(bd) {
+            var th = self._makeSortableTh(TID, bd.id, bd.label, 'desc', function() { self._cycleSort(TID, bd.id, 'desc'); self._renderCyberBoards(); });
+            th.style.fontSize = '10px'; th.style.whiteSpace = 'nowrap'; th.title = bd.sub;
+            hr.appendChild(th);
+        });
+        thead.appendChild(hr); table.appendChild(thead);
+        var tbody = this._el('tbody');
+        mids.forEach(function(mid) {
+            var tr = self._el('tr'), v = self._variantOf(mid);
+            var tdN = self._el('td', null, (v ? '⚑ ' : '') + self._getModelName(mid));
+            tdN.style.whiteSpace = 'nowrap'; tdN.style.cursor = 'pointer'; tdN.title = mid;
+            tdN.addEventListener('click', function() { if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid); });
+            tr.appendChild(tdN);
+            var tdP = self._el('td', null, (pr(mid) * 100).toFixed(0)); tdP.style.textAlign = 'center'; tdP.style.color = Theme.textMuted;
+            tr.appendChild(tdP);
+            ids.forEach(function(b) {
+                var e = self._scoreEntry(mid, b);
+                var td = self._el('td', null, e ? self._fmtScore(e, b) : '—');
+                td.style.textAlign = 'center';
+                if (e && stats[b]) {
+                    td.style.color = self._cellColor(e.value, stats[b].min, stats[b].max, false);
+                    if (e.value >= stats[b].max - 1e-9) td.style.fontWeight = 'bold';
+                    td.style.cursor = 'pointer'; td.title = '클릭하면 검증 소스';
+                    td.addEventListener('click', function() { if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(mid, b); });
+                } else td.style.color = Theme.textDisabled;
+                tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        tc.appendChild(table);
+    },
+
     init: function(models, benchmarks, scores) {
         this._models = models;
         this._benchmarks = benchmarks;
@@ -852,7 +1223,12 @@ var CyberCoding = {
         this._models = App.data.models;
         this._benchmarks = App.data.benchmarks;
         this._scores = App.data.scores;
+        this._invalidateScoreCache();
+        this._benchByIdMap = null;
+        this._modelByIdMap = null;
 
+        this._renderAACyberIndex();
+        this._renderCyberBoards();
         this._renderBarChart('cyber-chart', this.CYBER_BENCHMARKS, 'Cybersecurity');
         this._renderBarChart('coding-chart', this.CODING_BENCHMARKS, 'Coding');
         this._renderBarChart('defense-chart', this.DEFENSE_BENCHMARKS, 'Cyber Defense');
@@ -968,8 +1344,10 @@ var CyberCoding = {
             }
             return true;
         }
-        var droppedBids = benchmarkIds.filter(function(bid) { return !isPercentLike(bid); });
-        var percentBids = benchmarkIds.filter(isPercentLike);
+        // Refusal / cost / flag-rate (lower-better) columns are never charted — they
+        // would also distort the per-model average used to pick the top 8.
+        var SUBMETRIC = /_recall\b|_recall_|_precision\b|_pass4\b|_judge_pass|_poc$|_patch$|_s1|_s2|_s4|_patch_only|^wiz_cyber_arena_(?!overall_claude_code$)|^cti-realm$/;
+        var percentBids = benchmarkIds.filter(function(bid) { return isPercentLike(bid) && !self._isAuxBench(bid) && !SUBMETRIC.test(bid); });
 
         // Benchmark-centric grouping: x-axis = benchmarks, series = top models.
         // Filter benchmarks that have at least one score, ordered by coverage
@@ -982,7 +1360,9 @@ var CyberCoding = {
             return { bid: bid, count: count };
         }).filter(function(x) { return x.count > 0; });
         benchWithCoverage.sort(function(a, b) { return b.count - a.count; });
-        var activeBids = benchWithCoverage.map(function(x) { return x.bid; });
+        // Keep the 14 best-covered columns so the grouped bars stay readable;
+        // the full set is in the table below.
+        var activeBids = benchWithCoverage.slice(0, 14).map(function(x) { return x.bid; });
 
         // Filter to frontier models with ≥1 score across this benchmark set.
         var modelIds = this.FRONTIER_MODELS.filter(function(mid) {
@@ -1061,9 +1441,17 @@ var CyberCoding = {
         if (!container) return;
         container.textContent = '';
 
-        var modelScores = this._getScoresForBenchmarks(benchmarkIds);
+        var allModelScores = this._getScoresForBenchmarks(benchmarkIds);
         var self = this;
         var TABLE_ID = containerId;
+        // Drop columns nobody has scored, then order by coverage (densest first).
+        var cov = {};
+        Object.keys(allModelScores).forEach(function(mid) {
+            Object.keys(allModelScores[mid]).forEach(function(bid) { cov[bid] = (cov[bid] || 0) + 1; });
+        });
+        benchmarkIds = benchmarkIds.filter(function(bid) { return cov[bid]; });
+        benchmarkIds.sort(function(a, b) { return cov[b] - cov[a]; });
+        var modelScores = allModelScores;
 
         // get all models with scores
         var modelIds = Object.keys(modelScores);
@@ -1085,15 +1473,22 @@ var CyberCoding = {
                 return s.dir === 'asc' ? va - vb : vb - va;
             });
         } else {
+            // Models with >= 3 headline scores first (a single 95% cell should not
+            // outrank a model measured on ten boards), then by average.
+            var mainBids = benchmarkIds.filter(function(bid) { return !self._isAuxBench(bid); });
+            var stat = {};
+            modelIds.forEach(function(mid) {
+                var s = 0, n = 0;
+                mainBids.forEach(function(bid) { var v = modelScores[mid][bid]; if (v != null) { s += v; n++; } });
+                stat[mid] = { n: n, avg: n ? s / n : 0 };
+            });
             modelIds.sort(function(a, b) {
-                var avgA = 0, cntA = 0, avgB = 0, cntB = 0;
-                benchmarkIds.forEach(function(bid) {
-                    if (modelScores[a][bid]) { avgA += modelScores[a][bid]; cntA++; }
-                    if (modelScores[b][bid]) { avgB += modelScores[b][bid]; cntB++; }
-                });
-                return (cntB ? avgB / cntB : 0) - (cntA ? avgA / cntA : 0);
+                var ga = stat[a].n >= 3 ? 1 : 0, gb = stat[b].n >= 3 ? 1 : 0;
+                return (gb - ga) || (stat[b].avg - stat[a].avg);
             });
         }
+        var TABLE_ROW_CAP = 60, totalRows = modelIds.length;
+        if (modelIds.length > TABLE_ROW_CAP) modelIds = modelIds.slice(0, TABLE_ROW_CAP);
 
         var table = document.createElement('table');
         table.className = 'sota-table text-sm';
@@ -1121,14 +1516,17 @@ var CyberCoding = {
 
         var tbody = document.createElement('tbody');
 
-        // find max for each benchmark for highlighting
-        var maxes = {};
+        // per-benchmark range for colouring (lower-better columns invert)
+        var maxes = {}, mins = {}, lowers = {};
         benchmarkIds.forEach(function(bid) {
-            var max = 0;
+            var max = -Infinity, min = Infinity;
             modelIds.forEach(function(mid) {
-                if (modelScores[mid][bid] && modelScores[mid][bid] > max) max = modelScores[mid][bid];
+                var v = modelScores[mid][bid];
+                if (v == null) return;
+                if (v > max) max = v;
+                if (v < min) min = v;
             });
-            maxes[bid] = max;
+            maxes[bid] = max; mins[bid] = min; lowers[bid] = self._isLowerBetter(bid);
         });
 
         modelIds.forEach(function(mid) {
@@ -1150,20 +1548,10 @@ var CyberCoding = {
                 var td = document.createElement('td');
                 td.style.textAlign = 'center';
                 var val = modelScores[mid][bid];
-                if (val) {
-                    td.textContent = val.toFixed(1) + '%';
-                    // color based on relative position
-                    var ratio = maxes[bid] > 0 ? val / maxes[bid] : 0;
-                    if (ratio >= 0.95) {
-                        td.style.color = Theme.series[0];
-                        td.style.fontWeight = 'bold';
-                    } else if (ratio >= 0.8) {
-                        td.style.color = Theme.series[1];
-                    } else if (ratio >= 0.6) {
-                        td.style.color = Theme.series[2];
-                    } else {
-                        td.style.color = Theme.series[3];
-                    }
+                if (val != null) {
+                    td.textContent = self._fmtScore(self._scoreEntry(mid, bid) || { value: val }, bid);
+                    td.style.color = self._cellColor(val, mins[bid], maxes[bid], lowers[bid]);
+                    if (val === (lowers[bid] ? mins[bid] : maxes[bid])) td.style.fontWeight = 'bold';
                     // Clickable \u2192 opens score source detail modal
                     td.style.cursor = 'pointer';
                     td.setAttribute('role', 'button');
@@ -1187,6 +1575,10 @@ var CyberCoding = {
 
         table.appendChild(tbody);
         container.appendChild(table);
+        if (totalRows > modelIds.length) {
+            container.appendChild(this._el('p', 'text-xs text-gray-500 mt-1',
+                '상위 ' + modelIds.length + ' / ' + totalRows + '개 모델 표시 (헤드라인 지표 3개 이상 보유 모델 우선, 평균순) · 열 머리글 클릭 시 해당 지표로 재정렬'));
+        }
     },
 
     _renderRadar: function() {
@@ -1195,30 +1587,30 @@ var CyberCoding = {
         var chart = echarts.init(el);
         var self = this;
 
-        var allBenchmarks = this.CYBER_BENCHMARKS.concat(this.CODING_BENCHMARKS);
-
-        // Pick top frontier models that have the most scores
+        // S298: a fixed set of comparable headline axes (cyber defense boards +
+        // attack/CTF + two coding anchors) instead of all ~270 cyber + coding ids.
+        var allBenchmarks = this.RADAR_AXES;
         var modelScores = this._getScoresForBenchmarks(allBenchmarks);
-        var topModels = this.FRONTIER_MODELS.filter(function(mid) {
-            if (!modelScores[mid]) return false;
-            var cnt = 0;
-            allBenchmarks.forEach(function(bid) { if (modelScores[mid][bid]) cnt++; });
-            return cnt >= 3;
-        }).slice(0, 6);
+        function cnt(mid) { return allBenchmarks.filter(function(bid) { return modelScores[mid] && modelScores[mid][bid] != null; }).length; }
+        // Axis max over all models (not just the plotted ones) so shapes are comparable.
+        var axisMaxes = {};
+        allBenchmarks.forEach(function(bid) {
+            var mx = 0;
+            Object.keys(modelScores).forEach(function(mid) { var v = modelScores[mid][bid]; if (v != null && v > mx) mx = v; });
+            axisMaxes[bid] = mx || 100;
+        });
+        var topModels = this.FRONTIER_MODELS.filter(function(mid) { return cnt(mid) >= 4; });
+        topModels.sort(function(a, b) {
+            function rel(m) { var s = 0, n = 0; allBenchmarks.forEach(function(bid) { var v = modelScores[m][bid]; if (v != null) { s += v / axisMaxes[bid]; n++; } }); return n ? s / n : 0; }
+            return (cnt(b) - cnt(a)) || (rel(b) - rel(a));
+        });
+        topModels = topModels.slice(0, 6);
 
-        // Calculate per-axis max dynamically
         var indicators = allBenchmarks.map(function(bid) {
             var b = self._benchById(bid);
             var name = b ? b.name : bid;
-            name = name.replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ');
-            var axisMax = 0;
-            topModels.forEach(function(mid) {
-                var v = (modelScores[mid] && modelScores[mid][bid]) || 0;
-                if (v > axisMax) axisMax = v;
-            });
-            if (axisMax <= 100) axisMax = 100;
-            else axisMax = Math.ceil(axisMax / 100) * 100;
-            return { name: name, max: axisMax };
+            name = name.replace(/\s*\(.*\)$/, '').replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ');
+            return { name: name, max: Math.ceil(axisMaxes[bid] / 10) * 10 };
         });
 
         var series = [{
@@ -1280,7 +1672,7 @@ var CyberCoding = {
             if (allBenchSet[s.benchmark_id]) modelsWithScores[s.model_id] = true;
         });
         var rowIds = Object.keys(modelsWithScores).filter(function(mid) {
-            return self._models.some(function(m) { return m.id === mid; });
+            return !!self._modelById(mid);
         });
 
         // Summary banner
@@ -1380,15 +1772,17 @@ var CyberCoding = {
             var trimmed = suiteRowIds.length > TOP_N;
             if (trimmed) suiteRowIds = suiteRowIds.slice(0, TOP_N);
 
-            // Per-benchmark max for color coding
-            var maxes = {};
+            // Per-benchmark range for colour coding (lower-better columns invert)
+            var maxes = {}, mins = {};
             activeBids.forEach(function(bid) {
-                var max = 0;
+                var max = -Infinity, min = Infinity;
                 rowIds.forEach(function(mid) {
                     var sc = self._scoreEntry(mid, bid);
-                    if (sc && sc.value > max) max = sc.value;
+                    if (!sc) return;
+                    if (sc.value > max) max = sc.value;
+                    if (sc.value < min) min = sc.value;
                 });
-                maxes[bid] = max;
+                maxes[bid] = max; mins[bid] = min;
             });
 
             // Suite header
@@ -1468,14 +1862,10 @@ var CyberCoding = {
                     var scoreEntry = self._scoreEntry(mid, bid);
                     if (scoreEntry) {
                         var v = scoreEntry.value;
-                        var bench = self._benchById(bid);
-                        var unit = bench && bench.metric ? bench.metric : '';
-                        td.textContent = v.toFixed(unit === 'fps' || unit === 'seconds' || unit === 'hours' || unit === 'elo' ? 0 : 1);
-                        var ratio = maxes[bid] > 0 ? v / maxes[bid] : 0;
-                        if (ratio >= 0.99) { td.style.color = Theme.series[0]; td.style.fontWeight = 'bold'; }
-                        else if (ratio >= 0.85) td.style.color = Theme.series[1];
-                        else if (ratio >= 0.7) td.style.color = Theme.series[2];
-                        else td.style.color = Theme.series[3];
+                        var lowerB = self._isLowerBetter(bid);
+                        td.textContent = self._fmtScore(scoreEntry, bid);
+                        td.style.color = self._cellColor(v, mins[bid], maxes[bid], lowerB);
+                        if (v === (lowerB ? mins[bid] : maxes[bid])) td.style.fontWeight = 'bold';
                         td.style.cursor = 'pointer';
                         td.setAttribute('role', 'button');
                         td.title = '클릭하면 검증 소스';
