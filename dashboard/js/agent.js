@@ -258,6 +258,8 @@ var Agent = (function() {
                 'apollo_scheming_oversight_subversion',
                 'apollo_scheming_persistence',
                 'agentlab_asr',  // 2026 S217b — long-horizon adaptive attack ASR
+                // 2026-10-10 S300 — RAIL Guard Pool B unsafe tool-call execution rate, no guardrail vs pre-action evaluation + plan remediation
+                'railguard_unsafe_tool_exec_no_guardrail_lower_better', 'railguard_unsafe_tool_exec_pre_action_remediation_lower_better',
                 // 2026-09-23 S282 — Opus 5.5 card §5 prompt-injection ASRs
                 'shade_v2_coding_asr_no_safeguards', 'shade_v2_coding_asr_with_probes', 'shade_v2_computer_use_asr_no_safeguards', 'shade_v2_computer_use_asr_with_probes', 'browser_use_cowork_asr_no_safeguards', 'browser_use_cowork_asr_auto_mode', 'gray_swan_ipi_k1', 'gray_swan_ipi_k10',
                 // 2026-10-03 — Gray Swan IPI k=15 (13 models incl. Gemini 4 Argon 0.7%), OpenAI realistic-work misalignment v2, prompt-injection connectors, OSGuard
@@ -272,6 +274,8 @@ var Agent = (function() {
                 'linuxarena_best_prompt_stealth_hidden_reasoning_lower_better', 'linuxarena_best_prompt_stealth_no_thinking_lower_better', 'linuxarena_best_prompt_stealth_visible_reasoning_lower_better'
             ],
             benchmarks: [
+                // 2026-10-10 S300 — RAIL Guard agent tool-call safety (unsafe execution rate, lower better)
+                'railguard_unsafe_tool_exec_no_guardrail_lower_better', 'railguard_unsafe_tool_exec_pre_action_remediation_lower_better',
                 // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (66)
                 'actbench_asr_lower_better', 'actbench_not_ags_mal', 'adepts_bench_score_desktop', 'adepts_bench_score_mobile', 'agentboundary_safety_all',
                 'agentboundary_utility_all', 'agentprivarena_leak_rate_lower_better', 'baitbench_reward_hacking_rate_lower_better', 'blindspot_bcr', 'blindspot_crr',

@@ -5331,5 +5331,17 @@
   "type": "ui",
   "title": "S299b — Cyber & Coding 탭: AA Cyber Index 점수·거절률 읽는 법 안내 추가",
   "detail": "AA Cyber Index 섹션 상단에 카드 2개 추가. '점수는 무엇을 뜻하나': 지수는 세 방어 업무 점수(각 0–100)의 단순 평균이며 50점은 평균적으로 절반 해결이라는 뜻, 상대 비교용 숫자임을 설명하고 CWE-Bench-AA(완전 해결 비율)·DeepsecBench-AA(F2×100, 재현율 2배 중시)·CyberGym-E2E-AA(발견→PoC→패치 모두 완료 비율)를 풀어 씀. 현재 최고·중앙값·최저를 데이터에서 계산해 표시. '거절률은 무엇을 뜻하나': 보안상 이유로 시도하지 않은 과제 비율이며 0점 처리되어 빗금 부분이 거절로 잃은 점수임을 설명, 거절률은 능력이 아니라 안전 정책의 결과이므로 지수는 '기본 설정 그대로 방어 업무에 쓸 때의 유용성'을 보여 준다는 점, GPT-6 Sol 기본(36.8) vs Daybreak Blue(68.7) 예시, 점수×거절 조합별 해석 3가지를 표시. 모든 예시 숫자는 로드된 점수에서 계산."
+ },
+ {
+  "date": "2026-10-10",
+  "type": "Feature",
+  "title": "S300 — 새 Guardrail 탭 + 가드레일 모델 65개 · 벤치마크 352개 · 점수 3,529행 (AA 가드레일 벤치마크, GuardBench, GuardSet-X, CS-Guard, 이미지 가드레일, RAIL Guard, Red Hat, GA Guard, TrueFoundry)",
+  "detail": "Guardrail 탭 신설: 읽는 법(F1·재현율·특이도/과잉 거절·지연), Artificial Analysis 가드레일 벤치마크(20개 구성 × WildGuardTest·ToxicChat·XSTest — 평균 F1 막대, F1 vs 지연, 재현율 vs 특이도, 전체 지표 표), 공급사 자체 비교(GA Guard 14개 가드 × 공개 3종·GA Jailbreak·Long Context, Red Hat EvalHub 9개 방식 × 인젝션·콘텐츠 안전, TrueFoundry 과제별 제공사), 논문 히트맵(GuardSet-X 도메인 F1·탈옥 ASR, GuardBench 40개 데이터셋, CS-Guard 입력 ASR·출력 F1, SafeEditBench·UnsafeBench), RAIL Guard 에이전트 도구 호출 위험 실행률, 데이터셋 카탈로그 11종, 가드 모델 레지스트리 70개. ▸ 신규 모델 65개: Llama Guard 1/2/3(1B·8B)/4, Prompt Guard 2, ShieldGemma 2B/9B/2, WildGuard, Qwen3Guard-Gen 8B, Aegis 1.0, NemoGuard 8B, Nemotron Safety Guard v3, Nemotron Content Safety Reasoning 4B, Nemotron 3/3.5 Content Safety(변형 포함), Granite Guardian 3.2/4.1/HAP-125M, MD-Judge v0.1/v0.2, gpt-oss-safeguard-120b, omni-/text-moderation, AWS Bedrock Guardrails, Azure AI Content Safety, Model Armor, Lakera Guard, VirtueGuard, GA Guard 3종, Jev 1.13, Laya, LlavaGuard/QwenGuard, SafeGuard-VL 등 (출시일은 HF 저장소 생성일). ▸ 논문 4편은 병렬 리더 3개가 읽고 2,968행 전부를 PDF 텍스트 줄과 기계 대조(실패 0). Red Hat 표의 Shieldstral 수치는 본문/부록 간 과제가 뒤바뀌어 제외, DeepRails는 상대 개선율만 있어 미저장, 버전 미표기 모델(Qwen3Guard-Gen, MD-Judge)은 패밀리 id. ▸ Agent 안전 카테고리에 RAIL Guard 2개, Cyber & Coding 방어에 CS-Guard 악성코드 생성 ASR 3개 추가. 논문 PDF 5개 resource/ 보관. DB 3,828 모델 · 8,232 벤치마크 · 59,875 점수."
+ },
+ {
+  "date": "2026-10-10",
+  "type": "Feature",
+  "title": "S301 — 새 System One 탭 + 결정 모델 126개 · 벤치마크 272개 · 점수 3,733행 (Jev Decision Index 텍스트·비전 보드, Cloudflare Clef, Fastino GLiDE·GLiNER2.5-Decide, kev·von·opendecider·CLM·SemIf·Laya·GLiClass, Raschka IMDb)",
+  "detail": "System One 탭 신설: 결정 모델 개념·LLM과의 차이, Jev Decision Index 0.3(커뮤니티 독립 보드, RTX PRO 6000 동일 조건, 공개 20%·비공개 같은 능력 50%·새 영역 30%) 상위 30 막대·점수 vs 지연 산점도·표, 42개 과제 히트맵(도구·검색·언어·지식·취향 5그룹), Vision 보드, 공급사·저장소 자체 측정 13개 절, 제품·API 지도(TypeSafe Jev, OpenAI·Perplexity Decisions API, Cloudflare Clef, Fastino, Databricks ai_decide, AutoTrust JEV), 결정 모델 레지스트리 112개. ▸ 보드 1위 Perplexity Decider v1.1 62.75, Fastino GLiDE no-thinking 60.21, Jev 1.13 60.11, Torchcast Decision 27B 59.91, Kev 27B 58.78. 보드 JSON(텍스트 0.3.1·비전 0.3.1·전체 결과·방법론)을 resource/에 보관. ▸ 리더 3개가 26개 링크를 읽고 텍스트 줄 759행 기계 대조 + 차트 이미지 102행 육안 대조. 공급사 실행 결과는 cloudflare_*·fastino_* 등 출처별 id로 분리, 버전 미표기 Jev는 typesafe/jev 패밀리 id, Jev의 0% 오류율(스키마 보장)·2년 넘은 기준 모델·익명 출품작은 제외. Jev 1.13·Laya의 모델 유형을 decision으로 바꾸고 Guardrail 탭 레지스트리에는 유지. DB 3,951 모델 · 8,504 벤치마크 · 63,608 점수."
  }
 ]

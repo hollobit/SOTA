@@ -88,6 +88,8 @@ var CyberCoding = {
         'caibench_base_ctf', 'caibench_cybench_cai_agent', 'caibench_cyber_ranges', 'ctibench_rcm', 'cybermetric_4500', 'issuetrojanbench_eem_rate_lower_better', 'cisco_image_safety_score'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
+        // 2026-10-10 S300 — CS-Guard (arXiv 2609.09798): malware-generation ASR of code LLMs without guardrails (lower better)
+        'csguard_llm_t2c_l1_asr_lower_better', 'csguard_llm_t2c_l2_avg_asr_lower_better', 'csguard_llm_c2c_avg_asr_lower_better',
         // 2026-09-30 S290 — CWE-bench v1 official board (vulnerability remediation) + Google internal vuln discovery / Wiz black-box pentest (Gemini 4 Argon launch)
         'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
         // 2026-10-01 S290b — cwe-bench.com: v1 pass@4 / judge-panel / cost columns, v0 board (100 tasks)
@@ -274,6 +276,8 @@ var CyberCoding = {
             note: 'AA Cyber Index v1 (CWE-Bench-AA · DeepsecBench-AA · CyberGym-E2E-AA + 거절률) · Vercel DeepsecBench · Vals CyberBench v1.1 · CyberGym-E2E 공식 S1–S4 · CWE-bench v1 · ZeroDayBench · SecRepoBench · EVMbench Patch · DFIR-Metric · Apollo Sabotage / Impossible-Task Lying / Eval-Awareness / Strategic Deception / Sandbagging · Dynamic Self-Harm / Mental Health / Emotional Reliance · CoT Controllability / Monitorability · Prompt Injection · First-Person Fairness · CyberSocEval · AutoPatchBench · Simbian Cyber Defense · CyberTeam (blue-team) · CTI-REALM (detection rule gen)',
             benchmarks: [
                 'zerodaybench', 'secrepobench', 'evmbench_patch', 'dfir_metric',
+                // 2026-10-10 S300 — CS-Guard malware-generation ASR (code LLMs, no guardrail; lower better). Guard-model results live in the Guardrail tab.
+                'csguard_llm_t2c_l1_asr_lower_better', 'csguard_llm_t2c_l2_avg_asr_lower_better', 'csguard_llm_c2c_avg_asr_lower_better',
                 // 2026-09-30 S290 — CWE-bench v1 board · Google real-world vuln discovery · Wiz black-box pentest
                 'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
                 'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench_v1_judge_pass4', 'cwe_bench_v1_cost_per_rollout_usd_lower_better', 'cwe_bench', 'cwe_bench_v0_cost_per_rollout_usd_lower_better',
