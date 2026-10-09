@@ -958,6 +958,71 @@ var CyberCoding = {
         return e;
     },
 
+    // S299b — plain-language guide: what an index score means, what the refusal rate means.
+    // All numbers are computed from the loaded scores so the text stays true after data updates.
+    _renderAACyberGuide: function(rows, mids, blockShare) {
+        var self = this, A = this.AA_CYBER;
+        var gc = document.getElementById('aa-cyber-index-guide');
+        if (!gc || !mids.length) return;
+        gc.textContent = '';
+        var idx = function(mid) { return rows[mid][A.index]; };
+        var name = function(mid) { return self._getModelName(mid); };
+        // paragraph built from [text, bold] parts (textContent only)
+        function para(parts, cls) {
+            var p = self._el('p', cls || 'text-sm text-gray-400 leading-relaxed');
+            parts.forEach(function(pt) {
+                if (typeof pt === 'string') p.appendChild(document.createTextNode(pt));
+                else p.appendChild(self._el('strong', 'text-gray-200', pt[0]));
+            });
+            return p;
+        }
+        function card(title) {
+            var c = self._el('div', 'rounded-lg border border-gray-800 p-4 space-y-2');
+            c.appendChild(self._el('h3', 'text-sm font-semibold text-gray-200', title));
+            gc.appendChild(c);
+            return c;
+        }
+        var vals = mids.map(idx).sort(function(a, b) { return a - b; });
+        var med = vals.length % 2 ? vals[(vals.length - 1) / 2] : (vals[vals.length / 2 - 1] + vals[vals.length / 2]) / 2;
+        var noRef = mids.filter(function(mid) { return blockShare(mid) < 0.5; });
+        var withRef = mids.filter(function(mid) { return blockShare(mid) >= 0.5; });
+
+        // ── Card 1: what the score means ──
+        var c1 = card('점수는 무엇을 뜻하나');
+        c1.appendChild(para(['Cyber Index는 세 가지 방어 업무 점수(각 0–100)의 ', ['단순 평균'], '입니다. 예를 들어 ', ['50점'],
+            '은 "세 업무를 평균적으로 절반 정도 해냈다"는 뜻입니다. 정해진 합격선이 있는 점수가 아니라 ', ['모델 간 상대 비교'], '용 숫자입니다.']));
+        var ul = self._el('ul', 'text-sm text-gray-400 space-y-1 list-disc pl-5');
+        [['CWE-Bench-AA', ' — 실제 저장소에서 지정된 영역의 취약점을 찾아 기능을 깨지 않고 고친 과제의 비율. 부분 점수 없음. 60이면 10개 중 6개를 완전히 해결.'],
+         ['DeepsecBench-AA', ' — 스캐너가 표시한 코드에서 진짜 취약점을 보고한 정확도(F2 × 100). 놓치지 않는 것(재현율)을 오탐 줄이기보다 2배 중시. 세 평가 중 가장 어려워 최고점도 50 안팎.'],
+         ['CyberGym-E2E-AA', ' — C/C++ 프로젝트에서 메모리 버그를 찾고, 크래시를 일으키는 재현 코드(PoC)를 만들고, 테스트를 통과하는 패치까지 끝낸 과제의 비율. 세 단계를 모두 해야 점수.']
+        ].forEach(function(r) { var li = self._el('li'); li.appendChild(self._el('strong', 'text-gray-200', r[0])); li.appendChild(document.createTextNode(r[1])); ul.appendChild(li); });
+        c1.appendChild(ul);
+        var top = mids[0], bottom = mids[mids.length - 1];
+        c1.appendChild(para(['현재 ', [String(mids.length) + '개 모델'], ' 기준 최고 ', [idx(top).toFixed(1)], ' (' + name(top) + '), 중앙값 ', [med.toFixed(1)],
+            ', 최저 ', [idx(bottom).toFixed(1)], ' (' + name(bottom) + '). 중앙값보다 높으면 지금 측정된 모델 중 상위 절반입니다.'], 'text-xs text-gray-500 leading-relaxed'));
+
+        // ── Card 2: what the refusal rate means ──
+        var c2 = card('거절률은 무엇을 뜻하나');
+        c2.appendChild(para(['거절률은 모델이나 서비스 제공사가 ', ['"보안상 위험할 수 있다"며 아예 시도하지 않은 과제의 비율'],
+            '입니다. 거절한 과제는 0점으로 계산되므로, 거절은 "틀린 답"이 아니라 "답하지 않음"으로 점수를 깎습니다. 차트의 ', ['빗금 부분'],
+            '(안전 거절 비중)은 세 평가 거절률의 평균, 즉 거절 때문에 잃은 지수 점수입니다.']));
+        c2.appendChild(para(['거절률이 높다고 능력이 낮은 것은 아닙니다. 회사의 ', ['안전 정책'], '이 PoC(재현 코드) 작성 같은 공격에 쓰일 수 있는 단계를 막은 결과입니다. 그래서 이 지수는 순수 능력보다 ',
+            ['"기본 설정 그대로 방어 업무에 쓸 때 얼마나 쓸모 있나"'], '를 보여 줍니다.']));
+        var pair = this.POLICY_PAIRS[0], pb = rows[pair.base], pv = rows[pair.variant];
+        if (pb && pv && pb[A.index] != null && pv[A.index] != null) {
+            c2.appendChild(para(['예: ', [name(pair.base)], '는 ' + pb[A.index].toFixed(1) + '점(거절 비중 ' + blockShare(pair.base).toFixed(0) + '%)이지만, 같은 가중치에 가드레일만 완화한 ',
+                [name(pair.variant)], '(' + pair.access + ')는 ' + pv[A.index].toFixed(1) + '점입니다. 차이 ' + (pv[A.index] - pb[A.index]).toFixed(1) + '점은 대부분 정책 차이입니다.']));
+        }
+        var q = self._el('ul', 'text-xs text-gray-500 space-y-1 list-disc pl-5');
+        [['높은 점수 + 거절 0%', ' → 능력이 점수에 그대로 반영된 경우.'],
+         ['낮은 점수 + 거절 높음', ' → 정책 때문에 시도하지 않은 몫이 큼. 신뢰 접근(⚑) 변형이나 다른 보드와 함께 볼 것.'],
+         ['낮은 점수 + 거절 0%', ' → 시도는 했지만 해결하지 못함. 실제 능력 한계.']
+        ].forEach(function(r) { var li = self._el('li'); li.appendChild(self._el('strong', 'text-gray-300', r[0])); li.appendChild(document.createTextNode(r[1])); q.appendChild(li); });
+        c2.appendChild(q);
+        c2.appendChild(para(['현재 거절이 있는 모델 ', [String(withRef.length) + '개'], ', 거절 0%인 모델 ', [String(noRef.length) + '개'],
+            '. 거절은 대부분 CyberGym-E2E(재현 코드를 만들어야 하는 평가)에서 발생합니다.'], 'text-xs text-gray-500 leading-relaxed'));
+    },
+
     _renderAACyberIndex: function() {
         var self = this, A = this.AA_CYBER;
         var rows = this._getScoresForBenchmarks([A.index].concat(A.components.map(function(c) { return c.id; }), A.components.map(function(c) { return c.refusal; })));
@@ -969,6 +1034,7 @@ var CyberCoding = {
             A.components.forEach(function(c) { var v = rows[mid][c.refusal]; if (v != null) { s += v; n++; } });
             return n ? s / A.components.length : 0;
         }
+        this._renderAACyberGuide(rows, mids, blockShare);
 
         // Stacked bar: successes + safety blocks (AA chart replica).
         var el = document.getElementById('aa-cyber-index-chart');

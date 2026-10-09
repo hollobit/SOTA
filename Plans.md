@@ -3,6 +3,9 @@
 ## Current Status: Session 292b — sweep follow-ups: April–May gap, leftover papers, official boards (2026-10-03)
 **3,677 models · 6,204 benchmarks · 46,885 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-10-09 Session 299b — Cyber & Coding: plain-language guide for AA Cyber Index scores and refusal rates
+- `index.html`: `aa-cyber-index-guide` container under the section intro. `cyber-coding.js`: `_renderAACyberGuide(rows, mids, blockShare)` called from `_renderAACyberIndex` — card 1 explains the index as the plain mean of three 0–100 defensive tasks (what 60 means on each component) with live top / median / bottom; card 2 explains refusals (declined on safety grounds, scored 0, hatched share = index points lost), that the index measures default-deployment usefulness rather than raw capability, the first POLICY_PAIRS example (GPT-6 Sol 36.8 vs Daybreak Blue 68.7), and a three-case reading guide. All numbers computed from loaded scores; text via textContent only.
+
 ### 2026-10-09 Session 299 — Upstage Solar Mini 4 (+ Solar Pro 4 AA refresh)
 - **1 model, 34 rows, 0 new benchmarks** (`resource/zzzzzzzzzzzzzzzzzz_s299_upstage_solar_mini4_2026_10_09_scores.json`); backup `data/benchmark.db.pre-s299.bak`. DB 3,763 / 7,880 / 56,346. Build script compares against the backup, so re-runs stay idempotent.
 - `upstage/solar-mini-4`: release 2026-09-22 (console version `solar-mini4-260922`, AA releaseDate; blog post 2026-10-01), 35B-A3B MoE, 512K context (AA lists 1,048,576 — Upstage value used), 128K output, cutoff 2026-02, en/ko/ja, proprietary (on-prem available, no open weights). Prices from the console docs ($0.10 / $0.01 / $0.40).
