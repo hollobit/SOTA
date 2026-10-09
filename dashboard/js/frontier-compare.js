@@ -148,6 +148,8 @@ var FrontierCompare = {
             'steerbench_work_accuracy', 'actbench_not_ags_mal', 'actbench_asr_lower_better', 'guardianbench_acc', 'guardianbench_pair_acc', 'realm_asr_coa',
             'realm_clean_acc', 'agentboundary_safety_all', 'agentboundary_utility_all', 'delegationbench_4way_agreement',
             'cybench', 'openai_ctf_professional', 'cybergym',
+            // 2026-10-09 S298 — Vercel DeepsecBench · Vals CyberBench v1.1 · CyberGym-E2E official S3
+            'deepsecbench', 'vals_cyberbench_v1_1', 'cybergym_e2e_official_s3',
             // 2026-09-28 S289 — AA Cyber Index v1
             'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa',
             // 2026-09-30 S290 — CWE-bench v1 official board + Google/Wiz internal evals (Gemini 4 Argon launch)

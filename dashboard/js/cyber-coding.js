@@ -92,6 +92,8 @@ var CyberCoding = {
         'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
         // 2026-10-01 S290b — cwe-bench.com: v1 pass@4 / judge-panel / cost columns, v0 board (100 tasks)
         'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench_v1_judge_pass4', 'cwe_bench_v1_cost_per_rollout_usd_lower_better', 'cwe_bench', 'cwe_bench_v0_cost_per_rollout_usd_lower_better',
+        // 2026-10-09 S298 — Vercel DeepsecBench board (F2 / recall / precision / cost) · Vals CyberBench v1.1 (PoC + Patch) · CyberGym-E2E official board (S1–S4, $10 budget + no-cap)
+        'deepsecbench', 'deepsecbench_recall', 'deepsecbench_precision', 'deepsecbench_cost_usd_lower_better', 'vals_cyberbench_v1_1', 'vals_cyberbench_v1_1_poc', 'vals_cyberbench_v1_1_patch', 'vals_cyberbench_v1_1_cost_per_test_usd_lower_better', 'cybergym_e2e_official_s3', 'cybergym_e2e_official_s1', 'cybergym_e2e_official_s4', 'cybergym_e2e_official_patch_only', 'cybergym_e2e_official_s3_nocap',
         // 2026-09-28 S289 — Artificial Analysis Cyber Index v1 (CWE-Bench-AA / DeepsecBench-AA / CyberGym-E2E-AA + safety-block rates)
         'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa', 'cwe_bench_aa_refusal_rate_lower_better', 'deepsecbench_aa_refusal_rate_lower_better', 'cybergym_e2e_aa_refusal_rate_lower_better',
         // 2026-09-23 S282b — Opus 5.5 card §3.4-3.5 safeguard flag rates / rewind-attacker ASR
@@ -275,6 +277,8 @@ var CyberCoding = {
                 // 2026-09-30 S290 — CWE-bench v1 board · Google real-world vuln discovery · Wiz black-box pentest
                 'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
                 'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench_v1_judge_pass4', 'cwe_bench_v1_cost_per_rollout_usd_lower_better', 'cwe_bench', 'cwe_bench_v0_cost_per_rollout_usd_lower_better',
+                // 2026-10-09 S298 — Vercel DeepsecBench board (F2 / recall / precision / cost) · Vals CyberBench v1.1 (PoC + Patch) · CyberGym-E2E official board (S1–S4, $10 budget + no-cap)
+                'deepsecbench', 'deepsecbench_recall', 'deepsecbench_precision', 'deepsecbench_cost_usd_lower_better', 'vals_cyberbench_v1_1', 'vals_cyberbench_v1_1_poc', 'vals_cyberbench_v1_1_patch', 'vals_cyberbench_v1_1_cost_per_test_usd_lower_better', 'cybergym_e2e_official_s3', 'cybergym_e2e_official_s1', 'cybergym_e2e_official_s4', 'cybergym_e2e_official_patch_only', 'cybergym_e2e_official_s3_nocap',
                 // 2026-09-28 S289 — AA Cyber Index v1 (defensive loop: find · reproduce · patch)
                 'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa', 'cwe_bench_aa_refusal_rate_lower_better', 'deepsecbench_aa_refusal_rate_lower_better', 'cybergym_e2e_aa_refusal_rate_lower_better',
                 'apollo_sabotage_mean', 'apollo_impossible_task_lying', 'apollo_eval_awareness',
@@ -649,6 +653,8 @@ var CyberCoding = {
     FRONTIER_MODELS: [
         // 2026-10-06 S296 — Mistral Large 4 Preview (Cybench 93%, CyberGym-E2E reproduce+patch 82%, AA Cyber Index 50 successes with 0 safety blocks, Lakera B3 93.3; separate cyber-permissive build for vetted partners) + Claude Haiku 5.5 (TB 4.0 39.2, SWE-bench Pro 64.8, FrontierCode Main 46.4 at $0.10/$0.50)
         'mistral/mistral-large-4-preview', 'anthropic/claude-haiku-5.5',
+        // 2026-10-09 S298 — trusted-access cyber variants (same weights, cyber safeguards relaxed): GPT-6 Sol Daybreak Blue (AA Cyber Index 68.7, #1, 0 safety blocks), Claude Opus 5.5 / Sonnet 5 Cyber Verification Program (Vals CyberBench 74.6 / 70.3 vs 55.4 / 61.9 default)
+        'openai/gpt-6-sol-daybreak-blue', 'anthropic/claude-opus-5.5-cyber-range',
         // 2026-09-30 S290 — Gemini 4 Argon (CWE-bench v1 68 tie #1, DeepSWE 77.9, Gray Swan IPI k=15 0.7%; released without cyber guardrails to Fairwind defenders)
         'google/gemini-4-argon',
         // 2026-09-22 S282 — Opus 5.5 (CursorBench 4.0 57.8, TB 4.0 66.4 xhigh), GPT-6 Sol/Luna (ExploitBench 81.7/43.4), Grok 4.7 (TB 4.0 37.6), MiMo-V2.6 Pro/Flash (CyberGym corrected env 94.0/95.1)
