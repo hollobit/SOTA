@@ -49,6 +49,8 @@ var SystemOne = {
         { name: '인접 분야', who: 'GLiClass · TabPFN · IBM ODM', what: '제로샷 분류기(GLiClass), 표 데이터 결정용 파운데이션 모델(TabPFN), 규칙 기반 의사결정 관리(IBM ODM, ML 모델 아님) — 비교 맥락용.', url: 'https://docs.priorlabs.ai/overview' }
     ],
 
+    // ECharts renders tooltip strings as HTML — escape every data-derived string (model / vendor names come from external sources).
+    _esc: function(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); },
     _el: function(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; },
     _idx: function() { return (window.App && App.getScoreIndex) ? App.getScoreIndex() : null; },
     _val: function(mid, bid) { var i = this._idx(); var s = i && i.byModelBench[mid + '|' + bid]; return s ? s.value : null; },
@@ -186,7 +188,7 @@ var SystemOne = {
             tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(p) {
                 var mid = top[p[0].dataIndex].model_id, out = [names[p[0].dataIndex] + ' — ' + self._vendor(mid), '종합 ' + p[0].value];
                 [[D.pub, '공개'], [D.same, '비공개(같은 능력)'], [D.nd, '비공개(새 영역)'], [D.lat, '중앙 지연 ms'], [D.ece, 'ECE×100']].forEach(function(x) { var v = self._val(mid, x[0]); if (v != null) out.push(x[1] + ' ' + v); });
-                return out.join('<br>'); } },
+                return out.map(self._esc).join('<br>'); } },
             grid: { left: 8, right: 40, top: 34, bottom: 8, containLabel: true },
             xAxis: { type: 'value', axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },
             yAxis: { type: 'category', inverse: true, data: names, axisLabel: { color: Theme.textMuted, fontSize: 10 } },
@@ -199,7 +201,7 @@ var SystemOne = {
         this._chart(c2, {
             backgroundColor: 'transparent',
             title: { text: '종합 점수 vs 중앙 지연 (왼쪽 위가 좋음, 점 크기 = 파라미터)', textStyle: { color: Theme.textSecondary, fontSize: 13 } },
-            tooltip: { formatter: function(p) { var d = pts[p.dataIndex]; return self._name(d.mid) + '<br>종합 ' + d.v.toFixed(1) + ' · 지연 ' + d.lat + ' ms' + (d.p ? ' · ' + d.p + 'B' : ''); } },
+            tooltip: { formatter: function(p) { var d = pts[p.dataIndex]; return self._esc(self._name(d.mid)) + '<br>종합 ' + d.v.toFixed(1) + ' · 지연 ' + d.lat + ' ms' + (d.p ? ' · ' + d.p + 'B' : ''); } },
             grid: { left: 50, right: 30, top: 46, bottom: 50 },
             xAxis: { type: 'log', min: 1, max: 1000, name: '중앙 지연 (ms, 로그 축)', nameLocation: 'middle', nameGap: 28, nameTextStyle: { color: Theme.textMuted }, axisLine: { show: true, lineStyle: { color: Theme.borderStrong } }, axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },
             yAxis: { type: 'value', min: 0, axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },

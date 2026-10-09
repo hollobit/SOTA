@@ -73,6 +73,8 @@ var Guardrail = {
     ],
 
     // ───────────────────────── helpers ─────────────────────────
+    // ECharts renders tooltip strings as HTML — escape every data-derived string (model / vendor names come from external sources).
+    _esc: function(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); },
     _el: function(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; },
     _idx: function() { return (window.App && App.getScoreIndex) ? App.getScoreIndex() : null; },
     _val: function(mid, bid) { var i = this._idx(); var s = i && i.byModelBench[mid + '|' + bid]; return s ? s.value : null; },
@@ -215,7 +217,7 @@ var Guardrail = {
                 var mid = rows[p[0].dataIndex].model_id; var out = [names[p[0].dataIndex], '평균 F1 ' + p[0].value];
                 A.ds.forEach(function(d) { var v = self._val(mid, 'aa_guardrail_' + d.k + '_f1'); if (v != null) out.push(d.label + ' F1 ' + v.toFixed(1)); });
                 var l = self._val(mid, A.lat); if (l != null) out.push('지연 ' + l.toFixed(0) + ' ms');
-                return out.join('<br>'); } },
+                return out.map(self._esc).join('<br>'); } },
             grid: { left: 8, right: 30, top: 34, bottom: 8, containLabel: true },
             xAxis: { type: 'value', min: 50, max: 100, axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },
             yAxis: { type: 'category', inverse: true, data: names, axisLabel: { color: Theme.textMuted, fontSize: 10 } },
@@ -227,7 +229,7 @@ var Guardrail = {
         this._chart(c2, {
             backgroundColor: 'transparent',
             title: { text: '탐지 품질 vs 지연 (왼쪽 위가 좋음)', textStyle: { color: Theme.textSecondary, fontSize: 13 } },
-            tooltip: { formatter: function(p) { var d = pts[p.dataIndex]; return self._name(d.mid) + '<br>F1 ' + d.f1.toFixed(1) + ' · 평균 지연 ' + d.lat.toFixed(0) + ' ms'; } },
+            tooltip: { formatter: function(p) { var d = pts[p.dataIndex]; return self._esc(self._name(d.mid)) + '<br>F1 ' + d.f1.toFixed(1) + ' · 평균 지연 ' + d.lat.toFixed(0) + ' ms'; } },
             grid: { left: 50, right: 30, top: 40, bottom: 50 },
             xAxis: { type: 'log', logBase: 10, min: 10, max: 3000, name: '평균 지연 (ms, 로그 축)', nameLocation: 'middle', nameGap: 28, nameTextStyle: { color: Theme.textMuted },
                      axisLine: { show: true, lineStyle: { color: Theme.borderStrong } }, axisLabel: { show: true, color: Theme.textMuted, formatter: function(v) { return v >= 1000 ? (v / 1000) + 's' : v + 'ms'; } }, splitLine: { lineStyle: { color: Theme.border } } },
@@ -242,7 +244,7 @@ var Guardrail = {
         this._chart(c3, {
             backgroundColor: 'transparent',
             title: { text: '유해 탐지(재현율) vs 정상 통과(특이도) — 오른쪽 위가 좋음. 위쪽 = 엄격형, 오른쪽 = 관대형', textStyle: { color: Theme.textSecondary, fontSize: 13 } },
-            tooltip: { formatter: function(p) { var d = rs[p.dataIndex]; return self._name(d.mid) + '<br>재현율 ' + d.rec.toFixed(1) + ' · 특이도 ' + d.sp.toFixed(1) + '<br>과잉 거절률 ' + (100 - d.sp).toFixed(1) + '%'; } },
+            tooltip: { formatter: function(p) { var d = rs[p.dataIndex]; return self._esc(self._name(d.mid)) + '<br>재현율 ' + d.rec.toFixed(1) + ' · 특이도 ' + d.sp.toFixed(1) + '<br>과잉 거절률 ' + (100 - d.sp).toFixed(1) + '%'; } },
             grid: { left: 50, right: 40, top: 70, bottom: 40 },
             xAxis: { type: 'value', name: '특이도 (정상 통과, %)', min: 80, max: 100, nameLocation: 'middle', nameGap: 26, nameTextStyle: { color: Theme.textMuted }, axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },
             yAxis: { type: 'value', name: '재현율 (유해 탐지, %)', min: 30, max: 100, nameGap: 14, nameTextStyle: { color: Theme.textMuted, align: 'left' }, axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },
