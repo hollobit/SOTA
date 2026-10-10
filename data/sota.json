@@ -4635,19 +4635,19 @@
     "notes": "no-think"
   },
   "arena_hard": {
-    "model_id": "ai21/jamba-1.6-large",
+    "model_id": "nousresearch/hermes-4-405b",
     "benchmark_id": "arena_hard",
-    "value": 73.6,
-    "unit": "score",
+    "value": 93.7,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "ai21.com",
+      "url": "https://arxiv.org/abs/2508.18255",
       "date": "2026-10-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-10-10",
-    "notes": ""
+    "notes": "Hermes 4 Technical Report Table 3, row Arena-Hard v1, column Hermes 4 405B R [setting: reasoning mode (R); non-reasoning in parentheses] Evidence: \"Arena-Hard v1      93.7 (53.5)      91.0 (82.8)            95.0           92.6   93.9 (91.7)\""
   },
   "sea_helm": {
     "model_id": "ai-singapore/llama-sea-lion-v3.5-70b",
@@ -4845,19 +4845,19 @@
     "notes": "Epoch benchmark-stitching CSV (scienceqa): gpt-4o-2024-05-13 = 88.50% per Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone"
   },
   "openbookqa": {
-    "model_id": "microsoft/phi-3-medium",
+    "model_id": "nousresearch/hermes-4.3-36b",
     "benchmark_id": "openbookqa",
-    "value": 87.4,
+    "value": 96.6,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "http://arxiv.org/abs/2404.14219",
-      "date": "2026-05-10",
+      "url": "https://huggingface.co/NousResearch/Hermes-4.3-36B",
+      "date": "2026-10-10",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-05-10",
-    "notes": "Epoch benchmark-stitching CSV (openbookqa): Phi-3-medium-128k-instruct = 87.40% per Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone"
+    "collected_at": "2026-10-10",
+    "notes": "HF model card \"Benchmarks (Hermes 4.3 36B)\" table, column Hermes 4.3 36B Psyche [setting: released Psyche-trained checkpoint] Evidence: \"| OBQA | 96.6 | 91.8 | 94.8 |\""
   },
   "lambada": {
     "model_id": "tii/falcon-180b",
@@ -35865,19 +35865,19 @@
     "notes": ""
   },
   "musr": {
-    "model_id": "tii/falcon3-7b-instruct",
+    "model_id": "nousresearch/hermes-4-70b",
     "benchmark_id": "musr",
-    "value": 46.4,
+    "value": 70.3,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "HF model card",
+      "url": "https://arxiv.org/abs/2508.18255",
       "date": "2026-10-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-10-10",
-    "notes": ""
+    "notes": "Hermes 4 Technical Report Table 4, row MuSR, column Hermes 4 70B R [setting: reasoning mode (R)] Evidence: \"MuSR                70.3 (56.3)   63.5 (59.2) 66.8 (52.5)    66.2 (56.4)\""
   },
   "bfcl": {
     "model_id": "tii/falcon3-7b-instruct",
@@ -117268,6 +117268,471 @@
     "is_sota": true,
     "collected_at": "2026-10-10",
     "notes": "Table 3, Hermes Agent column [setting: Hermes Agent harness] Evidence: \"GPT 5.4 [28]        5.83    0.33     50.3    9.07    0.61      48.4    7.16     0.57       56.8     8.97   0.44     50.7\""
+  },
+  "claw_swe_bench_pass1_openclaw": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "claw_swe_bench_pass1_openclaw",
+    "value": 79.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2, model group DeepSeek-V4.1-Flash, row OpenClaw; Resolved 279.3/350, cost $50 [setting: OpenClaw harness (Claw-SWE-Bench full-350, mean of 3 runs)] Evidence: \"OpenClaw                 279.3         79.8          50         566      38.5     25.4       97.3\""
+  },
+  "claw_swe_bench_cost_usd_openclaw_lower_better": {
+    "model_id": "zhipu/glm-5.1",
+    "benchmark_id": "claw_swe_bench_cost_usd_openclaw_lower_better",
+    "value": 338.0,
+    "unit": "USD",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2 total API cost over 350 instances, GLM 5.1, OpenClaw [setting: OpenClaw harness] Evidence: \"OpenClaw                  249.3        71.2         338        511       68.7      8.1       92.0\""
+  },
+  "claw_swe_bench_pass1_hermes_agent": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "claw_swe_bench_pass1_hermes_agent",
+    "value": 81.7,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2, model group DeepSeek-V4.1-Flash, row Hermes Agent; Resolved 286.0/350, cost $36 [setting: Hermes Agent harness (Claw-SWE-Bench full-350, mean of 3 runs)] Evidence: \"Hermes Agent             286.0         81.7          36         492      41.8     13.3       96.9\""
+  },
+  "claw_swe_bench_cost_usd_hermes_agent_lower_better": {
+    "model_id": "zhipu/glm-5.1",
+    "benchmark_id": "claw_swe_bench_cost_usd_hermes_agent_lower_better",
+    "value": 389.0,
+    "unit": "USD",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2 total API cost over 350 instances, GLM 5.1, Hermes Agent [setting: Hermes Agent harness] Evidence: \"Hermes Agent              256.0        73.1         389        800       64.4      6.9       94.1\""
+  },
+  "claw_swe_bench_pass1_nanobot": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "claw_swe_bench_pass1_nanobot",
+    "value": 79.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2, model group DeepSeek-V4.1-Flash, row nanobot; Resolved 278.7/350, cost $78 [setting: nanobot harness (Claw-SWE-Bench full-350, mean of 3 runs)] Evidence: \"nanobot                  278.7         79.6          78         533     184.9     13.6       84.2\""
+  },
+  "claw_swe_bench_cost_usd_nanobot_lower_better": {
+    "model_id": "zhipu/glm-5.1",
+    "benchmark_id": "claw_swe_bench_cost_usd_nanobot_lower_better",
+    "value": 525.0,
+    "unit": "USD",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2 total API cost over 350 instances, GLM 5.1, nanobot [setting: nanobot harness] Evidence: \"nanobot                   240.3        68.7         525        956      150.4      7.8       87.7\""
+  },
+  "claw_swe_bench_pass1_zeroclaw": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "claw_swe_bench_pass1_zeroclaw",
+    "value": 76.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2, model group DeepSeek-V4.1-Flash, row ZeroClaw; Resolved 266.3/350, cost $99 [setting: ZeroClaw harness (Claw-SWE-Bench full-350, mean of 3 runs)] Evidence: \"ZeroClaw                 266.3         76.1          99        1432      57.6     62.2       95.3\""
+  },
+  "claw_swe_bench_cost_usd_zeroclaw_lower_better": {
+    "model_id": "zhipu/glm-5.1",
+    "benchmark_id": "claw_swe_bench_cost_usd_zeroclaw_lower_better",
+    "value": 391.0,
+    "unit": "USD",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2 total API cost over 350 instances, GLM 5.1, ZeroClaw [setting: ZeroClaw harness] Evidence: \"ZeroClaw                  244.0        69.7         391        548       93.3      4.3       90.9\""
+  },
+  "claw_swe_bench_pass1_genericagent": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "claw_swe_bench_pass1_genericagent",
+    "value": 71.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2, model group DeepSeek-V4.1-Flash, row GenericAgent; Resolved 250.3/350, cost $12 [setting: GenericAgent harness (Claw-SWE-Bench full-350, mean of 3 runs)] Evidence: \"GenericAgent             250.3         71.5          12         839      11.7      6.8       88.1\""
+  },
+  "claw_swe_bench_cost_usd_genericagent_lower_better": {
+    "model_id": "zhipu/glm-5.1",
+    "benchmark_id": "claw_swe_bench_cost_usd_genericagent_lower_better",
+    "value": 86.0,
+    "unit": "USD",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2 total API cost over 350 instances, GLM 5.1, GenericAgent [setting: GenericAgent harness] Evidence: \"GenericAgent              220.3        62.9         86         576      33.1       5.1       66.8\""
+  },
+  "claw_swe_bench_pass1_deepseek_harness": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "claw_swe_bench_pass1_deepseek_harness",
+    "value": 76.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2, model group DeepSeek-V4.1-Flash, row DeepSeek Harness; Resolved 267.7/350, cost $41 [setting: DeepSeek Harness harness (Claw-SWE-Bench full-350, mean of 3 runs)] Evidence: \"DeepSeek Harness         267.7         76.5          41        1577      56.4     12.9       96.3\""
+  },
+  "claw_swe_bench_cost_usd_deepseek_harness_lower_better": {
+    "model_id": "zhipu/glm-5.1",
+    "benchmark_id": "claw_swe_bench_cost_usd_deepseek_harness_lower_better",
+    "value": 513.0,
+    "unit": "USD",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2 total API cost over 350 instances, GLM 5.1, DeepSeek Harness [setting: DeepSeek Harness harness] Evidence: \"DeepSeek Harness          241.7        69.1         513        916       93.2      5.3       93.7\""
+  },
+  "claw_swe_bench_pass1_meta_harness": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "benchmark_id": "claw_swe_bench_pass1_meta_harness",
+    "value": 74.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2, model group DeepSeek-V4.1-Flash, row Meta-Harness†; Resolved 262.3/350, cost $13 [setting: Meta-Harness harness (Claw-SWE-Bench full-350, mean of 3 runs)] Evidence: \"Meta-Harness†            262.3         74.9          13        1005      14.0      7.2       86.6\""
+  },
+  "claw_swe_bench_cost_usd_meta_harness_lower_better": {
+    "model_id": "zhipu/glm-5.1",
+    "benchmark_id": "claw_swe_bench_cost_usd_meta_harness_lower_better",
+    "value": 190.0,
+    "unit": "USD",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2606.12344",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 2 total API cost over 350 instances, GLM 5.1, Meta-Harness† [setting: Meta-Harness harness] Evidence: \"Meta-Harness†             230.0        65.7         190        379       79.7      5.7       72.2\""
+  },
+  "clawsbench_tsr_openclaw_full_scaffold": {
+    "model_id": "anthropic/claude-opus-4.6",
+    "benchmark_id": "clawsbench_tsr_openclaw_full_scaffold",
+    "value": 63.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2604.05172",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 4 (on/on row) [setting: OpenClaw harness, domain skills + meta prompt (on/on)] Evidence: \"Claude Opus 4.6                 ✓          ✓   63%      [42,82]   23%        [8,40]        50%     [32,68]\""
+  },
+  "clawsbench_uar_openclaw_full_scaffold_lower_better": {
+    "model_id": "google/gemini-3.1-flash-lite",
+    "benchmark_id": "clawsbench_uar_openclaw_full_scaffold_lower_better",
+    "value": 23.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2604.05172",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 4 (on/on row) [setting: OpenClaw harness, domain skills + meta prompt (on/on)] Evidence: \"Gemini 3.1 Flash-Lite           ✓          ✓   39%      [21,57]   23%        [11,35]       26%     [12,41]\""
+  },
+  "clawsbench_scr_openclaw_full_scaffold": {
+    "model_id": "anthropic/claude-opus-4.6",
+    "benchmark_id": "clawsbench_scr_openclaw_full_scaffold",
+    "value": 50.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2604.05172",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Table 4 (on/on row) [setting: OpenClaw harness, domain skills + meta prompt (on/on)] Evidence: \"Claude Opus 4.6                 ✓          ✓   63%      [42,82]   23%        [8,40]        50%     [32,68]\""
+  },
+  "skilltrustbench_556_label_agreement": {
+    "model_id": "openclaw/clawhub",
+    "benchmark_id": "skilltrustbench_556_label_agreement",
+    "value": 86.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openclaw.ai/blog/tencent-aig-joins-clawscan/",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "blog: Benchmarking the combined system [setting: ClawHub skill security review pipeline] Evidence: \"Across those 556 cases, ClawScan matched 86.9% of the benchmark’s labels and correctly classified 98.6% of malicious cases.\""
+  },
+  "skilltrustbench_556_malicious_recall": {
+    "model_id": "openclaw/clawhub",
+    "benchmark_id": "skilltrustbench_556_malicious_recall",
+    "value": 98.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openclaw.ai/blog/tencent-aig-joins-clawscan/",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "blog: Benchmarking the combined system [setting: ClawHub skill security review pipeline] Evidence: \"Across those 556 cases, ClawScan matched 86.9% of the benchmark’s labels and correctly classified 98.6% of malicious cases.\""
+  },
+  "pinchbench_v2_avg": {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "pinchbench_v2_avg",
+    "value": 93.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://pinchbench.com",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Quick Picks: Best Overall (fast mode) (59 models, 147 tasks, 620 runs as of 2026-10-10) [setting: OpenClaw agent (PinchBench v2, average across runs) — fast mode] Evidence: \"👑Best Overall93.5%anthropic/claude-opus-4.8-fast\""
+  },
+  "pinchbench_v2_code": {
+    "model_id": "xiaomi/mimo-v2.5-pro",
+    "benchmark_id": "pinchbench_v2_code",
+    "value": 98.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://pinchbench.com",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Quick Picks: Best for Code (coding score) (59 models, 147 tasks, 620 runs as of 2026-10-10) [setting: OpenClaw agent (PinchBench v2, average across runs)] Evidence: \"🔧Best for Code98.0%xiaomi/mimo-v2.5-pro\""
+  },
+  "refusalbench_nous": {
+    "model_id": "nousresearch/hermes-4.3-36b",
+    "benchmark_id": "refusalbench_nous",
+    "value": 74.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/NousResearch/Hermes-4.3-36B",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "HF card RefusalBench table [setting: non-reasoning, avg of 5 trials] Evidence: \"| **Hermes 4.3 36B Non-Reasoning** | 74.60% |\""
+  },
+  "refusalbench_nous_reasoning": {
+    "model_id": "nousresearch/hermes-4.3-36b",
+    "benchmark_id": "refusalbench_nous_reasoning",
+    "value": 72.29,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/NousResearch/Hermes-4.3-36B",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "HF card RefusalBench table (reasoning variant row) [setting: reasoning, avg of 5 trials] Evidence: \"| **Hermes 4.3 36B Reasoning** | 72.29% |\""
+  },
+  "harness_bench_score": {
+    "model_id": "nousresearch/hermes-agent",
+    "benchmark_id": "harness_bench_score",
+    "value": 71.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2605.27922",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Harness-Bench Table 2, row Hermes, Score(%) [setting: harness avg over 8 model backends x 106 tasks] Evidence: \"Hermes             71.2          80.4     100.0         88.5        88.4         85.5    139.7    22.6\""
+  },
+  "harness_bench_completion": {
+    "model_id": "nousresearch/hermes-agent",
+    "benchmark_id": "harness_bench_completion",
+    "value": 80.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2605.27922",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Harness-Bench Table 2, row Hermes, Comp.(%) [setting: harness avg over 8 model backends x 106 tasks] Evidence: \"Hermes             71.2          80.4     100.0         88.5        88.4         85.5    139.7    22.6\""
+  },
+  "workspace_bench_total_hermes_agent": {
+    "model_id": "zhipu/glm-5.1",
+    "benchmark_id": "workspace_bench_total_hermes_agent",
+    "value": 57.7,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2605.03596",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Workspace-Bench 1.0 Table 4, Hermes + GLM-5.1, Total [setting: harness: Hermes] Evidence: \"Hermes          GLM-5.1       73.9    57.3    52.1    57.7     81.0      59.0      40.0      20.0      13.0\""
+  },
+  "workspace_bench_total_openclaw": {
+    "model_id": "zhipu/glm-5.1",
+    "benchmark_id": "workspace_bench_total_openclaw",
+    "value": 57.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2605.03596",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "Workspace-Bench 1.0 Table 4, OpenClaw + GLM-5.1, Total [setting: harness: OpenClaw] Evidence: \"OpenClaw         GLM-5.1       65.7    56.3    56.3    57.5     77.0      61.0      46.0      23.0      14.0\""
+  },
+  "gabench_graph_ml_sr_hermes_agent": {
+    "model_id": "zhipu/glm-5-turbo",
+    "benchmark_id": "gabench_graph_ml_sr_hermes_agent",
+    "value": 60.22,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2608.01684",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "GABench §4.3 / Table 7, average SR on graph machine learning tasks [setting: harness: Hermes Agent] Evidence: \"learning, compared with 60.22 for Hermes and 34.94 for OpenClaw.                                                             data. Future research should develop more graph-aware a\""
+  },
+  "gabench_graph_ml_sr_openclaw": {
+    "model_id": "zhipu/glm-5-turbo",
+    "benchmark_id": "gabench_graph_ml_sr_openclaw",
+    "value": 34.94,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2608.01684",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "GABench §4.3 / Table 7, average SR on graph ML tasks [setting: harness: OpenClaw] Evidence: \"learning, compared with 60.22 for Hermes and 34.94 for OpenClaw.                                                             data. Future research should develop more graph-aware a\""
+  },
+  "gabench_graph_oeqa_sr_hermes_agent": {
+    "model_id": "zhipu/glm-5-turbo",
+    "benchmark_id": "gabench_graph_oeqa_sr_hermes_agent",
+    "value": 8.17,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2608.01684",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "GABench §4.3 / Table 8, average SR on graph open-ended QA [setting: harness: Hermes Agent] Evidence: \"performing OpenClaw at 10.28 and Hermes at 8.17. This advantage                                                              graph foundation models [28], with the task-planning an\""
+  },
+  "gabench_graph_oeqa_sr_openclaw": {
+    "model_id": "zhipu/glm-5-turbo",
+    "benchmark_id": "gabench_graph_oeqa_sr_openclaw",
+    "value": 10.28,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2608.01684",
+      "date": "2026-10-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-10-10",
+    "notes": "GABench §4.3 / Table 8, average SR on graph open-ended QA [setting: harness: OpenClaw] Evidence: \"performing OpenClaw at 10.28 and Hermes at 8.17. This advantage                                                              graph foundation models [28], with the task-planning an\""
   },
   "cti_bench": {
     "model_id": "anthropic/claude-opus-4.7",
