@@ -638,6 +638,7 @@ var App = {
         'video-gen':       ['js/image-gen.js', 'js/video-gen.js'],
         guardrail:         ['js/guardrail.js'],
         'system-one':      ['js/system-one.js'],
+        bots:              ['js/bots.js'],
         timeline:          ['js/frontier-compare.js', 'js/timeline.js'],
         price:             ['js/frontier-compare.js', 'js/timeline.js', 'js/price.js', 'js/price3d.js', 'js/price3d-sky.js']
     },
@@ -745,6 +746,7 @@ var App = {
         else if (tabId === 'video-gen' && typeof VideoGen !== 'undefined') VideoGen.render();
         else if (tabId === 'guardrail' && typeof Guardrail !== 'undefined') Guardrail.render();
         else if (tabId === 'system-one' && typeof SystemOne !== 'undefined') SystemOne.render();
+        else if (tabId === 'bots' && typeof Bots !== 'undefined') Bots.render();
         else if (tabId === 'timeline' && typeof Timeline !== 'undefined') Timeline.render();
         else if (tabId === 'price' && typeof Price !== 'undefined') Price.render();
         else if (tabId === 'resources') self.renderResources();
@@ -788,7 +790,7 @@ var App = {
                         leaderboard:1, comparison:1, 'frontier-compare':1,
                         'cyber-coding':1, sovereign:1, 'physical-ai':1,
                         'medical-ai':1, ai4s:1, agent:1, 'image-gen':1,
-                        'video-gen':1, guardrail:1, 'system-one':1, timeline:1, trends:1, price:1,
+                        'video-gen':1, guardrail:1, 'system-one':1, bots:1, timeline:1, trends:1, price:1,
                         // Explorer.compare() reads App.data.scores directly at
                         // compare-button click time. Without this entry the
                         // click handler runs against an empty scores array and
@@ -3738,6 +3740,10 @@ var App = {
             { name: 'Expanding Daybreak (OpenAI cyber)', url: 'https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/', desc: '[vendor_blog] GPT-5.6-Cyber ExploitGym2/ExploitBench (qualitative, no numeric scores).' },
             { name: 'NVIDIA Nemotron 3.5 Lightning 30B-A3B NVFP4 (HF)', url: 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4', desc: '[model_card] Open MoE 30B/A3B NVFP4. MMLU-Pro 81.6, GPQA 75.6, SWE-bench Verified 52.8, GDPval Elo 865.' },
             // ---- 2026-08-12 S241 — Upstage Solar Pro 4 (Korea sovereign) ----
+            { name: 'Always-on agent "bots": Grok Bot · Meta Muse · ChatGPT dots · Gemini Spark · Gemini agent (S302)', url: 'https://x.ai/bot', desc: '[bots] Grok Bot (SpaceXAI, beta 2026-08-11; one persistent cloud computer shared by a user\'s Bots, bundled in SuperGrok / Cursor plans), Meta Muse (2026-09-08, Muse Spark 1.3, Muse Secure VM + Sentinel approval agent, WhatsApp / iOS / Android / web / Mac), ChatGPT dots (2026-09-29, GPT-6 Astra, own cloud computer, Slack / Teams), Gemini Spark (I/O 2026-05-19, Gemini 3.5 + Antigravity harness, Tasks / Skills / Schedules), Gemini agent (Gemini at Work 2026-10-09, Gemini + Claude routing, sub-agents with @agents emails). ai.meta.com/muse · chatgpt.com/features/dots · gemini.google/overview/agent/spark · cloud.google.com/blog (Gemini at Work 2026).' },
+            { name: 'Peer bot products surveyed (S302)', url: 'https://www.microsoft.com/en-us/copilot/blog/2026/06/02/introducing-microsoft-scout-your-always-on-personal-agent/', desc: '[bots] Microsoft Copilot Autopilot / Copilot Cowork / Copilot Tasks, Anthropic Claude Cowork, Manus 2.0 + Cue, Perplexity Computer + Comet background assistants, Genspark Claw, Lindy, Cognition Poke + Devin, Notion Custom Agents, Cursor cloud agents, Zapier Agents, Opera Neon, Amazon Alexa+, OpenClaw (MIT) and hosted clones Kimi Claw / MiniMax MaxClaw / Zhipu AutoClaw / Tencent WorkBuddy, ByteDance Doubao Work, Baidu DuMate. Facts with verbatim evidence lines from vendor pages (archive.org copies where curl was blocked).' },
+            { name: 'Scale Remote Labor Index leaderboard (S302)', url: 'https://scale.com/leaderboard/rli', desc: '[bots] 240 Upwork projects, automation rate judged by humans; board 2026-10-07 lists products (Claude Cowork 4.17%, Manus 1.6 Max 2.92%, ChatGPT agent 1.25%) next to base models (Opus 5.5 21.25%, GPT-6 Astra 20.83%).' },
+            { name: 'Agent-product evaluations: AgentIF-OneDay, Mind2Web 2, Claw-Anything, WildClawBench, LayerX AI-browser security (S302)', url: 'https://osu-nlp-group.github.io/Mind2Web-2/', desc: '[bots] AgentIF-OneDay (xbench, 104 daily tasks: Manus 1.5 0.645, Genspark 0.635, ChatGPT agent 0.626, MiniMax Agent 0.562); Mind2Web 2 product runs (Deep Research 0.54 partial); Claw-Anything / WildClawBench personal-assistant benchmarks (models × harnesses); LayerX phishing block rates for AI browsers (Comet 7%, Atlas 5.8%, Dia 46%); Claude for Chrome prompt-injection ASR 23.6% → 11.2%; ChatGPT agent system card (BrowseComp 68.9, prompt-injection resistance 99.5%).' },
             { name: 'Jev Decision Index (HF Space, community board) — text 0.3.1 + vision 0.3.1 (S301)', url: 'https://huggingface.co/spaces/multimodalart/jev-decision-index', desc: '[decision] Independent board for decision / System One models: 42 benchmarks (tools, retrieval, language, knowledge, arts) + private same-skills / new-domain tests, chance-corrected skill, 1x RTX PRO 6000; vision board on 11 public sets + private images. Top 0.3: Perplexity Decider v1.1 62.75, Fastino GLiDE no-thinking 60.21, Jev 1.13 60.11, Torchcast Decision 27B 59.91, Kev 27B 58.78. JSON snapshots archived as resource/jev_decision_index_*.json.' },
             { name: 'TypeSafe — Introducing System One Models & Jev (S301)', url: 'https://typesafe.ai/blog/introducing-system-one-models-and-jev', desc: '[decision] 2026-09-15 launch: typed decisions (noul / choice / score), 70-500 ms, $0.042 per 1M input tokens, output free; structured-output and tool-call error-rate charts for 10 frontier LLMs (OpenRouter data). No public-benchmark results by design.' },
             { name: 'Cloudflare — Clef open-source decision models (S301)', url: 'https://blog.cloudflare.com/clef-decision-models/', desc: '[decision] 2026-10-01. Clef (Qwen3.8-27B) and Clef-flash (Qwen3.5-9B), Apache-2.0, Workers AI, Jev-API compatible; Cloudflare-run results on 10 Decision Index tasks and 4 TypeSafe workflow evals vs Jev, Kev 9B, Laya, DiffusionGemma Jev; latency.' },

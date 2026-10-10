@@ -57982,6 +57982,307 @@
     "metric": "KL"
   },
   {
+    "id": "dots_changing_scope_permissions_alignment_pass_rate",
+    "name": "OpenAI dots — Adapting to Changing Scope and Permissions (alignment pass rate)",
+    "category": "agent",
+    "description": "New OpenAI eval in GPT-6 Astra system card Appendix 12.3.5.1: each episode = one task with an external environment change mid-execution (permission revoked / authorization scope changed); pass = agent adapts, e.g. pauses no-longer-authorized actions. 49 episodes incl. 17 explicit permission-change cases. Run by OpenAI on the dots harness. https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log",
+    "metric": "% episodes passed (higher better)"
+  },
+  {
+    "id": "dots_chained_tasks_moderate_scope_violation_rate_5_intervening_tasks_lower_better",
+    "name": "OpenAI dots — Maintaining Boundaries Across Chained Tasks (moderate scope-violation flag rate) — 5 intervening tasks",
+    "category": "agent",
+    "description": "New OpenAI eval (system card 12.3.5.2): initial task + 5 or 10 related intervening tasks + final task in one persistent environment; authorization scope changes between tasks without being stated. Reports flag rate of moderate-severity scope violations (no severe breach/exfiltration observed). OpenAI, dots harness, GPT-6 Astra. https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log Setting: 5 intervening tasks.",
+    "metric": "% samples flagged for moderate-severity scope violation (lower better)"
+  },
+  {
+    "id": "dots_chained_tasks_moderate_scope_violation_rate_10_intervening_tasks_lower_better",
+    "name": "OpenAI dots — Maintaining Boundaries Across Chained Tasks (moderate scope-violation flag rate) — 10 intervening tasks",
+    "category": "agent",
+    "description": "New OpenAI eval (system card 12.3.5.2): initial task + 5 or 10 related intervening tasks + final task in one persistent environment; authorization scope changes between tasks without being stated. Reports flag rate of moderate-severity scope violations (no severe breach/exfiltration observed). OpenAI, dots harness, GPT-6 Astra. https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log Setting: 10 intervening tasks.",
+    "metric": "% samples flagged for moderate-severity scope violation (lower better)"
+  },
+  {
+    "id": "dots_misleading_proactivity_misalignment_rate_lower_better",
+    "name": "OpenAI dots — Robustness to Misleading Proactivity Inputs (misalignment rate)",
+    "category": "agent",
+    "description": "New OpenAI eval (system card 12.3.5.3): synthetic pipeline generates user tasks, ChatGPT Work environments and notifications with misleading hints that encourage unsupported conclusions or inappropriate actions; 151 tasks. OpenAI, dots with GPT-6 Astra. https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log",
+    "metric": "% tasks with misaligned behavior (lower better)"
+  },
+  {
+    "id": "dots_cyber_misuse_monitor_block_rate_high_risk",
+    "name": "OpenAI cyber misuse-monitor block rate — high-risk cyber activity (dots harness vs Codex baseline)",
+    "category": "agent",
+    "description": "System card 12.6.2.3: defensive-use eval set spanning general defensive work and activity reserved for Daybreak Blue/Red; GPT-6 Astra run through dots harness and baseline (Codex) harness to compare system-safeguard block rates for high-risk cyber activity. https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log",
+    "metric": "% blocked (higher better)"
+  },
+  {
+    "id": "dots_cyber_misuse_monitor_block_rate_exploit_dev_redteam",
+    "name": "OpenAI cyber misuse-monitor block rate — exploit development and red-teaming (dots harness)",
+    "category": "agent",
+    "description": "System card 12.6.2.3: same harness comparison; block rate for exploit-development and red-teaming requests (92% in both dots and baseline configurations). https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log",
+    "metric": "% blocked"
+  },
+  {
+    "id": "warning_barrier_persistence_rate_v2_simulated_time_budget_4_minutes_dots_app_lower_better",
+    "name": "OpenAI Respecting Warnings / warning circumvention (Sep-2026 updated version) — simulated-time budget 4 minutes (dots appendix)",
+    "category": "agent",
+    "description": "Existing DB id. Dots appendix 12.3.1.2 reruns it for GPT-6 Astra across simulated-time budgets (4 min / 30 min / 4 h / 1 yr; model given a deadline, clock tool and wait). https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log Setting: simulated-time budget 4 minutes (dots appendix).",
+    "metric": "% rollouts with unwanted persistence (lower better)"
+  },
+  {
+    "id": "warning_barrier_persistence_rate_v2_simulated_time_budget_30_minutes_and_4_h_lower_better",
+    "name": "OpenAI Respecting Warnings / warning circumvention (Sep-2026 updated version) — simulated-time budget 30 minutes and 4 hours (dots appendix)",
+    "category": "agent",
+    "description": "Existing DB id. Dots appendix 12.3.1.2 reruns it for GPT-6 Astra across simulated-time budgets (4 min / 30 min / 4 h / 1 yr; model given a deadline, clock tool and wait). https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log Setting: simulated-time budget 30 minutes and 4 hours (dots appendix).",
+    "metric": "% rollouts with unwanted persistence (lower better)"
+  },
+  {
+    "id": "warning_barrier_persistence_rate_v2_simulated_time_budget_1_year_dots_append_lower_better",
+    "name": "OpenAI Respecting Warnings / warning circumvention (Sep-2026 updated version) — simulated-time budget 1 year (dots appendix)",
+    "category": "agent",
+    "description": "Existing DB id. Dots appendix 12.3.1.2 reruns it for GPT-6 Astra across simulated-time budgets (4 min / 30 min / 4 h / 1 yr; model given a deadline, clock tool and wait). https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log Setting: simulated-time budget 1 year (dots appendix).",
+    "metric": "% rollouts with unwanted persistence (lower better)"
+  },
+  {
+    "id": "broken_search_tool_failure_rate_v2_simulated_time_budget_4_minutes_dots_app_lower_better",
+    "name": "OpenAI Broken Search Tool (Sep-2026 updated version) — failure rate — simulated-time budget 4 minutes (dots appendix)",
+    "category": "agent",
+    "description": "Existing DB id. Dots appendix 12.3.2.2 reruns it for GPT-6 Astra across simulated-time budgets. https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log Setting: simulated-time budget 4 minutes (dots appendix).",
+    "metric": "% failing to acknowledge unavailable search tool (lower better)"
+  },
+  {
+    "id": "broken_search_tool_failure_rate_v2_simulated_time_budget_30_minutes_and_4_h_lower_better",
+    "name": "OpenAI Broken Search Tool (Sep-2026 updated version) — failure rate — simulated-time budget 30 minutes and 4 hours (dots appendix)",
+    "category": "agent",
+    "description": "Existing DB id. Dots appendix 12.3.2.2 reruns it for GPT-6 Astra across simulated-time budgets. https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log Setting: simulated-time budget 30 minutes and 4 hours (dots appendix).",
+    "metric": "% failing to acknowledge unavailable search tool (lower better)"
+  },
+  {
+    "id": "broken_search_tool_failure_rate_v2_simulated_time_budget_1_year_dots_append_lower_better",
+    "name": "OpenAI Broken Search Tool (Sep-2026 updated version) — failure rate — simulated-time budget 1 year (dots appendix)",
+    "category": "agent",
+    "description": "Existing DB id. Dots appendix 12.3.2.2 reruns it for GPT-6 Astra across simulated-time budgets. https://web.archive.org/web/2026/https://deploymentsafety.openai.com/gpt-6-astra/change-log Setting: simulated-time budget 1 year (dots appendix).",
+    "metric": "% failing to acknowledge unavailable search tool (lower better)"
+  },
+  {
+    "id": "remote_labor_index",
+    "name": "Remote Labor Index (RLI) — Scale Labs leaderboard automation rate",
+    "category": "agent",
+    "description": "Scale AI + Center for AI Safety. 240 end-to-end freelance projects from 358 Upwork freelancers across 23 domains (230 private set used for leaderboard; 10 public); mean human time 28.9 h, $143,991 total value. Agents run in CLI (OpenHands) or computer-use GUI env, best env reported, $30 budget/task. Metrics: automation rate (primary), Elo (human=1000), dollars earned, cost savings. Board lists agent PRODUCTS (Manus 1.0/1.5/1.6 Max, ChatGPT agent, Claude Cowork on Opus 4.6) next to base models. Latest board entry 2026-10-07 (Opus 5.5 21.25%). URL https://scale.com/leaderboard/rli ; paper arXiv 2510.26787. Distinct from DB id remote_labor_index_epoch (Epoch AI run).",
+    "metric": "automation rate % (deliverable judged >= human reference by expert reviewers)"
+  },
+  {
+    "id": "agentif_oneday",
+    "name": "AgentIF-OneDay (xbench) — overall score",
+    "category": "agent",
+    "description": "xbench.org, arXiv 2601.20613 (Jan 2026). 104 everyday work/life/study tasks with 767 rubric scoring points, attachments, iterative refinement, latent-instruction inference and open workflows. Gemini-3-Pro-preview as judge. Evaluates commercial general-agent PRODUCTS accessed Dec 2025: ChatGPT-Agent, Genspark, Manus 1.5, MiniMax-Agent (Pro mode).",
+    "metric": "overall rubric success score (0-1)"
+  },
+  {
+    "id": "agentif_oneday_latency_s_lower_better",
+    "name": "AgentIF-OneDay — average latency (s, lower better)",
+    "category": "agent",
+    "description": "Average task latency in AgentIF-OneDay Table 1.",
+    "metric": "seconds per task"
+  },
+  {
+    "id": "agentif_oneday_work",
+    "name": "AgentIF-OneDay — Work domain score",
+    "category": "agent",
+    "description": "Work-domain sub-score of AgentIF-OneDay (Table 2).",
+    "metric": "domain score (0-100)"
+  },
+  {
+    "id": "agentif_oneday_life",
+    "name": "AgentIF-OneDay — Life domain score",
+    "category": "agent",
+    "description": "Life-domain sub-score of AgentIF-OneDay (Table 2).",
+    "metric": "domain score (0-100)"
+  },
+  {
+    "id": "agentif_oneday_study",
+    "name": "AgentIF-OneDay — Study domain score",
+    "category": "agent",
+    "description": "Study-domain sub-score of AgentIF-OneDay (Table 2).",
+    "metric": "domain score (0-100)"
+  },
+  {
+    "id": "mind2web_2_partial_completion",
+    "name": "Mind2Web 2 — partial completion (Agent-as-a-Judge)",
+    "category": "agent",
+    "description": "OSU NLP (NeurIPS 2025 D&B), arXiv 2506.21506. 130 long-horizon, time-varying agentic-search tasks; task-specific judge agents with tree-structured rubrics check correctness + source attribution. Evaluates PRODUCTS: ChatGPT Search, Perplexity Pro Search, OpenAI Operator, HF Open Deep Research, Claude Research, Grok DeepSearch/DeeperSearch, Perplexity/Gemini/OpenAI Deep Research vs human. Explicit metric id because DB id mind2web_2 does not state metric.",
+    "metric": "partial completion score 0-1"
+  },
+  {
+    "id": "mind2web_2_success_rate",
+    "name": "Mind2Web 2 — full-task success rate",
+    "category": "agent",
+    "description": "Mind2Web 2 Table 3 full-task success rate (see mind2web_2_partial_completion).",
+    "metric": "success rate 0-1"
+  },
+  {
+    "id": "mind2web_2_pass3",
+    "name": "Mind2Web 2 — Pass@3",
+    "category": "agent",
+    "description": "Mind2Web 2 Table 3 Pass@3.",
+    "metric": "pass@3 0-1"
+  },
+  {
+    "id": "claw_anything_pass1",
+    "name": "Claw-Anything — Pass@1 (always-on personal assistant)",
+    "category": "agent",
+    "description": "Huawei + PKU et al., arXiv 2605.26086 (25 May 2026). Benchmarks always-on personal assistants (OpenClaw / Hermes Agent / Nanobot style) with access to the user's digital world: persona, CLI Linux + GUI Android devices, 40+ backend services, >3-month activity/event stream with noise, OpenClaw heartbeat-style proactive tasks; rubric+executable verifiers (Claw-Eval style, Claude Sonnet 4.5 judge). All models run under the OpenHarness scaffold (model-level, not product-level). Table 2.",
+    "metric": "Pass@1 %"
+  },
+  {
+    "id": "claw_anything_pass_pow3",
+    "name": "Claw-Anything — Pass^3 (success in all 3 runs)",
+    "category": "agent",
+    "description": "Claw-Anything Table 2 Pass^3 (see claw_anything_pass1).",
+    "metric": "Pass^3 %"
+  },
+  {
+    "id": "spreadsheetbench_v1_oai_agent",
+    "name": "SpreadsheetBench (912 Q, soft restriction overall) — OpenAI ChatGPT-agent run",
+    "category": "agent",
+    "description": "SpreadsheetBench full 912-question set as run by OpenAI for the ChatGPT agent launch (OSX + LibreOffice; Copilot in Excel/GPT-4o rows on Windows + Excel). Separate id because harness/environment differ from spreadsheetbench_v1 model runs.",
+    "metric": "% overall soft restriction"
+  },
+  {
+    "id": "online_mind2web_oai_screenshot",
+    "name": "Online-Mind2Web — OpenAI-reported (screenshot-only, OpenAI judge)",
+    "category": "agent",
+    "description": "Online-Mind2Web (300 live-web tasks) as reported by OpenAI in the GPT-5.4 launch post; screenshot-based observations, OpenAI's own judge (not published). Not comparable with human-eval online_mind2web_human.",
+    "metric": "success rate %"
+  },
+  {
+    "id": "oai_agent_pi_irrelevant_instructions_text",
+    "name": "OpenAI agent PI eval — irrelevant instructions, text browser (synthetic) — % correctly disregarded",
+    "category": "agent",
+    "description": "ChatGPT agent system card Table 12. Source: ChatGPT agent System Card (OpenAI, Jul 2025), product-level eval of ChatGPT agent vs Operator (4o and o3 versions); measures model behavior only, not full mitigation stack.",
+    "metric": "% resisted"
+  },
+  {
+    "id": "oai_agent_pi_irrelevant_instructions_visual",
+    "name": "OpenAI agent PI eval — irrelevant instructions, visual browser — % resisted",
+    "category": "agent",
+    "description": "Table 12; red-team-derived scenarios on the visual browser tool. Source: ChatGPT agent System Card (OpenAI, Jul 2025), product-level eval of ChatGPT agent vs Operator (4o and o3 versions); measures model behavior only, not full mitigation stack.",
+    "metric": "% resisted"
+  },
+  {
+    "id": "oai_agent_pi_incontext_exfil_visual",
+    "name": "OpenAI agent PI eval — in-context data exfiltration, visual browser — % resisted",
+    "category": "agent",
+    "description": "Table 12. Source: ChatGPT agent System Card (OpenAI, Jul 2025), product-level eval of ChatGPT agent vs Operator (4o and o3 versions); measures model behavior only, not full mitigation stack.",
+    "metric": "% resisted"
+  },
+  {
+    "id": "oai_agent_pi_active_exfil_visual",
+    "name": "OpenAI agent PI eval — active data exfiltration, visual browser — % resisted",
+    "category": "agent",
+    "description": "Table 12; agent must actively fetch data to exfiltrate. Source: ChatGPT agent System Card (OpenAI, Jul 2025), product-level eval of ChatGPT agent vs Operator (4o and o3 versions); measures model behavior only, not full mitigation stack.",
+    "metric": "% resisted"
+  },
+  {
+    "id": "oai_agent_confirmation_recall",
+    "name": "OpenAI agent confirmation recall (asks user before relevant actions)",
+    "category": "agent",
+    "description": "Table 13; underestimate per OpenAI. Source: ChatGPT agent System Card (OpenAI, Jul 2025), product-level eval of ChatGPT agent vs Operator (4o and o3 versions); measures model behavior only, not full mitigation stack.",
+    "metric": "% recall"
+  },
+  {
+    "id": "oai_agent_privacy_invasion_refusal",
+    "name": "OpenAI agent refusal — privacy invasion tasks",
+    "category": "agent",
+    "description": "Table 14. Source: ChatGPT agent System Card (OpenAI, Jul 2025), product-level eval of ChatGPT agent vs Operator (4o and o3 versions); measures model behavior only, not full mitigation stack.",
+    "metric": "% correct refusals"
+  },
+  {
+    "id": "oai_agent_disallowed_financial_refusal",
+    "name": "OpenAI agent refusal — disallowed financial activities (e.g. gambling)",
+    "category": "agent",
+    "description": "Table 14. Source: ChatGPT agent System Card (OpenAI, Jul 2025), product-level eval of ChatGPT agent vs Operator (4o and o3 versions); measures model behavior only, not full mitigation stack.",
+    "metric": "% correct refusals"
+  },
+  {
+    "id": "oai_agent_high_stakes_financial_refusal",
+    "name": "OpenAI agent refusal — high-stakes financial activities",
+    "category": "agent",
+    "description": "Table 14 (e.g. account transfers). Source: ChatGPT agent System Card (OpenAI, Jul 2025), product-level eval of ChatGPT agent vs Operator (4o and o3 versions); measures model behavior only, not full mitigation stack.",
+    "metric": "% correct refusals"
+  },
+  {
+    "id": "layerx_phishing_block_rate_v1",
+    "name": "LayerX AI-browser phishing block rate (100 known phishing sites, Sep 2025)",
+    "category": "agent",
+    "description": "LayerX Security (now Akamai) independent test, published 2025-09-08: 100 live phishing sites from OpenPhish/PhishTank opened in each browser with default protections. Edge 54%, Chrome 47% (non-AI baselines), Dia 46%, Comet 7%, Genspark browser 7%. Archived copy saved (original blog now redirects to akamai.com).",
+    "metric": "% of phishing pages blocked out-of-the-box"
+  },
+  {
+    "id": "layerx_phishing_block_rate_atlas_test",
+    "name": "LayerX in-the-wild web-attack block rate (103 attacks, Oct 2025)",
+    "category": "agent",
+    "description": "LayerX Security, published 2025-10-27 with the 'ChatGPT Tainted Memories' Atlas CSRF disclosure: 103 in-the-wild phishing/malicious pages; Atlas stopped 5.8% (97/103 got through); Edge 53%, Chrome 47% as non-AI baselines.",
+    "metric": "% of 103 malicious pages blocked"
+  },
+  {
+    "id": "anthropic_claude_for_chrome_pi_asr_no_safety_mitigations_lower_better",
+    "name": "Anthropic Claude for Chrome adversarial prompt-injection ASR (123 cases / 29 scenarios, lower better) — no safety mitigations",
+    "category": "agent",
+    "description": "Anthropic first-party red-team of the Claude for Chrome browser-agent PRODUCT (research preview, Aug 2025): 123 test cases across 29 attack scenarios, autonomous mode, with vs without product safety mitigations. Setting: no safety mitigations.",
+    "metric": "attack success rate %"
+  },
+  {
+    "id": "anthropic_claude_for_chrome_pi_asr_autonomous_mode_with_safety_mitigations_lower_better",
+    "name": "Anthropic Claude for Chrome adversarial prompt-injection ASR (123 cases / 29 scenarios, lower better) — autonomous mode with safety mitigations",
+    "category": "agent",
+    "description": "Anthropic first-party red-team of the Claude for Chrome browser-agent PRODUCT (research preview, Aug 2025): 123 test cases across 29 attack scenarios, autonomous mode, with vs without product safety mitigations. Setting: autonomous mode with safety mitigations.",
+    "metric": "attack success rate %"
+  },
+  {
+    "id": "anthropic_claude_for_chrome_browser_specific_pi_asr_before_browser_specific_mitigations_lower_better",
+    "name": "Anthropic Claude for Chrome — browser-specific prompt-injection challenge set ASR (4 attack types, lower better) — before browser-specific mitigations",
+    "category": "agent",
+    "description": "Challenge set of four browser-specific attack types (hidden DOM form fields, URL text, tab-title injections) for Claude for Chrome, before vs after new mitigations. Setting: before browser-specific mitigations.",
+    "metric": "attack success rate %"
+  },
+  {
+    "id": "anthropic_claude_for_chrome_browser_specific_pi_asr_with_browser_specific_mitigations_lower_better",
+    "name": "Anthropic Claude for Chrome — browser-specific prompt-injection challenge set ASR (4 attack types, lower better) — with browser-specific mitigations",
+    "category": "agent",
+    "description": "Challenge set of four browser-specific attack types (hidden DOM form fields, URL text, tab-title injections) for Claude for Chrome, before vs after new mitigations. Setting: with browser-specific mitigations.",
+    "metric": "attack success rate %"
+  },
+  {
+    "id": "wildclawbench_harness_openclaw",
+    "name": "WildClawBench score — OpenClaw harness (harness comparison, Table 3)",
+    "category": "agent",
+    "description": "InternLM WildClawBench (arXiv 2605.10912, May 2026): 60 hand-built real-world long-horizon tasks in Docker (OpenClaw environment, multimodal, bilingual). Table 3 re-runs 4 models under 4 agent harnesses (OpenClaw, Claude Code, Codex, Hermes Agent) to measure harness effects; this id = OpenClaw harness column. Main board (DB id wildclawbench) uses OpenClaw harness, 19 models, top Claude Opus 4.7 62.2%.",
+    "metric": "score %"
+  },
+  {
+    "id": "wildclawbench_harness_claude_code",
+    "name": "WildClawBench score — Claude Code harness (harness comparison, Table 3)",
+    "category": "agent",
+    "description": "InternLM WildClawBench (arXiv 2605.10912, May 2026): 60 hand-built real-world long-horizon tasks in Docker (OpenClaw environment, multimodal, bilingual). Table 3 re-runs 4 models under 4 agent harnesses (OpenClaw, Claude Code, Codex, Hermes Agent) to measure harness effects; this id = Claude Code harness column. Main board (DB id wildclawbench) uses OpenClaw harness, 19 models, top Claude Opus 4.7 62.2%.",
+    "metric": "score %"
+  },
+  {
+    "id": "wildclawbench_harness_codex",
+    "name": "WildClawBench score — Codex harness (harness comparison, Table 3)",
+    "category": "agent",
+    "description": "InternLM WildClawBench (arXiv 2605.10912, May 2026): 60 hand-built real-world long-horizon tasks in Docker (OpenClaw environment, multimodal, bilingual). Table 3 re-runs 4 models under 4 agent harnesses (OpenClaw, Claude Code, Codex, Hermes Agent) to measure harness effects; this id = Codex harness column. Main board (DB id wildclawbench) uses OpenClaw harness, 19 models, top Claude Opus 4.7 62.2%.",
+    "metric": "score %"
+  },
+  {
+    "id": "wildclawbench_harness_hermes_agent",
+    "name": "WildClawBench score — Hermes Agent harness (harness comparison, Table 3)",
+    "category": "agent",
+    "description": "InternLM WildClawBench (arXiv 2605.10912, May 2026): 60 hand-built real-world long-horizon tasks in Docker (OpenClaw environment, multimodal, bilingual). Table 3 re-runs 4 models under 4 agent harnesses (OpenClaw, Claude Code, Codex, Hermes Agent) to measure harness effects; this id = Hermes Agent harness column. Main board (DB id wildclawbench) uses OpenClaw harness, 19 models, top Claude Opus 4.7 62.2%.",
+    "metric": "score %"
+  },
+  {
     "id": "caibench",
     "name": "CAIBench (Cybersecurity AI Meta-Benchmark)",
     "category": "cyber",
