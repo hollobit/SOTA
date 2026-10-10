@@ -33,7 +33,21 @@ var Bots = {
        "platforms": "macOS, Windows, Linux, iOS, Android (secondary source only: OrcaRouter, 2026-09-02)",
        "pricing": "No standalone price: included with SuperGrok / SuperGrok Plus / SuperGrok Heavy, X Premium+ (link), Cursor Pro / Pro+ / Ultra, Cursor Teams Standard & Premium, Enterprise; weekly usage included, extra usage billed on token cost (on-demand via Cursor); free trial = usage credit with 7-day window. Dollar prices of the underlying plans only in secondary source (OrcaRouter: SuperGrok $30, Plus $100, Heavy $300; Cursor Pro $20, Pro+ $60, Ultra $200; Teams $40-$120/seat).",
        "availability": "Beta launched 2026-08-11 for top tiers; 2026-08-26 expanded to all SuperGrok, Cursor Pro and Cursor Teams plans; Enterprise 2026-09-03 (x.ai/bot FAQ now says 'generally available for Enterprise'); Team Bots 2026-09-28; computers run in the United States",
-       "seed": true
+       "seed": true,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "meta/muse",
@@ -56,7 +70,21 @@ var Bots = {
        "platforms": "iOS, Android, web (muse.ai), macOS (Muse for Mac), WhatsApp, AI glasses (coming), Muse Charm device (announced)",
        "pricing": "Free for most needs, with subscription plans (names/prices not on primary pages; secondary: Power $20/mo, Max $100/mo)",
        "availability": "US at launch (rolling out on iOS, Android, muse.ai); Muse for Small Business post says US and Canada",
-       "seed": true
+       "seed": true,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "openai/chatgpt-dots",
@@ -79,7 +107,21 @@ var Bots = {
        "platforms": "ChatGPT web, ChatGPT desktop (macOS, Windows), ChatGPT mobile (after desktop setup), Slack, Microsoft Teams, texting (limited beta, US Pro)",
        "pricing": "First dot included in ChatGPT Pro or Business Premium at no extra cost (plus a deeper-work allowance, extended limits first month); conversations don't count toward ChatGPT usage limits; more dots/speed to be sold later",
        "availability": "Rolling out to Pro (excluding EEA, Switzerland, UK) and Business Premium (all supported regions); Enterprise/Edu/Healthcare beta via admin (off by default); specialist dots = enterprise pilots",
-       "seed": true
+       "seed": true,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "google/gemini-spark",
@@ -100,7 +142,21 @@ var Bots = {
        "platforms": "Gemini app web, Android, iOS, macOS (Gemini app for Mac, incl. remote control)",
        "pricing": "Requires Google AI Pro or Ultra subscription (not on free / AI Plus per secondary); no Spark-specific price",
        "availability": "I/O 2026-05-19: trusted testers, then Beta for US Google AI Ultra; later US Pro, then Ultra/Pro wherever Gemini Apps are supported except EEA, Nigeria, Switzerland, UK; 18+; select business users",
-       "seed": true
+       "seed": true,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "google/gemini-agent",
@@ -123,7 +179,21 @@ var Bots = {
        "platforms": "web, iOS, Android, Windows, macOS, command line, Google Workspace (inline in Gmail, Drive, Docs, Slides, Sheets, Chat, Calendar), Microsoft 365, Slack, headless / API",
        "pricing": "Not stated in the launch post; real-time per-project spend caps in Cloud Billing; Gemini Enterprise app editions (pre-launch page, 2026-10-05 snapshot): Business from $21/seat/mo, Standard/Plus from $30/seat/mo, pay-as-you-go $0 seat fee — relation to the Gemini agent not stated",
        "availability": "Availability/GA not stated in the post; industry versions in preview for Financial Services and Legal, coming to Government, Healthcare, Retail",
-       "seed": true
+       "seed": true,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "anthropic/claude-cowork",
@@ -144,7 +214,21 @@ var Bots = {
        "platforms": null,
        "pricing": "Pro $17/mo annual ($20 monthly); Max 5x $100/mo; Max 20x $200/mo; Team $20/seat/mo; Enterprise",
        "availability": "Paid plans; web/mobile rolling out from Max; merged into one Claude experience 2026-09-16 (Pro/Max first)",
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "microsoft/copilot-autopilot",
@@ -167,7 +251,21 @@ var Bots = {
        "platforms": null,
        "pricing": "Usage-based billing (UBB) for Cowork, Code and Autopilot",
        "availability": "Experimental release via Frontier program + private preview (Frontier enrollment, Intune policy, opt-in; GitHub Copilot license to install); private preview expansion end of Sep 2026",
-       "seed": false
+       "seed": false,
+       "family": "openclaw",
+       "kind": "hosted service",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": "Microsoft MXC execution-container sandbox backend contributed upstream to OpenClaw",
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "microsoft/copilot-cowork",
@@ -188,7 +286,21 @@ var Bots = {
        "platforms": null,
        "pricing": "Usage-based billing (UBB)",
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "microsoft/copilot-tasks",
@@ -209,7 +321,21 @@ var Bots = {
        "platforms": null,
        "pricing": null,
        "availability": "Personal Microsoft accounts; being migrated to Copilot Cowork",
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "moonshot/kimi-claw",
@@ -232,7 +358,21 @@ var Bots = {
        "platforms": "web, cloud server, desktop (local), Android phone, Feishu, WeChat, WeCom, Weibo",
        "pricing": null,
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": "openclaw",
+       "kind": "hosted service",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": "5,000+ ClawHub skills",
+       "security_incidents": null
       },
       {
        "id": "manus-ai/manus",
@@ -253,7 +393,21 @@ var Bots = {
        "platforms": "web, desktop (Manus Studio), mobile",
        "pricing": null,
        "availability": "web, desktop, mobile; Manus resumed independent operations 2026-09-01 after Meta deal unwound",
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "manus-ai/cue",
@@ -274,7 +428,21 @@ var Bots = {
        "platforms": "web, desktop, mobile, iOS (pending App Store review)",
        "pricing": "Free in early access with invite code",
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "perplexity/perplexity-computer",
@@ -297,7 +465,21 @@ var Bots = {
        "platforms": null,
        "pricing": null,
        "availability": "Perplexity Max; Enterprise Max later",
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "notion/custom-agents",
@@ -318,7 +500,21 @@ var Bots = {
        "platforms": null,
        "pricing": "Free through 2026-05-03; from 2026-05-04 consumes Notion Credits (add-on for Business/Enterprise)",
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "opera/opera-neon",
@@ -339,7 +535,21 @@ var Bots = {
        "platforms": null,
        "pricing": "premium subscription (price not on captured pages)",
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "genspark/genspark-claw",
@@ -360,7 +570,21 @@ var Bots = {
        "platforms": "web, desktop (Claw for Desktop, Workspace 4.0), WhatsApp, Telegram, Teams, Slack, Microsoft Office plugins",
        "pricing": null,
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "openclaw/openclaw",
@@ -368,7 +592,7 @@ var Bots = {
        "vendor": "OpenClaw Foundation (open source)",
        "vendor_key": "openclaw",
        "url": "https://github.com/openclaw/openclaw",
-       "launch_date": null,
+       "launch_date": "2025-11-24",
        "status": null,
        "models": "any: Claude, Codex, local models as swappable plugins",
        "model_ids": [],
@@ -381,7 +605,21 @@ var Bots = {
        "platforms": "macOS, Windows, Linux, iOS, Android, WhatsApp, Telegram, Slack, Discord, iMessage, Teams, Signal, Google Chat",
        "pricing": "Free, MIT license; no paid tier/hosted service",
        "availability": "global, self-hosted; 391.5k GitHub stars (2026-10-10)",
-       "seed": false
+       "seed": false,
+       "family": "openclaw",
+       "kind": "open-source core",
+       "upstream": null,
+       "license": "MIT",
+       "language": "TypeScript (Node.js 24.16+/26.1+)",
+       "repo": null,
+       "stars": "391530 (GitHub API, read 2026-10-10)",
+       "first_release": "2025-11-24 (repo created; Clawd/Clawdbot era Nov 25 2025 – Jan 27 2026, Moltbot Jan 27–30 2026, OpenClaw since Jan 30 2026; earliest name Warelay)",
+       "latest_version": "v2026.9.9 (2026-10-08); v2026.8.1 = \"OpenClaw 2.0\" (Aug 30 2026)",
+       "channels": "WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, Teams, 20+ more, native macOS/iOS/Android/Windows/Linux apps, browser Control UI",
+       "self_hosted": null,
+       "sandbox": "Off by default; tool execution can move into Docker / Podman / SSH / NVIDIA OpenShell backends (Gateway stays on host); Microsoft contributed MXC Windows sandbox backend",
+       "skills": "Skills + plugins via ClawHub registry (67,453 latest public skill versions in the ClawHub security-signals v1 dataset); plugin SDK",
+       "security_incidents": "GitHub Security Advisories: first CVEs Jan 31 2026 (CVE-2026-24763 Docker PATH command injection, CVE-2026-25157 sshNodeCommand OS command injection), CVE-2026-25593 unauthenticated local RCE via WebSocket config.apply (Feb 4 2026), CVE-2026-25475 MEDIA: path local file disclosure; 14 critical GHSAs published (e.g. GHSA-gv46-4xfq-jv58 node-invoke approval bypass RCE, GHSA-qrq5-wjgg-rvqw plugin-install path traversal, GHSA-9p3r-hh9g-5cmg sandbox escape TOCTOU); per Foundation blog 1,309 advisories filed Jan 10–Apr 30 2026, 535 published, 746 closed invalid; Trail of Bits audit: 27 private advisories (2 High, 16 Medium, 6 Low, 0 Critical); 722 published advisories via GitHub API on 2026-10-10 (390 medium, 249 high, 69 low, 14 critical, 39 with CVE ids)"
       },
       {
        "id": "lindy/lindy",
@@ -402,7 +640,21 @@ var Bots = {
        "platforms": "iMessage, email, Slack, browser (Chrome extension), web",
        "pricing": "$49.99 per user/month for 5,000 credits; top-up $10 per 1,000 credits; $50 free credits (7 days)",
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "minimax/maxclaw",
@@ -425,7 +677,21 @@ var Bots = {
        "platforms": null,
        "pricing": "$19/month (English MaxClaw page comparison table)",
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": "openclaw",
+       "kind": "hosted service",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": "16,000+ specialist skills from the MiniMax agent ecosystem",
+       "security_incidents": null
       },
       {
        "id": "zhipu/autoclaw",
@@ -446,7 +712,21 @@ var Bots = {
        "platforms": "Windows 10+, macOS, Linux (x86/ARM), Kylin, iOS, Android, Feishu, WeCom, WeChat, Lark",
        "pricing": "free basic tier with daily free credits; paid plans for heavier use; new users get 200M tokens",
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": "openclaw",
+       "kind": "hosted service",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "tencent/workbuddy",
@@ -467,7 +747,21 @@ var Bots = {
        "platforms": "Windows, macOS, UOS/Kylin, IM (WeCom, QQ, Feishu, DingTalk), mini-program",
        "pricing": null,
        "availability": "China; QClaw (WeChat remote agent) being shut down with data migration to WorkBuddy",
-       "seed": false
+       "seed": false,
+       "family": "openclaw-compatible",
+       "kind": "hosted service",
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "amazon/alexa-plus",
@@ -488,7 +782,21 @@ var Bots = {
        "platforms": null,
        "pricing": "$19.99/month; free with Prime",
        "availability": "All customers US & Canada; early access BR, UK, MX, IT, ES, DE, AT, FR; India launch",
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "cognition/poke",
@@ -509,7 +817,21 @@ var Bots = {
        "platforms": "Apple Messages (iMessage), WhatsApp, Telegram, SMS/text",
        "pricing": "Free $0; Pro $19/month; Ultra $199/month",
        "availability": "global consumer; 'only AI agent approved to text natively on Apple Messages'",
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "cognition/devin",
@@ -532,7 +854,21 @@ var Bots = {
        "platforms": null,
        "pricing": null,
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "cursor/cloud-agents",
@@ -553,7 +889,21 @@ var Bots = {
        "platforms": null,
        "pricing": "API pricing for selected model; paid Cursor plan required",
        "availability": "paid Cursor plans",
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "zapier/zapier-agents",
@@ -574,7 +924,21 @@ var Bots = {
        "platforms": null,
        "pricing": null,
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "bytedance/doubao-work",
@@ -595,7 +959,21 @@ var Bots = {
        "platforms": null,
        "pricing": null,
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "baidu/dumate",
@@ -616,7 +994,21 @@ var Bots = {
        "platforms": null,
        "pricing": null,
        "availability": null,
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       },
       {
        "id": "perplexity/comet-background-assistants",
@@ -637,7 +1029,1281 @@ var Bots = {
        "platforms": null,
        "pricing": "Background Assistants and Email Assistant for Perplexity Max subscribers (Max price not on captured page)",
        "availability": "Comet free worldwide; Background Assistants for Max",
-       "seed": false
+       "seed": false,
+       "family": null,
+       "kind": null,
+       "upstream": null,
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "openclaw/clawhub",
+       "name": "ClawHub — skill + plugin registry for OpenClaw (with ClawScan security review)",
+       "vendor": "OpenClaw Foundation",
+       "vendor_key": "openclaw",
+       "url": "https://api.github.com/repos/openclaw/clawhub",
+       "launch_date": "2026-01-03",
+       "status": null,
+       "models": "ClawScan AI judge (GPT-5.5 tokens per NVIDIA post)",
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": "moderated releases; malicious skills blocked from download, suspicious ones warned",
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "plugin / skill ecosystem",
+       "upstream": "openclaw/openclaw",
+       "license": "MIT",
+       "language": "TypeScript",
+       "repo": null,
+       "stars": "9499 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-01-03",
+       "latest_version": "v0.23.3 (2026-08-04)",
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": "SKILL.md skills + code/bundle plugins; 67,453 latest public skill versions scanned (v1 security-signals dataset); Kimi advertises 5,000+ ClawHub skills",
+       "security_incidents": "Foundation: SkillSpector flags 48.71% of 67,453 rows vs 7.75% VirusTotal; only 468 skills (0.69%) flagged by all three scanners"
+      },
+      {
+       "id": "openclaw/openclaw-enterprise",
+       "name": "OpenClaw Enterprise (OCE) — open agent control plane",
+       "vendor": "OpenClaw Foundation (started at OpenAI; with Red Hat, NVIDIA)",
+       "vendor_key": "openclaw",
+       "url": "https://openclaw.ai/blog/openclaw-enterprise/",
+       "launch_date": "2026-09-29",
+       "status": "preview",
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": "self-hosted: docker-compose, Kubernetes",
+       "pricing": null,
+       "availability": "pre-1.0, internal pilots (Red Hat, OpenAI); 1.0 later in 2026",
+       "seed": false,
+       "family": "openclaw",
+       "kind": "open-source core",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "nanocoai/nanoclaw",
+       "name": "NanoClaw — container-isolated lightweight OpenClaw alternative",
+       "vendor": "NanoCo AI (open source)",
+       "vendor_key": "nanoco",
+       "url": "https://api.github.com/repos/nanocoai/nanoclaw",
+       "launch_date": "2026-01-31",
+       "status": null,
+       "models": "Claude via Anthropic credential (Claude Agent SDK); OpenCode / Ollama providers on a branch",
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": true,
+       "schedules_routines": true,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "openclaw/openclaw",
+       "license": "MIT",
+       "language": "TypeScript",
+       "repo": null,
+       "stars": "30903 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-01-31",
+       "latest_version": "v2026.10.0 (2026-10-09)",
+       "channels": "WhatsApp, Telegram, Discord, Slack, Microsoft Teams, iMessage, Matrix, Google Chat, Webex, Linear, GitHub, WeChat, email, CLI",
+       "self_hosted": null,
+       "sandbox": "every agent in its own Linux (Docker) container; only explicitly mounted paths visible; credential gateway",
+       "skills": "\"skills over features\": channels/providers installed as /add-<name> Claude Code skills into the user's fork",
+       "security_incidents": null
+      },
+      {
+       "id": "hkuds/nanobot",
+       "name": "nanobot — ultra-lightweight Python personal agent (HKU Data Intelligence Lab)",
+       "vendor": "HKUDS, University of Hong Kong",
+       "vendor_key": "hkuds",
+       "url": "https://api.github.com/repos/HKUDS/nanobot",
+       "launch_date": "2026-02-01",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": true,
+       "memory": "long-term memory (\"Dream\")",
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "openclaw/openclaw",
+       "license": "MIT",
+       "language": "Python",
+       "repo": null,
+       "stars": "48905 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-02-01",
+       "latest_version": "v0.3.5 (2026-09-15)",
+       "channels": "Telegram, Discord, Slack, WeChat, Feishu, Teams, Email, Mattermost, Linear, WebUI",
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "sipeed/picoclaw",
+       "name": "PicoClaw — Go agent for $10 hardware",
+       "vendor": "Sipeed",
+       "vendor_key": "sipeed",
+       "url": "https://api.github.com/repos/sipeed/picoclaw",
+       "launch_date": "2026-02-04",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "hkuds/nanobot",
+       "license": "MIT",
+       "language": "Go",
+       "repo": null,
+       "stars": "30013 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-02-04",
+       "latest_version": "v0.3.1 (2026-07-03)",
+       "channels": "Telegram, Discord, Matrix, IRC, WeCom, others",
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "zeroclaw-labs/zeroclaw",
+       "name": "ZeroClaw — single-binary Rust agent runtime",
+       "vendor": "ZeroClaw Labs (open source)",
+       "vendor_key": "zeroclaw",
+       "url": "https://api.github.com/repos/zeroclaw-labs/zeroclaw",
+       "launch_date": "2026-02-13",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": "default autonomy \"supervised\": medium-risk ops need approval, high-risk blocked",
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "openclaw/openclaw",
+       "license": "Apache-2.0",
+       "language": "Rust",
+       "repo": null,
+       "stars": "32949 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-02-13",
+       "latest_version": "v0.8.5 (2026-09-05)",
+       "channels": "Discord, Telegram, Matrix, email, voice, webhooks, CLI, 30+ channels",
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "nearai/ironclaw",
+       "name": "IronClaw — privacy/security-focused Rust Agent OS",
+       "vendor": "NEAR AI",
+       "vendor_key": "near",
+       "url": "https://api.github.com/repos/nearai/ironclaw",
+       "launch_date": "2026-02-03",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": true,
+       "schedules_routines": true,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "openclaw/openclaw",
+       "license": "Apache-2.0",
+       "language": "Rust",
+       "repo": null,
+       "stars": "12645 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-02-03",
+       "latest_version": "ironclaw-v1.4.1 (2026-09-29)",
+       "channels": "REPL, HTTP webhooks, Telegram (WASM), Slack (WASM), web gateway",
+       "self_hosted": null,
+       "sandbox": "untrusted tools in WebAssembly sandboxes with capability permissions; Docker sandbox with per-job tokens; secrets injected at host boundary",
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "nullclaw/nullclaw",
+       "name": "NullClaw — Zig static-binary agent for $5 boards",
+       "vendor": "NullClaw (open source)",
+       "vendor_key": "nullclaw",
+       "url": "https://api.github.com/repos/nullclaw/nullclaw",
+       "launch_date": "2026-02-16",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "openclaw/openclaw",
+       "license": "MIT",
+       "language": "Zig",
+       "repo": null,
+       "stars": "8110 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-02-16",
+       "latest_version": "v2026.5.29 (2026-05-29)",
+       "channels": "19 channels",
+       "self_hosted": null,
+       "sandbox": "landlock, firejail, bubblewrap, docker; pairing, allowlists, encrypted secrets",
+       "skills": "MCP, subagents, 35+ tools, 10 memory engines",
+       "security_incidents": null
+      },
+      {
+       "id": "moltis-org/moltis",
+       "name": "Moltis — secure persistent personal agent server in Rust",
+       "vendor": "Moltis (open source)",
+       "vendor_key": "moltis",
+       "url": "https://api.github.com/repos/moltis-org/moltis",
+       "launch_date": "2026-01-29",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": true,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "openclaw/openclaw",
+       "license": "MIT",
+       "language": "Rust",
+       "repo": null,
+       "stars": "2885 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-01-29",
+       "latest_version": "20260913.02 (2026-09-14)",
+       "channels": "Telegram, WhatsApp, Signal, Discord, Microsoft Teams, Matrix, Slack, Nostr",
+       "self_hosted": null,
+       "sandbox": "every command in a sandboxed container (Docker/Podman, Apple Container, WASM)",
+       "skills": "bundled/workspace skills + autonomous improvement + OpenClaw import",
+       "security_incidents": null
+      },
+      {
+       "id": "tinyagi/tinyagi",
+       "name": "TinyAGI (fka TinyClaw) — multi-team agent orchestrator",
+       "vendor": "TinyAGI (open source)",
+       "vendor_key": "tinyagi",
+       "url": "https://api.github.com/repos/TinyAGI/tinyagi",
+       "launch_date": "2026-02-09",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": true,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "openclaw/openclaw",
+       "license": "MIT",
+       "language": "TypeScript",
+       "repo": null,
+       "stars": "3621 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-02-09",
+       "latest_version": "v0.0.20 (2026-03-26)",
+       "channels": "Discord, WhatsApp, Telegram",
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "microclaw/microclaw",
+       "name": "MicroClaw — Rust chat-native agent platform",
+       "vendor": "MicroClaw (open source)",
+       "vendor_key": "microclaw",
+       "url": "https://api.github.com/repos/microclaw/microclaw",
+       "launch_date": "2026-02-07",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": true,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "nanocoai/nanoclaw",
+       "license": "MIT",
+       "language": "Rust",
+       "repo": null,
+       "stars": "747 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-02-07",
+       "latest_version": "v0.9.0 (2026-10-07)",
+       "channels": "Telegram, Discord, Slack, Feishu/Lark, WeChat, DingTalk, QQ, WhatsApp, Signal, Matrix, IRC, Nostr, iMessage, email, Web",
+       "self_hosted": null,
+       "sandbox": "tool risk gates, scoped grants, egress controls, Docker sandboxing, audit trails",
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "nvidia/nemoclaw",
+       "name": "NVIDIA NemoClaw — OpenClaw in OpenShell sandboxes with managed inference",
+       "vendor": "NVIDIA",
+       "vendor_key": "nvidia",
+       "url": "https://api.github.com/repos/NVIDIA/NemoClaw",
+       "launch_date": "2026-03",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "openclaw/openclaw",
+       "license": "Apache-2.0",
+       "language": "TypeScript",
+       "repo": null,
+       "stars": "22689 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-03-15",
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": "NVIDIA OpenShell sandbox: capability drops, process limits, network policy",
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "netease-youdao/lobsterai",
+       "name": "LobsterAI — NetEase Youdao desktop agent built on OpenClaw",
+       "vendor": "NetEase Youdao",
+       "vendor_key": "netease",
+       "url": "https://api.github.com/repos/netease-youdao/LobsterAI",
+       "launch_date": "2026-02-12",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": "OpenClaw workspace memory files (MEMORY.md, USER.md, SOUL.md)",
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "openclaw/openclaw",
+       "license": "MIT",
+       "language": "TypeScript",
+       "repo": null,
+       "stars": "6100 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-02-12",
+       "latest_version": "2026.9.23 (2026-09-23)",
+       "channels": "WeChat, WeCom, DingTalk, Feishu/Lark, QQ, Telegram, Discord, NetEase IM, POPO, email",
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "valuecell-ai/clawx",
+       "name": "ClawX — desktop GUI for OpenClaw",
+       "vendor": "ValueCell",
+       "vendor_key": "valuecell",
+       "url": "https://api.github.com/repos/ValueCell-ai/ClawX",
+       "launch_date": "2026-02-05",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": "local desktop; optional native computer-use (off by default)",
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "plugin / skill ecosystem",
+       "upstream": "openclaw/openclaw",
+       "license": "MIT",
+       "language": "TypeScript",
+       "repo": null,
+       "stars": "7610 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-02-05",
+       "latest_version": "v0.6.0 (2026-09-29)",
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "espressif/esp-claw",
+       "name": "ESP-Claw — Espressif agent framework for ESP32 IoT devices",
+       "vendor": "Espressif",
+       "vendor_key": "espressif",
+       "url": "https://api.github.com/repos/espressif/esp-claw",
+       "launch_date": "2026-04-17",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "fork / reimplementation",
+       "upstream": "openclaw/openclaw",
+       "license": "Apache-2.0",
+       "language": "C",
+       "repo": null,
+       "stars": "2216 (GitHub API, read 2026-10-10)",
+       "first_release": "2026-04-17",
+       "latest_version": "v0.1.0 (2026-06-12)",
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": "dynamic Lua loading",
+       "security_incidents": null
+      },
+      {
+       "id": "volcengine/arkclaw",
+       "name": "ArkClaw (火山引擎 ArkClaw) — ByteDance Volcano Engine cloud-hosted OpenClaw",
+       "vendor": "Volcano Engine (ByteDance)",
+       "vendor_key": "volcano",
+       "url": "https://docs.volcengine.com/docs/arkclaw/Creating_your_dedicated_ArkClaw_with_one_click_?lang=zh",
+       "launch_date": null,
+       "status": null,
+       "models": "Doubao (豆包) models via Ark Coding Plan / Agent Plan; Seedance 2.0 for video",
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": true,
+       "multi_agent": true,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": "bundled in Ark Coding Plan / Agent Plan; expert agent-team packages ¥40/month promo (list ¥59/month)",
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "hosted service",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": "50+ skills; auto skill distillation with Hermes Agent",
+       "security_incidents": null
+      },
+      {
+       "id": "baidu/duclaw",
+       "name": "DuClaw — Baidu AI Cloud zero-deployment OpenClaw",
+       "vendor": "Baidu AI Cloud",
+       "vendor_key": "baidu",
+       "url": "https://www.nasdaq.com/press-release/baidu-launches-duclaw-enables-zero-deployment-access-openclaw-2026-03-11",
+       "launch_date": "2026-03-11",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": "fully managed OpenClaw hosted on Baidu AI Cloud",
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": "launch promo RMB 17.8/month for first-time subscribers (Mar 2026)",
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "hosted service",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "digitalocean/openclaw-1-click",
+       "name": "DigitalOcean 1-Click OpenClaw (Droplet)",
+       "vendor": "DigitalOcean",
+       "vendor_key": "digitalocean",
+       "url": "https://www.digitalocean.com/blog/moltbot-on-digitalocean",
+       "launch_date": "2026-01",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": "from $12/month",
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "managed cloud",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": "OpenClaw runs inside a dedicated Docker container on the Droplet",
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "aws/lightsail-openclaw",
+       "name": "OpenClaw on Amazon Lightsail (blueprint)",
+       "vendor": "Amazon Web Services",
+       "vendor_key": "amazon",
+       "url": "https://aws.amazon.com/blogs/aws/introducing-openclaw-on-amazon-lightsail-to-run-your-autonomous-private-ai-agents/",
+       "launch_date": "2026-03-04",
+       "status": "GA",
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "managed cloud",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": "WhatsApp, Discord, Telegram",
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "cloudflare/moltworker",
+       "name": "Moltworker — OpenClaw (Moltbot) on Cloudflare Workers + Sandbox SDK",
+       "vendor": "Cloudflare",
+       "vendor_key": "cloudflare",
+       "url": "https://blog.cloudflare.com/moltworker-self-hosted-ai-agent/",
+       "launch_date": "2026-01-29",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": "Cloudflare Sandbox SDK container + Browser Rendering; no dedicated hardware",
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "managed cloud",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "tencent-cloud/lighthouse-openclaw",
+       "name": "Tencent Cloud Lighthouse OpenClaw (轻量云 OpenClaw 一键部署)",
+       "vendor": "Tencent Cloud",
+       "vendor_key": "tencent",
+       "url": "https://cloud.tencent.com/act/pro/openclaw",
+       "launch_date": null,
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": true,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "managed cloud",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": "WeChat, QQ, WeCom, Feishu, DingTalk",
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "alibaba-cloud/sas-openclaw",
+       "name": "Alibaba Cloud Simple Application Server OpenClaw image",
+       "vendor": "Alibaba Cloud",
+       "vendor_key": "alibaba",
+       "url": "https://help.aliyun.com/zh/simple-application-server/use-cases/quickly-deploy-and-use-openclaw",
+       "launch_date": null,
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": "user-owned cloud VM (not SaaS) with unmodified community OpenClaw (MIT) preinstalled",
+       "background_24x7": null,
+       "multi_agent": true,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": "SAS instance pricing; ≥2 GiB RAM required (4 GiB recommended)",
+       "availability": null,
+       "seed": false,
+       "family": "openclaw",
+       "kind": "managed cloud",
+       "upstream": "openclaw/openclaw",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "nousresearch/hermes-agent",
+       "name": "Hermes Agent",
+       "vendor": "Nous Research",
+       "vendor_key": "nous",
+       "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/HEAD/README.md",
+       "launch_date": "2026-02-25",
+       "status": null,
+       "models": "any provider: Nous Portal (300+ models), OpenRouter, OpenAI, Anthropic, Ollama/vLLM, custom endpoints",
+       "model_ids": [],
+       "own_computer": "user-chosen terminal backend: local, Docker, SSH, Singularity, Modal, Daytona, Vercel Sandbox (serverless hibernate on Daytona/Modal)",
+       "background_24x7": true,
+       "multi_agent": true,
+       "schedules_routines": true,
+       "memory": "agent-curated MEMORY.md/USER.md with periodic nudges, FTS5 cross-session search with LLM summarization, Honcho dialectic user modeling; autonomous skill creation + self-improvement (procedural memory)",
+       "approvals": "dangerous-command approval modes smart (default)/manual/off (YOLO); DM pairing + allowlists; unattended_mode deny by default",
+       "platforms": null,
+       "pricing": "free, MIT; optional Nous Portal plans Free $0 / Plus $20 / Super $100 / Ultra $200 per month (monthly credits)",
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "open-source core",
+       "upstream": null,
+       "license": "MIT",
+       "language": "Python",
+       "repo": null,
+       "stars": "252,291 (GitHub API, read 2026-10-10); forks 54,495",
+       "first_release": "repo created 2025-07-22; public launch 2026-02-25 (Nous releases page); earliest GitHub release v0.2.0 (2026-03-12)",
+       "latest_version": "v0.21.6 (2026-10-08)",
+       "channels": "CLI/TUI, Telegram, Discord, Slack, WhatsApp, Signal, Email, Matrix, Mattermost, SMS, DingTalk, Feishu, WeCom, Weixin, QQ Bot, BlueBubbles (iMessage), Home Assistant, Microsoft Teams, Google Chat",
+       "self_hosted": null,
+       "sandbox": "7 terminal backends; Docker/Singularity/Modal container isolation with hardened settings; optional write sandbox",
+       "skills": "agentskills.io-compatible skills; Skills Hub searches skills.sh, ClawHub, LobeHub, well-known endpoints; security scan on install; ~70 bundled skills (per One fork blog)",
+       "security_incidents": "39 NVD CVEs mentioning NousResearch hermes-agent (2026-04-27..2026-09-03; e.g. CVE-2026-7112 auth bypass, CVE-2026-9367 OS command injection in detect_dangerous_command, CVE-2026-9368 execute_code sandbox issue, CVE-2026-14625 shell.exec); GitHub Advisory DB lists 10 GHSAs incl. GHSA-4pqm-j46f-795x / CVE-2026-53869 (high, DNS rebinding on WebSocket endpoints) and CVE-2026-53870 (world-readable response_store.db). Most VulDB-sourced entries say vendor did not respond."
+      },
+      {
+       "id": "nousresearch/hermes-cloud",
+       "name": "Hermes Cloud (Nous Portal Cloud Agent)",
+       "vendor": "Nous Research",
+       "vendor_key": "nous",
+       "url": "https://portal.nousresearch.com/cloud",
+       "launch_date": null,
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": "dedicated always-on cloud instance with own hardened container and persistent workspace",
+       "background_24x7": true,
+       "multi_agent": true,
+       "schedules_routines": true,
+       "memory": "persistent memory lives with the agent (dedicated persistent workspace)",
+       "approvals": null,
+       "platforms": null,
+       "pricing": "billed daily from Nous credit: Standard $0.56/day running ($0.03 stopped; 10 sessions, 2GB, 4 vCPU), Pro $1.09/day ($0.03 stopped; 20 sessions, 4GB, 8 vCPU); inference/tools extra; $2 minimum credit or subscription",
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "managed cloud",
+       "upstream": "nousresearch/hermes-agent",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": "Telegram, Discord, Slack, Email, CLI, browser dashboard",
+       "self_hosted": null,
+       "sandbox": "every agent gets its own hardened container",
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "nousresearch/hermes-business",
+       "name": "Hermes Business / Hermes Enterprise",
+       "vendor": "Nous Research",
+       "vendor_key": "nous",
+       "url": "https://portal.nousresearch.com/business",
+       "launch_date": null,
+       "status": null,
+       "models": "every model on the Nous inference API + own provider keys",
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": "one central balance with per-member spend caps; Enterprise: contact sales (SSO, SLAs)",
+       "availability": "Business on Nous infrastructure (self-serve); Enterprise on-prem/private cloud",
+       "seed": false,
+       "family": "hermes",
+       "kind": "hosted service",
+       "upstream": "nousresearch/hermes-agent",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": "Discord, Telegram, Slack, WhatsApp (Team Gateway), terminal, desktop apps, cloud",
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": "skills published to team library automatically",
+       "security_incidents": null
+      },
+      {
+       "id": "withoneai/hermes-agent-one",
+       "name": "Hermes Agent + One CLI fork",
+       "vendor": "One (withone.ai)",
+       "vendor_key": "one",
+       "url": "https://api.github.com/repos/withoneai/hermes-agent",
+       "launch_date": "2026-07-29",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "fork / reimplementation",
+       "upstream": "nousresearch/hermes-agent",
+       "license": "MIT",
+       "language": "Python",
+       "repo": null,
+       "stars": "0 (GitHub API, read 2026-10-10)",
+       "first_release": "repo created 2026-07-29",
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "eynzof/hermes-cn-desktop",
+       "name": "Hermes-CN-Desktop",
+       "vendor": "Eynzof (community)",
+       "vendor_key": "eynzof",
+       "url": "https://api.github.com/repos/Eynzof/Hermes-CN-Desktop",
+       "launch_date": "2026-05-21",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "fork / reimplementation",
+       "upstream": "nousresearch/hermes-agent",
+       "license": null,
+       "language": "TypeScript",
+       "repo": null,
+       "stars": "1,749 (GitHub API, read 2026-10-10)",
+       "first_release": "repo created 2026-05-21",
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "aaronwong1999/hermesclaw",
+       "name": "HermesClaw (WeChat bridge for Hermes + OpenClaw)",
+       "vendor": "AaronWong1999 (community)",
+       "vendor_key": "aaronwong",
+       "url": "https://api.github.com/repos/AaronWong1999/hermesclaw",
+       "launch_date": "2026-04-10",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "plugin / skill ecosystem",
+       "upstream": "nousresearch/hermes-agent",
+       "license": "MIT",
+       "language": "Python",
+       "repo": null,
+       "stars": "748 (GitHub API, read 2026-10-10)",
+       "first_release": "repo created 2026-04-10",
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "nesquena/hermes-webui",
+       "name": "Hermes WebUI",
+       "vendor": "nesquena (community)",
+       "vendor_key": "nesquena",
+       "url": "https://api.github.com/repos/nesquena/hermes-webui",
+       "launch_date": "2026-03-30",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "plugin / skill ecosystem",
+       "upstream": "nousresearch/hermes-agent",
+       "license": "MIT",
+       "language": "Python",
+       "repo": null,
+       "stars": "18,838 (GitHub API, read 2026-10-10)",
+       "first_release": "repo created 2026-03-30",
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "fathah/hermes-desktop",
+       "name": "Hermes Desktop (community companion)",
+       "vendor": "fathah (community)",
+       "vendor_key": "fathah",
+       "url": "https://api.github.com/repos/fathah/hermes-desktop",
+       "launch_date": "2026-04-02",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "plugin / skill ecosystem",
+       "upstream": "nousresearch/hermes-agent",
+       "license": "MIT",
+       "language": "TypeScript",
+       "repo": null,
+       "stars": "14,382 (GitHub API, read 2026-10-10)",
+       "first_release": "repo created 2026-04-02",
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "outsourc-e/hermes-workspace",
+       "name": "Hermes Workspace",
+       "vendor": "outsourc-e (community)",
+       "vendor_key": "outsource",
+       "url": "https://api.github.com/repos/outsourc-e/hermes-workspace",
+       "launch_date": "2026-03-16",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "plugin / skill ecosystem",
+       "upstream": "nousresearch/hermes-agent",
+       "license": "MIT",
+       "language": "JavaScript",
+       "repo": null,
+       "stars": "6,699 (GitHub API, read 2026-10-10)",
+       "first_release": "repo created 2026-03-16",
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "uzairansaruzi/hermex",
+       "name": "Hermex (iPhone app for Hermes)",
+       "vendor": "uzairansaruzi (community)",
+       "vendor_key": "uzairansaruzi",
+       "url": "https://api.github.com/repos/uzairansaruzi/hermex",
+       "launch_date": "2026-07-02",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "plugin / skill ecosystem",
+       "upstream": "nousresearch/hermes-agent",
+       "license": "MIT",
+       "language": "Swift",
+       "repo": null,
+       "stars": "1,483 (GitHub API, read 2026-10-10)",
+       "first_release": "repo created 2026-07-02",
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "nousresearch/hermes-agent-self-evolution",
+       "name": "Hermes Agent Self-Evolution (DSPy + GEPA)",
+       "vendor": "Nous Research",
+       "vendor_key": "nous",
+       "url": "https://api.github.com/repos/NousResearch/hermes-agent-self-evolution",
+       "launch_date": "2026-03-09",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "plugin / skill ecosystem",
+       "upstream": "nousresearch/hermes-agent",
+       "license": null,
+       "language": "Python",
+       "repo": null,
+       "stars": "5,481 (GitHub API, read 2026-10-10)",
+       "first_release": "repo created 2026-03-09",
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "nousresearch/hermes-paperclip-adapter",
+       "name": "Hermes Paperclip adapter",
+       "vendor": "Nous Research",
+       "vendor_key": "nous",
+       "url": "https://api.github.com/repos/NousResearch/hermes-paperclip-adapter",
+       "launch_date": "2026-03-11",
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "plugin / skill ecosystem",
+       "upstream": "nousresearch/hermes-agent",
+       "license": "MIT",
+       "language": "TypeScript",
+       "repo": null,
+       "stars": "1,955 (GitHub API, read 2026-10-10)",
+       "first_release": "repo created 2026-03-11",
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "agent37/agent37-hermes-hosting",
+       "name": "Agent 37 managed Hermes / OpenClaw hosting",
+       "vendor": "Agent 37",
+       "vendor_key": "agent",
+       "url": "https://www.agent37.com/blog/hermes-vs-openclaw-2026-which-agent-should-you-run",
+       "launch_date": null,
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": "from $3.99/mo",
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "hosted service",
+       "upstream": "nousresearch/hermes-agent",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
+      },
+      {
+       "id": "gmi-cloud/agentbox-hermes",
+       "name": "GMI Cloud Agentbox — Hermes Agent",
+       "vendor": "GMI Cloud",
+       "vendor_key": "gmi",
+       "url": "https://docs.gmicloud.ai/agentbox-guides/hermes-agent-on-agent-box",
+       "launch_date": null,
+       "status": null,
+       "models": null,
+       "model_ids": [],
+       "own_computer": null,
+       "background_24x7": null,
+       "multi_agent": null,
+       "schedules_routines": null,
+       "memory": null,
+       "approvals": null,
+       "platforms": null,
+       "pricing": null,
+       "availability": null,
+       "seed": false,
+       "family": "hermes",
+       "kind": "hosted service",
+       "upstream": "nousresearch/hermes-agent",
+       "license": null,
+       "language": null,
+       "repo": null,
+       "stars": null,
+       "first_release": null,
+       "latest_version": null,
+       "channels": null,
+       "self_hosted": null,
+       "sandbox": null,
+       "skills": null,
+       "security_incidents": null
       }
      ],
      "benchmarks": [
@@ -849,6 +2515,192 @@ var Bots = {
        "id": "wildclawbench_harness_hermes_agent",
        "name": "WildClawBench score — Hermes Agent harness (harness comparison, Table 3)",
        "description": "InternLM WildClawBench (arXiv 2605.10912, May 2026): 60 hand-built real-world long-horizon tasks in Docker (OpenClaw environment, multimodal, bilingual). Table 3 re-runs 4 models under 4 agent harnesses (OpenClaw, Claude Code, Codex, Hermes Agent) to measure harness effects; this id = Hermes Agent harness column. Main board (DB id wildclawbench) uses OpenClaw harness, 19 models, top Claude Opus 4.",
+       "url": null
+      },
+      {
+       "id": "claw_swe_bench_pass1_openclaw",
+       "name": "Claw-SWE-Bench Pass@1 — OpenClaw harness",
+       "description": "Claw-SWE-Bench (TokenRhythm/Infinigence AI et al., arXiv 2606.12344): 350 GitHub issue-resolution instances, 8 languages, 43 repos, shared adapter protocol so general-purpose \"claw\" harnesses can be scored by SWE-bench; mean of 3 runs, 3600s timeout. This id = the OpenClaw harness with model held fixed. https://github.com/opensquilla/claw-swe-bench",
+       "url": "https://github.com/opensquilla/claw-swe-bench"
+      },
+      {
+       "id": "claw_swe_bench_cost_usd_openclaw_lower_better",
+       "name": "Claw-SWE-Bench total API cost (USD, 350 tasks) — OpenClaw harness",
+       "description": "Total API cost over the 350 Claw-SWE-Bench instances computed from per-call token usage at fixed unit prices (arXiv 2606.12344 Table 2), OpenClaw harness.",
+       "url": null
+      },
+      {
+       "id": "claw_swe_bench_pass1_hermes_agent",
+       "name": "Claw-SWE-Bench Pass@1 — Hermes Agent harness",
+       "description": "Claw-SWE-Bench (TokenRhythm/Infinigence AI et al., arXiv 2606.12344): 350 GitHub issue-resolution instances, 8 languages, 43 repos, shared adapter protocol so general-purpose \"claw\" harnesses can be scored by SWE-bench; mean of 3 runs, 3600s timeout. This id = the Hermes Agent harness with model held fixed. https://github.com/opensquilla/claw-swe-bench",
+       "url": "https://github.com/opensquilla/claw-swe-bench"
+      },
+      {
+       "id": "claw_swe_bench_cost_usd_hermes_agent_lower_better",
+       "name": "Claw-SWE-Bench total API cost (USD, 350 tasks) — Hermes Agent harness",
+       "description": "Total API cost over the 350 Claw-SWE-Bench instances computed from per-call token usage at fixed unit prices (arXiv 2606.12344 Table 2), Hermes Agent harness.",
+       "url": null
+      },
+      {
+       "id": "claw_swe_bench_pass1_nanobot",
+       "name": "Claw-SWE-Bench Pass@1 — nanobot harness",
+       "description": "Claw-SWE-Bench (TokenRhythm/Infinigence AI et al., arXiv 2606.12344): 350 GitHub issue-resolution instances, 8 languages, 43 repos, shared adapter protocol so general-purpose \"claw\" harnesses can be scored by SWE-bench; mean of 3 runs, 3600s timeout. This id = the nanobot harness with model held fixed. https://github.com/opensquilla/claw-swe-bench",
+       "url": "https://github.com/opensquilla/claw-swe-bench"
+      },
+      {
+       "id": "claw_swe_bench_cost_usd_nanobot_lower_better",
+       "name": "Claw-SWE-Bench total API cost (USD, 350 tasks) — nanobot harness",
+       "description": "Total API cost over the 350 Claw-SWE-Bench instances computed from per-call token usage at fixed unit prices (arXiv 2606.12344 Table 2), nanobot harness.",
+       "url": null
+      },
+      {
+       "id": "claw_swe_bench_pass1_zeroclaw",
+       "name": "Claw-SWE-Bench Pass@1 — ZeroClaw harness",
+       "description": "Claw-SWE-Bench (TokenRhythm/Infinigence AI et al., arXiv 2606.12344): 350 GitHub issue-resolution instances, 8 languages, 43 repos, shared adapter protocol so general-purpose \"claw\" harnesses can be scored by SWE-bench; mean of 3 runs, 3600s timeout. This id = the ZeroClaw harness with model held fixed. https://github.com/opensquilla/claw-swe-bench",
+       "url": "https://github.com/opensquilla/claw-swe-bench"
+      },
+      {
+       "id": "claw_swe_bench_cost_usd_zeroclaw_lower_better",
+       "name": "Claw-SWE-Bench total API cost (USD, 350 tasks) — ZeroClaw harness",
+       "description": "Total API cost over the 350 Claw-SWE-Bench instances computed from per-call token usage at fixed unit prices (arXiv 2606.12344 Table 2), ZeroClaw harness.",
+       "url": null
+      },
+      {
+       "id": "claw_swe_bench_pass1_genericagent",
+       "name": "Claw-SWE-Bench Pass@1 — GenericAgent harness",
+       "description": "Claw-SWE-Bench (TokenRhythm/Infinigence AI et al., arXiv 2606.12344): 350 GitHub issue-resolution instances, 8 languages, 43 repos, shared adapter protocol so general-purpose \"claw\" harnesses can be scored by SWE-bench; mean of 3 runs, 3600s timeout. This id = the GenericAgent harness with model held fixed. https://github.com/opensquilla/claw-swe-bench",
+       "url": "https://github.com/opensquilla/claw-swe-bench"
+      },
+      {
+       "id": "claw_swe_bench_cost_usd_genericagent_lower_better",
+       "name": "Claw-SWE-Bench total API cost (USD, 350 tasks) — GenericAgent harness",
+       "description": "Total API cost over the 350 Claw-SWE-Bench instances computed from per-call token usage at fixed unit prices (arXiv 2606.12344 Table 2), GenericAgent harness.",
+       "url": null
+      },
+      {
+       "id": "claw_swe_bench_pass1_deepseek_harness",
+       "name": "Claw-SWE-Bench Pass@1 — DeepSeek Harness harness",
+       "description": "Claw-SWE-Bench (TokenRhythm/Infinigence AI et al., arXiv 2606.12344): 350 GitHub issue-resolution instances, 8 languages, 43 repos, shared adapter protocol so general-purpose \"claw\" harnesses can be scored by SWE-bench; mean of 3 runs, 3600s timeout. This id = the DeepSeek Harness harness with model held fixed. https://github.com/opensquilla/claw-swe-bench",
+       "url": "https://github.com/opensquilla/claw-swe-bench"
+      },
+      {
+       "id": "claw_swe_bench_cost_usd_deepseek_harness_lower_better",
+       "name": "Claw-SWE-Bench total API cost (USD, 350 tasks) — DeepSeek Harness harness",
+       "description": "Total API cost over the 350 Claw-SWE-Bench instances computed from per-call token usage at fixed unit prices (arXiv 2606.12344 Table 2), DeepSeek Harness harness.",
+       "url": null
+      },
+      {
+       "id": "claw_swe_bench_pass1_meta_harness",
+       "name": "Claw-SWE-Bench Pass@1 — Meta-Harness harness",
+       "description": "Claw-SWE-Bench (TokenRhythm/Infinigence AI et al., arXiv 2606.12344): 350 GitHub issue-resolution instances, 8 languages, 43 repos, shared adapter protocol so general-purpose \"claw\" harnesses can be scored by SWE-bench; mean of 3 runs, 3600s timeout. This id = the Meta-Harness harness with model held fixed. https://github.com/opensquilla/claw-swe-bench",
+       "url": "https://github.com/opensquilla/claw-swe-bench"
+      },
+      {
+       "id": "claw_swe_bench_cost_usd_meta_harness_lower_better",
+       "name": "Claw-SWE-Bench total API cost (USD, 350 tasks) — Meta-Harness harness",
+       "description": "Total API cost over the 350 Claw-SWE-Bench instances computed from per-call token usage at fixed unit prices (arXiv 2606.12344 Table 2), Meta-Harness harness.",
+       "url": null
+      },
+      {
+       "id": "clawsbench_tsr_openclaw_full_scaffold",
+       "name": "ClawsBench Task Success Rate (OpenClaw, skills+meta prompt)",
+       "description": "ClawsBench (arXiv 2604.05172, clawsbench.com): 44 tasks over 5 conformance-tested mock productivity services (email, calendar, docs...) with snapshot/restore; models run on the OpenClaw harness with domain skills + meta prompt; task-level cluster bootstrap CIs.",
+       "url": null
+      },
+      {
+       "id": "clawsbench_uar_openclaw_full_scaffold_lower_better",
+       "name": "ClawsBench Unsafe Action Rate (OpenClaw, skills+meta prompt)",
+       "description": "ClawsBench (arXiv 2604.05172, clawsbench.com): 44 tasks over 5 conformance-tested mock productivity services (email, calendar, docs...) with snapshot/restore; models run on the OpenClaw harness with domain skills + meta prompt; task-level cluster bootstrap CIs.",
+       "url": null
+      },
+      {
+       "id": "clawsbench_scr_openclaw_full_scaffold",
+       "name": "ClawsBench Safe Completion Rate (OpenClaw, skills+meta prompt)",
+       "description": "ClawsBench (arXiv 2604.05172, clawsbench.com): 44 tasks over 5 conformance-tested mock productivity services (email, calendar, docs...) with snapshot/restore; models run on the OpenClaw harness with domain skills + meta prompt; task-level cluster bootstrap CIs.",
+       "url": null
+      },
+      {
+       "id": "skilltrustbench_556_label_agreement",
+       "name": "SkillTrustBench (556-case subset) — label agreement",
+       "description": "SkillTrustBench (Tencent + CUHK-Shenzhen): benign / suspicious / malicious agent skills across nine risk categories; fixed 556-case subset used by the OpenClaw Foundation to evaluate ClawScan, the ClawHub skill scanner.",
+       "url": null
+      },
+      {
+       "id": "skilltrustbench_556_malicious_recall",
+       "name": "SkillTrustBench (556-case subset) — malicious cases correctly classified",
+       "description": "Same 556-case SkillTrustBench subset; share of malicious skills ClawScan classified correctly.",
+       "url": null
+      },
+      {
+       "id": "pinchbench_v2_avg",
+       "name": "PinchBench v2 average success (OpenClaw)",
+       "description": "PinchBench v2 (pinchbench.com, Kilo-sponsored): 147 real-world OpenClaw agent tasks (code, data, writing, productivity, research, security, agent, creative); models run inside OpenClaw; average across benchmark runs. Separate id from legacy `pinchbench` (v1).",
+       "url": null
+      },
+      {
+       "id": "pinchbench_v2_code",
+       "name": "PinchBench v2 code & DevOps score (OpenClaw)",
+       "description": "PinchBench v2 code category score.",
+       "url": null
+      },
+      {
+       "id": "refusalbench_nous",
+       "name": "RefusalBench (Nous Research) — % of questions answered",
+       "description": "Nous-internal benchmark of willingness to answer prompts commonly refused by closed/open models; introduced in Hermes 4 Technical Report (arXiv 2508.18255); higher means more compliant. Not a safety-good metric.",
+       "url": null
+      },
+      {
+       "id": "refusalbench_nous_reasoning",
+       "name": "RefusalBench (Nous) — reasoning mode, % answered",
+       "description": "Same as refusalbench_nous, reasoning-mode row on Hermes 4.3 card (avg 5 trials).",
+       "url": null
+      },
+      {
+       "id": "harness_bench_score",
+       "name": "Harness-Bench overall Score (harness-level, avg over 8 model backends)",
+       "description": "arXiv 2605.27922 (Peking Univ + Qiyuan/Qihoo360). 106 sandboxed offline tasks, 5,194 trajectories; harnesses OpenClaw, NanoBot, Hermes, ZeroClaw, NullClaw, Moltis averaged over 8 API backends. Row model = harness product id.",
+       "url": null
+      },
+      {
+       "id": "harness_bench_completion",
+       "name": "Harness-Bench Completion % (harness-level)",
+       "description": "Completion column of Harness-Bench Table 2.",
+       "url": null
+      },
+      {
+       "id": "workspace_bench_total_hermes_agent",
+       "name": "Workspace-Bench 1.0 Total (Hermes harness)",
+       "description": "arXiv 2605.03596. Workspace tasks with large-scale file dependencies; 4 harnesses (Hermes, OpenClaw, DeepAgent, Codex) x 7 backbones; Table 4 Total column.",
+       "url": null
+      },
+      {
+       "id": "workspace_bench_total_openclaw",
+       "name": "Workspace-Bench 1.0 Total (OpenClaw harness)",
+       "description": "Same, OpenClaw harness.",
+       "url": null
+      },
+      {
+       "id": "gabench_graph_ml_sr_hermes_agent",
+       "name": "GABench graph ML avg SR (Hermes harness)",
+       "description": "arXiv 2608.01684 GABench, harness comparison with GLM-5-Turbo backbone, avg success rate on graph machine learning tasks (Table 7).",
+       "url": null
+      },
+      {
+       "id": "gabench_graph_ml_sr_openclaw",
+       "name": "GABench graph ML avg SR (OpenClaw harness)",
+       "description": "As above, OpenClaw.",
+       "url": null
+      },
+      {
+       "id": "gabench_graph_oeqa_sr_hermes_agent",
+       "name": "GABench graph open-ended QA avg SR (Hermes harness)",
+       "description": "arXiv 2608.01684 Table 8 average, GLM-5-Turbo.",
+       "url": null
+      },
+      {
+       "id": "gabench_graph_oeqa_sr_openclaw",
+       "name": "GABench graph open-ended QA avg SR (OpenClaw harness)",
+       "description": "As above, OpenClaw.",
        "url": null
       },
       {
@@ -1068,6 +2920,186 @@ var Bots = {
       {
        "url": "https://web.archive.org/web/2025/https://www.perplexity.ai/hub/blog/comet-is-now-available-to-everyone-worldwide",
        "title": "Perplexity Comet Background Assistants (+ Comet Assistant, Email Assistant) — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/openclaw/clawhub",
+       "title": "ClawHub — skill + plugin registry for OpenClaw (with ClawScan security review) — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://openclaw.ai/blog/openclaw-enterprise/",
+       "title": "OpenClaw Enterprise (OCE) — open agent control plane — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/nanocoai/nanoclaw",
+       "title": "NanoClaw — container-isolated lightweight OpenClaw alternative — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/HKUDS/nanobot",
+       "title": "nanobot — ultra-lightweight Python personal agent (HKU Data Intelligence Lab) — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/sipeed/picoclaw",
+       "title": "PicoClaw — Go agent for $10 hardware — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/zeroclaw-labs/zeroclaw",
+       "title": "ZeroClaw — single-binary Rust agent runtime — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/nearai/ironclaw",
+       "title": "IronClaw — privacy/security-focused Rust Agent OS — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/nullclaw/nullclaw",
+       "title": "NullClaw — Zig static-binary agent for $5 boards — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/moltis-org/moltis",
+       "title": "Moltis — secure persistent personal agent server in Rust — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/TinyAGI/tinyagi",
+       "title": "TinyAGI (fka TinyClaw) — multi-team agent orchestrator — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/microclaw/microclaw",
+       "title": "MicroClaw — Rust chat-native agent platform — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/NVIDIA/NemoClaw",
+       "title": "NVIDIA NemoClaw — OpenClaw in OpenShell sandboxes with managed inference — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/netease-youdao/LobsterAI",
+       "title": "LobsterAI — NetEase Youdao desktop agent built on OpenClaw — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/ValueCell-ai/ClawX",
+       "title": "ClawX — desktop GUI for OpenClaw — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/espressif/esp-claw",
+       "title": "ESP-Claw — Espressif agent framework for ESP32 IoT devices — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://docs.volcengine.com/docs/arkclaw/Creating_your_dedicated_ArkClaw_with_one_click_?lang=zh",
+       "title": "ArkClaw (火山引擎 ArkClaw) — ByteDance Volcano Engine cloud-hosted OpenClaw — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://www.nasdaq.com/press-release/baidu-launches-duclaw-enables-zero-deployment-access-openclaw-2026-03-11",
+       "title": "DuClaw — Baidu AI Cloud zero-deployment OpenClaw — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://www.digitalocean.com/blog/moltbot-on-digitalocean",
+       "title": "DigitalOcean 1-Click OpenClaw (Droplet) — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://aws.amazon.com/blogs/aws/introducing-openclaw-on-amazon-lightsail-to-run-your-autonomous-private-ai-agents/",
+       "title": "OpenClaw on Amazon Lightsail (blueprint) — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://blog.cloudflare.com/moltworker-self-hosted-ai-agent/",
+       "title": "Moltworker — OpenClaw (Moltbot) on Cloudflare Workers + Sandbox SDK — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://cloud.tencent.com/act/pro/openclaw",
+       "title": "Tencent Cloud Lighthouse OpenClaw (轻量云 OpenClaw 一键部署) — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://help.aliyun.com/zh/simple-application-server/use-cases/quickly-deploy-and-use-openclaw",
+       "title": "Alibaba Cloud Simple Application Server OpenClaw image — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/HEAD/README.md",
+       "title": "Hermes Agent — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://portal.nousresearch.com/cloud",
+       "title": "Hermes Cloud (Nous Portal Cloud Agent) — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://portal.nousresearch.com/business",
+       "title": "Hermes Business / Hermes Enterprise — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/withoneai/hermes-agent",
+       "title": "Hermes Agent + One CLI fork — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/Eynzof/Hermes-CN-Desktop",
+       "title": "Hermes-CN-Desktop — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/AaronWong1999/hermesclaw",
+       "title": "HermesClaw (WeChat bridge for Hermes + OpenClaw) — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/nesquena/hermes-webui",
+       "title": "Hermes WebUI — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/fathah/hermes-desktop",
+       "title": "Hermes Desktop (community companion) — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/outsourc-e/hermes-workspace",
+       "title": "Hermes Workspace — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/uzairansaruzi/hermex",
+       "title": "Hermex (iPhone app for Hermes) — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/NousResearch/hermes-agent-self-evolution",
+       "title": "Hermes Agent Self-Evolution (DSPy + GEPA) — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://api.github.com/repos/NousResearch/hermes-paperclip-adapter",
+       "title": "Hermes Paperclip adapter — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://www.agent37.com/blog/hermes-vs-openclaw-2026-which-agent-should-you-run",
+       "title": "Agent 37 managed Hermes / OpenClaw hosting — 공식 페이지",
+       "what": ""
+      },
+      {
+       "url": "https://docs.gmicloud.ai/agentbox-guides/hermes-agent-on-agent-box",
+       "title": "GMI Cloud Agentbox — Hermes Agent — 공식 페이지",
        "what": ""
       },
       {
@@ -1299,8 +3331,547 @@ var Bots = {
        "url": "https://the-agent-company.com/",
        "title": null,
        "what": "TheAgentCompany (175 simulated-company tasks, OpenHands/OWL scaffolds) — model-level board (page JS-only, not saved)"
+      },
+      {
+       "url": "https://arxiv.org/pdf/2605.10912",
+       "title": null,
+       "what": "WildClawBench harness comparison (OpenClaw/Claude Code/Codex/Hermes) — already ingested by r_bench as wildclawbench_harness_*"
+      },
+      {
+       "url": "https://www.caixinglobal.com/2026-04-02/bytedances-volcengine-powers-ai-growth-with-openclaw-partnership-102430344.html",
+       "title": null,
+       "what": "Volcengine sponsors OpenClaw, co-builds Chinese ClawHub mirror; ArkClaw launch 2026-03-09 (news)"
+      },
+      {
+       "url": "https://gigazine.net/gsc_news/en/20260310-tencent-workbuddy",
+       "title": null,
+       "what": "WorkBuddy launch 2026-03-09 coverage"
+      },
+      {
+       "url": "https://github.com/agentscope-ai/QwenPaw",
+       "title": null,
+       "what": "Alibaba QwenPaw (fka CoPaw), 35.5k stars — OpenClaw-like personal agent but README states no OpenClaw lineage; excluded from family"
+      },
+      {
+       "url": "https://github.com/moltis-org/moltis-website",
+       "title": null,
+       "what": "repo description: \"Landing page for Moltis, a Rust implementation of OpenClaw\""
+      },
+      {
+       "url": "https://www.tencentcloud.com/techpedia/139184",
+       "title": null,
+       "what": "Tencent Cloud Lighthouse template path AI Agents > OpenClaw (Clawdbot) (techpedia; returned empty to curl)"
+      },
+      {
+       "url": "https://huggingface.co/datasets/OpenClaw/clawhub-security-signals",
+       "title": null,
+       "what": "ClawHub security scan outcomes dataset (67,453 skill versions)"
+      },
+      {
+       "url": "https://github.com/opensquilla/claw-swe-bench",
+       "title": null,
+       "what": "Claw-SWE-Bench code/data (Lite-80 subset, OpenSquilla held-out harness)"
+      },
+      {
+       "url": "https://github.com/ultraworkers/claw-code",
+       "title": null,
+       "what": "claw-code (195k stars) — Rust Claude-Code-style coding harness, name-alike, not an OpenClaw personal-agent fork; excluded"
       }
-     ]
+     ],
+     "pairs": {
+      "dots_changing_scope_permissions_alignment_pass_rate": [
+       "openai/chatgpt-dots"
+      ],
+      "dots_chained_tasks_moderate_scope_violation_rate_5_intervening_tasks_lower_better": [
+       "openai/chatgpt-dots"
+      ],
+      "dots_chained_tasks_moderate_scope_violation_rate_10_intervening_tasks_lower_better": [
+       "openai/chatgpt-dots"
+      ],
+      "dots_misleading_proactivity_misalignment_rate_lower_better": [
+       "openai/chatgpt-dots"
+      ],
+      "agentic_misaligned_outcome_rate_v2_lower_better": [
+       "openai/chatgpt-dots"
+      ],
+      "external_agent_board_instruction_following_rate_lower_better": [
+       "openai/chatgpt-dots"
+      ],
+      "dots_cyber_misuse_monitor_block_rate_high_risk": [
+       "openai/chatgpt-dots",
+       "openai/gpt-6-astra"
+      ],
+      "dots_cyber_misuse_monitor_block_rate_exploit_dev_redteam": [
+       "openai/chatgpt-dots"
+      ],
+      "warning_barrier_persistence_rate_v2_simulated_time_budget_4_minutes_dots_app_lower_better": [
+       "openai/gpt-6-astra"
+      ],
+      "warning_barrier_persistence_rate_v2_simulated_time_budget_30_minutes_and_4_h_lower_better": [
+       "openai/gpt-6-astra"
+      ],
+      "warning_barrier_persistence_rate_v2_simulated_time_budget_1_year_dots_append_lower_better": [
+       "openai/gpt-6-astra"
+      ],
+      "broken_search_tool_failure_rate_v2_simulated_time_budget_4_minutes_dots_app_lower_better": [
+       "openai/gpt-6-astra"
+      ],
+      "broken_search_tool_failure_rate_v2_simulated_time_budget_30_minutes_and_4_h_lower_better": [
+       "openai/gpt-6-astra"
+      ],
+      "broken_search_tool_failure_rate_v2_simulated_time_budget_1_year_dots_append_lower_better": [
+       "openai/gpt-6-astra"
+      ],
+      "remote_labor_index": [
+       "anthropic/claude-cowork",
+       "anthropic/claude-fable-5",
+       "anthropic/claude-fable-5.1",
+       "anthropic/claude-opus-4.5-thinking",
+       "anthropic/claude-opus-4.8",
+       "anthropic/claude-opus-5.5",
+       "anthropic/claude-sonnet-4.5",
+       "google/gemini-2.5-pro",
+       "google/gemini-3-pro-preview",
+       "google/gemini-3.7-flash",
+       "google/gemini-3.8-flash",
+       "manus-ai/manus",
+       "manus-ai/manus-1.5",
+       "manus-ai/manus-1.6-max",
+       "openai/chatgpt-agent",
+       "openai/gpt-5",
+       "openai/gpt-5.2",
+       "openai/gpt-5.2-medium",
+       "openai/gpt-5.5-codex",
+       "openai/gpt-6-astra"
+      ],
+      "agentif_oneday": [
+       "genspark/genspark-super-agent",
+       "manus-ai/manus-1.5",
+       "minimax/minimax-agent",
+       "openai/chatgpt-agent"
+      ],
+      "agentif_oneday_latency_s_lower_better": [
+       "genspark/genspark-super-agent",
+       "manus-ai/manus-1.5",
+       "minimax/minimax-agent",
+       "openai/chatgpt-agent"
+      ],
+      "agentif_oneday_work": [
+       "genspark/genspark-super-agent",
+       "manus-ai/manus-1.5",
+       "openai/chatgpt-agent"
+      ],
+      "agentif_oneday_life": [
+       "genspark/genspark-super-agent",
+       "manus-ai/manus-1.5",
+       "openai/chatgpt-agent"
+      ],
+      "agentif_oneday_study": [
+       "genspark/genspark-super-agent",
+       "manus-ai/manus-1.5",
+       "openai/chatgpt-agent"
+      ],
+      "mind2web_2_partial_completion": [
+       "anthropic/claude-research",
+       "google/gemini-deep-research",
+       "huggingface/open-deep-research",
+       "openai/chatgpt-search",
+       "openai/deep-research",
+       "openai/operator",
+       "perplexity/perplexity-deep-research",
+       "perplexity/perplexity-pro-search",
+       "xai/grok-deepersearch",
+       "xai/grok-deepsearch"
+      ],
+      "mind2web_2_success_rate": [
+       "anthropic/claude-research",
+       "google/gemini-deep-research",
+       "huggingface/open-deep-research",
+       "openai/chatgpt-search",
+       "openai/deep-research",
+       "openai/operator",
+       "perplexity/perplexity-deep-research",
+       "perplexity/perplexity-pro-search",
+       "xai/grok-deepersearch",
+       "xai/grok-deepsearch"
+      ],
+      "mind2web_2_pass3": [
+       "anthropic/claude-research",
+       "google/gemini-deep-research",
+       "huggingface/open-deep-research",
+       "openai/chatgpt-search",
+       "openai/deep-research",
+       "openai/operator",
+       "perplexity/perplexity-deep-research",
+       "perplexity/perplexity-pro-search",
+       "xai/grok-deepersearch",
+       "xai/grok-deepsearch"
+      ],
+      "online_mind2web_human": [
+       "anthropic/claude-3.7-sonnet",
+       "anthropic/computer-use",
+       "browser-use/browser-use",
+       "emergence/agent-e",
+       "openai/operator",
+       "osu-nlp/seeact"
+      ],
+      "claw_anything_pass1": [
+       "alibaba/qwen3.5-27b",
+       "alibaba/qwen3.6-27b",
+       "anthropic/claude-opus-4.7",
+       "anthropic/claude-sonnet-4.5",
+       "minimax/m2.7",
+       "moonshot/kimi-k2.6",
+       "openai/gpt-5.5",
+       "zhipu/glm-5.1"
+      ],
+      "claw_anything_pass_pow3": [
+       "alibaba/qwen3.5-27b",
+       "alibaba/qwen3.6-27b",
+       "anthropic/claude-opus-4.7",
+       "anthropic/claude-sonnet-4.5",
+       "minimax/m2.7",
+       "moonshot/kimi-k2.6",
+       "openai/gpt-5.5",
+       "zhipu/glm-5.1"
+      ],
+      "browsecomp": [
+       "openai/chatgpt-agent"
+      ],
+      "hle_with_tools": [
+       "openai/chatgpt-agent"
+      ],
+      "frontiermath": [
+       "openai/chatgpt-agent"
+      ],
+      "spreadsheetbench_v1_oai_agent": [
+       "microsoft/copilot-in-excel",
+       "openai/chatgpt-agent"
+      ],
+      "osworld": [
+       "openai/computer-use-preview"
+      ],
+      "webarena": [
+       "openai/computer-use-preview"
+      ],
+      "online_mind2web_oai_screenshot": [
+       "openai/chatgpt-atlas-agent",
+       "openai/gpt-5.4"
+      ],
+      "oai_agent_pi_irrelevant_instructions_text": [
+       "openai/chatgpt-agent"
+      ],
+      "oai_agent_pi_irrelevant_instructions_visual": [
+       "openai/chatgpt-agent",
+       "openai/operator",
+       "openai/operator-o3"
+      ],
+      "oai_agent_pi_incontext_exfil_visual": [
+       "openai/chatgpt-agent",
+       "openai/operator",
+       "openai/operator-o3"
+      ],
+      "oai_agent_pi_active_exfil_visual": [
+       "openai/chatgpt-agent",
+       "openai/operator",
+       "openai/operator-o3"
+      ],
+      "oai_agent_confirmation_recall": [
+       "openai/chatgpt-agent",
+       "openai/operator",
+       "openai/operator-o3"
+      ],
+      "oai_agent_privacy_invasion_refusal": [
+       "openai/chatgpt-agent"
+      ],
+      "oai_agent_disallowed_financial_refusal": [
+       "openai/chatgpt-agent"
+      ],
+      "oai_agent_high_stakes_financial_refusal": [
+       "openai/chatgpt-agent",
+       "openai/operator",
+       "openai/operator-o3"
+      ],
+      "layerx_phishing_block_rate_v1": [
+       "genspark/genspark-ai-browser",
+       "perplexity/comet",
+       "thebrowsercompany/dia"
+      ],
+      "layerx_phishing_block_rate_atlas_test": [
+       "openai/chatgpt-atlas"
+      ],
+      "anthropic_claude_for_chrome_pi_asr_no_safety_mitigations_lower_better": [
+       "anthropic/claude-for-chrome"
+      ],
+      "anthropic_claude_for_chrome_pi_asr_autonomous_mode_with_safety_mitigations_lower_better": [
+       "anthropic/claude-for-chrome"
+      ],
+      "anthropic_claude_for_chrome_browser_specific_pi_asr_before_browser_specific_mitigations_lower_better": [
+       "anthropic/claude-for-chrome"
+      ],
+      "anthropic_claude_for_chrome_browser_specific_pi_asr_with_browser_specific_mitigations_lower_better": [
+       "anthropic/claude-for-chrome"
+      ],
+      "wildclawbench_harness_openclaw": [
+       "minimax/m2.7",
+       "openai/gpt-5.4",
+       "xiaomi/mimo-v2-pro",
+       "zhipu/glm-5"
+      ],
+      "wildclawbench_harness_claude_code": [
+       "minimax/m2.7",
+       "openai/gpt-5.4",
+       "xiaomi/mimo-v2-pro",
+       "zhipu/glm-5"
+      ],
+      "wildclawbench_harness_codex": [
+       "minimax/m2.7",
+       "openai/gpt-5.4",
+       "zhipu/glm-5"
+      ],
+      "wildclawbench_harness_hermes_agent": [
+       "minimax/m2.7",
+       "openai/gpt-5.4",
+       "zhipu/glm-5"
+      ],
+      "claw_swe_bench_pass1_openclaw": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_cost_usd_openclaw_lower_better": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_pass1_hermes_agent": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_cost_usd_hermes_agent_lower_better": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_pass1_nanobot": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_cost_usd_nanobot_lower_better": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_pass1_zeroclaw": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_cost_usd_zeroclaw_lower_better": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_pass1_genericagent": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_cost_usd_genericagent_lower_better": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_pass1_deepseek_harness": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_cost_usd_deepseek_harness_lower_better": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_pass1_meta_harness": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "claw_swe_bench_cost_usd_meta_harness_lower_better": [
+       "alibaba/qwen3.6-flash",
+       "deepseek/deepseek-v4.1-flash",
+       "zhipu/glm-5.1"
+      ],
+      "clawsbench_tsr_openclaw_full_scaffold": [
+       "anthropic/claude-opus-4.6",
+       "anthropic/claude-sonnet-4.6",
+       "google/gemini-3.1-flash-lite",
+       "google/gemini-3.1-pro",
+       "openai/gpt-5.4",
+       "zhipu/glm-5"
+      ],
+      "clawsbench_uar_openclaw_full_scaffold_lower_better": [
+       "anthropic/claude-opus-4.6",
+       "anthropic/claude-sonnet-4.6",
+       "google/gemini-3.1-flash-lite",
+       "google/gemini-3.1-pro",
+       "openai/gpt-5.4",
+       "zhipu/glm-5"
+      ],
+      "clawsbench_scr_openclaw_full_scaffold": [
+       "anthropic/claude-opus-4.6",
+       "anthropic/claude-sonnet-4.6",
+       "google/gemini-3.1-flash-lite",
+       "google/gemini-3.1-pro",
+       "openai/gpt-5.4",
+       "zhipu/glm-5"
+      ],
+      "skilltrustbench_556_label_agreement": [
+       "openclaw/clawhub"
+      ],
+      "skilltrustbench_556_malicious_recall": [
+       "openclaw/clawhub"
+      ],
+      "pinchbench_v2_avg": [
+       "anthropic/claude-opus-4.8",
+       "nvidia/nemotron-3-ultra-550b-a55b",
+       "xiaomi/mimo-v2.5-pro"
+      ],
+      "pinchbench_v2_code": [
+       "xiaomi/mimo-v2.5-pro"
+      ],
+      "math_500": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "aime_2024": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "aime_2025": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "gpqa_diamond": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "bbh": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "livecodebench_v6": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b"
+      ],
+      "mmlu": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "mmlu_pro": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "simpleqa": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "ifeval": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "arena_hard": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b"
+      ],
+      "refusalbench_nous": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "drop": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "musr": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "openbookqa": [
+       "nousresearch/hermes-4-14b",
+       "nousresearch/hermes-4-405b",
+       "nousresearch/hermes-4-70b",
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "refusalbench_nous_reasoning": [
+       "nousresearch/hermes-4.3-36b"
+      ],
+      "harness_bench_score": [
+       "nousresearch/hermes-agent",
+       "openclaw/openclaw"
+      ],
+      "harness_bench_completion": [
+       "nousresearch/hermes-agent",
+       "openclaw/openclaw"
+      ],
+      "workspace_bench_total_hermes_agent": [
+       "alibaba/qwen3.6-plus",
+       "google/gemini-3.1-pro",
+       "minimax/m2.7",
+       "moonshot/kimi-k2.5",
+       "openai/gpt-5.4",
+       "xai/grok-4.3",
+       "zhipu/glm-5.1"
+      ],
+      "workspace_bench_total_openclaw": [
+       "alibaba/qwen3.6-plus",
+       "google/gemini-3.1-pro",
+       "minimax/m2.7",
+       "moonshot/kimi-k2.5",
+       "openai/gpt-5.4",
+       "xai/grok-4.3",
+       "zhipu/glm-5.1"
+      ],
+      "gabench_graph_ml_sr_hermes_agent": [
+       "zhipu/glm-5-turbo"
+      ],
+      "gabench_graph_ml_sr_openclaw": [
+       "zhipu/glm-5-turbo"
+      ],
+      "gabench_graph_oeqa_sr_hermes_agent": [
+       "zhipu/glm-5-turbo"
+      ],
+      "gabench_graph_oeqa_sr_openclaw": [
+       "zhipu/glm-5-turbo"
+      ]
+     }
     },
     // GENERATED:BOTS_DATA:END
     ENGINE_BENCH: [['aa_intelligence_index_v4_3', 'AA 지능 지수'], ['gdpval_aa_v2_1', 'GDPval-AA v2.1'], ['terminal_bench_4_0_aa', 'Terminal-Bench 4.0'],
@@ -1341,6 +3912,7 @@ var Bots = {
         this._renderGuide(root);
         this._renderTimeline(root);
         this._renderMatrix(root);
+        this._renderFamilies(root);
         this._renderEngines(root);
         this._renderResults(root);
         this._renderBenchCatalogue(root);
@@ -1417,6 +3989,61 @@ var Bots = {
         t.appendChild(tb); w.appendChild(t); s.appendChild(w);
     },
 
+    FAMILIES: [
+        { key: 'openclaw', title: 'OpenClaw 계열', blurb: '오픈소스 개인 에이전트 OpenClaw와 그 포크·재구현, 그리고 이를 클라우드로 호스팅한 서비스들. 메신저(텔레그램·WhatsApp·Slack 등)로 대화하고, 스킬을 붙여 기능을 늘리며, 사용자 기기나 클라우드에서 24시간 돕니다.' },
+        { key: 'hermes', title: 'Hermes 계열', blurb: 'Nous Research의 Hermes Agent(스스로 스킬을 만들고 기억을 쌓는 오픈소스 에이전트)와 이를 뒷받침하는 Hermes 모델 라인, 파생 프로젝트.' }
+    ],
+    KIND_ORDER: ['open-source core', 'fork / reimplementation', 'managed cloud', 'hosted service', 'plugin / skill ecosystem'],
+    KIND_LABEL: { 'open-source core': '오픈소스 본체', 'fork / reimplementation': '포크·재구현', 'managed cloud': '관리형 클라우드', 'hosted service': '호스팅 서비스', 'plugin / skill ecosystem': '스킬·플러그인 생태계', other: '기타' },
+    _starsNum: function(v) {
+        if (v == null) return null; var m = String(v).replace(/,/g, '').match(/([\d.]+)\s*([kK])?/); if (!m) return null;
+        return parseFloat(m[1]) * (m[2] ? 1000 : 1);
+    },
+    _renderFamilies: function(root) {
+        var self = this;
+        this.FAMILIES.forEach(function(F) {
+            var P = self.BOTS_DATA.products.filter(function(p) { return p.family === F.key; });
+            if (!P.length) return;
+            var s = self._section(root, F.title + ' (' + P.length + '개)', F.blurb);
+            // stars chart for open-source members
+            var st = P.map(function(p) { return { p: p, n: self._starsNum(p.stars) }; }).filter(function(x) { return x.n != null; }).sort(function(a, b) { return b.n - a.n; });
+            if (st.length >= 2) {
+                var c = self._el('div'); c.style.height = Math.max(200, 26 * st.length + 70) + 'px'; s.appendChild(c);
+                self._chart(c, {
+                    backgroundColor: 'transparent',
+                    title: { text: 'GitHub 스타 (조사일 기준, 로그 축)', textStyle: { color: Theme.textSecondary, fontSize: 13 } },
+                    tooltip: { formatter: function(p) { var x = st[p.dataIndex]; return self._esc(x.p.name) + '<br>' + self._esc(x.p.stars) + (x.p.language ? '<br>' + self._esc(x.p.language) : ''); } },
+                    grid: { left: 8, right: 60, top: 34, bottom: 20, containLabel: true },
+                    xAxis: { type: 'log', axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },
+                    yAxis: { type: 'category', inverse: true, data: st.map(function(x) { return x.p.name; }), axisLabel: { color: Theme.textMuted, fontSize: 10 } },
+                    series: [{ type: 'bar', barWidth: '60%', data: st.map(function(x) { return { value: x.n, itemStyle: { color: x.p.kind === 'open-source core' ? Theme.series[3] : Theme.series[1] } }; }),
+                               label: { show: true, position: 'right', color: Theme.textMuted, fontSize: 10, formatter: function(p) { return p.value >= 1000 ? (p.value / 1000).toFixed(1) + 'k' : p.value; } } }]
+                });
+            }
+            // member cards grouped by kind
+            var kinds = self.KIND_ORDER.concat(P.map(function(p) { return p.kind || 'other'; }).filter(function(k, i, a) { return self.KIND_ORDER.indexOf(k) < 0 && a.indexOf(k) === i; }));
+            kinds.forEach(function(k) {
+                var Q = P.filter(function(p) { return (p.kind || 'other') === k; });
+                if (!Q.length) return;
+                s.appendChild(self._el('h3', 'text-sm font-semibold text-gray-200 mt-4 mb-2', (self.KIND_LABEL[k] || k) + ' · ' + Q.length));
+                var g = self._el('div', 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3');
+                Q.forEach(function(p) {
+                    var c = self._el('div', 'rounded-lg border border-gray-800 p-3 space-y-1');
+                    var h = self._el('div', 'text-sm font-semibold', p.name); h.style.color = self._vendorColor(p.vendor_key) === Theme.textMuted ? Theme.textPrimary : self._vendorColor(p.vendor_key); c.appendChild(h);
+                    c.appendChild(self._el('div', 'text-xs text-gray-500', [p.vendor, p.first_release || p.launch_date, p.license, p.language].filter(Boolean).join(' · ')));
+                    [['upstream', '기반'], ['models', '엔진'], ['channels', '채널'], ['own_computer', '실행 환경'], ['sandbox', '샌드박스'], ['skills', '스킬'], ['memory', '기억'],
+                     ['pricing', '가격'], ['stars', 'GitHub'], ['latest_version', '최신 버전'], ['security_incidents', '보안 이슈']].forEach(function(f) {
+                        var v = p[f[0]]; if (v == null || v === '') return;
+                        var line = self._el('div', 'text-xs text-gray-400'); line.appendChild(self._el('span', 'text-gray-500', f[1] + ': ')); line.appendChild(document.createTextNode(String(v).slice(0, 220))); c.appendChild(line);
+                    });
+                    if (p.repo || p.url) c.appendChild(self._link(p.repo || p.url, p.repo ? '저장소 ↗' : '공식 페이지 ↗'));
+                    g.appendChild(c);
+                });
+                s.appendChild(g);
+            });
+        });
+    },
+
     _renderEngines: function(root) {
         var self = this, ids = {};
         this.BOTS_DATA.products.forEach(function(p) { (p.model_ids || []).forEach(function(m) { if (self._models[m]) ids[m] = (ids[m] || []).concat([p.name]); }); });
@@ -1448,7 +4075,12 @@ var Bots = {
         { title: 'Remote Labor Index (Scale) — 실제 프리랜서 프로젝트 자동화율', match: /^remote_labor_index/, note: 'Upwork 실제 의뢰 240건을 에이전트가 끝까지 해냈는지 사람이 판정. 제품(Claude Cowork, Manus, ChatGPT agent)과 기반 모델이 함께 실려 있는 유일한 독립 보드입니다.' },
         { title: 'AgentIF-OneDay (xbench) — 하루치 생활·업무·학습 과제', match: /^agentif_oneday/, note: '104개 일상 과제, 767개 채점 기준. 2025년 12월 각 제품을 직접 사용해 측정.' },
         { title: 'Mind2Web 2 · Online-Mind2Web — 웹 탐색 에이전트', match: /mind2web/, note: '실제 웹에서 정보를 찾아 답하는 과제. OpenAI 자체 측정 행은 별도 id입니다.' },
-        { title: 'OpenClaw 계열 개인 비서 벤치마크 (Claw-Anything · WildClawBench)', match: /^(claw_anything|wildclawbench)/, note: '항상 켜진 개인 비서 시나리오. 모델과 하네스(OpenClaw, Claude Code, Codex, Hermes)를 바꿔 가며 측정.' },
+        { title: '하네스 비교 ① WildClawBench — 같은 모델 × OpenClaw · Claude Code · Codex · Hermes Agent', match: /^wildclawbench/, note: '행은 기반 모델, 열은 하네스. 같은 모델이라도 어떤 에이전트 프레임워크에 올리느냐에 따라 점수가 달라집니다.' },
+        { title: '하네스 비교 ② Claw-SWE-Bench Pass@1 — 7개 하네스 × 3개 모델 (arXiv 2606.12344)', match: /^claw_swe_bench_pass1/, note: '350개 SWE 과제, 3회 평균. 세 모델 모두 Hermes Agent가 가장 높습니다.' },
+        { title: '하네스 비교 ③ Claw-SWE-Bench 총비용 (USD, 낮을수록 좋음)', match: /^claw_swe_bench_cost/, note: '같은 350개 과제를 푸는 데 든 총 API 비용.' },
+        { title: '하네스 비교 ④ Harness-Bench · Workspace-Bench · GABench', match: /^(harness_bench|workspace_bench|gabench)/, note: 'Harness-Bench는 8개 모델 평균이라 행이 하네스(제품)입니다. Workspace-Bench와 GABench는 행이 기반 모델, 열이 하네스.' },
+        { title: 'OpenClaw 계열 벤치마크 (Claw-Anything · ClawsBench · PinchBench · SkillTrustBench)', match: /^(claw_anything|clawsbench|pinchbench|skilltrustbench)/, note: '항상 켜진 개인 비서 시나리오의 모델별 결과, OpenClaw 하네스에서의 과제 성공·위험 행동 비율, 스킬 저장소(ClawHub) 악성 스킬 탐지 성능.' },
+        { title: 'Hermes 4 모델 (Nous Research 기술 보고서 · 모델 카드)', match: /^(aime_|arena_hard|bbh|drop|gpqa_diamond|ifeval|livecodebench_v6|math_500|mmlu|musr|openbookqa|refusalbench_nous|simpleqa)/, note: 'Hermes Agent의 기본 모델 라인. 추론 모드 결과(Hermes 4 기술 보고서 표 3–4)와 Hermes 4.3 36B 카드. RefusalBench는 높을수록 거절을 덜 한다는 뜻입니다.' },
         { title: 'ChatGPT dots 안전 평가 (GPT-6 Astra 시스템 카드 부록)', match: /^(dots_|agentic_misaligned|external_agent_board|warning_barrier|broken_search)/, note: 'OpenAI가 dots 하네스에서 직접 측정. 범위 변경 적응, 연쇄 작업에서의 권한 경계, 오해를 부르는 선제 행동, 사이버 오용 차단 등.' },
         { title: 'ChatGPT agent · Operator 출시 평가 (OpenAI)', match: /^(oai_agent|spreadsheetbench|browsecomp|hle_with_tools|frontiermath|osworld|webarena|webvoyager)/, note: 'OpenAI 시스템 카드와 출시 글의 수치. 프롬프트 인젝션 저항, 위험 작업 전 확인, 거절률 등.' },
         { title: '브라우저 에이전트 보안 (LayerX · Anthropic)', match: /^(layerx|anthropic_claude_for_chrome)/, note: 'AI 브라우저의 피싱·웹 공격 차단율(LayerX, 높을수록 좋음)과 Claude for Chrome 프롬프트 인젝션 공격 성공률(Anthropic, 낮을수록 좋음).' }
@@ -1468,12 +4100,18 @@ var Bots = {
             box.appendChild(self._el('h3', 'text-sm font-semibold text-gray-200 mb-1', G.g.title));
             if (G.g.note) box.appendChild(self._el('p', 'text-xs text-gray-500 mb-2', G.g.note));
             var rowsSet = {};
-            G.bs.forEach(function(b) { self._bench(b.id).forEach(function(r) { rowsSet[r.model_id] = 1; }); });
+            var PR = self.BOTS_DATA.pairs || {};
+            G.bs.forEach(function(b) { (PR[b.id] || self._bench(b.id).map(function(r) { return r.model_id; })).forEach(function(m) { rowsSet[m] = 1; }); });
             var rows = Object.keys(rowsSet), first = G.bs[0].id, lf = /_lower_better$/.test(first);
             rows.sort(function(a, b) { var va = self._val(a, first), vb = self._val(b, first); if (va == null) return 1; if (vb == null) return -1; return lf ? va - vb : vb - va; });
             var w = self._el('div', 'overflow-x-auto'), t = self._el('table', 'sota-table text-xs'), th = self._el('thead'), hr = self._el('tr');
             hr.appendChild(self._el('th', null, '제품 / 모델'));
-            G.bs.forEach(function(b) { var h = self._el('th', null, b.name.replace(/^OpenAI |^Anthropic /, '').slice(0, 48)); h.title = b.name + (b.description ? ' — ' + b.description : ''); h.style.minWidth = '90px'; hr.appendChild(h); });
+            var names = G.bs.map(function(b) { return b.name.replace(/^OpenAI |^Anthropic /, ''); });
+            var pre = names.length > 1 ? names.reduce(function(a, b) { var i = 0; while (i < a.length && i < b.length && a[i] === b[i]) i++; return a.slice(0, i); }) : '';
+            pre = pre.slice(0, Math.max(0, pre.lastIndexOf(' ') + 1));
+            G.bs.forEach(function(b, i) { var lab = (pre.length > 8 ? names[i].slice(pre.length) : names[i]).replace(/^[\s—–\-:(]+/, '').replace(/\)\s*$/, '') || names[i];
+                var h = self._el('th', null, lab.slice(0, 40)); h.title = b.name + (b.description ? ' — ' + b.description : ''); h.style.minWidth = '80px'; hr.appendChild(h); });
+            if (pre.length > 8) box.appendChild(self._el('p', 'text-xs text-gray-400 mb-1', '열 공통: ' + pre.trim()));
             th.appendChild(hr); t.appendChild(th);
             var st = {};
             G.bs.forEach(function(b) { var vs = rows.map(function(m) { return self._val(m, b.id); }).filter(function(v) { return v != null; }); st[b.id] = { min: Math.min.apply(null, vs), max: Math.max.apply(null, vs), lower: /_lower_better$/.test(b.id) }; });
@@ -1499,7 +4137,9 @@ var Bots = {
     },
 
     _renderBenchCatalogue: function(root) {
-        var self = this, B = this.BOTS_DATA.benchmarks;
+        var self = this, PR = this.BOTS_DATA.pairs || {};
+        var GENERIC = /^(aime_|arena_hard|bbh|drop|gpqa_diamond|ifeval|livecodebench_v6|math_500|mmlu|musr|openbookqa|simpleqa|browsecomp$|frontiermath$|hle_with_tools$|osworld$|webarena$|webvoyager$|agentic_misaligned|external_agent_board|warning_barrier|broken_search)/;
+        var B = this.BOTS_DATA.benchmarks.filter(function(b) { return !GENERIC.test(b.id); });
         if (!B.length) return;
         var s = this._section(root, '봇·에이전트 제품용 벤치마크', '장시간·다중 앱·승인이 있는 개인/업무 에이전트를 평가하는 데이터셋과 리더보드입니다.');
         var g = this._el('div', 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4');
@@ -1507,7 +4147,7 @@ var Bots = {
             var c = self._el('div', 'rounded-lg border border-gray-800 p-4 space-y-1');
             c.appendChild(self._el('div', 'text-sm font-semibold text-gray-200', b.name));
             c.appendChild(self._el('p', 'text-sm text-gray-400', b.description || ''));
-            c.appendChild(self._el('div', 'text-xs text-gray-500', '점수 있는 제품·모델 ' + self._bench(b.id).length + '개'));
+            c.appendChild(self._el('div', 'text-xs text-gray-500', '점수 있는 제품·모델 ' + (PR[b.id] ? PR[b.id].length : self._bench(b.id).length) + '개'));
             if (b.url) c.appendChild(self._link(b.url));
             g.appendChild(c);
         });
