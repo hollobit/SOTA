@@ -35,6 +35,7 @@ var SystemOne = {
         { prefix: ['gliclass_'], include: ['imdb_zeroshot_f1', 'sst2_zeroshot_f1', 'ag_news_zeroshot_f1', 'banking77_zeroshot_f1', 'emotion_zeroshot_f1', 'snips_zeroshot_f1', 'massive_zeroshot_f1', 'enron_spam_zeroshot_f1', 'financial_phrasebank_zeroshot_f1', 'rotten_tomatoes_zeroshot_f1', 'cr_zeroshot_f1', 'sst5_zeroshot_f1', 'cap_sotu_zeroshot_f1', '20_newsgroups_zeroshot_f1'],
           title: 'GLiClass v3.0 — 제로샷 분류기 14개 데이터셋 F1', note: '결정 모델의 선배 격인 단일 패스 제로샷 분류기(32.7M~439M). knowledgator 모델 카드 기준.', url: 'https://huggingface.co/knowledgator/gliclass-large-v3.0', max: 16 },
         { prefix: ['imdb_zero_shot', 'imdb_finetuned'], title: 'Raschka — IMDb 25,000건: Jev 제로샷 vs 미세조정 ModernBERT', note: 'Sebastian Raschka의 직접 실험(2026-09-29). Jev Choice 96.47%(25k 리뷰에 약 $0.65) vs 전체 길이로 미세조정한 ModernBERT-large 96.50%.', url: 'https://magazine.sebastianraschka.com/p/classifier-history-and-jev' },
+        { prefix: ['edgeevals_system_one'], title: 'EdgeEvals Health System One — 임상 결정 (OpenMed, 2026-10-11)', note: '분류·트리아지·기록 판정·심사 기준·코딩 같은 범위가 정해진 임상 결정. 응급을 놓치면 해당 메시지 전체가 0점인 위해 가중 채점, 짝지은 검정으로 순위. 독립 평가.', url: 'https://edgeevals.ai/system-one/' },
         { prefix: ['openrouter_'], title: 'TypeSafe 발표 — LLM의 구조화 출력·도구 호출 오류율 (OpenRouter 데이터)', note: 'TypeSafe가 OpenRouter 데이터를 인용한 차트. Jev는 스키마가 보장되어 0%라 저장하지 않았습니다. luna/terra/sol = GPT-5.6 계열(발표일 2026-09-15 기준), astra = GPT-6 Astra.', url: 'https://typesafe.ai/blog/introducing-system-one-models-and-jev' }
     ],
     PRODUCTS: [

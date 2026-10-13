@@ -628,6 +628,23 @@ var MedicalAI = {
             benchmarks: ['graphrarebench']
         },
         {
+            label: '📱 On-device Health Models (EdgeEvals Health)',
+            note: 'OpenMed EdgeEvals Health (edgeevals.ai, 2026-10-10): phone-deployable models only (≤ 4.5 GB install, 8 / 12 GB RAM phones) on Clinical & Medical (167 cases: extraction, assertion, normalisation, numeric reasoning, clinical judgement, safety), Wellness and Agentic Clinical (tool-use with abstention) boards; deterministic rubric + LLM judge on a subset. Leaders: Gemma 4 E4B IT on all three (89.8 / 96.2 / 89.1), Nemotron 3 Nano 4B, MedPsy 4B.',
+            benchmarks: ['edgeevals_clinical_medical', 'edgeevals_wellness', 'edgeevals_agentic_clinical',
+                         'edgeevals_clinical_medical_safety', 'edgeevals_clinical_medical_structure', 'edgeevals_clinical_medical_content']
+        },
+        {
+            label: '⚖️ Clinical Decision Models (EdgeEvals System One)',
+            note: 'EdgeEvals System One preview (2026-10-11): decision / System One models on bounded clinical decisions — triage under a policy (a missed emergency zeroes the message), note assertion / medication status, CMS-HCC / trial / prior-auth criteria, coding; harm-weighted, paired-test ranks. pplx-decider v1.1 27B 96.1, GPT-6 Luna Decisions 95.2, Mercury Decide 94.2, Jev 1.13 93.9.',
+            benchmarks: ['edgeevals_system_one_core', 'edgeevals_system_one_triage', 'edgeevals_system_one_notes', 'edgeevals_system_one_criteria', 'edgeevals_system_one_coding']
+        },
+        {
+            label: '📈 Sensor-Language-Action (OpenSLA)',
+            note: 'OpenSLA (UCLA, arXiv 2610.08244, 2026-10-06): sensor observations → language → clinical actions. 7 datasets, 116K individuals, 79 sensor modalities, 60 action groups; action-necessity AUROC on ICU / ED (MC-MED, MIMIC-III), operating room (MOVER, VitalDB) and CGM (MetaboNet, PEDAP), zero-shot MIMIC-IV transfer, action-explanation BERTScore. OpenSLA-B / -H (Qwen3.5-2B + LoRA) vs Chronos-2, Moirai, OpenTSLM, SensorLM, GPT-5.6 Luna, DeepSeek-V3.2.',
+            benchmarks: ['opensla_mcmed_necessity_auroc', 'opensla_mimic3_necessity_auroc', 'opensla_mover_necessity_auroc', 'opensla_vitaldb_necessity_auroc',
+                         'opensla_metabonet_necessity_auroc', 'opensla_pedap_necessity_auroc', 'opensla_mimic4_external_necessity_auroc', 'opensla_explain_mimic3_bertscore']
+        },
+        {
             label: '⌚ Wearable Health Foundation Models',
             note: 'Google SensorFM (arxiv 2605.22759, May 21 2026) — 1T+ minutes pretrained, 5M participants, 35 downstream tasks. SensorFM-B wins 33/35 tasks. Includes Gemini classroom (5 student LLMs find optimal prediction heads) + Personal Health Agent integration.',
             benchmarks: [

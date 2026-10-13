@@ -395,6 +395,8 @@ var FrontierCompare = {
         'xai/grok-4-heavy',
         'xai/grok-4.20',
         'meta/muse-spark',
+        'meta/muse-wonder-full', // 2026-10-12 S303 — Meta Muse Wonder Full (max): AAII v4.3.2 55.8, Briefcase 1729, GDPval v2.1 1857
+        'meta/muse-wonder',      // 2026-10-12 S303 — Muse Wonder (max): AAII 52.4, $4/$20 per M
         'meta/muse-spark-1.3',   // 2026-09-02 S258 — agentic/coding, 1M ctx; AAII 61, Terminal-Bench 2.1 88.8, DeepSWE 75.4, GDPVal-AA 1754
         'meta/muse-spark-1.2',   // 2026-08-05 S233 — coding-focused point release, 1M ctx; AAII 54.07 / Agentic 46.77 / Terminal-Bench 2.1 80.15 (AA) / GPQA 90.4
 

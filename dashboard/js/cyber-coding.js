@@ -741,6 +741,7 @@ var CyberCoding = {
         'xai/grok-4.5',  // 2026-07-08 S175 — SWE-Marathon 29 SOTA, Terminal-Bench 2.1 83.3, SWE-Bench Pro 64.7, SWE-Multilingual 78.0, 4.2x token efficiency vs Opus 4.8
         'xai/grok-4-heavy',
         'xai/grok-4.20',
+        'meta/muse-wonder-full', 'meta/muse-wonder',   // 2026-10-12 S303 — Muse Wonder series (TB 4.0 AA 57.1 / 52.0, DeepSWE 79.0 / 78.8, SWE-Marathon 57.5 xhigh / 53.1)
         'meta/muse-spark',
         'meta/muse-spark-1.2',    // 2026-08-05 S233 — Meta coding-focused release, 1M ctx; Terminal-Bench 2.1 80.15 (AA) / 82.9 (Meta self-report) / SciCode 56.4 / Agentic 46.77
         'zhipu/glm-5',

@@ -341,6 +341,8 @@ var Agent = (function() {
             icon: '🚀',
             label: 'General / Composite',
             benchmarks: [
+                // 2026-10-12 S303 — Meta Muse Wonder scorecard: Personal Superintelligence Index (7-eval composite) + FocusBench (Meta-run)
+                'meta_personal_superintelligence_index', 'meta_focusbench', 'automationbench_aa_strict_pass1',
                 // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (80)
                 'ai4ai_bench_avg', 'dayjob_healthcare_strict_pass1', 'sqbench_simple_pass1', 'sqbench_weighted_pass1', 'agentideabench_active', 'agentideabench_static',
                 'handbook_md_strict_pass1', 'vloc_bench_file_f1', 'vloc_bench_phase_b_tnr', 'rideway_efficiency_utility_custom14', 'rideway_sr58', 'agenthop_accuracy',
