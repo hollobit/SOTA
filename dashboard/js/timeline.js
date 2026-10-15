@@ -1211,6 +1211,10 @@ var Timeline = {
 
         var self = this;
 
+        // score count per model, built once (was an O(models x scores) filter per model)
+        var scoreCounts = {};
+        for (var si = 0; si < this._scores.length; si++) { var smid = this._scores[si].model_id; scoreCounts[smid] = (scoreCounts[smid] || 0) + 1; }
+
         // Build entries with date + country
         var entries = this._models
             .map(function(m) {
@@ -1227,7 +1231,7 @@ var Timeline = {
                     date: date,
                     sysDate: sysDate,
                     country: country,
-                    scoreCount: self._scores.filter(function(s) { return s.model_id === m.id; }).length,
+                    scoreCount: scoreCounts[m.id] || 0,
                 };
             })
             .filter(function(e) { return e !== null; });
@@ -1284,6 +1288,8 @@ var Timeline = {
         // Render with group headers when sorting by vendor or country
         var lastGroup = null;
         var grouped = (sortMode === 'vendor' || sortMode === 'country');
+        var groupCounts = {};
+        if (grouped) entries.forEach(function(x) { var gk = sortMode === 'vendor' ? x.vendor : x.country; groupCounts[gk] = (groupCounts[gk] || 0) + 1; });
 
         // Also when sorted by date, group by year-month for visual grouping
         var lastYearMonth = null;
@@ -1295,9 +1301,7 @@ var Timeline = {
                 if (groupKey !== lastGroup) {
                     var hdr = document.createElement('div');
                     hdr.className = 'mt-4 mb-1 text-xs text-gray-500 uppercase tracking-wider font-semibold sticky top-0 bg-gray-950 py-1';
-                    var groupCount = entries.filter(function(x) {
-                        return (sortMode === 'vendor' ? x.vendor : x.country) === groupKey;
-                    }).length;
+                    var groupCount = groupCounts[groupKey] || 0;
                     hdr.textContent = groupKey + ' (' + groupCount + ')';
                     container.appendChild(hdr);
                     lastGroup = groupKey;

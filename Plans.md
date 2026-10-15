@@ -3,6 +3,16 @@
 ## Current Status: Session 292b — sweep follow-ups: April–May gap, leftover papers, official boards (2026-10-03)
 **3,677 models · 6,204 benchmarks · 46,885 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-10-15 Session 306 — resource/ gap audit (leaderboards, arXiv seeds, PDFs, dataset descriptions)
+- `resource/zzzzzzzzzzzzzzzzzz_s306_resource_gap_audit_2026_10_15_scores.json`: 110 new models, 34 release-date fixes (model rows copied from the DB with only release_date changed), 1455 new benchmarks, 551 benchmark description/category/metric updates (full rows; this file loads last so INSERT OR REPLACE applies them), 15,302 scores. Backup `data/benchmark.db.pre-s306.bak`. DB 4,248 / 11,112 / 84,374.
+- Coverage audit (`scratchpad/s306/coverage.py`): seed URLs / resource PDFs matched to scores by URL or arXiv id. Zero-score: 630 seeds (173 arXiv), 72 PDFs; 1,742 scored benchmarks had empty descriptions.
+- Readers (SPEC + verify.py, 0 fails): r_lb_gen 2201 rows (AA-style RSC / HF lmarena dataset / LiveBench 2.0 / Epoch CSVs / Scale HLE / TB 4.0 / ARC Prize / SimpleBench / SWE-bench), r_lb_vert 4068, r_arx_a 5215, r_arx_b 78, r_pdf 3405, r_ds 541 descriptions; AA models leaderboard by the orchestrator (slug map from DB notes; II version check 354/369 equal to stored v4.3).
+- Merge rules: fill-missing only; 635 reader conflicts + 362 AA revised values reported in `scratchpad/s306/report.json`, not applied. Latest-models cutoff 2024-10-15 applied to rows and new models. Unnamed method / policy rows (1430) skipped. Category changes accepted only within the existing vocabulary.
+- Suspected wrong stored values reported by r_pdf (not changed): Qwen3.8 base `gpqa` = SuperGPQA, Cosmos-3-edge reasoner averages (wrong column), glm-5.1 `gdpval_aa` holds a % value, fable-5.1 `osworld_v2` 77.9 is the partial score, mythos-5.1 `firefox147_partial_exploit` 98 is the full-exploit rate, GPT-6 Astra phage NLL 12.58 is the helpful-only model. Review in a follow-up.
+- seed_sources: RAD-ChestCT arXiv id fixed (2002.06045 → 2002.04752); EHRQA entry removed (2206.06636 was an unrelated physics paper; correct id not found).
+- Release-date fixes also patched into the older `*_release_dates*_2026_05_04` / `model_metadata_fix` seed files (they sort after S306 and would otherwise reassert the old dates; 16 entries).
+- Timeline tab perf: per-model `_scores.filter` (O(models × scores) ≈ 360M comparisons) and per-group `entries.filter` replaced by count maps — render 1.8 s → 62 ms (date) / ~160 ms (vendor, country) at 84k scores.
+
 ### 2026-10-13 Session 304 — Harness tab (agent harnesses)
 - **69 models, 956 benchmarks, 3,568 rows** (`resource/zzzzzzzzzzzzzzzzzz_s304_agent_harnesses_2026_10_13_scores.json`); backup `data/benchmark.db.pre-s304.bak`. DB 4,138 / 9,657 / 69,072.
 - New lazy tab `harness` (`dashboard/js/harness.js`, HARNESS_DATA generated between GENERATED markers by the S304 build — do not hand-edit): guide, Harness-Bench model x harness heatmap (suite + metric switch, best harness outlined), harness score-vs-cost profile, AA Coding Agents (harness + model + effort), per-paper harness matrices (collapsible), harness-optimisation method vs baseline table, harness catalogue by kind with GitHub stars, benchmark / method cards, sources.
