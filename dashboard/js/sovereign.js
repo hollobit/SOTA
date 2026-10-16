@@ -2219,8 +2219,8 @@ var Sovereign = {
     _competitivenessSeries: function(bid, mode) {
         var key = bid + '|' + mode;
         if (this._compCache[key]) return this._compCache[key];
-        var hist = (typeof App !== 'undefined' && App.data && App.data.history) || {};
-        var dates = Object.keys(hist).sort();
+        var dates = (typeof App !== 'undefined' && App.histDates) ? App.histDates() : [];
+        var perDate = dates.length ? App.histBenchModelValues(bid) : [];
         var regions = this._compRegions();
         var pal = this._COMP_PALETTE;
         var series = regions.map(function(r, i) {
@@ -2228,16 +2228,10 @@ var Sovereign = {
                      models: r.models || [], seriesModels: [], values: [] };
         });
         var frontier = [];
-        dates.forEach(function(d) {
-            var snap = hist[d];
-            if (!Array.isArray(snap)) snap = (snap && snap.scores) || [];
-            var mv = {}, globalTop = null;
-            for (var i = 0; i < snap.length; i++) {
-                var s = snap[i];
-                if (s.benchmark_id === bid) {
-                    mv[s.model_id] = s.value;
-                    if (globalTop == null || s.value > globalTop) globalTop = s.value;
-                }
+        dates.forEach(function(d, di) {
+            var mv = perDate[di], globalTop = null;
+            for (var mid in mv) {
+                if (globalTop == null || mv[mid] > globalTop) globalTop = mv[mid];
             }
             frontier.push(mode === 'gap' ? (globalTop != null ? 100 : null) : globalTop);
             series.forEach(function(ser) {
@@ -2306,8 +2300,7 @@ var Sovereign = {
         if (!el || typeof echarts === 'undefined') return;
         var self = this;
         // Lazy-load history the first time; re-render when it arrives.
-        var hist = (typeof App !== 'undefined' && App.data && App.data.history) || {};
-        if (Object.keys(hist).length === 0 && App._ensureHistory) {
+        if (typeof App !== 'undefined' && !App.hist && App._ensureHistory) {
             el.textContent = '';
             var loading = document.createElement('div');
             loading.className = 'text-gray-500 text-sm p-8 text-center';

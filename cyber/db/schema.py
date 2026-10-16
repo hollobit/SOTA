@@ -98,10 +98,16 @@ def init_db(conn: sqlite3.Connection) -> None:
     _add_column_if_missing("models", "knowledge_cutoff", "TEXT")
     _add_column_if_missing("models", "languages", "TEXT")
 
+    # Child-side index for the scores -> benchmarks foreign key. Without it,
+    # every INSERT OR REPLACE on benchmarks (a delete + insert) made SQLite scan
+    # the whole scores table to count referencing rows (~8 ms per benchmark,
+    # ~2 min per full resource reload).
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_scores_benchmark ON scores(benchmark_id)")
+
     conn.commit()
 
 
-def insert_model(conn: sqlite3.Connection, model: Model) -> None:
+def insert_model(conn: sqlite3.Connection, model: Model, commit: bool = True) -> None:
     conn.execute(
         """INSERT OR REPLACE INTO models
            (id, vendor, name, version, type, modalities, parameters, release_date,
@@ -114,20 +120,22 @@ def insert_model(conn: sqlite3.Connection, model: Model) -> None:
             json.dumps(model.languages) if model.languages is not None else None,
         ),
     )
-    conn.commit()
+    if commit:
+        conn.commit()
 
 
-def insert_benchmark(conn: sqlite3.Connection, benchmark: Benchmark) -> None:
+def insert_benchmark(conn: sqlite3.Connection, benchmark: Benchmark, commit: bool = True) -> None:
     conn.execute(
         """INSERT OR REPLACE INTO benchmarks (id, name, category, description, metric)
            VALUES (?, ?, ?, ?, ?)""",
         (benchmark.id, benchmark.name, benchmark.category,
          benchmark.description, benchmark.metric),
     )
-    conn.commit()
+    if commit:
+        conn.commit()
 
 
-def insert_score(conn: sqlite3.Connection, score: Score) -> None:
+def insert_score(conn: sqlite3.Connection, score: Score, commit: bool = True) -> None:
     conn.execute(
         """INSERT OR REPLACE INTO scores
            (model_id, benchmark_id, value, unit, source_type, source_url,
@@ -138,10 +146,11 @@ def insert_score(conn: sqlite3.Connection, score: Score) -> None:
          score.source.citation, int(score.is_sota),
          score.collected_at.isoformat(), score.notes),
     )
-    conn.commit()
+    if commit:
+        conn.commit()
 
 
-def insert_leaderboard_ranking(conn: sqlite3.Connection, lr: LeaderboardRanking) -> None:
+def insert_leaderboard_ranking(conn: sqlite3.Connection, lr: LeaderboardRanking, commit: bool = True) -> None:
     conn.execute(
         """INSERT OR REPLACE INTO leaderboard_rankings
            (leaderboard, model_id, rank, score, metric, snapshot_date, source_url)
@@ -149,7 +158,8 @@ def insert_leaderboard_ranking(conn: sqlite3.Connection, lr: LeaderboardRanking)
         (lr.leaderboard, lr.model_id, lr.rank, lr.score, lr.metric,
          lr.snapshot_date.isoformat(), lr.source_url),
     )
-    conn.commit()
+    if commit:
+        conn.commit()
 
 
 def get_all_models(conn: sqlite3.Connection) -> list[Model]:

@@ -63,9 +63,12 @@ def main():
         return canonical_map.get(mid, mid) if mid else mid
 
     # regardless of which file (or glob ordering) declared it.
+    # Each file is parsed once and reused by pass 2. Inserts run inside one
+    # transaction per pass (commit=False) instead of one fsync per row.
+    parsed = {}
     for json_path in json_files:
         print(f"Loading [pass 1: schema] {json_path.name}...")
-        data = json.loads(json_path.read_text())
+        data = parsed[json_path] = json.loads(json_path.read_text())
 
         # Load models. INSERT OR REPLACE overwrites the row, so when a JSON
         # entry lacks `type`, we look up the existing value and preserve it
@@ -98,7 +101,7 @@ def main():
                 context_window=m.get("context_window"),
                 knowledge_cutoff=m.get("knowledge_cutoff"),
                 languages=m.get("languages"),
-            ))
+            ), commit=False)
             total_models += 1
 
         # Load benchmarks
@@ -109,13 +112,15 @@ def main():
                 category=b.get("category", "other"),
                 description=b.get("description", ""),
                 metric=b.get("metric", "accuracy"),
-            ))
+            ), commit=False)
             total_benchmarks += 1
+
+    conn.commit()
 
     # Pass 2 — insert all scores. Every model/benchmark FK target now exists.
     for json_path in json_files:
         print(f"Loading [pass 2: scores] {json_path.name}...")
-        data = json.loads(json_path.read_text())
+        data = parsed[json_path]
         meta = data.get("_meta", {})
         sources = meta.get("sources", [])
         collected_at_str = meta.get("collected_at", date.today().isoformat())
@@ -154,8 +159,9 @@ def main():
                 is_sota=False,
                 collected_at=collected_at,
                 notes=note,
-            ))
+            ), commit=False)
             total_scores += 1
+    conn.commit()
 
     # Mark SOTA
     from cyber.analyst.sota_tracker import SOTATracker
@@ -165,7 +171,8 @@ def main():
     benchmarks = {b.id: b for b in get_all_benchmarks(conn)}
     marked = tracker.mark_sota(all_scores, benchmarks)
     for s in marked:
-        insert_score(conn, s)
+        insert_score(conn, s, commit=False)
+    conn.commit()
 
     conn.close()
     print(f"Loaded {total_models} models, {total_benchmarks} benchmarks, {total_scores} scores")

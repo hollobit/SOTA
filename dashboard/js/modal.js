@@ -119,8 +119,7 @@ var Modal = {
     },
 
     // Cache for per-date history snapshots. Key: 'YYYY-MM-DD' → array of scores.
-    _historySnapshots: {},
-    _historyIndex: null,
+    _historySnapshots: {},   // detail shard name -> Promise
     _historyDataBase: null,
 
     init: function() {
@@ -139,14 +138,6 @@ var Modal = {
                 }
             } catch (e) { /* non-fatal */ }
         }).catch(function() { Modal._bmtData = {}; });
-
-        // Preload the history index (list of snapshot dates). Each date's
-        // full snapshot is lazy-loaded on demand inside showScoreSource.
-        fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/scores/history/index.json') : base + '/scores/history/index.json').then(function(r) {
-            return r.ok ? r.json() : { dates: [] };
-        }).then(function(d) {
-            Modal._historyIndex = (d && d.dates) || [];
-        }).catch(function() { Modal._historyIndex = []; });
 
         var overlay = document.getElementById('modal-overlay');
         var close = document.getElementById('modal-close');
@@ -196,32 +187,50 @@ var Modal = {
     },
 
     /**
-     * Load all history snapshots and return their (date, scoreRow) pairs
-     * for the given (modelId, benchmarkId). Cached across calls.
-     * Returns a Promise resolving to [{date, score}, ...] in date order.
+     * History of one (model, benchmark) score as [{date, score}, ...] in date
+     * order — one row per snapshot date that held the score. Reads the
+     * benchmark's detail shard (scores/history/detail/NN.json, ~100 KB gzip)
+     * instead of downloading every daily snapshot. Shards are cached.
      */
+    _historyShard: function(benchmarkId) {
+        var h = 0x811c9dc5;
+        for (var i = 0; i < benchmarkId.length; i++) {
+            h ^= benchmarkId.charCodeAt(i);
+            h = Math.imul(h, 0x01000193) >>> 0;
+        }
+        return h % 64;  // = Exporter.HISTORY_DETAIL_SHARDS
+    },
+
     _loadScoreHistory: function(modelId, benchmarkId) {
-        var dates = Modal._historyIndex || [];
-        if (!dates.length) return Promise.resolve([]);
-        var base = Modal._historyDataBase;
-        var fetches = dates.map(function(d) {
-            if (Modal._historySnapshots[d]) return Promise.resolve(Modal._historySnapshots[d]);
-            return fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/scores/history/' + d + '.json') : base + '/scores/history/' + d + '.json').then(function(r) {
-                return r.ok ? r.json() : [];
-            }).then(function(arr) {
-                Modal._historySnapshots[d] = arr;
-                return arr;
-            }).catch(function() { return []; });
-        });
-        return Promise.all(fetches).then(function(snapshots) {
-            var rows = [];
-            snapshots.forEach(function(snap, i) {
-                var hit = snap.find(function(s) {
-                    return s.model_id === modelId && s.benchmark_id === benchmarkId;
-                });
-                if (hit) rows.push({ date: dates[i], score: hit });
-            });
-            return rows;
+        var n = Modal._historyShard(benchmarkId);
+        var name = (n < 10 ? '0' : '') + n;
+        if (!Modal._historySnapshots[name]) {
+            var url = Modal._historyDataBase + '/scores/history/detail/' + name + '.json';
+            Modal._historySnapshots[name] = fetch((window.App && App.dataUrl) ? App.dataUrl(url) : url)
+                .then(function(r) { return r.ok ? r.json() : null; })
+                .catch(function() { return null; });
+        }
+        return Modal._historySnapshots[name].then(function(d) {
+            if (!d || !d.r) return [];
+            var row = null;
+            for (var i = 0; i < d.r.length; i++) {
+                if (d.r[i][0] === modelId && d.r[i][1] === benchmarkId) { row = d.r[i]; break; }
+            }
+            if (!row) return [];
+            // change entries: [date_idx, value, url_idx, note_idx, is_sota, collected_idx, unit_idx]
+            var out = [], cur = null, k = 2;
+            for (var di = 0; di < d.dates.length; di++) {
+                while (k < row.length && row[k][0] === di) { cur = row[k][1] == null ? null : row[k]; k++; }
+                if (!cur) continue;
+                out.push({ date: d.dates[di], score: {
+                    model_id: modelId, benchmark_id: benchmarkId, value: cur[1], unit: d.u[cur[6]],
+                    source: { url: cur[2] >= 0 ? d.s[cur[2]] : null },
+                    notes: cur[3] >= 0 ? d.n[cur[3]] : '',
+                    is_sota: !!cur[4],
+                    collected_at: cur[5] >= 0 ? d.c[cur[5]] : null
+                } });
+            }
+            return out;
         });
     },
 
@@ -465,7 +474,7 @@ var Modal = {
 
     showBenchmark: function(benchId) {
         try { if (App._ensureScoreMeta) App._ensureScoreMeta(); } catch (e) {}
-        var bench = App.data.benchmarks.find(function(b) { return b.id === benchId; });
+        var bench = App.getBenchmarkMap()[benchId];
         if (!bench) return;
         history.replaceState(null, '', '#bench/' + benchId);
 
@@ -613,7 +622,7 @@ var Modal = {
 
         var tbody = document.createElement('tbody');
         scores.forEach(function(s, i) {
-            var model = App.data.models.find(function(m) { return m.id === s.model_id; });
+            var model = App.getModelMap()[s.model_id];
             var tr = document.createElement('tr');
             tr.className = 'border-t border-gray-800';
 
@@ -761,7 +770,7 @@ var Modal = {
 
         // Reliability metadata (NEW)
         try {
-            var bench = App.data.benchmarks.find(function(b) { return b.id === benchId; });
+            var bench = App.getBenchmarkMap()[benchId];
             if (bench && bench.reliability) {
                 var rel = bench.reliability;
                 var relBody = Modal._collapsibleSection(container, 'Reliability', 'bench-rel', false);
@@ -816,8 +825,8 @@ var Modal = {
             return s.model_id === modelId && s.benchmark_id === benchmarkId;
         });
         if (!score) return;
-        var model = App.data.models.find(function(m) { return m.id === modelId; });
-        var bench = App.data.benchmarks.find(function(b) { return b.id === benchmarkId; });
+        var model = App.getModelMap()[modelId];
+        var bench = App.getBenchmarkMap()[benchmarkId];
         if (!bench) return;
 
         history.replaceState(null, '', '#score/' + modelId + '/' + benchmarkId);
@@ -1245,7 +1254,7 @@ var Modal = {
 
     showModel: function(modelId) {
         try { if (App._ensureScoreMeta) App._ensureScoreMeta(); } catch (e) {}
-        var model = App.data.models.find(function(m) { return m.id === modelId; });
+        var model = App.getModelMap()[modelId];
         if (!model) return;
         history.replaceState(null, '', '#model/' + modelId);
 
@@ -1797,7 +1806,7 @@ var Modal = {
             var sel = document.createElement('select');
             sel.className = 'bg-gray-800 text-gray-200 rounded px-2 py-1 text-xs';
             peerCandidates.forEach(function(p) {
-                var pm = App.data.models.find(function(m) { return m.id === p.modelId; });
+                var pm = App.getModelMap()[p.modelId];
                 var label = (pm ? pm.name : p.modelId) + '  (overlap ' + p.overlap + ', avg d ' + p.avgDelta.toFixed(1) + ')';
                 var opt = document.createElement('option');
                 opt.value = p.modelId;
@@ -1863,7 +1872,7 @@ var Modal = {
 
                 var tb = document.createElement('tbody');
                 picked.sharedBenches.forEach(function(b) {
-                    var bench = App.data.benchmarks.find(function(x) { return x.id === b; });
+                    var bench = App.getBenchmarkMap()[b];
                     var name = bench ? bench.name : b;
                     var t = targetScores[b];
                     var p = peerScores[b];
@@ -1909,7 +1918,7 @@ var Modal = {
                 var ul = document.createElement('ul');
                 ul.className = 'text-xs text-gray-200 space-y-1';
                 sw.strengths.forEach(function(r) {
-                    var bench = App.data.benchmarks.find(function(b) { return b.id === r.benchmark_id; });
+                    var bench = App.getBenchmarkMap()[r.benchmark_id];
                     var name = bench ? bench.name : r.benchmark_id;
                     var li = document.createElement('li');
                     li.className = 'flex justify-between border-b border-gray-800 py-1';
@@ -1936,7 +1945,7 @@ var Modal = {
                 var wul = document.createElement('ul');
                 wul.className = 'text-xs text-gray-200 space-y-1';
                 sw.weaknesses.forEach(function(r) {
-                    var bench = App.data.benchmarks.find(function(b) { return b.id === r.benchmark_id; });
+                    var bench = App.getBenchmarkMap()[r.benchmark_id];
                     var name = bench ? bench.name : r.benchmark_id;
                     var li = document.createElement('li');
                     li.className = 'flex justify-between border-b border-gray-800 py-1';
@@ -2876,7 +2885,7 @@ var Modal = {
             var catScoresByModel = {};
             for (var si = 0; si < App.data.scores.length; si++) {
                 var sc = App.data.scores[si];
-                var bench = App.data.benchmarks.find(function(b) { return b.id === sc.benchmark_id; });
+                var bench = App.getBenchmarkMap()[sc.benchmark_id];
                 if (!bench) continue;
                 var cat = bench.category;
                 if (!catScoresByModel[sc.model_id]) catScoresByModel[sc.model_id] = {};
@@ -2943,7 +2952,7 @@ var Modal = {
     // ---- Helper: Score History line chart ----
     _renderScoreHistory: function(container, model, modelId) {
         try {
-            var historyDates = Object.keys(App.data.history || {}).sort();
+            var historyDates = App.histDates ? App.histDates() : [];
             var snapCount = historyDates.length;
 
             if (snapCount < 2) {
@@ -2969,13 +2978,9 @@ var Modal = {
                 .slice(0, 4);
             if (topBenches.length < 1) return;
             var seriesData = topBenches.map(function(bid) {
-                var bench = App.data.benchmarks.find(function(b) { return b.id === bid; });
+                var bench = App.getBenchmarkMap()[bid];
                 var name = bench ? bench.name : bid;
-                var pts = historyDates.map(function(dt) {
-                    var snap = App.data.history[dt] || [];
-                    var found = snap.find(function(x) { return x.model_id === modelId && x.benchmark_id === bid; });
-                    return found ? found.value : null;
-                });
+                var pts = App.histPairSeries(modelId, bid);
                 return { name: name, type: 'line', data: pts, connectNulls: true, smooth: true };
             });
             var hasData = seriesData.some(function(s) { return s.data.filter(function(v) { return v != null; }).length >= 2; });
@@ -3012,7 +3017,7 @@ var Modal = {
     _renderScoreBreakdown: function(container, modelId, scores) {
         var byCategory = {};
         scores.forEach(function(s) {
-            var bench = App.data.benchmarks.find(function(b) { return b.id === s.benchmark_id; });
+            var bench = App.getBenchmarkMap()[s.benchmark_id];
             var cat = bench ? bench.category : 'other';
             if (!byCategory[cat]) byCategory[cat] = [];
             byCategory[cat].push({ bench: bench, score: s });

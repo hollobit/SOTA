@@ -67,6 +67,69 @@ def load_db():
     return models, benches, scores
 
 
+def _bench_related(bench_list, bench_tokens, min_inter=3, min_sim=0.20, top=3):
+    """Top-`top` Jaccard neighbours per benchmark (shared tokens >= min_inter,
+    Jaccard >= min_sim). Ties keep bench_list order. Uses a sparse matrix
+    product when scipy is available (all ~N^2 pairs in a few seconds) and
+    falls back to the pure-Python all-pairs loop otherwise; both give the
+    same pairs and the same float similarities."""
+    try:
+        import numpy as np
+        from scipy import sparse
+    except ImportError:
+        np = None
+    if np is None:
+        for a in bench_list:
+            ta = bench_tokens[a]
+            if not ta:
+                continue
+            rel = []
+            for b in bench_list:
+                if a == b:
+                    continue
+                tb = bench_tokens[b]
+                if not tb:
+                    continue
+                inter = len(ta & tb)
+                if inter < min_inter:
+                    continue
+                union = len(ta | tb)
+                sim = inter / union if union else 0
+                if sim < min_sim:
+                    continue
+                rel.append((b, sim))
+            rel.sort(key=lambda x: x[1], reverse=True)
+            for b, sim in rel[:top]:
+                yield a, b, sim
+        return
+    keep = [b for b in bench_list if bench_tokens[b]]
+    vocab = {}
+    rows, cols = [], []
+    for i, b in enumerate(keep):
+        for t in bench_tokens[b]:
+            rows.append(i)
+            cols.append(vocab.setdefault(t, len(vocab)))
+    n = len(keep)
+    A = sparse.csr_matrix((np.ones(len(rows), dtype=np.float32), (rows, cols)), shape=(n, len(vocab)))
+    At = A.T.tocsc()
+    size = np.asarray(A.sum(axis=1)).ravel().astype(np.int64)
+    chunk = 1024
+    for r0 in range(0, n, chunk):
+        r1 = min(n, r0 + chunk)
+        inter = np.rint((A[r0:r1] @ At).toarray()).astype(np.int64)
+        inter[np.arange(r1 - r0), np.arange(r0, r1)] = 0
+        union = size[r0:r1, None] + size[None, :] - inter
+        sim = inter / union
+        ok = (inter >= min_inter) & (sim >= min_sim)
+        for li in range(r1 - r0):
+            js = np.nonzero(ok[li])[0]
+            if not len(js):
+                continue
+            order = js[np.lexsort((js, -sim[li, js]))][:top]
+            for j in order:
+                yield keep[r0 + li], keep[j], float(sim[li, j])
+
+
 def build_graph(models, benches, scores):
     nodes = {}            # node_id -> dict
     edges = []            # list of dicts (from, to, type, weight)
@@ -180,31 +243,11 @@ def build_graph(models, benches, scores):
     # --- BENCH_RELATED (token overlap, top-3 per bench) ---
     bench_tokens = {bid: set(tokenize(docs[bid])) for bid in bench_by_id.values()}
     bench_list = list(bench_by_id.values())
-    for i, a in enumerate(bench_list):
-        ta = bench_tokens[a]
-        if not ta:
-            continue
-        rel = []
-        for b in bench_list:
-            if a == b:
-                continue
-            tb = bench_tokens[b]
-            if not tb:
-                continue
-            inter = len(ta & tb)
-            if inter < 3:
-                continue
-            union = len(ta | tb)
-            sim = inter / union if union else 0
-            if sim < 0.20:
-                continue
-            rel.append((b, sim))
-        rel.sort(key=lambda x: x[1], reverse=True)
-        for b, sim in rel[:3]:
-            edges.append({
-                "from": a, "to": b, "type": "BENCH_RELATED",
-                "w": round(sim, 3),
-            })
+    for a, b, sim in _bench_related(bench_list, bench_tokens):
+        edges.append({
+            "from": a, "to": b, "type": "BENCH_RELATED",
+            "w": round(sim, 3),
+        })
 
     # --- SAME_VENDOR_FAMILY for models sharing vendor + prefix ---
     family_groups = defaultdict(list)

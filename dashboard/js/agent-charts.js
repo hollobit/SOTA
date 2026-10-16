@@ -1378,29 +1378,23 @@ var AgentCharts = (function() {
     'mobile_actions'
   ];
 
-  function _historyBase() {
-    return (window.location.pathname.indexOf('/dashboard/') !== -1) ? '../data' : 'data';
-  }
-
-  // Cache: index promise + per-date snapshot promises keyed by date string.
-  var _historyCache = { indexPromise: null, snapshots: {} };
-
+  // History comes from App's compact change log (scores/history/compact.json)
+  // instead of downloading every daily snapshot. The widgets only read
+  // (model_id, benchmark_id, value) rows of one benchmark per date.
   function _loadHistoryIndex() {
-    if (_historyCache.indexPromise) return _historyCache.indexPromise;
-    var url = _historyBase() + '/scores/history/index.json';
-    _historyCache.indexPromise = fetch(url)
-      .then(function(r) { return r.ok ? r.json() : { dates: [] }; })
-      .catch(function() { return { dates: [] }; });
-    return _historyCache.indexPromise;
+    if (!(window.App && App._ensureHistory)) return Promise.resolve({ dates: [] });
+    return App._ensureHistory().then(function() { return { dates: App.histDates() }; });
   }
 
-  function _loadSnapshot(date) {
-    if (_historyCache.snapshots[date]) return _historyCache.snapshots[date];
-    var url = _historyBase() + '/scores/history/' + date + '.json';
-    _historyCache.snapshots[date] = fetch(url)
-      .then(function(r) { return r.ok ? r.json() : []; })
-      .catch(function() { return []; });
-    return _historyCache.snapshots[date];
+  // Per-date rows of one benchmark: [[{model_id, benchmark_id, value}, ...], ...].
+  function _loadBenchSnapshots(bid) {
+    return _loadHistoryIndex().then(function() {
+      return App.histBenchModelValues(bid).map(function(mv) {
+        var rows = [];
+        for (var mid in mv) rows.push({ model_id: mid, benchmark_id: bid, value: mv[mid] });
+        return rows;
+      });
+    });
   }
 
   // Stable color hash for SOTA-holder bands.
@@ -1479,7 +1473,7 @@ var AgentCharts = (function() {
         _emptyStateMessage(mountEl, 'Not enough history snapshots — need at least 2 days of data.');
         return;
       }
-      Promise.all(dates.map(_loadSnapshot)).then(function(snapshots) {
+      _loadBenchSnapshots(bid).then(function(snapshots) {
         // Per-date: max value on the chosen benchmark + the model that owns it.
         var dailyBest = [];
         for (var i = 0; i < dates.length; i++) {
@@ -2764,7 +2758,7 @@ var AgentCharts = (function() {
         _emptyStateMessage(mountEl, 'Need at least 2 days of history snapshots');
         return;
       }
-      Promise.all(dates.map(_loadSnapshot)).then(function(snapshots) {
+      _loadBenchSnapshots(bid).then(function(snapshots) {
         // Per-date best holder for the chosen benchmark — same logic as W5.
         var dailyBest = [];
         for (var i = 0; i < dates.length; i++) {
@@ -4109,7 +4103,7 @@ var AgentCharts = (function() {
         return;
       }
 
-      Promise.all(dates.map(_loadSnapshot)).then(function(snapshots) {
+      _loadBenchSnapshots(bid).then(function(snapshots) {
         // Build per-date best-score-per-model map for the chosen benchmark.
         // datesWithData = subset of dates where the benchmark has at least
         // one row (used to gate the "insufficient history" message).
@@ -4587,11 +4581,14 @@ var AgentCharts = (function() {
       }
     }
     _ingest(App.data.scores);
-    if (App.data.history && typeof App.data.history === 'object') {
-      for (var d in App.data.history) {
-        if (!Object.prototype.hasOwnProperty.call(App.data.history, d)) continue;
-        _ingest(App.data.history[d]);
-      }
+    // History: one observation per distinct (value, url) change instead of
+    // re-reading every full snapshot (per-URL collapse below keeps the latest).
+    if (App.histForEachObservation) {
+      App.histForEachObservation(function(mid, bid, v, url, date) {
+        var key = mid + '|' + bid;
+        if (!groups[key]) groups[key] = [];
+        groups[key].push({ value: v, url: url || '(unknown)', date: date });
+      });
     }
 
     var pairs = [];

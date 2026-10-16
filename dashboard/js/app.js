@@ -387,6 +387,20 @@ var App = {
         // _ensureScores() / _ensureHistory(), triggered when a tab actually
         // needs them. This cuts the initial blocking download from ~10 MB
         // raw to ~3.3 MB.
+        // All boot downloads start together: the critical trio, the background
+        // files (pricing, changelog, arena) and scores/current.json. They used
+        // to run as a chain (trio → pricing → changelog → arena → scores),
+        // which put the score data ~4 s after navigation instead of ~2 s.
+        // _ensureScores() reuses the in-flight scores request.
+        this._scoresFetch = this._fetch(base + '/scores/current.json');
+        var pricingFetch = this._fetch(base + '/aa_pricing.json');
+        var changelogFetch = this._fetch(base + '/reports/changelog.json');
+        var boardNames = ['chatbot-arena'];
+        var boardFetches = boardNames.map(function(name) {
+            return self._fetch(base + '/leaderboards/' + name + '.json').then(function(data) {
+                if (data) self.data.leaderboards[name] = data;
+            });
+        });
         return Promise.all([
             this._fetch(base + '/models.json'),
             this._fetch(base + '/benchmarks.json'),
@@ -422,7 +436,7 @@ var App = {
             // changelog, and per-leaderboard files are read lazily by their
             // consumer widgets; we just kick the network so they're cached by
             // the time the user navigates to those tabs.
-            return self._fetch(base + '/aa_pricing.json').then(function(pricing) {
+            return pricingFetch.then(function(pricing) {
                 if (pricing && pricing.models) {
                     var pmap = {};
                     if (Array.isArray(pricing.models)) {
@@ -442,18 +456,11 @@ var App = {
                     }
                     self.data.pricing = pmap;
                 }
-                return self._fetch(base + '/reports/changelog.json');
+                return changelogFetch;
             });
         }).then(function(changelog) {
             self.data.changelog = changelog || [];
-
-            var boardNames = ['chatbot-arena'];
-            var base2 = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
-            return Promise.all(boardNames.map(function(name) {
-                return self._fetch(base2 + '/leaderboards/' + name + '.json').then(function(data) {
-                    if (data) self.data.leaderboards[name] = data;
-                });
-            }));
+            return Promise.all(boardFetches);
         }).then(function() {
             // Fire-and-forget kick of scores fetch so the Overview widgets +
             // #model/#bench/#vendor deep-link modals have data by the time
@@ -477,7 +484,9 @@ var App = {
         if (this._scoresPromise) return this._scoresPromise;
         var self = this;
         var base = this._dataBase || 'data';
-        this._scoresPromise = this._fetch(base + '/scores/current.json').then(function(scores) {
+        var req = this._scoresFetch || this._fetch(base + '/scores/current.json');
+        this._scoresFetch = null;
+        this._scoresPromise = req.then(function(scores) {
             self.data.scores = scores || [];
             // Build shared score index once per fetch. Tabs read from it via
             // App.getScoreIndex() instead of doing O(N) forEach scans over
@@ -586,25 +595,199 @@ var App = {
         });
     },
 
-    // Lazy fetch of historical score snapshots. Only Trends / Timeline tabs
-    // really need this; Overview and the static category tabs do not.
+    // Lazy fetch of score history. The exporter folds every daily snapshot
+    // into scores/history/compact.json (a per model×benchmark change log,
+    // ~0.7 MB gzip) — the dashboard used to download all ~100 full snapshots
+    // (~700 MB raw) and scan them per benchmark (Trends froze for minutes).
+    // Consumers use the App.hist* helpers below; App.data.history keeps the
+    // old { date: [score, ...] } shape through lazy per-date getters.
     _ensureHistory: function() {
         if (this._historyPromise) return this._historyPromise;
         var self = this;
         var base = this._dataBase || 'data';
-        this._historyPromise = this._fetch(base + '/scores/history/index.json').then(function(idx) {
-            var dates = (idx && idx.dates) || [];
-            return Promise.all(dates.map(function(d) {
-                return self._fetch(base + '/scores/history/' + d + '.json').then(function(snap) {
-                    if (snap) self.data.history[d] = snap;
-                });
-            }));
-        }).then(function() {
+        this._historyPromise = this._fetch(base + '/scores/history/compact.json').then(function(c) {
+            self.hist = self._decodeHistory(c);
+            self._defineHistoryView();
             var el = document.getElementById('history-count');
-            if (el) el.textContent = Object.keys(self.data.history || {}).length;
+            if (el) el.textContent = self.hist.dates.length;
+            // Trends rendered before history arrived — paint it again if visible.
+            var trends = document.getElementById('tab-trends');
+            if (trends && !trends.classList.contains('hidden')) {
+                try { self.renderTrends(); } catch (e) {}
+            }
             return self.data.history;
         });
         return this._historyPromise;
+    },
+
+    _decodeHistory: function(c) {
+        var h = { dates: [], counts: [], rows: [], byBench: {}, byPair: {} };
+        if (!c || !c.dates) return h;
+        h.dates = c.dates; h.counts = c.counts || [];
+        var urls = c.s || [], units = c.u || [];
+        for (var i = 0; i < (c.r || []).length; i++) {
+            var r = c.r[i];
+            // change entries: [date_idx, value, url_idx, unit_idx] or [date_idx, null]
+            var row = { m: c.m[r[0]], b: c.b[r[1]], ch: r.slice(2), urls: urls, units: units };
+            h.rows.push(row);
+            (h.byBench[row.b] || (h.byBench[row.b] = [])).push(row);
+            h.byPair[row.m + '|' + row.b] = row;
+        }
+        return h;
+    },
+
+    // Value of one history row on every snapshot date (null = no score that day).
+    _histRowSeries: function(row) {
+        var D = this.hist.dates.length, out = new Array(D), ch = row.ch, k = 0, cur = null;
+        for (var di = 0; di < D; di++) {
+            while (k < ch.length && ch[k][0] === di) { cur = ch[k][1]; k++; }
+            out[di] = cur;
+        }
+        return out;
+    },
+
+    histDates: function() { return this.hist ? this.hist.dates : []; },
+    histCounts: function() { return this.hist ? this.hist.counts : []; },
+    histBenchIds: function() { return this.hist ? Object.keys(this.hist.byBench) : []; },
+
+    // Best (max) value on a benchmark per snapshot date, or null.
+    histBenchMax: function(bid) {
+        var memo = this._histMemo('max');
+        if (memo[bid]) return memo[bid];
+        var D = this.histDates().length, out = memo[bid] = new Array(D).fill(null);
+        var rows = (this.hist && this.hist.byBench[bid]) || [];
+        for (var i = 0; i < rows.length; i++) {
+            var ser = this._histRowSeries(rows[i]);
+            for (var di = 0; di < D; di++) {
+                var v = ser[di];
+                if (v != null && (out[di] == null || v > out[di])) out[di] = v;
+            }
+        }
+        return out;
+    },
+
+    // Number of (snapshot, score) rows on a benchmark summed over all dates.
+    histBenchCoverage: function(bid) {
+        var memo = this._histMemo('cov');
+        if (memo[bid] != null) return memo[bid];
+        var rows = (this.hist && this.hist.byBench[bid]) || [], n = 0;
+        for (var i = 0; i < rows.length; i++) {
+            var ser = this._histRowSeries(rows[i]);
+            for (var di = 0; di < ser.length; di++) if (ser[di] != null) n++;
+        }
+        memo[bid] = n;
+        return n;
+    },
+
+    // History is immutable once loaded, so derived series are cached per kind.
+    _histMemo: function(kind) {
+        if (!this.hist) return {};
+        this.hist._memo = this.hist._memo || {};
+        return this.hist._memo[kind] || (this.hist._memo[kind] = {});
+    },
+
+    // Per date { model_id: value } on one benchmark.
+    histBenchModelValues: function(bid) {
+        var D = this.histDates().length, out = [];
+        for (var di = 0; di < D; di++) out.push({});
+        var rows = (this.hist && this.hist.byBench[bid]) || [];
+        for (var i = 0; i < rows.length; i++) {
+            var ser = this._histRowSeries(rows[i]);
+            for (var dj = 0; dj < D; dj++) if (ser[dj] != null) out[dj][rows[i].m] = ser[dj];
+        }
+        return out;
+    },
+
+    // Value of one model on one benchmark per date (null when absent).
+    histPairSeries: function(mid, bid) {
+        var row = this.hist && this.hist.byPair[mid + '|' + bid];
+        return row ? this._histRowSeries(row) : new Array(this.histDates().length).fill(null);
+    },
+
+    // Every distinct historical observation: fn(model_id, benchmark_id, value, url, date).
+    histForEachObservation: function(fn) {
+        if (!this.hist) return;
+        var dates = this.hist.dates;
+        for (var i = 0; i < this.hist.rows.length; i++) {
+            var row = this.hist.rows[i];
+            for (var k = 0; k < row.ch.length; k++) {
+                var c = row.ch[k];
+                if (c[1] == null) continue;
+                fn(row.m, row.b, c[1], c[2] >= 0 ? row.urls[c[2]] : '', dates[c[0]]);
+            }
+        }
+    },
+
+    // SOTA handovers between consecutive snapshots: compares the per-date best
+    // of each benchmark; a tie keeps the previous holder (the old snapshot scan
+    // picked whichever tied row came first in DB order and logged spurious
+    // handovers). Items: { date, benchmark_id, from_*, to_*, unit, isNew }.
+    histSotaChanges: function() {
+        var memo = this._histMemo('sota');
+        if (memo.list) return memo.list.slice();
+        var out = [];
+        if (!this.hist) return out;
+        var dates = this.hist.dates, self = this;
+        Object.keys(this.hist.byBench).forEach(function(bid) {
+            var rows = self.hist.byBench[bid];
+            var sers = rows.map(function(r) { return self._histRowSeries(r); });
+            var unitAt = function(row, di) {
+                var u = null;
+                for (var k = 0; k < row.ch.length && row.ch[k][0] <= di; k++) u = row.ch[k][1] == null ? null : row.units[row.ch[k][3]];
+                return u || '%';
+            };
+            var prev = null;
+            for (var di = 0; di < dates.length; di++) {
+                var best = null;
+                for (var i = 0; i < rows.length; i++) {
+                    var v = sers[i][di];
+                    // On a tie the previous holder keeps the SOTA (a tie is not a handover).
+                    if (v != null && (best === null || v > best.value || (v === best.value && prev && rows[i].m === prev.model_id))) {
+                        best = { model_id: rows[i].m, value: v, row: rows[i] };
+                    }
+                }
+                if (best) { best.unit = unitAt(best.row, di); delete best.row; }
+                if (di > 0 && best) {
+                    if (prev && prev.model_id !== best.model_id) {
+                        out.push({ date: dates[di], benchmark_id: bid, from_model: prev.model_id, from_value: prev.value,
+                                   to_model: best.model_id, to_value: best.value, unit: best.unit });
+                    } else if (!prev) {
+                        out.push({ date: dates[di], benchmark_id: bid, from_model: null, from_value: null,
+                                   to_model: best.model_id, to_value: best.value, unit: best.unit, isNew: true });
+                    }
+                }
+                prev = best;
+            }
+        });
+        memo.list = out;
+        return out.slice();
+    },
+
+    // Full snapshot for one date, rebuilt on demand (compat for old callers).
+    histSnapshot: function(di) {
+        this._histSnapCache = this._histSnapCache || {};
+        if (this._histSnapCache[di]) return this._histSnapCache[di];
+        var out = [];
+        if (this.hist) {
+            for (var i = 0; i < this.hist.rows.length; i++) {
+                var row = this.hist.rows[i], cur = null, k = 0;
+                while (k < row.ch.length && row.ch[k][0] <= di) { cur = row.ch[k]; k++; }
+                if (cur && cur[1] != null) {
+                    out.push({ model_id: row.m, benchmark_id: row.b, value: cur[1], unit: row.units[cur[3]],
+                               source: { url: cur[2] >= 0 ? row.urls[cur[2]] : null } });
+                }
+            }
+        }
+        this._histSnapCache[di] = out;
+        return out;
+    },
+
+    _defineHistoryView: function() {
+        var self = this, view = {};
+        this.hist.dates.forEach(function(d, di) {
+            Object.defineProperty(view, d, { enumerable: true, get: function() { return self.histSnapshot(di); } });
+        });
+        this.data.history = view;
     },
 
     _fetch: function(url) {
@@ -865,7 +1048,7 @@ var App = {
                     } else {
                         modPromise.then(function() { self._renderTab(tabId); });
                     }
-                    if (tabId === 'trends' || tabId === 'timeline') {
+                    if (tabId === 'trends') {
                         self._ensureHistory();
                     }
                     // Best-effort immediate render — for non-lazy tabs (overview,
@@ -1277,7 +1460,7 @@ var App = {
         // Count SOTAs per category.
         var cats = {};
         Object.keys(this.data.sota).forEach(function(bid) {
-            var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
+            var b = self.getBenchmarkMap()[bid];
             var cat = b ? b.category : 'other';
             cats[cat] = (cats[cat] || 0) + 1;
         });
@@ -1376,14 +1559,19 @@ var App = {
         var tbody = document.createElement('tbody');
         var self = this;
         var filter = this._sotaCategoryFilter;
+        var benchById = this.getBenchmarkMap();
         var entries = Object.keys(this.data.sota).sort().filter(function(benchId) {
             if (filter === null) return true;
-            var b = self.data.benchmarks.find(function(x) { return x.id === benchId; });
+            var b = benchById[benchId];
             return (b ? b.category : 'other') === filter;
         });
-        entries.forEach(function(benchId) {
+        // ~12k benchmarks: painting every row at once put ~100k nodes in the
+        // Overview (≈1 s render and slower tab switches). Show the first rows,
+        // then append the rest in frame-sized chunks on request.
+        var FIRST = 500, CHUNK = 1000;
+        function addRow(benchId) {
             var info = self.data.sota[benchId];
-            var bench = self.data.benchmarks.find(function(b) { return b.id === benchId; });
+            var bench = benchById[benchId];
             var tr = document.createElement('tr');
 
             var tdName = document.createElement('td');
@@ -1437,9 +1625,53 @@ var App = {
             tr.appendChild(tdScore);
 
             tbody.appendChild(tr);
-        });
+        }
+        entries.slice(0, FIRST).forEach(addRow);
         table.appendChild(tbody);
         container.appendChild(table);
+        if (entries.length > FIRST) {
+            var more = document.createElement('button');
+            more.type = 'button';
+            more.className = 'mt-3 px-3 py-1.5 text-sm rounded bg-gray-700 hover:bg-gray-600 text-gray-200';
+            more.textContent = '나머지 ' + (entries.length - FIRST).toLocaleString() + '개 벤치마크 모두 보기';
+            more.onclick = function() {
+                more.disabled = true;
+                var i = FIRST;
+                (function step() {
+                    entries.slice(i, i + CHUNK).forEach(addRow);
+                    i += CHUNK;
+                    if (i < entries.length) {
+                        more.textContent = '불러오는 중… ' + i.toLocaleString() + ' / ' + entries.length.toLocaleString();
+                        requestAnimationFrame(step);
+                    } else {
+                        more.remove();
+                    }
+                })();
+            };
+            container.appendChild(more);
+        }
+    },
+
+    // id -> model object, rebuilt when the model array changes.
+    getModelMap: function() {
+        var list = this.data.models || [];
+        if (this._modelMapSrc !== list || this._modelMapLen !== list.length) {
+            var m = {};
+            for (var i = 0; i < list.length; i++) m[list[i].id] = list[i];
+            this._modelMap = m; this._modelMapSrc = list; this._modelMapLen = list.length;
+        }
+        return this._modelMap;
+    },
+
+    // id -> benchmark object, rebuilt when the benchmark array changes.
+    getBenchmarkMap: function() {
+        var list = this.data.benchmarks || [];
+        if (this._benchMapSrc !== list || this._benchMapLen !== list.length) {
+            var m = {};
+            for (var i = 0; i < list.length; i++) m[list[i].id] = list[i];
+            this._benchMap = m; this._benchMapSrc = list; this._benchMapLen = list.length;
+        }
+        return this._benchMap;
     },
 
     _renderLeaderboardCards: function() {
@@ -1567,7 +1799,7 @@ var App = {
         });
         var modelsWithNewScores = Object.keys(newScoresByModel)
             .map(function(mid) {
-                var m = App.data.models.find(function(x) { return x.id === mid; });
+                var m = App.getModelMap()[mid];
                 return { id: mid, name: m ? m.name : mid, count: newScoresByModel[mid] };
             })
             .sort(function(a, b) { return b.count - a.count; })
@@ -1725,7 +1957,7 @@ var App = {
 
         var tbody = document.createElement('tbody');
         filtered.slice(0, 200).forEach(function(s) {
-            var model = self.data.models.find(function(m) { return m.id === s.model_id; });
+            var model = self.getModelMap()[s.model_id];
             var tr = document.createElement('tr');
 
             var tdModel = document.createElement('td');
@@ -1746,7 +1978,7 @@ var App = {
             tr.appendChild(tdModel);
 
             var tdBench = document.createElement('td');
-            var benchObj = self.data.benchmarks.find(function(b) { return b.id === s.benchmark_id; });
+            var benchObj = self.getBenchmarkMap()[s.benchmark_id];
             var benchSpan = document.createElement('span');
             benchSpan.className = 'cursor-pointer hover:text-blue-400 transition';
             benchSpan.textContent = benchObj ? benchObj.name : s.benchmark_id.toUpperCase();
@@ -1812,14 +2044,14 @@ var App = {
 
         var self = this;
         this._renderSOTATrend(benchId);
-        var bench = this.data.benchmarks.find(function(b) { return b.id === benchId; });
+        var bench = this.getBenchmarkMap()[benchId];
         var benchName = bench ? bench.name : benchId;
 
         // Get all scores for this benchmark, sorted descending
         var entries = [];
         this.data.scores.forEach(function(s) {
             if (s.benchmark_id === benchId) {
-                var model = self.data.models.find(function(m) { return m.id === s.model_id; });
+                var model = self.getModelMap()[s.model_id];
                 entries.push({
                     model_id: s.model_id,
                     name: model ? model.name : s.model_id.split('/').pop(),
@@ -1902,7 +2134,7 @@ var App = {
         });
         var hmNames = hmModelIds.map(function(m) { return m.split('/').pop(); });
         var hmBenchNames = sameCatIds.map(function(bid) {
-            var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
+            var b = self.getBenchmarkMap()[bid];
             return b ? b.name : bid;
         });
         Charts.renderHeatmap('heatmap-chart', hmNames, hmBenchNames, hmMatrix);
@@ -2005,7 +2237,7 @@ var App = {
 
         var catSel = document.getElementById('trend-overview-cat');
         var topNSel = document.getElementById('trend-overview-topn');
-        var historyDates = Object.keys(App.data.history || {}).sort();
+        var historyDates = App.histDates();
 
         function showMsg(text) {
             host.textContent = '';
@@ -2042,16 +2274,8 @@ var App = {
             // For each benchmark, find SOTA over time across history snapshots
             var benchSeries = [];
             benches.forEach(function(b) {
-                var pts = historyDates.map(function(d) {
-                    var snap = App.data.history[d] || [];
-                    var best = null;
-                    snap.forEach(function(s) {
-                        if (s.benchmark_id === b.id) {
-                            if (best === null || s.value > best) best = s.value;
-                        }
-                    });
-                    return best;
-                });
+                if (!App.hist.byBench[b.id]) return;
+                var pts = App.histBenchMax(b.id);
                 var hasData = pts.some(function(v) { return v != null; });
                 if (!hasData) return;
                 var latest = pts.slice().reverse().find(function(v) { return v != null; });
@@ -2113,7 +2337,7 @@ var App = {
         if (!container) return;
         container.textContent = '';
 
-        var dates = Object.keys(this.data.history || {}).sort();
+        var dates = this.histDates();
         if (dates.length < 2) {
             var p = document.createElement('p');
             p.className = 'text-gray-500 text-sm';
@@ -2122,45 +2346,7 @@ var App = {
             return;
         }
 
-        function sotasAt(scoreArr) {
-            var best = {};
-            (scoreArr || []).forEach(function(s) {
-                if (!best[s.benchmark_id] || s.value > best[s.benchmark_id].value) {
-                    best[s.benchmark_id] = { model_id: s.model_id, value: s.value, unit: s.unit || '%' };
-                }
-            });
-            return best;
-        }
-
-        var changes = [];
-        for (var i = 1; i < dates.length; i++) {
-            var prev = sotasAt(this.data.history[dates[i - 1]]);
-            var curr = sotasAt(this.data.history[dates[i]]);
-            Object.keys(curr).forEach(function(bid) {
-                if (prev[bid] && prev[bid].model_id !== curr[bid].model_id) {
-                    changes.push({
-                        date: dates[i],
-                        benchmark_id: bid,
-                        from_model: prev[bid].model_id,
-                        from_value: prev[bid].value,
-                        to_model: curr[bid].model_id,
-                        to_value: curr[bid].value,
-                        unit: curr[bid].unit
-                    });
-                } else if (!prev[bid]) {
-                    changes.push({
-                        date: dates[i],
-                        benchmark_id: bid,
-                        from_model: null,
-                        from_value: null,
-                        to_model: curr[bid].model_id,
-                        to_value: curr[bid].value,
-                        unit: curr[bid].unit,
-                        isNew: true
-                    });
-                }
-            });
-        }
+        var changes = this.histSotaChanges();
 
         // Order: handovers first (model changes), then new benchmarks, newest date first
         changes.sort(function(a, b) {
@@ -2181,11 +2367,11 @@ var App = {
         var newAdds = changes.filter(function(c) { return c.isNew; });
 
         function benchName(bid) {
-            var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
+            var b = self.getBenchmarkMap()[bid];
             return b ? b.name : bid;
         }
         function modelName(mid) {
-            var m = self.data.models.find(function(x) { return x.id === mid; });
+            var m = self.getModelMap()[mid];
             return m ? m.name : mid.split('/').pop();
         }
 
@@ -2305,7 +2491,7 @@ var App = {
         }
 
         var labels = topIds.map(function(bid) {
-            var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
+            var b = self.getBenchmarkMap()[bid];
             var name = b ? b.name : bid;
             return name.replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ').replace("Humanity's Last Exam", 'HLE');
         });
@@ -2375,7 +2561,7 @@ var App = {
                 return typeof p.intelligence_index === 'number' && typeof p.price_per_1m_output === 'number';
             })
             .map(function(p) {
-                var model = self.data.models.find(function(m) { return m.id === p.model_id; });
+                var model = self.getModelMap()[p.model_id];
                 return {
                     name: model ? model.name : p.model_id.split('/').pop(),
                     value: [p.price_per_1m_output, p.intelligence_index, p.tokens_per_second || 0],
@@ -2480,7 +2666,7 @@ var App = {
         if (!chart) return;
 
         var self = this;
-        var dates = Object.keys(this.data.history).sort();
+        var dates = this.histDates();
         if (dates.length === 0) {
             el.textContent = 'No history data available yet.';
             return;
@@ -2493,11 +2679,7 @@ var App = {
         } else {
             // Show top benchmarks by coverage
             var benchCount = {};
-            dates.forEach(function(d) {
-                (self.data.history[d] || []).forEach(function(s) {
-                    benchCount[s.benchmark_id] = (benchCount[s.benchmark_id] || 0) + 1;
-                });
-            });
+            self.histBenchIds().forEach(function(bid) { benchCount[bid] = self.histBenchCoverage(bid); });
             benchIds = Object.keys(benchCount).sort(function(a, b) {
                 return benchCount[b] - benchCount[a];
             }).slice(0, 10);
@@ -2505,19 +2687,10 @@ var App = {
 
         // For each date × benchmark, find SOTA (max score)
         var series = benchIds.map(function(bid) {
-            var bench = self.data.benchmarks.find(function(b) { return b.id === bid; });
+            var bench = self.getBenchmarkMap()[bid];
             var benchName = bench ? bench.name : bid;
 
-            var dataPoints = dates.map(function(date) {
-                var dayScores = (self.data.history[date] || []).filter(function(s) {
-                    return s.benchmark_id === bid;
-                });
-                if (dayScores.length === 0) return null;
-                var maxScore = dayScores.reduce(function(max, s) {
-                    return s.value > max ? s.value : max;
-                }, 0);
-                return maxScore;
-            });
+            var dataPoints = self.histBenchMax(bid);
 
             return {
                 name: benchName,
@@ -2537,7 +2710,7 @@ var App = {
         });
 
         var title = selectedBenchId
-            ? (self.data.benchmarks.find(function(b) { return b.id === selectedBenchId; }) || {}).name + ' — SOTA Trend'
+            ? (self.getBenchmarkMap()[selectedBenchId] || {}).name + ' — SOTA Trend'
             : 'SOTA Score Trends (Top 10 Benchmarks)';
 
         chart.setOption({
@@ -2581,10 +2754,10 @@ var App = {
             if (existing) existing.remove();
             var note = document.createElement('p');
             note.className = 'trend-note text-xs text-gray-500 mt-2';
+            var counts = self.histCounts(), c0 = counts[0] || 0, c1 = counts[counts.length - 1] || 0;
             note.textContent = 'Data points: ' + dates.join(', ') + ' — '
-                + (self.data.history[dates[0]] || []).length + ' → '
-                + (self.data.history[dates[dates.length-1]] || []).length + ' scores'
-                + ' (growth: ' + Math.round(((self.data.history[dates[dates.length-1]] || []).length / (self.data.history[dates[0]] || []).length - 1) * 100) + '%)';
+                + c0 + ' → ' + c1 + ' scores'
+                + ' (growth: ' + Math.round((c1 / c0 - 1) * 100) + '%)';
             container.appendChild(note);
         }
     },
