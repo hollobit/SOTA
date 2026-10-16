@@ -610,10 +610,11 @@ var App = {
             self._defineHistoryView();
             var el = document.getElementById('history-count');
             if (el) el.textContent = self.hist.dates.length;
-            // Trends rendered before history arrived — paint it again if visible.
+            // Trends rendered before history arrived — repaint only its
+            // history-based sections if the tab is visible.
             var trends = document.getElementById('tab-trends');
             if (trends && !trends.classList.contains('hidden')) {
-                try { self.renderTrends(); } catch (e) {}
+                try { self._renderTrendsHistory(); } catch (e) {}
             }
             return self.data.history;
         });
@@ -651,18 +652,43 @@ var App = {
     histBenchIds: function() { return this.hist ? Object.keys(this.hist.byBench) : []; },
 
     // Best (max) value on a benchmark per snapshot date, or null.
+    // Walk a benchmark's change events in date order. visit(di, vals) is called
+    // once per date that has at least one change, after applying that date's
+    // changes; vals[i] is row i's current value (null when absent). Between
+    // event dates nothing changes, so per-date results can be forward-filled
+    // instead of rebuilding every row's full date series.
+    _histBenchEvents: function(bid, visit) {
+        var rows = (this.hist && this.hist.byBench[bid]) || [];
+        var ev = [];
+        for (var i = 0; i < rows.length; i++) {
+            for (var k = 0; k < rows[i].ch.length; k++) ev.push([rows[i].ch[k][0], i, k]);
+        }
+        ev.sort(function(a, b) { return a[0] - b[0] || a[1] - b[1] || a[2] - b[2]; });
+        var vals = new Array(rows.length).fill(null), active = new Array(rows.length).fill(null);
+        for (var e = 0; e < ev.length;) {
+            var di = ev[e][0];
+            for (; e < ev.length && ev[e][0] === di; e++) {
+                var c = rows[ev[e][1]].ch[ev[e][2]];
+                vals[ev[e][1]] = c[1];
+                active[ev[e][1]] = c[1] == null ? null : c;
+            }
+            visit(di, vals, active, rows);
+        }
+    },
+
+    // Best (max) value on a benchmark per snapshot date, or null.
     histBenchMax: function(bid) {
         var memo = this._histMemo('max');
         if (memo[bid]) return memo[bid];
         var D = this.histDates().length, out = memo[bid] = new Array(D).fill(null);
-        var rows = (this.hist && this.hist.byBench[bid]) || [];
-        for (var i = 0; i < rows.length; i++) {
-            var ser = this._histRowSeries(rows[i]);
-            for (var di = 0; di < D; di++) {
-                var v = ser[di];
-                if (v != null && (out[di] == null || v > out[di])) out[di] = v;
-            }
-        }
+        var lastDi = null, lastMax = null;
+        this._histBenchEvents(bid, function(di, vals) {
+            if (lastDi !== null) for (var d = lastDi; d < di; d++) out[d] = lastMax;
+            var m = null;
+            for (var i = 0; i < vals.length; i++) if (vals[i] != null && (m == null || vals[i] > m)) m = vals[i];
+            lastDi = di; lastMax = m;
+        });
+        if (lastDi !== null) for (var d = lastDi; d < D; d++) out[d] = lastMax;
         return out;
     },
 
@@ -670,10 +696,13 @@ var App = {
     histBenchCoverage: function(bid) {
         var memo = this._histMemo('cov');
         if (memo[bid] != null) return memo[bid];
-        var rows = (this.hist && this.hist.byBench[bid]) || [], n = 0;
+        var rows = (this.hist && this.hist.byBench[bid]) || [], n = 0, D = this.histDates().length;
         for (var i = 0; i < rows.length; i++) {
-            var ser = this._histRowSeries(rows[i]);
-            for (var di = 0; di < ser.length; di++) if (ser[di] != null) n++;
+            var ch = rows[i].ch;
+            for (var k = 0; k < ch.length; k++) {
+                if (ch[k][1] == null) continue;
+                n += (k + 1 < ch.length ? ch[k + 1][0] : D) - ch[k][0];
+            }
         }
         memo[bid] = n;
         return n;
@@ -729,24 +758,17 @@ var App = {
         if (!this.hist) return out;
         var dates = this.hist.dates, self = this;
         Object.keys(this.hist.byBench).forEach(function(bid) {
-            var rows = self.hist.byBench[bid];
-            var sers = rows.map(function(r) { return self._histRowSeries(r); });
-            var unitAt = function(row, di) {
-                var u = null;
-                for (var k = 0; k < row.ch.length && row.ch[k][0] <= di; k++) u = row.ch[k][1] == null ? null : row.units[row.ch[k][3]];
-                return u || '%';
-            };
             var prev = null;
-            for (var di = 0; di < dates.length; di++) {
-                var best = null;
+            self._histBenchEvents(bid, function(di, vals, active, rows) {
+                var best = null, bi = -1;
                 for (var i = 0; i < rows.length; i++) {
-                    var v = sers[i][di];
+                    var v = vals[i];
                     // On a tie the previous holder keeps the SOTA (a tie is not a handover).
                     if (v != null && (best === null || v > best.value || (v === best.value && prev && rows[i].m === prev.model_id))) {
-                        best = { model_id: rows[i].m, value: v, row: rows[i] };
+                        best = { model_id: rows[i].m, value: v }; bi = i;
                     }
                 }
-                if (best) { best.unit = unitAt(best.row, di); delete best.row; }
+                if (best) best.unit = rows[bi].units[active[bi][3]] || '%';
                 if (di > 0 && best) {
                     if (prev && prev.model_id !== best.model_id) {
                         out.push({ date: dates[di], benchmark_id: bid, from_model: prev.model_id, from_value: prev.value,
@@ -757,7 +779,7 @@ var App = {
                     }
                 }
                 prev = best;
-            }
+            });
         });
         memo.list = out;
         return out.slice();
@@ -2089,6 +2111,18 @@ var App = {
             function() { App._renderSotaHighlights(); },
             function() { App._renderTrendOverview(); },
             function() { self._renderTrendBenchmark(); }
+        ], function(fn) { fn(); }, { first: 1, budget: 8 });
+    },
+
+    // The Trends sections that read score history (handover log, SOTA trend
+    // overview, per-benchmark SOTA trend).
+    _renderTrendsHistory: function() {
+        var self = this;
+        // Own key: must not cancel a still-running full Trends render.
+        this.renderChunked('trends-history', [
+            function() { self._renderSOTAChangeLog(); },
+            function() { App._renderTrendOverview(); },
+            function() { self._renderSOTATrend(document.getElementById('trend-benchmark').value || null); }
         ], function(fn) { fn(); }, { first: 1, budget: 8 });
     },
 
