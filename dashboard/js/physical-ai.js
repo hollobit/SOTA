@@ -475,29 +475,32 @@ var PhysicalAI = {
         this._benchmarks = App.data.benchmarks;
         this._scores = App.data.scores;
 
-        this._renderCategoryMap();
-        this._renderBenchmarkTable();
-        this._renderTimeline();
-        this._renderRadar();
+        var self = this;
         this._initialized = true;
-
-        if (typeof EdgeLLM !== 'undefined' && EdgeLLM.render) {
-            try { EdgeLLM.render(); } catch (e) {
-                if (typeof console !== 'undefined') console.warn('[PhysicalAI] EdgeLLM render failed:', e);
-            }
-        }
-
-        if (typeof PhysicalAICharts !== 'undefined' && PhysicalAICharts.renderAll) {
-            PhysicalAICharts.renderAll();
-        }
+        // Sections render as separate tasks, in the same order, so the tab paints
+        // after the first one instead of blocking until every chart is built.
+        App.renderChunked('phys-render', [
+            function() { self._renderCategoryMap(); },
+            function() { self._renderBenchmarkTable(); },
+            function() { self._renderTimeline(); },
+            function() { self._renderRadar(); },
+            function() {
+                if (typeof EdgeLLM !== 'undefined' && EdgeLLM.render) {
+                    try { EdgeLLM.render(); } catch (e) {
+                        if (typeof console !== 'undefined') console.warn('[PhysicalAI] EdgeLLM render failed:', e);
+                    }
+                }
+            },
+            function() { if (typeof PhysicalAICharts !== 'undefined' && PhysicalAICharts.renderAll) PhysicalAICharts.renderAll(); }
+        ], function(fn) { fn(); }, { first: 1, budget: 8 });
     },
 
     // ─────────────── Helpers (mirror Sovereign's where useful) ───────────────
     _getModel: function(mid) {
-        return this._models.find(function(m) { return m.id === mid; });
+        return ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._models)[mid] : this._models.find(function(m) { return m.id === mid; }));
     },
     _getBenchmark: function(bid) {
-        return this._benchmarks.find(function(b) { return b.id === bid; });
+        return ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._benchmarks)[bid] : this._benchmarks.find(function(b) { return b.id === bid; }));
     },
     _getScore: function(modelId, benchId) {
         // O(1) shared-index lookup instead of an O(N) scan of ~18K scores
@@ -709,8 +712,17 @@ var PhysicalAI = {
         el.appendChild(summary);
 
         // One table per BENCHMARK_SUITE
-        this.BENCHMARK_SUITES.forEach(function(suite, suiteIdx) {
+        // Model set + per-benchmark index: "is this benchmark scored by any
+        // listed model" without scanning every model for every benchmark.
+        var modelSet = {};
+        allModelIds.forEach(function(mid) { modelSet[mid] = true; });
+        var sIdx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        // One table per suite, time-sliced (the full set is ~60k nodes).
+        App.renderChunked('phys-suites', this.BENCHMARK_SUITES, function(suite, suiteIdx) {
             var activeBids = suite.benchmarks.filter(function(bid) {
+                if (sIdx && sIdx.byBench) {
+                    return (sIdx.byBench[bid] || []).some(function(sc) { return modelSet[sc.model_id] && sc.value != null; });
+                }
                 return allModelIds.some(function(mid) { return self._getScore(mid, bid) != null; });
             });
             if (activeBids.length === 0) return;
@@ -753,14 +765,16 @@ var PhysicalAI = {
                     return sortS.dir === 'asc' ? va - vb : vb - va;
                 });
             } else {
+                // Sort keys computed once per row instead of inside the comparator.
+                var catIx = {}, sumOf = {};
+                rowIds.forEach(function(mid) {
+                    var c = self._categoryOf(mid);
+                    catIx[mid] = c ? self.CATEGORIES.indexOf(c) : 99;
+                    sumOf[mid] = activeBids.reduce(function(acc, bid) { var v = self._getScore(mid, bid); return acc + (v != null ? v : 0); }, 0);
+                });
                 rowIds.sort(function(a, b) {
-                    var ca = self._categoryOf(a), cb = self._categoryOf(b);
-                    var ia = ca ? self.CATEGORIES.indexOf(ca) : 99;
-                    var ib = cb ? self.CATEGORIES.indexOf(cb) : 99;
-                    if (ia !== ib) return ia - ib;
-                    var sa = activeBids.reduce(function(acc, bid) { var v = self._getScore(a, bid); return acc + (v != null ? v : 0); }, 0);
-                    var sb2 = activeBids.reduce(function(acc, bid) { var v = self._getScore(b, bid); return acc + (v != null ? v : 0); }, 0);
-                    return sb2 - sa;
+                    if (catIx[a] !== catIx[b]) return catIx[a] - catIx[b];
+                    return sumOf[b] - sumOf[a];
                 });
             }
 
@@ -890,7 +904,7 @@ var PhysicalAI = {
             table.appendChild(tbody);
             wrap.appendChild(table);
             el.appendChild(wrap);
-        });
+        }, { first: 1 });
     },
 
     // ─────────────── Timeline scatter (x = date, y = category) ───────────────

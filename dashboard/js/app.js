@@ -899,12 +899,20 @@ var App = {
         if (!srcs || srcs.length === 0) return Promise.resolve();
         var self = this;
         return Promise.all(srcs.map(function(s) { return self._loadScript(s); }))
-            .then(function() {
-                var initFn = self._TAB_INIT[tabId];
-                if (initFn) {
-                    try { initFn(self); } catch (e) { console.warn('init error for', tabId, e); }
-                }
-            });
+            .then(function() { self._initTab(tabId); });
+    },
+
+    // Run a tab module's init once per data set. It used to run twice on every
+    // tab click (module promise + scores promise), rebuilding module caches.
+    _initTab: function(tabId) {
+        var initFn = this._TAB_INIT[tabId];
+        if (!initFn) return;
+        this._tabInitWith = this._tabInitWith || {};
+        var key = this.data.scores;
+        var done = this._tabInitWith[tabId];
+        if (done && done.scores === key && done.len === (key ? key.length : 0) && done.models === this.data.models) return;
+        try { initFn(this); } catch (e) { console.warn('init error for', tabId, e); }
+        this._tabInitWith[tabId] = { scores: key, len: key ? key.length : 0, models: this.data.models };
     },
 
     // Single dispatch table for tab render — used both from the click
@@ -938,8 +946,9 @@ var App = {
         else if (tabId === 'changelog') self.renderChangelog();
         else if (tabId === 'graphrag' && typeof GraphRAG !== 'undefined') GraphRAG.render();
         if (typeof Charts !== 'undefined' && Charts.resizeAll) {
-            Charts.resizeAll();
-            requestAnimationFrame(function() { Charts.resizeAll(); });
+            var pane = document.getElementById('tab-' + tabId);
+            Charts.resizeAll(pane);
+            requestAnimationFrame(function() { Charts.resizeAll(pane); });
         }
     },
 
@@ -1041,11 +1050,10 @@ var App = {
                         }
                         Promise.all([modPromise, self._ensureScores()]).then(function() {
                             clearTabLoading(tabId);
-                            var initFn = self._TAB_INIT[tabId];
-                            if (initFn) { try { initFn(self); } catch (e) {} }
+                            self._initTab(tabId);
                             self._renderTab(tabId);
                         });
-                    } else {
+                    } else if (self._TAB_MODULES[tabId]) {
                         modPromise.then(function() { self._renderTab(tabId); });
                     }
                     if (tabId === 'trends') {
@@ -1652,11 +1660,48 @@ var App = {
         }
     },
 
+    // Time-sliced rendering for long lists/tables: the first `first` items run
+    // synchronously (so the tab paints immediately), the rest in ~12 ms slices
+    // between which the browser can paint and handle input — no long task
+    // freezes the page. Items run in order; a newer call with the same key
+    // cancels an unfinished older one (e.g. a filter change re-render).
+    renderChunked: function(key, items, fn, opts) {
+        opts = opts || {};
+        var first = opts.first != null ? opts.first : 150;
+        var budget = opts.budget || 12;
+        this._chunkGen = this._chunkGen || {};
+        var gen = this._chunkGen[key] = (this._chunkGen[key] || 0) + 1;
+        var self = this, i = 0, n = Math.min(first, items.length);
+        for (; i < n; i++) fn(items[i], i);
+        function step() {
+            if (self._chunkGen[key] !== gen) return;
+            var t0 = performance.now();
+            do { fn(items[i], i); i++; } while (i < items.length && performance.now() - t0 < budget);
+            if (i < items.length) setTimeout(step, 0);
+            else if (opts.done) opts.done();
+        }
+        if (i < items.length) setTimeout(step, 0);
+        else if (opts.done) opts.done();
+    },
+
+    // Cached id -> object map for any array of {id} objects (module copies of
+    // the model / benchmark lists included). Rebuilt when the array changes.
+    idMap: function(arr) {
+        if (!arr) return {};
+        this._idMaps = this._idMaps || (typeof WeakMap !== 'undefined' ? new WeakMap() : null);
+        var c = this._idMaps && this._idMaps.get(arr);
+        if (c && c.len === arr.length) return c.map;
+        var m = Object.create(null);
+        for (var i = 0; i < arr.length; i++) if (arr[i] && arr[i].id != null && !(arr[i].id in m)) m[arr[i].id] = arr[i];
+        if (this._idMaps) this._idMaps.set(arr, { len: arr.length, map: m });
+        return m;
+    },
+
     // id -> model object, rebuilt when the model array changes.
     getModelMap: function() {
         var list = this.data.models || [];
         if (this._modelMapSrc !== list || this._modelMapLen !== list.length) {
-            var m = {};
+            var m = Object.create(null);
             for (var i = 0; i < list.length; i++) m[list[i].id] = list[i];
             this._modelMap = m; this._modelMapSrc = list; this._modelMapLen = list.length;
         }
@@ -1667,7 +1712,7 @@ var App = {
     getBenchmarkMap: function() {
         var list = this.data.benchmarks || [];
         if (this._benchMapSrc !== list || this._benchMapLen !== list.length) {
-            var m = {};
+            var m = Object.create(null);
             for (var i = 0; i < list.length; i++) m[list[i].id] = list[i];
             this._benchMap = m; this._benchMapSrc = list; this._benchMapLen = list.length;
         }
@@ -2033,12 +2078,21 @@ var App = {
     },
 
     renderTrends: function() {
-        this._renderSOTAChangeLog();
-        this._renderCorrelationChart();
-        this._renderPricingChart();
-        // SOTA highlights + trend overview always render (don't depend on benchmark selection)
-        App._renderSotaHighlights();
-        App._renderTrendOverview();
+        // Each section is its own task (same order as before) so the tab paints
+        // after the first one instead of blocking until every chart is built.
+        var self = this;
+        this.renderChunked('trends', [
+            function() { self._renderSOTAChangeLog(); },
+            function() { self._renderCorrelationChart(); },
+            function() { self._renderPricingChart(); },
+            // SOTA highlights + trend overview always render (don't depend on benchmark selection)
+            function() { App._renderSotaHighlights(); },
+            function() { App._renderTrendOverview(); },
+            function() { self._renderTrendBenchmark(); }
+        ], function(fn) { fn(); }, { first: 1, budget: 8 });
+    },
+
+    _renderTrendBenchmark: function() {
         var benchId = document.getElementById('trend-benchmark').value;
         if (!benchId) { this._renderSOTATrend(null); return; }
 
@@ -2381,7 +2435,10 @@ var App = {
             h.textContent = 'Handovers (' + handovers.length + ')';
             container.appendChild(h);
 
-            handovers.forEach(function(c) {
+            // ~1.3k rows: first rows now, the rest time-sliced into this list.
+            var list = document.createElement('div');
+            container.appendChild(list);
+            self.renderChunked('trends-handovers', handovers, function(c) {
                 var row = document.createElement('div');
                 row.className = 'py-1.5 border-b border-gray-800 last:border-b-0 flex items-baseline gap-3 flex-wrap';
 
@@ -2401,8 +2458,8 @@ var App = {
                 when.textContent = c.date;
                 row.appendChild(when);
 
-                container.appendChild(row);
-            });
+                list.appendChild(row);
+            }, { first: 100 });
         }
 
         if (newAdds.length) {
@@ -2419,11 +2476,9 @@ var App = {
         }
     },
 
-    _renderCorrelationChart: function() {
+    // Pearson r between the 15 best-covered percentage-like benchmarks.
+    _computeCorrelation: function() {
         var self = this;
-        var el = document.getElementById('correlation-chart');
-        if (!el) return;
-
         // Build model→{benchId: value} table
         var modelScores = {};
         this.data.scores.forEach(function(s) {
@@ -2438,7 +2493,8 @@ var App = {
         // like a percentage (so correlation is meaningful).
         var benchCount = {};
         var benchMax = {};
-        Object.values(modelScores).forEach(function(bm) {
+        var models = Object.values(modelScores);
+        models.forEach(function(bm) {
             Object.keys(bm).forEach(function(bid) {
                 benchCount[bid] = (benchCount[bid] || 0) + 1;
                 benchMax[bid] = Math.max(benchMax[bid] || 0, bm[bid]);
@@ -2450,15 +2506,7 @@ var App = {
         });
         candidateIds.sort(function(a, b) { return benchCount[b] - benchCount[a]; });
         var topIds = candidateIds.slice(0, 15);
-
-        if (topIds.length < 3) {
-            el.textContent = '';
-            var p = document.createElement('p');
-            p.className = 'text-gray-500 text-sm';
-            p.textContent = 'Not enough benchmarks meet the coverage threshold (N ≥ 10 models).';
-            el.appendChild(p);
-            return;
-        }
+        if (topIds.length < 3) return { topIds: topIds, data: [], labels: [] };
 
         function pearson(a, b) {
             var n = a.length;
@@ -2475,16 +2523,23 @@ var App = {
             return denom > 0 ? num / denom : null;
         }
 
+        // Only models scored on at least one of the chosen benchmarks matter
+        // (same pairs, same order as scanning every model).
+        var relevant = models.filter(function(bm) {
+            for (var k = 0; k < topIds.length; k++) if (bm[topIds[k]] !== undefined) return true;
+            return false;
+        });
         var data = [];
         for (var i = 0; i < topIds.length; i++) {
             for (var j = 0; j < topIds.length; j++) {
                 var bidA = topIds[i], bidB = topIds[j];
                 var va = [], vb = [];
-                Object.values(modelScores).forEach(function(bm) {
+                for (var m = 0; m < relevant.length; m++) {
+                    var bm = relevant[m];
                     if (bm[bidA] !== undefined && bm[bidB] !== undefined) {
                         va.push(bm[bidA]); vb.push(bm[bidB]);
                     }
-                });
+                }
                 var r = (i === j) ? 1 : pearson(va, vb);
                 data.push([j, i, r === null ? null : +r.toFixed(2), va.length]);
             }
@@ -2495,6 +2550,30 @@ var App = {
             var name = b ? b.name : bid;
             return name.replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ').replace("Humanity's Last Exam", 'HLE');
         });
+        return { topIds: topIds, data: data, labels: labels };
+    },
+
+    _renderCorrelationChart: function() {
+        var self = this;
+        var el = document.getElementById('correlation-chart');
+        if (!el) return;
+
+        // The matrix only depends on the score array: computed once per array
+        // (Trends re-renders on every visit and filter change).
+        var cc = this._corrCache;
+        if (!cc || cc.src !== this.data.scores || cc.len !== this.data.scores.length) {
+            cc = this._corrCache = this._computeCorrelation();
+            cc.src = this.data.scores; cc.len = this.data.scores.length;
+        }
+        if (cc.topIds.length < 3) {
+            el.textContent = '';
+            var p = document.createElement('p');
+            p.className = 'text-gray-500 text-sm';
+            p.textContent = 'Not enough benchmarks meet the coverage threshold (N ≥ 10 models).';
+            el.appendChild(p);
+            return;
+        }
+        var data = cc.data, labels = cc.labels;
 
         var chart = Charts._getOrCreate('correlation-chart');
         if (!chart) return;

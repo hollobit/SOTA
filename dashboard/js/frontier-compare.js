@@ -1377,12 +1377,12 @@ var FrontierCompare = {
     _invalidateScoreMap: function() { this._scoreMapCache = null; },
 
     _getModelName: function(modelId) {
-        var m = this._models.find(function(m) { return m.id === modelId; });
+        var m = ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._models)[modelId] : this._models.find(function(m) { return m.id === modelId; }));
         return m ? m.name : modelId.split('/').pop();
     },
 
     _getBenchName: function(benchId) {
-        var b = this._benchmarks.find(function(b) { return b.id === benchId; });
+        var b = ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._benchmarks)[benchId] : this._benchmarks.find(function(b) { return b.id === benchId; }));
         return b ? b.name : benchId;
     },
 

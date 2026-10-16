@@ -342,6 +342,8 @@
   // ====================================================================
   function _scoresFor(benchmarkId) {
     if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.scores) return [];
+    var idx = window.App.getScoreIndex ? window.App.getScoreIndex() : null;
+    if (idx && idx.byBench) return (idx.byBench[benchmarkId] || []).slice();
     var out = [];
     var ss = window.App.data.scores;
     for (var i = 0; i < ss.length; i++) {
@@ -352,6 +354,7 @@
 
   function _modelDisplayName(modelId) {
     if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.models) return modelId;
+    if (window.App.getModelMap) { var mm = window.App.getModelMap()[modelId]; return (mm && mm.name) || modelId; }
     var ms = window.App.data.models;
     for (var i = 0; i < ms.length; i++) {
       if (ms[i].id === modelId) return ms[i].name || modelId;

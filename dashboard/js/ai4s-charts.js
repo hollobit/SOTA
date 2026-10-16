@@ -425,6 +425,9 @@
   // ====================================================================
   function _scoresFor(benchmarkId) {
     if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.scores) return [];
+    // Shared per-benchmark index (same rows, same order as a full scan).
+    var idx = window.App.getScoreIndex ? window.App.getScoreIndex() : null;
+    if (idx && idx.byBench) return (idx.byBench[benchmarkId] || []).slice();
     var out = [];
     var ss = window.App.data.scores;
     for (var i = 0; i < ss.length; i++) {

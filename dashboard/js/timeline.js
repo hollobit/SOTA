@@ -1197,8 +1197,17 @@ var Timeline = {
     },
 
     render: function() {
-        this._renderFrontierVersionTimeline();
-        this._renderInfographic();
+        // Version chart, infographic and model list render as separate tasks
+        // (same order) so the tab paints before the ~4k-row list is built.
+        var self = this;
+        App.renderChunked('timeline-render', [
+            function() { self._renderFrontierVersionTimeline(); },
+            function() { self._renderInfographic(); },
+            function() { self._renderList(); }
+        ], function(fn) { fn(); }, { first: 1, budget: 8 });
+    },
+
+    _renderList: function() {
         var container = document.getElementById('timeline-container');
         if (!container) return;
         container.textContent = '';
@@ -1294,7 +1303,8 @@ var Timeline = {
         // Also when sorted by date, group by year-month for visual grouping
         var lastYearMonth = null;
 
-        entries.forEach(function(e) {
+        // ~4k rows: paint the first rows now, append the rest time-sliced.
+        App.renderChunked('timeline-list', entries, function(e) {
             // Group header
             if (grouped) {
                 var groupKey = sortMode === 'vendor' ? e.vendor : e.country;
@@ -1320,7 +1330,7 @@ var Timeline = {
 
             // Row
             var row = document.createElement('div');
-            row.className = 'flex items-center gap-3 px-3 py-2 bg-gray-900 hover:bg-gray-800 border border-gray-800 rounded cursor-pointer transition';
+            row.className = 'tl-row flex items-center gap-3 px-3 py-2 bg-gray-900 hover:bg-gray-800 border border-gray-800 rounded cursor-pointer transition';
             row.addEventListener('click', (function(mid) {
                 return function() {
                     if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid);
@@ -1381,6 +1391,6 @@ var Timeline = {
             row.appendChild(scoreCol);
 
             container.appendChild(row);
-        });
+        }, { first: 120 });
     },
 };

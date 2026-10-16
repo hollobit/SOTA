@@ -30,31 +30,49 @@ var Comparison = {
         this._populateSelectors();
         this._loadState();
         this._applySelections();
-        this._bindEvents();
-        this._setupSearch();
-        this._setupPresets();
-        this._setupCounters();
+        // init runs again when scores arrive: wire DOM listeners only once
+        // (a second set doubled every "Update" render).
+        if (!this._wired) {
+            this._bindEvents();
+            this._setupSearch();
+            this._setupPresets();
+            this._setupCounters();
+            this._wired = true;
+        } else if (this._updateCounters) {
+            this._updateCounters();
+        }
     },
 
     _populateSelectors: function() {
         var modelSel = document.getElementById('cmp-models');
         var benchSel = document.getElementById('cmp-benchmarks');
+        // ~17k <option>s in two list boxes: rebuild only when the source lists
+        // change (init runs again once scores arrive), and insert each list in
+        // one DocumentFragment.
+        var sig = this._allModels.length + '|' + this._allBenchmarks.length;
+        if (this._selSig === sig && this._selModels === this._allModels && this._selBenches === this._allBenchmarks &&
+            modelSel.options.length === this._allModels.length) return;
+        this._selSig = sig; this._selModels = this._allModels; this._selBenches = this._allBenchmarks;
         modelSel.textContent = '';
         benchSel.textContent = '';
 
+        var mf = document.createDocumentFragment();
         this._allModels.forEach(function(m) {
             var opt = document.createElement('option');
             opt.value = m.id;
             opt.textContent = m.name + ' (' + m.vendor + ')';
-            modelSel.appendChild(opt);
+            mf.appendChild(opt);
         });
+        modelSel.appendChild(mf);
 
+        var bf = document.createDocumentFragment();
         this._allBenchmarks.forEach(function(b) {
             var opt = document.createElement('option');
             opt.value = b.id;
             opt.textContent = b.name;
-            benchSel.appendChild(opt);
+            bf.appendChild(opt);
         });
+        benchSel.appendChild(bf);
     },
 
     _loadState: function() {

@@ -7,11 +7,26 @@ var Charts = {
     _getOrCreate: function(containerId) {
         var el = document.getElementById(containerId);
         if (!el) return null;
+        var existing = this._instances[containerId];
+        // Fast path: a live instance on this exact element with real dimensions.
+        // getWidth/getHeight are ECharts' cached sizes, so this avoids the forced
+        // layout of reading offsetParent/offsetWidth on every call (that read was
+        // ~110 ms of layout thrash on the Timeline / Comparison tabs).
+        try {
+            if (existing && !existing.isDisposed() && existing.getDom() === el &&
+                existing.getWidth() >= 10 && existing.getHeight() >= 10) return existing;
+        } catch (e) {}
         // If parent is display:none (offsetParent === null), can't measure — skip.
         // The caller can re-invoke when the tab becomes visible.
         if (el.offsetParent === null && el.offsetWidth === 0) return null;
 
-        var existing = this._instances[containerId];
+        if (existing && (existing.isDisposed() || existing.getDom() !== el)) {
+            // Container was replaced (e.g. innerHTML re-render): the old instance
+            // points at a detached node — drop it and init on the new element.
+            try { if (!existing.isDisposed()) existing.dispose(); } catch (e) {}
+            existing = null;
+            delete this._instances[containerId];
+        }
         if (existing) {
             // Detect cached chart with bad (zero) dimensions — happens when
             // ECharts.init ran while parent was display:none. Dispose + reinit.
@@ -31,25 +46,35 @@ var Charts = {
 
         this._instances[containerId] = echarts.init(el, 'dark');
         var chart = this._instances[containerId];
+        this._sizeChanged(chart);  // record the init size
         // Defer a resize to the next frame so any pending layout (e.g. tab
         // just transitioned from display:none) is reflected before ECharts
         // remeasures its container. setOption may run before this fires —
         // that's fine, resize() will repaint at correct dimensions.
         requestAnimationFrame(function() {
-            try { chart.resize(); } catch (e) {}
+            try { if (!chart.isDisposed() && Charts._sizeChanged(chart)) chart.resize(); } catch (e) {}
         });
         // ResizeObserver covers the case where the element grows later
         // (e.g. parent grid finalising after fonts load).
         if (typeof ResizeObserver !== 'undefined') {
             try {
                 var ro = new ResizeObserver(function() {
-                    try { chart.resize(); } catch (e) {}
+                    // Skip hide (0×0 when the tab goes display:none) and no-op
+                    // notifications: resize() re-renders the whole chart, and
+                    // every tab switch used to re-render the previous tab's
+                    // charts at zero size.
+                    try {
+                        if (chart.isDisposed()) return;
+                        if (el.clientWidth < 1 || el.clientHeight < 1) return;
+                        if (!Charts._sizeChanged(chart)) return;
+                        chart.resize();
+                    } catch (e) {}
                 });
                 ro.observe(el);
             } catch (e) {}
         }
         window.addEventListener('resize', function() {
-            try { chart.resize(); } catch (e) {}
+            try { if (!chart.isDisposed() && Charts._sizeChanged(chart)) chart.resize(); } catch (e) {}
         });
         return chart;
     },
@@ -57,12 +82,32 @@ var Charts = {
     /**
      * Force resize all known chart instances. Call after a tab becomes visible.
      */
-    resizeAll: function() {
+    // Container size (clientWidth × clientHeight) last seen for an instance;
+    // true when it differs now (first call records it and reports a change).
+    // Compared against our own record because ECharts' getWidth() excludes
+    // container padding, so it never equals clientWidth on padded containers.
+    _sizeChanged: function(inst) {
+        var dom = inst.getDom();
+        var w = dom.clientWidth, h = dom.clientHeight;
+        if (inst.__lastW === w && inst.__lastH === h) return false;
+        inst.__lastW = w; inst.__lastH = h;
+        return true;
+    },
+
+    resizeAll: function(scopeEl) {
+        // Only charts inside scopeEl (the tab being shown) and only when their
+        // container size actually changed: ECharts resize() re-renders the whole
+        // chart even at the same size, and every tab switch used to resize every
+        // chart of every tab twice.
         var self = this;
         Object.keys(this._instances).forEach(function(id) {
             try {
                 var inst = self._instances[id];
-                if (inst && !inst.isDisposed()) inst.resize();
+                if (!inst || inst.isDisposed()) return;
+                var dom = inst.getDom();
+                if (scopeEl && !scopeEl.contains(dom)) return;
+                if (!self._sizeChanged(inst)) return;
+                inst.resize();
             } catch (e) {}
         });
     },

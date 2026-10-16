@@ -110,17 +110,33 @@ var AgentCharts = (function() {
 
   // Per-benchmark normalized score lookup for a given model (0-100).
   // Honors lower_better via the supplied category. Returns null if no score.
-  function _normalizedScore(modelId, benchmarkId, cat) {
+  // Per-benchmark { max, byModel } computed once per score array (the widgets
+  // ask for thousands of (model, benchmark) pairs; each used to rescan all rows).
+  var _normCache = { src: null, len: -1, byBench: {} };
+  function _benchStats(benchmarkId) {
+    var src = (window.App && App.data) ? App.data.scores : null;
+    if (_normCache.src !== src || _normCache.len !== (src ? src.length : -1)) {
+      _normCache = { src: src, len: src ? src.length : -1, byBench: {} };
+    }
+    var st = _normCache.byBench[benchmarkId];
+    if (st) return st;
     var rows = _scoresFor(benchmarkId);
-    if (!rows.length) return null;
-    var maxV = 0;
-    var mine = null;
+    st = { max: 0, byModel: {}, n: rows.length };
     for (var i = 0; i < rows.length; i++) {
       var r = rows[i];
       if (!r || typeof r.value !== 'number') continue;
-      if (r.value > maxV) maxV = r.value;
-      if (r.model_id === modelId) mine = r.value;
+      if (r.value > st.max) st.max = r.value;
+      st.byModel[r.model_id] = r.value;  // last row wins, as in the old scan
     }
+    _normCache.byBench[benchmarkId] = st;
+    return st;
+  }
+
+  function _normalizedScore(modelId, benchmarkId, cat) {
+    var st = _benchStats(benchmarkId);
+    if (!st.n) return null;
+    var maxV = st.max;
+    var mine = Object.prototype.hasOwnProperty.call(st.byModel, modelId) ? st.byModel[modelId] : null;
     if (mine === null || maxV <= 0) return null;
     if (_isLowerBetter(cat, benchmarkId)) return (1 - mine / maxV) * 100;
     return (mine / maxV) * 100;
@@ -4563,8 +4579,17 @@ var AgentCharts = (function() {
     return score.source_url || score.url || '';
   }
 
+  var _pairsCache = null;
   function _collectMultiSourcePairs() {
     if (!(window.App && App.data && App.data.scores)) return [];
+    var key = App.data.scores.length + '|' + (App.hist ? App.hist.dates.length : 0);
+    if (_pairsCache && _pairsCache.src === App.data.scores && _pairsCache.key === key) return _pairsCache.pairs.slice();
+    var pairs = _collectMultiSourcePairsUncached();
+    _pairsCache = { src: App.data.scores, key: key, pairs: pairs };
+    return pairs.slice();
+  }
+
+  function _collectMultiSourcePairsUncached() {
     // Bucket all observations by "model|benchmark"; each entry is {value, url, date}.
     var groups = {};
     function _ingest(arr) {
@@ -4829,23 +4854,14 @@ var AgentCharts = (function() {
   // others, hence the per-call try/catch.
   // ======================================================================
   function renderAll() {
-    // Above-the-fold widgets render synchronously to fill the visible viewport
-    // immediately. The remaining 12 widgets are deferred to the next idle frame
-    // so the initial paint isn't blocked by ~12 ECharts.init + setOption calls.
-    // requestIdleCallback gives the browser room to settle layout before we
-    // stack more chart work; setTimeout is the fallback for Safari < 17 etc.
-    var eagerFns = [
+    // All 16 widgets in order, one per task (App.renderChunked): the first
+    // paints immediately, the rest follow without a single long task (the 12
+    // "lazy" widgets used to run inside one idle callback).
+    var fns = [
       renderCostScatter,
       renderCapabilityHeatmap,
       renderCategoryRadar,
-      renderClassDotPlot
-    ];
-    for (var i = 0; i < eagerFns.length; i++) {
-      try { eagerFns[i](); } catch (e) {
-        if (window.console) console.warn('[AgentCharts] eager widget failed:', eagerFns[i].name || i, e);
-      }
-    }
-    var lazyFns = [
+      renderClassDotPlot,
       renderSOTATimeline,
       renderVendorMatrix,
       renderClassViolin,
@@ -4859,17 +4875,15 @@ var AgentCharts = (function() {
       renderEdgeUtilityScatter,
       renderConfidenceIntervals
     ];
-    function _runLazy() {
-      for (var i = 0; i < lazyFns.length; i++) {
-        try { lazyFns[i](); } catch (e) {
-          if (window.console) console.warn('[AgentCharts] lazy widget failed:', lazyFns[i].name || i, e);
-        }
+    function _run(fn, i) {
+      try { fn(); } catch (e) {
+        if (window.console) console.warn('[AgentCharts] widget failed:', fn.name || i, e);
       }
     }
-    if (typeof window.requestIdleCallback === 'function') {
-      window.requestIdleCallback(_runLazy, { timeout: 1500 });
+    if (window.App && App.renderChunked) {
+      App.renderChunked('agent-widgets', fns, _run, { first: 1, budget: 8 });
     } else {
-      setTimeout(_runLazy, 50);
+      for (var k = 0; k < fns.length; k++) _run(fns[k], k);
     }
     // Widget 7 hooks the leaderboard renderer; that integration lives in agent.js.
   }

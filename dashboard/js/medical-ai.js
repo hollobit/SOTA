@@ -1078,12 +1078,17 @@ var MedicalAI = {
         this._models = App.data.models;
         this._benchmarks = App.data.benchmarks;
         this._scores = App.data.scores;
-        this._renderCategoryMap();
-        this._renderBenchmarkTable();
-        this._renderTimeline();
-        this._renderTimelineInfographic();
-        this._renderRadar();
         var self = this;
+        // Sections render as separate tasks, in the same order, so the tab paints
+        // after the first one instead of blocking until every chart is built.
+        App.renderChunked('med-render', [
+            function() { self._renderCategoryMap(); },
+            function() { self._renderBenchmarkTable(); },
+            function() { self._renderTimeline(); },
+            function() { self._renderTimelineInfographic(); },
+            function() { self._renderRadar(); },
+            function() { if (typeof MedicalAICharts !== 'undefined' && MedicalAICharts.renderAll) MedicalAICharts.renderAll(); }
+        ], function(fn) { fn(); }, { first: 1, budget: 8 });
         var periodSel = document.getElementById('med-timeline-period');
         var yModeSel = document.getElementById('med-timeline-y-mode');
         if (periodSel && !periodSel._wired) {
@@ -1110,16 +1115,13 @@ var MedicalAI = {
                 self._renderTimelineInfographic();
             });
         }
-        if (typeof MedicalAICharts !== 'undefined' && MedicalAICharts.renderAll) {
-            MedicalAICharts.renderAll();
-        }
     },
 
     _getModel: function(mid) {
-        return this._models.find(function(m) { return m.id === mid; });
+        return ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._models)[mid] : this._models.find(function(m) { return m.id === mid; }));
     },
     _getBenchmark: function(bid) {
-        return this._benchmarks.find(function(b) { return b.id === bid; });
+        return ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._benchmarks)[bid] : this._benchmarks.find(function(b) { return b.id === bid; }));
     },
     _getScore: function(mid, bid) {
         // O(1) shared-index lookup instead of an O(N) scan of ~18K scores.

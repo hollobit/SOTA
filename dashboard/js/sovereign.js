@@ -1414,19 +1414,24 @@ var Sovereign = {
         this._benchmarks = App.data.benchmarks;
         this._scores = App.data.scores;
 
-        this._renderRegionMap();
-        this._renderTimeline();
-        this._renderCumulative();
-        this._renderCompetitiveness();
-        this._renderCountryRadar();
-        this._renderCountryLeaderboard();
         var self = this;
+        // Sections render as separate tasks, in the same order, so the tab paints
+        // after the first one instead of blocking until every chart is built.
+        var stages = [
+            function() { self._renderRegionMap(); },
+            function() { self._renderTimeline(); },
+            function() { self._renderCumulative(); },
+            function() { self._renderCompetitiveness(); },
+            function() { self._renderCountryRadar(); },
+            function() { self._renderCountryLeaderboard(); }
+        ];
         this.DIMENSIONS.forEach(function(dim) {
-            self._renderDimension(dim);
+            stages.push(function() { self._renderDimension(dim); });
         });
-        this._renderPerfSuites();
-        this._renderAgentProducts();
-        this._renderHeatmap();
+        stages.push(function() { self._renderPerfSuites(); },
+                    function() { self._renderAgentProducts(); },
+                    function() { self._renderHeatmap(); });
+        App.renderChunked('sov-render', stages, function(fn) { fn(); }, { first: 1, budget: 8 });
 
         // Wire timeline filter + map view toggle controls (only on first render)
         if (!this._initialized) {
@@ -2125,12 +2130,12 @@ var Sovereign = {
     },
 
     _getModelName: function(mid) {
-        var m = this._models.find(function(m) { return m.id === mid; });
+        var m = ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._models)[mid] : this._models.find(function(m) { return m.id === mid; }));
         return m ? m.name : mid.split('/').pop();
     },
 
     _getBenchmark: function(bid) {
-        return this._benchmarks.find(function(b) { return b.id === bid; });
+        return ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._benchmarks)[bid] : this._benchmarks.find(function(b) { return b.id === bid; }));
     },
 
     _getScore: function(modelId, benchId) {
@@ -2210,7 +2215,7 @@ var Sovereign = {
     },
 
     _compModelName: function(mid) {
-        var m = this._models && this._models.find(function(x) { return x.id === mid; });
+        var m = this._models && ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._models)[mid] : this._models.find(function(x) { return x.id === mid; }));
         return m ? m.name : (mid ? mid.split('/').pop() : '—');
     },
 

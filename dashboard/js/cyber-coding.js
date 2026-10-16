@@ -1299,19 +1299,24 @@ var CyberCoding = {
         this._benchByIdMap = null;
         this._modelByIdMap = null;
 
-        this._renderAACyberIndex();
-        this._renderCyberBoards();
-        this._renderBarChart('cyber-chart', this.CYBER_BENCHMARKS, 'Cybersecurity');
-        this._renderBarChart('coding-chart', this.CODING_BENCHMARKS, 'Coding');
-        this._renderBarChart('defense-chart', this.DEFENSE_BENCHMARKS, 'Cyber Defense');
-        this._renderBarChart('agent-chart', this.AGENT_BENCHMARKS, 'Agent');
-        this._renderTable('cyber-table-container', this.CYBER_BENCHMARKS);
-        this._renderTable('coding-table-container', this.CODING_BENCHMARKS);
-        this._renderTable('defense-table-container', this.DEFENSE_BENCHMARKS);
-        this._renderTable('agent-table-container', this.AGENT_BENCHMARKS);
-        this._renderRadar();
-        this._renderPerfSuites();
-        this._renderDescriptions();
+        // Sections render as separate tasks, in the same order, so the tab paints
+        // after the first one instead of blocking until every chart is built.
+        var self = this;
+        App.renderChunked('cc-render', [
+            function() { self._renderAACyberIndex(); },
+            function() { self._renderCyberBoards(); },
+            function() { self._renderBarChart('cyber-chart', self.CYBER_BENCHMARKS, 'Cybersecurity'); },
+            function() { self._renderBarChart('coding-chart', self.CODING_BENCHMARKS, 'Coding'); },
+            function() { self._renderBarChart('defense-chart', self.DEFENSE_BENCHMARKS, 'Cyber Defense'); },
+            function() { self._renderBarChart('agent-chart', self.AGENT_BENCHMARKS, 'Agent'); },
+            function() { self._renderTable('cyber-table-container', self.CYBER_BENCHMARKS); },
+            function() { self._renderTable('coding-table-container', self.CODING_BENCHMARKS); },
+            function() { self._renderTable('defense-table-container', self.DEFENSE_BENCHMARKS); },
+            function() { self._renderTable('agent-table-container', self.AGENT_BENCHMARKS); },
+            function() { self._renderRadar(); },
+            function() { self._renderPerfSuites(); },
+            function() { self._renderDescriptions(); }
+        ], function(fn) { fn(); }, { first: 1, budget: 8 });
     },
 
     _getScoresForBenchmarks: function(benchmarkIds) {
@@ -1772,7 +1777,8 @@ var CyberCoding = {
         el.appendChild(summary);
 
         // One table per suite
-        this.PERF_SUITES.forEach(function(suite, suiteIdx) {
+        // Suite tables time-sliced (~22k nodes in total).
+        App.renderChunked('cc-perf-suites', this.PERF_SUITES, function(suite, suiteIdx) {
             var activeBids = suite.benchmarks.filter(function(bid) {
                 return rowIds.some(function(mid) {
                     return (self._scoreEntry(mid, bid) != null);
@@ -1957,7 +1963,7 @@ var CyberCoding = {
             table.appendChild(tbody);
             wrap.appendChild(table);
             el.appendChild(wrap);
-        });
+        }, { first: 1 });
     },
 
     _renderDescriptions: function() {

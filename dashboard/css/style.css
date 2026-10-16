@@ -212,3 +212,10 @@
 .p3d-chip:hover { border-color: #60a5fa; color: #fff; }
 .p3d-chip-on { background: linear-gradient(90deg, #2563eb, #7c3aed); border-color: transparent; color: #fff; box-shadow: 0 0 12px rgba(99,102,241,0.55); }
 .p3d-tip { position: absolute; z-index: 20; pointer-events: none; max-width: 340px; padding: 8px 10px; border-radius: 8px; background: rgba(15,23,42,0.94); border: 1px solid #334155; box-shadow: 0 8px 24px rgba(0,0,0,0.45); font-size: 12px; }
+
+/* Timeline model list (~4k rows): skip layout/paint of rows outside the
+   viewport. auto + intrinsic size keeps the scrollbar stable. */
+.tl-row {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 52px;
+}
