@@ -1,1 +1,396 @@
-var Guardrail={_initialized:!1,_charts:[],EXTRA_GUARDS:["openai/gpt-oss-safeguard-20b","mistral/shieldstral-1.0-3b","ai-singapore/sea-guard","qcri/fanar-2-27b-fanarguard-4b","typhoon-ai/thai-safety-classifier","typesafe/jev-1.13","convaiinnovations/laya"],PROMPTED:{"openai/gpt-oss-20b":1,"openai/gpt-oss-120b":1,"openai/gpt-5-high":1,"openai/gpt-5-mini":1,"alibaba/qwen3.6-35b-a3b":1,"google/diffusiongemma-26b-a4b":1},API_GUARDS:{"openai/omni-moderation":1,"openai/text-moderation":1,"amazon/bedrock-guardrails":1,"microsoft/azure-ai-content-safety":1,"microsoft/azure-ai-language-pii":1,"google/vertex-ai-model-armor":1,"lakera/lakera-guard":1,"virtueai/virtueguard-text-lite":1,"pangea/ai-guard":1,"promptfoo/guardrails":1,"protectai/llm-guard-gpt-4o":1,"typesafe/jev-1.13":1},AA:{url:"https://artificialanalysis.ai/articles/guardrail-safety-benchmark",avg:"aa_guardrail_avg_f1",recall:"aa_guardrail_recall",precision:"aa_guardrail_precision",spec:"aa_guardrail_specificity",lat:"aa_guardrail_latency_ms_lower_better",p95:"aa_guardrail_p95_latency_ms_lower_better",tok:"aa_guardrail_output_tokens",ds:[{k:"wildguardtest",label:"WildGuardTest"},{k:"toxicchat",label:"ToxicChat"},{k:"xstest",label:"XSTest"}]},PAPERS:[{key:"guardsetx",title:"GuardSet-X \u2014 \uB3C4\uBA54\uC778\uBCC4 \uC815\uCC45 \uAE30\uBC18 \uAC00\uB4DC\uB808\uC77C F1 (19 guards \xD7 12 domains)",url:"https://arxiv.org/abs/2506.19054",note:"Table 1. \uC18C\uC15C\uBBF8\uB514\uC5B4\xB7\uADDC\uC81C(EU AI Act, GDPR)\xB7HR\xB7\uAE08\uC735\xB7\uBC95\uB960\xB7\uAD50\uC721\xB7\uCF54\uB4DC\xB7\uC0AC\uC774\uBC84 \uB3C4\uBA54\uC778\uBCC4 \uC2E4\uC81C \uC815\uCC45 \uBB38\uC11C\uC5D0\uC11C \uB9CC\uB4E0 \uC704\uBC18/\uC815\uC0C1 \uC0D8\uD50C. \uB192\uC744\uC218\uB85D \uC88B\uC74C.",cols:[["guardsetx_social_messaging_f1","Social\xB7Msg"],["guardsetx_social_community_f1","Social\xB7Comm"],["guardsetx_social_streaming_f1","Social\xB7Stream"],["guardsetx_regulation_eu_ai_act_f1","EU AI Act"],["guardsetx_regulation_gdpr_f1","GDPR"],["guardsetx_hr_service_f1","HR\xB7Service"],["guardsetx_hr_customer_f1","HR\xB7Customer"],["guardsetx_finance_f1","Finance"],["guardsetx_law_f1","Law"],["guardsetx_education_f1","Education"],["guardsetx_code_f1","Code"],["guardsetx_cyber_f1","Cyber"]]},{key:"guardsetx_asr",title:"GuardSet-X \u2014 \uD0C8\uC625 \uCD5C\uC801\uD654 \uACF5\uACA9 \uC131\uACF5\uB960 (ASR, \uB0AE\uC744\uC218\uB85D \uC88B\uC74C)",url:"https://arxiv.org/abs/2506.19054",note:"Table 2. \uAC00\uB4DC\uB808\uC77C\uC744 \uC6B0\uD68C\uD558\uB3C4\uB85D \uCD5C\uC801\uD654\uD55C \uACF5\uACA9 \uD504\uB86C\uD504\uD2B8\uC758 \uC131\uACF5\uB960. \uB0AE\uC744\uC218\uB85D \uACAC\uACE0\uD568.",lower:!0,cols:[["guardsetx_social_messaging_asr_lower_better","Social\xB7Msg"],["guardsetx_social_community_asr_lower_better","Social\xB7Comm"],["guardsetx_social_streaming_asr_lower_better","Social\xB7Stream"],["guardsetx_regulation_eu_ai_act_asr_lower_better","EU AI Act"],["guardsetx_regulation_gdpr_asr_lower_better","GDPR"],["guardsetx_hr_asr_lower_better","HR"],["guardsetx_finance_asr_lower_better","Finance"],["guardsetx_law_asr_lower_better","Law"],["guardsetx_education_asr_lower_better","Education"],["guardsetx_code_asr_lower_better","Code"],["guardsetx_cyber_asr_lower_better","Cyber"],["guardsetx_average_asr_lower_better","Avg"]]},{key:"guardbench",title:"GuardBench \u2014 40\uAC1C \uC548\uC804 \uB370\uC774\uD130\uC14B (11 guards, EMNLP 2024)",url:"https://aclanthology.org/2024.emnlp-main.1022/",note:"Table 3. \uC804\uBD80 \uC720\uD574\uC778 \uB370\uC774\uD130\uC14B\uC740 Recall, \uD63C\uD569 \uB370\uC774\uD130\uC14B\uC740 F1. \uD504\uB86C\uD504\uD2B8(P) / \uB300\uD654(C) \uBD84\uB958. PromptsEN/DE/FR/IT/ES\xB7UnsafeQA\uB294 GuardBench\uAC00 \uC0C8\uB85C \uB9CC\uB4E0 \uC14B.",prefixCols:!0},{key:"csguard",title:"CS-Guard \u2014 \uCF54\uB4DC \uC0DD\uC131 \uBCF4\uC548 \uAC00\uB4DC\uB808\uC77C (\uC785\uB825 \uBD84\uB958\uAE30 ASR \xB7 \uCD9C\uB825 \uBD84\uB958\uAE30 F1)",url:"https://arxiv.org/abs/2609.09798",note:"Fig. 5/6. \uC545\uC131\uCF54\uB4DC \uC0DD\uC131 \uC694\uCCAD(\uD14D\uC2A4\uD2B8\u2192\uCF54\uB4DC)\uACFC \uC545\uC131 \uCF54\uB4DC \uBCC0\uD658(\uCF54\uB4DC\u2192\uCF54\uB4DC). L1 = \uAE30\uBCF8 \uD504\uB86C\uD504\uD2B8, L2 = \uD0C8\uC625 7\uC885 + FSA \uD3C9\uADE0. \uC785\uB825 \uBD84\uB958\uAE30\uB294 ASR(\uB0AE\uC744\uC218\uB85D \uC88B\uC74C), \uCD9C\uB825 \uBD84\uB958\uAE30\uB294 F1.",cols:[["csguard_inputclf_t2c_l1_asr_lower_better","\uC785\uB825 ASR \xB7 T2C L1",!0],["csguard_inputclf_t2c_l2_avg_asr_lower_better","\uC785\uB825 ASR \xB7 T2C L2",!0],["csguard_inputclf_t2c_l2_fsa_asr_lower_better","\uC785\uB825 ASR \xB7 FSA",!0],["csguard_inputclf_c2c_avg_asr_lower_better","\uC785\uB825 ASR \xB7 C2C",!0],["csguard_outputclf_t2c_l1_f1","\uCD9C\uB825 F1 \xB7 T2C L1"],["csguard_outputclf_t2c_l2_avg_f1","\uCD9C\uB825 F1 \xB7 T2C L2"],["csguard_outputclf_t2c_l2_fsa_f1","\uCD9C\uB825 F1 \xB7 FSA"],["csguard_outputclf_c2c_avg_f1","\uCD9C\uB825 F1 \xB7 C2C"]]},{key:"image",title:"\uC774\uBBF8\uC9C0 \uAC00\uB4DC\uB808\uC77C \u2014 SafeEditBench \xB7 UnsafeBench \xB7 LlavaGuardBench (arXiv 2603.01228)",url:"https://arxiv.org/abs/2603.01228",note:"SafeEditBench(\uC815\uCC45 L1\u2013L5\uB97C \uD3B8\uC9D1\uD574 \uAC19\uC740 \uC774\uBBF8\uC9C0\uC758 \uC815\uB2F5\uC774 \uBC14\uB00C\uB294\uC9C0) \u2014 \uC815\uCC45 \uC801\uC751\uB825. UnsafeBench F1, LlavaGuardBench, \uC77C\uBC18 \uB2A5\uB825 \uD3C9\uADE0(MMMU\xB7RealWorldQA\xB7BLINK\xB7MMT).",cols:[["safeeditbench_overall_f1","SafeEdit Overall"],["safeeditbench_policy_l1_acc","SafeEdit L1 (acc)"],["safeeditbench_policy_l3_f1","SafeEdit L3"],["safeeditbench_policy_l5_f1","SafeEdit L5"],["unsafebench_f1","UnsafeBench"],["unsafebench_f1_rerun_imageguard","UnsafeBench (\uC7AC\uC2E4\uD589)"],["imageguard_llavaguardbench","LlavaGuardBench"],["imageguard_general_avg","\uC77C\uBC18 \uB2A5\uB825 \uD3C9\uADE0"]]}],DATASETS:[{name:"WildGuardTest",who:"AI2 \xB7 NeurIPS 2024",size:"~1.7K",what:"\uD504\uB86C\uD504\uD2B8 \uC720\uD574\uC131 \xB7 \uC751\uB2F5 \uC720\uD574\uC131 \xB7 \uAC70\uC808 3\uC885 \uB77C\uBCA8. \uD569\uC131+\uC0AC\uB78C \uC791\uC131.",prefix:["wildguardtest_","aa_guardrail_wildguardtest"],url:"https://huggingface.co/datasets/allenai/wildguardmix"},{name:"ToxicChat",who:"LMSYS \xB7 EMNLP 2023",size:"5.1K test",what:"Vicuna \uB370\uBAA8 \uC2E4\uC0AC\uC6A9\uC790 \uD504\uB86C\uD504\uD2B8, \uC720\uD574 ~7%. \uC2E4\uC81C \uD2B8\uB798\uD53D \uBD84\uD3EC.",prefix:["toxicchat_","aa_guardrail_toxicchat"],url:"https://huggingface.co/datasets/lmsys/toxic-chat"},{name:"XSTest",who:"R\xF6ttger et al. \xB7 NAACL 2024",size:"450",what:"\uC548\uC804\uD558\uC9C0\uB9CC \uC704\uD5D8 \uB2E8\uC5B4\uAC00 \uB4E4\uC5B4\uAC04 250\uAC1C + \uC720\uD574 200\uAC1C \u2014 \uACFC\uC789 \uAC70\uC808(over-refusal) \uCE21\uC815.",prefix:["xstest_","aa_guardrail_xstest"],url:"https://arxiv.org/abs/2308.01263"},{name:"GuardBench",who:"EC JRC (Bassani & Sanchez) \xB7 EMNLP 2024",size:"40 datasets",what:"\uD504\uB86C\uD504\uD2B8\xB7\uB300\uD654 \uBD84\uB958 40\uAC1C \uC14B \uD1B5\uD569 + \uB2E4\uAD6D\uC5B4(DE/FR/IT/ES) \uC2E0\uADDC \uC14B. \uD30C\uC774\uC36C \uB77C\uC774\uBE0C\uB7EC\uB9AC.",prefix:["guardbench_","_rerun_guardbench"],url:"https://aclanthology.org/2024.emnlp-main.1022/"},{name:"GuardSet-X",who:"AI-Secure (\uAD6C PolyGuard) \xB7 arXiv 2506.19054",size:"8 domains \xB7 150+ policies",what:"\uC2E4\uC81C \uAE30\uC5C5\xB7\uADDC\uC81C \uC815\uCC45 \uBB38\uC11C\uC5D0\uC11C \uC704\uBC18/\uC815\uC0C1 \uC9C8\uC758\xB7\uB300\uD654\uB97C \uC0DD\uC131. \uB3C4\uBA54\uC778\xB7\uC815\uCC45 \uCD9C\uCC98\uBCC4 F1\uACFC \uD0C8\uC625 ASR.",prefix:["guardsetx_"],url:"https://arxiv.org/abs/2506.19054"},{name:"CS-Guard",who:"arXiv 2609.09798 (2026-09)",size:"1,000 + 331 prompts",what:"\uCF54\uB4DC \uC0DD\uC131 \uBCF4\uC548: \uC545\uC131\uCF54\uB4DC \uC694\uCCAD(\uD14D\uC2A4\uD2B8\u2192\uCF54\uB4DC)\xB7\uC545\uC131 \uCF54\uB4DC \uC644\uC131/\uC0BD\uC785/\uBC88\uC5ED(\uCF54\uB4DC\u2192\uCF54\uB4DC), \uD0C8\uC625 7\uC885 + \uD5C8\uAD6C \uC2DC\uB098\uB9AC\uC624 \uACF5\uACA9(FSA).",prefix:["csguard_"],url:"https://arxiv.org/abs/2609.09798"},{name:"RAIL Guard",who:"Responsible AI Labs \xB7 arXiv 2607.16215",size:"1,197 + 392",what:"Pool A \uCF58\uD150\uCE20 \uD504\uB86C\uD504\uD2B8(6 \uB3C4\uBA54\uC778, benign/edge/adversarial), Pool B \uC5D0\uC774\uC804\uD2B8 \uB3C4\uAD6C \uD638\uCD9C \uC2DC\uB098\uB9AC\uC624(5 \uB3C4\uBA54\uC778). Apache-2.0.",prefix:["railguard_"],url:"https://huggingface.co/datasets/responsible-ai-labs/rail-guard-benchmark"},{name:"SafeEditBench / UnsafeBench",who:"Fudan\xB7Tencent\xB7PKU \xB7 arXiv 2603.01228",size:"LlavaGuard test \uAE30\uBC18",what:"\uAC19\uC740 \uC774\uBBF8\uC9C0\uC5D0 \uC815\uCC45\uB9CC \uBC14\uAFE8\uC744 \uB54C \uD310\uC815\uC774 \uB530\uB77C \uBC14\uB00C\uB294\uC9C0(\uC815\uCC45 \uC801\uC751\uD615 \uC774\uBBF8\uC9C0 \uAC00\uB4DC\uB808\uC77C).",prefix:["safeeditbench_","unsafebench_","imageguard_"],url:"https://arxiv.org/abs/2603.01228"},{name:"GA Jailbreak / Long Context Bench",who:"General Analysis (2025-10)",size:"\u2014 / 1,500 traces",what:"RL \uACF5\uACA9 \uBAA8\uB378\uC774 \uB9CC\uB4E0 \uBD84\uD3EC \uBC16 \uD0C8\uC625 \uD504\uB86C\uD504\uD2B8, \uD3C9\uADE0 10.3K \uD1A0\uD070 \uC5D0\uC774\uC804\uD2B8 \uD2B8\uB808\uC774\uC2A4(\uC808\uBC18\uC5D0 \uC8FC\uC785\xB7\uC815\uCC45 \uC704\uBC18).",prefix:["ga_jailbreak_bench","ga_long_context_bench"],url:"https://generalanalysis.com/blog/ga-guard-series"},{name:"Red Hat EvalHub (NeMo Guardrails)",who:"Red Hat AI Safety \xB7 2026-10-02",size:"class-balanced",what:"\uD504\uB86C\uD504\uD2B8 \uC778\uC81D\uC158 \xB7 \uCF58\uD150\uCE20 \uC548\uC804/\uC695\uC124 \uB450 \uACFC\uC81C\uB97C NeMo Guardrails \uC548\uC5D0\uC11C \uC815\uD655\uB3C4\xB7\uC9C0\uC5F0\uC73C\uB85C \uBE44\uAD50.",prefix:["redhat_evalhub_"],url:"https://developers.redhat.com/articles/2026/10/02/benchmarking-ai-decision-models-against-traditional-guardrails"},{name:"TrueFoundry provider benchmark",who:"TrueFoundry",size:"400 / task",what:"PII \xB7 \uCF58\uD150\uCE20 \uBAA8\uB354\uB808\uC774\uC158 \xB7 \uD504\uB86C\uD504\uD2B8 \uC778\uC81D\uC158\uC744 \uAC8C\uC774\uD2B8\uC6E8\uC774 \uD558\uB098\uB85C \uB3D9\uC77C \uC870\uAC74 \uBE44\uAD50.",prefix:["truefoundry_"],url:"https://www.truefoundry.com/blog/benchmarking-llm-guardrail-providers"}],_esc:function(i){return String(i==null?"":i).replace(/[&<>"']/g,function(e){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[e]})},_el:function(i,e,t){var r=document.createElement(i);return e&&(r.className=e),t!=null&&(r.textContent=t),r},_idx:function(){return window.App&&App.getScoreIndex?App.getScoreIndex():null},_val:function(i,e){var t=this._idx(),r=t&&t.byModelBench[i+"|"+e];return r?r.value:null},_bench:function(i){var e=this._idx();return e&&e.byBench[i]||[]},_name:function(i){var e=this._models[i],t=e&&e.name&&e.name!==i?e.name:i.split("/").pop();return t},_kind:function(i){return this.PROMPTED[i]?"prompted":this.API_GUARDS[i]?"api":"open"},_kindColor:function(i){var e=this._kind(i);return e==="prompted"?Theme.series[2]:e==="api"?Theme.series[4]:Theme.series[0]},_chart:function(i,e){var t=echarts.init(i);return t.setOption(e),this._charts.push(t),t},_cellColor:function(i,e,t,r){if(i==null||t===e)return Theme.textMuted;var n=(i-e)/(t-e);r&&(n=1-n);var l=[[239,68,68],[245,158,11],[16,185,129]],c=n<.5?l[0]:l[1],_=n<.5?l[1]:l[2],h=n<.5?n*2:(n-.5)*2;return"rgb("+[0,1,2].map(function(d){return Math.round(c[d]+(_[d]-c[d])*h)}).join(",")+")"},_section:function(i,e,t){var r=this._el("div","mb-10");return r.appendChild(this._el("h2","text-section mb-2",e)),t&&r.appendChild(this._el("p","text-sm text-gray-400 mb-4",t)),i.appendChild(r),r},_link:function(i,e){var t=this._el("a","text-xs text-blue-400 hover:underline",e||"\uC6D0\uBB38 \u2197");return t.href=i,t.target="_blank",t.rel="noopener",t},_heatTable:function(i,e){var t=this;e=e||{};var r={};i.forEach(function(s){t._bench(s[0]).forEach(function(p){r[p.model_id]=(r[p.model_id]||0)+1})});var n=Object.keys(r).filter(function(s){return r[s]>=(e.minCov||1)}),l={};i.forEach(function(s){var p=n.map(function(a){return t._val(a,s[0])}).filter(function(a){return a!=null});l[s[0]]={min:Math.min.apply(null,p),max:Math.max.apply(null,p),lower:s[2]!=null?s[2]:/_lower_better$/.test(s[0])}});var c=e.sortBy||i[0][0],_=l[c]&&l[c].lower;n.sort(function(s,p){var a=t._val(s,c),u=t._val(p,c);return a==null?1:u==null?-1:_?a-u:u-a});var h=this._el("div","overflow-x-auto"),d=this._el("table","sota-table text-xs"),o=this._el("thead"),f=this._el("tr");f.appendChild(this._el("th",null,"Model")),i.forEach(function(s){var p=t._el("th",null,s[1]);p.style.whiteSpace="nowrap",p.title=s[0],f.appendChild(p)}),o.appendChild(f),d.appendChild(o);var m=this._el("tbody");return n.forEach(function(s){var p=t._el("tr"),a=t._el("td",null,t._name(s));a.style.whiteSpace="nowrap",a.style.cursor="pointer",a.title=s,a.style.color=t._kindColor(s),a.addEventListener("click",function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(s)}),p.appendChild(a),i.forEach(function(u){var g=t._val(s,u[0]),v=l[u[0]],x=t._el("td",null,g==null?"\u2014":Math.abs(g)>=100?g.toFixed(0):Math.abs(g)<1&&g!==0?g.toFixed(2):g.toFixed(1));x.style.textAlign="center",g==null?x.style.color=Theme.textDisabled:(x.style.color=t._cellColor(g,v.min,v.max,v.lower),g===(v.lower?v.min:v.max)&&(x.style.fontWeight="bold"),x.style.cursor="pointer",x.title="\uD074\uB9AD\uD558\uBA74 \uAC80\uC99D \uC18C\uC2A4",x.addEventListener("click",function(){typeof Modal!="undefined"&&Modal.showScoreSource&&Modal.showScoreSource(s,u[0])})),p.appendChild(x)}),m.appendChild(p)}),d.appendChild(m),h.appendChild(d),{el:h,n:n.length}},_legend:function(){var i=this,e=this._el("div","flex flex-wrap gap-4 text-xs text-gray-400 mb-3");return[["open","\uC624\uD508 \uAC00\uC911\uCE58 \uAC00\uB4DC \uBAA8\uB378"],["api","\uAD00\uB9AC\uD615 API / \uC0C1\uC6A9 \uAC00\uB4DC"],["prompted","\uBC94\uC6A9 LLM\uC744 \uBD84\uB958\uAE30\uB85C \uD504\uB86C\uD504\uD2B8"]].forEach(function(t){var r=i._el("span"),n=i._el("span",null,"\u25CF  ");n.style.color=t[0]==="prompted"?Theme.series[2]:t[0]==="api"?Theme.series[4]:Theme.series[0],r.appendChild(n),r.appendChild(document.createTextNode(t[1])),e.appendChild(r)}),e},render:function(){if(!this._initialized&&!(!window.App||!App.data||!App.data.scores||!App.data.scores.length||!this._idx())){var i=this,e=document.getElementById("guardrail-content");e&&(e.textContent="",this._models={},(App.data.models||[]).forEach(function(t){i._models[t.id]=t}),this._renderGuide(e),this._renderAA(e),this._renderVendor(e),this._renderPapers(e),this._renderAgent(e),this._renderDatasets(e),this._renderRegistry(e),window.addEventListener("resize",function(){i._charts.forEach(function(t){t.resize()})}),this._initialized=!0)}},_renderGuide:function(i){var e=this,t=this._el("div","grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8"),r=[["\uAC00\uB4DC\uB808\uC77C \uBAA8\uB378\uC774\uB780",["\uC0AC\uC6A9\uC790 \uC785\uB825\uC774\uB098 \uBAA8\uB378 \uCD9C\uB825\uC774 \uC548\uC804\uD55C\uC9C0 \uD310\uC815\uB9CC \uD558\uB294 \uBD84\uB958\uAE30\uC785\uB2C8\uB2E4. \uB300\uD654\uB098 \uB2F5\uBCC0\uC740 \uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.","\uC785\uB825 \uAC00\uB4DC\uB294 \uD0C8\uC625\xB7\uD504\uB86C\uD504\uD2B8 \uC778\uC81D\uC158\xB7\uAC1C\uC778\uC815\uBCF4 \uC694\uCCAD\uC744 \uBA54\uC778 \uBAA8\uB378 \uC55E\uC5D0\uC11C \uB9C9\uACE0, \uCD9C\uB825 \uAC00\uB4DC\uB294 \uC720\uD574 \uC751\uB2F5\xB7\uC815\uBCF4 \uC720\uCD9C\uC744 \uC0AC\uC6A9\uC790\uC5D0\uAC8C \uAC00\uAE30 \uC804\uC5D0 \uB9C9\uC2B5\uB2C8\uB2E4.","\uBAA8\uB4E0 \uC694\uCCAD\uC5D0 \uBD99\uAE30 \uB54C\uBB38\uC5D0 \uC815\uD655\uB3C4\uBFD0 \uC544\uB2C8\uB77C \uC9C0\uC5F0\uACFC \uBE44\uC6A9\uB3C4 \uD568\uAED8 \uBD10\uC57C \uD569\uB2C8\uB2E4."]],["\uC9C0\uD45C \uC77D\uB294 \uBC95",["F1: \uC720\uD574\uB97C \uC798 \uC7A1\uC73C\uBA74\uC11C(\uC7AC\uD604\uC728) \uC815\uC0C1\uC744 \uC798\uBABB \uB9C9\uC9C0 \uC54A\uB294(\uC815\uBC00\uB3C4) \uADE0\uD615 \uC810\uC218. \uB192\uC744\uC218\uB85D \uC88B\uC2B5\uB2C8\uB2E4.","\uC7AC\uD604\uC728(recall): \uC720\uD574 \uCF58\uD150\uCE20 \uC911 \uC7A1\uC544\uB0B8 \uBE44\uC728. \uC758\uB8CC\xB7\uC544\uB3D9 \uC548\uC804\uCC98\uB7FC \uD55C \uBC88\uC758 \uB204\uB77D\uB3C4 \uCE58\uBA85\uC801\uC774\uBA74 \uC774 \uAC12\uC744 \uC6B0\uC120\uD569\uB2C8\uB2E4.","\uD2B9\uC774\uB3C4(specificity): \uC815\uC0C1 \uCF58\uD150\uCE20\uB97C \uD1B5\uACFC\uC2DC\uD0A8 \uBE44\uC728. 100 \u2212 \uD2B9\uC774\uB3C4 = \uACFC\uC789 \uAC70\uC808\uB960. \uC18C\uBE44\uC790 \uCC57\xB7\uCC3D\uC791 \uB3C4\uAD6C\uB294 \uC774 \uAC12\uC774 \uC911\uC694\uD569\uB2C8\uB2E4.","ASR(\uACF5\uACA9 \uC131\uACF5\uB960)\xB7FPR(\uC624\uD0D0\uB960)\xB7\uC9C0\uC5F0(ms)\uC740 \uB0AE\uC744\uC218\uB85D \uC88B\uC2B5\uB2C8\uB2E4. \uBCA4\uB354\uAC00 \uC9C1\uC811 \uB3CC\uB9B0 \uBE44\uAD50(GA\xB7TrueFoundry\xB7DeepRails)\uB294 \uC790\uC0AC\uC5D0 \uC720\uB9AC\uD55C \uC870\uAC74\uC77C \uC218 \uC788\uC5B4 \uB3C5\uB9BD \uD3C9\uAC00(AA\xB7Red Hat\xB7\uB17C\uBB38)\uC640 \uB530\uB85C \uD45C\uC2DC\uD569\uB2C8\uB2E4."]]];r.forEach(function(n){var l=e._el("div","rounded-lg border border-gray-800 p-4 space-y-2");l.appendChild(e._el("h3","text-sm font-semibold text-gray-200",n[0])),n[1].forEach(function(c){l.appendChild(e._el("p","text-sm text-gray-400 leading-relaxed",c))}),t.appendChild(l)}),i.appendChild(t)},_renderAA:function(i){var e=this,t=this.AA,r=this._bench(t.avg).slice().sort(function(a,u){return u.value-a.value});if(r.length){var n=this._section(i,"Artificial Analysis \uAC00\uB4DC\uB808\uC77C \uBCA4\uCE58\uB9C8\uD06C \u2014 \uC548\uC804\uC131 \xB7 \uACFC\uC789 \uAC70\uC808 \xB7 \uC9C0\uC5F0","2026-06-11, NVIDIA \uD611\uB825. "+r.length+"\uAC1C \uAD6C\uC131(\uC804\uBB38 \uAC00\uB4DC \uBAA8\uB378, \uBAA8\uB354\uB808\uC774\uC158 API, \uBC94\uC6A9 gpt-oss\uB97C \uBD84\uB958\uAE30\uB85C \uD504\uB86C\uD504\uD2B8)\uC5D0 WildGuardTest \uD504\uB86C\uD504\uD2B8 \uC720\uD574\uC131(1,699) \xB7 ToxicChat(5,083) \xB7 XSTest(450)\uB97C \uB3D9\uC77C \uC870\uAC74(temperature 0, \uD504\uB86C\uD504\uD2B8 \uB2E8\uC704)\uC73C\uB85C \uC2E4\uD589. \uD5E4\uB4DC\uB77C\uC778 = \uC138 \uB370\uC774\uD130\uC14B F1 \uD3C9\uADE0. \uC9C0\uC5F0\uC740 B200 \uC790\uCCB4 \uD638\uC2A4\uD305\uC5D0\uC11C 450\uAC1C \uC694\uCCAD\uC744 \uD558\uB098\uC529 \uCE21\uC815(omni-moderation\uB9CC OpenAI API).");n.appendChild(this._legend());var l=this._el("div","grid grid-cols-1 xl:grid-cols-2 gap-6"),c=this._el("div");c.style.height="520px";var _=this._el("div");_.style.height="520px",l.appendChild(c),l.appendChild(_),n.appendChild(l);var h=r.map(function(a){return e._name(a.model_id)});this._chart(c,{backgroundColor:"transparent",title:{text:"\uD3C9\uADE0 F1 (\uB192\uC744\uC218\uB85D \uC88B\uC74C)",textStyle:{color:Theme.textSecondary,fontSize:13}},tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(a){var u=r[a[0].dataIndex].model_id,g=[h[a[0].dataIndex],"\uD3C9\uADE0 F1 "+a[0].value];t.ds.forEach(function(x){var b=e._val(u,"aa_guardrail_"+x.k+"_f1");b!=null&&g.push(x.label+" F1 "+b.toFixed(1))});var v=e._val(u,t.lat);return v!=null&&g.push("\uC9C0\uC5F0 "+v.toFixed(0)+" ms"),g.map(e._esc).join("<br>")}},grid:{left:8,right:30,top:34,bottom:8,containLabel:!0},xAxis:{type:"value",min:50,max:100,axisLabel:{color:Theme.textMuted},splitLine:{lineStyle:{color:Theme.border}}},yAxis:{type:"category",inverse:!0,data:h,axisLabel:{color:Theme.textMuted,fontSize:10}},series:[{type:"bar",barWidth:"62%",data:r.map(function(a){return{value:+a.value.toFixed(1),itemStyle:{color:e._kindColor(a.model_id)}}}),label:{show:!0,position:"right",color:Theme.textMuted,fontSize:10}}]});var d=r.map(function(a){return{mid:a.model_id,f1:a.value,lat:e._val(a.model_id,t.lat)}}).filter(function(a){return a.lat!=null});this._chart(_,{backgroundColor:"transparent",title:{text:"\uD0D0\uC9C0 \uD488\uC9C8 vs \uC9C0\uC5F0 (\uC67C\uCABD \uC704\uAC00 \uC88B\uC74C)",textStyle:{color:Theme.textSecondary,fontSize:13}},tooltip:{formatter:function(a){var u=d[a.dataIndex];return e._esc(e._name(u.mid))+"<br>F1 "+u.f1.toFixed(1)+" \xB7 \uD3C9\uADE0 \uC9C0\uC5F0 "+u.lat.toFixed(0)+" ms"}},grid:{left:50,right:30,top:40,bottom:50},xAxis:{type:"log",logBase:10,min:10,max:3e3,name:"\uD3C9\uADE0 \uC9C0\uC5F0 (ms, \uB85C\uADF8 \uCD95)",nameLocation:"middle",nameGap:28,nameTextStyle:{color:Theme.textMuted},axisLine:{show:!0,lineStyle:{color:Theme.borderStrong}},axisLabel:{show:!0,color:Theme.textMuted,formatter:function(a){return a>=1e3?a/1e3+"s":a+"ms"}},splitLine:{lineStyle:{color:Theme.border}}},yAxis:{type:"value",min:60,max:95,axisLabel:{color:Theme.textMuted},splitLine:{lineStyle:{color:Theme.border}}},series:[{type:"scatter",symbolSize:11,data:d.map(function(a){return{value:[a.lat,+a.f1.toFixed(1)],itemStyle:{color:e._kindColor(a.mid)}}}),label:{show:!0,position:"right",color:Theme.textDim,fontSize:9,formatter:function(a){var u=e._name(d[a.dataIndex].mid);return u.length>22?u.slice(0,21)+"\u2026":u}}}]});var o=this._el("div");o.style.height="480px",o.className="mt-6",n.appendChild(o);var f=r.map(function(a){return{mid:a.model_id,rec:e._val(a.model_id,t.recall),sp:e._val(a.model_id,t.spec)}}).filter(function(a){return a.rec!=null&&a.sp!=null});this._chart(o,{backgroundColor:"transparent",title:{text:"\uC720\uD574 \uD0D0\uC9C0(\uC7AC\uD604\uC728) vs \uC815\uC0C1 \uD1B5\uACFC(\uD2B9\uC774\uB3C4) \u2014 \uC624\uB978\uCABD \uC704\uAC00 \uC88B\uC74C. \uC704\uCABD = \uC5C4\uACA9\uD615, \uC624\uB978\uCABD = \uAD00\uB300\uD615",textStyle:{color:Theme.textSecondary,fontSize:13}},tooltip:{formatter:function(a){var u=f[a.dataIndex];return e._esc(e._name(u.mid))+"<br>\uC7AC\uD604\uC728 "+u.rec.toFixed(1)+" \xB7 \uD2B9\uC774\uB3C4 "+u.sp.toFixed(1)+"<br>\uACFC\uC789 \uAC70\uC808\uB960 "+(100-u.sp).toFixed(1)+"%"}},grid:{left:50,right:40,top:70,bottom:40},xAxis:{type:"value",name:"\uD2B9\uC774\uB3C4 (\uC815\uC0C1 \uD1B5\uACFC, %)",min:80,max:100,nameLocation:"middle",nameGap:26,nameTextStyle:{color:Theme.textMuted},axisLabel:{color:Theme.textMuted},splitLine:{lineStyle:{color:Theme.border}}},yAxis:{type:"value",name:"\uC7AC\uD604\uC728 (\uC720\uD574 \uD0D0\uC9C0, %)",min:30,max:100,nameGap:14,nameTextStyle:{color:Theme.textMuted,align:"left"},axisLabel:{color:Theme.textMuted},splitLine:{lineStyle:{color:Theme.border}}},series:[{type:"scatter",symbolSize:11,data:f.map(function(a){return{value:[+a.sp.toFixed(1),+a.rec.toFixed(1)],itemStyle:{color:e._kindColor(a.mid)}}}),label:{show:!0,position:"right",color:Theme.textDim,fontSize:9,formatter:function(a){var u=e._name(f[a.dataIndex].mid);return u.length>22?u.slice(0,21)+"\u2026":u}}}]});var m=[[t.avg,"\uD3C9\uADE0 F1"],["aa_guardrail_wildguardtest_f1","WildGuardTest F1"],["aa_guardrail_toxicchat_f1","ToxicChat F1"],["aa_guardrail_xstest_f1","XSTest F1"],[t.recall,"\uC7AC\uD604\uC728"],[t.precision,"\uC815\uBC00\uB3C4"],[t.spec,"\uD2B9\uC774\uB3C4"],["aa_guardrail_xstest_specificity","XSTest \uD2B9\uC774\uB3C4"],[t.lat,"\uD3C9\uADE0 \uC9C0\uC5F0 ms"],[t.p95,"p95 ms"],[t.tok,"\uCD9C\uB825 \uD1A0\uD070",!0]],s=this._heatTable(m,{sortBy:t.avg});s.el.classList.add("mt-6"),n.appendChild(s.el);var p=this._el("p","text-xs text-gray-500 mt-2","gpt-oss-20B / 120B (Prompted)\uB294 AA\uAC00 \uC4F4 \uC9E7\uC740 \uBD84\uB958 \uC9C0\uC2DC\uBB38\uC73C\uB85C \uB3CC\uB9B0 \uD0D0\uC0C9\uC6A9 \uAE30\uC900\uC120\uC774\uBA70 \uACF5\uC2DD \uC548\uC804 \uBD84\uB958\uAE30 \uAD6C\uC131\uC774 \uC544\uB2D9\uB2C8\uB2E4. \uCD9C\uB825 \uD1A0\uD070\uC740 \uD310\uC815 1\uAC74\uB2F9 \uC0DD\uC131 \uD1A0\uD070 \uC218\uB85C, \uC801\uC744\uC218\uB85D \uBE44\uC6A9\xB7\uC9C0\uC5F0\uC774 \uB0AE\uC2B5\uB2C8\uB2E4(\uCD94\uB860\uD615 \uAC00\uB4DC\uB294 100\u2013330\uAC1C). ");p.appendChild(this._link(t.url,"AA \uC6D0\uBB38 \u2197")),n.appendChild(p)}},_renderVendor:function(i){var e=this,t=this._section(i,"\uACF5\uAE09\uC0AC\xB7\uD50C\uB7AB\uD3FC\uC774 \uC9C1\uC811 \uB3CC\uB9B0 \uBE44\uAD50","\uC544\uB798 \uC218\uCE58\uB294 \uAC00\uB4DC \uC81C\uACF5\uC0AC\uB098 \uD50C\uB7AB\uD3FC\uC774 \uC790\uCCB4 \uC870\uAC74\uC73C\uB85C \uCE21\uC815\uD55C \uACB0\uACFC\uC785\uB2C8\uB2E4. \uAC19\uC740 \uACF5\uAC1C \uB370\uC774\uD130\uC14B \uC774\uB984\uC774\uB77C\uB3C4 \uD558\uB124\uC2A4\xB7\uD504\uB86C\uD504\uD2B8\xB7\uC815\uCC45\uC774 \uB2EC\uB77C \uB2E4\uB978 \uCD9C\uCC98\uC758 \uC218\uCE58\uC640 \uC9C1\uC811 \uBE44\uAD50\uD558\uC9C0 \uB9C8\uC138\uC694."),r=this._el("div","mb-8");r.appendChild(this._el("h3","text-sm font-semibold text-gray-200 mb-1","General Analysis GA Guard \uC2DC\uB9AC\uC988 (2025-10, 14\uAC1C \uAC00\uB4DC)")),r.appendChild(this._el("p","text-xs text-gray-500 mb-2","GA\uAC00 \uD074\uB77C\uC6B0\uB4DC \uAC00\uB4DC(AWS\xB7Azure\xB7Vertex\xB7Lakera)\uC640 \uC624\uD508 \uAC00\uB4DC\uB97C \uC9C1\uC811 \uC2E4\uD589. GA Jailbreak Bench\uB294 GA\uC758 RL \uACF5\uACA9 \uBAA8\uB378\uC774 \uB9CC\uB4E0 \uC0C8 \uD0C8\uC625 \uD504\uB86C\uD504\uD2B8, Long Context Bench\uB294 \uD3C9\uADE0 10.3K \uD1A0\uD070 \uC5D0\uC774\uC804\uD2B8 \uD2B8\uB808\uC774\uC2A4\uC785\uB2C8\uB2E4."));var n=this._heatTable([["ga_guard_eval_openai_moderation_f1","OpenAI Mod F1"],["ga_guard_eval_wildguard_f1","WildGuard F1"],["ga_guard_eval_harmbench_behaviors_f1","HarmBench F1"],["ga_jailbreak_bench_f1","GA Jailbreak F1"],["ga_jailbreak_bench_fpr_lower_better","GA Jailbreak FPR"],["ga_long_context_bench_f1","Long Ctx F1"],["ga_long_context_bench_fpr_lower_better","Long Ctx FPR"],["ga_guard_eval_avg_time_s_lower_better","\uD3C9\uADE0 \uC2DC\uAC04 s"]],{sortBy:"ga_jailbreak_bench_f1"});r.appendChild(n.el),r.appendChild(this._link("https://generalanalysis.com/blog/ga-guard-series","GA Guard \uC6D0\uBB38 \u2197")),t.appendChild(r);var l=this._el("div","mb-8");l.appendChild(this._el("h3","text-sm font-semibold text-gray-200 mb-1","Red Hat EvalHub \u2014 \uACB0\uC815 \uBAA8\uB378(Jev\uB958) vs \uC804\uD1B5 \uAC00\uB4DC\uB808\uC77C (2026-10-02)")),l.appendChild(this._el("p","text-xs text-gray-500 mb-2","NeMo Guardrails \uC548\uC5D0\uC11C 9\uAC00\uC9C0 \uBC29\uC2DD\uC744 \uBE44\uAD50: \uC0AC\uC804\uD559\uC2B5 \uC18C\uD615 \uBD84\uB958\uAE30(OpenShift AI \uAE30\uBCF8), BART-MNLI \uC81C\uB85C\uC0F7, LLM-as-a-judge(Nemotron 3.5 \uAE30\uBCF8/\uB9DE\uCDA4 \uC815\uCC45, Qwen3.6-35B), Jev\xB7Laya\xB7DiffusionGemma \uACB0\uC815 \uBAA8\uB378. Shieldstral\uC740 \uC6D0\uBB38 \uBCF8\uBB38 \uD45C\uC640 \uBD80\uB85D \uD45C\uC5D0\uC11C \uACFC\uC81C\uBCC4 \uC218\uCE58\uAC00 \uB4A4\uBC14\uB00C\uC5B4 \uC788\uC5B4 \uC81C\uC678\uD588\uC2B5\uB2C8\uB2E4."));var c=this._heatTable([["redhat_evalhub_prompt_injection_acc","\uC778\uC81D\uC158 \uC815\uD655\uB3C4"],["redhat_evalhub_prompt_injection_blocked_f1","\uC778\uC81D\uC158 \uCC28\uB2E8 F1"],["redhat_evalhub_prompt_injection_median_latency_ms_lower_better","\uC778\uC81D\uC158 \uC911\uC559 \uC9C0\uC5F0 ms"],["redhat_evalhub_content_safety_acc","\uCF58\uD150\uCE20 \uC548\uC804 \uC815\uD655\uB3C4"],["redhat_evalhub_content_safety_blocked_f1","\uCF58\uD150\uCE20 \uCC28\uB2E8 F1"],["redhat_evalhub_content_safety_median_latency_ms_lower_better","\uCF58\uD150\uCE20 \uC911\uC559 \uC9C0\uC5F0 ms"]],{sortBy:"redhat_evalhub_content_safety_acc"});l.appendChild(c.el),l.appendChild(this._link("https://developers.redhat.com/articles/2026/10/02/benchmarking-ai-decision-models-against-traditional-guardrails","Red Hat \uC6D0\uBB38 \u2197")),t.appendChild(l);var _=this._el("div","mb-4");_.appendChild(this._el("h3","text-sm font-semibold text-gray-200 mb-1","TrueFoundry AI Gateway \u2014 \uACFC\uC81C\uBCC4 \uC81C\uACF5\uC0AC \uBE44\uAD50 (\uACFC\uC81C\uB2F9 400\uAC1C)"));var h=this._heatTable([["truefoundry_content_moderation_f1","\uBAA8\uB354\uB808\uC774\uC158 F1"],["truefoundry_content_moderation_latency_ms_lower_better","\uBAA8\uB354\uB808\uC774\uC158 ms"],["truefoundry_pii_f1","PII F1"],["truefoundry_pii_latency_ms_lower_better","PII ms"],["truefoundry_prompt_injection_f1","\uC778\uC81D\uC158 F1"],["truefoundry_prompt_injection_recall","\uC778\uC81D\uC158 \uC7AC\uD604\uC728"],["truefoundry_prompt_injection_latency_ms_lower_better","\uC778\uC81D\uC158 ms"]]);_.appendChild(h.el);var d=this._el("p","text-xs text-gray-500 mt-2","DeepRails vs AWS Bedrock \uBE44\uAD50(60\uC30D, \uC0C1\uB300 \uAC1C\uC120\uC728 +37~53%\uB9CC \uACF5\uAC1C)\uB294 \uC808\uB300 \uC218\uCE58\uAC00 \uC5C6\uC5B4 \uC800\uC7A5\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4. ");d.appendChild(this._link("https://www.truefoundry.com/blog/benchmarking-llm-guardrail-providers","TrueFoundry \uC6D0\uBB38 \u2197")),_.appendChild(d),t.appendChild(_)},_renderPapers:function(i){var e=this,t=this._section(i,"\uB17C\uBB38 \uBCA4\uCE58\uB9C8\uD06C \uACB0\uACFC","\uBAA8\uB4E0 \uC218\uCE58\uB294 \uB17C\uBB38 PDF\uC758 \uD45C\xB7\uADF8\uB9BC \uC22B\uC790 \uC904\uACFC \uAE30\uACC4 \uB300\uC870\uD574 \uD655\uC778\uD588\uC2B5\uB2C8\uB2E4. \uC140\uC744 \uB204\uB974\uBA74 \uADFC\uAC70 \uC904\uC774 \uB098\uC635\uB2C8\uB2E4.");t.appendChild(this._legend()),this.PAPERS.forEach(function(r){var n=e._el("div","mb-8");n.appendChild(e._el("h3","text-sm font-semibold text-gray-200 mb-1",r.title)),n.appendChild(e._el("p","text-xs text-gray-500 mb-2",r.note));var l=r.cols;if(r.prefixCols){var c={};l=[],(App.data.benchmarks||[]).forEach(function(d){if((/^guardbench_/.test(d.id)||/_rerun_guardbench$/.test(d.id))&&!c[d.id]&&e._bench(d.id).length){c[d.id]=1;var o=d.id.replace(/^guardbench_/,"").replace(/_rerun_guardbench$/,"").replace(/^prompt_/,"P\xB7").replace(/^conv_/,"C\xB7").replace(/_(recall|f1)$/,"").replace(/_prompt$|_response$/,"").replace(/_/g," ");l.push([d.id,o])}})}var _=r.sortBy||(l[l.length-1][0]==="guardsetx_average_asr_lower_better"?"guardsetx_average_asr_lower_better":l[0][0]),h=e._heatTable(l,{sortBy:_});n.appendChild(h.el),n.appendChild(e._link(r.url,"\uB17C\uBB38 \u2197")),t.appendChild(n)})},_renderAgent:function(i){var e=this,t=[["railguard_unsafe_tool_exec_no_guardrail_lower_better","\uAC00\uB4DC\uB808\uC77C \uC5C6\uC74C"],["railguard_unsafe_tool_exec_text_only_eval_lower_better","\uD14D\uC2A4\uD2B8\uB9CC \uD3C9\uAC00"],["railguard_unsafe_tool_exec_pre_action_eval_lower_better","\uC2E4\uD589 \uC804 \uD3C9\uAC00"],["railguard_unsafe_tool_exec_pre_action_remediation_lower_better","\uC2E4\uD589 \uC804 \uD3C9\uAC00 + \uACC4\uD68D \uC218\uC815"]],r={};if(t.forEach(function(_){e._bench(_[0]).forEach(function(h){r[h.model_id]=1})}),r=Object.keys(r),!!r.length){var n=this._section(i,"\uC5D0\uC774\uC804\uD2B8 \uB3C4\uAD6C \uD638\uCD9C \uAC00\uB4DC\uB808\uC77C \u2014 RAIL Guard (arXiv 2607.16215)","\uC5D0\uC774\uC804\uD2B8\uAC00 \uC704\uD5D8\uD55C \uB3C4\uAD6C \uD638\uCD9C(\uAD8C\uD55C \uBCC0\uACBD, \uC1A1\uAE08, \uD30C\uC77C \uC0AD\uC81C \uB4F1)\uC744 \uC2E4\uC81C\uB85C \uC2E4\uD589\uD55C \uBE44\uC728. \uD14D\uC2A4\uD2B8\uB85C\uB294 \uAC70\uC808\uD558\uBA74\uC11C \uB3C4\uAD6C\uB294 \uC2E4\uD589\uD558\uB294 \uACBD\uC6B0(GAP)\uB3C4 \uD655\uC778\uD569\uB2C8\uB2E4. \uB0AE\uC744\uC218\uB85D \uC88B\uC2B5\uB2C8\uB2E4. \uBAA8\uB378\uB2F9 \uC870\uAC74\uBCC4 400\uD68C \uC2E4\uD589."),l=this._el("div");l.style.height="360px",n.appendChild(l),this._chart(l,{backgroundColor:"transparent",tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},legend:{data:r.map(function(_){return e._name(_)}),textStyle:{color:Theme.textMuted,fontSize:11},top:0},grid:{left:40,right:20,top:40,bottom:30},xAxis:{type:"category",data:t.map(function(_){return _[1]}),axisLabel:{color:Theme.textMuted}},yAxis:{type:"value",name:"\uC704\uD5D8 \uC2E4\uD589\uB960 %",nameTextStyle:{color:Theme.textMuted},axisLabel:{color:Theme.textMuted},splitLine:{lineStyle:{color:Theme.border}}},series:r.map(function(_,h){return{name:e._name(_),type:"bar",itemStyle:{color:Theme.series[h%Theme.series.length]},data:t.map(function(d){return e._val(_,d[0])}),label:{show:!0,position:"top",color:Theme.textDim,fontSize:9}}})});var c=this._heatTable([["railguard_content_failure_rate_overall_lower_better","\uCF58\uD150\uCE20 \uC2E4\uD328\uC728 \uC804\uCCB4"],["railguard_content_failure_rate_code_lower_better","\uCF54\uB4DC"],["railguard_content_failure_rate_legal_lower_better","\uBC95\uB960"],["railguard_content_failure_rate_finance_lower_better","\uAE08\uC735"],["railguard_content_failure_rate_healthcare_lower_better","\uC758\uB8CC"],["railguard_content_failure_rate_education_lower_better","\uAD50\uC721"],["railguard_content_failure_rate_customer_support_lower_better","\uACE0\uAC1D\uC9C0\uC6D0"]]);n.appendChild(this._el("p","text-xs text-gray-500 mt-4 mb-2","Pool A \uCF58\uD150\uCE20 \uC2E4\uD328\uC728: 8\uAC1C \uCC45\uC784 AI \uCC28\uC6D0 \uC885\uD569 \uC810\uC218\uAC00 7.0 \uBBF8\uB9CC\uC778 \uC751\uB2F5 \uBE44\uC728(%). \uCF54\uB4DC \uC0DD\uC131\uC774 \uBAA8\uB4E0 \uBAA8\uB378\uC5D0\uC11C \uAC00\uC7A5 \uCDE8\uC57D\uD569\uB2C8\uB2E4.")),n.appendChild(c.el)}},_renderDatasets:function(i){var e=this,t=this._section(i,"\uAC00\uB4DC\uB808\uC77C \uBCA4\uCE58\uB9C8\uD06C \uB370\uC774\uD130\uC14B","\uC774 \uD0ED\uC5D0 \uACB0\uACFC\uAC00 \uB4E4\uC5B4 \uC788\uB294 \uD3C9\uAC00 \uB370\uC774\uD130\uC14B\uC785\uB2C8\uB2E4. \uC22B\uC790\uB294 \uD604\uC7AC DB\uC5D0 \uC800\uC7A5\uB41C \uBCA4\uCE58\uB9C8\uD06C id \uC218\uC640 \uC810\uC218\uAC00 \uC788\uB294 \uBAA8\uB378 \uC218\uC785\uB2C8\uB2E4."),r=this._el("div","grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"),n=(App.data.benchmarks||[]).map(function(l){return l.id});this.DATASETS.forEach(function(l){var c=n.filter(function(d){return l.prefix.some(function(o){return o.charAt(0)==="_"?d.slice(-o.length)===o:d.indexOf(o)===0})}),_={};c.forEach(function(d){e._bench(d).forEach(function(o){_[o.model_id]=1})});var h=e._el("div","rounded-lg border border-gray-800 p-4 space-y-1");h.appendChild(e._el("div","text-sm font-semibold text-gray-200",l.name)),h.appendChild(e._el("div","text-xs text-gray-500",l.who+" \xB7 "+l.size)),h.appendChild(e._el("p","text-sm text-gray-400",l.what)),h.appendChild(e._el("div","text-xs text-gray-500","\uBCA4\uCE58\uB9C8\uD06C id "+c.length+"\uAC1C \xB7 \uC810\uC218 \uC788\uB294 \uBAA8\uB378 "+Object.keys(_).length+"\uAC1C")),h.appendChild(e._link(l.url)),r.appendChild(h)}),t.appendChild(r)},_renderRegistry:function(i){var e=this,t=Object.keys(this._models).filter(function(o){return e._models[o].type==="guard"}).concat(this.EXTRA_GUARDS.filter(function(o){return e._models[o]})),r=this._section(i,"\uAC00\uB4DC\uB808\uC77C \uBAA8\uB378 \uB808\uC9C0\uC2A4\uD2B8\uB9AC ("+t.length+"\uAC1C)","\uC624\uD508 \uAC00\uC911\uCE58 \uAC00\uB4DC \uBAA8\uB378, \uAD00\uB9AC\uD615 \uAC00\uB4DC API, \uC815\uCC45 \uC801\uC751\uD615 \uC774\uBBF8\uC9C0 \uAC00\uB4DC\uB97C \uD3EC\uD568\uD569\uB2C8\uB2E4. \uCD9C\uC2DC\uC77C\uC740 Hugging Face \uC800\uC7A5\uC18C \uC0DD\uC131\uC77C \uB610\uB294 \uACF5\uAE09\uC0AC \uBC1C\uD45C\uC77C\uC774\uBA70, API \uC11C\uBE44\uC2A4\uB294 \uBE44\uC6CC \uB450\uC5C8\uC2B5\uB2C8\uB2E4."),n=this._idx();t.sort(function(o,f){return(e._models[f].release_date||"").localeCompare(e._models[o].release_date||"")});var l=this._el("table","sota-table text-xs"),c=this._el("thead"),_=this._el("tr");["Model","\uAD6C\uBD84","Vendor","\uD30C\uB77C\uBBF8\uD130","\uCD9C\uC2DC","AA \uD3C9\uADE0 F1","\uC810\uC218 \uC218"].forEach(function(o){_.appendChild(e._el("th",null,o))}),c.appendChild(_),l.appendChild(c);var h=this._el("tbody");t.forEach(function(o){var f=e._models[o],m=e._el("tr"),s=e._el("td",null,e._name(o));s.style.cursor="pointer",s.style.whiteSpace="nowrap",s.style.color=e._kindColor(o),s.title=o,s.addEventListener("click",function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(o)}),m.appendChild(s),m.appendChild(e._el("td",null,e.API_GUARDS[o]?"API":"\uC624\uD508 \uAC00\uC911\uCE58")),m.appendChild(e._el("td",null,f.vendor||"")),m.appendChild(e._el("td",null,f.parameters||"\u2014")),m.appendChild(e._el("td",null,f.release_date||"\u2014"));var p=e._val(o,e.AA.avg);m.appendChild(e._el("td",null,p==null?"\u2014":p.toFixed(1))),m.appendChild(e._el("td",null,String((n&&n.byModel[o]||[]).length))),h.appendChild(m)}),l.appendChild(h);var d=this._el("div","overflow-x-auto");d.appendChild(l),r.appendChild(d)}};
+/**
+ * Guardrail tab (S300) — guardrail / safety-classifier models, guardrail benchmark datasets and results.
+ * Data-driven from App.data.scores (score index). Sections:
+ *   1. how to read the metrics   2. Artificial Analysis guardrail benchmark (F1 / recall / specificity / latency)
+ *   3. vendor-run comparisons (GA Guard, Red Hat EvalHub, TrueFoundry)   4. paper result heatmaps
+ *   5. agent tool-call guardrails (RAIL Guard)   6. benchmark dataset catalogue   7. guard model registry
+ * All text goes through textContent; score cells open Modal.showScoreSource.
+ */
+var Guardrail = {
+    _initialized: false,
+    _charts: [],
+
+    // Guard models that predate S300 (registered with other types) — the rest are type === 'guard'.
+    EXTRA_GUARDS: ['openai/gpt-oss-safeguard-20b', 'mistral/shieldstral-1.0-3b', 'ai-singapore/sea-guard',
+                   'qcri/fanar-2-27b-fanarguard-4b', 'typhoon-ai/thai-safety-classifier',
+                   // decision models used as zero-shot guardrails (Red Hat EvalHub) — type 'decision' since S301
+                   'typesafe/jev-1.13', 'convaiinnovations/laya'],
+    // General LLMs that appear in guardrail comparisons as prompted baselines / judged agents.
+    PROMPTED: { 'openai/gpt-oss-20b': 1, 'openai/gpt-oss-120b': 1, 'openai/gpt-5-high': 1, 'openai/gpt-5-mini': 1, 'alibaba/qwen3.6-35b-a3b': 1, 'google/diffusiongemma-26b-a4b': 1 },
+    API_GUARDS: { 'openai/omni-moderation': 1, 'openai/text-moderation': 1, 'amazon/bedrock-guardrails': 1, 'microsoft/azure-ai-content-safety': 1,
+                  'microsoft/azure-ai-language-pii': 1, 'google/vertex-ai-model-armor': 1, 'lakera/lakera-guard': 1, 'virtueai/virtueguard-text-lite': 1,
+                  'pangea/ai-guard': 1, 'promptfoo/guardrails': 1, 'protectai/llm-guard-gpt-4o': 1, 'typesafe/jev-1.13': 1 },
+
+    AA: {
+        url: 'https://artificialanalysis.ai/articles/guardrail-safety-benchmark',
+        avg: 'aa_guardrail_avg_f1', recall: 'aa_guardrail_recall', precision: 'aa_guardrail_precision', spec: 'aa_guardrail_specificity',
+        lat: 'aa_guardrail_latency_ms_lower_better', p95: 'aa_guardrail_p95_latency_ms_lower_better', tok: 'aa_guardrail_output_tokens',
+        ds: [{ k: 'wildguardtest', label: 'WildGuardTest' }, { k: 'toxicchat', label: 'ToxicChat' }, { k: 'xstest', label: 'XSTest' }]
+    },
+
+    PAPERS: [
+        { key: 'guardsetx', title: 'GuardSet-X — 도메인별 정책 기반 가드레일 F1 (19 guards × 12 domains)', url: 'https://arxiv.org/abs/2506.19054',
+          note: 'Table 1. 소셜미디어·규제(EU AI Act, GDPR)·HR·금융·법률·교육·코드·사이버 도메인별 실제 정책 문서에서 만든 위반/정상 샘플. 높을수록 좋음.',
+          cols: [['guardsetx_social_messaging_f1', 'Social·Msg'], ['guardsetx_social_community_f1', 'Social·Comm'], ['guardsetx_social_streaming_f1', 'Social·Stream'],
+                 ['guardsetx_regulation_eu_ai_act_f1', 'EU AI Act'], ['guardsetx_regulation_gdpr_f1', 'GDPR'], ['guardsetx_hr_service_f1', 'HR·Service'],
+                 ['guardsetx_hr_customer_f1', 'HR·Customer'], ['guardsetx_finance_f1', 'Finance'], ['guardsetx_law_f1', 'Law'], ['guardsetx_education_f1', 'Education'],
+                 ['guardsetx_code_f1', 'Code'], ['guardsetx_cyber_f1', 'Cyber']] },
+        { key: 'guardsetx_asr', title: 'GuardSet-X — 탈옥 최적화 공격 성공률 (ASR, 낮을수록 좋음)', url: 'https://arxiv.org/abs/2506.19054',
+          note: 'Table 2. 가드레일을 우회하도록 최적화한 공격 프롬프트의 성공률. 낮을수록 견고함.', lower: true,
+          cols: [['guardsetx_social_messaging_asr_lower_better', 'Social·Msg'], ['guardsetx_social_community_asr_lower_better', 'Social·Comm'],
+                 ['guardsetx_social_streaming_asr_lower_better', 'Social·Stream'], ['guardsetx_regulation_eu_ai_act_asr_lower_better', 'EU AI Act'],
+                 ['guardsetx_regulation_gdpr_asr_lower_better', 'GDPR'], ['guardsetx_hr_asr_lower_better', 'HR'], ['guardsetx_finance_asr_lower_better', 'Finance'],
+                 ['guardsetx_law_asr_lower_better', 'Law'], ['guardsetx_education_asr_lower_better', 'Education'], ['guardsetx_code_asr_lower_better', 'Code'],
+                 ['guardsetx_cyber_asr_lower_better', 'Cyber'], ['guardsetx_average_asr_lower_better', 'Avg']] },
+        { key: 'guardbench', title: 'GuardBench — 40개 안전 데이터셋 (11 guards, EMNLP 2024)', url: 'https://aclanthology.org/2024.emnlp-main.1022/',
+          note: 'Table 3. 전부 유해인 데이터셋은 Recall, 혼합 데이터셋은 F1. 프롬프트(P) / 대화(C) 분류. PromptsEN/DE/FR/IT/ES·UnsafeQA는 GuardBench가 새로 만든 셋.',
+          prefixCols: true },
+        { key: 'csguard', title: 'CS-Guard — 코드 생성 보안 가드레일 (입력 분류기 ASR · 출력 분류기 F1)', url: 'https://arxiv.org/abs/2609.09798',
+          note: 'Fig. 5/6. 악성코드 생성 요청(텍스트→코드)과 악성 코드 변환(코드→코드). L1 = 기본 프롬프트, L2 = 탈옥 7종 + FSA 평균. 입력 분류기는 ASR(낮을수록 좋음), 출력 분류기는 F1.',
+          cols: [['csguard_inputclf_t2c_l1_asr_lower_better', '입력 ASR · T2C L1', true], ['csguard_inputclf_t2c_l2_avg_asr_lower_better', '입력 ASR · T2C L2', true],
+                 ['csguard_inputclf_t2c_l2_fsa_asr_lower_better', '입력 ASR · FSA', true], ['csguard_inputclf_c2c_avg_asr_lower_better', '입력 ASR · C2C', true],
+                 ['csguard_outputclf_t2c_l1_f1', '출력 F1 · T2C L1'], ['csguard_outputclf_t2c_l2_avg_f1', '출력 F1 · T2C L2'],
+                 ['csguard_outputclf_t2c_l2_fsa_f1', '출력 F1 · FSA'], ['csguard_outputclf_c2c_avg_f1', '출력 F1 · C2C']] },
+        { key: 'image', title: '이미지 가드레일 — SafeEditBench · UnsafeBench · LlavaGuardBench (arXiv 2603.01228)', url: 'https://arxiv.org/abs/2603.01228',
+          note: 'SafeEditBench(정책 L1–L5를 편집해 같은 이미지의 정답이 바뀌는지) — 정책 적응력. UnsafeBench F1, LlavaGuardBench, 일반 능력 평균(MMMU·RealWorldQA·BLINK·MMT).',
+          cols: [['safeeditbench_overall_f1', 'SafeEdit Overall'], ['safeeditbench_policy_l1_acc', 'SafeEdit L1 (acc)'], ['safeeditbench_policy_l3_f1', 'SafeEdit L3'],
+                 ['safeeditbench_policy_l5_f1', 'SafeEdit L5'], ['unsafebench_f1', 'UnsafeBench'], ['unsafebench_f1_rerun_imageguard', 'UnsafeBench (재실행)'],
+                 ['imageguard_llavaguardbench', 'LlavaGuardBench'], ['imageguard_general_avg', '일반 능력 평균']] }
+    ],
+
+    DATASETS: [
+        { name: 'WildGuardTest', who: 'AI2 · NeurIPS 2024', size: '~1.7K', what: '프롬프트 유해성 · 응답 유해성 · 거절 3종 라벨. 합성+사람 작성.', prefix: ['wildguardtest_', 'aa_guardrail_wildguardtest'], url: 'https://huggingface.co/datasets/allenai/wildguardmix' },
+        { name: 'ToxicChat', who: 'LMSYS · EMNLP 2023', size: '5.1K test', what: 'Vicuna 데모 실사용자 프롬프트, 유해 ~7%. 실제 트래픽 분포.', prefix: ['toxicchat_', 'aa_guardrail_toxicchat'], url: 'https://huggingface.co/datasets/lmsys/toxic-chat' },
+        { name: 'XSTest', who: 'Röttger et al. · NAACL 2024', size: '450', what: '안전하지만 위험 단어가 들어간 250개 + 유해 200개 — 과잉 거절(over-refusal) 측정.', prefix: ['xstest_', 'aa_guardrail_xstest'], url: 'https://arxiv.org/abs/2308.01263' },
+        { name: 'GuardBench', who: 'EC JRC (Bassani & Sanchez) · EMNLP 2024', size: '40 datasets', what: '프롬프트·대화 분류 40개 셋 통합 + 다국어(DE/FR/IT/ES) 신규 셋. 파이썬 라이브러리.', prefix: ['guardbench_', '_rerun_guardbench'], url: 'https://aclanthology.org/2024.emnlp-main.1022/' },
+        { name: 'GuardSet-X', who: 'AI-Secure (구 PolyGuard) · arXiv 2506.19054', size: '8 domains · 150+ policies', what: '실제 기업·규제 정책 문서에서 위반/정상 질의·대화를 생성. 도메인·정책 출처별 F1과 탈옥 ASR.', prefix: ['guardsetx_'], url: 'https://arxiv.org/abs/2506.19054' },
+        { name: 'CS-Guard', who: 'arXiv 2609.09798 (2026-09)', size: '1,000 + 331 prompts', what: '코드 생성 보안: 악성코드 요청(텍스트→코드)·악성 코드 완성/삽입/번역(코드→코드), 탈옥 7종 + 허구 시나리오 공격(FSA).', prefix: ['csguard_'], url: 'https://arxiv.org/abs/2609.09798' },
+        { name: 'RAIL Guard', who: 'Responsible AI Labs · arXiv 2607.16215', size: '1,197 + 392', what: 'Pool A 콘텐츠 프롬프트(6 도메인, benign/edge/adversarial), Pool B 에이전트 도구 호출 시나리오(5 도메인). Apache-2.0.', prefix: ['railguard_'], url: 'https://huggingface.co/datasets/responsible-ai-labs/rail-guard-benchmark' },
+        { name: 'SafeEditBench / UnsafeBench', who: 'Fudan·Tencent·PKU · arXiv 2603.01228', size: 'LlavaGuard test 기반', what: '같은 이미지에 정책만 바꿨을 때 판정이 따라 바뀌는지(정책 적응형 이미지 가드레일).', prefix: ['safeeditbench_', 'unsafebench_', 'imageguard_'], url: 'https://arxiv.org/abs/2603.01228' },
+        { name: 'GA Jailbreak / Long Context Bench', who: 'General Analysis (2025-10)', size: '— / 1,500 traces', what: 'RL 공격 모델이 만든 분포 밖 탈옥 프롬프트, 평균 10.3K 토큰 에이전트 트레이스(절반에 주입·정책 위반).', prefix: ['ga_jailbreak_bench', 'ga_long_context_bench'], url: 'https://generalanalysis.com/blog/ga-guard-series' },
+        { name: 'Red Hat EvalHub (NeMo Guardrails)', who: 'Red Hat AI Safety · 2026-10-02', size: 'class-balanced', what: '프롬프트 인젝션 · 콘텐츠 안전/욕설 두 과제를 NeMo Guardrails 안에서 정확도·지연으로 비교.', prefix: ['redhat_evalhub_'], url: 'https://developers.redhat.com/articles/2026/10/02/benchmarking-ai-decision-models-against-traditional-guardrails' },
+        { name: 'TrueFoundry provider benchmark', who: 'TrueFoundry', size: '400 / task', what: 'PII · 콘텐츠 모더레이션 · 프롬프트 인젝션을 게이트웨이 하나로 동일 조건 비교.', prefix: ['truefoundry_'], url: 'https://www.truefoundry.com/blog/benchmarking-llm-guardrail-providers' }
+    ],
+
+    // ───────────────────────── helpers ─────────────────────────
+    // ECharts renders tooltip strings as HTML — escape every data-derived string (model / vendor names come from external sources).
+    _esc: function(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); },
+    _el: function(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; },
+    _idx: function() { return (window.App && App.getScoreIndex) ? App.getScoreIndex() : null; },
+    _val: function(mid, bid) { var i = this._idx(); var s = i && i.byModelBench[mid + '|' + bid]; return s ? s.value : null; },
+    _bench: function(bid) { var i = this._idx(); return (i && i.byBench[bid]) || []; },
+    _name: function(mid) { var m = this._models[mid]; var n = (m && m.name && m.name !== mid) ? m.name : mid.split('/').pop(); return n; },
+    _kind: function(mid) { return this.PROMPTED[mid] ? 'prompted' : (this.API_GUARDS[mid] ? 'api' : 'open'); },
+    _kindColor: function(mid) { var k = this._kind(mid); return k === 'prompted' ? Theme.series[2] : (k === 'api' ? Theme.series[4] : Theme.series[0]); },
+    _chart: function(el, opt) { var c = echarts.init(el); c.setOption(opt); this._charts.push(c); return c; },
+    _cellColor: function(v, min, max, lower) {
+        if (v == null || max === min) return Theme.textMuted;
+        var t = (v - min) / (max - min); if (lower) t = 1 - t;
+        var stops = [[239, 68, 68], [245, 158, 11], [16, 185, 129]];
+        var a = t < 0.5 ? stops[0] : stops[1], b = t < 0.5 ? stops[1] : stops[2], u = t < 0.5 ? t * 2 : (t - 0.5) * 2;
+        return 'rgb(' + [0, 1, 2].map(function(k) { return Math.round(a[k] + (b[k] - a[k]) * u); }).join(',') + ')';
+    },
+    _section: function(root, title, blurb) {
+        var s = this._el('div', 'mb-10');
+        s.appendChild(this._el('h2', 'text-section mb-2', title));
+        if (blurb) s.appendChild(this._el('p', 'text-sm text-gray-400 mb-4', blurb));
+        root.appendChild(s); return s;
+    },
+    _link: function(url, text) { var a = this._el('a', 'text-xs text-blue-400 hover:underline', text || '원문 ↗'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; return a; },
+
+    // Heatmap table: rows = models with >= minCov values, cols = [id, label, lowerOverride]
+    _heatTable: function(cols, opts) {
+        var self = this; opts = opts || {};
+        var mids = {};
+        cols.forEach(function(c) { self._bench(c[0]).forEach(function(s) { mids[s.model_id] = (mids[s.model_id] || 0) + 1; }); });
+        var rows = Object.keys(mids).filter(function(m) { return mids[m] >= (opts.minCov || 1); });
+        var stats = {};
+        cols.forEach(function(c) {
+            var vs = rows.map(function(m) { return self._val(m, c[0]); }).filter(function(v) { return v != null; });
+            stats[c[0]] = { min: Math.min.apply(null, vs), max: Math.max.apply(null, vs), lower: c[2] != null ? c[2] : /_lower_better$/.test(c[0]) };
+        });
+        var sortCol = opts.sortBy || cols[0][0], sl = stats[sortCol] && stats[sortCol].lower;
+        rows.sort(function(a, b) {
+            var va = self._val(a, sortCol), vb = self._val(b, sortCol);
+            if (va == null) return 1; if (vb == null) return -1;
+            return sl ? va - vb : vb - va;
+        });
+        var wrap = this._el('div', 'overflow-x-auto');
+        var t = this._el('table', 'sota-table text-xs'); var thead = this._el('thead'), hr = this._el('tr');
+        hr.appendChild(this._el('th', null, 'Model'));
+        cols.forEach(function(c) { var th = self._el('th', null, c[1]); th.style.whiteSpace = 'nowrap'; th.title = c[0]; hr.appendChild(th); });
+        thead.appendChild(hr); t.appendChild(thead);
+        var tb = this._el('tbody');
+        rows.forEach(function(mid) {
+            var tr = self._el('tr');
+            var tn = self._el('td', null, self._name(mid)); tn.style.whiteSpace = 'nowrap'; tn.style.cursor = 'pointer'; tn.title = mid;
+            tn.style.color = self._kindColor(mid);
+            tn.addEventListener('click', function() { if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid); });
+            tr.appendChild(tn);
+            cols.forEach(function(c) {
+                var v = self._val(mid, c[0]), st = stats[c[0]];
+                var td = self._el('td', null, v == null ? '—' : (Math.abs(v) >= 100 ? v.toFixed(0) : (Math.abs(v) < 1 && v !== 0 ? v.toFixed(2) : v.toFixed(1))));
+                td.style.textAlign = 'center';
+                if (v == null) td.style.color = Theme.textDisabled;
+                else {
+                    td.style.color = self._cellColor(v, st.min, st.max, st.lower);
+                    if (v === (st.lower ? st.min : st.max)) td.style.fontWeight = 'bold';
+                    td.style.cursor = 'pointer'; td.title = '클릭하면 검증 소스';
+                    td.addEventListener('click', function() { if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(mid, c[0]); });
+                }
+                tr.appendChild(td);
+            });
+            tb.appendChild(tr);
+        });
+        t.appendChild(tb); wrap.appendChild(t);
+        return { el: wrap, n: rows.length };
+    },
+
+    _legend: function() {
+        var self = this, d = this._el('div', 'flex flex-wrap gap-4 text-xs text-gray-400 mb-3');
+        [['open', '오픈 가중치 가드 모델'], ['api', '관리형 API / 상용 가드'], ['prompted', '범용 LLM을 분류기로 프롬프트']].forEach(function(k) {
+            var s = self._el('span'); var dot = self._el('span', null, '●  ');
+            dot.style.color = k[0] === 'prompted' ? Theme.series[2] : (k[0] === 'api' ? Theme.series[4] : Theme.series[0]);
+            s.appendChild(dot); s.appendChild(document.createTextNode(k[1])); d.appendChild(s);
+        });
+        return d;
+    },
+
+    // ───────────────────────── render ─────────────────────────
+    render: function() {
+        if (this._initialized) return;
+        if (!window.App || !App.data || !App.data.scores || !App.data.scores.length || !this._idx()) return;
+        var self = this, root = document.getElementById('guardrail-content');
+        if (!root) return;
+        root.textContent = '';
+        this._models = {}; (App.data.models || []).forEach(function(m) { self._models[m.id] = m; });
+        this._renderGuide(root);
+        this._renderAA(root);
+        this._renderVendor(root);
+        this._renderPapers(root);
+        this._renderAgent(root);
+        this._renderDatasets(root);
+        this._renderRegistry(root);
+        window.addEventListener('resize', function() { self._charts.forEach(function(c) { c.resize(); }); });
+        this._initialized = true;
+    },
+
+    _renderGuide: function(root) {
+        var self = this;
+        var g = this._el('div', 'grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8');
+        var cards = [
+            ['가드레일 모델이란', [
+                '사용자 입력이나 모델 출력이 안전한지 판정만 하는 분류기입니다. 대화나 답변은 하지 않습니다.',
+                '입력 가드는 탈옥·프롬프트 인젝션·개인정보 요청을 메인 모델 앞에서 막고, 출력 가드는 유해 응답·정보 유출을 사용자에게 가기 전에 막습니다.',
+                '모든 요청에 붙기 때문에 정확도뿐 아니라 지연과 비용도 함께 봐야 합니다.']],
+            ['지표 읽는 법', [
+                'F1: 유해를 잘 잡으면서(재현율) 정상을 잘못 막지 않는(정밀도) 균형 점수. 높을수록 좋습니다.',
+                '재현율(recall): 유해 콘텐츠 중 잡아낸 비율. 의료·아동 안전처럼 한 번의 누락도 치명적이면 이 값을 우선합니다.',
+                '특이도(specificity): 정상 콘텐츠를 통과시킨 비율. 100 − 특이도 = 과잉 거절률. 소비자 챗·창작 도구는 이 값이 중요합니다.',
+                'ASR(공격 성공률)·FPR(오탐률)·지연(ms)은 낮을수록 좋습니다. 벤더가 직접 돌린 비교(GA·TrueFoundry·DeepRails)는 자사에 유리한 조건일 수 있어 독립 평가(AA·Red Hat·논문)와 따로 표시합니다.']]
+        ];
+        cards.forEach(function(c) {
+            var d = self._el('div', 'rounded-lg border border-gray-800 p-4 space-y-2');
+            d.appendChild(self._el('h3', 'text-sm font-semibold text-gray-200', c[0]));
+            c[1].forEach(function(p) { d.appendChild(self._el('p', 'text-sm text-gray-400 leading-relaxed', p)); });
+            g.appendChild(d);
+        });
+        root.appendChild(g);
+    },
+
+    _renderAA: function(root) {
+        var self = this, A = this.AA;
+        var rows = this._bench(A.avg).slice().sort(function(a, b) { return b.value - a.value; });
+        if (!rows.length) return;
+        var s = this._section(root, 'Artificial Analysis 가드레일 벤치마크 — 안전성 · 과잉 거절 · 지연',
+            '2026-06-11, NVIDIA 협력. ' + rows.length + '개 구성(전문 가드 모델, 모더레이션 API, 범용 gpt-oss를 분류기로 프롬프트)에 WildGuardTest 프롬프트 유해성(1,699) · ToxicChat(5,083) · XSTest(450)를 동일 조건(temperature 0, 프롬프트 단위)으로 실행. 헤드라인 = 세 데이터셋 F1 평균. 지연은 B200 자체 호스팅에서 450개 요청을 하나씩 측정(omni-moderation만 OpenAI API).');
+        s.appendChild(this._legend());
+        var grid = this._el('div', 'grid grid-cols-1 xl:grid-cols-2 gap-6');
+        var c1 = this._el('div'); c1.style.height = '520px';
+        var c2 = this._el('div'); c2.style.height = '520px';
+        grid.appendChild(c1); grid.appendChild(c2); s.appendChild(grid);
+        var names = rows.map(function(r) { return self._name(r.model_id); });
+        this._chart(c1, {
+            backgroundColor: 'transparent',
+            title: { text: '평균 F1 (높을수록 좋음)', textStyle: { color: Theme.textSecondary, fontSize: 13 } },
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(p) {
+                var mid = rows[p[0].dataIndex].model_id; var out = [names[p[0].dataIndex], '평균 F1 ' + p[0].value];
+                A.ds.forEach(function(d) { var v = self._val(mid, 'aa_guardrail_' + d.k + '_f1'); if (v != null) out.push(d.label + ' F1 ' + v.toFixed(1)); });
+                var l = self._val(mid, A.lat); if (l != null) out.push('지연 ' + l.toFixed(0) + ' ms');
+                return out.map(self._esc).join('<br>'); } },
+            grid: { left: 8, right: 30, top: 34, bottom: 8, containLabel: true },
+            xAxis: { type: 'value', min: 50, max: 100, axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },
+            yAxis: { type: 'category', inverse: true, data: names, axisLabel: { color: Theme.textMuted, fontSize: 10 } },
+            series: [{ type: 'bar', barWidth: '62%', data: rows.map(function(r) { return { value: +r.value.toFixed(1), itemStyle: { color: self._kindColor(r.model_id) } }; }),
+                       label: { show: true, position: 'right', color: Theme.textMuted, fontSize: 10 } }]
+        });
+        // F1 vs latency (log x)
+        var pts = rows.map(function(r) { return { mid: r.model_id, f1: r.value, lat: self._val(r.model_id, A.lat) }; }).filter(function(p) { return p.lat != null; });
+        this._chart(c2, {
+            backgroundColor: 'transparent',
+            title: { text: '탐지 품질 vs 지연 (왼쪽 위가 좋음)', textStyle: { color: Theme.textSecondary, fontSize: 13 } },
+            tooltip: { formatter: function(p) { var d = pts[p.dataIndex]; return self._esc(self._name(d.mid)) + '<br>F1 ' + d.f1.toFixed(1) + ' · 평균 지연 ' + d.lat.toFixed(0) + ' ms'; } },
+            grid: { left: 50, right: 30, top: 40, bottom: 50 },
+            xAxis: { type: 'log', logBase: 10, min: 10, max: 3000, name: '평균 지연 (ms, 로그 축)', nameLocation: 'middle', nameGap: 28, nameTextStyle: { color: Theme.textMuted },
+                     axisLine: { show: true, lineStyle: { color: Theme.borderStrong } }, axisLabel: { show: true, color: Theme.textMuted, formatter: function(v) { return v >= 1000 ? (v / 1000) + 's' : v + 'ms'; } }, splitLine: { lineStyle: { color: Theme.border } } },
+            yAxis: { type: 'value', min: 60, max: 95, axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },
+            series: [{ type: 'scatter', symbolSize: 11, data: pts.map(function(d) { return { value: [d.lat, +d.f1.toFixed(1)], itemStyle: { color: self._kindColor(d.mid) } }; }),
+                       label: { show: true, position: 'right', color: Theme.textDim, fontSize: 9, formatter: function(p) { var n = self._name(pts[p.dataIndex].mid); return n.length > 22 ? n.slice(0, 21) + '…' : n; } } }]
+        });
+        // Recall vs specificity
+        var c3 = this._el('div'); c3.style.height = '480px'; c3.className = 'mt-6';
+        s.appendChild(c3);
+        var rs = rows.map(function(r) { return { mid: r.model_id, rec: self._val(r.model_id, A.recall), sp: self._val(r.model_id, A.spec) }; }).filter(function(p) { return p.rec != null && p.sp != null; });
+        this._chart(c3, {
+            backgroundColor: 'transparent',
+            title: { text: '유해 탐지(재현율) vs 정상 통과(특이도) — 오른쪽 위가 좋음. 위쪽 = 엄격형, 오른쪽 = 관대형', textStyle: { color: Theme.textSecondary, fontSize: 13 } },
+            tooltip: { formatter: function(p) { var d = rs[p.dataIndex]; return self._esc(self._name(d.mid)) + '<br>재현율 ' + d.rec.toFixed(1) + ' · 특이도 ' + d.sp.toFixed(1) + '<br>과잉 거절률 ' + (100 - d.sp).toFixed(1) + '%'; } },
+            grid: { left: 50, right: 40, top: 70, bottom: 40 },
+            xAxis: { type: 'value', name: '특이도 (정상 통과, %)', min: 80, max: 100, nameLocation: 'middle', nameGap: 26, nameTextStyle: { color: Theme.textMuted }, axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },
+            yAxis: { type: 'value', name: '재현율 (유해 탐지, %)', min: 30, max: 100, nameGap: 14, nameTextStyle: { color: Theme.textMuted, align: 'left' }, axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },
+            series: [{ type: 'scatter', symbolSize: 11, data: rs.map(function(d) { return { value: [+d.sp.toFixed(1), +d.rec.toFixed(1)], itemStyle: { color: self._kindColor(d.mid) } }; }),
+                       label: { show: true, position: 'right', color: Theme.textDim, fontSize: 9, formatter: function(p) { var n = self._name(rs[p.dataIndex].mid); return n.length > 22 ? n.slice(0, 21) + '…' : n; } } }]
+        });
+        // Table
+        var cols = [[A.avg, '평균 F1'], ['aa_guardrail_wildguardtest_f1', 'WildGuardTest F1'], ['aa_guardrail_toxicchat_f1', 'ToxicChat F1'], ['aa_guardrail_xstest_f1', 'XSTest F1'],
+                    [A.recall, '재현율'], [A.precision, '정밀도'], [A.spec, '특이도'], ['aa_guardrail_xstest_specificity', 'XSTest 특이도'],
+                    [A.lat, '평균 지연 ms'], [A.p95, 'p95 ms'], [A.tok, '출력 토큰', true]];
+        var t = this._heatTable(cols, { sortBy: A.avg });
+        t.el.classList.add('mt-6'); s.appendChild(t.el);
+        var foot = this._el('p', 'text-xs text-gray-500 mt-2', 'gpt-oss-20B / 120B (Prompted)는 AA가 쓴 짧은 분류 지시문으로 돌린 탐색용 기준선이며 공식 안전 분류기 구성이 아닙니다. 출력 토큰은 판정 1건당 생성 토큰 수로, 적을수록 비용·지연이 낮습니다(추론형 가드는 100–330개). ');
+        foot.appendChild(this._link(A.url, 'AA 원문 ↗')); s.appendChild(foot);
+    },
+
+    _renderVendor: function(root) {
+        var self = this;
+        var s = this._section(root, '공급사·플랫폼이 직접 돌린 비교', '아래 수치는 가드 제공사나 플랫폼이 자체 조건으로 측정한 결과입니다. 같은 공개 데이터셋 이름이라도 하네스·프롬프트·정책이 달라 다른 출처의 수치와 직접 비교하지 마세요.');
+        // GA Guard
+        var ga = this._el('div', 'mb-8');
+        ga.appendChild(this._el('h3', 'text-sm font-semibold text-gray-200 mb-1', 'General Analysis GA Guard 시리즈 (2025-10, 14개 가드)'));
+        ga.appendChild(this._el('p', 'text-xs text-gray-500 mb-2', 'GA가 클라우드 가드(AWS·Azure·Vertex·Lakera)와 오픈 가드를 직접 실행. GA Jailbreak Bench는 GA의 RL 공격 모델이 만든 새 탈옥 프롬프트, Long Context Bench는 평균 10.3K 토큰 에이전트 트레이스입니다.'));
+        var gt = this._heatTable([['ga_guard_eval_openai_moderation_f1', 'OpenAI Mod F1'], ['ga_guard_eval_wildguard_f1', 'WildGuard F1'], ['ga_guard_eval_harmbench_behaviors_f1', 'HarmBench F1'],
+            ['ga_jailbreak_bench_f1', 'GA Jailbreak F1'], ['ga_jailbreak_bench_fpr_lower_better', 'GA Jailbreak FPR'], ['ga_long_context_bench_f1', 'Long Ctx F1'],
+            ['ga_long_context_bench_fpr_lower_better', 'Long Ctx FPR'], ['ga_guard_eval_avg_time_s_lower_better', '평균 시간 s']], { sortBy: 'ga_jailbreak_bench_f1' });
+        ga.appendChild(gt.el); ga.appendChild(this._link('https://generalanalysis.com/blog/ga-guard-series', 'GA Guard 원문 ↗'));
+        s.appendChild(ga);
+        // Red Hat
+        var rh = this._el('div', 'mb-8');
+        rh.appendChild(this._el('h3', 'text-sm font-semibold text-gray-200 mb-1', 'Red Hat EvalHub — 결정 모델(Jev류) vs 전통 가드레일 (2026-10-02)'));
+        rh.appendChild(this._el('p', 'text-xs text-gray-500 mb-2', 'NeMo Guardrails 안에서 9가지 방식을 비교: 사전학습 소형 분류기(OpenShift AI 기본), BART-MNLI 제로샷, LLM-as-a-judge(Nemotron 3.5 기본/맞춤 정책, Qwen3.6-35B), Jev·Laya·DiffusionGemma 결정 모델. Shieldstral은 원문 본문 표와 부록 표에서 과제별 수치가 뒤바뀌어 있어 제외했습니다.'));
+        var rt = this._heatTable([['redhat_evalhub_prompt_injection_acc', '인젝션 정확도'], ['redhat_evalhub_prompt_injection_blocked_f1', '인젝션 차단 F1'],
+            ['redhat_evalhub_prompt_injection_median_latency_ms_lower_better', '인젝션 중앙 지연 ms'], ['redhat_evalhub_content_safety_acc', '콘텐츠 안전 정확도'],
+            ['redhat_evalhub_content_safety_blocked_f1', '콘텐츠 차단 F1'], ['redhat_evalhub_content_safety_median_latency_ms_lower_better', '콘텐츠 중앙 지연 ms']], { sortBy: 'redhat_evalhub_content_safety_acc' });
+        rh.appendChild(rt.el); rh.appendChild(this._link('https://developers.redhat.com/articles/2026/10/02/benchmarking-ai-decision-models-against-traditional-guardrails', 'Red Hat 원문 ↗'));
+        s.appendChild(rh);
+        // TrueFoundry
+        var tf = this._el('div', 'mb-4');
+        tf.appendChild(this._el('h3', 'text-sm font-semibold text-gray-200 mb-1', 'TrueFoundry AI Gateway — 과제별 제공사 비교 (과제당 400개)'));
+        var tt = this._heatTable([['truefoundry_content_moderation_f1', '모더레이션 F1'], ['truefoundry_content_moderation_latency_ms_lower_better', '모더레이션 ms'],
+            ['truefoundry_pii_f1', 'PII F1'], ['truefoundry_pii_latency_ms_lower_better', 'PII ms'], ['truefoundry_prompt_injection_f1', '인젝션 F1'],
+            ['truefoundry_prompt_injection_recall', '인젝션 재현율'], ['truefoundry_prompt_injection_latency_ms_lower_better', '인젝션 ms']]);
+        tf.appendChild(tt.el);
+        var tfp = this._el('p', 'text-xs text-gray-500 mt-2', 'DeepRails vs AWS Bedrock 비교(60쌍, 상대 개선율 +37~53%만 공개)는 절대 수치가 없어 저장하지 않았습니다. ');
+        tfp.appendChild(this._link('https://www.truefoundry.com/blog/benchmarking-llm-guardrail-providers', 'TrueFoundry 원문 ↗'));
+        tf.appendChild(tfp); s.appendChild(tf);
+    },
+
+    _renderPapers: function(root) {
+        var self = this;
+        var s = this._section(root, '논문 벤치마크 결과', '모든 수치는 논문 PDF의 표·그림 숫자 줄과 기계 대조해 확인했습니다. 셀을 누르면 근거 줄이 나옵니다.');
+        s.appendChild(this._legend());
+        this.PAPERS.forEach(function(p) {
+            var box = self._el('div', 'mb-8');
+            box.appendChild(self._el('h3', 'text-sm font-semibold text-gray-200 mb-1', p.title));
+            box.appendChild(self._el('p', 'text-xs text-gray-500 mb-2', p.note));
+            var cols = p.cols;
+            if (p.prefixCols) {
+                var seen = {}; cols = [];
+                (App.data.benchmarks || []).forEach(function(b) {
+                    if ((/^guardbench_/.test(b.id) || /_rerun_guardbench$/.test(b.id)) && !seen[b.id] && self._bench(b.id).length) {
+                        seen[b.id] = 1;
+                        var lab = b.id.replace(/^guardbench_/, '').replace(/_rerun_guardbench$/, '').replace(/^prompt_/, 'P·').replace(/^conv_/, 'C·').replace(/_(recall|f1)$/, '').replace(/_prompt$|_response$/, '').replace(/_/g, ' ');
+                        cols.push([b.id, lab]);
+                    }
+                });
+            }
+            var sb = p.sortBy || (cols[cols.length - 1][0] === 'guardsetx_average_asr_lower_better' ? 'guardsetx_average_asr_lower_better' : cols[0][0]);
+            var t = self._heatTable(cols, { sortBy: sb });
+            box.appendChild(t.el);
+            box.appendChild(self._link(p.url, '논문 ↗'));
+            s.appendChild(box);
+        });
+    },
+
+    _renderAgent: function(root) {
+        var self = this;
+        var conds = [['railguard_unsafe_tool_exec_no_guardrail_lower_better', '가드레일 없음'], ['railguard_unsafe_tool_exec_text_only_eval_lower_better', '텍스트만 평가'],
+                     ['railguard_unsafe_tool_exec_pre_action_eval_lower_better', '실행 전 평가'], ['railguard_unsafe_tool_exec_pre_action_remediation_lower_better', '실행 전 평가 + 계획 수정']];
+        var mids = {}; conds.forEach(function(c) { self._bench(c[0]).forEach(function(r) { mids[r.model_id] = 1; }); });
+        mids = Object.keys(mids); if (!mids.length) return;
+        var s = this._section(root, '에이전트 도구 호출 가드레일 — RAIL Guard (arXiv 2607.16215)',
+            '에이전트가 위험한 도구 호출(권한 변경, 송금, 파일 삭제 등)을 실제로 실행한 비율. 텍스트로는 거절하면서 도구는 실행하는 경우(GAP)도 확인합니다. 낮을수록 좋습니다. 모델당 조건별 400회 실행.');
+        var c = this._el('div'); c.style.height = '360px'; s.appendChild(c);
+        this._chart(c, {
+            backgroundColor: 'transparent',
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            legend: { data: mids.map(function(m) { return self._name(m); }), textStyle: { color: Theme.textMuted, fontSize: 11 }, top: 0 },
+            grid: { left: 40, right: 20, top: 40, bottom: 30 },
+            xAxis: { type: 'category', data: conds.map(function(x) { return x[1]; }), axisLabel: { color: Theme.textMuted } },
+            yAxis: { type: 'value', name: '위험 실행률 %', nameTextStyle: { color: Theme.textMuted }, axisLabel: { color: Theme.textMuted }, splitLine: { lineStyle: { color: Theme.border } } },
+            series: mids.map(function(m, i) { return { name: self._name(m), type: 'bar', itemStyle: { color: Theme.series[i % Theme.series.length] },
+                data: conds.map(function(x) { return self._val(m, x[0]); }), label: { show: true, position: 'top', color: Theme.textDim, fontSize: 9 } }; })
+        });
+        var t = this._heatTable([['railguard_content_failure_rate_overall_lower_better', '콘텐츠 실패율 전체'], ['railguard_content_failure_rate_code_lower_better', '코드'],
+            ['railguard_content_failure_rate_legal_lower_better', '법률'], ['railguard_content_failure_rate_finance_lower_better', '금융'],
+            ['railguard_content_failure_rate_healthcare_lower_better', '의료'], ['railguard_content_failure_rate_education_lower_better', '교육'],
+            ['railguard_content_failure_rate_customer_support_lower_better', '고객지원']]);
+        s.appendChild(this._el('p', 'text-xs text-gray-500 mt-4 mb-2', 'Pool A 콘텐츠 실패율: 8개 책임 AI 차원 종합 점수가 7.0 미만인 응답 비율(%). 코드 생성이 모든 모델에서 가장 취약합니다.'));
+        s.appendChild(t.el);
+    },
+
+    _renderDatasets: function(root) {
+        var self = this;
+        var s = this._section(root, '가드레일 벤치마크 데이터셋', '이 탭에 결과가 들어 있는 평가 데이터셋입니다. 숫자는 현재 DB에 저장된 벤치마크 id 수와 점수가 있는 모델 수입니다.');
+        var g = this._el('div', 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4');
+        var allB = (App.data.benchmarks || []).map(function(b) { return b.id; });
+        this.DATASETS.forEach(function(d) {
+            var ids = allB.filter(function(id) { return d.prefix.some(function(p) { return p.charAt(0) === '_' ? id.slice(-p.length) === p : id.indexOf(p) === 0; }); });
+            var ms = {}; ids.forEach(function(id) { self._bench(id).forEach(function(r) { ms[r.model_id] = 1; }); });
+            var c = self._el('div', 'rounded-lg border border-gray-800 p-4 space-y-1');
+            c.appendChild(self._el('div', 'text-sm font-semibold text-gray-200', d.name));
+            c.appendChild(self._el('div', 'text-xs text-gray-500', d.who + ' · ' + d.size));
+            c.appendChild(self._el('p', 'text-sm text-gray-400', d.what));
+            c.appendChild(self._el('div', 'text-xs text-gray-500', '벤치마크 id ' + ids.length + '개 · 점수 있는 모델 ' + Object.keys(ms).length + '개'));
+            c.appendChild(self._link(d.url));
+            g.appendChild(c);
+        });
+        s.appendChild(g);
+    },
+
+    _renderRegistry: function(root) {
+        var self = this;
+        var ids = Object.keys(this._models).filter(function(id) { return self._models[id].type === 'guard'; }).concat(this.EXTRA_GUARDS.filter(function(id) { return self._models[id]; }));
+        var s = this._section(root, '가드레일 모델 레지스트리 (' + ids.length + '개)', '오픈 가중치 가드 모델, 관리형 가드 API, 정책 적응형 이미지 가드를 포함합니다. 출시일은 Hugging Face 저장소 생성일 또는 공급사 발표일이며, API 서비스는 비워 두었습니다.');
+        var i = this._idx();
+        ids.sort(function(a, b) { return (self._models[b].release_date || '').localeCompare(self._models[a].release_date || ''); });
+        var t = this._el('table', 'sota-table text-xs'), th = this._el('thead'), hr = this._el('tr');
+        ['Model', '구분', 'Vendor', '파라미터', '출시', 'AA 평균 F1', '점수 수'].forEach(function(h) { hr.appendChild(self._el('th', null, h)); });
+        th.appendChild(hr); t.appendChild(th);
+        var tb = this._el('tbody');
+        ids.forEach(function(id) {
+            var m = self._models[id], tr = self._el('tr');
+            var tn = self._el('td', null, self._name(id)); tn.style.cursor = 'pointer'; tn.style.whiteSpace = 'nowrap'; tn.style.color = self._kindColor(id); tn.title = id;
+            tn.addEventListener('click', function() { if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(id); });
+            tr.appendChild(tn);
+            tr.appendChild(self._el('td', null, self.API_GUARDS[id] ? 'API' : '오픈 가중치'));
+            tr.appendChild(self._el('td', null, m.vendor || ''));
+            tr.appendChild(self._el('td', null, m.parameters || '—'));
+            tr.appendChild(self._el('td', null, m.release_date || '—'));
+            var f = self._val(id, self.AA.avg); tr.appendChild(self._el('td', null, f == null ? '—' : f.toFixed(1)));
+            tr.appendChild(self._el('td', null, String(((i && i.byModel[id]) || []).length)));
+            tb.appendChild(tr);
+        });
+        t.appendChild(tb);
+        var w = this._el('div', 'overflow-x-auto'); w.appendChild(t); s.appendChild(w);
+    }
+};

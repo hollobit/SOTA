@@ -1,4 +1,1396 @@
-var Timeline={_models:[],_benchmarks:[],_scores:[],_enrichment:null,VENDOR_TO_COUNTRY:{openai:"\u{1F1FA}\u{1F1F8} USA",anthropic:"\u{1F1FA}\u{1F1F8} USA",google:"\u{1F1FA}\u{1F1F8} USA","google-deepmind":"\u{1F1FA}\u{1F1F8} USA",xai:"\u{1F1FA}\u{1F1F8} USA",meta:"\u{1F1FA}\u{1F1F8} USA",microsoft:"\u{1F1FA}\u{1F1F8} USA",apple:"\u{1F1FA}\u{1F1F8} USA",ibm:"\u{1F1FA}\u{1F1F8} USA",databricks:"\u{1F1FA}\u{1F1F8} USA",nvidia:"\u{1F1FA}\u{1F1F8} USA",reka:"\u{1F1FA}\u{1F1F8} USA",inflection:"\u{1F1FA}\u{1F1F8} USA",character:"\u{1F1FA}\u{1F1F8} USA",perplexity:"\u{1F1FA}\u{1F1F8} USA",groq:"\u{1F1FA}\u{1F1F8} USA",together:"\u{1F1FA}\u{1F1F8} USA",salesforce:"\u{1F1FA}\u{1F1F8} USA",stanford:"\u{1F1FA}\u{1F1F8} USA",mit:"\u{1F1FA}\u{1F1F8} USA",allenai:"\u{1F1FA}\u{1F1F8} USA",openpipe:"\u{1F1FA}\u{1F1F8} USA",fireworks:"\u{1F1FA}\u{1F1F8} USA",snowflake:"\u{1F1FA}\u{1F1F8} USA",amazon:"\u{1F1FA}\u{1F1F8} USA",aws:"\u{1F1FA}\u{1F1F8} USA",arcee:"\u{1F1FA}\u{1F1F8} USA","arcee-ai":"\u{1F1FA}\u{1F1F8} USA",inception:"\u{1F1FA}\u{1F1F8} USA",inceptionlabs:"\u{1F1FA}\u{1F1F8} USA",subquadratic:"\u{1F1FA}\u{1F1F8} USA",harvard:"\u{1F1FA}\u{1F1F8} USA",cohere:"\u{1F1E8}\u{1F1E6} Canada",cohereai:"\u{1F1E8}\u{1F1E6} Canada",CohereLabs:"\u{1F1E8}\u{1F1E6} Canada",mistral:"\u{1F1EB}\u{1F1F7} France",mistralai:"\u{1F1EB}\u{1F1F7} France",kyutai:"\u{1F1EB}\u{1F1F7} France",lg:"\u{1F1F0}\u{1F1F7} Korea","lgai-exaone":"\u{1F1F0}\u{1F1F7} Korea",skt:"\u{1F1F0}\u{1F1F7} Korea",naver:"\u{1F1F0}\u{1F1F7} Korea","naver-hyperclovax":"\u{1F1F0}\u{1F1F7} Korea",kakao:"\u{1F1F0}\u{1F1F7} Korea",kakaocorp:"\u{1F1F0}\u{1F1F7} Korea","kakao-healthcare":"\u{1F1F0}\u{1F1F7} Korea",kt:"\u{1F1F0}\u{1F1F7} Korea","k-intelligence":"\u{1F1F0}\u{1F1F7} Korea",ncsoft:"\u{1F1F0}\u{1F1F7} Korea",NCSOFT:"\u{1F1F0}\u{1F1F7} Korea",samsung:"\u{1F1F0}\u{1F1F7} Korea",upstage:"\u{1F1F0}\u{1F1F7} Korea",trillionlabs:"\u{1F1F0}\u{1F1F7} Korea","42dot":"\u{1F1F0}\u{1F1F7} Korea",motif:"\u{1F1F0}\u{1F1F7} Korea",snuh:"\u{1F1F0}\u{1F1F7} Korea","snuh-naver":"\u{1F1F0}\u{1F1F7} Korea",kaist:"\u{1F1F0}\u{1F1F7} Korea",krafton:"\u{1F1F0}\u{1F1F7} Korea",kanana:"\u{1F1F0}\u{1F1F7} Korea",deepseek:"\u{1F1E8}\u{1F1F3} China","deepseek-ai":"\u{1F1E8}\u{1F1F3} China",moonshot:"\u{1F1E8}\u{1F1F3} China",moonshotai:"\u{1F1E8}\u{1F1F3} China",zhipu:"\u{1F1E8}\u{1F1F3} China","zai-org":"\u{1F1E8}\u{1F1F3} China",alibaba:"\u{1F1E8}\u{1F1F3} China",qwen:"\u{1F1E8}\u{1F1F3} China",tencent:"\u{1F1E8}\u{1F1F3} China",baidu:"\u{1F1E8}\u{1F1F3} China",xiaomi:"\u{1F1E8}\u{1F1F3} China",mimo:"\u{1F1E8}\u{1F1F3} China",bytedance:"\u{1F1E8}\u{1F1F3} China",stepfun:"\u{1F1E8}\u{1F1F3} China",minimax:"\u{1F1E8}\u{1F1F3} China",inclusionai:"\u{1F1E8}\u{1F1F3} China",yi:"\u{1F1E8}\u{1F1F3} China","01-ai":"\u{1F1E8}\u{1F1F3} China",baichuan:"\u{1F1E8}\u{1F1F3} China",internlm:"\u{1F1E8}\u{1F1F3} China","shanghai-ai-lab":"\u{1F1E8}\u{1F1F3} China",thudm:"\u{1F1E8}\u{1F1F3} China","thu-coai":"\u{1F1E8}\u{1F1F3} China",chatglm:"\u{1F1E8}\u{1F1F3} China",freedomintelligence:"\u{1F1E8}\u{1F1F3} China",scutcyr:"\u{1F1E8}\u{1F1F3} China","openi-cn":"\u{1F1E8}\u{1F1F3} China","magic-ai4med":"\u{1F1E8}\u{1F1F3} China",meituan:"\u{1F1E8}\u{1F1F3} China",longcat:"\u{1F1E8}\u{1F1F3} China","china-mobile":"\u{1F1E8}\u{1F1F3} China",sber:"\u{1F1F7}\u{1F1FA} Russia","ai-sage":"\u{1F1F7}\u{1F1FA} Russia",yandex:"\u{1F1F7}\u{1F1FA} Russia","t-tech":"\u{1F1F7}\u{1F1FA} Russia",dicta:"\u{1F1EE}\u{1F1F1} Israel","dicta-il":"\u{1F1EE}\u{1F1F1} Israel",ai21:"\u{1F1EE}\u{1F1F1} Israel",ai21labs:"\u{1F1EE}\u{1F1F1} Israel",tii:"\u{1F1E6}\u{1F1EA} UAE",tiiuae:"\u{1F1E6}\u{1F1EA} UAE","falcon-llm":"\u{1F1E6}\u{1F1EA} UAE",inceptionai:"\u{1F1E6}\u{1F1EA} UAE",mbzuai:"\u{1F1E6}\u{1F1EA} UAE","mbzuai-oryx":"\u{1F1E6}\u{1F1EA} UAE",allam:"\u{1F1F8}\u{1F1E6} Saudi Arabia","allam-ai":"\u{1F1F8}\u{1F1E6} Saudi Arabia","humain-ai":"\u{1F1F8}\u{1F1E6} Saudi Arabia",sdaia:"\u{1F1F8}\u{1F1E6} Saudi Arabia",aisingapore:"\u{1F1F8}\u{1F1EC} Singapore","ai-singapore":"\u{1F1F8}\u{1F1EC} Singapore",sarvamai:"\u{1F1EE}\u{1F1F3} India","krutrim-ai-labs":"\u{1F1EE}\u{1F1F3} India",ai4bharat:"\u{1F1EE}\u{1F1F3} India",hanoomanai:"\u{1F1EE}\u{1F1F3} India","ola-krutrim":"\u{1F1EE}\u{1F1F3} India",fractal:"\u{1F1EE}\u{1F1F3} India",fractalanalytics:"\u{1F1EE}\u{1F1F3} India",sbintuitions:"\u{1F1EF}\u{1F1F5} Japan",rinna:"\u{1F1EF}\u{1F1F5} Japan",sakana:"\u{1F1EF}\u{1F1F5} Japan",sakanaai:"\u{1F1EF}\u{1F1F5} Japan",SakanaAI:"\u{1F1EF}\u{1F1F5} Japan","preferred-networks":"\u{1F1EF}\u{1F1F5} Japan","aleph-alpha":"\u{1F1E9}\u{1F1EA} Germany","Aleph-Alpha":"\u{1F1E9}\u{1F1EA} Germany","soofi-project":"\u{1F1E9}\u{1F1EA} Germany",stabilityai:"\u{1F1EC}\u{1F1E7} UK",stability:"\u{1F1EC}\u{1F1E7} UK","swiss-ai":"\u{1F1E8}\u{1F1ED} Switzerland",bigscience:"\u{1F1EA}\u{1F1FA} Europe","utter-project":"\u{1F1EA}\u{1F1FA} Europe",nexgeneai:"\u{1F1F9}\u{1F1F7} T\xFCrkiye","nexgene-ai":"\u{1F1F9}\u{1F1F7} T\xFCrkiye",eleutherai:"\u{1F1FA}\u{1F1F8} USA",huggingface:"\u{1F1EB}\u{1F1F7} France",h2o:"\u{1F1FA}\u{1F1F8} USA"},_dedupeModels:function(e){function t(r){var i=(r.name||r.id||"").toLowerCase().trim(),l=i.lastIndexOf("/");return l>=0&&(i=i.substring(l+1)),i.replace(/[\s\-._]/g,"")}var o={};e.forEach(function(r){var i=t(r);i&&(o[i]||(o[i]=[]),o[i].push(r))});var a={"2026-01-01":1,"2025-01-01":1,"2024-01-01":1},d=[];return Object.keys(o).forEach(function(r){var i=o[r];if(i.length===1){d.push(i[0]);return}i.sort(function(l,v){var m=(l.id||"").indexOf("/")>=0?1:0,s=(v.id||"").indexOf("/")>=0?1:0;if(m!==s)return s-m;var w=a[l.release_date]?1:0,b=a[v.release_date]?1:0;return w!==b?w-b:(v.id||"").length-(l.id||"").length}),d.push(i[0])}),d},init:function(e,t,o){this._models=this._dedupeModels(e||[]),this._benchmarks=t||[],this._scores=o||[],this._enrichment=typeof App!="undefined"&&App.data&&App.data.enrichment||{};var a=this;typeof App!="undefined"&&App.loadEnrichment&&App.loadEnrichment().then(function(k){a._enrichment=k||{},document.getElementById("tab-timeline").classList.contains("hidden")||a.render()});var d=document.getElementById("timeline-sort"),r=document.getElementById("timeline-vendor-filter"),i=document.getElementById("timeline-country-filter"),l=document.getElementById("timeline-type-filter"),v=document.getElementById("timeline-search");d&&d.addEventListener("change",function(){a._syncUrlState(),a.render()}),r&&r.addEventListener("change",function(){a._syncUrlState(),a.render()}),i&&i.addEventListener("change",function(){a._syncUrlState(),a.render()}),l&&l.addEventListener("change",function(){a._syncUrlState(),a.render()}),v&&v.addEventListener("input",function(){a._syncUrlState(),a.render()});var m=document.getElementById("timeline-infographic-range"),s=document.getElementById("timeline-download-png"),w=document.getElementById("timeline-download-svg"),b=document.getElementById("timeline-download-csv");m&&m.addEventListener("change",function(){a._syncUrlState(),a._renderInfographic()});var S=document.getElementById("timeline-frontier-range");S&&S.addEventListener("change",function(){a._syncUrlState(),a._renderFrontierVersionTimeline()});var C=document.getElementById("timeline-frontier-flags");C&&C.addEventListener("change",function(){a._syncUrlState(),a._renderFrontierVersionTimeline()}),s&&s.addEventListener("click",function(){a._downloadInfographic("png")}),w&&w.addEventListener("click",function(){a._downloadInfographic("svg")}),b&&b.addEventListener("click",function(){a._downloadCSV()}),this._populateFilters(),this._applyUrlState()},_URL_KEYS:{"timeline-sort":"tl_sort","timeline-vendor-filter":"tl_vendor","timeline-country-filter":"tl_country","timeline-type-filter":"tl_type","timeline-search":"tl_q","timeline-infographic-range":"tl_igrange","timeline-frontier-range":"tl_fvrange","timeline-frontier-flags":"tl_fvflags"},_syncUrlState:function(){if(!(typeof URLSearchParams=="undefined"||!window.history||!history.replaceState))try{var e=new URLSearchParams(window.location.search);Object.keys(this._URL_KEYS).forEach(function(a){var d=document.getElementById(a),r=this._URL_KEYS[a],i;d&&d.type==="checkbox"?i=d.checked?"1":"":i=d?String(d.value==null?"":d.value).trim():"",!i||i==="all"||i==="All"||i===""?e.delete(r):e.set(r,i)},this);var t=e.toString(),o=window.location.pathname+(t?"?"+t:"")+(window.location.hash||"");history.replaceState(null,"",o)}catch(a){}},_applyUrlState:function(){if(typeof URLSearchParams!="undefined")try{var e=new URLSearchParams(window.location.search);Object.keys(this._URL_KEYS).forEach(function(t){var o=this._URL_KEYS[t];if(e.has(o)){var a=document.getElementById(t);if(a){var d=e.get(o);if(a.type==="checkbox")a.checked=d==="1"||d==="true";else if(a.tagName==="SELECT"){var r=Array.prototype.some.call(a.options,function(i){return i.value===d});r&&(a.value=d)}else a.value=d}}},this)}catch(t){}},_MONTH_COLORS:["#3b82f6","#8b5cf6","#ec4899","#f43f5e","#f97316","#eab308","#84cc16","#22c55e","#10b981","#14b8a6","#06b6d4","#0ea5e9"],_COUNTRY_COLORS:{"\u{1F1FA}\u{1F1F8} USA":"#3b82f6","\u{1F1E8}\u{1F1F3} China":"#ef4444","\u{1F1F0}\u{1F1F7} Korea":"#a855f7","\u{1F1EB}\u{1F1F7} France":"#0ea5e9","\u{1F1E8}\u{1F1E6} Canada":"#dc2626","\u{1F1EF}\u{1F1F5} Japan":"#f43f5e","\u{1F1EE}\u{1F1F1} Israel":"#3aa6e8","\u{1F1E6}\u{1F1EA} UAE":"#10b981","\u{1F1F8}\u{1F1E6} Saudi Arabia":"#16a34a","\u{1F1F8}\u{1F1EC} Singapore":"#f87171","\u{1F1EE}\u{1F1F3} India":"#f59e0b","\u{1F1E9}\u{1F1EA} Germany":"#facc15","\u{1F1EC}\u{1F1E7} UK":"#1d4ed8","\u{1F1F9}\u{1F1F7} T\xFCrkiye":"#e11d48","\u{1F1E8}\u{1F1ED} Switzerland":"#dc2626","\u{1F1F7}\u{1F1FA} Russia":"#ec4899","\u{1F1EA}\u{1F1FA} Europe":"#6366f1","\u{1F310} Other":"#6b7280"},_TYPE_COLORS:{proprietary:"#ef4444","open-weight":"#22c55e","open-weights":"#22c55e","open-source":"#3b82f6"},_getCountry:function(e,t){if(!e)return null;var o=e.split("/")[0];if(this.VENDOR_TO_COUNTRY[o])return this.VENDOR_TO_COUNTRY[o];var a=o.toLowerCase();return this.VENDOR_TO_COUNTRY[a]?this.VENDOR_TO_COUNTRY[a]:"\u{1F310} Other"},_getReleaseDate:function(e){return e?e.release_date?e.release_date:e.released_at?e.released_at:null:null},_getSystemRegisteredDate:function(e){if(!e)return null;var t=this._enrichment[e.id];return t&&t.system_registered_date?t.system_registered_date:t&&t.release_date_inferred?t.release_date_inferred:null},_populateFilters:function(){var e=document.getElementById("timeline-vendor-filter"),t=document.getElementById("timeline-country-filter");if(e&&e.options.length<=1){var o={};this._models.forEach(function(r){r.vendor&&(o[r.vendor]=!0)}),Object.keys(o).sort().forEach(function(r){var i=document.createElement("option");i.value=r,i.textContent=r,e.appendChild(i)})}if(t&&t.options.length<=1){var a={},d=this;this._models.forEach(function(r){var i=d._getCountry(r.id,r);i&&(a[i]=!0)}),Object.keys(a).sort().forEach(function(r){var i=document.createElement("option");i.value=r,i.textContent=r,t.appendChild(i)})}},_getInfographicEntries:function(e){var t=this,o=new Date,a=new Date(o.getFullYear(),o.getMonth()-e+1,1),d=[];return this._models.forEach(function(r){var i=t._getReleaseDate(r);if(!(!i||i.length<7)){var l=new Date(i.length>=10?i.slice(0,10):i.slice(0,7)+"-15");isNaN(l.getTime())||l<a||l>o||d.push({id:r.id,name:r.name||r.id,vendor:r.vendor||r.id.split("/")[0]||"",type:r.type||"",date:i,dt:l,country:t._getCountry(r.id,r),ts:l.getTime()})}}),d},_flagFromCountry:function(e){if(!e)return"";var t=e.match(/^(\p{Extended_Pictographic}\p{Extended_Pictographic}?)/u);return t?t[0]:e.split(" ")[0]||""},_vendorLogoLetter:function(e){if(!e)return"?";var t=e.replace(/\s*\(.*\)\s*$/,"").trim();return t.charAt(0).toUpperCase()},_vendorTileColor:function(e){var t=["#1d4ed8","#7c3aed","#db2777","#dc2626","#ea580c","#ca8a04","#65a30d","#16a34a","#0d9488","#0891b2","#2563eb","#4f46e5"],o=this._hashCode(e||"");return t[Math.abs(o)%t.length]},_renderInfographic:function(){var e=document.getElementById("timeline-infographic-host");if(!e)return;for(var t=document.getElementById("timeline-infographic-range"),o=parseInt((t||{}).value||"6",10),a=this._getInfographicEntries(o);e.firstChild;)e.removeChild(e.firstChild);if(a.length===0){var d=document.createElement("p");d.className="text-gray-500 text-sm p-8 text-center",d.textContent="No models with release dates in the selected range.",e.appendChild(d);return}for(var r=[],i=new Date,l=o-1;l>=0;l--){var v=new Date(i.getFullYear(),i.getMonth()-l,1);r.push({ym:v.getFullYear()+"-"+String(v.getMonth()+1).padStart(2,"0"),year:v.getFullYear(),month:v.getMonth(),label:v.toLocaleString("en-US",{month:"long",year:"numeric"}),color:this._MONTH_COLORS[v.getMonth()],entries:[]})}a.forEach(function(u){var L=u.dt.getFullYear()+"-"+String(u.dt.getMonth()+1).padStart(2,"0");r.forEach(function(A){A.ym===L&&A.entries.push(u)})}),r.forEach(function(u){u.entries.sort(function(L,A){return L.ts-A.ts})});var m=0;r.forEach(function(u){u.entries.length>m&&(m=u.entries.length)});var s=80,w=60,b=60,S=70,C=24,k=56,p=6,N=84,U=64,M=280,n=6;function g(){for(var u=[N,76,72,68,U],L=0;L<u.length;L++){var A=u[L],T=14,D=Math.max(1,Math.ceil(m/T));D>4&&(D=4);var H=Math.ceil(m/D),J=H*(A+p)-p,j=s+k+22+28+J+S;if(j<=2400)return{cardH:A,totalH:j,busySubCols:D,busyStack:H}}return{cardH:U,totalH:2400,busySubCols:4,busyStack:Math.ceil(m/4)}}var c=g(),f=c.cardH;function h(u){return u<=14?1:u<=28?2:u<=42?3:4}r.forEach(function(u){u.subCols=h(u.entries.length),u.width=u.subCols*M+(u.subCols-1)*n});var x=0;r.forEach(function(u){var L=Math.ceil(u.entries.length/u.subCols);L>x&&(x=L)});var y=x*(f+p)-p,R=s+k+22+28+y+S,I=s+k+22,F=I+28,z=R-F-S,K=r.reduce(function(u,L){return u+L.width},0),O=w+K+C*(r.length-1)+b,B="http://www.w3.org/2000/svg";function _(u,L,A){var T=document.createElementNS(B,u);return L&&Object.keys(L).forEach(function(D){T.setAttribute(D,L[D])}),A&&A.appendChild(T),T}var E=_("svg",{xmlns:B,viewBox:"0 0 "+O+" "+R,width:"100%",preserveAspectRatio:"xMidYMid meet",style:"display: block; height: auto;"});_("rect",{x:0,y:0,width:O,height:R,fill:"#ffffff"},E);var P=_("text",{x:O/2,y:44,"text-anchor":"middle","font-family":"system-ui, -apple-system, sans-serif","font-size":"24","font-weight":"700",fill:"#0f172a"},E);P.textContent="AI Model Release Timeline \xB7 Last "+o+" Months";var G=_("text",{x:O/2,y:68,"text-anchor":"middle","font-family":"system-ui, -apple-system, sans-serif","font-size":"13",fill:"#64748b"},E);G.textContent=a.length+" verified releases \xB7 column = month \xB7 color = month band \xB7 sorted earliest \u2192 latest within column",_("line",{x1:w,y1:I,x2:O-b,y2:I,stroke:"#cbd5e1","stroke-width":"2"},E);var q=this,X=w;r.forEach(function(u,L){var A=X,T=u.width,D=s;_("rect",{x:A,y:D,width:T,height:k,rx:8,fill:u.color,opacity:"0.95"},E);var H=_("text",{x:A+T/2,y:D+24,"text-anchor":"middle","font-family":"system-ui, -apple-system, sans-serif","font-size":"17","font-weight":"700",fill:"#ffffff"},E);H.textContent=u.label;var J=_("text",{x:A+T/2,y:D+44,"text-anchor":"middle","font-family":"system-ui, -apple-system, sans-serif","font-size":"12",fill:"#ffffff",opacity:"0.85"},E);J.textContent=u.entries.length+" release"+(u.entries.length===1?"":"s"),_("circle",{cx:A+T/2,cy:I,r:7,fill:u.color,stroke:"#ffffff","stroke-width":"2"},E),u.entries.length>0&&_("line",{x1:A+T/2,y1:I+7,x2:A+T/2,y2:F-6,stroke:u.color,"stroke-width":"1.5","stroke-dasharray":"3,3",opacity:"0.5"},E);for(var j=u.entries.length,ee=u.subCols,W=Math.ceil(j/ee)||1,Y=0;Y<j;Y++){var te=u.entries[Y],ne=Math.floor(Y/W),ae=Y%W,re=A+ne*(M+n),ie=F+ae*(f+p);q._renderCard(E,_,re,ie,M,f,u.color,te)}X+=T+C});var V=R-26,Z=_("text",{x:w,y:V,"font-family":"system-ui, -apple-system, sans-serif","font-size":"12","font-weight":"600",fill:"#475569"},E);Z.textContent="Author: Jonghong Jeon \xB7 hollobit@etri.re.kr";var $=_("text",{x:w,y:V+16,"font-family":"system-ui, -apple-system, sans-serif","font-size":"11",fill:"#64748b"},E);$.textContent="Source: https://hollobit.github.io/SOTA/#timeline \xB7 data verified against vendor blogs, llm-stats.com, HuggingFace model cards";var Q=_("text",{x:O-b,y:V+16,"text-anchor":"end","font-family":"system-ui, -apple-system, sans-serif","font-size":"11",fill:"#94a3b8"},E);Q.textContent="Generated "+new Date().toISOString().slice(0,10),e.appendChild(E),this._currentSvg=E},_renderCard:function(e,t,o,a,d,r,i,l){var v=this;t("rect",{x:o,y:a,width:d,height:r,rx:6,fill:"#ffffff",stroke:"#e2e8f0","stroke-width":"1"},e),t("rect",{x:o,y:a,width:4,height:r,fill:i},e);var m=36,s=o+12,w=a+10;t("rect",{x:s,y:w,width:m,height:m,rx:7,fill:this._vendorTileColor(l.vendor)},e);var b=t("text",{x:s+m/2,y:w+m/2+7,"text-anchor":"middle","font-family":"system-ui, -apple-system, sans-serif","font-size":"20","font-weight":"700",fill:"#ffffff"},e);b.textContent=this._vendorLogoLetter(l.vendor);var S=String(l.dt.getMonth()+1).padStart(2,"0"),C=String(l.dt.getDate()).padStart(2,"0"),k=t("text",{x:o+d-12,y:a+24,"text-anchor":"end","font-family":"system-ui, -apple-system, sans-serif","font-size":"15","font-weight":"700",fill:i},e);k.textContent=S+"."+C;var p=28,N=o+d-p-8,U=a+r-p-6;t("rect",{x:N,y:U,width:p,height:p,rx:6,fill:"#f8fafc",stroke:"#e2e8f0","stroke-width":"1"},e);var M=t("text",{x:N+p/2,y:U+p/2+8,"text-anchor":"middle","font-family":"Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, system-ui, sans-serif","font-size":"24"},e);M.textContent=this._flagFromCountry(l.country);var n=t("text",{x:s+m+10,y:a+28,"font-family":"system-ui, -apple-system, sans-serif","font-size":"14","font-weight":"700",fill:"#0f172a"},e),g=l.name;g.indexOf("/")!==-1&&(g=g.split("/").slice(1).join("/"));var c=26;g.length>c&&(g=g.slice(0,c-1)+"\u2026"),n.textContent=g;var f=document.createElementNS("http://www.w3.org/2000/svg","title");f.textContent=l.name+`
-`+l.vendor+`
-Released: `+l.date.slice(0,10),n.appendChild(f);var h=t("text",{x:s+m+10,y:a+47,"font-family":"system-ui, -apple-system, sans-serif","font-size":"11",fill:"#64748b"},e),x=l.vendor.replace(/\s*\(.*\)\s*$/,""),y=32;x.length>y&&(x=x.slice(0,y-1)+"\u2026"),h.textContent=x;var R={proprietary:{bg:"#fef2f2",fg:"#b91c1c"},"open-weight":{bg:"#f0fdf4",fg:"#15803d"},"open-weights":{bg:"#f0fdf4",fg:"#15803d"},"open-source":{bg:"#eff6ff",fg:"#1d4ed8"}},I=R[l.type]||{bg:"#f1f5f9",fg:"#475569"},F=l.type||"unknown",z=Math.max(58,F.length*6+14);t("rect",{x:s+m+10,y:a+r-26,width:z,height:18,rx:9,fill:I.bg},e);var K=t("text",{x:s+m+10+z/2,y:a+r-13,"text-anchor":"middle","font-family":"system-ui, -apple-system, sans-serif","font-size":"10","font-weight":"600",fill:I.fg},e);K.textContent=F;var O=(l.country||"").replace(/^\S+\s*/,""),B=o+d-p-8-(s+m+10+z+8),_=Math.max(0,Math.floor(B/5));O.length>_&&_>1&&(O=O.slice(0,_-1)+"\u2026");var E=t("text",{x:s+m+10+z+8,y:a+r-13,"font-family":"system-ui, -apple-system, sans-serif","font-size":"10",fill:"#94a3b8"},e);E.textContent=O;var P=t("rect",{x:o,y:a,width:d,height:r,fill:"transparent",style:"cursor: pointer"},e);P.addEventListener("click",function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(l.id)});var G=document.createElementNS("http://www.w3.org/2000/svg","title");G.textContent=l.name+" \xB7 "+l.vendor+" \xB7 "+l.date.slice(0,10),P.appendChild(G)},_hashCode:function(e){for(var t=0,o=0;o<(e||"").length;o++)t=(t<<5)-t+e.charCodeAt(o)|0;return t},_downloadInfographic:function(e){if(this._currentSvg){var t=document.getElementById("timeline-infographic-range"),o=(t||{}).value||"6",a=new Date().toISOString().slice(0,10),d="model-timeline-"+o+"mo-"+a,r=new XMLSerializer,i=r.serializeToString(this._currentSvg);if(e==="svg"){var l=new Blob([i],{type:"image/svg+xml;charset=utf-8"}),v=URL.createObjectURL(l);this._triggerDownload(v,d+".svg"),setTimeout(function(){URL.revokeObjectURL(v)},1500);return}var m=(this._currentSvg.getAttribute("viewBox")||"0 0 1920 1080").split(/\s+/),s=parseFloat(m[2])||1920,w=parseFloat(m[3])||1080,b=new Image,S=new Blob([i],{type:"image/svg+xml;charset=utf-8"}),C=URL.createObjectURL(S),k=this;b.onload=function(){var p=document.createElement("canvas"),N=2;p.width=s*N,p.height=w*N;var U=p.getContext("2d");U.fillStyle="#ffffff",U.fillRect(0,0,p.width,p.height),U.drawImage(b,0,0,p.width,p.height),URL.revokeObjectURL(C),p.toBlob(function(M){if(M){var n=URL.createObjectURL(M);k._triggerDownload(n,d+".png"),setTimeout(function(){URL.revokeObjectURL(n)},1500)}},"image/png")},b.onerror=function(){URL.revokeObjectURL(C),alert("PNG export failed \u2014 try SVG download instead.")},b.src=C}},_downloadCSV:function(){var e=document.getElementById("timeline-infographic-range"),t=parseInt((e||{}).value||"6",10),o=this._getInfographicEntries(t);o.sort(function(v,m){return m.ts-v.ts});var a=[["release_date","model_id","name","vendor","country","type"]];o.forEach(function(v){a.push([v.date.slice(0,10),v.id,v.name,v.vendor,v.country,v.type])});var d=a.map(function(v){return v.map(function(m){var s=String(m==null?"":m).replace(/"/g,'""');return/[,"\n]/.test(s)?'"'+s+'"':s}).join(",")}).join(`
-`),r=new Blob([d],{type:"text/csv;charset=utf-8"}),i=URL.createObjectURL(r),l=new Date().toISOString().slice(0,10);this._triggerDownload(i,"model-timeline-"+t+"mo-"+l+".csv"),setTimeout(function(){URL.revokeObjectURL(i)},1e3)},_triggerDownload:function(e,t){var o=document.createElement("a");o.href=e,o.download=t,document.body.appendChild(o),o.click(),document.body.removeChild(o)},_renderFrontierVersionTimeline:function(){var e=document.getElementById("timeline-frontier-chart");if(!e)return;var t=document.getElementById("timeline-frontier-note"),o=this,a=typeof FrontierCompare!="undefined"&&FrontierCompare.FRONTIER_MODELS?FrontierCompare.FRONTIER_MODELS:null;if(!a){t&&(t.textContent="Frontier model list unavailable.");return}var d={};a.forEach(function(c){d[c]=!0});var r=document.getElementById("timeline-frontier-range"),i=parseInt((r||{}).value||"6",10),l=new Date,v=new Date(l.getFullYear(),l.getMonth()-i,l.getDate()),m={};this._models.forEach(function(c){m[c.id]=c});var s={openai:"OpenAI",anthropic:"Anthropic",google:"Google","google-deepmind":"Google",xai:"xAI",deepseek:"DeepSeek",alibaba:"Alibaba",qwen:"Alibaba",meta:"Meta",moonshot:"Moonshot",cohere:"Cohere",mistral:"Mistral",meituan:"Meituan",sakana:"Sakana",inclusionai:"inclusionAI",stepfun:"StepFun",zhipu:"Zhipu","z-ai":"Zhipu",openbmb:"OpenBMB",minimax:"MiniMax",microsoft:"Microsoft",nvidia:"NVIDIA",ibm:"IBM",kakao:"Kakao",lg:"LG AI",tii:"TII",baidu:"Baidu",tencent:"Tencent",xiaomi:"Xiaomi",allenai:"Allen AI",zyphra:"Zyphra",subquadratic:"Subquadratic",weibo:"Weibo AI",reka:"Reka",sber:"Sber AI",kt:"KT",aisingapore:"AI Singapore","ai-singapore":"AI Singapore",nexgeneai:"NexgeneAI","nexgene-ai":"NexgeneAI","china-mobile":"China Mobile",poolside:"Poolside"};function w(c){var f=(c.id.split("/")[0]||"").toLowerCase();if(s[f])return s[f];var h=f.replace(/-/g," ");return h.charAt(0).toUpperCase()+h.slice(1)}function b(c,f){var h=c||"";h.indexOf("/")>=0&&(h=h.split("/").pop());var x=(f||"").toLowerCase();h=h.replace(/\s*\((max|high|xhigh|medium|low|thinking|reasoning|preview|beta)\)\s*$/i,"");var y=h.split(" "),R=y[0].toLowerCase();if(y.length>1&&x&&(x.indexOf(R)===0||R.indexOf(x.split(" ")[0])===0)){var I=y.slice(1).join(" ");/[a-z]/i.test(I)&&(h=I)}return h}var S={};Object.keys(d).forEach(function(c){var f=m[c];if(f){var h=o._getReleaseDate(f);if(h){var x=new Date(h.length===7?h+"-01":h);if(!(isNaN(x.getTime())||x<v)){var y=w(f);(S[y]=S[y]||[]).push({dateMs:x.getTime(),model:f,name:f.name||f.id,short:b(f.name||f.id,y)})}}}});var C=Object.keys(S);if(C.length===0){var k=typeof Charts!="undefined"?Charts._getOrCreate("timeline-frontier-chart"):null;k&&k.clear(),t&&(t.textContent="\uC120\uD0DD\uD55C \uAE30\uAC04("+i+"\uAC1C\uC6D4)\uC5D0 \uCD9C\uC2DC\uC77C\uC774 \uC788\uB294 \uD504\uB860\uD2F0\uC5B4 \uBAA8\uB378\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.");return}var p=document.getElementById("timeline-frontier-flags"),N=!!(p&&p.checked),U={};C.forEach(function(c){var f=S[c][0].model;U[c]=o._flagFromCountry(o._getCountry(f.id,f))}),C.sort(function(c,f){var h=Math.max.apply(null,S[c].map(function(y){return y.dateMs})),x=Math.max.apply(null,S[f].map(function(y){return y.dateMs}));return h-x});var M=C.map(function(c){var f=S[c].slice().sort(function(h,x){return h.dateMs-x.dateMs});return{name:c,type:"line",lineStyle:{width:2,opacity:.55},symbol:"circle",symbolSize:11,emphasis:{focus:"series"},label:{show:!0,position:"top",fontSize:9,color:"#cbd5e1",formatter:function(h){return h.data.short}},labelLayout:{hideOverlap:!0},data:f.map(function(h){return{value:[h.dateMs,c],short:h.short,fullName:h.name,modelId:h.model.id}})}});e.style.height=Math.max(520,C.length*24+90)+"px";var n=typeof Charts!="undefined"?Charts._getOrCreate("timeline-frontier-chart"):null;if(n&&(n.resize(),n.setOption({backgroundColor:"transparent",grid:{left:130,right:40,top:30,bottom:50},tooltip:{trigger:"item",formatter:function(c){var f=new Date(c.data.value[0]),h=f.getFullYear()+"-"+String(f.getMonth()+1).padStart(2,"0")+"-"+String(f.getDate()).padStart(2,"0");return"<b>"+c.data.fullName+"</b><br/>"+c.seriesName+" \xB7 "+h}},xAxis:{type:"time",axisLabel:{color:"#94a3b8",fontSize:11},splitLine:{show:!0,lineStyle:{color:"#1f2937"}}},yAxis:{type:"category",data:C,axisLabel:{color:"#cbd5e1",fontSize:11,formatter:function(c){return N&&U[c]?U[c]+" "+c:c}},splitLine:{show:!0,lineStyle:{color:"#1f2937"}}},series:M},!0),n.resize(),n.off("click"),n.on("click",function(c){var f=c&&c.data&&c.data.modelId;f&&typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(f)}),t)){var g=C.reduce(function(c,f){return c+S[f].length},0);t.textContent="\uCD5C\uADFC "+i+"\uAC1C\uC6D4 \xB7 "+C.length+"\uAC1C \uAC1C\uBC1C\uC0AC \xB7 \uD504\uB860\uD2F0\uC5B4 \uBAA8\uB378 "+g+"\uC885 (FRONTIER_MODELS \uD050\uB808\uC774\uC158 \uAE30\uC900). \uC810=\uCD9C\uC2DC, \uC120=\uBC84\uC804\uC5C5 \uC9C4\uD589. \uC810/\uBAA8\uB378\uBA85 \uD074\uB9AD \uC2DC \uC0C1\uC138\uC815\uBCF4."}},render:function(){var e=this;App.renderChunked("timeline-render",[function(){e._renderFrontierVersionTimeline()},function(){e._renderInfographic()},function(){e._renderList()}],function(t){t()},{first:1,budget:8})},_renderList:function(){var e=document.getElementById("timeline-container");if(e){e.textContent="";for(var t=(document.getElementById("timeline-sort")||{}).value||"date-desc",o=(document.getElementById("timeline-vendor-filter")||{}).value||"",a=(document.getElementById("timeline-country-filter")||{}).value||"",d=(document.getElementById("timeline-type-filter")||{}).value||"",r=((document.getElementById("timeline-search")||{}).value||"").toLowerCase().trim(),i=this,l={},v=0;v<this._scores.length;v++){var m=this._scores[v].model_id;l[m]=(l[m]||0)+1}var s=this._models.map(function(n){var g=i._getReleaseDate(n);if(!g)return null;var c=i._getSystemRegisteredDate(n),f=i._getCountry(n.id,n);return{id:n.id,name:n.name||n.id,vendor:n.vendor||"",type:n.type||"",modalities:n.modalities||[],date:g,sysDate:c,country:f,scoreCount:l[n.id]||0}}).filter(function(n){return n!==null}),w=this._models.length,b=w-s.length,S=document.getElementById("timeline-exclusion-note");S&&(S.textContent=b>0?b+" models excluded (no release date)":""),o&&(s=s.filter(function(n){return n.vendor===o})),a&&(s=s.filter(function(n){return n.country===a})),d&&(s=s.filter(function(n){return n.type===d})),r&&(s=s.filter(function(n){return n.name.toLowerCase().indexOf(r)!==-1||n.id.toLowerCase().indexOf(r)!==-1||n.vendor.toLowerCase().indexOf(r)!==-1})),t==="date-asc"?s.sort(function(n,g){return n.date.localeCompare(g.date)}):t==="date-desc"?s.sort(function(n,g){return g.date.localeCompare(n.date)}):t==="vendor"?s.sort(function(n,g){return n.vendor!==g.vendor?n.vendor.localeCompare(g.vendor):g.date.localeCompare(n.date)}):t==="country"&&s.sort(function(n,g){return n.country!==g.country?n.country.localeCompare(g.country):g.date.localeCompare(n.date)});var C=document.getElementById("timeline-count");if(C&&(C.textContent=s.length),s.length===0){var k=document.createElement("p");k.className="text-gray-500 text-sm p-8 text-center",k.textContent="No models match the current filters.",e.appendChild(k);return}var p=null,N=t==="vendor"||t==="country",U={};N&&s.forEach(function(n){var g=t==="vendor"?n.vendor:n.country;U[g]=(U[g]||0)+1});var M=null;App.renderChunked("timeline-list",s,function(n){if(N){var g=t==="vendor"?n.vendor:n.country;if(g!==p){var c=document.createElement("div");c.className="mt-4 mb-1 text-xs text-gray-500 uppercase tracking-wider font-semibold sticky top-0 bg-gray-950 py-1";var f=U[g]||0;c.textContent=g+" ("+f+")",e.appendChild(c),p=g}}else{var h=n.date.slice(0,7);if(h!==M){var x=document.createElement("div");x.className="mt-3 mb-1 text-xs text-gray-500 uppercase tracking-wider font-semibold sticky top-0 bg-gray-950 py-1",x.textContent=h,e.appendChild(x),M=h}}var y=document.createElement("div");y.className="tl-row flex items-center gap-3 px-3 py-2 bg-gray-900 hover:bg-gray-800 border border-gray-800 rounded cursor-pointer transition",y.addEventListener("click",function(E){return function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(E)}}(n.id));var R=document.createElement("div");R.className="text-xs text-gray-300 font-mono w-24 flex-shrink-0",R.textContent=n.date.slice(0,10),R.title="Release date (vendor announcement)",y.appendChild(R);var I=document.createElement("div");I.className="text-xs text-gray-600 font-mono w-24 flex-shrink-0 italic",n.sysDate?(I.textContent="+"+n.sysDate.slice(0,10),I.title="\uC2DC\uC2A4\uD15C \uB4F1\uB85D\uC77C (when we first ingested data for this model)"):I.textContent="",y.appendChild(I);var F=document.createElement("div");F.className="text-xs text-gray-400 w-32 flex-shrink-0 truncate",F.textContent=n.country,y.appendChild(F);var z=document.createElement("div");z.className="flex-1 min-w-0";var K=document.createElement("div");K.className="text-sm text-blue-400 truncate font-semibold",K.textContent=n.name,z.appendChild(K);var O=document.createElement("div");O.className="text-xs text-gray-500 truncate",O.textContent=n.vendor+(n.modalities.length?" \xB7 "+n.modalities.join(", "):""),z.appendChild(O),y.appendChild(z);var B=document.createElement("span");B.className="inline-block px-2 py-0.5 rounded text-xs flex-shrink-0",n.type==="proprietary"?B.className+=" bg-red-900 text-red-300":n.type==="open-weight"?B.className+=" bg-green-900 text-green-300":n.type==="open-source"?B.className+=" bg-blue-900 text-blue-300":B.className+=" bg-gray-700 text-gray-300",B.textContent=n.type||"?",y.appendChild(B);var _=document.createElement("div");_.className="text-xs text-gray-500 w-16 text-right flex-shrink-0",_.textContent=n.scoreCount+" scores",y.appendChild(_),e.appendChild(y)},{first:120})}}};
+/**
+ * Timeline tab — chronological model list with sort/filter.
+ * Sort modes: date-desc / date-asc / vendor / country.
+ */
+var Timeline = {
+    _models: [],
+    _benchmarks: [],
+    _scores: [],
+    _enrichment: null,
+
+    // Vendor prefix → country (flag + name). Derived from model_id prefix.
+    VENDOR_TO_COUNTRY: {
+        // 🇺🇸 USA
+        'openai': '🇺🇸 USA',
+        'anthropic': '🇺🇸 USA',
+        'google': '🇺🇸 USA',
+        'google-deepmind': '🇺🇸 USA',
+        'xai': '🇺🇸 USA',
+        'meta': '🇺🇸 USA',
+        'microsoft': '🇺🇸 USA',
+        'apple': '🇺🇸 USA',
+        'ibm': '🇺🇸 USA',
+        'databricks': '🇺🇸 USA',
+        'nvidia': '🇺🇸 USA',
+        'reka': '🇺🇸 USA',
+        'inflection': '🇺🇸 USA',
+        'character': '🇺🇸 USA',
+        'perplexity': '🇺🇸 USA',
+        'groq': '🇺🇸 USA',
+        'together': '🇺🇸 USA',
+        'salesforce': '🇺🇸 USA',
+        'stanford': '🇺🇸 USA',
+        'mit': '🇺🇸 USA',
+        'allenai': '🇺🇸 USA',
+        'openpipe': '🇺🇸 USA',
+        'fireworks': '🇺🇸 USA',
+        'snowflake': '🇺🇸 USA',
+        'amazon': '🇺🇸 USA',
+        'aws': '🇺🇸 USA',
+        'arcee': '🇺🇸 USA',
+        'arcee-ai': '🇺🇸 USA',
+        'inception': '🇺🇸 USA',
+        'inceptionlabs': '🇺🇸 USA',
+        'subquadratic': '🇺🇸 USA',   // 2026-08 S230 — Miami, FL startup (SubQ)
+        'harvard': '🇺🇸 USA',        // Harvard University (AutoScientists, MedVersa)
+        // 🇨🇦 Canada
+        'cohere': '🇨🇦 Canada',
+        'cohereai': '🇨🇦 Canada',
+        'CohereLabs': '🇨🇦 Canada',
+        // 🇫🇷 France
+        'mistral': '🇫🇷 France',
+        'mistralai': '🇫🇷 France',
+        'kyutai': '🇫🇷 France',
+        // 🇰🇷 Korea
+        'lg': '🇰🇷 Korea',
+        'lgai-exaone': '🇰🇷 Korea',
+        'skt': '🇰🇷 Korea',
+        'naver': '🇰🇷 Korea',
+        'naver-hyperclovax': '🇰🇷 Korea',
+        'kakao': '🇰🇷 Korea',
+        'kakaocorp': '🇰🇷 Korea',
+        'kakao-healthcare': '🇰🇷 Korea',
+        'kt': '🇰🇷 Korea',
+        'k-intelligence': '🇰🇷 Korea',
+        'ncsoft': '🇰🇷 Korea',
+        'NCSOFT': '🇰🇷 Korea',
+        'samsung': '🇰🇷 Korea',
+        'upstage': '🇰🇷 Korea',
+        'trillionlabs': '🇰🇷 Korea',
+        '42dot': '🇰🇷 Korea',
+        'motif': '🇰🇷 Korea',
+        'snuh': '🇰🇷 Korea',
+        'snuh-naver': '🇰🇷 Korea',
+        'kaist': '🇰🇷 Korea',
+        'krafton': '🇰🇷 Korea',
+        'kanana': '🇰🇷 Korea',
+        // 🇨🇳 China
+        'deepseek': '🇨🇳 China',
+        'deepseek-ai': '🇨🇳 China',
+        'moonshot': '🇨🇳 China',
+        'moonshotai': '🇨🇳 China',
+        'zhipu': '🇨🇳 China',
+        'zai-org': '🇨🇳 China',
+        'alibaba': '🇨🇳 China',
+        'qwen': '🇨🇳 China',
+        'tencent': '🇨🇳 China',
+        'baidu': '🇨🇳 China',
+        'xiaomi': '🇨🇳 China',
+        'mimo': '🇨🇳 China',
+        'bytedance': '🇨🇳 China',
+        'stepfun': '🇨🇳 China',
+        'minimax': '🇨🇳 China',
+        'inclusionai': '🇨🇳 China',
+        'yi': '🇨🇳 China',
+        '01-ai': '🇨🇳 China',
+        'baichuan': '🇨🇳 China',
+        'internlm': '🇨🇳 China',
+        'shanghai-ai-lab': '🇨🇳 China',
+        'thudm': '🇨🇳 China',
+        'thu-coai': '🇨🇳 China',
+        'chatglm': '🇨🇳 China',
+        'freedomintelligence': '🇨🇳 China',
+        'scutcyr': '🇨🇳 China',
+        'openi-cn': '🇨🇳 China',
+        'magic-ai4med': '🇨🇳 China',
+        'meituan': '🇨🇳 China',        // 2026-08 S230 — Meituan (LongCat)
+        'longcat': '🇨🇳 China',        // Meituan LongCat model line
+        'china-mobile': '🇨🇳 China',   // China Mobile (JT / Jiutian)
+        // 🇷🇺 Russia
+        'sber': '🇷🇺 Russia',
+        'ai-sage': '🇷🇺 Russia',
+        'yandex': '🇷🇺 Russia',
+        't-tech': '🇷🇺 Russia',
+        // 🇮🇱 Israel
+        'dicta': '🇮🇱 Israel',
+        'dicta-il': '🇮🇱 Israel',
+        'ai21': '🇮🇱 Israel',
+        'ai21labs': '🇮🇱 Israel',
+        // 🇦🇪 UAE
+        'tii': '🇦🇪 UAE',
+        'tiiuae': '🇦🇪 UAE',
+        'falcon-llm': '🇦🇪 UAE',
+        'inceptionai': '🇦🇪 UAE',
+        'mbzuai': '🇦🇪 UAE',
+        'mbzuai-oryx': '🇦🇪 UAE',
+        // 🇸🇦 Saudi Arabia
+        'allam': '🇸🇦 Saudi Arabia',
+        'allam-ai': '🇸🇦 Saudi Arabia',
+        'humain-ai': '🇸🇦 Saudi Arabia',
+        'sdaia': '🇸🇦 Saudi Arabia',
+        // 🇸🇬 Singapore
+        'aisingapore': '🇸🇬 Singapore',
+        'ai-singapore': '🇸🇬 Singapore',
+        // 🇮🇳 India
+        'sarvamai': '🇮🇳 India',
+        'krutrim-ai-labs': '🇮🇳 India',
+        'ai4bharat': '🇮🇳 India',
+        'hanoomanai': '🇮🇳 India',
+        'ola-krutrim': '🇮🇳 India',
+        'fractal': '🇮🇳 India',
+        'fractalanalytics': '🇮🇳 India',
+        // 🇯🇵 Japan
+        'sbintuitions': '🇯🇵 Japan',
+        'rinna': '🇯🇵 Japan',
+        'sakana': '🇯🇵 Japan',
+        'sakanaai': '🇯🇵 Japan',
+        'SakanaAI': '🇯🇵 Japan',
+        'preferred-networks': '🇯🇵 Japan',
+        // 🇩🇪 Germany
+        'aleph-alpha': '🇩🇪 Germany',
+        'Aleph-Alpha': '🇩🇪 Germany',
+        'soofi-project': '🇩🇪 Germany',   // 2026-08 S230 — German sovereign (KI Bundesverband / Fraunhofer / DFKI)
+        // 🇬🇧 UK
+        'stabilityai': '🇬🇧 UK',
+        'stability': '🇬🇧 UK',
+        // 🇨🇭 Switzerland
+        'swiss-ai': '🇨🇭 Switzerland',
+        // Others
+        'bigscience': '🇪🇺 Europe',
+        'utter-project': '🇪🇺 Europe',   // 2026-08 S230 — EuroLLM (UTTER EU consortium: IST Lisbon / Unbabel / Edinburgh)
+        'nexgeneai': '🇹🇷 Türkiye',       // 2026-08 S230 — Nexgene AI (Istanbul, Turkey; Asa-W1 medical)
+        'nexgene-ai': '🇹🇷 Türkiye',
+        'eleutherai': '🇺🇸 USA',
+        'huggingface': '🇫🇷 France',
+        'h2o': '🇺🇸 USA',
+    },
+
+    // Dedupe models by normalized name to avoid showing the same model under
+    // multiple canonical IDs (e.g. 'claude-fable-5' vs 'anthropic/claude-fable-5',
+    // 'alibaba/qwen-2.5-32b' vs 'alibaba/qwen2.5-32b'). Pick the best entry per
+    // group: prefer vendor-prefixed IDs (containing '/'), then a real (non-stub)
+    // release_date (not '2026-01-01' default), then longer ID.
+    _dedupeModels: function(models) {
+        function normalizeName(m) {
+            var raw = (m.name || m.id || '').toLowerCase().trim();
+            // Strip a leading vendor prefix from name if present
+            // (some entries store id-as-name like 'alibaba/qwen-2.5-32b')
+            var slash = raw.lastIndexOf('/');
+            if (slash >= 0) raw = raw.substring(slash + 1);
+            return raw.replace(/[\s\-._]/g, '');
+        }
+        var groups = {};
+        models.forEach(function(m) {
+            var key = normalizeName(m);
+            if (!key) return;
+            if (!groups[key]) groups[key] = [];
+            groups[key].push(m);
+        });
+        var STUB_DATES = { '2026-01-01': 1, '2025-01-01': 1, '2024-01-01': 1 };
+        var deduped = [];
+        Object.keys(groups).forEach(function(key) {
+            var group = groups[key];
+            if (group.length === 1) { deduped.push(group[0]); return; }
+            group.sort(function(a, b) {
+                var aSlash = (a.id || '').indexOf('/') >= 0 ? 1 : 0;
+                var bSlash = (b.id || '').indexOf('/') >= 0 ? 1 : 0;
+                if (aSlash !== bSlash) return bSlash - aSlash;
+                var aStub = STUB_DATES[a.release_date] ? 1 : 0;
+                var bStub = STUB_DATES[b.release_date] ? 1 : 0;
+                if (aStub !== bStub) return aStub - bStub;
+                return (b.id || '').length - (a.id || '').length;
+            });
+            deduped.push(group[0]);
+        });
+        return deduped;
+    },
+
+    init: function(allModels, allBenchmarks, scores) {
+        this._models = this._dedupeModels(allModels || []);
+        this._benchmarks = allBenchmarks || [];
+        this._scores = scores || [];
+        this._enrichment = (typeof App !== 'undefined' && App.data && App.data.enrichment) || {};
+
+        var self = this;
+
+        // Lazy-load enrichment (might not be ready yet)
+        if (typeof App !== 'undefined' && App.loadEnrichment) {
+            App.loadEnrichment().then(function(map) {
+                self._enrichment = map || {};
+                if (!document.getElementById('tab-timeline').classList.contains('hidden')) {
+                    self.render();
+                }
+            });
+        }
+
+        var sortSel = document.getElementById('timeline-sort');
+        var vendorSel = document.getElementById('timeline-vendor-filter');
+        var countrySel = document.getElementById('timeline-country-filter');
+        var typeSel = document.getElementById('timeline-type-filter');
+        var searchInput = document.getElementById('timeline-search');
+
+        if (sortSel) sortSel.addEventListener('change', function() { self._syncUrlState(); self.render(); });
+        if (vendorSel) vendorSel.addEventListener('change', function() { self._syncUrlState(); self.render(); });
+        if (countrySel) countrySel.addEventListener('change', function() { self._syncUrlState(); self.render(); });
+        if (typeSel) typeSel.addEventListener('change', function() { self._syncUrlState(); self.render(); });
+        if (searchInput) searchInput.addEventListener('input', function() { self._syncUrlState(); self.render(); });
+
+        // Infographic controls
+        var rangeSel = document.getElementById('timeline-infographic-range');
+        var pngBtn = document.getElementById('timeline-download-png');
+        var svgBtn = document.getElementById('timeline-download-svg');
+        var csvBtn = document.getElementById('timeline-download-csv');
+        if (rangeSel) rangeSel.addEventListener('change', function() { self._syncUrlState(); self._renderInfographic(); });
+
+        var frontierRangeSel = document.getElementById('timeline-frontier-range');
+        if (frontierRangeSel) frontierRangeSel.addEventListener('change', function() { self._syncUrlState(); self._renderFrontierVersionTimeline(); });
+
+        var frontierFlagsChk = document.getElementById('timeline-frontier-flags');
+        if (frontierFlagsChk) frontierFlagsChk.addEventListener('change', function() { self._syncUrlState(); self._renderFrontierVersionTimeline(); });
+        if (pngBtn) pngBtn.addEventListener('click', function() { self._downloadInfographic('png'); });
+        if (svgBtn) svgBtn.addEventListener('click', function() { self._downloadInfographic('svg'); });
+        if (csvBtn) csvBtn.addEventListener('click', function() { self._downloadCSV(); });
+
+        this._populateFilters();
+        this._applyUrlState();   // restore per-graph control values from the URL (?tl_*), before first render
+    },
+
+    // ─── URL state for the Timeline controls ───────────────────────────────
+    // Each control's value is mirrored to a `tl_*` query param so a Timeline
+    // view (with its per-graph option changes) is shareable/bookmarkable.
+    // Query params coexist with the `#timeline` tab hash.
+    _URL_KEYS: {
+        'timeline-sort': 'tl_sort',
+        'timeline-vendor-filter': 'tl_vendor',
+        'timeline-country-filter': 'tl_country',
+        'timeline-type-filter': 'tl_type',
+        'timeline-search': 'tl_q',
+        'timeline-infographic-range': 'tl_igrange',
+        'timeline-frontier-range': 'tl_fvrange',
+        'timeline-frontier-flags': 'tl_fvflags'
+    },
+
+    _syncUrlState: function() {
+        if (typeof URLSearchParams === 'undefined' || !window.history || !history.replaceState) return;
+        try {
+            var params = new URLSearchParams(window.location.search);
+            Object.keys(this._URL_KEYS).forEach(function(elId) {
+                var el = document.getElementById(elId);
+                var key = this._URL_KEYS[elId];
+                var v;
+                if (el && el.type === 'checkbox') { v = el.checked ? '1' : ''; }
+                else { v = el ? String(el.value == null ? '' : el.value).trim() : ''; }
+                // Omit empty / "all" defaults to keep the URL clean.
+                if (!v || v === 'all' || v === 'All' || v === '') params.delete(key);
+                else params.set(key, v);
+            }, this);
+            var qs = params.toString();
+            var newUrl = window.location.pathname + (qs ? '?' + qs : '') + (window.location.hash || '');
+            history.replaceState(null, '', newUrl);
+        } catch (e) { /* URL API unavailable — silently skip */ }
+    },
+
+    _applyUrlState: function() {
+        if (typeof URLSearchParams === 'undefined') return;
+        try {
+            var params = new URLSearchParams(window.location.search);
+            Object.keys(this._URL_KEYS).forEach(function(elId) {
+                var key = this._URL_KEYS[elId];
+                if (!params.has(key)) return;
+                var el = document.getElementById(elId);
+                if (!el) return;
+                var val = params.get(key);
+                // For <select>, only apply if the option exists (filters are populated by now).
+                if (el.type === 'checkbox') {
+                    el.checked = (val === '1' || val === 'true');
+                } else if (el.tagName === 'SELECT') {
+                    var ok = Array.prototype.some.call(el.options, function(o) { return o.value === val; });
+                    if (ok) el.value = val;
+                } else {
+                    el.value = val;
+                }
+            }, this);   // pass thisArg so this._URL_KEYS resolves inside the callback
+        } catch (e) { /* silently skip */ }
+    },
+
+    // Color scheme: 12 distinct hues, one per month-of-year
+    _MONTH_COLORS: [
+        '#3b82f6', '#8b5cf6', '#ec4899', '#f43f5e',
+        '#f97316', '#eab308', '#84cc16', '#22c55e',
+        '#10b981', '#14b8a6', '#06b6d4', '#0ea5e9'
+    ],
+
+    _COUNTRY_COLORS: {
+        '🇺🇸 USA': '#3b82f6',
+        '🇨🇳 China': '#ef4444',
+        '🇰🇷 Korea': '#a855f7',
+        '🇫🇷 France': '#0ea5e9',
+        '🇨🇦 Canada': '#dc2626',
+        '🇯🇵 Japan': '#f43f5e',
+        '🇮🇱 Israel': '#3aa6e8',
+        '🇦🇪 UAE': '#10b981',
+        '🇸🇦 Saudi Arabia': '#16a34a',
+        '🇸🇬 Singapore': '#f87171',
+        '🇮🇳 India': '#f59e0b',
+        '🇩🇪 Germany': '#facc15',
+        '🇬🇧 UK': '#1d4ed8',
+        '🇹🇷 Türkiye': '#e11d48',
+        '🇨🇭 Switzerland': '#dc2626',
+        '🇷🇺 Russia': '#ec4899',
+        '🇪🇺 Europe': '#6366f1',
+        '🌐 Other': '#6b7280'
+    },
+
+    _TYPE_COLORS: {
+        'proprietary': '#ef4444',
+        'open-weight': '#22c55e',
+        'open-weights': '#22c55e',
+        'open-source': '#3b82f6'
+    },
+
+    _getCountry: function(modelId, model) {
+        if (!modelId) return null;
+        var prefix = modelId.split('/')[0];
+        // Try exact prefix match (case-sensitive) first
+        if (this.VENDOR_TO_COUNTRY[prefix]) return this.VENDOR_TO_COUNTRY[prefix];
+        // Try lowercase
+        var lower = prefix.toLowerCase();
+        if (this.VENDOR_TO_COUNTRY[lower]) return this.VENDOR_TO_COUNTRY[lower];
+        return '🌐 Other';
+    },
+
+    _getReleaseDate: function(model) {
+        if (!model) return null;
+        // Use ONLY canonical release_date / released_at — not system registration date
+        if (model.release_date) return model.release_date;
+        if (model.released_at) return model.released_at;
+        return null;
+    },
+
+    _getSystemRegisteredDate: function(model) {
+        if (!model) return null;
+        var ent = this._enrichment[model.id];
+        if (ent && ent.system_registered_date) return ent.system_registered_date;
+        // backwards compat — old name
+        if (ent && ent.release_date_inferred) return ent.release_date_inferred;
+        return null;
+    },
+
+    _populateFilters: function() {
+        var vendorSel = document.getElementById('timeline-vendor-filter');
+        var countrySel = document.getElementById('timeline-country-filter');
+
+        if (vendorSel && vendorSel.options.length <= 1) {
+            var vendors = {};
+            this._models.forEach(function(m) {
+                if (m.vendor) vendors[m.vendor] = true;
+            });
+            Object.keys(vendors).sort().forEach(function(v) {
+                var opt = document.createElement('option');
+                opt.value = v;
+                opt.textContent = v;
+                vendorSel.appendChild(opt);
+            });
+        }
+
+        if (countrySel && countrySel.options.length <= 1) {
+            var countries = {};
+            var self = this;
+            this._models.forEach(function(m) {
+                var c = self._getCountry(m.id, m);
+                if (c) countries[c] = true;
+            });
+            Object.keys(countries).sort().forEach(function(c) {
+                var opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                countrySel.appendChild(opt);
+            });
+        }
+    },
+
+    _getInfographicEntries: function(monthsBack) {
+        var self = this;
+        var now = new Date();
+        var cutoff = new Date(now.getFullYear(), now.getMonth() - monthsBack + 1, 1);
+        var entries = [];
+        this._models.forEach(function(m) {
+            var d = self._getReleaseDate(m);
+            if (!d || d.length < 7) return;
+            var dt = new Date(d.length >= 10 ? d.slice(0, 10) : d.slice(0, 7) + '-15');
+            if (isNaN(dt.getTime()) || dt < cutoff || dt > now) return;
+            entries.push({
+                id: m.id,
+                name: m.name || m.id,
+                vendor: m.vendor || (m.id.split('/')[0] || ''),
+                type: m.type || '',
+                date: d,
+                dt: dt,
+                country: self._getCountry(m.id, m),
+                ts: dt.getTime()
+            });
+        });
+        return entries;
+    },
+
+    // Country flag extraction from "🇺🇸 USA" → "🇺🇸"
+    _flagFromCountry: function(country) {
+        if (!country) return '';
+        var m = country.match(/^(\p{Extended_Pictographic}\p{Extended_Pictographic}?)/u);
+        return m ? m[0] : (country.split(' ')[0] || '');
+    },
+
+    // First letter of vendor for the simple vector "logo" tile
+    _vendorLogoLetter: function(vendor) {
+        if (!vendor) return '?';
+        var clean = vendor.replace(/\s*\(.*\)\s*$/, '').trim();
+        return clean.charAt(0).toUpperCase();
+    },
+
+    // Stable colour per vendor for the logo tile (consistent across renders)
+    _vendorTileColor: function(vendor) {
+        var palette = ['#1d4ed8', '#7c3aed', '#db2777', '#dc2626', '#ea580c', '#ca8a04',
+            '#65a30d', '#16a34a', '#0d9488', '#0891b2', '#2563eb', '#4f46e5'];
+        var h = this._hashCode(vendor || '');
+        return palette[Math.abs(h) % palette.length];
+    },
+
+    _renderInfographic: function() {
+        var host = document.getElementById('timeline-infographic-host');
+        if (!host) return;
+        var rangeSel = document.getElementById('timeline-infographic-range');
+        var monthsBack = parseInt((rangeSel || {}).value || '6', 10);
+
+        var entries = this._getInfographicEntries(monthsBack);
+
+        while (host.firstChild) host.removeChild(host.firstChild);
+
+        if (entries.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-gray-500 text-sm p-8 text-center';
+            empty.textContent = 'No models with release dates in the selected range.';
+            host.appendChild(empty);
+            return;
+        }
+
+        // Build month columns (left = oldest, right = newest)
+        var months = [];
+        var now = new Date();
+        for (var i = monthsBack - 1; i >= 0; i--) {
+            var d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+            months.push({
+                ym: d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'),
+                year: d.getFullYear(),
+                month: d.getMonth(),
+                label: d.toLocaleString('en-US', { month: 'long', year: 'numeric' }),
+                color: this._MONTH_COLORS[d.getMonth()],
+                entries: []
+            });
+        }
+        // Bucket entries
+        entries.forEach(function(e) {
+            var ym = e.dt.getFullYear() + '-' + String(e.dt.getMonth() + 1).padStart(2, '0');
+            months.forEach(function(col) {
+                if (col.ym === ym) col.entries.push(e);
+            });
+        });
+        // Sort within each month: ascending by date (top = earliest day, bottom = latest day)
+        months.forEach(function(col) {
+            col.entries.sort(function(a, b) { return a.ts - b.ts; });
+        });
+
+        // Dynamic layout: per-month column width scales with that month's release count.
+        // Each month gets its own subColCount based on its own card count;
+        // the global card height is chosen so the busiest month still fits vertically.
+        var maxPerCol = 0;
+        months.forEach(function(c) { if (c.entries.length > maxPerCol) maxPerCol = c.entries.length; });
+
+        var PAD_TOP = 80;
+        var PAD_LEFT = 60;
+        var PAD_RIGHT = 60;
+        var PAD_BOTTOM = 70;  // accommodate two-line footer (author + source URL)
+        var COL_GAP = 24;
+        var HEADER_H = 56;
+        var CARD_GAP = 6;
+
+        var CARD_H_PREF = 84;
+        var CARD_H_MIN = 64;
+        var CARD_W_BASE = 280;
+        var SUBCOL_GAP = 6;
+
+        // Pick a global card height so SVG_H stays under ~2400 even for the busiest
+        // month, given that month gets enough sub-columns. Also pick a per-month
+        // sub-column target — we want at most ~14 cards per sub-column so a column
+        // with 28 releases gets 2 sub-cols, with 56 gets 4, and with 7 gets just 1.
+        function pickGlobalCardHeight() {
+            var heights = [CARD_H_PREF, 76, 72, 68, CARD_H_MIN];
+            for (var i = 0; i < heights.length; i++) {
+                var h = heights[i];
+                // For the busiest month, what's the minimum sub-columns to fit?
+                // Cap at 4 sub-cols and require resulting stack <= ROWS_TARGET rows.
+                var ROWS_TARGET = 14;
+                var subColsForBusy = Math.max(1, Math.ceil(maxPerCol / ROWS_TARGET));
+                if (subColsForBusy > 4) subColsForBusy = 4;
+                var perStack = Math.ceil(maxPerCol / subColsForBusy);
+                var stackH = perStack * (h + CARD_GAP) - CARD_GAP;
+                var totalH = PAD_TOP + HEADER_H + 22 + 28 + stackH + PAD_BOTTOM;
+                if (totalH <= 2400) return { cardH: h, totalH: totalH, busySubCols: subColsForBusy, busyStack: perStack };
+            }
+            return { cardH: CARD_H_MIN, totalH: 2400, busySubCols: 4, busyStack: Math.ceil(maxPerCol / 4) };
+        }
+        var globalLayout = pickGlobalCardHeight();
+        var CARD_H = globalLayout.cardH;
+
+        // Per-month sub-column count: scales with release count.
+        // 1 release: 1 sub-col. 2-14: 1 sub-col. 15-28: 2 sub-cols. 29-42: 3. >=43: 4.
+        // The narrow months get a single 280px column; busy ones widen to fit.
+        function subColsForMonth(n) {
+            if (n <= 14) return 1;
+            if (n <= 28) return 2;
+            if (n <= 42) return 3;
+            return 4;
+        }
+        months.forEach(function(c) {
+            c.subCols = subColsForMonth(c.entries.length);
+            c.width = c.subCols * CARD_W_BASE + (c.subCols - 1) * SUBCOL_GAP;
+            // Single-card months get a narrower header — but card width must still
+            // be CARD_W_BASE so vendor logo + name fit; minimum column = CARD_W_BASE.
+        });
+
+        // SVG height = enough for the tallest month (count / its own subCols).
+        var maxStack = 0;
+        months.forEach(function(c) {
+            var s = Math.ceil(c.entries.length / c.subCols);
+            if (s > maxStack) maxStack = s;
+        });
+        var stackH = maxStack * (CARD_H + CARD_GAP) - CARD_GAP;
+        var SVG_H = PAD_TOP + HEADER_H + 22 + 28 + stackH + PAD_BOTTOM;
+        var TIMELINE_AXIS_Y = PAD_TOP + HEADER_H + 22;
+        var CARD_AREA_TOP = TIMELINE_AXIS_Y + 28;
+        var CARD_AREA_H = SVG_H - CARD_AREA_TOP - PAD_BOTTOM;
+
+        // SVG width = sum of per-month widths + gaps + padding
+        var sumColW = months.reduce(function(s, c) { return s + c.width; }, 0);
+        var SVG_W = PAD_LEFT + sumColW + COL_GAP * (months.length - 1) + PAD_RIGHT;
+
+        var SVG_NS = 'http://www.w3.org/2000/svg';
+        function el(tag, attrs, parent) {
+            var node = document.createElementNS(SVG_NS, tag);
+            if (attrs) Object.keys(attrs).forEach(function(k) { node.setAttribute(k, attrs[k]); });
+            if (parent) parent.appendChild(node);
+            return node;
+        }
+
+        // SVG fills the host width; height is derived from viewBox aspect ratio so
+        // the entire infographic is always visible without horizontal or vertical
+        // scroll inside the host. Internal layout is in viewBox coordinates so the
+        // SVG simply scales down to fit narrower viewports.
+        var svg = el('svg', {
+            xmlns: SVG_NS,
+            viewBox: '0 0 ' + SVG_W + ' ' + SVG_H,
+            width: '100%',
+            preserveAspectRatio: 'xMidYMid meet',
+            style: 'display: block; height: auto;'
+        });
+        // White background (download keeps it)
+        el('rect', { x: 0, y: 0, width: SVG_W, height: SVG_H, fill: '#ffffff' }, svg);
+
+        // Title
+        var title = el('text', {
+            x: SVG_W / 2,
+            y: 44,
+            'text-anchor': 'middle',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '24',
+            'font-weight': '700',
+            fill: '#0f172a'
+        }, svg);
+        title.textContent = 'AI Model Release Timeline · Last ' + monthsBack + ' Months';
+        var subtitle = el('text', {
+            x: SVG_W / 2,
+            y: 68,
+            'text-anchor': 'middle',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '13',
+            fill: '#64748b'
+        }, svg);
+        subtitle.textContent = entries.length + ' verified releases · column = month · color = month band · sorted earliest → latest within column';
+
+        // Main horizontal timeline axis
+        el('line', {
+            x1: PAD_LEFT,
+            y1: TIMELINE_AXIS_Y,
+            x2: SVG_W - PAD_RIGHT,
+            y2: TIMELINE_AXIS_Y,
+            stroke: '#cbd5e1',
+            'stroke-width': '2'
+        }, svg);
+
+        var self = this;
+
+        // Track running X position so each month uses its own width
+        var runningX = PAD_LEFT;
+
+        months.forEach(function(col, idx) {
+            var colX = runningX;
+            var colW = col.width;
+            var headerY = PAD_TOP;
+
+            // Month header pill
+            el('rect', {
+                x: colX,
+                y: headerY,
+                width: colW,
+                height: HEADER_H,
+                rx: 8,
+                fill: col.color,
+                opacity: '0.95'
+            }, svg);
+            var hdrText = el('text', {
+                x: colX + colW / 2,
+                y: headerY + 24,
+                'text-anchor': 'middle',
+                'font-family': 'system-ui, -apple-system, sans-serif',
+                'font-size': '17',
+                'font-weight': '700',
+                fill: '#ffffff'
+            }, svg);
+            hdrText.textContent = col.label;
+            var hdrCount = el('text', {
+                x: colX + colW / 2,
+                y: headerY + 44,
+                'text-anchor': 'middle',
+                'font-family': 'system-ui, -apple-system, sans-serif',
+                'font-size': '12',
+                fill: '#ffffff',
+                opacity: '0.85'
+            }, svg);
+            hdrCount.textContent = col.entries.length + ' release' + (col.entries.length === 1 ? '' : 's');
+
+            el('circle', {
+                cx: colX + colW / 2,
+                cy: TIMELINE_AXIS_Y,
+                r: 7,
+                fill: col.color,
+                stroke: '#ffffff',
+                'stroke-width': '2'
+            }, svg);
+
+            if (col.entries.length > 0) {
+                el('line', {
+                    x1: colX + colW / 2,
+                    y1: TIMELINE_AXIS_Y + 7,
+                    x2: colX + colW / 2,
+                    y2: CARD_AREA_TOP - 6,
+                    stroke: col.color,
+                    'stroke-width': '1.5',
+                    'stroke-dasharray': '3,3',
+                    opacity: '0.5'
+                }, svg);
+            }
+
+            // Distribute cards across this month's sub-columns (column-major fill)
+            var totalCards = col.entries.length;
+            var subCols = col.subCols;
+            var perStack = Math.ceil(totalCards / subCols) || 1;
+            for (var k = 0; k < totalCards; k++) {
+                var e = col.entries[k];
+                var subColIdx = Math.floor(k / perStack);
+                var rowIdx = k % perStack;
+                var cardX = colX + subColIdx * (CARD_W_BASE + SUBCOL_GAP);
+                var cardY = CARD_AREA_TOP + rowIdx * (CARD_H + CARD_GAP);
+                self._renderCard(svg, el, cardX, cardY, CARD_W_BASE, CARD_H, col.color, e);
+            }
+
+            runningX += colW + COL_GAP;
+        });
+
+        // Footer — author, source URL, generation date
+        var footerY = SVG_H - 26;
+        var authorText = el('text', {
+            x: PAD_LEFT,
+            y: footerY,
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '12',
+            'font-weight': '600',
+            fill: '#475569'
+        }, svg);
+        authorText.textContent = 'Author: Jonghong Jeon · hollobit@etri.re.kr';
+
+        var sourceText = el('text', {
+            x: PAD_LEFT,
+            y: footerY + 16,
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '11',
+            fill: '#64748b'
+        }, svg);
+        sourceText.textContent = 'Source: https://hollobit.github.io/SOTA/#timeline · data verified against vendor blogs, llm-stats.com, HuggingFace model cards';
+
+        var stampText = el('text', {
+            x: SVG_W - PAD_RIGHT,
+            y: footerY + 16,
+            'text-anchor': 'end',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '11',
+            fill: '#94a3b8'
+        }, svg);
+        stampText.textContent = 'Generated ' + new Date().toISOString().slice(0, 10);
+
+        host.appendChild(svg);
+        this._currentSvg = svg;
+    },
+
+    _renderCard: function(svg, el, x, y, w, h, accentColor, e) {
+        var self = this;
+
+        // Card background
+        el('rect', {
+            x: x,
+            y: y,
+            width: w,
+            height: h,
+            rx: 6,
+            fill: '#ffffff',
+            stroke: '#e2e8f0',
+            'stroke-width': '1'
+        }, svg);
+        // Left accent stripe (month colour)
+        el('rect', {
+            x: x,
+            y: y,
+            width: 4,
+            height: h,
+            fill: accentColor
+        }, svg);
+
+        // Vendor logo tile
+        var tileSize = 36;
+        var tileX = x + 12;
+        var tileY = y + 10;
+        el('rect', {
+            x: tileX,
+            y: tileY,
+            width: tileSize,
+            height: tileSize,
+            rx: 7,
+            fill: this._vendorTileColor(e.vendor)
+        }, svg);
+        var tileText = el('text', {
+            x: tileX + tileSize / 2,
+            y: tileY + tileSize / 2 + 7,
+            'text-anchor': 'middle',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '20',
+            'font-weight': '700',
+            fill: '#ffffff'
+        }, svg);
+        tileText.textContent = this._vendorLogoLetter(e.vendor);
+
+        // Date badge (MM.DD) — top-right corner, no flag overlap (flag moved to bottom)
+        var mm = String(e.dt.getMonth() + 1).padStart(2, '0');
+        var dd = String(e.dt.getDate()).padStart(2, '0');
+        var dateBadge = el('text', {
+            x: x + w - 12,
+            y: y + 24,
+            'text-anchor': 'end',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '15',
+            'font-weight': '700',
+            fill: accentColor
+        }, svg);
+        dateBadge.textContent = mm + '.' + dd;
+
+        // Country flag — placed in BOTTOM-RIGHT so MM.DD has top-right to itself.
+        // Sized 28x28 with subtle slate tile background.
+        var flagSize = 28;
+        var flagX = x + w - flagSize - 8;
+        var flagY = y + h - flagSize - 6;
+        el('rect', {
+            x: flagX,
+            y: flagY,
+            width: flagSize,
+            height: flagSize,
+            rx: 6,
+            fill: '#f8fafc',
+            stroke: '#e2e8f0',
+            'stroke-width': '1'
+        }, svg);
+        var flagText = el('text', {
+            x: flagX + flagSize / 2,
+            y: flagY + flagSize / 2 + 8,
+            'text-anchor': 'middle',
+            'font-family': 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, system-ui, sans-serif',
+            'font-size': '24'
+        }, svg);
+        flagText.textContent = this._flagFromCountry(e.country);
+
+        // Model name (precise version, large) — clip if too long
+        var nameText = el('text', {
+            x: tileX + tileSize + 10,
+            y: y + 28,
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '14',
+            'font-weight': '700',
+            fill: '#0f172a'
+        }, svg);
+        // Strip vendor prefix if present (model name only — no path)
+        var displayName = e.name;
+        if (displayName.indexOf('/') !== -1) {
+            displayName = displayName.split('/').slice(1).join('/');
+        }
+        // Width-aware truncation
+        var maxNameLen = 26;
+        if (displayName.length > maxNameLen) displayName = displayName.slice(0, maxNameLen - 1) + '…';
+        nameText.textContent = displayName;
+        // Tooltip with full version
+        var nameTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        nameTitle.textContent = e.name + '\n' + e.vendor + '\nReleased: ' + e.date.slice(0, 10);
+        nameText.appendChild(nameTitle);
+
+        // Vendor name (smaller, gray)
+        var vendorText = el('text', {
+            x: tileX + tileSize + 10,
+            y: y + 47,
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '11',
+            fill: '#64748b'
+        }, svg);
+        var vendorClean = e.vendor.replace(/\s*\(.*\)\s*$/, '');
+        var maxVendorLen = 32;
+        if (vendorClean.length > maxVendorLen) vendorClean = vendorClean.slice(0, maxVendorLen - 1) + '…';
+        vendorText.textContent = vendorClean;
+
+        // Bottom row: license badge + country full label
+        var licenseColors = {
+            'proprietary': { bg: '#fef2f2', fg: '#b91c1c' },
+            'open-weight': { bg: '#f0fdf4', fg: '#15803d' },
+            'open-weights': { bg: '#f0fdf4', fg: '#15803d' },
+            'open-source': { bg: '#eff6ff', fg: '#1d4ed8' }
+        };
+        var lc = licenseColors[e.type] || { bg: '#f1f5f9', fg: '#475569' };
+        var licenseLabel = e.type || 'unknown';
+        // estimate badge width
+        var badgeW = Math.max(58, licenseLabel.length * 6 + 14);
+        el('rect', {
+            x: tileX + tileSize + 10,
+            y: y + h - 26,
+            width: badgeW,
+            height: 18,
+            rx: 9,
+            fill: lc.bg
+        }, svg);
+        var licenseText = el('text', {
+            x: tileX + tileSize + 10 + badgeW / 2,
+            y: y + h - 13,
+            'text-anchor': 'middle',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '10',
+            'font-weight': '600',
+            fill: lc.fg
+        }, svg);
+        licenseText.textContent = licenseLabel;
+
+        // Country full label after license badge — clipped before flag tile
+        var countryLabel = (e.country || '').replace(/^\S+\s*/, ''); // strip flag, keep name
+        // Available horizontal space ends at flag tile (x + w - 28 - 8 - 4 padding)
+        var countryMaxX = (x + w - flagSize - 8) - (tileX + tileSize + 10 + badgeW + 8);
+        var maxCountryChars = Math.max(0, Math.floor(countryMaxX / 5));
+        if (countryLabel.length > maxCountryChars && maxCountryChars > 1) {
+            countryLabel = countryLabel.slice(0, maxCountryChars - 1) + '…';
+        }
+        var countryText = el('text', {
+            x: tileX + tileSize + 10 + badgeW + 8,
+            y: y + h - 13,
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '10',
+            fill: '#94a3b8'
+        }, svg);
+        countryText.textContent = countryLabel;
+
+        // Click target — invisible rect on top routing to modal
+        var click = el('rect', {
+            x: x,
+            y: y,
+            width: w,
+            height: h,
+            fill: 'transparent',
+            style: 'cursor: pointer'
+        }, svg);
+        click.addEventListener('click', function() {
+            if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(e.id);
+        });
+        var clickTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        clickTitle.textContent = e.name + ' · ' + e.vendor + ' · ' + e.date.slice(0, 10);
+        click.appendChild(clickTitle);
+    },
+
+    _hashCode: function(s) {
+        var h = 0;
+        for (var i = 0; i < (s || '').length; i++) h = ((h << 5) - h) + s.charCodeAt(i) | 0;
+        return h;
+    },
+
+    _downloadInfographic: function(format) {
+        if (!this._currentSvg) return;
+        var rangeSel = document.getElementById('timeline-infographic-range');
+        var monthsBack = (rangeSel || {}).value || '6';
+        var stamp = new Date().toISOString().slice(0, 10);
+        var filename = 'model-timeline-' + monthsBack + 'mo-' + stamp;
+
+        var serializer = new XMLSerializer();
+        var svgStr = serializer.serializeToString(this._currentSvg);
+
+        if (format === 'svg') {
+            var blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+            var blobUrl = URL.createObjectURL(blob);
+            this._triggerDownload(blobUrl, filename + '.svg');
+            setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 1500);
+            return;
+        }
+
+        // PNG: rasterize via canvas. Read viewBox to get true SVG dimensions
+        // (which now adapt to release count) so the PNG is sharp regardless of size.
+        var viewBox = (this._currentSvg.getAttribute('viewBox') || '0 0 1920 1080').split(/\s+/);
+        var nativeW = parseFloat(viewBox[2]) || 1920;
+        var nativeH = parseFloat(viewBox[3]) || 1080;
+
+        var img = new Image();
+        var svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+        var svgUrl = URL.createObjectURL(svgBlob);
+        var self = this;
+        img.onload = function() {
+            var canvas = document.createElement('canvas');
+            var scale = 2;
+            canvas.width = nativeW * scale;
+            canvas.height = nativeH * scale;
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            URL.revokeObjectURL(svgUrl);
+            canvas.toBlob(function(blob) {
+                if (!blob) return;
+                var url = URL.createObjectURL(blob);
+                self._triggerDownload(url, filename + '.png');
+                setTimeout(function() { URL.revokeObjectURL(url); }, 1500);
+            }, 'image/png');
+        };
+        img.onerror = function() {
+            URL.revokeObjectURL(svgUrl);
+            alert('PNG export failed — try SVG download instead.');
+        };
+        img.src = svgUrl;
+    },
+
+    _downloadCSV: function() {
+        var rangeSel = document.getElementById('timeline-infographic-range');
+        var monthsBack = parseInt((rangeSel || {}).value || '6', 10);
+        var entries = this._getInfographicEntries(monthsBack);
+        entries.sort(function(a, b) { return b.ts - a.ts; });
+        var rows = [['release_date', 'model_id', 'name', 'vendor', 'country', 'type']];
+        entries.forEach(function(e) {
+            rows.push([e.date.slice(0, 10), e.id, e.name, e.vendor, e.country, e.type]);
+        });
+        var csv = rows.map(function(r) {
+            return r.map(function(c) {
+                var s = String(c == null ? '' : c).replace(/"/g, '""');
+                return /[,"\n]/.test(s) ? '"' + s + '"' : s;
+            }).join(',');
+        }).join('\n');
+        var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var stamp = new Date().toISOString().slice(0, 10);
+        this._triggerDownload(url, 'model-timeline-' + monthsBack + 'mo-' + stamp + '.csv');
+        setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+    },
+
+    _triggerDownload: function(url, filename) {
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    },
+
+    // Frontier Version-Up Timeline — vendor swimlanes (Y=developer, X=release date),
+    // frontier models only, connected chronologically to show version-up progression.
+    // Period toggle: 3 / 6 / 12 months.
+    _renderFrontierVersionTimeline: function() {
+        var host = document.getElementById('timeline-frontier-chart');
+        if (!host) return;
+        var note = document.getElementById('timeline-frontier-note');
+        var self = this;
+
+        // Frontier set = curated FrontierCompare.FRONTIER_MODELS (loaded as a timeline dep).
+        var frontierIds = (typeof FrontierCompare !== 'undefined' && FrontierCompare.FRONTIER_MODELS)
+            ? FrontierCompare.FRONTIER_MODELS : null;
+        if (!frontierIds) {
+            if (note) note.textContent = 'Frontier model list unavailable.';
+            return;
+        }
+        var frontierSet = {};
+        frontierIds.forEach(function(id) { frontierSet[id] = true; });
+
+        var rangeSel = document.getElementById('timeline-frontier-range');
+        var monthsBack = parseInt((rangeSel || {}).value || '6', 10);
+        var now = new Date();
+        var cutoff = new Date(now.getFullYear(), now.getMonth() - monthsBack, now.getDate());
+
+        var byModel = {};
+        this._models.forEach(function(m) { byModel[m.id] = m; });
+
+        // Vendor display name: group by canonical developer via the id prefix
+        // (model.vendor strings are inconsistent — "openai" vs "OpenAI" vs
+        // "Google DeepMind" — which fragments the lanes). Map prefix -> canonical.
+        var VENDOR_ALIAS = {
+            openai: 'OpenAI', anthropic: 'Anthropic', google: 'Google', 'google-deepmind': 'Google',
+            xai: 'xAI', deepseek: 'DeepSeek', alibaba: 'Alibaba', qwen: 'Alibaba',
+            meta: 'Meta', moonshot: 'Moonshot', cohere: 'Cohere', mistral: 'Mistral',
+            meituan: 'Meituan', sakana: 'Sakana', inclusionai: 'inclusionAI', stepfun: 'StepFun',
+            zhipu: 'Zhipu', 'z-ai': 'Zhipu', openbmb: 'OpenBMB', minimax: 'MiniMax',
+            microsoft: 'Microsoft', nvidia: 'NVIDIA', ibm: 'IBM', kakao: 'Kakao',
+            lg: 'LG AI', tii: 'TII', baidu: 'Baidu', tencent: 'Tencent', xiaomi: 'Xiaomi',
+            allenai: 'Allen AI', zyphra: 'Zyphra', subquadratic: 'Subquadratic', weibo: 'Weibo AI',
+            reka: 'Reka', sber: 'Sber AI', kt: 'KT', aisingapore: 'AI Singapore',
+            'ai-singapore': 'AI Singapore', nexgeneai: 'NexgeneAI', 'nexgene-ai': 'NexgeneAI',
+            'china-mobile': 'China Mobile', poolside: 'Poolside'
+        };
+        function vendorName(m) {
+            var pfx = (m.id.split('/')[0] || '').toLowerCase();
+            if (VENDOR_ALIAS[pfx]) return VENDOR_ALIAS[pfx];
+            var s = pfx.replace(/-/g, ' ');
+            return s.charAt(0).toUpperCase() + s.slice(1);
+        }
+        // Compact label: drop the vendor word(s) from the model name.
+        function shortName(name, vend) {
+            var s = name || '';
+            if (s.indexOf('/') >= 0) s = s.split('/').pop();  // placeholder id -> last segment
+            var vlow = (vend || '').toLowerCase();
+            s = s.replace(/\s*\((max|high|xhigh|medium|low|thinking|reasoning|preview|beta)\)\s*$/i, '');
+            // strip a leading vendor token if the name starts with it — but only
+            // when the remainder is still meaningful (has letters, not just "3").
+            var parts = s.split(' ');
+            var first = parts[0].toLowerCase();
+            if (parts.length > 1 && vlow && (vlow.indexOf(first) === 0 || first.indexOf(vlow.split(' ')[0]) === 0)) {
+                var rest = parts.slice(1).join(' ');
+                if (/[a-z]/i.test(rest)) s = rest;   // keep full name if rest is purely numeric (e.g. "Motif 3")
+            }
+            return s;
+        }
+
+        // Collect frontier entries in range, grouped by vendor.
+        var vendorLanes = {};   // vendor -> [{ts, dateMs, model, short}]
+        Object.keys(frontierSet).forEach(function(id) {
+            var m = byModel[id];
+            if (!m) return;
+            var d = self._getReleaseDate(m);   // canonical release_date/released_at only
+            if (!d) return;
+            var dt = new Date(d.length === 7 ? d + '-01' : d);
+            if (isNaN(dt.getTime()) || dt < cutoff) return;
+            var vend = vendorName(m);
+            (vendorLanes[vend] = vendorLanes[vend] || []).push({
+                dateMs: dt.getTime(),
+                model: m,
+                name: m.name || m.id,
+                short: shortName(m.name || m.id, vend)
+            });
+        });
+
+        var vendors = Object.keys(vendorLanes);
+        if (vendors.length === 0) {
+            var chart0 = (typeof Charts !== 'undefined') ? Charts._getOrCreate('timeline-frontier-chart') : null;
+            if (chart0) chart0.clear();
+            if (note) note.textContent = '선택한 기간(' + monthsBack + '개월)에 출시일이 있는 프론티어 모델이 없습니다.';
+            return;
+        }
+
+        // Country flag per vendor (for the optional Y-axis flag display).
+        var flagsChk = document.getElementById('timeline-frontier-flags');
+        var showFlags = !!(flagsChk && flagsChk.checked);
+        var vendorFlag = {};
+        vendors.forEach(function(vend) {
+            var m = vendorLanes[vend][0].model;
+            vendorFlag[vend] = self._flagFromCountry(self._getCountry(m.id, m));
+        });
+
+        // Y-axis order: most-recently-active vendor at TOP (largest max date last in
+        // the category array, since ECharts category axis renders index 0 at bottom).
+        vendors.sort(function(a, b) {
+            var am = Math.max.apply(null, vendorLanes[a].map(function(e) { return e.dateMs; }));
+            var bm = Math.max.apply(null, vendorLanes[b].map(function(e) { return e.dateMs; }));
+            return am - bm;   // ascending -> most recent ends up highest index (top)
+        });
+
+        // One line series per vendor; points sorted chronologically = version-up path.
+        var series = vendors.map(function(vend) {
+            var pts = vendorLanes[vend].slice().sort(function(a, b) { return a.dateMs - b.dateMs; });
+            return {
+                name: vend,
+                type: 'line',
+                lineStyle: { width: 2, opacity: 0.55 },
+                symbol: 'circle',
+                symbolSize: 11,
+                emphasis: { focus: 'series' },
+                label: {
+                    show: true,
+                    position: 'top',
+                    fontSize: 9,
+                    color: '#cbd5e1',
+                    formatter: function(p) { return p.data.short; }
+                },
+                labelLayout: { hideOverlap: true },
+                data: pts.map(function(e) {
+                    return { value: [e.dateMs, vend], short: e.short, fullName: e.name, modelId: e.model.id };
+                })
+            };
+        });
+
+        // Dynamic height so all vendor lanes are legible (~24px each).
+        host.style.height = Math.max(520, vendors.length * 24 + 90) + 'px';
+        var chart = (typeof Charts !== 'undefined') ? Charts._getOrCreate('timeline-frontier-chart') : null;
+        if (!chart) return;
+        chart.resize();
+        chart.setOption({
+            backgroundColor: 'transparent',
+            grid: { left: 130, right: 40, top: 30, bottom: 50 },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(p) {
+                    var d = new Date(p.data.value[0]);
+                    var ds = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+                    return '<b>' + p.data.fullName + '</b><br/>' + p.seriesName + ' · ' + ds;
+                }
+            },
+            xAxis: {
+                type: 'time',
+                axisLabel: { color: '#94a3b8', fontSize: 11 },
+                splitLine: { show: true, lineStyle: { color: '#1f2937' } }
+            },
+            yAxis: {
+                type: 'category',
+                data: vendors,
+                axisLabel: {
+                    color: '#cbd5e1', fontSize: 11,
+                    formatter: function(v) {
+                        return (showFlags && vendorFlag[v]) ? vendorFlag[v] + ' ' + v : v;
+                    }
+                },
+                splitLine: { show: true, lineStyle: { color: '#1f2937' } }
+            },
+            series: series
+        }, true);
+        chart.resize();
+
+        // Click a point (or its model-name label) → open the model detail modal.
+        // off() first so re-renders (range / flag toggle) don't stack handlers.
+        chart.off('click');
+        chart.on('click', function(params) {
+            var id = params && params.data && params.data.modelId;
+            if (id && typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(id);
+        });
+
+        if (note) {
+            var total = vendors.reduce(function(s, v) { return s + vendorLanes[v].length; }, 0);
+            note.textContent = '최근 ' + monthsBack + '개월 · ' + vendors.length + '개 개발사 · 프론티어 모델 ' + total + '종 (FRONTIER_MODELS 큐레이션 기준). 점=출시, 선=버전업 진행. 점/모델명 클릭 시 상세정보.';
+        }
+    },
+
+    render: function() {
+        // Version chart, infographic and model list render as separate tasks
+        // (same order) so the tab paints before the ~4k-row list is built.
+        var self = this;
+        App.renderChunked('timeline-render', [
+            function() { self._renderFrontierVersionTimeline(); },
+            function() { self._renderInfographic(); },
+            function() { self._renderList(); }
+        ], function(fn) { fn(); }, { first: 1, budget: 8 });
+    },
+
+    _renderList: function() {
+        var container = document.getElementById('timeline-container');
+        if (!container) return;
+        container.textContent = '';
+
+        var sortMode = (document.getElementById('timeline-sort') || {}).value || 'date-desc';
+        var vendorFilter = (document.getElementById('timeline-vendor-filter') || {}).value || '';
+        var countryFilter = (document.getElementById('timeline-country-filter') || {}).value || '';
+        var typeFilter = (document.getElementById('timeline-type-filter') || {}).value || '';
+        var searchQuery = ((document.getElementById('timeline-search') || {}).value || '').toLowerCase().trim();
+
+        var self = this;
+
+        // score count per model, built once (was an O(models x scores) filter per model)
+        var scoreCounts = {};
+        for (var si = 0; si < this._scores.length; si++) { var smid = this._scores[si].model_id; scoreCounts[smid] = (scoreCounts[smid] || 0) + 1; }
+
+        // Build entries with date + country
+        var entries = this._models
+            .map(function(m) {
+                var date = self._getReleaseDate(m);
+                if (!date) return null;
+                var sysDate = self._getSystemRegisteredDate(m);
+                var country = self._getCountry(m.id, m);
+                return {
+                    id: m.id,
+                    name: m.name || m.id,
+                    vendor: m.vendor || '',
+                    type: m.type || '',
+                    modalities: m.modalities || [],
+                    date: date,
+                    sysDate: sysDate,
+                    country: country,
+                    scoreCount: scoreCounts[m.id] || 0,
+                };
+            })
+            .filter(function(e) { return e !== null; });
+
+        // Show exclusion count for models without a canonical release_date
+        var totalModels = this._models.length;
+        var excludedCount = totalModels - entries.length;
+        var note = document.getElementById('timeline-exclusion-note');
+        if (note) note.textContent = excludedCount > 0
+            ? excludedCount + ' models excluded (no release date)'
+            : '';
+
+        // Apply filters
+        if (vendorFilter) entries = entries.filter(function(e) { return e.vendor === vendorFilter; });
+        if (countryFilter) entries = entries.filter(function(e) { return e.country === countryFilter; });
+        if (typeFilter) entries = entries.filter(function(e) { return e.type === typeFilter; });
+        if (searchQuery) {
+            entries = entries.filter(function(e) {
+                return e.name.toLowerCase().indexOf(searchQuery) !== -1
+                    || e.id.toLowerCase().indexOf(searchQuery) !== -1
+                    || e.vendor.toLowerCase().indexOf(searchQuery) !== -1;
+            });
+        }
+
+        // Sort
+        if (sortMode === 'date-asc') {
+            entries.sort(function(a, b) { return a.date.localeCompare(b.date); });
+        } else if (sortMode === 'date-desc') {
+            entries.sort(function(a, b) { return b.date.localeCompare(a.date); });
+        } else if (sortMode === 'vendor') {
+            entries.sort(function(a, b) {
+                if (a.vendor !== b.vendor) return a.vendor.localeCompare(b.vendor);
+                return b.date.localeCompare(a.date);
+            });
+        } else if (sortMode === 'country') {
+            entries.sort(function(a, b) {
+                if (a.country !== b.country) return a.country.localeCompare(b.country);
+                return b.date.localeCompare(a.date);
+            });
+        }
+
+        // Update count
+        var countEl = document.getElementById('timeline-count');
+        if (countEl) countEl.textContent = entries.length;
+
+        if (entries.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-gray-500 text-sm p-8 text-center';
+            empty.textContent = 'No models match the current filters.';
+            container.appendChild(empty);
+            return;
+        }
+
+        // Render with group headers when sorting by vendor or country
+        var lastGroup = null;
+        var grouped = (sortMode === 'vendor' || sortMode === 'country');
+        var groupCounts = {};
+        if (grouped) entries.forEach(function(x) { var gk = sortMode === 'vendor' ? x.vendor : x.country; groupCounts[gk] = (groupCounts[gk] || 0) + 1; });
+
+        // Also when sorted by date, group by year-month for visual grouping
+        var lastYearMonth = null;
+
+        // ~4k rows: paint the first rows now, append the rest time-sliced.
+        App.renderChunked('timeline-list', entries, function(e) {
+            // Group header
+            if (grouped) {
+                var groupKey = sortMode === 'vendor' ? e.vendor : e.country;
+                if (groupKey !== lastGroup) {
+                    var hdr = document.createElement('div');
+                    hdr.className = 'mt-4 mb-1 text-xs text-gray-500 uppercase tracking-wider font-semibold sticky top-0 bg-gray-950 py-1';
+                    var groupCount = groupCounts[groupKey] || 0;
+                    hdr.textContent = groupKey + ' (' + groupCount + ')';
+                    container.appendChild(hdr);
+                    lastGroup = groupKey;
+                }
+            } else {
+                // Date sort: group by YYYY-MM for visual chunking
+                var ym = e.date.slice(0, 7);
+                if (ym !== lastYearMonth) {
+                    var dhdr = document.createElement('div');
+                    dhdr.className = 'mt-3 mb-1 text-xs text-gray-500 uppercase tracking-wider font-semibold sticky top-0 bg-gray-950 py-1';
+                    dhdr.textContent = ym;
+                    container.appendChild(dhdr);
+                    lastYearMonth = ym;
+                }
+            }
+
+            // Row
+            var row = document.createElement('div');
+            row.className = 'tl-row flex items-center gap-3 px-3 py-2 bg-gray-900 hover:bg-gray-800 border border-gray-800 rounded cursor-pointer transition';
+            row.addEventListener('click', (function(mid) {
+                return function() {
+                    if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid);
+                };
+            })(e.id));
+
+            // Release date (canonical — vendor announcement)
+            var dateCol = document.createElement('div');
+            dateCol.className = 'text-xs text-gray-300 font-mono w-24 flex-shrink-0';
+            dateCol.textContent = e.date.slice(0, 10);
+            dateCol.title = 'Release date (vendor announcement)';
+            row.appendChild(dateCol);
+
+            // System registration date (smaller, gray — when WE first ingested this model)
+            var sysCol = document.createElement('div');
+            sysCol.className = 'text-xs text-gray-600 font-mono w-24 flex-shrink-0 italic';
+            if (e.sysDate) {
+                sysCol.textContent = '+' + e.sysDate.slice(0, 10);
+                sysCol.title = '시스템 등록일 (when we first ingested data for this model)';
+            } else {
+                sysCol.textContent = '';
+            }
+            row.appendChild(sysCol);
+
+            // Country column
+            var countryCol = document.createElement('div');
+            countryCol.className = 'text-xs text-gray-400 w-32 flex-shrink-0 truncate';
+            countryCol.textContent = e.country;
+            row.appendChild(countryCol);
+
+            // Vendor + name (main)
+            var nameCol = document.createElement('div');
+            nameCol.className = 'flex-1 min-w-0';
+            var nameLine = document.createElement('div');
+            nameLine.className = 'text-sm text-blue-400 truncate font-semibold';
+            nameLine.textContent = e.name;
+            nameCol.appendChild(nameLine);
+            var vendorLine = document.createElement('div');
+            vendorLine.className = 'text-xs text-gray-500 truncate';
+            vendorLine.textContent = e.vendor + (e.modalities.length ? ' · ' + e.modalities.join(', ') : '');
+            nameCol.appendChild(vendorLine);
+            row.appendChild(nameCol);
+
+            // Type badge
+            var typeBadge = document.createElement('span');
+            typeBadge.className = 'inline-block px-2 py-0.5 rounded text-xs flex-shrink-0';
+            if (e.type === 'proprietary') typeBadge.className += ' bg-red-900 text-red-300';
+            else if (e.type === 'open-weight') typeBadge.className += ' bg-green-900 text-green-300';
+            else if (e.type === 'open-source') typeBadge.className += ' bg-blue-900 text-blue-300';
+            else typeBadge.className += ' bg-gray-700 text-gray-300';
+            typeBadge.textContent = e.type || '?';
+            row.appendChild(typeBadge);
+
+            // Score count
+            var scoreCol = document.createElement('div');
+            scoreCol.className = 'text-xs text-gray-500 w-16 text-right flex-shrink-0';
+            scoreCol.textContent = e.scoreCount + ' scores';
+            row.appendChild(scoreCol);
+
+            container.appendChild(row);
+        }, { first: 120 });
+    },
+};

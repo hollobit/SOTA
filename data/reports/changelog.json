@@ -5397,5 +5397,17 @@
   "type": "Feature",
   "title": "S309b — 모든 탭 300ms 이내: 탭 전환 시 차트 재그리기 제거, 큰 탭 분할 렌더링",
   "detail": "▸ 탭을 바꿀 때마다 모든 탭의 차트(약 45개)를 크기가 그대로여도 두 번씩 다시 그리고, 숨겨지는 탭의 차트를 0 크기로 다시 그리던 것을 제거(보이는 탭에서 크기가 바뀐 차트만). ▸ 탭을 열 때마다 모듈 초기화가 두 번, Changelog·Resources 같은 탭은 렌더가 두 번 일어나던 것을 한 번으로. Comparison의 'Update'가 두 번 그리던 문제도 수정. ▸ Timeline(모델 3.6천 줄)·Physical AI·Cyber & Coding·Sovereign·Medical AI·Agent·Trends는 첫 부분을 바로 그리고 나머지를 짧게 나눠 이어 그려 화면이 멈추지 않음(내용은 동일). Timeline 목록은 화면 밖 줄 렌더링 생략. ▸ 벤치마크별 점수·모델 조회를 전체 목록 검색 → 인덱스·맵 조회로(Physical AI·AI4S·Medical·Sovereign 차트), 상관관계 계산은 한 번만. 이력 계산은 값이 바뀐 날짜만 처리하도록 바꾸고, 이력이 도착하면 이력을 쓰는 섹션만 다시 그림. 측정(첫 방문, 클릭 후 메인 스레드 점유 합): Trends 761→약 120ms, Timeline 629→0ms, Physical AI 603→약 70ms, Agent 411→약 100ms, Comparison 335→약 180ms, Sovereign 323→약 70ms, 나머지 탭 0~165ms."
+ },
+ {
+  "date": "2026-10-18",
+  "type": "Data",
+  "title": "S310 — DeepSeek-V4.1-Flash-1017: 모델 +1, 벤치마크 +1(Apex Bench v1.1), 점수 20행",
+  "detail": "▸ DeepSeek-V4.1-Flash-1017(2026-10-17, MIT): V4.1-Flash의 소규모 업데이트. 이제 API의 deepseek-flash가 이 모델을 제공(가격 동일: 입력 $0.30·출력 $1.20·캐시 $0.006 /1M, 최대 출력 384K). HF 인덱스 기준 총 763B(552B 백본). ▸ 모델 카드·공식 발표 표의 1017 열 11개: HLE 42.6(텍스트 44.0), Terminal-Bench 4.0 42.3(Claude Code 하네스), DeepSWE v1.1 77.0(Mini-SWE-V2), ProgramBench 29.1, NL2Repo 68.2, Automation-Bench v1.0.6 60.5, Agents' Last Exam 35.4, Apex Bench v1.1 72.1, Chartography 83.0, BabyVision 92.5, ZeroBench-main 51.0(Pass@5) — 9월판보다 전 항목 상승. ▸ 새 행 Apex Bench v1.1은 6개 열 모두 추가(9월판 64.6, K3 47.8, GLM-5.3 56.6, GPT-5.6 Sol 54.3, Opus 5 65.8); Mercor APEX-Agents v1.1 보드 수치와 맞지 않아 DeepSeek 보고값 채널로 분리. 나머지 비교 열은 9월 기술 보고서 표 3과 같아 기존 처리 유지(덮어쓰기 0). ▸ 기술 보고서 PDF는 기존 보관본과 동일(md5 일치), 발표 표·DeepSWE 비용 차트 이미지 보관. ▸ 넣지 않은 것: OpenRouter 1017 페이지의 AA 수치는 'V4.1 Flash (Max)' = 9월판이며 이미 DB에 있음; OrcaRouter의 AA 45–46 전망·Vals 57% 기대는 추정(Vals 원자료는 여전히 51.32); BenchLM 종합점수·Kingy 7과제 자체 시험은 벤치마크가 아님. Frontier Compare·Cyber & Coding·Sovereign(중국)·Resources·계보(base: V4.1-Flash) 반영. DB 4,404 모델 · 12,568 벤치마크 · 96,841 점수."
+ },
+ {
+  "date": "2026-10-18",
+  "type": "Data",
+  "title": "S310b — DeepSeek-V4.1-Flash 빠진 부분 재점검: 벤치마크 +8, 점수 +10, AA 재측정 갱신 13행",
+  "detail": "▸ 기술 보고서 부록 표 5(Claude Code 버전별 성능)를 새로 추가: DeepSWE v1.1 68.4 / 68.7 / 68.6(v2.1.105 / 238 / 259), 4개 버전 평균 68.9; Terminal-Bench 2.1 87.3 / 88.4 / 87.6, 평균 87.8 (v2.1.251 값은 기존 행). ▸ Artificial Analysis 모델 페이지 원자료에서 9월판(Max)에 없던 2개: 지수 과제당 비용 $0.265, 과제당 출력 토큰 88,574 — OrcaRouter 글의 $0.27·175.9 tok/s·첫 토큰 1.23초와 일치. ▸ AA가 다시 잰 값으로 갱신(같은 출처의 최신 값): Max 출력 속도 210.5→175.9 tok/s, 첫 답변 토큰 10.4→12.6초, 과제당 시간 304→362초, Briefcase Elo 1432→1420(분석 1653→1621, 표현 1338→1332); Non-reasoning GDPval-AA Elo 1328→1341(41.4→42.1%), 속도·시간·Briefcase 세부 Elo. ▸ AA에는 아직 1017 행이 없음(1017 모델 페이지 404). ▸ 확인했지만 추가 없음: 1017 HF config.json은 9월판과 바이트 단위로 동일(구조 변경 없음); 그림 1(a)는 표 3의 일부; 그림 1(b)의 DeepSeek-V1 KV 389,120바이트는 해당 모델 항목이 없어 제외; AA 영역별 능력 지수 6개·MMMU-Pro·FrontierCode·개방성 지수는 이미 일치; Kingy가 인용한 Gemini 4 Argon 카드 수치(DeepSWE 77.9, TB4 57.4/58.2/66.4)는 이미 DB에 있음. sference의 1017 독립 측정(AIME 2024·MATH-500 각 10문항, BFCL 20과제, 3회: 추론 토큰 21–30% 감소, 정답 수 동일, 도구 호출 41/66 동일)은 표준 벤치마크가 아닌 소표본이라 참고 출처로만 등록. DB 4,404 모델 · 12,576 벤치마크 · 96,851 점수."
  }
 ]

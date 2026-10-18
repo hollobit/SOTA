@@ -1,1 +1,1466 @@
-var Agent=function(){var y=[{key:"coding",icon:"\u{1F4BB}",label:"Coding Agents",benchmarks:["4dcodebench_overall","4dcodebench_vqa","aarri_bench_mini_swe_agent","active_swe_resolved","active_swe_revealed","appworld_ul_isgc","appworld_ul_itgc","asyncodebench_final_success_async_manager","asyncodebench_final_success_single","e_bench_code_avg3","gameenginebench_pass1","gamelogicbench_claude_code","gamelogicbench_claude_code_atom","gamexpert_gamegen_overall","loopsbench_resolve_rate_claude_code","loopsbench_test_pass_rate_claude_code","mattoolbench_code_sr","mmskillrisk_ncva_tsr_claude_code","mtac_ifbench_cisr","mtac_ifbench_csr","openharmony_bench_task_completion_bug_fix","secprobe_pass_rate_mini_swe_agent","swe_bench_pro_verified","swe_bench_promax_resolve_mini_swe_agent","swe_bench_promax_resolve_openhands","swe_cc_resolve_openhands","swe_cc_triggering_openhands","swe_interact_multi_turn_resolve","swe_interact_single_turn_resolve","swe_polyvision_e2e_text_only","swe_polyvision_vrr_text_only","swe_refactor_bench_accepted_runs","swe_refactor_bench_score","swe_rpg_resolved_codex","swe_rpg_resolved_opencode","swe_serve","swe_serve_pass3","swe_touch_pro_counter_edit_resolve","swe_touch_verified_retention","terminal_bench_lilt","webgamebench_excellent_rate","webgamebench_usable_rate","swe_bench_verified","swe_bench_pro","cursorbench_4_0","terminal_bench_4","terminal_bench_4_0","terminal_bench_4_0_aa","deepswe_1_1","frontierswe_v2","swe_bench_pro_scale_public","swe_bench_verified_mini","swe_bench_multilingual","swe_bench_multimodal","swe_rebench","multi_swe_bench","swe_polybench","expert_swe","aider_polyglot","swe_lancer","mle_bench","mle_bench_lite","usaco","deepswe_pass_at_1","deepswe_1_0","deepswe_1_1","swe_marathon","apexswe","ceo_bench","coffeebench_net_profit_90d_usd"]},{key:"web-browse",icon:"\u{1F310}",label:"Web & Browsing",benchmarks:["deepweb_bench","deepweb_bench_reasoning","lohosearch","lohosearch_calibration_error_lower_better","longwebbench_vfr_multi_image","longwebbench_vfr_single_image","mt_web2code_macro_score","mt_web2code_micro_score","teleswebench_localization_em","teleswebench_localization_em_easy","tsbench_complex","tsbench_simple","vibesearchbench_f1","vibesearchbench_pro_f1","webforge_bench","webforge_bench_l3","webuiproof_general_accuracy","webuiproof_general_build_failure_lower_better","clawbench","geobrowse_l1_gate","interlv_search_l1_tool","odysseys_rubrics_avg","stressweb_avg","ko_widesearch_table_success","mr_lhdr_oa","knows_overall_sf_axtree","webarena_corrected","browsecomp","browsecomp_multiagent","browsecomp_multi_agent","browsecomp_plus","browsecomp_agent_swarm","gaia","gaia2","webarena","osworld_verified","appworld","visualwebarena","online_mind2web","bu_bench_v1","webshop","hal_swe_bench_verified_mini","hal_usaco","hal_core_bench_hard","hal_tau_bench_airline","deepsearch_qa","vistahop","agentvista"]},{key:"os-computer",icon:"\u{1F5A5}\uFE0F",label:"OS / Computer Use",benchmarks:["biostudybench_prior_knowledge","biostudybench_with_data","capmem_captionqa_30s","d2k_bench_correct_no_guidance","d2k_bench_sperf_no_guidance","ddb_single_action_macro_f1","emailbench_pass_rate","gui_cc_offline_overall_no_history","gui_cc_online_overall_no_history","hypertrack_step_em","iosworld_vision_only","iosworld_vision_xml","mattoolbench_gui_sr","mobilecybench_malicious_app_apk_only","mobilecybench_pass_at_2","skillscriptbench_overall_avg_raw_ast","saas_bench_resolved","osworld_verified_50step","osworld_verified_15step","osworld_v2_standard_tool","osworld_v2_1","osworld_v2_20260808_offline","gameworld_sr_generalist","riskwebworld","healthadminbench_dme","autogui_v2_region_captioning","cocoabench","androidworld","osguard_action_level_acc","osworld_science","osworld_pro","macagentbench","cua_speedrun_osworld50","cua_swe_web","longpuzzlebench_native_gui","mypcbench_rubric","cadworld","cua_world_test_avg_score","androiddaily","appsim_bench","mobilepa_bench","mobileworld_real","mobiflow_base_sr","knowu_bench","osworld","osworld_verified","windows_agent_arena","the_agent_company","screenspot_pro","oscopilot_gaia","visualagentbench","osworld_v2","osworld_v2_partial","osworld_v2_150step","osworld_v2_300step","osworld_v2_single_action","osworld_v2_single_action_partial","screenspot_v2","mmbench_gui_l2","ui_vision","online_mind2web","osworld_g_refine","osexpert_eval","osworld_v2_partial_sep2026","osworld_v2_strict_sep2026","osworld_v2_offline_partial"]},{key:"tool-use",icon:"\u{1F527}",label:"Tool Use & Function Calling",benchmarks:["agrotools_e2e_fas","agrotools_step_toolacc","apiflow_bench_all","apiflow_bench_solo","imaging_101_module_overall","moldesignbench_generation_success","moldesignbench_optimization_success","phreeqc_mcq_200_direct","sci_mmr_agentic_acc","toolbench_x","toolbench_x_output","toolprivacybench_private_task_success","toolprivacybench_public_task_success","toolrobustbench","toolrobustbench_clean","usertoolbench_exact_acc_single_tool","usertoolbench_relaxed_acc","video2world_functionality_success","occubench","pi_bench_comp","agentescapebench_d5","kellybench_avg_roi","dataclawbench","dv_world_sheet_score","tobench_avg","vakra_avg","thinkingbox_bench","thinkingbox_bench_pass_hat_20","incident_arena_pass1","telco_gaia","tautau_bench","timeline_bench_opencode","era_by_eon_fintech_small","bfcl","bfcl_v3","bfcl_v3_live","bfcl_v3_multi_turn","bfcl_v4","bfcl_v4_web_search","search_qa","bfcl_v4","bfcl_v4_non_live_ast","bfcl_v4_live","bfcl_v4_multi_turn","bfcl_v4_memory","bfcl_v4_irrelevance_detection","tau2_bench_airline_pass1","tau2_bench_retail_pass1","tau2_bench_telecom_pass1","tau2_bench_airline_pass4","tau2_bench_retail_pass4","tau2_bench_telecom_pass4","tau2_bench_banking_knowledge_pass1","acebench_overall"]},{key:"mcp",icon:"\u{1F50C}",label:"MCP (Model Context Protocol)",benchmarks:["hw_mcp_bench_ecc","dynamicmcpbench_pass1","dynamicmcpbench_pass3","mcpgen_workflow_reconstruction","mcpgen_workflow_extension_e2e","mcp_bench","mcp_atlas","mcpatlas_public","mcpmark","livemcpbench"]},{key:"customer-service",icon:"\u{1F4BC}",label:"Customer Service / Multi-turn",benchmarks:["tau_bench","tau2_bench","tau2_airline","tau2_retail","tau2_telecom","tau3_bench","tau3_telecom","tau3_banking","tau3_airline","tau3_retail","t1_bench","tautau_bench","thinkingbox_bench","thinkingbox_bench_pass_hat_20","babelarena_vitabench_pass1","tau2_telecom_aa","tau2_banking_aa"]},{key:"finance",icon:"\u{1F4B0}",label:"Finance & Business Agents",benchmarks:["dayjob_finance_strict_pass1","ecommerce_bench_cse_plus","ecommerce_bench_final_assets","mmshopbench_id_at_1","mmshopbench_judge_at_1","fintrace","finmcp_bench","fintoolbench","finance_agent_v2","vals_financial_agent_1_1","vals_index_sep2026","big_finance_bench","bluefin_heldout_overall","dataclawbench","business_arena_net_worth_usd","ceo_arena_mean_score_usd_k","kellybench_avg_roi"]},{key:"domain",icon:"\u{1F9EA}",label:"Domain-Specific Agents",crossListed:["medical-ai","ai4s"],benchmarks:["cadengbench_a_a2_e2e","cadengbench_a_typed_at_1","earthverse_core","gna_bench_all_103","gna_bench_main_93","hle_phy_chem_subset_260618648","omnicad_agentic_2dvis_pa","omnicad_oneshot_colorview_pa","plcworld_execution_gap_lower_better","plcworld_pooled_sr","power_systems_agent_bench_public","powerbench_fa","powerbench_macro_ja","ppt_eval_sr","startupbench_score_stem","ceo_arena_mean_score_usd_k","business_arena_net_worth_usd","erpbench_gair_arena_valuation","bi_bench_sql_no_tools","eurekabench_conditioned_score","autodatabench_overall","frontierchallenge_pass_rate","bluefin_heldout_overall","mineexplorer_overall_tsr","spatialworld_tsr_physical_overall","libero_agent_score","codeactionbench_success_rate","embodied_agent_arena_index","finance_agent","scienceagentbench","agentclinic_medqa","agentclinic_nejm","medagentbench","medagentsbench","deeprare_aggregate_recall_at_1","deeprare_aggregate_recall_at_3","deeprare_physician_recall_at_1","deeprare_physician_recall_at_5","deeprare_reasoning_chain_agreement","automationbench","automationbench_aa","harvey_lab_aa","harvey_lab_aa_mean_criteria","enterpriseops_gym_aa","gdpval_plus_snorkel","relbench"]},{key:"safety",icon:"\u{1F6E1}\uFE0F",label:"Agent Safety & Security",lower_better:["agentdojo_targeted_asr","injecagent","browserart","anthropic_shade_browser_asr_attempts","anthropic_shade_browser_asr_scenarios","anthropic_shade_browser_asr_with_safeguards","agent_red_teaming","agentsmith_inf","apollo_scheming_oversight_subversion","apollo_scheming_persistence","agentlab_asr","railguard_unsafe_tool_exec_no_guardrail_lower_better","railguard_unsafe_tool_exec_pre_action_remediation_lower_better","shade_v2_coding_asr_no_safeguards","shade_v2_coding_asr_with_probes","shade_v2_computer_use_asr_no_safeguards","shade_v2_computer_use_asr_with_probes","browser_use_cowork_asr_no_safeguards","browser_use_cowork_asr_auto_mode","gray_swan_ipi_k1","gray_swan_ipi_k10","gray_swan_ipi","agentic_misaligned_outcome_rate_v2_lower_better","prompt_injection_connectors","indirect_prompt_injection_defender_success","osguard_action_level_acc","anthropic_rl_training_reward_hack_success_rate_lower_better","anthropic_rl_training_reward_hack_answer_key_guess_rate_lower_better","anthropic_rl_training_reward_hack_copied_solution_rate_lower_better","anthropic_rl_training_reward_hack_prohibited_method_rate_lower_better","anthropic_rl_training_reward_hack_success_rate_excl_toolskip_lower_better","anthropic_impossible_task_reward_hack_attempt_rate_lower_better","anthropic_impossible_task_reward_hack_success_rate_lower_better","anthropic_intact_task_reward_hack_attempt_rate_lower_better","anthropic_intact_task_reward_hack_success_rate_lower_better","anthropic_pasted_instruction_compliance_rate_lower_better","anthropic_pasted_instruction_compliance_default_effort_rate_lower_better","anthropic_claude_code_destructive_action_rate_lower_better","anthropic_acting_on_presumed_grader_rate_lower_better","anthropic_digging_for_grader_clues_rate_lower_better","shade_arena_best_prompt_stealth_hidden_reasoning_max_lower_better","shade_arena_best_prompt_stealth_no_thinking_lower_better","shade_arena_best_prompt_stealth_visible_low_effort_lower_better","shade_arena_best_prompt_stealth_visible_max_effort_lower_better","linuxarena_best_prompt_stealth_hidden_reasoning_lower_better","linuxarena_best_prompt_stealth_no_thinking_lower_better","linuxarena_best_prompt_stealth_visible_reasoning_lower_better"],benchmarks:["railguard_unsafe_tool_exec_no_guardrail_lower_better","railguard_unsafe_tool_exec_pre_action_remediation_lower_better","actbench_asr_lower_better","actbench_not_ags_mal","adepts_bench_score_desktop","adepts_bench_score_mobile","agentboundary_safety_all","agentboundary_utility_all","agentprivarena_leak_rate_lower_better","baitbench_reward_hacking_rate_lower_better","blindspot_bcr","blindspot_crr","boiling_the_frog_safe_agency_score","boiling_the_frog_strict_asr_lower_better","cheatbench_general_harness_avg_lower_better","cheatbench_overall_cheating_rate_lower_better","cosec_hermes_overall_bcr","cosec_openclaw_overall_bcr","credleakbench_autonomous_balanced_accuracy","credleakbench_directed_balanced_accuracy","decepeval_coding_induced_deception_rate_lower_better","decepeval_coding_neutral_deception_rate_lower_better","decompbench_decomposed_asr_lower_better","decompbench_monolithic_asr_lower_better","delegationbench_4way_agreement","delegationbench_over_intervention_lower_better","dgf_bench_score","duma_bench_dual_asr_lower_better","duma_bench_solo_asr_lower_better","egosafetybench_sequential_caught_rate","egosafetybench_video_balanced_acc","fta_false_success_rate_baseline_lower_better","fta_false_success_rate_contract_lower_better","guardianbench_acc","guardianbench_pair_acc","harnessrisk_openclaw_detection","hvtb_hack_rate_l2_lower_better","hvtb_hack_rate_l3_lower_better","litmus_asr_lower_better","litmus_ehr_lower_better","livepi_asr_lower_better","memevobench_qa_asr_lower_better","memevobench_workflow_asr_lower_better","mobileworldsafety_asr_lower_better","mobileworldsafety_tcr","nrt_bench_paired_asr_lower_better","overact_baseline_pvs_lower_better","pastabench_on_time_rate","pastabench_perfect_interruption","patchbench_poc_pass_openhands","patchbench_solved_openhands","physical_privacy_tier2_mae_lower_better","physical_privacy_tier2_selection_acc","realm_asr_coa","realm_clean_acc","rha_safety_over_refusal_rate_lower_better","robojailbench_su_hm","robojailbench_utility_rate","rt_safe_safe_sr","saferelbench_proximity_sr","saferelbench_supporting_sr","scammer4u_plr_crit_c0_lower_better","scammer4u_plr_crit_c3_lower_better","scopebench_scope_adherence","spade_bench_deception_rate_lower_better","steerbench_work_accuracy","stepjack_asr_k1_lower_better","stepjack_asr_union_lower_better","agentlab_asr","agentdojo_targeted_asr","agentdojo_utility","injecagent","browserart","anthropic_shade_browser_asr_attempts","anthropic_shade_browser_asr_scenarios","anthropic_shade_browser_asr_with_safeguards","agent_red_teaming","agentsmith_inf","cot_faithfulness","cot_faithfulness_misaligned","apollo_scheming_oversight_subversion","apollo_scheming_persistence","rewardbench2_overall","r_judge","atbench","malicious_computer_use_refusal","agentic_influence_voter_suppression","agentic_influence_domestic_polarization","falseclaimbench","shade_v2_coding_asr_no_safeguards","shade_v2_coding_asr_with_probes","shade_v2_computer_use_asr_no_safeguards","shade_v2_computer_use_asr_with_probes","browser_use_cowork_asr_no_safeguards","browser_use_cowork_asr_auto_mode","gray_swan_ipi_k1","gray_swan_ipi_k10","agentic_influence_voter_suppression_median32","agentic_influence_domestic_polarization_median32","anthropic_sandbox_escape_attempt_rate_lower_better","coding_deception_rate_v2_lower_better","broken_search_tool_failure_rate_v2_lower_better","auto_review_circumvention_rate_v2_lower_better","warning_barrier_persistence_rate_v2_lower_better","agents4d_backend_casr_lower_better","guardianagentbench_overall_avg_llamaindex","muppet_multiparty_leak_rate_lower_better","muppet_utility_undefended","cisco_image_safety_score","anthropic_rl_training_reward_hack_success_rate_lower_better","anthropic_rl_training_reward_hack_answer_key_guess_rate_lower_better","anthropic_rl_training_reward_hack_copied_solution_rate_lower_better","anthropic_rl_training_reward_hack_prohibited_method_rate_lower_better","anthropic_rl_training_reward_hack_success_rate_excl_toolskip_lower_better","anthropic_impossible_task_reward_hack_attempt_rate_lower_better","anthropic_impossible_task_reward_hack_success_rate_lower_better","anthropic_intact_task_reward_hack_attempt_rate_lower_better","anthropic_intact_task_reward_hack_success_rate_lower_better","anthropic_pasted_instruction_compliance_rate_lower_better","anthropic_pasted_instruction_compliance_default_effort_rate_lower_better","anthropic_claude_code_destructive_action_rate_lower_better","anthropic_claude_code_ask_instead_of_act_rate","anthropic_self_preference_bias_no_system_prompt","anthropic_self_preference_bias_claude_identity_prompt","anthropic_verbalized_grader_awareness_clear_disclosure","anthropic_verbalized_grader_awareness_ambiguous_disclosure","anthropic_verbalized_grader_awareness_barely_disclosed","anthropic_acting_on_presumed_grader_rate_lower_better","anthropic_digging_for_grader_clues_rate_lower_better","shade_arena_best_prompt_stealth_hidden_reasoning_max_lower_better","shade_arena_best_prompt_stealth_no_thinking_lower_better","shade_arena_best_prompt_stealth_visible_low_effort_lower_better","shade_arena_best_prompt_stealth_visible_max_effort_lower_better","linuxarena_best_prompt_stealth_hidden_reasoning_lower_better","linuxarena_best_prompt_stealth_no_thinking_lower_better","linuxarena_best_prompt_stealth_visible_reasoning_lower_better","rare_action_strategy_hint_calibration","rare_action_no_hint_calibration"]},{key:"general",icon:"\u{1F680}",label:"General / Composite",benchmarks:["meta_personal_superintelligence_index","meta_focusbench","automationbench_aa_strict_pass1","ai4ai_bench_avg","dayjob_healthcare_strict_pass1","sqbench_simple_pass1","sqbench_weighted_pass1","agentideabench_active","agentideabench_static","handbook_md_strict_pass1","vloc_bench_file_f1","vloc_bench_phase_b_tnr","rideway_efficiency_utility_custom14","rideway_sr58","agenthop_accuracy","lhtb_pass1_r09","lhtb_pass1_r10","qstrbench_combined_acc","tua_bench_terminus2","tua_bench_terminus2_all5","fm_bench_arena_final_score","fm_bench_solo_final_score","gamexpert_gameopt_overall","argo_bench_score","argo_bench_solved","dexholdem_perception_avg","dexholdem_perception_overall","dyadmem_capture_f1","dyadmem_recall_all","lmbuild_design","lmbuild_soundness","code4scene_public_overall","code4scene_public_t2s","deskcraft_interactive","deskcraft_standard","halluworld_chess_nofen_hallucination_rate_lower_better","opengameeval_core_pass1","opengameeval_core_pass5","dsv_mem_total_avg","kalibench_unrestricted_exact_correct","kalibench_unrestricted_total_score","scbench_long","alem_easy_total","alem_hard_total","e_bench_avg3","rle_bench_f07","rle_bench_index","smh_bench_dr_avg","smh_bench_eia_avg","xiangqibench_restricted_pass1","xiangqibench_sighted_pass1","autoscibench_generated_avg_gpt56sol","autoscibench_generated_avg_opus48","dynaschedbench_subset_makespan_gap_lower_better","omnigamearena_cuechase","omnigamearena_laststand","weavebench_overall_score","weavebench_passrate","a2z_gamespec_gdd_fidelity","a2z_gamespec_gdd_fidelity_big","adaplanbench_accuracy","adaplanbench_valid_plan_rate","frontier_eng_avg_rank_lower_better","frontier_eng_win_rate_over_baseline","halluworld_grid_hallucination_rate_lower_better","learn2play_max","learn2play_mean","librarydesignbench_score","librarydesignbench_simplicity","mindedit_bench_overall_acc","omnismarthome_goal_acc","omnismarthome_grounding_acc","secprobe_pass_rate_terminus2","uniclawbench_avg_score","uniclawbench_pass_rate","vex_bench_justification_accuracy","vex_bench_status_accuracy","video2world_v2wscore","intentflux_general_clean_car","intentflux_general_hard_drift_car","k_bench_majority_success","k_bench_overall","m3exam_overall_score","pdeu_bench_qual_score","pdeu_bench_pref_score","clawmark_score","force_bench_overall","agentworld_collab_main_sr","babelarena_vitabench_pass1","contextweave_workspace_no_recall","jarvisbench_multi_agent_baseline","arena_agent_net_improvement","apex_agents","apex_agents_hard","terminal_bench_2","terminal_bench_hard","hal_overall_accuracy_at_fixed_cost","metr_autonomy_p50","metr_autonomy_p80","processbench_f1","multiagentbench_research_task","multiagentbench_coding_task","multiagentbench_bargaining_task","multiagentbench_minecraft_task","agentbench_overall","metagpt_softwaredev_executability","agingbench_overall","terminal_bench_2_1","hle_with_tools","usamo_2026","arxivmath","draco","automation_bench","officeqa","aeci_index","posttrainbench","terminal_bench_2_0","mcp_mark","deep_planning","spreadsheetbench_v1","spreadsheetbench_v2","qwen_world_bench","cowork_bench","vitabench","clawval_mm","skillsbench","if_bench_precise","advanced_if_rubric","robust_if_diverse","frontier_math_t1_3","k_browsecomp_verified","k_browsecomp_synthetic","k_browsecomp_calibration_error","itbench_aa","smac_talk_5v5_no_comm_winrate","smac_talk_kdc_winrate","smac_talk_udc_winrate","opper_roundtable_win_rate","graphwalks_bfs_256k","graphwalks_parents_256k","graphwalks_bfs_1m","graphwalks_parents_1m","ruler_128k","forte","rwsearch","aa_briefcase","agents_last_exam","agents_last_exam_score","toolathlon","posttrainbench_lite","rsi_index","internal_research_debugging","kernelgen_1p","big_finance_bench","management_consulting_tasks_internal","rng_bench","mapf_frozenlake","wildclawbench","blind_expert_productivity_eval","job_bench","deck_bench","gdpval_aa_v2_1_elo","aa_briefcase_v1_1","aa_briefcase_v1_1_analytical_quality_elo","aa_briefcase_v1_1_presentation_elo","aa_briefcase_v1_1_rubric_pass_rate","automationbench_1_0_6","tau2_bench_banking_knowledge_pass1_v1_0_1","tau2_bench_banking_knowledge_pass4_v1_0_1","polyworkbench_pass1_peak","fintoolbench_soft_score","pause_log_tracking_hard_tc","pause_shopping_score","evoclawbench_nanobot_baseline","vals_index_sep2026","finance_agent_v2","legal_agent_benchmark_harvey","posttrainbench_v1_1_google","vals_index_v2_1_cost_per_test_usd_lower_better","apex_agents_v1_1_pass1","apex_agents_v1_1_mean_score","apex_v1_mercor_board_pass1","apex_v1_mercor_board_mean_score","apex_swe_mercor_board_pass1","apex_accounting_pass1","hal_reliability_score","hal_reliability_accuracy","hle_caisi_official","remote_labor_index_epoch","posttrainbench_epoch","wandr_soft_f1_anthropic_offline","cobench_2_1","anthropic_agent_team_knowledge_base_single_agent","anthropic_agent_team_knowledge_base_100_agents","anthropic_agent_team_lean_single_agent","anthropic_agent_team_lean_100_agents"]},{key:"edge",icon:"\u{1F4F1}",label:"On-device / Edge Agents",utility_emphasis:!0,benchmarks:["mobile_actions","healthslm_bench","mobile_agent_bench","mobilebench_v2","mobilebench_xiaomi","mlperf_mobile_llm","mlperf_inference_edge_v5_1","mlperf_tiny_v1_2","tinyml_energy_v1","function_gemma_calling"]}],E=[{benchmark:"swe_bench_pro",label:"Top Coder",icon:"\u{1F4BB}"},{benchmark:"terminal_bench_4_0",label:"Top Terminal Agent",icon:"\u2328\uFE0F"},{benchmark:"browsecomp",label:"Top Web Agent",icon:"\u{1F310}"},{benchmark:"osworld_v2",label:"Top OS Agent (OSWorld 2.0)",icon:"\u{1F5A5}\uFE0F"},{benchmark:"gdpval_aa_v2_1_elo",label:"Knowledge Work (GDPval-AA)",icon:"\u{1F4CA}"},{benchmark:"automationbench_aa",label:"Workflow Automation",icon:"\u2699\uFE0F"},{benchmark:"agents_last_exam_score",label:"Agents' Last Exam",icon:"\u{1F393}"},{benchmark:"gray_swan_ipi",label:"Injection-Robust (lowest ASR)",icon:"\u{1F6E1}\uFE0F",lower:!0}],N=["anthropic/claude-code","openai/codex-cli","cursor/composer","replit/agent","cognition/devin","manus-ai/manus","anthropic/computer-use","google/mariner","openai/operator","anthropic/claude-cowork","microsoft/fara1.5-27b","microsoft/fara1.5-9b","microsoft/fara1.5-4b","microsoft/fara-7b","google/gemini-2.5-computer-use","google/gemini-3.5-flash-computer-use","openai/chatgpt-atlas-agent","hcompany/holo3.1-35b-a3b","hcompany/holo3.1-4b","hcompany/holo3-122b-a10b","alibaba/gui-owl-1.5-32b-thinking","bytedance/ui-tars-2","google/gemini-2.5-cu","alibaba/gui-owl-1.5-32b","alibaba/gui-owl-1.5-8b","yutori/navigator-n1","holo/holo2-30b","openai/o3-som","google/alphaevolve","google/antigravity-science-skills","sjtu-xinhua-harvard/deeprare","mit-mgb/mdagents","harvard/autoscientists","microsoft/skillopt","minimax/m3","anthropic/claude-fable-5","anthropic/claude-mythos-5","bytedance/ui-tars-1.5-7b","thudm/glm-4.1v-9b-thinking","openai/computer-use-preview","openai/som-agent-gpt-5","you-com/research-api","openai/gpt-5.5-pro","anthropic/web-search-tool","parallel/ultra","google/ai-mode","brave/leo-ai","perplexity/sonar-deep-research","leni/leni","internlm/mindsearch"],S=["apple/foundation-3b","apple/foundation-private-cloud","microsoft/phi-4-mini-instruct","microsoft/phi-4","microsoft/phi-4-multimodal","google/gemma-3-270m","google/gemma-3n","google/function-gemma","meta/llama-3.2-1b-instruct","meta/llama-3.2-3b-instruct","amazon/nova-micro","apple/afm-3-core-3b","apple/afm-3-core-advanced-20b","apple/afm-3-pcc","google/gemma-4-e2b-qat","google/gemma-4-e4b-qat","google/gemini-nano-v3","microsoft/phi-4-reasoning-vision-15b","openbmb/minicpm-5-1b","openbmb/minicpm-v-4.6","alibaba/qwen-3.5-0.8b","alibaba/qwen-3.5-2b","alibaba/qwen-3.5-4b","alibaba/qwen-3.5-9b","mistral/ministral-3-3b","mistral/ministral-3-8b","mistral/ministral-3-14b","liquid/lfm2.5-8b-a1b","liquid/lfm2.5-vl-1.6b","liquid/lfm2.5-vl-450m","liquid/lfm2.5-audio-1.5b","liquid/lfm2.5-1.2b-jp","ifm/k2-horizon-7b","openbmb/minicpm-5-2b","ibm/granite-4.2-8b","ibm/granite-4.2-3b","google/gemma-4-12b","xiaomi/mimo-v2.6-distill-qwen-9b","alibaba/qwen-ui-agent-4b","kakao/kanana-2-3b-instruct","xhtoken/spark-x2.5-4b"],B={},k=[{id:"swe_bench_verified",label:"SWE-bench Verified"},{id:"swe_bench_pro",label:"SWE-bench Pro"},{id:"terminal_bench_4_0",label:"Terminal-Bench 4.0"},{id:"terminal_bench_4_0_aa",label:"Terminal-Bench 4.0 (AA harness)"},{id:"osworld_v2",label:"OSWorld 2.0 (500 steps)"},{id:"osworld_v2_partial",label:"OSWorld 2.0 (partial credit)"},{id:"osworld_pro",label:"OSWorld-Pro"},{id:"osworld_science",label:"OSWorld-Science"},{id:"agents_last_exam_score",label:"Agents' Last Exam (score)"},{id:"automationbench_aa",label:"AutomationBench-AA"},{id:"aa_briefcase_v1_1",label:"AA-Briefcase v1.1 (Elo)"},{id:"gdpval_aa_v2_1_elo",label:"GDPval-AA v2.1 (Elo)"},{id:"aa_agentic_index",label:"AA Agentic Index"},{id:"vals_index_sep2026",label:"Vals Index v2.1"},{id:"arena_agent_net_improvement",label:"Agent Arena (net improvement %)"},{id:"tobench_avg",label:"TOBench"},{id:"dynamicmcpbench_pass1",label:"DynamicMCPBench"},{id:"thinkingbox_bench",label:"ThinkingBox-Bench"},{id:"saas_bench_resolved",label:"SaaS-Bench"},{id:"occubench",label:"OccuBench"},{id:"mobileworld_real",label:"MobileWorld-Real"},{id:"androidworld",label:"AndroidWorld"},{id:"deepswe_1_1",label:"DeepSWE 1.1"},{id:"frontierswe_v2",label:"FrontierSWE v2"},{id:"terminal_bench_2",label:"Terminal-Bench 2.0"},{id:"osworld_verified",label:"OSWorld-Verified"},{id:"gaia",label:"GAIA"},{id:"tau2_bench",label:"\u03C42-Bench"},{id:"tau3_bench",label:"\u03C43-Bench"},{id:"bfcl_v4",label:"BFCL v4"},{id:"mobile_actions",label:"Mobile Actions"},{id:"mobile_agent_bench",label:"MobileAgentBench"},{id:"prdbench",label:"PRDBench"},{id:"mcpmark",label:"MCP-Mark"},{id:"delegate_52",label:"DELEGATE-52"},{id:"exploitbench_ace",label:"ExploitBench (ACE)"},{id:"simbian_cyber_defense_coverage",label:"Simbian Cyber Defense"},{id:"cyberteam_rm_avg",label:"CyberTeam (R&M avg)"},{id:"corebench_hard",label:"CORE-Bench Hard"},{id:"tau_bench_airline",label:"TAU-bench Airline"},{id:"tau_bench_retail",label:"TAU-bench Retail"},{id:"online_mind2web",label:"Online-Mind2Web"},{id:"webvoyager",label:"WebVoyager"},{id:"webtailbench_v15_outcome",label:"WebTailBench v1.5 (Outcome)"},{id:"webtailbench_v15_process",label:"WebTailBench v1.5 (Process)"},{id:"webtailbench",label:"WebTailBench v1 (Nov 2025)"},{id:"open_agent_avg_success",label:"Open Agent \u2014 Avg Success"},{id:"open_agent_swe",label:"Open Agent \u2014 SWE"},{id:"assistantbench",label:"AssistantBench"},{id:"mcjudgebench_cjar",label:"MCJudgeBench (CJAR)"},{id:"agentick",label:"Agentick (ONS)"},{id:"complexmcp",label:"ComplexMCP"},{id:"deeprare_aggregate_recall_at_1",label:"DeepRare R@1 (HPO aggregate)"},{id:"deeprare_physician_recall_at_1",label:"DeepRare vs Physician R@1"},{id:"agingbench_overall",label:"AgingBench (lifespan t\xBD)"},{id:"deepswe_pass_at_1",label:"DeepSWE Pass@1 (Datacurve)"},{id:"terminal_bench_2_1",label:"Terminal-Bench 2.1"},{id:"hle_with_tools",label:"HLE (with tools)"},{id:"usamo_2026",label:"USAMO 2026"},{id:"graphwalks_bfs_1m",label:"GraphWalks BFS 1M"},{id:"toolathlon_pass_all_3_trials",label:"Toolathlon (pass all 3 trials)"},{id:"navi_bench_v1",label:"NaviBench v1"},{id:"draco_perplexity_deep_research",label:"DRACO (Perplexity Deep Research)"}];function O(){for(var e={},_=[],a=0;a<y.length;a++)for(var t=y[a].benchmarks||[],r=0;r<t.length;r++){var n=t[r];e[n]||(e[n]=!0,_.push(n))}return _}function P(){if(window.App&&App.data&&App.data.benchmarks){var e=App.data.benchmarks,_={};if(Array.isArray(e))for(var a=0;a<e.length;a++){var t=e[a];t&&t.id&&(_[t.id]=!0)}else for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&(_[r]=!0);for(var n=O(),o=[],c=0;c<n.length;c++)_[n[c]]||o.push(n[c]);o.length&&console.warn("[Agent] missing benchmarks (UI will hide these rows):",o)}}function ee(e,_){if(e){for(;e.firstChild;)e.removeChild(e.firstChild);var a=document.createElement("div");a.className="text-meta",a.textContent=_,e.appendChild(a)}}function C(e){if(!(window.App&&App.data&&App.data.scores))return[];if(App.getScoreIndex){var _=App.getScoreIndex();if(_&&_.byBench)return _.byBench[e]||[]}var a=App.data.scores;if(!a||!a.length)return[];for(var t=[],r=0;r<a.length;r++){var n=a[r];n&&n.benchmark_id===e&&t.push(n)}return t}function j(e,_){var a=C(e);return a.length?(a.sort(function(t,r){var n=t&&typeof t.value=="number"?t.value:-1/0,o=r&&typeof r.value=="number"?r.value:-1/0;return _?n-o:o-n}),a[0]):null}function A(e){if(!e)return"";if(window.App&&App.data&&App.data.models){var _=App.data.models;if(Array.isArray(_))for(var a=0;a<_.length;a++){var t=_[a];if(t&&t.id===e)return t.name&&String(t.name).length?t.name:e}else if(typeof _=="object"){var r=_[e];if(r&&r.name)return r.name}}return e}function T(e){if(!e)return"";if(window.App&&App.data&&App.data.benchmarks){var _=App.data.benchmarks;if(Array.isArray(_))for(var a=0;a<_.length;a++){var t=_[a];if(t&&t.id===e)return t.name&&String(t.name).length?t.name:e}else if(typeof _=="object"){var r=_[e];if(r&&r.name)return r.name}}return e}function ae(e){return String(e==null?"":e).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}function R(e){var _={};if(e&&e.lower_better&&e.lower_better.length)for(var a=0;a<e.lower_better.length;a++)_[e.lower_better[a]]=!0;for(var t=e&&e.benchmarks?e.benchmarks:[],r={},n=0,o={},c=0;c<t.length;c++){var g=t[c],d=C(g);if(d.length){for(var h=0,i=0;i<d.length;i++){var p=d[i];p&&typeof p.value=="number"&&p.value>h&&(h=p.value)}if(h===0){for(var l=0;l<d.length;l++){var b=d[l];n++,b&&b.model_id&&(r[b.model_id]=!0)}continue}for(var u=0;u<d.length;u++){var s=d[u];if(n++,!(!s||s.model_id==null)&&(r[s.model_id]=!0,typeof s.value=="number")){var m;_[g]?m=(1-s.value/h)*100:m=s.value/h*100;var v=o[s.model_id];(!v||m>v.norm)&&(o[s.model_id]={model_id:s.model_id,norm:m,raw:s.value,bid:g})}}}}var f=0;for(var w in r)Object.prototype.hasOwnProperty.call(r,w)&&f++;var x=[];for(var W in o)Object.prototype.hasOwnProperty.call(o,W)&&x.push(o[W]);x.sort(function(Z,$){return $.norm-Z.norm});var X=x.slice(0,3);return{benchCount:t.length,modelCount:f,totalScores:n,top3:X}}function L(e){var _=R(e),a=document.createElement("div"),t="rounded border bg-gray-900 border-gray-800 hover:border-blue-600 p-4 cursor-pointer transition";e.utility_emphasis&&(t="col-span-1 md:col-span-3 "+t),a.className=t,a.dataset.cat=e.key,a.addEventListener("click",function(){console.log("[Agent] category click:",this.dataset.cat)});var r=document.createElement("div");r.className="flex items-baseline gap-2 flex-wrap";var n=document.createElement("span");n.className="text-xl",n.textContent=e.icon,r.appendChild(n);var o=document.createElement("span");if(o.className="text-base font-semibold text-gray-100",o.textContent=e.label,r.appendChild(o),e.crossListed&&e.crossListed.length){var c=document.createElement("span");c.className="text-xs text-amber-300 bg-amber-900/30 rounded px-1.5 py-0.5",c.textContent="Also in "+e.crossListed.join(" / "),r.appendChild(c)}a.appendChild(r);var g=document.createElement("div");if(g.className="text-xs text-gray-400 mt-1",g.textContent=_.benchCount+" benchmarks \xB7 "+_.modelCount+" models \xB7 "+_.totalScores+" scores",a.appendChild(g),e.lower_better&&e.lower_better.length){var d=document.createElement("div");d.className="text-xs text-gray-500 mt-0.5",d.textContent="\u2193 lower-better for ASR/jailbreak rows",a.appendChild(d)}var h=document.createElement("ol");if(h.className="mt-2 list-decimal pl-5 text-xs text-gray-300 space-y-0.5",_.top3.length)for(var p=_.top3.slice(0,3),l=0;l<p.length;l++){var b=p[l],u=document.createElement("li"),s=document.createElement("span");s.textContent=A(b.model_id),u.appendChild(s);var m=document.createElement("span");m.className="text-gray-500 ml-1",m.textContent=String(b.raw)+" ("+T(b.bid)+")",u.appendChild(m),h.appendChild(u)}else{var i=document.createElement("li");i.className="text-gray-500",i.textContent="No scores yet.",h.appendChild(i)}return a.appendChild(h),a}function D(){var e=document.getElementById("agent-categories");if(e){for(;e.firstChild;)e.removeChild(e.firstChild);var _=document.createElement("h2");_.className="text-lg font-semibold text-gray-200 mb-3 mt-6",_.textContent="Categories",e.appendChild(_);var a=document.createElement("div");a.className="grid grid-cols-1 md:grid-cols-3 gap-3",e.appendChild(a);for(var t=0;t<y.length;t++)a.appendChild(L(y[t]))}}function F(){var e=document.getElementById("agent-sota-watch");if(e){for(;e.firstChild;)e.removeChild(e.firstChild);var _=document.createElement("div");_.className="flex items-center justify-between mb-3 flex-wrap gap-2";var a=document.createElement("h2");a.className="text-section",a.textContent="SOTA Watch",_.appendChild(a);var t=document.createElement("button");t.id="agent-export-pdf-btn",t.type="button",t.className="no-print bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-blue-500 text-gray-100 text-xs px-3 py-2 rounded transition",t.title="Print or save the Agent tab as a PDF (uses browser Print dialog)",t.setAttribute("aria-label","Export Agent tab as PDF"),t.textContent="\u{1F5A8} Export PDF",t.addEventListener("click",function(){document.body.classList.add("print-agent");try{window.print()}catch(v){window.console&&console.warn("[Agent] window.print() failed:",v)}finally{document.body.classList.remove("print-agent")}}),_.appendChild(t),e.appendChild(_);var r=document.createElement("div");r.className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3",e.appendChild(r);for(var n=0;n<E.length;n++){var o=E[n],c=j(o.benchmark,!!o.lower),g=T(o.benchmark);if(!c){var d=document.createElement("div");d.className="bg-gray-900 border border-amber-700 rounded p-4";var h=document.createElement("div");h.className="text-xs text-amber-300",h.textContent=o.icon+" "+o.label,d.appendChild(h);var i=document.createElement("div");i.className="text-2xl mt-2 text-gray-500",i.textContent="\u2014",d.appendChild(i);var p=document.createElement("div");p.className="text-xs text-gray-500 mt-1",p.textContent="No scores for "+g,d.appendChild(p),r.appendChild(d);continue}var l=document.createElement("div");l.className="bg-gray-900 border border-gray-800 rounded p-4 hover:border-blue-600 cursor-pointer transition",l.dataset.bench=o.benchmark,l.addEventListener("click",function(){window.Modal&&Modal.showBenchmark&&Modal.showBenchmark(this.dataset.bench)});var b=document.createElement("div");b.className="text-xs text-gray-300",b.textContent=o.icon+" "+o.label,l.appendChild(b);var u=document.createElement("div");u.className="text-base font-semibold mt-1 text-gray-100",u.textContent=A(c.model_id),l.appendChild(u);var s=document.createElement("div");s.className="text-2xl font-bold mt-1 text-blue-400",s.textContent=typeof c.value=="number"&&!Number.isInteger(c.value)?c.value.toFixed(1):c.value,l.appendChild(s);var m=document.createElement("div");m.className="text-xs text-gray-500 mt-1",m.textContent=g,l.appendChild(m),r.appendChild(l)}}}function q(e){for(var _=0;_<N.length;_++)if(N[_]===e)return"agent-product";for(var a=0;a<S.length;a++)if(S[a]===e)return"edge-slm";return"frontier"}function z(e){return B[e]||{}}function G(e,_,a){if(!e||e.length===0){var t=document.createElement("div");return t.className="text-xs text-gray-500 italic",t.textContent="No data",t}var r=document.createElement("table");r.className="w-full text-xs";var n=document.createElement("thead"),o=document.createElement("tr");o.className="text-gray-500";var c=document.createElement("th");c.className="text-left",c.textContent="#",o.appendChild(c);var g=document.createElement("th");g.className="text-left",g.textContent="Model",o.appendChild(g);var d=document.createElement("th");if(d.className="text-right",d.textContent="Score",o.appendChild(d),a===!0){var h=document.createElement("th");h.className="text-right",h.textContent="Size",o.appendChild(h)}n.appendChild(o),r.appendChild(n);for(var i=document.createElement("tbody"),p=e.slice(0,10),l=0;l<p.length;l++){var b=p[l],u=document.createElement("tr");u.className="border-t border-gray-800";var s=document.createElement("td");s.className="py-1",s.textContent=String(l+1),u.appendChild(s);var m=document.createElement("td");m.className="py-1";var v=document.createElement("span");v.textContent=A(b.model_id),m.appendChild(v),u.appendChild(m);var f=document.createElement("td");if(f.className="py-1 text-right text-gray-100",f.textContent=String(b.value),u.appendChild(f),a===!0){var w=document.createElement("td");w.className="py-1 text-right text-gray-400";var x=z(b.model_id).size_gb;w.textContent=x?x+" GB":"\u2014",u.appendChild(w)}i.appendChild(u)}return r.appendChild(i),r}function M(e){var _=document.getElementById("agent-compare");if(_){for(;_.firstChild;)_.removeChild(_.firstChild);for(var a=e||k[0].id,t=C(a),r=[],n=[],o=[],c=0;c<t.length;c++){var g=q(t[c].model_id);g==="agent-product"?n.push(t[c]):g==="edge-slm"?o.push(t[c]):r.push(t[c])}var d=function(w,x){return x.value-w.value};r.sort(d),n.sort(d),o.sort(d);var h=document.createElement("h2");h.className="text-lg font-semibold text-gray-200 mb-3 mt-6",h.textContent="Frontier vs Agent-Product vs On-device/Edge",_.appendChild(h);var i=document.createElement("div");i.className="mb-3 text-xs text-gray-300",i.appendChild(document.createTextNode("Benchmark: "));var p=document.createElement("select");p.id="agent-compare-bench",p.className="bg-gray-900 border border-gray-700 rounded px-2 py-1 text-gray-200 text-xs";for(var l=0;l<k.length;l++){var b=document.createElement("option");b.value=k[l].id,b.textContent=k[l].label,k[l].id===a&&(b.selected=!0),p.appendChild(b)}p.addEventListener("change",function(w){M(w.target.value)}),i.appendChild(p),_.appendChild(i);var u=document.createElement("div");u.className="grid grid-cols-1 md:grid-cols-3 gap-3",_.appendChild(u);for(var s=[{rows:r,heading:"Frontier (general-purpose)",klass:"frontier",showSize:!1},{rows:n,heading:"Agent products",klass:"agent-product",showSize:!1},{rows:o,heading:"On-device / Edge",klass:"edge-slm",showSize:!0}],m=0;m<s.length;m++){var v=document.createElement("div");v.className="rounded border bg-gray-900 border-gray-800 p-3";var f=document.createElement("div");f.className="text-xs font-semibold text-gray-200 mb-2",f.textContent=s[m].heading,v.appendChild(f),v.appendChild(G(s[m].rows,s[m].klass,s[m].showSize)),u.appendChild(v)}}}function U(){for(var e={},_=0;_<y.length;_++){var a=y[_].lower_better;if(a)for(var t=0;t<a.length;t++)e[a[t]]=!0}return e}function I(e){for(var _={},a=0;a<e.length;a++){for(var t=C(e[a]),r=0,n=0;n<t.length;n++)t[n].value>r&&(r=t[n].value);_[e[a]]=r}return _}function H(){for(var e=O(),_=U(),a=I(e),t={},r=0;r<e.length;r++){var n=C(e[r]),o=a[e[r]];if(o)for(var c=!!_[e[r]],g=0;g<n.length;g++){var d=n[g].value,h=c?(1-d/o)*100:d/o*100,i=n[g].model_id;t[i]||(t[i]={sum:0,count:0}),t[i].sum+=h,t[i].count++}}var p=[];for(var i in t)Object.prototype.hasOwnProperty.call(t,i)&&(t[i].count<3||p.push({model_id:i,agent_score:t[i].sum/t[i].count,coverage:t[i].count}));return p.sort(function(l,b){return b.agent_score!==l.agent_score?b.agent_score-l.agent_score:b.coverage-l.coverage}),{rows:p,totalBenchmarks:e.length}}function J(e){if(!window.App||!App.data||!App.data.models)return"";for(var _=0;_<App.data.models.length;_++)if(App.data.models[_].id===e)return App.data.models[_].vendor||"";return""}function K(e){return e==="agent-product"?"Agent-Product":e==="edge-slm"?"Edge-SLM":"Frontier"}function Y(){var e=document.getElementById("agent-leaderboard");if(e){for(;e.firstChild;)e.removeChild(e.firstChild);var _=H(),a=_.rows.slice(0,25),t=document.createElement("h2");t.className="text-lg font-semibold text-gray-200 mb-3 mt-6",t.textContent="Composite Agent Score (Top 25)",e.appendChild(t);var r=document.createElement("div");r.className="text-xs text-gray-400 mb-2",r.textContent="Coverage threshold: \u2265 3 agentic benchmarks. Total tracked: "+_.totalBenchmarks+". Safety ASR / jailbreak rows inverted (lower-better).",e.appendChild(r);var n=document.createElement("div");n.className="overflow-x-auto rounded border border-gray-800",e.appendChild(n);var o=document.createElement("table");o.className="w-full text-xs",n.appendChild(o);var c=document.createElement("thead");o.appendChild(c);var g=document.createElement("tr");g.className="text-gray-500 bg-gray-900/50",c.appendChild(g);for(var d=[{text:"Rank",cls:"text-left px-2 py-1"},{text:"Model",cls:"text-left px-2 py-1"},{text:"Vendor",cls:"text-left px-2 py-1"},{text:"Class",cls:"text-left px-2 py-1"},{text:"Agent Score",cls:"text-right px-2 py-1"},{text:"Coverage",cls:"text-right px-2 py-1"}],h=0;h<d.length;h++){var i=document.createElement("th");i.className=d[h].cls,i.textContent=d[h].text,g.appendChild(i)}var p=document.createElement("tbody");o.appendChild(p);for(var l=0;l<a.length;l++){var b=a[l],u=q(b.model_id),s=document.createElement("tr");s.className="border-t border-gray-800 hover:bg-gray-900/40 cursor-pointer",s.dataset.model=b.model_id,s.addEventListener("click",function(){window.Modal&&Modal.showModel&&Modal.showModel(this.dataset.model)});for(var m=[{text:String(l+1),cls:"px-2 py-1 text-gray-400"},{text:A(b.model_id),cls:"px-2 py-1 text-gray-100"},{text:J(b.model_id),cls:"px-2 py-1 text-gray-300"},{text:K(u),cls:"px-2 py-1 text-gray-300"},{text:b.agent_score.toFixed(1),cls:"px-2 py-1 text-right text-blue-400 font-semibold"},{text:b.coverage+"/"+_.totalBenchmarks,cls:"px-2 py-1 text-right text-gray-400"}],v=0;v<m.length;v++){var f=document.createElement("td");f.className=m[v].cls,f.textContent=m[v].text,s.appendChild(f)}p.appendChild(s)}if(!a.length){var w=document.createElement("div");w.className="text-xs text-gray-500 italic p-2",w.textContent="No models meet the coverage threshold yet.",e.appendChild(w)}}}function Q(e){if(Object.keys(B).length){e();return}var _=window.location.pathname.indexOf("/dashboard/")!==-1?"../data":"data";fetch(window.App&&App.dataUrl?App.dataUrl(_+"/edge_models_utility.json"):_+"/edge_models_utility.json").then(function(a){return a.ok?a.json():null}).then(function(a){B=a&&a.models||{},e()}).catch(function(){e()})}function V(){Q(function(){if(P(),F(),D(),M(),window.AgentCharts&&AgentCharts.renderAll)try{AgentCharts.renderAll()}catch(e){window.console&&console.warn("[Agent] charts render failed:",e)}if(Y(),window.AgentCharts&&AgentCharts.renderFingerprintsInLeaderboard)try{AgentCharts.renderFingerprintsInLeaderboard()}catch(e){window.console&&console.warn("[Agent] fingerprint hook failed:",e)}})}return{render:V,_CATEGORIES:y,_SOTA_WATCH:E,_AGENT_PRODUCTS:N,_EDGE_SLMS:S,_allAgentBenchmarks:O}}();
+/**
+ * Agent tab — agentic AI benchmarks, evaluation results, SOTA models.
+ * Renders 4 sections: SOTA Watch tiles, 10 category cards, Frontier-vs-Agent-vs-Edge
+ * compare panel, and composite leaderboard.
+ *
+ * Data source: App.data.scores + App.data.benchmarks + App.data.enrichment.
+ * Hardcoded benchmark-id arrays per category (no regex) — see CATEGORIES below.
+ *
+ * Reference patterns: dashboard/js/medical-ai.js, dashboard/js/ai4s.js.
+ */
+var Agent = (function() {
+
+    // 10 agent benchmark categories in display order.
+    // Each entry has key, icon, label, and the explicit set of benchmark IDs
+    // that belong to that category. No regex — adding a benchmark requires
+    // listing it here so the UI grouping stays deterministic.
+    var CATEGORIES = [
+        {
+            key: 'coding',
+            icon: '💻',
+            label: 'Coding Agents',
+            benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (42)
+                '4dcodebench_overall', '4dcodebench_vqa', 'aarri_bench_mini_swe_agent', 'active_swe_resolved', 'active_swe_revealed', 'appworld_ul_isgc',
+                'appworld_ul_itgc', 'asyncodebench_final_success_async_manager', 'asyncodebench_final_success_single', 'e_bench_code_avg3', 'gameenginebench_pass1',
+                'gamelogicbench_claude_code', 'gamelogicbench_claude_code_atom', 'gamexpert_gamegen_overall', 'loopsbench_resolve_rate_claude_code',
+                'loopsbench_test_pass_rate_claude_code', 'mattoolbench_code_sr', 'mmskillrisk_ncva_tsr_claude_code', 'mtac_ifbench_cisr', 'mtac_ifbench_csr',
+                'openharmony_bench_task_completion_bug_fix', 'secprobe_pass_rate_mini_swe_agent', 'swe_bench_pro_verified', 'swe_bench_promax_resolve_mini_swe_agent',
+                'swe_bench_promax_resolve_openhands', 'swe_cc_resolve_openhands', 'swe_cc_triggering_openhands', 'swe_interact_multi_turn_resolve',
+                'swe_interact_single_turn_resolve', 'swe_polyvision_e2e_text_only', 'swe_polyvision_vrr_text_only', 'swe_refactor_bench_accepted_runs',
+                'swe_refactor_bench_score', 'swe_rpg_resolved_codex', 'swe_rpg_resolved_opencode', 'swe_serve', 'swe_serve_pass3', 'swe_touch_pro_counter_edit_resolve',
+                'swe_touch_verified_retention', 'terminal_bench_lilt', 'webgamebench_excellent_rate', 'webgamebench_usable_rate',
+                'swe_bench_verified',
+                'swe_bench_pro',
+                'cursorbench_4_0', 'terminal_bench_4',  // 2026-09-23 S282
+                // 2026-10-03 — Terminal-Bench 4.0 (official board / AA harness), DeepSWE 1.1, FrontierSWE v2, SWE-Bench Pro public board
+                'terminal_bench_4_0', 'terminal_bench_4_0_aa', 'deepswe_1_1', 'frontierswe_v2', 'swe_bench_pro_scale_public',
+                'swe_bench_verified_mini',
+                'swe_bench_multilingual',
+                'swe_bench_multimodal',
+                'swe_rebench',
+                'multi_swe_bench',
+                'swe_polybench',
+                'expert_swe',
+                'aider_polyglot',
+                'swe_lancer',
+                'mle_bench',
+                'mle_bench_lite',  // 2026-06-19 S138 — Arbor RUC-NLPIR (arxiv 2606.11926)
+                'usaco',
+                // 2026-05-28 Session 31 — Datacurve DeepSWE (contamination-free SWE bench)
+                'deepswe_pass_at_1',
+                // 2026-07-08 S175/S176 — Grok 4.5 + GPT-5.6 launch coding benches (Datacurve/AA versioned)
+                'deepswe_1_0', 'deepswe_1_1', 'swe_marathon',
+                // 2026-07-20 S189 — Grok 4.5 card: Mercor ApexSWE (integration + observability)
+                'apexswe',
+                // 2026-06-19 S138 — CEO-Bench 500-day startup simulation (arxiv 2606.18543)
+                'ceo_bench',
+                // 2026-06-26 S153 — Sakana × KPMG Azusa CoffeeBench (ICML 2026 Workshop)
+                'coffeebench_net_profit_90d_usd'
+            ]
+        },
+        {
+            key: 'web-browse',
+            icon: '🌐',
+            label: 'Web & Browsing',
+            benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (18)
+                'deepweb_bench', 'deepweb_bench_reasoning', 'lohosearch', 'lohosearch_calibration_error_lower_better', 'longwebbench_vfr_multi_image',
+                'longwebbench_vfr_single_image', 'mt_web2code_macro_score', 'mt_web2code_micro_score', 'teleswebench_localization_em',
+                'teleswebench_localization_em_easy', 'tsbench_complex', 'tsbench_simple', 'vibesearchbench_f1', 'vibesearchbench_pro_f1', 'webforge_bench',
+                'webforge_bench_l3', 'webuiproof_general_accuracy', 'webuiproof_general_build_failure_lower_better',
+                // 2026-10-03 S292b
+                'clawbench', 'geobrowse_l1_gate', 'interlv_search_l1_tool',
+                // 2026-10-02 S292 — web / deep-research suites (2604–2610)
+                'odysseys_rubrics_avg', 'stressweb_avg', 'ko_widesearch_table_success', 'mr_lhdr_oa', 'knows_overall_sf_axtree', 'webarena_corrected',
+                'browsecomp',
+                'browsecomp_multiagent',
+                'browsecomp_multi_agent',  // 2026-06-14 S112 Mythos 5 = 93.3 SOTA
+                'browsecomp_plus',
+                'browsecomp_agent_swarm',
+                'gaia',
+                'gaia2',
+                'webarena',
+                'osworld_verified',  // 2026-06-14 S112 Mythos/Fable 5 tied 85.0 SOTA
+                'appworld',
+                'visualwebarena',
+                'online_mind2web',
+                'bu_bench_v1',  // 2026-09-09 S276 — Browser Use BU Bench V1 (Fable 5 80.0, Opus 4.7 74)
+                'webshop',
+                // 2026-06-14 S112 — HAL Princeton CITP per-sub-benchmark
+                'hal_swe_bench_verified_mini', 'hal_usaco', 'hal_core_bench_hard', 'hal_tau_bench_airline',
+                // 2026-07-20 S189 — Grok 4.5 card: DeepSearch QA (multi-step search + synthesis)
+                'deepsearch_qa', 'vistahop', 'agentvista'
+            ]
+        },
+        {
+            key: 'os-computer',
+            icon: '🖥️',
+            label: 'OS / Computer Use',
+            benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (16)
+                'biostudybench_prior_knowledge', 'biostudybench_with_data', 'capmem_captionqa_30s', 'd2k_bench_correct_no_guidance', 'd2k_bench_sperf_no_guidance',
+                'ddb_single_action_macro_f1', 'emailbench_pass_rate', 'gui_cc_offline_overall_no_history', 'gui_cc_online_overall_no_history', 'hypertrack_step_em',
+                'iosworld_vision_only', 'iosworld_vision_xml', 'mattoolbench_gui_sr', 'mobilecybench_malicious_app_apk_only', 'mobilecybench_pass_at_2',
+                'skillscriptbench_overall_avg_raw_ast',
+                // 2026-10-03 S292b — SaaS-Bench, OSWorld official boards, GameWorld, RiskWebWorld, …
+                'saas_bench_resolved', 'osworld_verified_50step', 'osworld_verified_15step', 'osworld_v2_standard_tool', 'osworld_v2_1', 'osworld_v2_20260808_offline', 'gameworld_sr_generalist', 'riskwebworld', 'healthadminbench_dme', 'autogui_v2_region_captioning', 'cocoabench', 'androidworld', 'osguard_action_level_acc',
+                // 2026-10-02 S292 — desktop / mobile computer-use suites (2604–2610)
+                'osworld_science', 'osworld_pro', 'macagentbench', 'cua_speedrun_osworld50', 'cua_swe_web', 'longpuzzlebench_native_gui',
+                'mypcbench_rubric', 'cadworld', 'cua_world_test_avg_score', 'androiddaily', 'appsim_bench', 'mobilepa_bench', 'mobileworld_real',
+                'mobiflow_base_sr', 'knowu_bench',
+                'osworld',
+                'osworld_verified',
+                'windows_agent_arena',
+                'the_agent_company',
+                'screenspot_pro',
+                'oscopilot_gaia',
+                'visualagentbench',
+                // 2026-06-29 S155 — OSWorld 2.0 (XLANG, 108 long-horizon tasks, 500-step canonical)
+                'osworld_v2', 'osworld_v2_partial', 'osworld_v2_150step', 'osworld_v2_300step',
+                'osworld_v2_single_action', 'osworld_v2_single_action_partial',  // 2026-09-09 S276 — paper Table 3 single-action condition
+                // 2026-04 S216 — GUI grounding (MiningLamp Mano-P + others)
+                'screenspot_v2', 'mmbench_gui_l2', 'ui_vision', 'online_mind2web', 'osworld_g_refine', 'osexpert_eval',
+                // 2026-09-23 S282 — OSWorld 2.0 Sep-2026 task set (Anthropic harness) + OpenAI offline set
+                'osworld_v2_partial_sep2026', 'osworld_v2_strict_sep2026', 'osworld_v2_offline_partial'
+            ]
+        },
+        {
+            key: 'tool-use',
+            icon: '🔧',
+            label: 'Tool Use & Function Calling',
+            benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (18)
+                'agrotools_e2e_fas', 'agrotools_step_toolacc', 'apiflow_bench_all', 'apiflow_bench_solo', 'imaging_101_module_overall',
+                'moldesignbench_generation_success', 'moldesignbench_optimization_success', 'phreeqc_mcq_200_direct', 'sci_mmr_agentic_acc', 'toolbench_x',
+                'toolbench_x_output', 'toolprivacybench_private_task_success', 'toolprivacybench_public_task_success', 'toolrobustbench', 'toolrobustbench_clean',
+                'usertoolbench_exact_acc_single_tool', 'usertoolbench_relaxed_acc', 'video2world_functionality_success',
+                // 2026-10-03 S292b
+                'occubench', 'pi_bench_comp', 'agentescapebench_d5', 'kellybench_avg_roi', 'dataclawbench', 'dv_world_sheet_score',
+                // 2026-10-02 S292 — tool-use / reliability suites (2604–2610)
+                'tobench_avg', 'vakra_avg', 'thinkingbox_bench', 'thinkingbox_bench_pass_hat_20', 'incident_arena_pass1', 'telco_gaia',
+                'tautau_bench', 'timeline_bench_opencode', 'era_by_eon_fintech_small',
+                'bfcl',
+                'bfcl_v3',
+                'bfcl_v3_live',
+                'bfcl_v3_multi_turn',
+                'bfcl_v4',
+                'bfcl_v4_web_search',
+                // 2026-05-31 S40 SkillOpt SearchQA (extractive search-augmented QA)
+                'search_qa',
+                // 2026-06-14 S112 — Function calling / tool-use frontier
+                'bfcl_v4', 'bfcl_v4_non_live_ast', 'bfcl_v4_live', 'bfcl_v4_multi_turn',  // S266: bfcl_v4_overall merged into bfcl_v4
+                'bfcl_v4_memory', 'bfcl_v4_irrelevance_detection',
+                'tau2_bench_airline_pass1', 'tau2_bench_retail_pass1', 'tau2_bench_telecom_pass1',
+                'tau2_bench_airline_pass4', 'tau2_bench_retail_pass4', 'tau2_bench_telecom_pass4',
+                'tau2_bench_banking_knowledge_pass1', 'acebench_overall'
+            ]
+        },
+        {
+            key: 'mcp',
+            icon: '🔌',
+            label: 'MCP (Model Context Protocol)',
+            benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (1)
+                'hw_mcp_bench_ecc',
+                // 2026-10-02 S292 — MCP suites (2604–2610)
+                'dynamicmcpbench_pass1', 'dynamicmcpbench_pass3', 'mcpgen_workflow_reconstruction', 'mcpgen_workflow_extension_e2e',
+                'mcp_bench',
+                'mcp_atlas',
+                'mcpatlas_public',
+                'mcpmark',
+                'livemcpbench'
+            ]
+        },
+        {
+            key: 'customer-service',
+            icon: '💼',
+            label: 'Customer Service / Multi-turn',
+            benchmarks: [
+                'tau_bench',
+                'tau2_bench',
+                'tau2_airline',
+                'tau2_retail',
+                'tau2_telecom',
+                'tau3_bench',
+                'tau3_telecom',
+                // 2026-06-23 S142 — tau3 full family (Banking replaces Telecom in AAII v4.1)
+                'tau3_banking', 'tau3_airline', 'tau3_retail',
+                't1_bench',  // 2026 S217 — Capital One multi-domain
+                // 2026-10-03 — τ^τ-Bench (developer builds the CS agent), ThinkingBox-Bench (5 service domains, pass^20), BabelArena multilingual VitaBench, AA τ²-Bench runs
+                'tautau_bench', 'thinkingbox_bench', 'thinkingbox_bench_pass_hat_20', 'babelarena_vitabench_pass1', 'tau2_telecom_aa', 'tau2_banking_aa'
+            ]
+        },
+        {
+            key: 'finance',
+            icon: '💰',
+            label: 'Finance & Business Agents',
+            benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (5)
+                'dayjob_finance_strict_pass1', 'ecommerce_bench_cse_plus', 'ecommerce_bench_final_assets', 'mmshopbench_id_at_1', 'mmshopbench_judge_at_1',
+                'fintrace',
+                'finmcp_bench',
+                'fintoolbench',
+                'finance_agent_v2',            // 2026-10-03 — Vals Finance Agent v2 (replaces the never-defined finance_agent_benchmark id)
+                'vals_financial_agent_1_1',
+                // 2026-10-03 — recent finance / business agent suites (S290–S292b)
+                'vals_index_sep2026', 'big_finance_bench', 'bluefin_heldout_overall', 'dataclawbench',
+                'business_arena_net_worth_usd', 'ceo_arena_mean_score_usd_k', 'kellybench_avg_roi'
+            ]
+        },
+        {
+            key: 'domain',
+            icon: '🧪',
+            label: 'Domain-Specific Agents',
+            crossListed: ['medical-ai', 'ai4s'],
+            benchmarks: [
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (15)
+                'cadengbench_a_a2_e2e', 'cadengbench_a_typed_at_1', 'earthverse_core', 'gna_bench_all_103', 'gna_bench_main_93', 'hle_phy_chem_subset_260618648',
+                'omnicad_agentic_2dvis_pa', 'omnicad_oneshot_colorview_pa', 'plcworld_execution_gap_lower_better', 'plcworld_pooled_sr',
+                'power_systems_agent_bench_public', 'powerbench_fa', 'powerbench_macro_ja', 'ppt_eval_sr', 'startupbench_score_stem',
+                // 2026-10-02 S292 — enterprise / research / embodied-agent suites (2604–2610)
+                'ceo_arena_mean_score_usd_k', 'business_arena_net_worth_usd', 'erpbench_gair_arena_valuation', 'bi_bench_sql_no_tools',
+                'eurekabench_conditioned_score', 'autodatabench_overall', 'frontierchallenge_pass_rate', 'bluefin_heldout_overall',
+                'mineexplorer_overall_tsr', 'spatialworld_tsr_physical_overall', 'libero_agent_score', 'codeactionbench_success_rate', 'embodied_agent_arena_index',
+                'finance_agent',
+                'scienceagentbench',
+                'agentclinic_medqa',
+                'agentclinic_nejm',
+                'medagentbench',
+                'medagentsbench',
+                // 2026-05-28 Session 30 — DeepRare rare-disease agentic system
+                'deeprare_aggregate_recall_at_1',
+                'deeprare_aggregate_recall_at_3',
+                'deeprare_physician_recall_at_1',
+                'deeprare_physician_recall_at_5',
+                'deeprare_reasoning_chain_agreement',
+                // 2026-05-31 S40 — Zapier AutomationBench (47-app E2E business workflow)
+                'automationbench',
+                // 2026-07-08 S175 — Grok 4.5 launch: AA agentic SaaS + Harvey legal + business-ops + Snorkel GDPval+
+                'automationbench_aa', 'harvey_lab_aa', 'harvey_lab_aa_mean_criteria', 'enterpriseops_gym_aa', 'gdpval_plus_snorkel',
+                // 2026-07-20 S189 — Grok 4.5 card: RelBench (ML over multi-table relational DBs; Stanford)
+                'relbench'
+            ]
+        },
+        {
+            key: 'safety',
+            icon: '🛡️',
+            label: 'Agent Safety & Security',
+            lower_better: [
+                'agentdojo_targeted_asr',
+                'injecagent',
+                'browserart',
+                'anthropic_shade_browser_asr_attempts',
+                'anthropic_shade_browser_asr_scenarios',
+                'anthropic_shade_browser_asr_with_safeguards',
+                'agent_red_teaming',
+                'agentsmith_inf',
+                'apollo_scheming_oversight_subversion',
+                'apollo_scheming_persistence',
+                'agentlab_asr',  // 2026 S217b — long-horizon adaptive attack ASR
+                // 2026-10-10 S300 — RAIL Guard Pool B unsafe tool-call execution rate, no guardrail vs pre-action evaluation + plan remediation
+                'railguard_unsafe_tool_exec_no_guardrail_lower_better', 'railguard_unsafe_tool_exec_pre_action_remediation_lower_better',
+                // 2026-09-23 S282 — Opus 5.5 card §5 prompt-injection ASRs
+                'shade_v2_coding_asr_no_safeguards', 'shade_v2_coding_asr_with_probes', 'shade_v2_computer_use_asr_no_safeguards', 'shade_v2_computer_use_asr_with_probes', 'browser_use_cowork_asr_no_safeguards', 'browser_use_cowork_asr_auto_mode', 'gray_swan_ipi_k1', 'gray_swan_ipi_k10',
+                // 2026-10-03 — Gray Swan IPI k=15 (13 models incl. Gemini 4 Argon 0.7%), OpenAI realistic-work misalignment v2, prompt-injection connectors, OSGuard
+                'gray_swan_ipi', 'agentic_misaligned_outcome_rate_v2_lower_better', 'prompt_injection_connectors', 'indirect_prompt_injection_defender_success', 'osguard_action_level_acc',
+                // 2026-09-23 S282b — Opus 5.5 card §6.2 / §6.5 / §6.6 lower-better rates
+                'anthropic_rl_training_reward_hack_success_rate_lower_better', 'anthropic_rl_training_reward_hack_answer_key_guess_rate_lower_better', 'anthropic_rl_training_reward_hack_copied_solution_rate_lower_better',
+                'anthropic_rl_training_reward_hack_prohibited_method_rate_lower_better', 'anthropic_rl_training_reward_hack_success_rate_excl_toolskip_lower_better', 'anthropic_impossible_task_reward_hack_attempt_rate_lower_better',
+                'anthropic_impossible_task_reward_hack_success_rate_lower_better', 'anthropic_intact_task_reward_hack_attempt_rate_lower_better', 'anthropic_intact_task_reward_hack_success_rate_lower_better',
+                'anthropic_pasted_instruction_compliance_rate_lower_better', 'anthropic_pasted_instruction_compliance_default_effort_rate_lower_better', 'anthropic_claude_code_destructive_action_rate_lower_better',
+                'anthropic_acting_on_presumed_grader_rate_lower_better', 'anthropic_digging_for_grader_clues_rate_lower_better', 'shade_arena_best_prompt_stealth_hidden_reasoning_max_lower_better',
+                'shade_arena_best_prompt_stealth_no_thinking_lower_better', 'shade_arena_best_prompt_stealth_visible_low_effort_lower_better', 'shade_arena_best_prompt_stealth_visible_max_effort_lower_better',
+                'linuxarena_best_prompt_stealth_hidden_reasoning_lower_better', 'linuxarena_best_prompt_stealth_no_thinking_lower_better', 'linuxarena_best_prompt_stealth_visible_reasoning_lower_better'
+            ],
+            benchmarks: [
+                // 2026-10-10 S300 — RAIL Guard agent tool-call safety (unsafe execution rate, lower better)
+                'railguard_unsafe_tool_exec_no_guardrail_lower_better', 'railguard_unsafe_tool_exec_pre_action_remediation_lower_better',
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (66)
+                'actbench_asr_lower_better', 'actbench_not_ags_mal', 'adepts_bench_score_desktop', 'adepts_bench_score_mobile', 'agentboundary_safety_all',
+                'agentboundary_utility_all', 'agentprivarena_leak_rate_lower_better', 'baitbench_reward_hacking_rate_lower_better', 'blindspot_bcr', 'blindspot_crr',
+                'boiling_the_frog_safe_agency_score', 'boiling_the_frog_strict_asr_lower_better', 'cheatbench_general_harness_avg_lower_better',
+                'cheatbench_overall_cheating_rate_lower_better', 'cosec_hermes_overall_bcr', 'cosec_openclaw_overall_bcr', 'credleakbench_autonomous_balanced_accuracy',
+                'credleakbench_directed_balanced_accuracy', 'decepeval_coding_induced_deception_rate_lower_better',
+                'decepeval_coding_neutral_deception_rate_lower_better', 'decompbench_decomposed_asr_lower_better', 'decompbench_monolithic_asr_lower_better',
+                'delegationbench_4way_agreement', 'delegationbench_over_intervention_lower_better', 'dgf_bench_score', 'duma_bench_dual_asr_lower_better',
+                'duma_bench_solo_asr_lower_better', 'egosafetybench_sequential_caught_rate', 'egosafetybench_video_balanced_acc',
+                'fta_false_success_rate_baseline_lower_better', 'fta_false_success_rate_contract_lower_better', 'guardianbench_acc', 'guardianbench_pair_acc',
+                'harnessrisk_openclaw_detection', 'hvtb_hack_rate_l2_lower_better', 'hvtb_hack_rate_l3_lower_better', 'litmus_asr_lower_better',
+                'litmus_ehr_lower_better', 'livepi_asr_lower_better', 'memevobench_qa_asr_lower_better', 'memevobench_workflow_asr_lower_better',
+                'mobileworldsafety_asr_lower_better', 'mobileworldsafety_tcr', 'nrt_bench_paired_asr_lower_better', 'overact_baseline_pvs_lower_better',
+                'pastabench_on_time_rate', 'pastabench_perfect_interruption', 'patchbench_poc_pass_openhands', 'patchbench_solved_openhands',
+                'physical_privacy_tier2_mae_lower_better', 'physical_privacy_tier2_selection_acc', 'realm_asr_coa', 'realm_clean_acc',
+                'rha_safety_over_refusal_rate_lower_better', 'robojailbench_su_hm', 'robojailbench_utility_rate', 'rt_safe_safe_sr', 'saferelbench_proximity_sr',
+                'saferelbench_supporting_sr', 'scammer4u_plr_crit_c0_lower_better', 'scammer4u_plr_crit_c3_lower_better', 'scopebench_scope_adherence',
+                'spade_bench_deception_rate_lower_better', 'steerbench_work_accuracy', 'stepjack_asr_k1_lower_better', 'stepjack_asr_union_lower_better',
+                'agentlab_asr',
+                'agentdojo_targeted_asr',
+                'agentdojo_utility',
+                'injecagent',
+                'browserart',
+                'anthropic_shade_browser_asr_attempts',
+                'anthropic_shade_browser_asr_scenarios',
+                'anthropic_shade_browser_asr_with_safeguards',
+                'agent_red_teaming',
+                'agentsmith_inf',
+                'cot_faithfulness',
+                'cot_faithfulness_misaligned',
+                'apollo_scheming_oversight_subversion',
+                'apollo_scheming_persistence',
+                'rewardbench2_overall',
+                // 2026-05-28 Session 36 — AgentDoG 1.5 (Shanghai AI Lab, arxiv 2605.29801)
+                'r_judge', 'atbench',
+                // 2026-06-28 S154b Mythos 5 system card §5.1 agentic safety
+                'malicious_computer_use_refusal',
+                'agentic_influence_voter_suppression',
+                'agentic_influence_domestic_polarization',
+                // 2026-07-20 S189 — Grok 4.5 card: FalseClaimBench (honesty about work actually done; higher = fewer fabricated completion claims)
+                'falseclaimbench',
+                // 2026-09-23 S282 — Opus 5.5 card (prompt injection, agentic influence ops /32) + GPT-6 appendix A.6 updated alignment evals
+                'shade_v2_coding_asr_no_safeguards', 'shade_v2_coding_asr_with_probes', 'shade_v2_computer_use_asr_no_safeguards', 'shade_v2_computer_use_asr_with_probes', 'browser_use_cowork_asr_no_safeguards', 'browser_use_cowork_asr_auto_mode', 'gray_swan_ipi_k1', 'gray_swan_ipi_k10',
+                'agentic_influence_voter_suppression_median32', 'agentic_influence_domestic_polarization_median32', 'anthropic_sandbox_escape_attempt_rate_lower_better',
+                'coding_deception_rate_v2_lower_better', 'broken_search_tool_failure_rate_v2_lower_better', 'auto_review_circumvention_rate_v2_lower_better', 'warning_barrier_persistence_rate_v2_lower_better',
+                // 2026-09-24 S286 — agent-safety papers
+                'agents4d_backend_casr_lower_better', 'guardianagentbench_overall_avg_llamaindex', 'muppet_multiparty_leak_rate_lower_better', 'muppet_utility_undefended', 'cisco_image_safety_score',
+                // 2026-09-23 S282b — Opus 5.5 card: RL reward hacking, pasted instructions, destructive actions, self-preference, grader awareness, best-prompt SHADE-Arena / LinuxArena stealth, rare-action calibration
+                'anthropic_rl_training_reward_hack_success_rate_lower_better', 'anthropic_rl_training_reward_hack_answer_key_guess_rate_lower_better', 'anthropic_rl_training_reward_hack_copied_solution_rate_lower_better',
+                'anthropic_rl_training_reward_hack_prohibited_method_rate_lower_better', 'anthropic_rl_training_reward_hack_success_rate_excl_toolskip_lower_better', 'anthropic_impossible_task_reward_hack_attempt_rate_lower_better',
+                'anthropic_impossible_task_reward_hack_success_rate_lower_better', 'anthropic_intact_task_reward_hack_attempt_rate_lower_better', 'anthropic_intact_task_reward_hack_success_rate_lower_better',
+                'anthropic_pasted_instruction_compliance_rate_lower_better', 'anthropic_pasted_instruction_compliance_default_effort_rate_lower_better', 'anthropic_claude_code_destructive_action_rate_lower_better',
+                'anthropic_claude_code_ask_instead_of_act_rate', 'anthropic_self_preference_bias_no_system_prompt', 'anthropic_self_preference_bias_claude_identity_prompt',
+                'anthropic_verbalized_grader_awareness_clear_disclosure', 'anthropic_verbalized_grader_awareness_ambiguous_disclosure', 'anthropic_verbalized_grader_awareness_barely_disclosed',
+                'anthropic_acting_on_presumed_grader_rate_lower_better', 'anthropic_digging_for_grader_clues_rate_lower_better', 'shade_arena_best_prompt_stealth_hidden_reasoning_max_lower_better',
+                'shade_arena_best_prompt_stealth_no_thinking_lower_better', 'shade_arena_best_prompt_stealth_visible_low_effort_lower_better', 'shade_arena_best_prompt_stealth_visible_max_effort_lower_better',
+                'linuxarena_best_prompt_stealth_hidden_reasoning_lower_better', 'linuxarena_best_prompt_stealth_no_thinking_lower_better', 'linuxarena_best_prompt_stealth_visible_reasoning_lower_better',
+                'rare_action_strategy_hint_calibration', 'rare_action_no_hint_calibration'
+            ]
+        },
+        {
+            key: 'general',
+            icon: '🚀',
+            label: 'General / Composite',
+            benchmarks: [
+                // 2026-10-12 S303 — Meta Muse Wonder scorecard: Personal Superintelligence Index (7-eval composite) + FocusBench (Meta-run)
+                'meta_personal_superintelligence_index', 'meta_focusbench', 'automationbench_aa_strict_pass1',
+                // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (80)
+                'ai4ai_bench_avg', 'dayjob_healthcare_strict_pass1', 'sqbench_simple_pass1', 'sqbench_weighted_pass1', 'agentideabench_active', 'agentideabench_static',
+                'handbook_md_strict_pass1', 'vloc_bench_file_f1', 'vloc_bench_phase_b_tnr', 'rideway_efficiency_utility_custom14', 'rideway_sr58', 'agenthop_accuracy',
+                'lhtb_pass1_r09', 'lhtb_pass1_r10', 'qstrbench_combined_acc', 'tua_bench_terminus2', 'tua_bench_terminus2_all5', 'fm_bench_arena_final_score',
+                'fm_bench_solo_final_score', 'gamexpert_gameopt_overall', 'argo_bench_score', 'argo_bench_solved', 'dexholdem_perception_avg',
+                'dexholdem_perception_overall', 'dyadmem_capture_f1', 'dyadmem_recall_all', 'lmbuild_design', 'lmbuild_soundness', 'code4scene_public_overall',
+                'code4scene_public_t2s', 'deskcraft_interactive', 'deskcraft_standard', 'halluworld_chess_nofen_hallucination_rate_lower_better',
+                'opengameeval_core_pass1', 'opengameeval_core_pass5', 'dsv_mem_total_avg', 'kalibench_unrestricted_exact_correct', 'kalibench_unrestricted_total_score',
+                'scbench_long', 'alem_easy_total', 'alem_hard_total', 'e_bench_avg3', 'rle_bench_f07', 'rle_bench_index', 'smh_bench_dr_avg', 'smh_bench_eia_avg',
+                'xiangqibench_restricted_pass1', 'xiangqibench_sighted_pass1', 'autoscibench_generated_avg_gpt56sol', 'autoscibench_generated_avg_opus48',
+                'dynaschedbench_subset_makespan_gap_lower_better', 'omnigamearena_cuechase', 'omnigamearena_laststand', 'weavebench_overall_score',
+                'weavebench_passrate', 'a2z_gamespec_gdd_fidelity', 'a2z_gamespec_gdd_fidelity_big', 'adaplanbench_accuracy', 'adaplanbench_valid_plan_rate',
+                'frontier_eng_avg_rank_lower_better', 'frontier_eng_win_rate_over_baseline', 'halluworld_grid_hallucination_rate_lower_better', 'learn2play_max',
+                'learn2play_mean', 'librarydesignbench_score', 'librarydesignbench_simplicity', 'mindedit_bench_overall_acc', 'omnismarthome_goal_acc',
+                'omnismarthome_grounding_acc', 'secprobe_pass_rate_terminus2', 'uniclawbench_avg_score', 'uniclawbench_pass_rate', 'vex_bench_justification_accuracy',
+                'vex_bench_status_accuracy', 'video2world_v2wscore', 'intentflux_general_clean_car', 'intentflux_general_hard_drift_car', 'k_bench_majority_success',
+                'k_bench_overall', 'm3exam_overall_score',
+                // 2026-10-02 S292 — general / composite agent suites (2604–2610)
+                'pdeu_bench_qual_score', 'pdeu_bench_pref_score', 'clawmark_score', 'force_bench_overall', 'agentworld_collab_main_sr',
+                'babelarena_vitabench_pass1', 'contextweave_workspace_no_recall', 'jarvisbench_multi_agent_baseline',
+                // 2026-07-20 S190 — arena.ai Agent Arena (human-preference Net Improvement %)
+                'arena_agent_net_improvement',
+                'apex_agents',
+                'apex_agents_hard',
+                'terminal_bench_2',
+                'terminal_bench_hard',
+                'hal_overall_accuracy_at_fixed_cost',
+                'metr_autonomy_p50',
+                'metr_autonomy_p80',
+                'processbench_f1',
+                'multiagentbench_research_task',
+                'multiagentbench_coding_task',
+                'multiagentbench_bargaining_task',
+                'multiagentbench_minecraft_task',
+                'agentbench_overall',
+                'metagpt_softwaredev_executability',
+                // 2026-05-28 Session 30 — AgingBench longitudinal Agent Lifespan Engineering
+                'agingbench_overall',
+                // 2026-05-28 Session 33 — Claude Opus 4.8 System Card agentic + long-context + research benches
+                'terminal_bench_2_1', 'hle_with_tools', 'usamo_2026', 'arxivmath', 'draco', 'automation_bench', 'officeqa',
+                // 2026-05-31 S40 — AECI (Agentic Economic Capability Index) from Opus 4.8 card
+                'aeci_index',
+                // 2026-06-01 S44 — MiniMax M3 PostTrainBench (autonomous 12h ML training loop)
+                'posttrainbench',
+                // 2026-06-02 S46 — Qwen3.7-Plus agent benches
+                'terminal_bench_2_0', 'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'spreadsheetbench_v2',
+                'qwen_world_bench', 'cowork_bench', 'vitabench', 'clawval_mm', 'skillsbench',
+                // 2026-06-02 S48 — Microsoft MAI Instruction Following + Frontier reasoning benches
+                'if_bench_precise', 'advanced_if_rubric', 'robust_if_diverse', 'frontier_math_t1_3',
+                // 2026-06-04 S52 — K-BrowseComp Korean web browsing agent
+                'k_browsecomp_verified', 'k_browsecomp_synthetic', 'k_browsecomp_calibration_error',
+                // 2026-06-05 S54 — IBM Research + AA ITBench-AA (Kubernetes SRE)
+                'itbench_aa',
+                // 2026-06-06 S56 — SMAC-Talk (LLM multi-agent coordination) + Opper AI Roundtable
+                'smac_talk_5v5_no_comm_winrate', 'smac_talk_kdc_winrate', 'smac_talk_udc_winrate', 'opper_roundtable_win_rate',
+                'graphwalks_bfs_256k', 'graphwalks_parents_256k', 'graphwalks_bfs_1m', 'graphwalks_parents_1m',
+                // 2026-05-29 Session 34 — SubQ long-context (RULER@128K)
+                'ruler_128k',
+                // 2026-07-01 S160 — Sonnet 5 §8 + LongCat 2.0 blog general-agent benches
+                'forte', 'rwsearch', 'aa_briefcase',
+                // 2026-07-09 S176 — Agents' Last Exam ALE-V1 + GPT-5.6 card general/AI-R&D benches
+                'agents_last_exam', 'agents_last_exam_score', 'toolathlon', 'posttrainbench_lite',
+                'rsi_index', 'internal_research_debugging', 'kernelgen_1p', 'big_finance_bench', 'management_consulting_tasks_internal',
+                // 2026-07-10 S180 — backfilled arxiv agentic benches (CoffeeBench in coding; these two here)
+                'rng_bench', 'mapf_frozenlake',
+                // 2026-07-11 S181 — Tencent Hy3 card agentic benches
+                'wildclawbench', 'blind_expert_productivity_eval',
+                // 2026-07-16 S182 — Kimi K3 card agentic benches
+                'job_bench', 'deck_bench',
+                // 2026-09-23 S282 — AA v2.1-era boards, AutomationBench 1.0.6, WANDR, CoBench 2.1
+                'gdpval_aa_v2_1_elo', 'aa_briefcase_v1_1', 'aa_briefcase_v1_1_analytical_quality_elo', 'aa_briefcase_v1_1_presentation_elo', 'aa_briefcase_v1_1_rubric_pass_rate', 'automationbench_1_0_6',
+                // 2026-09-24 S286 — tau2-bench v1.0.1 banking re-grade, PolyWorkBench, FinToolBench, PAUSE, EvoClawBench
+                'tau2_bench_banking_knowledge_pass1_v1_0_1', 'tau2_bench_banking_knowledge_pass4_v1_0_1', 'polyworkbench_pass1_peak', 'fintoolbench_soft_score', 'pause_log_tracking_hard_tc', 'pause_shopping_score', 'evoclawbench_nanobot_baseline',
+                // 2026-09-24 S285 — Mercor APEX boards, HAL reliability, HLE (CAISI), Epoch agentic runs
+                // 2026-09-30 S290 — Gemini 4 Argon table: Vals Index (Sep 2026 board), Vals Finance Agent v2, Harvey LAB (Vals), Google-run PostTrainBench v1.1
+                'vals_index_sep2026', 'finance_agent_v2', 'legal_agent_benchmark_harvey', 'posttrainbench_v1_1_google',
+                'vals_index_v2_1_cost_per_test_usd_lower_better',  // S290b
+                'apex_agents_v1_1_pass1', 'apex_agents_v1_1_mean_score', 'apex_v1_mercor_board_pass1', 'apex_v1_mercor_board_mean_score', 'apex_swe_mercor_board_pass1', 'apex_accounting_pass1', 'hal_reliability_score', 'hal_reliability_accuracy', 'hle_caisi_official', 'remote_labor_index_epoch', 'posttrainbench_epoch', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
+                // 2026-09-23 S282b — Opus 5.5 card §8.12.3 multi-agent team-size endpoints (1 vs 100 agents)
+                'anthropic_agent_team_knowledge_base_single_agent', 'anthropic_agent_team_knowledge_base_100_agents', 'anthropic_agent_team_lean_single_agent',
+                'anthropic_agent_team_lean_100_agents'
+            ]
+        },
+        {
+            key: 'edge',
+            icon: '📱',
+            label: 'On-device / Edge Agents',
+            utility_emphasis: true,
+            benchmarks: [
+                'mobile_actions',
+                'healthslm_bench',
+                'mobile_agent_bench',
+                'mobilebench_v2',
+                'mobilebench_xiaomi',
+                'mlperf_mobile_llm',
+                'mlperf_inference_edge_v5_1',
+                'mlperf_tiny_v1_2',
+                'tinyml_energy_v1',
+                'function_gemma_calling'
+            ]
+        }
+    ];
+
+    // SOTA Watch tiles — headline benchmarks shown at the top of the tab (4 per row).
+    // 2026-10-03 refresh: SWE-bench Verified (saturated, Opus 5 96.0) → SWE-bench Pro; OSWorld-Verified → OSWorld 2.0;
+    // AgentDojo (last frontier entry Claude 3.7 Sonnet, 2025) → Gray Swan IPI k=15 ASR (lower is better; 13 models, 2026-09);
+    // + Terminal-Bench 4.0, GDPval-AA v2.1, AutomationBench-AA, Agents' Last Exam.
+    var SOTA_WATCH = [
+        { benchmark: 'swe_bench_pro', label: 'Top Coder', icon: '💻' },
+        { benchmark: 'terminal_bench_4_0', label: 'Top Terminal Agent', icon: '⌨️' },
+        { benchmark: 'browsecomp', label: 'Top Web Agent', icon: '🌐' },
+        { benchmark: 'osworld_v2', label: 'Top OS Agent (OSWorld 2.0)', icon: '🖥️' },
+        { benchmark: 'gdpval_aa_v2_1_elo', label: 'Knowledge Work (GDPval-AA)', icon: '📊' },
+        { benchmark: 'automationbench_aa', label: 'Workflow Automation', icon: '⚙️' },
+        { benchmark: 'agents_last_exam_score', label: "Agents' Last Exam", icon: '🎓' },
+        { benchmark: 'gray_swan_ipi', label: 'Injection-Robust (lowest ASR)', icon: '🛡️', lower: true }
+    ];
+
+    // Curated list of 10 production agent products for the compare panel.
+    var AGENT_PRODUCTS = [
+        'anthropic/claude-code',
+        'openai/codex-cli',
+        'cursor/composer',
+        'replit/agent',
+        'cognition/devin',
+        'manus-ai/manus',
+        'anthropic/computer-use',
+        'google/mariner',
+        'openai/operator',
+        'anthropic/claude-cowork',
+        // 2026-05-21 Microsoft Fara 1.5 browser computer-use agent family (Qwen3.5-based)
+        'microsoft/fara1.5-27b',
+        'microsoft/fara1.5-9b',
+        'microsoft/fara1.5-4b',
+        'microsoft/fara-7b',
+        // 2026-06-27 S149 — Browser/CUA agent refresh
+        'google/gemini-2.5-computer-use',        // earlier Gemini 2.5 CU baseline
+        'google/gemini-3.5-flash-computer-use',  // 2026-06-24 native CU preview, OSWorld 78.4
+        'openai/chatgpt-atlas-agent',            // Operator deprecated 2025-08-31 → Atlas
+        'hcompany/holo3.1-35b-a3b',              // H Company Holo3.1
+        'hcompany/holo3.1-4b',
+        'hcompany/holo3-122b-a10b',              // Holo3 flagship 78.85 OSWorld
+        'alibaba/gui-owl-1.5-32b-thinking',      // Qwen GUI agent thinking variant
+        'bytedance/ui-tars-2',                   // Online-Mind2Web 88.2 SOTA
+        // 2026 computer-use agents from various vendors
+        'google/gemini-2.5-cu',
+        'alibaba/gui-owl-1.5-32b',
+        'alibaba/gui-owl-1.5-8b',
+        'yutori/navigator-n1',
+        'holo/holo2-30b',
+        'openai/o3-som',
+        // 2026-05-28 Session 30 — Gemini for Science I/O 2026 + DeepRare rare-disease
+        'google/alphaevolve',
+        'google/antigravity-science-skills',
+        'sjtu-xinhua-harvard/deeprare',
+        'mit-mgb/mdagents',
+        // 2026-05-29 Session 33 — Harvard AutoScientists (self-organizing science) + Microsoft SkillOpt (skill optimizer)
+        'harvard/autoscientists',
+        'microsoft/skillopt',
+        // 2026-06-09 S63 — MiniMax M3 (IFBench 83 #1 SOTA, GDPval-AA 58 #3 agentic) + Anti-hallucination Non-Hall 84 #1
+        'minimax/m3',
+        // 2026-06-09 S65 — Claude Fable 5 + Mythos 5 (Toolathlon 61.7 NEW SOTA, OSWorld 85 NEW SOTA, BrowseComp 88)
+        'anthropic/claude-fable-5',
+        'anthropic/claude-mythos-5',
+        // 2026-06-19 S136 — UI-TARS-1.5-7B (ByteDance) + computer-use-preview + SoM Agent variants (Fara-7B paper WebTailBench leaderboard)
+        'bytedance/ui-tars-1.5-7b',
+        'thudm/glm-4.1v-9b-thinking',
+        'openai/computer-use-preview',
+        'openai/som-agent-gpt-5',
+        // 2026-06-28 S154 — Search/RAG frontier products
+        'you-com/research-api',              // DeepSearchQA #1 83.67
+        'openai/gpt-5.5-pro',                // BrowseComp #1 0.901
+        'anthropic/web-search-tool',         // Opus 4.8 DeepSearchQA 0.931
+        'parallel/ultra',                    // \$2B valuation
+        'google/ai-mode',                    // Feb 19 2026
+        'brave/leo-ai',                      // May 2026 agentic
+        'perplexity/sonar-deep-research',
+        'leni/leni',                         // DRACO #1 0.716
+        'internlm/mindsearch'                // OSS search agent
+    ];
+
+    // Curated list of 9 on-device / edge SLMs for the compare panel.
+    var EDGE_SLMS = [
+        'apple/foundation-3b',
+        'apple/foundation-private-cloud',
+        'microsoft/phi-4-mini-instruct',
+        'microsoft/phi-4',
+        'microsoft/phi-4-multimodal',         // 2026-06-09 S60 — 5.6B text+image+audio AAII 10
+        'google/gemma-3-270m',
+        'google/gemma-3n',
+        'google/function-gemma',
+        'meta/llama-3.2-1b-instruct',
+        'meta/llama-3.2-3b-instruct',
+        // 2026-06-09 S60 — Amazon Nova Micro 1.3B AAII 10 (smallest from AMZN frontier line)
+        'amazon/nova-micro',
+        // 2026-06-19 S140 — Edge/Mobile SLM frontier refresh
+        'apple/afm-3-core-3b',                // 2026-06-08 — 3B Apple Foundation Model 3 Core
+        'apple/afm-3-core-advanced-20b',      // 2026-06-08 — 20B sparse (1-4B active)
+        'apple/afm-3-pcc',                    // 2026-06-08 — Private Cloud Compute server-side
+        'google/gemma-4-e2b-qat',             // 2026-06-05 — QAT mobile ~1GB
+        'google/gemma-4-e4b-qat',             // 2026-06-05 — QAT edge
+        'google/gemini-nano-v3',              // 2026-05-12 — Nano v3
+        'microsoft/phi-4-reasoning-vision-15b', // 2026-03-04 — 15B reasoning VLM
+        'openbmb/minicpm-5-1b',                // 2026-05-19 — 1B AAII v4.1 = 17.9 SOTA
+        'openbmb/minicpm-v-4.6',              // 2026-05-11 — iOS/Android/HarmonyOS VLM
+        'alibaba/qwen-3.5-0.8b', 'alibaba/qwen-3.5-2b', 'alibaba/qwen-3.5-4b', 'alibaba/qwen-3.5-9b',
+        'mistral/ministral-3-3b', 'mistral/ministral-3-8b', 'mistral/ministral-3-14b',
+        'liquid/lfm2.5-8b-a1b',
+        'liquid/lfm2.5-vl-1.6b', 'liquid/lfm2.5-vl-450m',
+        'liquid/lfm2.5-audio-1.5b', 'liquid/lfm2.5-1.2b-jp',
+        // 2026-10-03 — small models released 2026-06+ that carry agent scores in the DB
+        'ifm/k2-horizon-7b', 'openbmb/minicpm-5-2b', 'ibm/granite-4.2-8b', 'ibm/granite-4.2-3b', 'google/gemma-4-12b',
+        'xiaomi/mimo-v2.6-distill-qwen-9b', 'alibaba/qwen-ui-agent-4b', 'kakao/kanana-2-3b-instruct', 'xhtoken/spark-x2.5-4b'
+    ];
+
+    // Utility-vs-cost / latency metrics map. Filled by _loadUtility (Task 17).
+    var UTILITY_METRICS = {};
+
+    // Benchmarks selectable in the Compare panel dropdown. The first entry is
+    // the default selection.
+    var COMPARE_BENCHMARKS = [
+        { id: 'swe_bench_verified',   label: 'SWE-bench Verified' },
+        { id: 'swe_bench_pro',        label: 'SWE-bench Pro' },
+        // 2026-10-03 — current-generation agent suites (S282–S292b)
+        { id: 'terminal_bench_4_0',   label: 'Terminal-Bench 4.0' },
+        { id: 'terminal_bench_4_0_aa', label: 'Terminal-Bench 4.0 (AA harness)' },
+        { id: 'osworld_v2',           label: 'OSWorld 2.0 (500 steps)' },
+        { id: 'osworld_v2_partial',   label: 'OSWorld 2.0 (partial credit)' },
+        { id: 'osworld_pro',          label: 'OSWorld-Pro' },
+        { id: 'osworld_science',      label: 'OSWorld-Science' },
+        { id: 'agents_last_exam_score', label: "Agents' Last Exam (score)" },
+        { id: 'automationbench_aa',   label: 'AutomationBench-AA' },
+        { id: 'aa_briefcase_v1_1',    label: 'AA-Briefcase v1.1 (Elo)' },
+        { id: 'gdpval_aa_v2_1_elo',   label: 'GDPval-AA v2.1 (Elo)' },
+        { id: 'aa_agentic_index',     label: 'AA Agentic Index' },
+        { id: 'vals_index_sep2026',   label: 'Vals Index v2.1' },
+        { id: 'arena_agent_net_improvement', label: 'Agent Arena (net improvement %)' },
+        { id: 'tobench_avg',          label: 'TOBench' },
+        { id: 'dynamicmcpbench_pass1', label: 'DynamicMCPBench' },
+        { id: 'thinkingbox_bench',    label: 'ThinkingBox-Bench' },
+        { id: 'saas_bench_resolved',  label: 'SaaS-Bench' },
+        { id: 'occubench',            label: 'OccuBench' },
+        { id: 'mobileworld_real',     label: 'MobileWorld-Real' },
+        { id: 'androidworld',         label: 'AndroidWorld' },
+        { id: 'deepswe_1_1',          label: 'DeepSWE 1.1' },
+        { id: 'frontierswe_v2',       label: 'FrontierSWE v2' },
+        { id: 'terminal_bench_2',     label: 'Terminal-Bench 2.0' },
+        { id: 'osworld_verified',     label: 'OSWorld-Verified' },
+        { id: 'gaia',                 label: 'GAIA' },
+        { id: 'tau2_bench',           label: 'τ2-Bench' },
+        { id: 'tau3_bench',           label: 'τ3-Bench' },
+        { id: 'bfcl_v4',              label: 'BFCL v4' },
+        { id: 'mobile_actions',       label: 'Mobile Actions' },
+        { id: 'mobile_agent_bench',   label: 'MobileAgentBench' },
+        // 2026-04-22 — OneManCompany agent framework PRD benchmark (Section 36)
+        { id: 'prdbench',             label: 'PRDBench' },
+        // 2026-04 — Agent-World batch (Section 36)
+        { id: 'mcpmark',              label: 'MCP-Mark' },
+        // 2026-04-17 — Microsoft Research DELEGATE-52 (Section 32)
+        { id: 'delegate_52',          label: 'DELEGATE-52' },
+        // 2026-05-13 — Cybersecurity agent benches (Section 50/51)
+        { id: 'exploitbench_ace',     label: 'ExploitBench (ACE)' },
+        { id: 'simbian_cyber_defense_coverage', label: 'Simbian Cyber Defense' },
+        { id: 'cyberteam_rm_avg',     label: 'CyberTeam (R&M avg)' },
+        // 2026-05-15 — HAL Princeton meta-leaderboard sub-benches (Section 43)
+        { id: 'corebench_hard',       label: 'CORE-Bench Hard' },
+        { id: 'tau_bench_airline',    label: 'TAU-bench Airline' },
+        { id: 'tau_bench_retail',     label: 'TAU-bench Retail' },   // S261 gpt-oss model card
+        // 2026-05-21 — Microsoft Fara 1.5 browser CU benchmarks (Session 23)
+        { id: 'online_mind2web',      label: 'Online-Mind2Web' },
+        { id: 'webvoyager',           label: 'WebVoyager' },
+        { id: 'webtailbench_v15_outcome',  label: 'WebTailBench v1.5 (Outcome)' },
+        { id: 'webtailbench_v15_process',  label: 'WebTailBench v1.5 (Process)' },
+        // 2026-06-19 Session 136 — WebTailBench v1 + UI-TARS-1.5 (Fara-7B paper)
+        { id: 'webtailbench',         label: 'WebTailBench v1 (Nov 2025)' },
+        // 2026-05-26 — Open Agent Leaderboard HF Space sub-benches (Session 23)
+        { id: 'open_agent_avg_success', label: 'Open Agent — Avg Success' },
+        { id: 'open_agent_swe',       label: 'Open Agent — SWE' },
+        { id: 'assistantbench',       label: 'AssistantBench' },
+        // 2026-05-14 — Multi-constraint judge eval (Section 40)
+        { id: 'mcjudgebench_cjar',    label: 'MCJudgeBench (CJAR)' },
+        // 2026-05-14 — Sequential decision-making agent (Section 40)
+        { id: 'agentick',             label: 'Agentick (ONS)' },
+        // 2026-05-14 — MCP tool sandbox (Section 40)
+        { id: 'complexmcp',           label: 'ComplexMCP' },
+        // 2026-05-28 Session 30 — DeepRare rare-disease + AgingBench lifespan engineering
+        { id: 'deeprare_aggregate_recall_at_1', label: 'DeepRare R@1 (HPO aggregate)' },
+        { id: 'deeprare_physician_recall_at_1', label: 'DeepRare vs Physician R@1' },
+        { id: 'agingbench_overall',   label: 'AgingBench (lifespan t½)' },
+        // 2026-05-28 Session 31 — Datacurve DeepSWE contamination-free SWE bench
+        { id: 'deepswe_pass_at_1',    label: 'DeepSWE Pass@1 (Datacurve)' },
+        // 2026-05-28 Session 33 — Claude Opus 4.8 System Card benches
+        { id: 'terminal_bench_2_1',   label: 'Terminal-Bench 2.1' },
+        { id: 'hle_with_tools',       label: 'HLE (with tools)' },
+        { id: 'usamo_2026',           label: 'USAMO 2026' },
+        { id: 'graphwalks_bfs_1m',    label: 'GraphWalks BFS 1M' },
+        // 2026-06-27 S149 — Browser/agent benches with real scores in DB
+        { id: 'toolathlon_pass_all_3_trials', label: 'Toolathlon (pass all 3 trials)' },
+        { id: 'navi_bench_v1',        label: 'NaviBench v1' },
+        // 2026-06-28 S154 — DRACO deep-research (Perplexity)
+        { id: 'draco_perplexity_deep_research', label: 'DRACO (Perplexity Deep Research)' }
+    ];
+
+    // Returns the flat union of every category's benchmark IDs, deduped.
+    function _allAgentBenchmarks() {
+        var seen = {};
+        var out = [];
+        for (var i = 0; i < CATEGORIES.length; i++) {
+            var ids = CATEGORIES[i].benchmarks || [];
+            for (var j = 0; j < ids.length; j++) {
+                var id = ids[j];
+                if (!seen[id]) {
+                    seen[id] = true;
+                    out.push(id);
+                }
+            }
+        }
+        return out;
+    }
+
+    // Boot-time validation: warn (not throw) if any expected benchmark id is
+    // missing from App.data.benchmarks. UI rows for missing ids will be hidden
+    // by the per-section renderers in later tasks.
+    function _bootValidate() {
+        if (!(window.App && App.data && App.data.benchmarks)) {
+            return;
+        }
+        var loaded = App.data.benchmarks;
+        var present = {};
+        if (Array.isArray(loaded)) {
+            for (var i = 0; i < loaded.length; i++) {
+                var b = loaded[i];
+                if (b && b.id) present[b.id] = true;
+            }
+        } else {
+            for (var k in loaded) {
+                if (Object.prototype.hasOwnProperty.call(loaded, k)) {
+                    present[k] = true;
+                }
+            }
+        }
+        var ids = _allAgentBenchmarks();
+        var missing = [];
+        for (var n = 0; n < ids.length; n++) {
+            if (!present[ids[n]]) missing.push(ids[n]);
+        }
+        if (missing.length) {
+            console.warn('[Agent] missing benchmarks (UI will hide these rows):', missing);
+        }
+    }
+
+    // Helper used by the placeholder render() — creates a styled div with
+    // the given text content. Real renderers in Tasks 4-7 will replace this.
+    function _placeholder(host, text) {
+        if (!host) return;
+        while (host.firstChild) host.removeChild(host.firstChild);
+        var div = document.createElement('div');
+        div.className = 'text-meta';
+        div.textContent = text;
+        host.appendChild(div);
+    }
+
+    // Defensive lookup: returns all score rows for the given benchmark_id.
+    // Returns [] if App data is not yet loaded. Uses App's pre-built byBench
+    // index (O(1)) when available; falls back to full scan only at startup.
+    function _scoresFor(benchmarkId) {
+        if (!(window.App && App.data && App.data.scores)) return [];
+        if (App.getScoreIndex) {
+            var idx = App.getScoreIndex();
+            if (idx && idx.byBench) return idx.byBench[benchmarkId] || [];
+        }
+        var scores = App.data.scores;
+        if (!scores || !scores.length) return [];
+        var out = [];
+        for (var i = 0; i < scores.length; i++) {
+            var s = scores[i];
+            if (s && s.benchmark_id === benchmarkId) out.push(s);
+        }
+        return out;
+    }
+
+    // Returns the top-1 score row for benchmarkId. lowerBetter inverts the sort.
+    // Returns null if no scores match.
+    function _topModel(benchmarkId, lowerBetter) {
+        var rows = _scoresFor(benchmarkId);
+        if (!rows.length) return null;
+        rows.sort(function(a, b) {
+            var av = (a && typeof a.value === 'number') ? a.value : -Infinity;
+            var bv = (b && typeof b.value === 'number') ? b.value : -Infinity;
+            return lowerBetter ? (av - bv) : (bv - av);
+        });
+        return rows[0];
+    }
+
+    // Resolve a model id → display name; falls back to the id if unknown.
+    function _modelDisplayName(modelId) {
+        if (!modelId) return '';
+        if (window.App && App.data && App.data.models) {
+            var models = App.data.models;
+            if (Array.isArray(models)) {
+                for (var i = 0; i < models.length; i++) {
+                    var m = models[i];
+                    if (m && m.id === modelId) {
+                        if (m.name && String(m.name).length) return m.name;
+                        return modelId;
+                    }
+                }
+            } else if (typeof models === 'object') {
+                var hit = models[modelId];
+                if (hit && hit.name) return hit.name;
+            }
+        }
+        return modelId;
+    }
+
+    // Resolve a benchmark id → display name; falls back to the id if unknown.
+    function _benchmarkName(benchmarkId) {
+        if (!benchmarkId) return '';
+        if (window.App && App.data && App.data.benchmarks) {
+            var benchmarks = App.data.benchmarks;
+            if (Array.isArray(benchmarks)) {
+                for (var i = 0; i < benchmarks.length; i++) {
+                    var b = benchmarks[i];
+                    if (b && b.id === benchmarkId) {
+                        if (b.name && String(b.name).length) return b.name;
+                        return benchmarkId;
+                    }
+                }
+            } else if (typeof benchmarks === 'object') {
+                var hit = benchmarks[benchmarkId];
+                if (hit && hit.name) return hit.name;
+            }
+        }
+        return benchmarkId;
+    }
+
+    // Defensive HTML escape — kept available for future use even though the
+    // current renderers rely on textContent (which auto-escapes).
+    function _escape(s) {
+        return String(s == null ? '' : s)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    // Compute aggregate stats for a category card:
+    //   { benchCount, modelCount, totalScores, top3 }
+    // top3 is sorted descending by per-model best normalized score (0..100).
+    // Normalization is per-benchmark: value/maxV*100, or (1 - v/maxV)*100 when
+    // the benchmark id is in cat.lower_better. Benchmarks with maxV === 0 are
+    // skipped to avoid divide-by-zero.
+    function _categoryStats(cat) {
+        var lowerBetterSet = {};
+        if (cat && cat.lower_better && cat.lower_better.length) {
+            for (var i = 0; i < cat.lower_better.length; i++) {
+                lowerBetterSet[cat.lower_better[i]] = true;
+            }
+        }
+
+        var ids = (cat && cat.benchmarks) ? cat.benchmarks : [];
+        var modelSet = {};
+        var totalScores = 0;
+        var modelBest = {}; // model_id -> { model_id, norm, raw, bid }
+
+        for (var b = 0; b < ids.length; b++) {
+            var bid = ids[b];
+            var rows = _scoresFor(bid);
+            if (!rows.length) continue;
+
+            // Compute maxV across rows (numeric values only).
+            var maxV = 0;
+            for (var r = 0; r < rows.length; r++) {
+                var rv = rows[r];
+                if (rv && typeof rv.value === 'number' && rv.value > maxV) {
+                    maxV = rv.value;
+                }
+            }
+            if (maxV === 0) {
+                // Still count rows toward totals + model coverage even if
+                // we can't normalize (avoids divide-by-zero).
+                for (var c = 0; c < rows.length; c++) {
+                    var rc = rows[c];
+                    totalScores++;
+                    if (rc && rc.model_id) modelSet[rc.model_id] = true;
+                }
+                continue;
+            }
+
+            for (var k = 0; k < rows.length; k++) {
+                var row = rows[k];
+                totalScores++;
+                if (!row || row.model_id == null) continue;
+                modelSet[row.model_id] = true;
+                if (typeof row.value !== 'number') continue;
+
+                var norm;
+                if (lowerBetterSet[bid]) {
+                    norm = (1 - row.value / maxV) * 100;
+                } else {
+                    norm = (row.value / maxV) * 100;
+                }
+
+                var prev = modelBest[row.model_id];
+                if (!prev || norm > prev.norm) {
+                    modelBest[row.model_id] = {
+                        model_id: row.model_id,
+                        norm: norm,
+                        raw: row.value,
+                        bid: bid
+                    };
+                }
+            }
+        }
+
+        var modelCount = 0;
+        for (var mk in modelSet) {
+            if (Object.prototype.hasOwnProperty.call(modelSet, mk)) modelCount++;
+        }
+
+        var arr = [];
+        for (var mb in modelBest) {
+            if (Object.prototype.hasOwnProperty.call(modelBest, mb)) {
+                arr.push(modelBest[mb]);
+            }
+        }
+        arr.sort(function(a, b) { return b.norm - a.norm; });
+        var top3 = arr.slice(0, 3);
+
+        return {
+            benchCount: ids.length,
+            modelCount: modelCount,
+            totalScores: totalScores,
+            top3: top3
+        };
+    }
+
+    // Build a single category card element. The 10th category (utility_emphasis)
+    // spans the full row width via md:col-span-3.
+    function _renderCategoryCard(cat) {
+        var stats = _categoryStats(cat);
+
+        var card = document.createElement('div');
+        var cls = 'rounded border bg-gray-900 border-gray-800 hover:border-blue-600 p-4 cursor-pointer transition';
+        if (cat.utility_emphasis) {
+            cls = 'col-span-1 md:col-span-3 ' + cls;
+        }
+        card.className = cls;
+        card.dataset.cat = cat.key;
+        card.addEventListener('click', function() {
+            console.log('[Agent] category click:', this.dataset.cat);
+        });
+
+        // Heading row: icon + label + optional crossListed badge.
+        var head = document.createElement('div');
+        head.className = 'flex items-baseline gap-2 flex-wrap';
+
+        var iconEl = document.createElement('span');
+        iconEl.className = 'text-xl';
+        iconEl.textContent = cat.icon;
+        head.appendChild(iconEl);
+
+        var labelEl = document.createElement('span');
+        labelEl.className = 'text-base font-semibold text-gray-100';
+        labelEl.textContent = cat.label;
+        head.appendChild(labelEl);
+
+        if (cat.crossListed && cat.crossListed.length) {
+            var badge = document.createElement('span');
+            badge.className = 'text-xs text-amber-300 bg-amber-900/30 rounded px-1.5 py-0.5';
+            badge.textContent = 'Also in ' + cat.crossListed.join(' / ');
+            head.appendChild(badge);
+        }
+        card.appendChild(head);
+
+        // Metric row.
+        var metric = document.createElement('div');
+        metric.className = 'text-xs text-gray-400 mt-1';
+        metric.textContent = stats.benchCount + ' benchmarks · ' +
+            stats.modelCount + ' models · ' +
+            stats.totalScores + ' scores';
+        card.appendChild(metric);
+
+        // Optional lower-better microtext for safety category.
+        if (cat.lower_better && cat.lower_better.length) {
+            var lb = document.createElement('div');
+            lb.className = 'text-xs text-gray-500 mt-0.5';
+            lb.textContent = '↓ lower-better for ASR/jailbreak rows';
+            card.appendChild(lb);
+        }
+
+        // Top-3 list.
+        var ol = document.createElement('ol');
+        ol.className = 'mt-2 list-decimal pl-5 text-xs text-gray-300 space-y-0.5';
+
+        if (!stats.top3.length) {
+            var emptyLi = document.createElement('li');
+            emptyLi.className = 'text-gray-500';
+            emptyLi.textContent = 'No scores yet.';
+            ol.appendChild(emptyLi);
+        } else {
+            var top3 = stats.top3.slice(0, 3);
+            for (var t = 0; t < top3.length; t++) {
+                var entry = top3[t];
+                var li = document.createElement('li');
+
+                var mainSpan = document.createElement('span');
+                mainSpan.textContent = _modelDisplayName(entry.model_id);
+                li.appendChild(mainSpan);
+
+                var subSpan = document.createElement('span');
+                subSpan.className = 'text-gray-500 ml-1';
+                subSpan.textContent = String(entry.raw) + ' (' + _benchmarkName(entry.bid) + ')';
+                li.appendChild(subSpan);
+
+                ol.appendChild(li);
+            }
+        }
+        card.appendChild(ol);
+
+        return card;
+    }
+
+    // Renders the 10 category cards into #agent-categories.
+    function _renderCategories() {
+        var host = document.getElementById('agent-categories');
+        if (!host) return;
+        while (host.firstChild) host.removeChild(host.firstChild);
+
+        var heading = document.createElement('h2');
+        heading.className = 'text-lg font-semibold text-gray-200 mb-3 mt-6';
+        heading.textContent = 'Categories';
+        host.appendChild(heading);
+
+        var grid = document.createElement('div');
+        grid.className = 'grid grid-cols-1 md:grid-cols-3 gap-3';
+        host.appendChild(grid);
+
+        for (var i = 0; i < CATEGORIES.length; i++) {
+            grid.appendChild(_renderCategoryCard(CATEGORIES[i]));
+        }
+    }
+
+    // Renders the 4 SOTA Watch tiles into #agent-sota-watch.
+    // Each tile shows: icon+label (top), top model name, top score, benchmark name.
+    // Empty fallback (amber border) when a benchmark has 0 scores in the DB.
+    function _renderSOTAWatch() {
+        var host = document.getElementById('agent-sota-watch');
+        if (!host) return;
+        while (host.firstChild) host.removeChild(host.firstChild);
+
+        // Header row: 'SOTA Watch' title + 'Export PDF' button on the right.
+        // The button uses window.print(); a print-only stylesheet
+        // (dashboard/css/print.css) hides the rest of the dashboard so the
+        // browser's "Save as PDF" output contains only the Agent tab.
+        var headRow = document.createElement('div');
+        headRow.className = 'flex items-center justify-between mb-3 flex-wrap gap-2';
+
+        var heading = document.createElement('h2');
+        heading.className = 'text-section';
+        heading.textContent = 'SOTA Watch';
+        headRow.appendChild(heading);
+
+        var exportBtn = document.createElement('button');
+        exportBtn.id = 'agent-export-pdf-btn';
+        exportBtn.type = 'button';
+        exportBtn.className = 'no-print bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-blue-500 text-gray-100 text-xs px-3 py-2 rounded transition';
+        exportBtn.title = 'Print or save the Agent tab as a PDF (uses browser Print dialog)';
+        exportBtn.setAttribute('aria-label', 'Export Agent tab as PDF');
+        exportBtn.textContent = '🖨 Export PDF';
+        exportBtn.addEventListener('click', function() {
+            document.body.classList.add('print-agent');
+            try { window.print(); }
+            catch (e) { if (window.console) console.warn('[Agent] window.print() failed:', e); }
+            finally { document.body.classList.remove('print-agent'); }
+        });
+        headRow.appendChild(exportBtn);
+
+        host.appendChild(headRow);
+
+        var grid = document.createElement('div');
+        grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3';
+        host.appendChild(grid);
+
+        for (var i = 0; i < SOTA_WATCH.length; i++) {
+            var w = SOTA_WATCH[i];
+            var top = _topModel(w.benchmark, !!w.lower);
+            var benchName = _benchmarkName(w.benchmark);
+
+            if (!top) {
+                // Empty-state tile — graceful fallback, no JS error.
+                var emptyTile = document.createElement('div');
+                emptyTile.className = 'bg-gray-900 border border-amber-700 rounded p-4';
+
+                var emptyHead = document.createElement('div');
+                emptyHead.className = 'text-xs text-amber-300';
+                emptyHead.textContent = w.icon + ' ' + w.label;
+                emptyTile.appendChild(emptyHead);
+
+                var emptyDash = document.createElement('div');
+                emptyDash.className = 'text-2xl mt-2 text-gray-500';
+                emptyDash.textContent = '—';
+                emptyTile.appendChild(emptyDash);
+
+                var emptyMsg = document.createElement('div');
+                emptyMsg.className = 'text-xs text-gray-500 mt-1';
+                emptyMsg.textContent = 'No scores for ' + benchName;
+                emptyTile.appendChild(emptyMsg);
+
+                grid.appendChild(emptyTile);
+                continue;
+            }
+
+            var tile = document.createElement('div');
+            tile.className = 'bg-gray-900 border border-gray-800 rounded p-4 hover:border-blue-600 cursor-pointer transition';
+            tile.dataset.bench = w.benchmark;
+            tile.addEventListener('click', function() {
+                if (window.Modal && Modal.showBenchmark) {
+                    Modal.showBenchmark(this.dataset.bench);
+                }
+            });
+
+            var head = document.createElement('div');
+            head.className = 'text-xs text-gray-300';
+            head.textContent = w.icon + ' ' + w.label;
+            tile.appendChild(head);
+
+            var modelEl = document.createElement('div');
+            modelEl.className = 'text-base font-semibold mt-1 text-gray-100';
+            modelEl.textContent = _modelDisplayName(top.model_id);
+            tile.appendChild(modelEl);
+
+            var valueEl = document.createElement('div');
+            valueEl.className = 'text-2xl font-bold mt-1 text-blue-400';
+            valueEl.textContent = (typeof top.value === 'number' && !Number.isInteger(top.value)) ? top.value.toFixed(1) : top.value;  // 2026-10-03 — AA values carry 6 decimals
+            tile.appendChild(valueEl);
+
+            var benchEl = document.createElement('div');
+            benchEl.className = 'text-xs text-gray-500 mt-1';
+            benchEl.textContent = benchName;
+            tile.appendChild(benchEl);
+
+            grid.appendChild(tile);
+        }
+    }
+
+    // Classify a model id into one of three columns used by the Compare panel.
+    // Membership is checked against the curated AGENT_PRODUCTS / EDGE_SLMS
+    // arrays; everything else is treated as a frontier model.
+    function _modelClass(modelId) {
+        for (var i = 0; i < AGENT_PRODUCTS.length; i++) {
+            if (AGENT_PRODUCTS[i] === modelId) return 'agent-product';
+        }
+        for (var j = 0; j < EDGE_SLMS.length; j++) {
+            if (EDGE_SLMS[j] === modelId) return 'edge-slm';
+        }
+        return 'frontier';
+    }
+
+    // Returns the utility metrics object (size_gb, latency, cost, etc.) for a
+    // model id, or {} if none registered. UTILITY_METRICS is filled by Task 17.
+    function _utilityFor(modelId) {
+        return UTILITY_METRICS[modelId] || {};
+    }
+
+    // Build one column body for the Compare panel. Returns a table element
+    // with up to 10 rows, or a "No data" placeholder div when rows is empty.
+    function _renderCompareColumn(rows, klass, showSize) {
+        if (!rows || rows.length === 0) {
+            var empty = document.createElement('div');
+            empty.className = 'text-xs text-gray-500 italic';
+            empty.textContent = 'No data';
+            return empty;
+        }
+
+        var table = document.createElement('table');
+        table.className = 'w-full text-xs';
+
+        var thead = document.createElement('thead');
+        var theadRow = document.createElement('tr');
+        theadRow.className = 'text-gray-500';
+
+        var thRank = document.createElement('th');
+        thRank.className = 'text-left';
+        thRank.textContent = '#';
+        theadRow.appendChild(thRank);
+
+        var thModel = document.createElement('th');
+        thModel.className = 'text-left';
+        thModel.textContent = 'Model';
+        theadRow.appendChild(thModel);
+
+        var thScore = document.createElement('th');
+        thScore.className = 'text-right';
+        thScore.textContent = 'Score';
+        theadRow.appendChild(thScore);
+
+        if (showSize === true) {
+            var thSize = document.createElement('th');
+            thSize.className = 'text-right';
+            thSize.textContent = 'Size';
+            theadRow.appendChild(thSize);
+        }
+
+        thead.appendChild(theadRow);
+        table.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+        var top = rows.slice(0, 10);
+        for (var i = 0; i < top.length; i++) {
+            var r = top[i];
+            var tr = document.createElement('tr');
+            tr.className = 'border-t border-gray-800';
+
+            var tdRank = document.createElement('td');
+            tdRank.className = 'py-1';
+            tdRank.textContent = String(i + 1);
+            tr.appendChild(tdRank);
+
+            var tdModel = document.createElement('td');
+            tdModel.className = 'py-1';
+            var nameSpan = document.createElement('span');
+            nameSpan.textContent = _modelDisplayName(r.model_id);
+            tdModel.appendChild(nameSpan);
+            tr.appendChild(tdModel);
+
+            var tdScore = document.createElement('td');
+            tdScore.className = 'py-1 text-right text-gray-100';
+            tdScore.textContent = String(r.value);
+            tr.appendChild(tdScore);
+
+            if (showSize === true) {
+                var tdSize = document.createElement('td');
+                tdSize.className = 'py-1 text-right text-gray-400';
+                var sizeGb = _utilityFor(r.model_id).size_gb;
+                tdSize.textContent = sizeGb ? (sizeGb + ' GB') : '—';
+                tr.appendChild(tdSize);
+            }
+
+            tbody.appendChild(tr);
+        }
+        table.appendChild(tbody);
+
+        return table;
+    }
+
+    // Renders the 3-column compare panel for the selected benchmark.
+    // Defaults to the first entry of COMPARE_BENCHMARKS when called with no arg.
+    function _renderCompare(benchmarkId) {
+        var host = document.getElementById('agent-compare');
+        if (!host) return;
+        while (host.firstChild) host.removeChild(host.firstChild);
+
+        var bid = benchmarkId || COMPARE_BENCHMARKS[0].id;
+
+        var rows = _scoresFor(bid);
+        var frontier = [], product = [], edge = [];
+        for (var i = 0; i < rows.length; i++) {
+            var k = _modelClass(rows[i].model_id);
+            if (k === 'agent-product') product.push(rows[i]);
+            else if (k === 'edge-slm') edge.push(rows[i]);
+            else frontier.push(rows[i]);
+        }
+        var sortDesc = function(a, b) { return b.value - a.value; };
+        frontier.sort(sortDesc);
+        product.sort(sortDesc);
+        edge.sort(sortDesc);
+
+        // Heading
+        var h = document.createElement('h2');
+        h.className = 'text-lg font-semibold text-gray-200 mb-3 mt-6';
+        h.textContent = 'Frontier vs Agent-Product vs On-device/Edge';
+        host.appendChild(h);
+
+        // Dropdown wrapper
+        var ctrlWrap = document.createElement('div');
+        ctrlWrap.className = 'mb-3 text-xs text-gray-300';
+        ctrlWrap.appendChild(document.createTextNode('Benchmark: '));
+        var sel = document.createElement('select');
+        sel.id = 'agent-compare-bench';
+        sel.className = 'bg-gray-900 border border-gray-700 rounded px-2 py-1 text-gray-200 text-xs';
+        for (var c = 0; c < COMPARE_BENCHMARKS.length; c++) {
+            var opt = document.createElement('option');
+            opt.value = COMPARE_BENCHMARKS[c].id;
+            opt.textContent = COMPARE_BENCHMARKS[c].label;
+            if (COMPARE_BENCHMARKS[c].id === bid) opt.selected = true;
+            sel.appendChild(opt);
+        }
+        sel.addEventListener('change', function(e) {
+            _renderCompare(e.target.value);
+        });
+        ctrlWrap.appendChild(sel);
+        host.appendChild(ctrlWrap);
+
+        // Grid container
+        var grid = document.createElement('div');
+        grid.className = 'grid grid-cols-1 md:grid-cols-3 gap-3';
+        host.appendChild(grid);
+
+        // Three columns
+        var columns = [
+            { rows: frontier, heading: 'Frontier (general-purpose)', klass: 'frontier',      showSize: false },
+            { rows: product,  heading: 'Agent products',             klass: 'agent-product', showSize: false },
+            { rows: edge,     heading: 'On-device / Edge',           klass: 'edge-slm',      showSize: true }
+        ];
+        for (var col = 0; col < columns.length; col++) {
+            var box = document.createElement('div');
+            box.className = 'rounded border bg-gray-900 border-gray-800 p-3';
+            var subhead = document.createElement('div');
+            subhead.className = 'text-xs font-semibold text-gray-200 mb-2';
+            subhead.textContent = columns[col].heading;
+            box.appendChild(subhead);
+            box.appendChild(_renderCompareColumn(columns[col].rows, columns[col].klass, columns[col].showSize));
+            grid.appendChild(box);
+        }
+    }
+
+    function _allLowerBetterSet() {
+        var s = {};
+        for (var i = 0; i < CATEGORIES.length; i++) {
+            var lb = CATEGORIES[i].lower_better;
+            if (!lb) continue;
+            for (var j = 0; j < lb.length; j++) s[lb[j]] = true;
+        }
+        return s;
+    }
+
+    function _benchmarkMaxes(benchIds) {
+        var maxes = {};
+        for (var i = 0; i < benchIds.length; i++) {
+            var rows = _scoresFor(benchIds[i]);
+            var m = 0;
+            for (var j = 0; j < rows.length; j++) {
+                if (rows[j].value > m) m = rows[j].value;
+            }
+            maxes[benchIds[i]] = m;
+        }
+        return maxes;
+    }
+
+    function _compositeScores() {
+        var ids = _allAgentBenchmarks();
+        var lowerSet = _allLowerBetterSet();
+        var maxes = _benchmarkMaxes(ids);
+        var byModel = {}; // model_id -> { sum, count }
+        for (var i = 0; i < ids.length; i++) {
+            var rows = _scoresFor(ids[i]);
+            var maxV = maxes[ids[i]];
+            if (!maxV) continue;
+            var lower = !!lowerSet[ids[i]];
+            for (var j = 0; j < rows.length; j++) {
+                var v = rows[j].value;
+                var norm = lower ? (1 - v / maxV) * 100 : (v / maxV) * 100;
+                var mid = rows[j].model_id;
+                if (!byModel[mid]) byModel[mid] = { sum: 0, count: 0 };
+                byModel[mid].sum += norm;
+                byModel[mid].count++;
+            }
+        }
+        var arr = [];
+        for (var mid in byModel) {
+            if (!Object.prototype.hasOwnProperty.call(byModel, mid)) continue;
+            if (byModel[mid].count < 3) continue;
+            arr.push({
+                model_id: mid,
+                agent_score: byModel[mid].sum / byModel[mid].count,
+                coverage: byModel[mid].count
+            });
+        }
+        arr.sort(function(a, b) {
+            if (b.agent_score !== a.agent_score) return b.agent_score - a.agent_score;
+            return b.coverage - a.coverage;
+        });
+        return { rows: arr, totalBenchmarks: ids.length };
+    }
+
+    function _vendorOf(modelId) {
+        if (!window.App || !App.data || !App.data.models) return '';
+        for (var i = 0; i < App.data.models.length; i++) {
+            if (App.data.models[i].id === modelId) return App.data.models[i].vendor || '';
+        }
+        return '';
+    }
+
+    function _classLabel(klass) {
+        if (klass === 'agent-product') return 'Agent-Product';
+        if (klass === 'edge-slm') return 'Edge-SLM';
+        return 'Frontier';
+    }
+
+    function _renderLeaderboard() {
+        var host = document.getElementById('agent-leaderboard');
+        if (!host) return;
+        while (host.firstChild) host.removeChild(host.firstChild);
+
+        var data = _compositeScores();
+        var rows = data.rows.slice(0, 25);
+
+        var heading = document.createElement('h2');
+        heading.className = 'text-lg font-semibold text-gray-200 mb-3 mt-6';
+        heading.textContent = 'Composite Agent Score (Top 25)';
+        host.appendChild(heading);
+
+        var disc = document.createElement('div');
+        disc.className = 'text-xs text-gray-400 mb-2';
+        disc.textContent = 'Coverage threshold: ≥ 3 agentic benchmarks. Total tracked: ' + data.totalBenchmarks +
+                           '. Safety ASR / jailbreak rows inverted (lower-better).';
+        host.appendChild(disc);
+
+        var tableWrap = document.createElement('div');
+        tableWrap.className = 'overflow-x-auto rounded border border-gray-800';
+        host.appendChild(tableWrap);
+
+        var table = document.createElement('table');
+        table.className = 'w-full text-xs';
+        tableWrap.appendChild(table);
+
+        var thead = document.createElement('thead');
+        table.appendChild(thead);
+        var trh = document.createElement('tr');
+        trh.className = 'text-gray-500 bg-gray-900/50';
+        thead.appendChild(trh);
+        var headers = [
+            { text: 'Rank', cls: 'text-left px-2 py-1' },
+            { text: 'Model', cls: 'text-left px-2 py-1' },
+            { text: 'Vendor', cls: 'text-left px-2 py-1' },
+            { text: 'Class', cls: 'text-left px-2 py-1' },
+            { text: 'Agent Score', cls: 'text-right px-2 py-1' },
+            { text: 'Coverage', cls: 'text-right px-2 py-1' }
+        ];
+        for (var h = 0; h < headers.length; h++) {
+            var th = document.createElement('th');
+            th.className = headers[h].cls;
+            th.textContent = headers[h].text;
+            trh.appendChild(th);
+        }
+
+        var tbody = document.createElement('tbody');
+        table.appendChild(tbody);
+
+        for (var i = 0; i < rows.length; i++) {
+            var r = rows[i];
+            var klass = _modelClass(r.model_id);
+            var tr = document.createElement('tr');
+            tr.className = 'border-t border-gray-800 hover:bg-gray-900/40 cursor-pointer';
+            tr.dataset.model = r.model_id;
+            tr.addEventListener('click', function() {
+                if (window.Modal && Modal.showModel) Modal.showModel(this.dataset.model);
+            });
+
+            var cells = [
+                { text: String(i + 1), cls: 'px-2 py-1 text-gray-400' },
+                { text: _modelDisplayName(r.model_id), cls: 'px-2 py-1 text-gray-100' },
+                { text: _vendorOf(r.model_id), cls: 'px-2 py-1 text-gray-300' },
+                { text: _classLabel(klass), cls: 'px-2 py-1 text-gray-300' },
+                { text: r.agent_score.toFixed(1), cls: 'px-2 py-1 text-right text-blue-400 font-semibold' },
+                { text: r.coverage + '/' + data.totalBenchmarks, cls: 'px-2 py-1 text-right text-gray-400' }
+            ];
+            for (var c = 0; c < cells.length; c++) {
+                var td = document.createElement('td');
+                td.className = cells[c].cls;
+                td.textContent = cells[c].text;
+                tr.appendChild(td);
+            }
+            tbody.appendChild(tr);
+        }
+
+        if (!rows.length) {
+            var empty = document.createElement('div');
+            empty.className = 'text-xs text-gray-500 italic p-2';
+            empty.textContent = 'No models meet the coverage threshold yet.';
+            host.appendChild(empty);
+        }
+    }
+
+    // Lazy-load edge model utility metrics (size_gb, ttft_ms, etc.) before rendering.
+    // The fetch path mirrors how App.loadData resolves base — the dashboard symlinks
+    // /data → ../data/export, so 'data/edge_models_utility.json' resolves correctly
+    // when served from /dashboard/.
+    function _loadUtility(cb) {
+        if (Object.keys(UTILITY_METRICS).length) { cb(); return; }
+        var base = (window.location.pathname.indexOf('/dashboard/') !== -1) ? '../data' : 'data';
+        fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/edge_models_utility.json') : base + '/edge_models_utility.json')
+            .then(function(r) { return r.ok ? r.json() : null; })
+            .then(function(d) {
+                UTILITY_METRICS = (d && d.models) || {};
+                cb();
+            })
+            .catch(function() { cb(); }); // Fail-open: leave UTILITY_METRICS empty
+    }
+
+    function render() {
+        _loadUtility(function() {
+            _bootValidate();
+            _renderSOTAWatch();
+            _renderCategories();
+            _renderCompare();
+            // 8 graphical widgets — each renders independently, one failure
+            // doesn't break the others. See dashboard/js/agent-charts.js.
+            if (window.AgentCharts && AgentCharts.renderAll) {
+                try { AgentCharts.renderAll(); }
+                catch (e) { if (window.console) console.warn('[Agent] charts render failed:', e); }
+            }
+            _renderLeaderboard();
+            // Widget 7 — fingerprint mini-radars hooked into leaderboard rows
+            // after they've been rendered.
+            if (window.AgentCharts && AgentCharts.renderFingerprintsInLeaderboard) {
+                try { AgentCharts.renderFingerprintsInLeaderboard(); }
+                catch (e) { if (window.console) console.warn('[Agent] fingerprint hook failed:', e); }
+            }
+        });
+    }
+
+    return {
+        render: render,
+        _CATEGORIES: CATEGORIES,
+        _SOTA_WATCH: SOTA_WATCH,
+        _AGENT_PRODUCTS: AGENT_PRODUCTS,
+        _EDGE_SLMS: EDGE_SLMS,
+        _allAgentBenchmarks: _allAgentBenchmarks
+    };
+})();
