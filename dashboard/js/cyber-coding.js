@@ -763,6 +763,7 @@ var CyberCoding = {
         'alibaba/qwen3.6-35b-a3b',
         'deepseek/deepseek-v4-pro-0813',  // 2026-08-13 S242 — SWE-Verified 73.6, SWE-Multilingual 69.8, LiveCodeBench-COT 56.8
         'deepseek/deepseek-v4.1-flash',  // 2026-09-10 S278 — 552B CED MoE 8B/16B active; TB2.1 90.6, DeepSWE 74.2, CyberGym 88.1, Codeforces 3471
+        'deepseek/deepseek-v4.1-flash-1017',  // 2026-10-17 S310 — V4.1-Flash minor update (deepseek-flash); TB4.0 42.3, DeepSWE 77.0, ProgramBench 29.1, HLE 42.6
         'deepseek/deepseek-v4-pro-max',
         'deepseek/deepseek-v4-flash-0731',  // 2026-08-01 S220 — official 0731 release (AA Intelligence Index 50, Cybergym 76.7, DeepSWE 54.4)
         // 2026-08-01 S223 — arxiv 6-mo batch net-new coding/cyber models

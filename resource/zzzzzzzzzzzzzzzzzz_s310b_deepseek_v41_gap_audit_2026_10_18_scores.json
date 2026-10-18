@@ -1,0 +1,258 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-18",
+  "session": "S310b",
+  "sources": [
+   "resource/deepseek_v4.1_tech_report_2026-09.pdf",
+   "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+   "https://artificialanalysis.ai/models/deepseek-v4-1-flash-non-reasoning"
+  ],
+  "note": "Gap audit of the S310 link set. Added: tech report Appendix Table 5 (Claude Code v2.1.105/238/259 + 4-version average, 8 rows); AA Max object cost per Intelligence Index task and output tokens per task (2 rows the DB lacked); AA re-read refreshes for drifting speed / Elo fields (Max 6, Non-reasoning 7). Checked complete: Table 1/3/4, Figure 1(a) (= Table 3 subset), Figure 1(b) (DeepSeek-V1 389,120 B/token has no model entity — not added), AA capability indices (6 domains), MMMU-Pro, FrontierCode, Openness, Analyst Agent. HF config.json of 1017 is byte-identical to V4.1-Flash. sference 1017 measurements (AIME 2024 10-problem / MATH-500 10-problem / BFCL 20-task subsets, 3 runs) are non-standard subsets — recorded as a reference source, not scores."
+ },
+ "models": [],
+ "benchmarks": [
+  {
+   "id": "deepswe_1_1_claude_code_v2_1_105",
+   "name": "DeepSWE v1.1 — Claude Code v2.1.105 harness",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 run inside the Claude Code scaffold (Claude Code v2.1.105; Claude Agent SDK with the version's native tool interface), Max reasoning effort. Source: DeepSeek-V4.1-Flash tech report Appendix Table 5 (scaffold-version sensitivity). The v2.1.251 run is on deepswe_1_1_claude_code."
+  },
+  {
+   "id": "deepswe_1_1_claude_code_v2_1_238",
+   "name": "DeepSWE v1.1 — Claude Code v2.1.238 harness",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 run inside the Claude Code scaffold (Claude Code v2.1.238; Claude Agent SDK with the version's native tool interface), Max reasoning effort. Source: DeepSeek-V4.1-Flash tech report Appendix Table 5 (scaffold-version sensitivity). The v2.1.251 run is on deepswe_1_1_claude_code."
+  },
+  {
+   "id": "deepswe_1_1_claude_code_v2_1_259",
+   "name": "DeepSWE v1.1 — Claude Code v2.1.259 harness",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 run inside the Claude Code scaffold (Claude Code v2.1.259; Claude Agent SDK with the version's native tool interface), Max reasoning effort. Source: DeepSeek-V4.1-Flash tech report Appendix Table 5 (scaffold-version sensitivity). The v2.1.251 run is on deepswe_1_1_claude_code."
+  },
+  {
+   "id": "deepswe_1_1_claude_code_avg4",
+   "name": "DeepSWE v1.1 — average of Claude Code v2.1.105 / v2.1.238 / v2.1.251 / v2.1.259 harness",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "DeepSWE v1.1 run inside the Claude Code scaffold (average of Claude Code v2.1.105 / v2.1.238 / v2.1.251 / v2.1.259; Claude Agent SDK with the version's native tool interface), Max reasoning effort. Source: DeepSeek-V4.1-Flash tech report Appendix Table 5 (scaffold-version sensitivity). The v2.1.251 run is on deepswe_1_1_claude_code."
+  },
+  {
+   "id": "terminal_bench_2_1_claude_code_v2_1_105",
+   "name": "Terminal-Bench 2.1 — Claude Code v2.1.105 harness",
+   "category": "coding",
+   "metric": "pass@1",
+   "description": "Terminal-Bench 2.1 run inside the Claude Code scaffold (Claude Code v2.1.105; Claude Agent SDK with the version's native tool interface), Max reasoning effort. Source: DeepSeek-V4.1-Flash tech report Appendix Table 5 (scaffold-version sensitivity). The v2.1.251 run is on terminal_bench_2_1_claude_code."
+  },
+  {
+   "id": "terminal_bench_2_1_claude_code_v2_1_238",
+   "name": "Terminal-Bench 2.1 — Claude Code v2.1.238 harness",
+   "category": "coding",
+   "metric": "pass@1",
+   "description": "Terminal-Bench 2.1 run inside the Claude Code scaffold (Claude Code v2.1.238; Claude Agent SDK with the version's native tool interface), Max reasoning effort. Source: DeepSeek-V4.1-Flash tech report Appendix Table 5 (scaffold-version sensitivity). The v2.1.251 run is on terminal_bench_2_1_claude_code."
+  },
+  {
+   "id": "terminal_bench_2_1_claude_code_v2_1_259",
+   "name": "Terminal-Bench 2.1 — Claude Code v2.1.259 harness",
+   "category": "coding",
+   "metric": "pass@1",
+   "description": "Terminal-Bench 2.1 run inside the Claude Code scaffold (Claude Code v2.1.259; Claude Agent SDK with the version's native tool interface), Max reasoning effort. Source: DeepSeek-V4.1-Flash tech report Appendix Table 5 (scaffold-version sensitivity). The v2.1.251 run is on terminal_bench_2_1_claude_code."
+  },
+  {
+   "id": "terminal_bench_2_1_claude_code_avg4",
+   "name": "Terminal-Bench 2.1 — average of Claude Code v2.1.105 / v2.1.238 / v2.1.251 / v2.1.259 harness",
+   "category": "coding",
+   "metric": "pass@1",
+   "description": "Terminal-Bench 2.1 run inside the Claude Code scaffold (average of Claude Code v2.1.105 / v2.1.238 / v2.1.251 / v2.1.259; Claude Agent SDK with the version's native tool interface), Max reasoning effort. Source: DeepSeek-V4.1-Flash tech report Appendix Table 5 (scaffold-version sensitivity). The v2.1.251 run is on terminal_bench_2_1_claude_code."
+  }
+ ],
+ "scores": [
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_claude_code_v2_1_105",
+   "score": 68.4,
+   "unit": "%",
+   "_source": "resource/deepseek_v4.1_tech_report_2026-09.pdf",
+   "_note": "DeepSeek-V4.1-Flash tech report Appendix Table 5 'Performance across Claude Code versions at Max reasoning effort' (pdftotext line: DeepSWE v1.1 68.4 68.7 69.8 68.6 68.9 / Terminal-Bench v2.1 87.3 88.4 88.0 87.6 87.8; columns v2.1.105 v2.1.238 v2.1.251 v2.1.259 Average). Average computed by DeepSeek from unrounded Pass@1. N=8 (DeepSWE) / N=3 (TB2.1), 1M context, max_steps 500."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_claude_code_v2_1_238",
+   "score": 68.7,
+   "unit": "%",
+   "_source": "resource/deepseek_v4.1_tech_report_2026-09.pdf",
+   "_note": "DeepSeek-V4.1-Flash tech report Appendix Table 5 'Performance across Claude Code versions at Max reasoning effort' (pdftotext line: DeepSWE v1.1 68.4 68.7 69.8 68.6 68.9 / Terminal-Bench v2.1 87.3 88.4 88.0 87.6 87.8; columns v2.1.105 v2.1.238 v2.1.251 v2.1.259 Average). Average computed by DeepSeek from unrounded Pass@1. N=8 (DeepSWE) / N=3 (TB2.1), 1M context, max_steps 500."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_claude_code_v2_1_259",
+   "score": 68.6,
+   "unit": "%",
+   "_source": "resource/deepseek_v4.1_tech_report_2026-09.pdf",
+   "_note": "DeepSeek-V4.1-Flash tech report Appendix Table 5 'Performance across Claude Code versions at Max reasoning effort' (pdftotext line: DeepSWE v1.1 68.4 68.7 69.8 68.6 68.9 / Terminal-Bench v2.1 87.3 88.4 88.0 87.6 87.8; columns v2.1.105 v2.1.238 v2.1.251 v2.1.259 Average). Average computed by DeepSeek from unrounded Pass@1. N=8 (DeepSWE) / N=3 (TB2.1), 1M context, max_steps 500."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "deepswe_1_1_claude_code_avg4",
+   "score": 68.9,
+   "unit": "%",
+   "_source": "resource/deepseek_v4.1_tech_report_2026-09.pdf",
+   "_note": "DeepSeek-V4.1-Flash tech report Appendix Table 5 'Performance across Claude Code versions at Max reasoning effort' (pdftotext line: DeepSWE v1.1 68.4 68.7 69.8 68.6 68.9 / Terminal-Bench v2.1 87.3 88.4 88.0 87.6 87.8; columns v2.1.105 v2.1.238 v2.1.251 v2.1.259 Average). Average computed by DeepSeek from unrounded Pass@1. N=8 (DeepSWE) / N=3 (TB2.1), 1M context, max_steps 500."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_claude_code_v2_1_105",
+   "score": 87.3,
+   "unit": "%",
+   "_source": "resource/deepseek_v4.1_tech_report_2026-09.pdf",
+   "_note": "DeepSeek-V4.1-Flash tech report Appendix Table 5 'Performance across Claude Code versions at Max reasoning effort' (pdftotext line: DeepSWE v1.1 68.4 68.7 69.8 68.6 68.9 / Terminal-Bench v2.1 87.3 88.4 88.0 87.6 87.8; columns v2.1.105 v2.1.238 v2.1.251 v2.1.259 Average). Average computed by DeepSeek from unrounded Pass@1. N=8 (DeepSWE) / N=3 (TB2.1), 1M context, max_steps 500."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_claude_code_v2_1_238",
+   "score": 88.4,
+   "unit": "%",
+   "_source": "resource/deepseek_v4.1_tech_report_2026-09.pdf",
+   "_note": "DeepSeek-V4.1-Flash tech report Appendix Table 5 'Performance across Claude Code versions at Max reasoning effort' (pdftotext line: DeepSWE v1.1 68.4 68.7 69.8 68.6 68.9 / Terminal-Bench v2.1 87.3 88.4 88.0 87.6 87.8; columns v2.1.105 v2.1.238 v2.1.251 v2.1.259 Average). Average computed by DeepSeek from unrounded Pass@1. N=8 (DeepSWE) / N=3 (TB2.1), 1M context, max_steps 500."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_claude_code_v2_1_259",
+   "score": 87.6,
+   "unit": "%",
+   "_source": "resource/deepseek_v4.1_tech_report_2026-09.pdf",
+   "_note": "DeepSeek-V4.1-Flash tech report Appendix Table 5 'Performance across Claude Code versions at Max reasoning effort' (pdftotext line: DeepSWE v1.1 68.4 68.7 69.8 68.6 68.9 / Terminal-Bench v2.1 87.3 88.4 88.0 87.6 87.8; columns v2.1.105 v2.1.238 v2.1.251 v2.1.259 Average). Average computed by DeepSeek from unrounded Pass@1. N=8 (DeepSWE) / N=3 (TB2.1), 1M context, max_steps 500."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "terminal_bench_2_1_claude_code_avg4",
+   "score": 87.8,
+   "unit": "%",
+   "_source": "resource/deepseek_v4.1_tech_report_2026-09.pdf",
+   "_note": "DeepSeek-V4.1-Flash tech report Appendix Table 5 'Performance across Claude Code versions at Max reasoning effort' (pdftotext line: DeepSWE v1.1 68.4 68.7 69.8 68.6 68.9 / Terminal-Bench v2.1 87.3 88.4 88.0 87.6 87.8; columns v2.1.105 v2.1.238 v2.1.251 v2.1.259 Average). Average computed by DeepSeek from unrounded Pass@1. N=8 (DeepSWE) / N=3 (TB2.1), 1M context, max_steps 500."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 361.815066,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Max)', field intelligenceIndexTimePerTask; re-read 2026-10-18 (previous DB value 304.1 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.265225,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Max)' (id dbe7c625… for Max), field intelligenceIndexCostPerTask.cost.total; read 2026-10-18. Row the DB lacked (September checkpoint — AA has no 1017 row; /models/deepseek-v4-1-flash-1017 is a 404)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 88573.998495,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Max)' (id dbe7c625… for Max), field intelligenceIndexOutputTokensPerTask.output; read 2026-10-18. Row the DB lacked (September checkpoint — AA has no 1017 row; /models/deepseek-v4-1-flash-1017 is a 404)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_output_tps",
+   "score": 175.852559,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Max)', field timescaleData.medianOutputSpeed; re-read 2026-10-18 (previous DB value 210.5 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 12.607536,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Max)', field timeToFirstAnswerToken.total; re-read 2026-10-18 (previous DB value 10.45 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1420.2,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Max)', field briefcaseBreakdown.overall.elo; re-read 2026-10-18 (previous DB value 1432 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1621.41,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Max)', field briefcaseBreakdown.analyticalQuality.elo; re-read 2026-10-18 (previous DB value 1653 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1332.46,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Max)', field briefcaseBreakdown.presentation.elo; re-read 2026-10-18 (previous DB value 1338 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-non-reasoning",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1341.23,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-non-reasoning",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Non-reasoning)', field gdpval; re-read 2026-10-18 (previous DB value 1328 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-non-reasoning",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 42.0615,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-non-reasoning",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Non-reasoning)', field gdpvalNormalized; re-read 2026-10-18 (previous DB value 41.38 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-non-reasoning",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 209.044528,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-non-reasoning",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Non-reasoning)', field intelligenceIndexTimePerTask; re-read 2026-10-18 (previous DB value 162.8 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-non-reasoning",
+   "benchmark": "aa_output_tps",
+   "score": 162.818856,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-non-reasoning",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Non-reasoning)', field timescaleData.medianOutputSpeed; re-read 2026-10-18 (previous DB value 207.3 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-non-reasoning",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 1.268833,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-non-reasoning",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Non-reasoning)', field timeToFirstAnswerToken.total; re-read 2026-10-18 (previous DB value 1.114 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-non-reasoning",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1014.65,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-non-reasoning",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Non-reasoning)', field briefcaseBreakdown.analyticalQuality.elo; re-read 2026-10-18 (previous DB value 1021 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-non-reasoning",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1229.57,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-non-reasoning",
+   "_note": "AA model page RSC object 'DeepSeek V4.1 Flash (Non-reasoning)', field briefcaseBreakdown.presentation.elo; re-read 2026-10-18 (previous DB value 1225 from an earlier AA read — live speed metrics and Elo ratings drift as AA re-measures / the comparison pool grows). Same source, newer snapshot."
+  }
+ ]
+}
