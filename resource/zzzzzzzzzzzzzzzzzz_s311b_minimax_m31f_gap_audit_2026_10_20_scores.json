@@ -1,0 +1,1000 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-20",
+  "session": "S311b",
+  "sources": [
+   "https://artificialanalysis.ai/models/minimax-m3-1-flash"
+  ],
+  "note": "Gap audit of S311. The AA M3.1-Flash page payload holds 706 model objects: value-matched the 77 released since 2026-09-01 against aa_intelligence_index_v4_3. New: DeepSeek V4.1 Flash 1017 (Max) now evaluated by AA (II 45.1); Reflection Beam 1.0, NVIDIA Nemotron 3.5 Bolt 74B-A9B and Nemotron 3.5 Super VL not in the DB at all. Remaining mismatches are AA re-score drift < 1 pt (GPT-6 Sol/Luna family, Sonnet 5.5 family, Muse Spark Open) — not refreshed. Not stored (no established ids): per-evaluation cost/tokens/time (intelligenceIndexEvaluations), speed by prompt type, speed percentiles. 1017 ids skipped because a vendor/other row exists: hle."
+ },
+ "models": [
+  {
+   "id": "reflection/beam-1.0",
+   "vendor": "Reflection AI",
+   "name": "Beam 1.0",
+   "type": "open-weight",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2026-10-16",
+   "context_window": 1048576,
+   "parameters": "501B total / 23B active (Artificial Analysis; license Apache 2.0)",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "vendor": "NVIDIA",
+   "name": "Nemotron 3.5 Bolt 74B-A9B",
+   "type": "open-weight",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-10-15",
+   "context_window": 262144,
+   "parameters": "74B total / 9B active (Artificial Analysis; license OpenMDW-1.1)",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "nvidia/nemotron-3.5-super-vl",
+   "vendor": "NVIDIA",
+   "name": "Nemotron 3.5 Super VL",
+   "type": "open-weight",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-10-15",
+   "context_window": 1000000,
+   "parameters": "120B total / 12B active (Artificial Analysis; license OpenMDW-1.1)",
+   "knowledge_cutoff": null
+  }
+ ],
+ "benchmarks": [],
+ "scores": [
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 30.333443,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndex; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_omniscience_index",
+   "score": 1.5,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscience; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_omniscience_acc",
+   "score": 33.066667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscienceAccuracy; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 52.838645,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscienceHallucinationRate; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "gdp_pdf",
+   "score": 11.6,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpPdfAllPass; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1177.08,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpval; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 33.854,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpvalNormalized; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 3.030303,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field terminalBench40; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "scicode",
+   "score": 48.49537,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field scicode; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_lcr",
+   "score": 78.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field lcr; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "hle",
+   "score": 34.661724,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field hle; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "critpt",
+   "score": 13.142857,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field critpt; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "automationbench_aa",
+   "score": 48.457865,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field automationBenchPartialScore; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 61.973757,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndexTimePerTask; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.4305,
+   "unit": "usd_per_m_tokens_lower_better",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field price1mBlended7To2To1; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.565716,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndexCostPerTask.cost.total; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 26315.037081,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndexOutputTokensPerTask.output; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_output_tps",
+   "score": 324.013581,
+   "unit": "tps",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field timescaleData.medianOutputSpeed; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 6.991006,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field timeToFirstAnswerToken.total; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 976.2,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.overall.elo; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 983.09,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.analyticalQuality.elo; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 856.32,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.presentation.elo; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 31.414141,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.rubricPassRate; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 32.726881,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.financeAndAccounting; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 34.913995,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.strategyAndOps; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 34.654566,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.legal; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 31.044033,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.engineering; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 40.037603,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.economics; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_ttft_sec",
+   "score": 0.818425,
+   "unit": "seconds_lower_better",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field timescaleData.medianTimeToFirstChunk; read 2026-10-20. New model first seen in this payload (reasoning; AA size class large)."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.7,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field price1mInputTokens; read 2026-10-20. AA-listed first-party price."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 2.1,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/reflection-beam",
+   "_note": "Artificial Analysis RSC object 'Beam 1.0' (id 69468cce…, slug reflection-beam) as embedded in the MiniMax-M3.1-Flash model page payload, field price1mOutputTokens; read 2026-10-20. AA-listed first-party price."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 21.407205,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndex; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_omniscience_index",
+   "score": -19.166667,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscience; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_omniscience_acc",
+   "score": 17.083333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscienceAccuracy; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 56.281407,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscienceHallucinationRate; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "gdp_pdf",
+   "score": 2.8,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpPdfAllPass; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 979.03,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpval; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 23.9515,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpvalNormalized; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field terminalBench40; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "scicode",
+   "score": 39.699074,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field scicode; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_lcr",
+   "score": 69.666667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field lcr; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "hle",
+   "score": 24.652456,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field hle; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "critpt",
+   "score": 4.285714,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field critpt; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "automationbench_aa",
+   "score": 15.460881,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field automationBenchPartialScore; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 82162.350421,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndexOutputTokensPerTask.output; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 911.94,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.overall.elo; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 944.41,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.analyticalQuality.elo; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 825.4,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.presentation.elo; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 24.343434,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.rubricPassRate; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 22.11974,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.financeAndAccounting; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 19.381177,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.strategyAndOps; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 23.151456,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.legal; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 24.878076,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.engineering; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-bolt-74b-a9b",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 32.047755,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-bolt-74b-a9b",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Bolt 74B-A9B' (id 7d2aa050…, slug nemotron-3-5-bolt-74b-a9b) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.economics; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 26.491066,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndex; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_omniscience_index",
+   "score": -4.216667,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscience; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_omniscience_acc",
+   "score": 23.283333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscienceAccuracy; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 64.153813,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscienceHallucinationRate; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "gdp_pdf",
+   "score": 8.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpPdfAllPass; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1162.41,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpval; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 33.1205,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpvalNormalized; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field terminalBench40; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "scicode",
+   "score": 47.800926,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field scicode; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_lcr",
+   "score": 69.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field lcr; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "hle",
+   "score": 30.722892,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field hle; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "critpt",
+   "score": 10.571429,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field critpt; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "automationbench_aa",
+   "score": 14.818346,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field automationBenchPartialScore; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 97.190018,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndexTimePerTask; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.1375,
+   "unit": "usd_per_m_tokens_lower_better",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field price1mBlended7To2To1; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.188237,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndexCostPerTask.cost.total; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 49173.832946,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndexOutputTokensPerTask.output; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_output_tps",
+   "score": 436.42664,
+   "unit": "tps",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field timescaleData.medianOutputSpeed; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 5.372578,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field timeToFirstAnswerToken.total; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 998.76,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.overall.elo; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 996.67,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.analyticalQuality.elo; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 997.76,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.presentation.elo; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 26.868687,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.rubricPassRate; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 27.18987,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.financeAndAccounting; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 22.565367,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.strategyAndOps; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 28.113411,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.legal; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 30.114348,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.engineering; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 38.472637,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.economics; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_ttft_sec",
+   "score": 0.789906,
+   "unit": "seconds_lower_better",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field timescaleData.medianTimeToFirstChunk; read 2026-10-20. New model first seen in this payload (reasoning; AA size class medium)."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.225,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field price1mInputTokens; read 2026-10-20. AA-listed first-party price."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.575,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+   "_note": "Artificial Analysis RSC object 'Nemotron 3.5 Super VL' (id e2c0623e…, slug nemotron-3-5-super-vl) as embedded in the MiniMax-M3.1-Flash model page payload, field price1mOutputTokens; read 2026-10-20. AA-listed first-party price."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 45.096505,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndex; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_omniscience_index",
+   "score": 4.7,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscience; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_omniscience_acc",
+   "score": 42.85,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscienceAccuracy; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 33.245844,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscienceHallucinationRate; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "gdp_pdf",
+   "score": 17.2,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpPdfAllPass; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1745.77,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpval; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 62.2885,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field gdpvalNormalized; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 33.838384,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field terminalBench40; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "scicode",
+   "score": 55.902778,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field scicode; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_lcr",
+   "score": 82.666667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field lcr; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "critpt",
+   "score": 24.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field critpt; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "mmmu_pro",
+   "score": 80.635838,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field mmmuPro; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "automationbench_aa",
+   "score": 66.640954,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field automationBenchPartialScore; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 288.762458,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndexTimePerTask; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.1842,
+   "unit": "usd_per_m_tokens_lower_better",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field price1mBlended7To2To1; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.262048,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndexCostPerTask.cost.total; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 89495.052229,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field intelligenceIndexOutputTokensPerTask.output; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_output_tps",
+   "score": 222.32376,
+   "unit": "tps",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field timescaleData.medianOutputSpeed; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 10.146311,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field timeToFirstAnswerToken.total; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1570.42,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.overall.elo; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1765.78,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.analyticalQuality.elo; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1602.45,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.presentation.elo; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 47.474747,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field briefcaseBreakdown.rubricPassRate; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 48.270049,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.financeAndAccounting; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 52.483929,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.strategyAndOps; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 46.412885,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.legal; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 45.218281,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.engineering; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 50.539025,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field capabilities.economics; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_ttft_sec",
+   "score": 1.150421,
+   "unit": "seconds_lower_better",
+   "_source": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "_note": "Artificial Analysis RSC object 'DeepSeek V4.1 Flash 1017 (Max)' (id f151fd0b…, slug deepseek-v4-1-flash-1017) as embedded in the MiniMax-M3.1-Flash model page payload, field timescaleData.medianTimeToFirstChunk; read 2026-10-20. AA evaluation of the 1017 checkpoint at Max effort (absent at S310 time)."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "aa_omniscience_accuracy",
+   "score": 16.7,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/minimax-m3",
+   "_note": "Artificial Analysis RSC object 'MiniMax-M3' (id 277f939a…, slug minimax-m3) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscienceAccuracy; read 2026-10-20. Re-read (previous DB value 15.0); keeps the legacy duplicate id consistent with the S311 refresh."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "aa_omniscience_non_hallucination",
+   "score": 81.572629,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/minimax-m3",
+   "_note": "Artificial Analysis RSC object 'MiniMax-M3' (id 277f939a…, slug minimax-m3) as embedded in the MiniMax-M3.1-Flash model page payload, field omniscienceHallucinationRate (1 − rate); read 2026-10-20. Re-read (previous DB value 84.0); keeps the legacy duplicate id consistent with the S311 refresh."
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "aa_ttft_sec",
+   "score": 1.081458,
+   "unit": "seconds_lower_better",
+   "_source": "https://artificialanalysis.ai/models/minimax-m3",
+   "_note": "Artificial Analysis RSC object 'MiniMax-M3' (id 277f939a…, slug minimax-m3) as embedded in the MiniMax-M3.1-Flash model page payload, field timescaleData.medianTimeToFirstChunk; read 2026-10-20. Re-read (previous DB value 2.45); keeps the legacy duplicate id consistent with the S311 refresh."
+  },
+  {
+   "model": "minimax/m3.1-flash",
+   "benchmark": "aa_ttft_sec",
+   "score": 1.036273,
+   "unit": "seconds_lower_better",
+   "_source": "https://artificialanalysis.ai/models/minimax-m3-1-flash",
+   "_note": "Artificial Analysis RSC object 'MiniMax-M3.1-Flash' (id d49c8680…, slug minimax-m3-1-flash) as embedded in the MiniMax-M3.1-Flash model page payload, field timescaleData.medianTimeToFirstChunk; read 2026-10-20. Missed in S311 (field not in the S311 map)."
+  }
+ ]
+}

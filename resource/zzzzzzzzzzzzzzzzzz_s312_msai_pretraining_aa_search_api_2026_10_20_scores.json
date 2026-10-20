@@ -1,0 +1,3541 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-20",
+  "session": "S312",
+  "sources": [
+   "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "https://artificialanalysis.ai/agents/search-api"
+  ],
+  "note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' (MAI-Base-2) Figure 1 held-out BPB, and the Artificial Analysis Search API leaderboard (29 providers + model-only baseline, RSC 'searchProviders', data as of 2026-10-19)."
+ },
+ "models": [
+  {
+   "id": "microsoft/mai-base-2",
+   "vendor": "Microsoft",
+   "name": "MAI-Base-2",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-10",
+   "context_window": null,
+   "parameters": "2.8T total / 80B active MoE (102 layers, 1 shared + 7/512 routed experts); 50T training tokens; native VLM; base model, post-training in progress",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "microsoft/mai-base-1",
+   "vendor": "Microsoft",
+   "name": "MAI-Base-1",
+   "type": "proprietary",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2026-06",
+   "context_window": null,
+   "parameters": "1T total / 35B active MoE (78 layers, alternating dense FFN + MoE, 8/512 routed); 30T training tokens; base of MAI-Thinking-1",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "exa/exa-search-auto-dynamic-highlights",
+   "vendor": "Exa",
+   "name": "Exa Search (auto, dynamic highlights)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $7 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "perplexity/perplexity-search-medium",
+   "vendor": "Perplexity",
+   "name": "Perplexity Search (medium)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "exa/exa-search-lite-dynamic-highlights",
+   "vendor": "Exa",
+   "name": "Exa Search (lite, dynamic highlights)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $4 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "perplexity/perplexity-search-high",
+   "vendor": "Perplexity",
+   "name": "Perplexity Search (high)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "octen/octen-search-highlights",
+   "vendor": "Octen",
+   "name": "Octen Search (highlights)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $1 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "perplexity/perplexity-search-low",
+   "vendor": "Perplexity",
+   "name": "Perplexity Search (low)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "parallel/parallel-search-advanced",
+   "vendor": "Parallel Web Systems",
+   "name": "Parallel Search (advanced)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "brave/brave-search-llm-context",
+   "vendor": "Brave",
+   "name": "Brave Search (LLM context)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "openai/openai-web-search-medium",
+   "vendor": "OpenAI",
+   "name": "OpenAI Web Search (medium)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "first-party search tool of the answer model (native)",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "you-com/you-com-search-highlights",
+   "vendor": "You.com",
+   "name": "You.com Search (highlights)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "nimble/nimble-search-standard",
+   "vendor": "Nimble",
+   "name": "Nimble Search (standard)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "exa/exa-search-auto",
+   "vendor": "Exa",
+   "name": "Exa Search (auto)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $7 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "firecrawl/firecrawl-search",
+   "vendor": "Firecrawl",
+   "name": "Firecrawl Search",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $1.98 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "parallel/parallel-search-basic",
+   "vendor": "Parallel Web Systems",
+   "name": "Parallel Search (basic)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "parallel/parallel-search-fast",
+   "vendor": "Parallel Web Systems",
+   "name": "Parallel Search (fast)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $1 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "tinyfish/tinyfish-search-web",
+   "vendor": "TinyFish",
+   "name": "TinyFish Search (web)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $0 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "deepseek/deepseek-search-summary",
+   "vendor": "DeepSeek",
+   "name": "DeepSeek Search (summary)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $0.75 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "exa/exa-search-instant",
+   "vendor": "Exa",
+   "name": "Exa Search (instant)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $7 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "exa/exa-search-fast",
+   "vendor": "Exa",
+   "name": "Exa Search (fast)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $7 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "linkup/linkup-search-standard",
+   "vendor": "Linkup",
+   "name": "Linkup Search (standard)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "linkup/linkup-search-fast",
+   "vendor": "Linkup",
+   "name": "Linkup Search (fast)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "you-com/you-com-search-snippets",
+   "vendor": "You.com",
+   "name": "You.com Search (snippets)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "parallel/parallel-search-turbo",
+   "vendor": "Parallel Web Systems",
+   "name": "Parallel Search (turbo)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $1 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "keenable/keenable-search-pro",
+   "vendor": "Keenable",
+   "name": "Keenable Search (pro)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $2 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "keenable/keenable-search-realtime",
+   "vendor": "Keenable",
+   "name": "Keenable Search (realtime)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $2 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "nimble/nimble-search-lite",
+   "vendor": "Nimble",
+   "name": "Nimble Search (lite)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $1.1 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "tavily/tavily-search-basic",
+   "vendor": "Tavily",
+   "name": "Tavily Search (basic)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $8 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "brave/brave-search-web",
+   "vendor": "Brave",
+   "name": "Brave Search (web)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "linkup/linkup-search-flash",
+   "vendor": "Linkup",
+   "name": "Linkup Search (flash)",
+   "type": "search-agent",
+   "modalities": [
+    "text"
+   ],
+   "release_date": null,
+   "context_window": null,
+   "parameters": "web Search API; AA list price $5 per 1k queries",
+   "knowledge_cutoff": null
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "mai_heldout_code_bpb_lower_better",
+   "name": "Microsoft AI held-out Code — bits per byte",
+   "category": "pretraining",
+   "metric": "bits_per_byte_lower_better",
+   "description": "Microsoft AI internal pre-training evaluation 'Held-Out Code (MAI's codebase)': bits per byte on held-out text (tokenizer-agnostic; lower is better). Code set = MAI's own codebase. Decontaminated against MAI training data. Source: 'Frontier Pre-training at Microsoft AI' (MAI-Base-2 report, Oct 2026), Figure 1. Post-trained checkpoints (MiMo-V2.6-Pro-RL, Qwen3.8-2.4T-A95B, Kimi K3) are compared with base models with the vendor's caveat that post-training may affect BPB."
+  },
+  {
+   "id": "mai_heldout_qa_bpb_lower_better",
+   "name": "Microsoft AI held-out QA — bits per byte",
+   "category": "pretraining",
+   "metric": "bits_per_byte_lower_better",
+   "description": "Microsoft AI internal pre-training evaluation 'Held-Out QA': bits per byte on held-out text (tokenizer-agnostic; lower is better). Commissioned from vendors to limit contamination. Decontaminated against MAI training data. Source: 'Frontier Pre-training at Microsoft AI' (MAI-Base-2 report, Oct 2026), Figure 1. Post-trained checkpoints (MiMo-V2.6-Pro-RL, Qwen3.8-2.4T-A95B, Kimi K3) are compared with base models with the vendor's caveat that post-training may affect BPB."
+  },
+  {
+   "id": "mai_heldout_stem_bpb_lower_better",
+   "name": "Microsoft AI held-out STEM — bits per byte",
+   "category": "pretraining",
+   "metric": "bits_per_byte_lower_better",
+   "description": "Microsoft AI internal pre-training evaluation 'Held-Out STEM': bits per byte on held-out text (tokenizer-agnostic; lower is better). Commissioned from vendors to limit contamination. Decontaminated against MAI training data. Source: 'Frontier Pre-training at Microsoft AI' (MAI-Base-2 report, Oct 2026), Figure 1. Post-trained checkpoints (MiMo-V2.6-Pro-RL, Qwen3.8-2.4T-A95B, Kimi K3) are compared with base models with the vendor's caveat that post-training may affect BPB."
+  },
+  {
+   "id": "mai_heldout_math_bpb_lower_better",
+   "name": "Microsoft AI held-out Math — bits per byte",
+   "category": "pretraining",
+   "metric": "bits_per_byte_lower_better",
+   "description": "Microsoft AI internal pre-training evaluation 'Held-Out Math': bits per byte on held-out text (tokenizer-agnostic; lower is better). Commissioned from vendors to limit contamination. Decontaminated against MAI training data. Source: 'Frontier Pre-training at Microsoft AI' (MAI-Base-2 report, Oct 2026), Figure 1. Post-trained checkpoints (MiMo-V2.6-Pro-RL, Qwen3.8-2.4T-A95B, Kimi K3) are compared with base models with the vendor's caveat that post-training may affect BPB."
+  },
+  {
+   "id": "aa_search_index",
+   "name": "Artificial Analysis Search Index",
+   "category": "agent",
+   "metric": "score",
+   "description": "Equal-weighted mean of DeepSearchQA avg F1 (full 900-row eval split), BrowseComp exact-answer accuracy (hard 200-sample subset) and AA-Omniscience accuracy (600 held-out questions), 0-100. Each Search API powers web_search for the same candidate model GPT-5.6 Luna (medium) in the same harness (up to 25 turns, ≤10 results per call). Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_deepsearchqa_f1",
+   "name": "AA Search Index — DeepSearchQA avg F1",
+   "category": "agent",
+   "metric": "f1",
+   "description": "DeepSearchQA LLM-graded F1 over answer items (900 rows) with the Search API as the only search tool (candidate model GPT-5.6 Luna medium). Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_browsecomp_acc",
+   "name": "AA Search Index — BrowseComp accuracy",
+   "category": "agent",
+   "metric": "accuracy",
+   "description": "BrowseComp exact-answer accuracy on a hard 200-sample subset, Search API as the search tool (candidate model GPT-5.6 Luna medium). Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_omniscience_acc",
+   "name": "AA Search Index — AA-Omniscience accuracy",
+   "category": "agent",
+   "metric": "accuracy",
+   "description": "AA-Omniscience accuracy on 600 held-out factual questions, Search API as the search tool (candidate model GPT-5.6 Luna medium). Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_index_lift_vs_model_only",
+   "name": "AA Search Index — lift over model-only baseline",
+   "category": "agent",
+   "metric": "points",
+   "description": "Search Index minus the model-only (no search) GPT-5.6 Luna (medium) baseline, in index points. Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "name": "AA Search Index — Search API cost per 1,000 tasks",
+   "category": "agent",
+   "metric": "usd_lower_better",
+   "description": "Search API list-price cost per 1,000 benchmark tasks for the searches the candidate model chose to run. Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "name": "AA Search Index — candidate model cost per 1,000 tasks",
+   "category": "agent",
+   "metric": "usd_lower_better",
+   "description": "Candidate model (GPT-5.6 Luna medium) token cost per 1,000 tasks when using this Search API (search results inflate input tokens). Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "name": "AA Search Index — Search API price per 1,000 queries",
+   "category": "agent",
+   "metric": "usd_lower_better",
+   "description": "Search API list price per 1,000 search queries. Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_time_per_task_s_lower_better",
+   "name": "AA Search Index — time per task",
+   "category": "agent",
+   "metric": "seconds_lower_better",
+   "description": "Derived model time + measured search time per benchmark task (OpenAI Web Search time is an upper bound incl. OpenAI processing). Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_latency_per_query_s_lower_better",
+   "name": "AA Search Index — time per search query",
+   "category": "agent",
+   "metric": "seconds_lower_better",
+   "description": "Average Search API response time for one query. Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_queries_per_task",
+   "name": "AA Search Index — search queries per task",
+   "category": "agent",
+   "metric": "count",
+   "description": "Average web_search calls the candidate model makes per task (averaged over the 3 benchmarks). Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_candidate_tokens_per_task",
+   "name": "AA Search Index — candidate model tokens per task",
+   "category": "agent",
+   "metric": "count",
+   "description": "Average input + reasoning + answer tokens of the candidate model per task (grader tokens excluded). Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  }
+ ],
+ "scores": [
+  {
+   "model": "microsoft/mai-base-1",
+   "benchmark": "mai_heldout_code_bpb_lower_better",
+   "score": 0.2401,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Code (MAI's codebase), bar 'MAI-Base-1 (35B/1T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "mai_heldout_code_bpb_lower_better",
+   "score": 0.2446,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Code (MAI's codebase), bar 'MiMo-V2.6-Pro-RL* (42B/1.02T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "mai_heldout_code_bpb_lower_better",
+   "score": 0.24,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Code (MAI's codebase), bar 'Qwen3.8* (95B/2.4T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "mai_heldout_code_bpb_lower_better",
+   "score": 0.237,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Code (MAI's codebase), bar 'DeepSeek-V4-Pro-Base (49B/1.6T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "mai_heldout_code_bpb_lower_better",
+   "score": 0.2264,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Code (MAI's codebase), bar 'Kimi-K3* (104B/2.8T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "microsoft/mai-base-2",
+   "benchmark": "mai_heldout_code_bpb_lower_better",
+   "score": 0.2203,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Code (MAI's codebase), bar 'MAI-Base-2 (80B/2.8T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "microsoft/mai-base-1",
+   "benchmark": "mai_heldout_qa_bpb_lower_better",
+   "score": 0.444,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out QA, bar 'MAI-Base-1 (35B/1T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "mai_heldout_qa_bpb_lower_better",
+   "score": 0.4513,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out QA, bar 'MiMo-V2.6-Pro-RL* (42B/1.02T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "mai_heldout_qa_bpb_lower_better",
+   "score": 0.4427,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out QA, bar 'Qwen3.8* (95B/2.4T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "mai_heldout_qa_bpb_lower_better",
+   "score": 0.4351,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out QA, bar 'DeepSeek-V4-Pro-Base (49B/1.6T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "mai_heldout_qa_bpb_lower_better",
+   "score": 0.4269,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out QA, bar 'Kimi-K3* (104B/2.8T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "microsoft/mai-base-2",
+   "benchmark": "mai_heldout_qa_bpb_lower_better",
+   "score": 0.4162,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out QA, bar 'MAI-Base-2 (80B/2.8T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "microsoft/mai-base-1",
+   "benchmark": "mai_heldout_stem_bpb_lower_better",
+   "score": 0.4026,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out STEM, bar 'MAI-Base-1 (35B/1T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "mai_heldout_stem_bpb_lower_better",
+   "score": 0.3975,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out STEM, bar 'MiMo-V2.6-Pro-RL* (42B/1.02T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "mai_heldout_stem_bpb_lower_better",
+   "score": 0.3978,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out STEM, bar 'Qwen3.8* (95B/2.4T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "mai_heldout_stem_bpb_lower_better",
+   "score": 0.3968,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out STEM, bar 'DeepSeek-V4-Pro-Base (49B/1.6T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "mai_heldout_stem_bpb_lower_better",
+   "score": 0.3761,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out STEM, bar 'Kimi-K3* (104B/2.8T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "microsoft/mai-base-2",
+   "benchmark": "mai_heldout_stem_bpb_lower_better",
+   "score": 0.3653,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out STEM, bar 'MAI-Base-2 (80B/2.8T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "microsoft/mai-base-1",
+   "benchmark": "mai_heldout_math_bpb_lower_better",
+   "score": 0.3939,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Math, bar 'MAI-Base-1 (35B/1T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "mai_heldout_math_bpb_lower_better",
+   "score": 0.3803,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Math, bar 'MiMo-V2.6-Pro-RL* (42B/1.02T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "mai_heldout_math_bpb_lower_better",
+   "score": 0.3752,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Math, bar 'Qwen3.8* (95B/2.4T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "mai_heldout_math_bpb_lower_better",
+   "score": 0.3862,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Math, bar 'DeepSeek-V4-Pro-Base (49B/1.6T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "mai_heldout_math_bpb_lower_better",
+   "score": 0.3589,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Math, bar 'Kimi-K3* (104B/2.8T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate). Post-trained checkpoint (* in figure)."
+  },
+  {
+   "model": "microsoft/mai-base-2",
+   "benchmark": "mai_heldout_math_bpb_lower_better",
+   "score": 0.3561,
+   "unit": "bits/byte",
+   "_source": "https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2",
+   "_note": "Microsoft AI 'Frontier Pre-training at Microsoft AI' Figure 1, panel Held-Out Math, bar 'MAI-Base-2 (80B/2.8T)' (value printed above bar; column fixed by pdftotext -bbox x-coordinate)."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_index",
+   "score": 80.307056,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 85.587834,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 82.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 72.833333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 46.940153,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 53.172778,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 12.428948,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 7.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 44.167792,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 3.269941,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 7.596111,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 157150.203889,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-auto-dynamic-gpt-5-6-luna-medium-search-api (Exa Search (auto, dynamic highlights); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_index",
+   "score": 79.977703,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 80.766443,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 87.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 72.166667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 46.6108,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 62.303704,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 8.039767,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 25.809165,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.06945,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 12.460741,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 137391.085926,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-medium-gpt-5-6-luna-medium-search-api (Perplexity Search (medium); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_index",
+   "score": 79.177557,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 84.866005,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 81.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 71.666667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 45.810654,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 31.203704,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 13.177738,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 4.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 29.503244,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.848237,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 7.800926,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 163729.99463,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-lite-gpt-5-6-luna-medium-search-api (Exa Search (lite, dynamic highlights); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_index",
+   "score": 78.945199,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 80.502264,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 85.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 70.833333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 45.578296,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 56.925,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 9.715684,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 26.384216,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.106153,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 11.385,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 163244.022593,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-high-gpt-5-6-luna-medium-search-api (Perplexity Search (high); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_index",
+   "score": 77.056637,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 79.503246,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 86.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 65.666667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 43.689734,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 9.06963,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 14.924447,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 1.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 14.18822,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.212614,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 9.06963,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 237695.067963,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id octen-web-gpt-5-6-luna-medium-search-api (Octen Search (highlights); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-09-08; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_index",
+   "score": 76.909635,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 75.562237,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 85.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 70.166667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 43.542732,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 77.202813,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 7.900158,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 33.25659,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.053613,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 15.440563,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 127008.263787,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id perplexity-low-gpt-5-6-luna-medium-search-api (Perplexity Search (low); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_index",
+   "score": 74.75056,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 80.585014,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 76.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 67.166667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 41.383657,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 47.927778,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 11.293865,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 39.459382,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 2.661059,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 9.585556,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 168763.342778,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_advanced-gpt-5-6-luna-medium-search-api (Parallel Search (advanced); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_index",
+   "score": 74.603201,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 78.142937,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 76.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 69.166667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 41.236298,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 61.957407,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 17.46245,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 20.613634,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.444208,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 12.391481,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 327838.761481,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-llm-context-gpt-5-6-luna-medium-search-api (Brave Search (LLM context); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_index",
+   "score": 74.404983,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id openai-native-medium-gpt-5-6-luna-medium-search-api (OpenAI Web Search (medium); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-09-28; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 77.71495,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id openai-native-medium-gpt-5-6-luna-medium-search-api (OpenAI Web Search (medium); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-09-28; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id openai-native-medium-gpt-5-6-luna-medium-search-api (OpenAI Web Search (medium); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-09-28; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 72.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id openai-native-medium-gpt-5-6-luna-medium-search-api (OpenAI Web Search (medium); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-09-28; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 41.03808,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id openai-native-medium-gpt-5-6-luna-medium-search-api (OpenAI Web Search (medium); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-09-28; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 40.185185,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id openai-native-medium-gpt-5-6-luna-medium-search-api (OpenAI Web Search (medium); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-09-28; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 9.402766,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id openai-native-medium-gpt-5-6-luna-medium-search-api (OpenAI Web Search (medium); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-09-28; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 29.194771,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id openai-native-medium-gpt-5-6-luna-medium-search-api (OpenAI Web Search (medium); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-09-28; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 41079.978889,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id openai-native-medium-gpt-5-6-luna-medium-search-api (OpenAI Web Search (medium); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-09-28; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_index",
+   "score": 74.073464,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 76.720391,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 76.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 69.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 40.706561,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 47.540042,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 19.578165,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 17.953244,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.717561,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 9.508008,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 342294.402251,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you-com-highlights-gpt-5-6-luna-medium-search-api (You.com Search (highlights); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_index",
+   "score": 73.874219,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 76.289325,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 74.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 70.833333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 40.507316,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 46.142593,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 19.565552,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 38.042046,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.96786,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 9.228519,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 280515.997778,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-standard-gpt-5-6-luna-medium-search-api (Nimble Search (standard); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-09-22; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_index",
+   "score": 73.657064,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 77.804526,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 69.666667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 40.290161,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 65.569259,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 17.72627,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 7.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 29.79106,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 2.099914,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 9.367037,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 298630.153704,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_auto-gpt-5-6-luna-medium-search-api (Exa Search (auto); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_index",
+   "score": 73.490611,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 73.6385,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 74.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 72.833333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 40.123708,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 30.4766,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 12.092837,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 1.98,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 59.187192,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 2.907317,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 15.392222,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 213998.623148,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id firecrawl_serp-gpt-5-6-luna-medium-search-api (Firecrawl Search; answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_index",
+   "score": 73.153503,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 79.460508,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 72.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 67.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 39.7866,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 45.143519,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 21.645193,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 24.238086,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.032002,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 9.028704,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 338635.301111,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_basic-gpt-5-6-luna-medium-search-api (Parallel Search (basic); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_index",
+   "score": 73.082825,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 80.248474,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 71.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 67.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 39.715922,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 8.409847,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 18.960709,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 1.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 17.032553,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.900748,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 8.409847,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 292095.97652,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel-fast-gpt-5-6-luna-medium-search-api (Parallel Search (fast); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_index",
+   "score": 71.167001,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 67.167669,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 75.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 71.333333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 37.800098,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 9.3029,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 55.423802,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.833279,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 18.955926,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 159476.264444,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tinyfish-web-gpt-5-6-luna-medium-search-api (TinyFish Search (web); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-31; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_index",
+   "score": 69.119156,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 75.024136,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 62.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 69.833333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 35.752253,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 8.466944,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 23.240175,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 0.75,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 36.63482,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.520012,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 11.289259,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 383625.59963,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id deepseek-summary-gpt-5-6-luna-medium-search-api (DeepSeek Search (summary); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-10-19; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_index",
+   "score": 68.445036,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 73.001774,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 65.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 67.333333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 35.078133,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 72.231529,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 21.444645,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 7.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 17.115119,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.43836,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 10.31879,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 385192.002498,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa-instant-gpt-5-6-luna-medium-search-api (Exa Search (instant); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-20; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_index",
+   "score": 68.388931,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 75.666794,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 60.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 69.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 35.022028,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 78.112222,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 21.271228,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 7.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 24.811601,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.905152,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 11.158889,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 392015.692407,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id exa_fast-gpt-5-6-luna-medium-search-api (Exa Search (fast); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_index",
+   "score": 68.254016,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 68.928714,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 70.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 65.333333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 34.887113,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 61.149846,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 20.517438,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 35.568223,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.633103,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 12.229969,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 401356.314909,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-standard-gpt-5-6-luna-medium-search-api (Linkup Search (standard); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_index",
+   "score": 68.031357,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 68.427405,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 70.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 65.166667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 34.664454,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 61.321296,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 21.284054,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 28.499228,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.059515,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 12.264259,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 416563.545926,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-fast-gpt-5-6-luna-medium-search-api (Linkup Search (fast); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-09-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_index",
+   "score": 67.634839,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 63.404517,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 74.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 65.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 34.267936,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 68.932869,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 15.503241,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 38.307272,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.469472,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 13.786574,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 279500.950699,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id you_com-gpt-5-6-luna-medium-search-api (You.com Search (snippets); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_index",
+   "score": 67.073521,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 70.220564,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 74.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 56.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 33.706618,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 13.637037,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 12.420289,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 1.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 22.999069,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.508734,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 13.637037,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 221955.759444,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id parallel_turbo-gpt-5-6-luna-medium-search-api (Parallel Search (turbo); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_index",
+   "score": 66.961166,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 70.050165,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 65.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 65.333333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 33.594263,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 23.692222,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 19.045494,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 2.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 26.707543,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.112747,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 11.846111,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 356969.486296,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_pro-gpt-5-6-luna-medium-search-api (Keenable Search (pro); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_index",
+   "score": 66.525625,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 69.910208,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 64.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 65.666667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 33.158722,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 26.873333,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 15.94359,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 2.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 18.840217,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.341583,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 13.436667,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 308718.19537,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id keenable_realtime-gpt-5-6-luna-medium-search-api (Keenable Search (realtime); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_index",
+   "score": 65.817611,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 61.286166,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 69.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 67.166667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 32.450708,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 20.712389,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 11.230829,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 1.1,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 49.489169,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.227326,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 18.829444,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 177721.729259,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id nimble-lite-gpt-5-6-luna-medium-search-api (Nimble Search (lite); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-09-18; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_index",
+   "score": 65.567671,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 74.369679,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 58.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 63.833333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 32.200768,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 126.442963,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 16.743088,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 8.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 41.325212,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.403221,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 15.80537,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 319914.947037,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id tavily_basic-gpt-5-6-luna-medium-search-api (Tavily Search (basic); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_index",
+   "score": 64.591663,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 62.274989,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 67.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 64.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 31.22476,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 71.607407,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 19.109286,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 31.500303,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 1.14997,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 14.321481,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 360055.802407,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id brave-gpt-5-6-luna-medium-search-api (Brave Search (web); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-08-17; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_index",
+   "score": 47.009041,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 59.527124,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 30.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 51.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_index_lift_vs_model_only",
+   "score": 13.642138,
+   "unit": "points",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field qualityIndexLiftVsModelOnly; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_api_cost_per_1k_tasks_usd_lower_better",
+   "score": 82.821296,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field searchApiCostPer1000TasksUsd; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 38.811868,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_api_cost_per_1k_queries_usd_lower_better",
+   "score": 5.0,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field costPerSearchQueryUsd; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 23.382515,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_latency_per_query_s_lower_better",
+   "score": 0.386571,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field searchQueryLatencyS; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_queries_per_task",
+   "score": 16.564259,
+   "unit": "queries",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field searchQueriesPerTask; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 847093.737222,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id linkup-flash-gpt-5-6-luna-medium-search-api (Linkup Search (flash); answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-09-16; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-medium",
+   "benchmark": "aa_search_index",
+   "score": 33.366903,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id model_only-gpt-5-6-luna-medium-model-only (Model only (no search) baseline; answer model gpt-5-6-luna-medium), field aaSearchQualityIndex; measured 2026-07-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-medium",
+   "benchmark": "aa_search_deepsearchqa_f1",
+   "score": 44.767376,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id model_only-gpt-5-6-luna-medium-model-only (Model only (no search) baseline; answer model gpt-5-6-luna-medium), field deepsearchqaAvgF1; measured 2026-07-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-medium",
+   "benchmark": "aa_search_browsecomp_acc",
+   "score": 17.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id model_only-gpt-5-6-luna-medium-model-only (Model only (no search) baseline; answer model gpt-5-6-luna-medium), field browsecompAccuracy; measured 2026-07-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-medium",
+   "benchmark": "aa_search_omniscience_acc",
+   "score": 38.333333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id model_only-gpt-5-6-luna-medium-model-only (Model only (no search) baseline; answer model gpt-5-6-luna-medium), field omniscienceAccuracy; measured 2026-07-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-medium",
+   "benchmark": "aa_search_model_cost_per_1k_tasks_usd_lower_better",
+   "score": 2.924341,
+   "unit": "USD",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id model_only-gpt-5-6-luna-medium-model-only (Model only (no search) baseline; answer model gpt-5-6-luna-medium), field candidateModelCostPer1000TasksUsd; measured 2026-07-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-medium",
+   "benchmark": "aa_search_time_per_task_s_lower_better",
+   "score": 18.451403,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id model_only-gpt-5-6-luna-medium-model-only (Model only (no search) baseline; answer model gpt-5-6-luna-medium), field avgLatencyS; measured 2026-07-27; page data as of 2026-10-19."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-medium",
+   "benchmark": "aa_search_candidate_tokens_per_task",
+   "score": 2550.778519,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC 'searchProviders' row id model_only-gpt-5-6-luna-medium-model-only (Model only (no search) baseline; answer model gpt-5-6-luna-medium), field candidateTokensPerTask; measured 2026-07-27; page data as of 2026-10-19."
+  }
+ ]
+}

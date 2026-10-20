@@ -1,0 +1,1310 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-20",
+  "session": "S312",
+  "sources": [
+   "https://arxiv.org/abs/2610.08761",
+   "https://veri-fine.github.io"
+  ],
+  "note": "arXiv 2610.08761 VeriFine (NVIDIA): judge-human alignment (Pearson/MAE) for rubric judges and Alpamayo-1.5 driving policies / Qwen3-VL-2B navigation policies across self-improvement rounds. Figure bar labels assigned by pdftotext -bbox order, confirmed against the rendered page colours."
+ },
+ "models": [
+  {
+   "id": "nvidia/alpamayo-1.5-8b",
+   "name": "Alpamayo 1.5 8B",
+   "vendor": "NVIDIA",
+   "type": "open-weight",
+   "modalities": [
+    "video",
+    "text"
+   ],
+   "release_date": null,
+   "parameters": "8B",
+   "description": "NVIDIA Alpamayo 1.5 8B driving VLA/reasoning model; base policy in VeriFine (arXiv 2610.08761). Release date not given in the paper."
+  },
+  {
+   "id": "baseline/verifine-rft-random-lingojudge",
+   "name": "Alpamayo 1.5 8B RFT (Random curriculum, LingoJudge reward)",
+   "vendor": "NVIDIA (VeriFine baseline)",
+   "type": "research",
+   "modalities": [
+    "video",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "8B",
+   "description": "VeriFine Tab 1 baseline: Alpamayo 1.5 8B GRPO-RFT on randomly selected 25K examples with LingoJudge reward."
+  },
+  {
+   "id": "baseline/verifine-rft-lingojudge-lingojudge",
+   "name": "Alpamayo 1.5 8B RFT (LingoJudge curriculum + reward)",
+   "vendor": "NVIDIA (VeriFine baseline)",
+   "type": "research",
+   "modalities": [
+    "video",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "8B",
+   "description": "VeriFine Tab 1 baseline: LingoJudge used for both data selection and GRPO reward."
+  },
+  {
+   "id": "baseline/verifine-rft-random-judge-rb",
+   "name": "Alpamayo 1.5 8B RFT (Random curriculum, VeriFine-Judge-RB reward)",
+   "vendor": "NVIDIA (VeriFine baseline)",
+   "type": "research",
+   "modalities": [
+    "video",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "8B",
+   "description": "VeriFine Tab 1 baseline: random selection, reference-based VeriFine-Judge-RB reward."
+  },
+  {
+   "id": "baseline/verifine-rft-judge-rb-judge-rb",
+   "name": "Alpamayo 1.5 8B RFT (VeriFine-Judge-RB curriculum + reward)",
+   "vendor": "NVIDIA (VeriFine baseline)",
+   "type": "research",
+   "modalities": [
+    "video",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "8B",
+   "description": "VeriFine Tab 1 baseline: reference-based VeriFine-Judge-RB for selection and reward."
+  },
+  {
+   "id": "baseline/verifine-rft-random-judge-r1",
+   "name": "Alpamayo 1.5 8B RFT (Random curriculum, VeriFine-Judge-R1 reward)",
+   "vendor": "NVIDIA (VeriFine baseline)",
+   "type": "research",
+   "modalities": [
+    "video",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "8B",
+   "description": "VeriFine Tab 2 curriculum ablation: random selection with round-1 reference-free judge reward."
+  },
+  {
+   "id": "baseline/verifine-rft-random-judge-r2",
+   "name": "Alpamayo 1.5 8B RFT (Random curriculum, VeriFine-Judge-R2 reward)",
+   "vendor": "NVIDIA (VeriFine baseline)",
+   "type": "research",
+   "modalities": [
+    "video",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "8B",
+   "description": "VeriFine Tab 2 curriculum ablation: random selection with round-2 judge reward."
+  },
+  {
+   "id": "baseline/verifine-rft-random-judge-r3",
+   "name": "Alpamayo 1.5 8B RFT (Random curriculum, VeriFine-Judge-R3 reward)",
+   "vendor": "NVIDIA (VeriFine baseline)",
+   "type": "research",
+   "modalities": [
+    "video",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "8B",
+   "description": "VeriFine Tab 2 curriculum ablation: random selection with round-3 judge reward."
+  },
+  {
+   "id": "nvidia/verifine-alpamayo-1.5-8b-r1",
+   "name": "VeriFine Alpamayo 1.5 8B (Round 1)",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "video",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "8B",
+   "description": "VeriFine driving policy after self-improvement round 1: base Alpamayo 1.5 8B, GRPO-RFT with judge-guided curriculum and reward from VeriFine-Judge-R1 (arXiv 2610.08761)."
+  },
+  {
+   "id": "nvidia/verifine-alpamayo-1.5-8b-r2",
+   "name": "VeriFine Alpamayo 1.5 8B (Round 2)",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "video",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "8B",
+   "description": "VeriFine driving policy after self-improvement round 2: base Alpamayo 1.5 8B, GRPO-RFT with judge-guided curriculum and reward from VeriFine-Judge-R2 (arXiv 2610.08761)."
+  },
+  {
+   "id": "nvidia/verifine-alpamayo-1.5-8b-r3",
+   "name": "VeriFine Alpamayo 1.5 8B (Round 3)",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "video",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "8B",
+   "description": "VeriFine driving policy after self-improvement round 3: base Alpamayo 1.5 8B, GRPO-RFT with judge-guided curriculum and reward from VeriFine-Judge-R3 (arXiv 2610.08761)."
+  },
+  {
+   "id": "nvidia/verifine-judge-r1-teacher",
+   "name": "VeriFine-Judge-R1 Teacher",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "image",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": null,
+   "description": "VeriFine reference-free rubric teacher judge, round 1: Claude Opus 5 backbone with the round-1 coactively calibrated driving-reasoning rubric (arXiv 2610.08761)."
+  },
+  {
+   "id": "nvidia/verifine-judge-r1-student",
+   "name": "VeriFine-Judge-R1 Student",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "image",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "2B",
+   "description": "VeriFine distilled student judge, round 1: Qwen3-VL 2B backbone pretrained on internal PAI-AV driving data, classifier head predicting rubric subscores (arXiv 2610.08761)."
+  },
+  {
+   "id": "nvidia/verifine-judge-r2-teacher",
+   "name": "VeriFine-Judge-R2 Teacher",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "image",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": null,
+   "description": "VeriFine reference-free rubric teacher judge, round 2: Claude Opus 5 backbone with the round-2 coactively calibrated driving-reasoning rubric (arXiv 2610.08761)."
+  },
+  {
+   "id": "nvidia/verifine-judge-r2-student",
+   "name": "VeriFine-Judge-R2 Student",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "image",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "2B",
+   "description": "VeriFine distilled student judge, round 2: Qwen3-VL 2B backbone pretrained on internal PAI-AV driving data, classifier head predicting rubric subscores (arXiv 2610.08761)."
+  },
+  {
+   "id": "nvidia/verifine-judge-r3-teacher",
+   "name": "VeriFine-Judge-R3 Teacher",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "image",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": null,
+   "description": "VeriFine reference-free rubric teacher judge, round 3: Claude Opus 5 backbone with the round-3 coactively calibrated driving-reasoning rubric (arXiv 2610.08761)."
+  },
+  {
+   "id": "nvidia/verifine-judge-r3-student",
+   "name": "VeriFine-Judge-R3 Student",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "image",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "2B",
+   "description": "VeriFine distilled student judge, round 3: Qwen3-VL 2B backbone pretrained on internal PAI-AV driving data, classifier head predicting rubric subscores (arXiv 2610.08761)."
+  },
+  {
+   "id": "nvidia/verifine-judge-rb",
+   "name": "VeriFine-Judge-RB",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": null,
+   "description": "VeriFine reference-based rubric judge: DeBERTa-v3-base cross-encoder initialized from LingoJudge, trained on ~500K reference-candidate pairs; fixed anchor evaluator (arXiv 2610.08761)."
+  },
+  {
+   "id": "wayve/lingojudge",
+   "name": "LingoJudge",
+   "vendor": "Wayve",
+   "type": "research",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2023-12",
+   "parameters": null,
+   "description": "Lingo-Judge reference-based driving-reasoning evaluator from LingoQA (Marcu et al., 2024); used as baseline judge in VeriFine. Release date approximate (LingoQA arXiv Dec 2023)."
+  },
+  {
+   "id": "baseline/verifine-nav-base-qwen3-vl-2b",
+   "name": "Qwen3-VL 2B navigation base policy (VeriFine)",
+   "vendor": "NVIDIA (VeriFine baseline)",
+   "type": "research",
+   "modalities": [
+    "image",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "2B",
+   "description": "VeriFine robot-navigation base policy initialization from Qwen3-VL 2B (exact checkpoint/preprocessing not specified, so not mapped to the vendor Qwen3-VL-2B row)."
+  },
+  {
+   "id": "nvidia/verifine-nav-qwen3-vl-2b-r1",
+   "name": "VeriFine Qwen3-VL 2B Navigation (Round 1)",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "image",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "2B",
+   "description": "VeriFine robot-navigation policy after round 1: Qwen3-VL 2B SFT on judge-selected VLNVerse demonstrations (arXiv 2610.08761)."
+  },
+  {
+   "id": "nvidia/verifine-nav-qwen3-vl-2b-r2",
+   "name": "VeriFine Qwen3-VL 2B Navigation (Round 2)",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "image",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": "2B",
+   "description": "VeriFine robot-navigation policy after round 2 (exploration-efficiency curriculum): Qwen3-VL 2B SFT (arXiv 2610.08761)."
+  },
+  {
+   "id": "nvidia/verifine-nav-judge-r1",
+   "name": "VeriFine Navigation Judge R1",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "image",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": null,
+   "description": "VeriFine reference-free robot-navigation rubric judge, round 1 (teacher/student not specified in Fig 4)."
+  },
+  {
+   "id": "nvidia/verifine-nav-judge-r2",
+   "name": "VeriFine Navigation Judge R2",
+   "vendor": "NVIDIA",
+   "type": "research",
+   "modalities": [
+    "image",
+    "text"
+   ],
+   "release_date": "2026-10-06",
+   "parameters": null,
+   "description": "VeriFine reference-free robot-navigation rubric judge, round 2 (teacher/student not specified in Fig 4)."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "verifine_driving_reasoning_rb",
+   "name": "VeriFine Driving Reasoning Score (RB evaluator)",
+   "category": "robotics",
+   "metric": "score 0-100",
+   "description": "Policy reasoning score on internal NVIDIA driving-reasoning policy test set P_test (2,772 samples, multi-view video, free-form reasoning + trajectory), scored by the fixed reference-based VeriFine-Judge-RB. Source arXiv 2610.08761 Tab 1/2."
+  },
+  {
+   "id": "verifine_driving_reasoning_rf",
+   "name": "VeriFine Driving Reasoning Score (RF evaluator)",
+   "category": "robotics",
+   "metric": "score 0-100",
+   "description": "Policy reasoning score on internal NVIDIA driving-reasoning policy test set P_test (2,772 samples, multi-view video, free-form reasoning + trajectory), scored by the final reference-free VeriFine-Judge (R3). Source arXiv 2610.08761 Tab 1/2."
+  },
+  {
+   "id": "verifine_driving_minade6_lower_better",
+   "name": "VeriFine Driving minADE6 (lower better)",
+   "category": "robotics",
+   "metric": "m",
+   "description": "Minimum average displacement error over 6 trajectory samples on internal NVIDIA driving-reasoning policy test set P_test (2,772 samples, multi-view video, free-form reasoning + trajectory). Source arXiv 2610.08761 Tab 1/2."
+  },
+  {
+   "id": "verifine_driving_ade_lower_better",
+   "name": "VeriFine Driving ADE (lower better)",
+   "category": "robotics",
+   "metric": "m",
+   "description": "Average displacement error of the predicted trajectory on internal NVIDIA driving-reasoning policy test set P_test (2,772 samples, multi-view video, free-form reasoning + trajectory). Source arXiv 2610.08761 Tab 1/2."
+  },
+  {
+   "id": "verifine_driving_judge_pearson",
+   "name": "VeriFine Driving Judge-Human Pearson r",
+   "category": "robotics",
+   "metric": "Pearson r",
+   "description": "VeriFine driving judge test set J_test (R1 514 + R2 218 scenarios): Pearson correlation of judge score with human annotation of policy reasoning (judge given final rubric where applicable). Source arXiv 2610.08761 Fig 3b/5b."
+  },
+  {
+   "id": "verifine_driving_judge_mae_lower_better",
+   "name": "VeriFine Driving Judge MAE (lower better)",
+   "category": "robotics",
+   "metric": "MAE 0-1",
+   "description": "VeriFine driving judge test set J_test: mean absolute error vs human scores, normalized 0-1. Source arXiv 2610.08761 Fig 3b/5b."
+  },
+  {
+   "id": "verifine_driving_judge_r1subset_pearson",
+   "name": "VeriFine Driving Judge Pearson r (R1 test subset)",
+   "category": "robotics",
+   "metric": "Pearson r",
+   "description": "VeriFine driving judge test set subset R1 (514 mostly nominal scenarios): judge-human Pearson r. Source arXiv 2610.08761 Fig 6b."
+  },
+  {
+   "id": "verifine_driving_judge_r1subset_mae_lower_better",
+   "name": "VeriFine Driving Judge MAE (R1 test subset, lower better)",
+   "category": "robotics",
+   "metric": "MAE 0-1",
+   "description": "VeriFine driving judge test set subset R1 (514): judge-human MAE, 0-1. Source arXiv 2610.08761 Fig 6b."
+  },
+  {
+   "id": "verifine_driving_judge_r2subset_pearson",
+   "name": "VeriFine Driving Judge Pearson r (R2 challenging subset)",
+   "category": "robotics",
+   "metric": "Pearson r",
+   "description": "VeriFine driving judge test set subset R2 (218 challenging policy-rollout scenarios): judge-human Pearson r. Source arXiv 2610.08761 Fig 6d."
+  },
+  {
+   "id": "verifine_driving_judge_r2subset_mae_lower_better",
+   "name": "VeriFine Driving Judge MAE (R2 challenging subset, lower better)",
+   "category": "robotics",
+   "metric": "MAE 0-1",
+   "description": "VeriFine driving judge test set subset R2 (218): judge-human MAE, 0-1. Source arXiv 2610.08761 Fig 6d."
+  },
+  {
+   "id": "verifine_driving_judge_initial_rubric_pearson",
+   "name": "VeriFine Driving Judge Pearson r (initial rubric, no co-calibration)",
+   "category": "robotics",
+   "metric": "Pearson r",
+   "description": "VeriFine driving judge test set: teacher judge with the pre-coactive-calibration rubric; Pearson r vs human. Source arXiv 2610.08761 Fig 5b."
+  },
+  {
+   "id": "verifine_driving_judge_initial_rubric_mae_lower_better",
+   "name": "VeriFine Driving Judge MAE (initial rubric, lower better)",
+   "category": "robotics",
+   "metric": "MAE 0-1",
+   "description": "VeriFine driving judge test set: teacher judge with the pre-calibration rubric; MAE 0-1. Source arXiv 2610.08761 Fig 5b."
+  },
+  {
+   "id": "verifine_driving_judge_norubric_pearson",
+   "name": "VeriFine Driving Judge Pearson r (no rubric)",
+   "category": "robotics",
+   "metric": "Pearson r",
+   "description": "VeriFine driving judge test set: VLM judge prompted with a plain instruction and no detailed rubric; Pearson r vs human. Source arXiv 2610.08761 Fig 5b."
+  },
+  {
+   "id": "verifine_driving_judge_norubric_mae_lower_better",
+   "name": "VeriFine Driving Judge MAE (no rubric, lower better)",
+   "category": "robotics",
+   "metric": "MAE 0-1",
+   "description": "VeriFine driving judge test set: VLM judge without rubric; MAE 0-1. Source arXiv 2610.08761 Fig 5b."
+  },
+  {
+   "id": "verifine_driving_tts_bon6_human_score",
+   "name": "VeriFine Driving Test-Time Scaling Best-of-6 (human score)",
+   "category": "robotics",
+   "metric": "score 0-100",
+   "description": "401 independent driving scenarios, 6 reasoning-action candidates from a fixed policy; judge selects one; metric is human-rated reasoning score of the selected candidate. Source arXiv 2610.08761 Sec 4.3/Fig 3c."
+  },
+  {
+   "id": "verifine_robonav_reasoning_score",
+   "name": "VeriFine Robot Navigation Reasoning Score",
+   "category": "robotics",
+   "metric": "score 0-100",
+   "description": "Robot-navigation reasoning score on the VeriFine navigation policy test set built from VLNVerse egocentric trajectories (navigation rubric: safety-gated goal consistency + grounding/causation). Source arXiv 2610.08761 Fig 4."
+  },
+  {
+   "id": "verifine_robonav_judge_pearson",
+   "name": "VeriFine Robot Navigation Judge-Human Pearson r",
+   "category": "robotics",
+   "metric": "Pearson r",
+   "description": "Pearson correlation between the VeriFine navigation judge and human scores on the navigation judge test set (VLNVerse). Source arXiv 2610.08761 Fig 4."
+  }
+ ],
+ "scores": [
+  {
+   "model": "nvidia/alpamayo-1.5-8b",
+   "benchmark": "verifine_driving_reasoning_rb",
+   "score": 60.56,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'Base Policy Model row (Alpamayo 1.5 8B, no RFT)', col Reasoning Score (RB) [evidence raw/2610.08761.pdf p.7: \"None                     None                          60.56                  68.05               1.049    2.139\"]"
+  },
+  {
+   "model": "nvidia/alpamayo-1.5-8b",
+   "benchmark": "verifine_driving_reasoning_rf",
+   "score": 68.05,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'Base Policy Model row (Alpamayo 1.5 8B, no RFT)', col Reasoning Score (RF) [evidence raw/2610.08761.pdf p.7: \"None                     None                          60.56                  68.05               1.049    2.139\"]"
+  },
+  {
+   "model": "nvidia/alpamayo-1.5-8b",
+   "benchmark": "verifine_driving_minade6_lower_better",
+   "score": 1.049,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'Base Policy Model row (Alpamayo 1.5 8B, no RFT)', col minADE6 (m) [evidence raw/2610.08761.pdf p.7: \"None                     None                          60.56                  68.05               1.049    2.139\"]"
+  },
+  {
+   "model": "nvidia/alpamayo-1.5-8b",
+   "benchmark": "verifine_driving_ade_lower_better",
+   "score": 2.139,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'Base Policy Model row (Alpamayo 1.5 8B, no RFT)', col ADE (m) [evidence raw/2610.08761.pdf p.7: \"None                     None                          60.56                  68.05               1.049    2.139\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-lingojudge",
+   "benchmark": "verifine_driving_reasoning_rb",
+   "score": 63.45,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum Random / reward LingoJudge', col Reasoning Score (RB) [evidence raw/2610.08761.pdf p.7: \"Random                   LingoJudge                    63.45                  69.82               1.064    2.133\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-lingojudge",
+   "benchmark": "verifine_driving_reasoning_rf",
+   "score": 69.82,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum Random / reward LingoJudge', col Reasoning Score (RF) [evidence raw/2610.08761.pdf p.7: \"Random                   LingoJudge                    63.45                  69.82               1.064    2.133\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-lingojudge",
+   "benchmark": "verifine_driving_minade6_lower_better",
+   "score": 1.064,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum Random / reward LingoJudge', col minADE6 (m) [evidence raw/2610.08761.pdf p.7: \"Random                   LingoJudge                    63.45                  69.82               1.064    2.133\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-lingojudge",
+   "benchmark": "verifine_driving_ade_lower_better",
+   "score": 2.133,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum Random / reward LingoJudge', col ADE (m) [evidence raw/2610.08761.pdf p.7: \"Random                   LingoJudge                    63.45                  69.82               1.064    2.133\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-lingojudge-lingojudge",
+   "benchmark": "verifine_driving_reasoning_rb",
+   "score": 65.75,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum LingoJudge / reward LingoJudge', col Reasoning Score (RB) [evidence raw/2610.08761.pdf p.7: \"LingoJudge               LingoJudge                    65.75                  72.60               1.172    2.242\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-lingojudge-lingojudge",
+   "benchmark": "verifine_driving_reasoning_rf",
+   "score": 72.6,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum LingoJudge / reward LingoJudge', col Reasoning Score (RF) [evidence raw/2610.08761.pdf p.7: \"LingoJudge               LingoJudge                    65.75                  72.60               1.172    2.242\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-lingojudge-lingojudge",
+   "benchmark": "verifine_driving_minade6_lower_better",
+   "score": 1.172,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum LingoJudge / reward LingoJudge', col minADE6 (m) [evidence raw/2610.08761.pdf p.7: \"LingoJudge               LingoJudge                    65.75                  72.60               1.172    2.242\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-lingojudge-lingojudge",
+   "benchmark": "verifine_driving_ade_lower_better",
+   "score": 2.242,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum LingoJudge / reward LingoJudge', col ADE (m) [evidence raw/2610.08761.pdf p.7: \"LingoJudge               LingoJudge                    65.75                  72.60               1.172    2.242\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-rb",
+   "benchmark": "verifine_driving_reasoning_rb",
+   "score": 64.03,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-RB', col Reasoning Score (RB) [evidence raw/2610.08761.pdf p.7: \"Random                   VeriFine-Judge-RB             64.03                  69.95               1.080    2.166\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-rb",
+   "benchmark": "verifine_driving_reasoning_rf",
+   "score": 69.95,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-RB', col Reasoning Score (RF) [evidence raw/2610.08761.pdf p.7: \"Random                   VeriFine-Judge-RB             64.03                  69.95               1.080    2.166\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-rb",
+   "benchmark": "verifine_driving_minade6_lower_better",
+   "score": 1.08,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-RB', col minADE6 (m) [evidence raw/2610.08761.pdf p.7: \"Random                   VeriFine-Judge-RB             64.03                  69.95               1.080    2.166\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-rb",
+   "benchmark": "verifine_driving_ade_lower_better",
+   "score": 2.166,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-RB', col ADE (m) [evidence raw/2610.08761.pdf p.7: \"Random                   VeriFine-Judge-RB             64.03                  69.95               1.080    2.166\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-judge-rb-judge-rb",
+   "benchmark": "verifine_driving_reasoning_rb",
+   "score": 67.7,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum VeriFine-Judge-RB / reward VeriFine-Judge-RB', col Reasoning Score (RB) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-RB        VeriFine-Judge-RB             67.70                  75.20               1.164    2.235\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-judge-rb-judge-rb",
+   "benchmark": "verifine_driving_reasoning_rf",
+   "score": 75.2,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum VeriFine-Judge-RB / reward VeriFine-Judge-RB', col Reasoning Score (RF) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-RB        VeriFine-Judge-RB             67.70                  75.20               1.164    2.235\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-judge-rb-judge-rb",
+   "benchmark": "verifine_driving_minade6_lower_better",
+   "score": 1.164,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum VeriFine-Judge-RB / reward VeriFine-Judge-RB', col minADE6 (m) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-RB        VeriFine-Judge-RB             67.70                  75.20               1.164    2.235\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-judge-rb-judge-rb",
+   "benchmark": "verifine_driving_ade_lower_better",
+   "score": 2.235,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'curriculum VeriFine-Judge-RB / reward VeriFine-Judge-RB', col ADE (m) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-RB        VeriFine-Judge-RB             67.70                  75.20               1.164    2.235\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r1",
+   "benchmark": "verifine_driving_reasoning_rb",
+   "score": 67.3,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R1 (First Round), reference-free', col Reasoning Score (RB) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R1 (First Round)                        67.30                  77.51               1.106    2.177\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r1",
+   "benchmark": "verifine_driving_reasoning_rf",
+   "score": 77.51,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R1 (First Round), reference-free', col Reasoning Score (RF) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R1 (First Round)                        67.30                  77.51               1.106    2.177\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r1",
+   "benchmark": "verifine_driving_minade6_lower_better",
+   "score": 1.106,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R1 (First Round), reference-free', col minADE6 (m) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R1 (First Round)                        67.30                  77.51               1.106    2.177\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r1",
+   "benchmark": "verifine_driving_ade_lower_better",
+   "score": 2.177,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R1 (First Round), reference-free', col ADE (m) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R1 (First Round)                        67.30                  77.51               1.106    2.177\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r2",
+   "benchmark": "verifine_driving_reasoning_rb",
+   "score": 70.59,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R2 (Second Round), reference-free', col Reasoning Score (RB) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R2 (Second Round)                       70.59                  79.61               1.078    2.139\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r2",
+   "benchmark": "verifine_driving_reasoning_rf",
+   "score": 79.61,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R2 (Second Round), reference-free', col Reasoning Score (RF) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R2 (Second Round)                       70.59                  79.61               1.078    2.139\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r2",
+   "benchmark": "verifine_driving_minade6_lower_better",
+   "score": 1.078,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R2 (Second Round), reference-free', col minADE6 (m) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R2 (Second Round)                       70.59                  79.61               1.078    2.139\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r2",
+   "benchmark": "verifine_driving_ade_lower_better",
+   "score": 2.139,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R2 (Second Round), reference-free', col ADE (m) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R2 (Second Round)                       70.59                  79.61               1.078    2.139\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r3",
+   "benchmark": "verifine_driving_reasoning_rb",
+   "score": 71.61,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R3 (Third Round), reference-free', col Reasoning Score (RB) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R3 (Third Round)                       71.61 +18.2%            83.13 +22.2%        1.029    2.117\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r3",
+   "benchmark": "verifine_driving_reasoning_rf",
+   "score": 83.13,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R3 (Third Round), reference-free', col Reasoning Score (RF) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R3 (Third Round)                       71.61 +18.2%            83.13 +22.2%        1.029    2.117\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r3",
+   "benchmark": "verifine_driving_minade6_lower_better",
+   "score": 1.029,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R3 (Third Round), reference-free', col minADE6 (m) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R3 (Third Round)                       71.61 +18.2%            83.13 +22.2%        1.029    2.117\"]"
+  },
+  {
+   "model": "nvidia/verifine-alpamayo-1.5-8b-r3",
+   "benchmark": "verifine_driving_ade_lower_better",
+   "score": 2.117,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 1 (Comparison of judges in Policy Improvement Loop, driving RFT, P_test n=2772), row 'VeriFine-Judge-R3 (Third Round), reference-free', col ADE (m) [evidence raw/2610.08761.pdf p.7: \"VeriFine-Judge-R3 (Third Round)                       71.61 +18.2%            83.13 +22.2%        1.029    2.117\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r1",
+   "benchmark": "verifine_driving_reasoning_rb",
+   "score": 58.71,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R1', col Reasoning Score (RB) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R1              58.71                    68.90                1.349   2.594\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r1",
+   "benchmark": "verifine_driving_reasoning_rf",
+   "score": 68.9,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R1', col Reasoning Score (RF) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R1              58.71                    68.90                1.349   2.594\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r1",
+   "benchmark": "verifine_driving_minade6_lower_better",
+   "score": 1.349,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R1', col minADE6 (m) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R1              58.71                    68.90                1.349   2.594\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r1",
+   "benchmark": "verifine_driving_ade_lower_better",
+   "score": 2.594,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R1', col ADE (m) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R1              58.71                    68.90                1.349   2.594\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r2",
+   "benchmark": "verifine_driving_reasoning_rb",
+   "score": 65.32,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R2', col Reasoning Score (RB) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R2              65.32                    76.67                1.119   2.317\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r2",
+   "benchmark": "verifine_driving_reasoning_rf",
+   "score": 76.67,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R2', col Reasoning Score (RF) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R2              65.32                    76.67                1.119   2.317\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r2",
+   "benchmark": "verifine_driving_minade6_lower_better",
+   "score": 1.119,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R2', col minADE6 (m) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R2              65.32                    76.67                1.119   2.317\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r2",
+   "benchmark": "verifine_driving_ade_lower_better",
+   "score": 2.317,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R2', col ADE (m) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R2              65.32                    76.67                1.119   2.317\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r3",
+   "benchmark": "verifine_driving_reasoning_rb",
+   "score": 68.53,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R3', col Reasoning Score (RB) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R3              68.53                    81.59                1.053   2.222\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r3",
+   "benchmark": "verifine_driving_reasoning_rf",
+   "score": 81.59,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R3', col Reasoning Score (RF) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R3              68.53                    81.59                1.053   2.222\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r3",
+   "benchmark": "verifine_driving_minade6_lower_better",
+   "score": 1.053,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R3', col minADE6 (m) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R3              68.53                    81.59                1.053   2.222\"]"
+  },
+  {
+   "model": "baseline/verifine-rft-random-judge-r3",
+   "benchmark": "verifine_driving_ade_lower_better",
+   "score": 2.222,
+   "unit": "m",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Table 2 (Curriculum ablation across judge rounds, driving RFT, P_test n=2772), row 'curriculum Random / reward VeriFine-Judge-R3', col ADE (m) [evidence raw/2610.08761.pdf p.17: \"Random            VeriFine-Judge-R3              68.53                    81.59                1.053   2.222\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-teacher",
+   "benchmark": "verifine_driving_judge_pearson",
+   "score": 0.55,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, Pearson r bar for nvidia/verifine-judge-r1-teacher [evidence raw/2610.08761.pdf p.8: \"0.6         0.55 0.53                                                                                VeriFine-Judge-R2 Student          LingoJudge\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-teacher",
+   "benchmark": "verifine_driving_judge_mae_lower_better",
+   "score": 0.25,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, MAE bar for nvidia/verifine-judge-r1-teacher [evidence raw/2610.08761.pdf p.8: \"0.25 0.25                                               0.23\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-student",
+   "benchmark": "verifine_driving_judge_pearson",
+   "score": 0.53,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, Pearson r bar for nvidia/verifine-judge-r1-student [evidence raw/2610.08761.pdf p.8: \"0.6         0.55 0.53                                                                                VeriFine-Judge-R2 Student          LingoJudge\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-student",
+   "benchmark": "verifine_driving_judge_mae_lower_better",
+   "score": 0.25,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, MAE bar for nvidia/verifine-judge-r1-student [evidence raw/2610.08761.pdf p.8: \"0.25 0.25                                               0.23\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-teacher",
+   "benchmark": "verifine_driving_judge_pearson",
+   "score": 0.73,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, Pearson r bar for nvidia/verifine-judge-r2-teacher [evidence raw/2610.08761.pdf p.8: \"0.8         (b)              0.73 0.71                                                               VeriFine-Judge-R1 Student          VeriFine-Judge-R3 Studen\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-teacher",
+   "benchmark": "verifine_driving_judge_mae_lower_better",
+   "score": 0.18,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, MAE bar for nvidia/verifine-judge-r2-teacher [evidence raw/2610.08761.pdf p.8: \"0.18 0.20\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-student",
+   "benchmark": "verifine_driving_judge_pearson",
+   "score": 0.71,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, Pearson r bar for nvidia/verifine-judge-r2-student [evidence raw/2610.08761.pdf p.8: \"0.8         (b)              0.73 0.71                                                               VeriFine-Judge-R1 Student          VeriFine-Judge-R3 Studen\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-student",
+   "benchmark": "verifine_driving_judge_mae_lower_better",
+   "score": 0.2,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, MAE bar for nvidia/verifine-judge-r2-student [evidence raw/2610.08761.pdf p.8: \"0.18 0.20\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-teacher",
+   "benchmark": "verifine_driving_judge_pearson",
+   "score": 0.85,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, Pearson r bar for nvidia/verifine-judge-r3-teacher [evidence raw/2610.08761.pdf p.8: \"0.85 0.82       0.82                                     VeriFine-Judge-R1 Teacher          VeriFine-Judge-R3 Teacher\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-teacher",
+   "benchmark": "verifine_driving_judge_mae_lower_better",
+   "score": 0.13,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, MAE bar for nvidia/verifine-judge-r3-teacher [evidence raw/2610.08761.pdf p.8: \"0.2                                                                                                                                  0.13 0.17      0.16\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-student",
+   "benchmark": "verifine_driving_judge_pearson",
+   "score": 0.82,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, Pearson r bar for nvidia/verifine-judge-r3-student [evidence raw/2610.08761.pdf p.8: \"0.85 0.82       0.82                                     VeriFine-Judge-R1 Teacher          VeriFine-Judge-R3 Teacher\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-student",
+   "benchmark": "verifine_driving_judge_mae_lower_better",
+   "score": 0.17,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, MAE bar for nvidia/verifine-judge-r3-student [evidence raw/2610.08761.pdf p.8: \"0.2                                                                                                                                  0.13 0.17      0.16\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-rb",
+   "benchmark": "verifine_driving_judge_pearson",
+   "score": 0.82,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, Pearson r bar for nvidia/verifine-judge-rb [evidence raw/2610.08761.pdf p.8: \"0.85 0.82       0.82                                     VeriFine-Judge-R1 Teacher          VeriFine-Judge-R3 Teacher\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-rb",
+   "benchmark": "verifine_driving_judge_mae_lower_better",
+   "score": 0.16,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, MAE bar for nvidia/verifine-judge-rb [evidence raw/2610.08761.pdf p.8: \"0.2                                                                                                                                  0.13 0.17      0.16\"]"
+  },
+  {
+   "model": "wayve/lingojudge",
+   "benchmark": "verifine_driving_judge_pearson",
+   "score": 0.65,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, Pearson r bar for wayve/lingojudge [evidence raw/2610.08761.pdf p.8: \"0.65                            VeriFine-Judge-R2 Teacher          VeriFine-Judge--RB\"]"
+  },
+  {
+   "model": "wayve/lingojudge",
+   "benchmark": "verifine_driving_judge_mae_lower_better",
+   "score": 0.23,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 3(b) bar data labels (judge-human alignment on driving judge test set J_test = R1(514)+R2(218)); bars attributed by pdftotext -bbox x-order = legend order, matches text Sec 4.2, MAE bar for wayve/lingojudge [evidence raw/2610.08761.pdf p.8: \"0.25 0.25                                               0.23\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-teacher",
+   "benchmark": "verifine_driving_judge_r1subset_pearson",
+   "score": 0.69,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), Pearson r for nvidia/verifine-judge-r1-teacher [evidence raw/2610.08761.pdf p.19: \"0.72   0.70 0.69\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-teacher",
+   "benchmark": "verifine_driving_judge_r1subset_mae_lower_better",
+   "score": 0.2,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), MAE for nvidia/verifine-judge-r1-teacher [evidence raw/2610.08761.pdf p.19: \"0.20 0.21\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-student",
+   "benchmark": "verifine_driving_judge_r1subset_pearson",
+   "score": 0.72,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), Pearson r for nvidia/verifine-judge-r1-student [evidence raw/2610.08761.pdf p.19: \"0.72   0.70 0.69\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-student",
+   "benchmark": "verifine_driving_judge_r1subset_mae_lower_better",
+   "score": 0.19,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), MAE for nvidia/verifine-judge-r1-student [evidence raw/2610.08761.pdf p.19: \"l                      VeriFine-Judge-R3                                                                                  0.20 0.19\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-teacher",
+   "benchmark": "verifine_driving_judge_r1subset_pearson",
+   "score": 0.7,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), Pearson r for nvidia/verifine-judge-r2-teacher [evidence raw/2610.08761.pdf p.19: \"0.72   0.70 0.69\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-teacher",
+   "benchmark": "verifine_driving_judge_r1subset_mae_lower_better",
+   "score": 0.2,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), MAE for nvidia/verifine-judge-r2-teacher [evidence raw/2610.08761.pdf p.19: \"0.20 0.21\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-student",
+   "benchmark": "verifine_driving_judge_r1subset_pearson",
+   "score": 0.69,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), Pearson r for nvidia/verifine-judge-r2-student [evidence raw/2610.08761.pdf p.19: \"0.72   0.70 0.69\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-student",
+   "benchmark": "verifine_driving_judge_r1subset_mae_lower_better",
+   "score": 0.21,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), MAE for nvidia/verifine-judge-r2-student [evidence raw/2610.08761.pdf p.19: \"0.20 0.21\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-teacher",
+   "benchmark": "verifine_driving_judge_r1subset_pearson",
+   "score": 0.86,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), Pearson r for nvidia/verifine-judge-r3-teacher [evidence raw/2610.08761.pdf p.19: \"0.86 0.85                                        VeriFine-Judge-R1 Student\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-teacher",
+   "benchmark": "verifine_driving_judge_r1subset_mae_lower_better",
+   "score": 0.13,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), MAE for nvidia/verifine-judge-r3-teacher [evidence raw/2610.08761.pdf p.19: \"0.2                                                                                        0.13\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-student",
+   "benchmark": "verifine_driving_judge_r1subset_pearson",
+   "score": 0.85,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), Pearson r for nvidia/verifine-judge-r3-student [evidence raw/2610.08761.pdf p.19: \"0.86 0.85                                        VeriFine-Judge-R1 Student\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-student",
+   "benchmark": "verifine_driving_judge_r1subset_mae_lower_better",
+   "score": 0.16,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), MAE for nvidia/verifine-judge-r3-student [evidence raw/2610.08761.pdf p.19: \"0.16   0.16\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-rb",
+   "benchmark": "verifine_driving_judge_r1subset_pearson",
+   "score": 0.84,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), Pearson r for nvidia/verifine-judge-rb [evidence raw/2610.08761.pdf p.19: \"0.84\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-rb",
+   "benchmark": "verifine_driving_judge_r1subset_mae_lower_better",
+   "score": 0.16,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), MAE for nvidia/verifine-judge-rb [evidence raw/2610.08761.pdf p.19: \"0.16   0.16\"]"
+  },
+  {
+   "model": "wayve/lingojudge",
+   "benchmark": "verifine_driving_judge_r1subset_pearson",
+   "score": 0.67,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), Pearson r for wayve/lingojudge [evidence raw/2610.08761.pdf p.19: \"0.67                        VeriFine-Judge-R3 Teacher\"]"
+  },
+  {
+   "model": "wayve/lingojudge",
+   "benchmark": "verifine_driving_judge_r1subset_mae_lower_better",
+   "score": 0.23,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (b) Judge Test Set R1 (n=514), MAE for wayve/lingojudge [evidence raw/2610.08761.pdf p.19: \"0.23\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-teacher",
+   "benchmark": "verifine_driving_judge_r2subset_pearson",
+   "score": 0.22,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), Pearson r for nvidia/verifine-judge-r1-teacher [evidence raw/2610.08761.pdf p.19: \"0.22\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-teacher",
+   "benchmark": "verifine_driving_judge_r2subset_mae_lower_better",
+   "score": 0.37,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), MAE for nvidia/verifine-judge-r1-teacher [evidence raw/2610.08761.pdf p.19: \"0.4                                                                                    0.4                                                            0.37\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-student",
+   "benchmark": "verifine_driving_judge_r2subset_pearson",
+   "score": 0.07,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), Pearson r for nvidia/verifine-judge-r1-student [evidence raw/2610.08761.pdf p.19: \"ea                                                                               0.07\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r1-student",
+   "benchmark": "verifine_driving_judge_r2subset_mae_lower_better",
+   "score": 0.41,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), MAE for nvidia/verifine-judge-r1-student [evidence raw/2610.08761.pdf p.19: \"0.41\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-teacher",
+   "benchmark": "verifine_driving_judge_r2subset_pearson",
+   "score": 0.81,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), Pearson r for nvidia/verifine-judge-r2-teacher [evidence raw/2610.08761.pdf p.19: \"0.81          0.82          0.82                               VeriFine-Judge-R2 Teacher\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-teacher",
+   "benchmark": "verifine_driving_judge_r2subset_mae_lower_better",
+   "score": 0.14,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), MAE for nvidia/verifine-judge-r2-teacher [evidence raw/2610.08761.pdf p.19: \"0.2                                                                          0.14\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-student",
+   "benchmark": "verifine_driving_judge_r2subset_pearson",
+   "score": 0.74,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), Pearson r for nvidia/verifine-judge-r2-student [evidence raw/2610.08761.pdf p.19: \"0.8                                                                                    0.8                         0.74          0.74                           \"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r2-student",
+   "benchmark": "verifine_driving_judge_r2subset_mae_lower_better",
+   "score": 0.17,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), MAE for nvidia/verifine-judge-r2-student [evidence raw/2610.08761.pdf p.19: \"0.17\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-teacher",
+   "benchmark": "verifine_driving_judge_r2subset_pearson",
+   "score": 0.82,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), Pearson r for nvidia/verifine-judge-r3-teacher [evidence raw/2610.08761.pdf p.19: \"0.81          0.82          0.82                               VeriFine-Judge-R2 Teacher\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-teacher",
+   "benchmark": "verifine_driving_judge_r2subset_mae_lower_better",
+   "score": 0.14,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), MAE for nvidia/verifine-judge-r3-teacher [evidence raw/2610.08761.pdf p.19: \"0.2                                                                          0.14\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-student",
+   "benchmark": "verifine_driving_judge_r2subset_pearson",
+   "score": 0.74,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), Pearson r for nvidia/verifine-judge-r3-student [evidence raw/2610.08761.pdf p.19: \"0.8                                                                                    0.8                         0.74          0.74                           \"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-student",
+   "benchmark": "verifine_driving_judge_r2subset_mae_lower_better",
+   "score": 0.19,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), MAE for nvidia/verifine-judge-r3-student [evidence raw/2610.08761.pdf p.19: \"l                      VeriFine-Judge-R3                                                                                  0.20 0.19\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-rb",
+   "benchmark": "verifine_driving_judge_r2subset_pearson",
+   "score": 0.82,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), Pearson r for nvidia/verifine-judge-rb [evidence raw/2610.08761.pdf p.19: \"0.81          0.82          0.82                               VeriFine-Judge-R2 Teacher\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-rb",
+   "benchmark": "verifine_driving_judge_r2subset_mae_lower_better",
+   "score": 0.15,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), MAE for nvidia/verifine-judge-rb [evidence raw/2610.08761.pdf p.19: \"0.14          0.15\"]"
+  },
+  {
+   "model": "wayve/lingojudge",
+   "benchmark": "verifine_driving_judge_r2subset_pearson",
+   "score": 0.64,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), Pearson r for wayve/lingojudge [evidence raw/2610.08761.pdf p.19: \"0.64\"]"
+  },
+  {
+   "model": "wayve/lingojudge",
+   "benchmark": "verifine_driving_judge_r2subset_mae_lower_better",
+   "score": 0.23,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 6 bar data labels; bars attributed by pdftotext -bbox x-order = legend order (R1 student 0.72 / 0.07 and R2 student 0.74 confirmed in text A.1.2), panel (d) Judge Test Set R2 (n=218), MAE for wayve/lingojudge [evidence raw/2610.08761.pdf p.19: \"0.23\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "verifine_driving_judge_pearson",
+   "score": 0.85,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 5(b) teacher-backbone comparison bar labels; bars attributed by pdftotext -bbox x-order = legend order (Opus 5 0.85 and w/o co-calibration 0.67 confirmed in text Sec 4.2; Opus 5 MAE 0.13 = Tab 3 teacher row), variant 'Opus 5 (final calibrated rubric)', Pearson r [evidence raw/2610.08761.pdf p.18: \"0.85                                      Opus 5 w/o Co-calibration\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "verifine_driving_judge_mae_lower_better",
+   "score": 0.13,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 5(b) teacher-backbone comparison bar labels; bars attributed by pdftotext -bbox x-order = legend order (Opus 5 0.85 and w/o co-calibration 0.67 confirmed in text Sec 4.2; Opus 5 MAE 0.13 = Tab 3 teacher row), variant 'Opus 5 (final calibrated rubric)', MAE [evidence raw/2610.08761.pdf p.18: \"0.2            lib                 Gemini 3.8 Flash                             0.2                                      0.13\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "verifine_driving_judge_initial_rubric_pearson",
+   "score": 0.67,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 5(b) teacher-backbone comparison bar labels; bars attributed by pdftotext -bbox x-order = legend order (Opus 5 0.85 and w/o co-calibration 0.67 confirmed in text Sec 4.2; Opus 5 MAE 0.13 = Tab 3 teacher row), variant 'Opus 5 w/o Co-calibration', Pearson r [evidence raw/2610.08761.pdf p.18: \"0.67                 0.68          Gemini 3.8 Flash\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "verifine_driving_judge_initial_rubric_mae_lower_better",
+   "score": 0.22,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 5(b) teacher-backbone comparison bar labels; bars attributed by pdftotext -bbox x-order = legend order (Opus 5 0.85 and w/o co-calibration 0.67 confirmed in text Sec 4.2; Opus 5 MAE 0.13 = Tab 3 teacher row), variant 'Opus 5 w/o Co-calibration', MAE [evidence raw/2610.08761.pdf p.18: \"r at             GPT-6 Astra                                                                                  0.22          0.20 0.19\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "verifine_driving_judge_norubric_pearson",
+   "score": 0.54,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 5(b) teacher-backbone comparison bar labels; bars attributed by pdftotext -bbox x-order = legend order (Opus 5 0.85 and w/o co-calibration 0.67 confirmed in text Sec 4.2; Opus 5 MAE 0.13 = Tab 3 teacher row), variant 'Opus 5 No rubric', Pearson r [evidence raw/2610.08761.pdf p.18: \"0.6                                                                             0.6                 0.54\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "verifine_driving_judge_norubric_mae_lower_better",
+   "score": 0.27,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 5(b) teacher-backbone comparison bar labels; bars attributed by pdftotext -bbox x-order = legend order (Opus 5 0.85 and w/o co-calibration 0.67 confirmed in text Sec 4.2; Opus 5 MAE 0.13 = Tab 3 teacher row), variant 'Opus 5 No rubric', MAE [evidence raw/2610.08761.pdf p.18: \"n                                                                                                             0.27\"]"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "verifine_driving_judge_pearson",
+   "score": 0.65,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 5(b) teacher-backbone comparison bar labels; bars attributed by pdftotext -bbox x-order = legend order (Opus 5 0.85 and w/o co-calibration 0.67 confirmed in text Sec 4.2; Opus 5 MAE 0.13 = Tab 3 teacher row), variant 'GPT-6 Astra (same final rubric; reasoning effort not stated)', Pearson r [evidence raw/2610.08761.pdf p.18: \"0.65\"]"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "verifine_driving_judge_mae_lower_better",
+   "score": 0.2,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 5(b) teacher-backbone comparison bar labels; bars attributed by pdftotext -bbox x-order = legend order (Opus 5 0.85 and w/o co-calibration 0.67 confirmed in text Sec 4.2; Opus 5 MAE 0.13 = Tab 3 teacher row), variant 'GPT-6 Astra (same final rubric; reasoning effort not stated)', MAE [evidence raw/2610.08761.pdf p.18: \"r at             GPT-6 Astra                                                                                  0.22          0.20 0.19\"]"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "verifine_driving_judge_pearson",
+   "score": 0.68,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 5(b) teacher-backbone comparison bar labels; bars attributed by pdftotext -bbox x-order = legend order (Opus 5 0.85 and w/o co-calibration 0.67 confirmed in text Sec 4.2; Opus 5 MAE 0.13 = Tab 3 teacher row), variant 'Gemini 3.8 Flash (same final rubric)', Pearson r [evidence raw/2610.08761.pdf p.18: \"0.67                 0.68          Gemini 3.8 Flash\"]"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "verifine_driving_judge_mae_lower_better",
+   "score": 0.19,
+   "unit": "MAE 0-1",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 5(b) teacher-backbone comparison bar labels; bars attributed by pdftotext -bbox x-order = legend order (Opus 5 0.85 and w/o co-calibration 0.67 confirmed in text Sec 4.2; Opus 5 MAE 0.13 = Tab 3 teacher row), variant 'Gemini 3.8 Flash (same final rubric)', MAE [evidence raw/2610.08761.pdf p.18: \"r at             GPT-6 Astra                                                                                  0.22          0.20 0.19\"]"
+  },
+  {
+   "model": "nvidia/verifine-judge-r3-student",
+   "benchmark": "verifine_driving_tts_bon6_human_score",
+   "score": 78.6,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Sec 4.3 / Figure 3(c) text: final judge best-of-6 selection over 401 scenarios, human-rated reasoning score of selected candidate (final judge assumed = R3 student, which is used for test-time scaling per A.2) [evidence raw/2610.08761.pdf p.9: \"At a budget of six candidates, our final judge selects outputs with a human-rated reasoning score of 78.6,\"]"
+  },
+  {
+   "model": "baseline/verifine-nav-base-qwen3-vl-2b",
+   "benchmark": "verifine_robonav_reasoning_score",
+   "score": 68.09,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 4 (robot navigation, Qwen3-VL 2B SFT); round mapping Base/R1/R2 from project page veri-fine.github.io data (policy:[68.09,74.14,77.59], judge:[null,0.82,0.85]), Base policy reasoning score [evidence raw/2610.08761.pdf p.10: \"68.09                efficiency scenarios     0\"]"
+  },
+  {
+   "model": "nvidia/verifine-nav-qwen3-vl-2b-r1",
+   "benchmark": "verifine_robonav_reasoning_score",
+   "score": 74.14,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 4 (robot navigation, Qwen3-VL 2B SFT); round mapping Base/R1/R2 from project page veri-fine.github.io data (policy:[68.09,74.14,77.59], judge:[null,0.82,0.85]), R1 policy reasoning score [evidence raw/2610.08761.pdf p.10: \"74.14\"]"
+  },
+  {
+   "model": "nvidia/verifine-nav-qwen3-vl-2b-r2",
+   "benchmark": "verifine_robonav_reasoning_score",
+   "score": 77.59,
+   "unit": "score 0-100",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 4 (robot navigation, Qwen3-VL 2B SFT); round mapping Base/R1/R2 from project page veri-fine.github.io data (policy:[68.09,74.14,77.59], judge:[null,0.82,0.85]), R2 policy reasoning score [evidence raw/2610.08761.pdf p.10: \"77.59\"]"
+  },
+  {
+   "model": "nvidia/verifine-nav-judge-r1",
+   "benchmark": "verifine_robonav_judge_pearson",
+   "score": 0.82,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 4 (robot navigation, Qwen3-VL 2B SFT); round mapping Base/R1/R2 from project page veri-fine.github.io data (policy:[68.09,74.14,77.59], judge:[null,0.82,0.85]), R1 navigation judge-human Pearson r [evidence raw/2610.08761.pdf p.10: \"0.82\"]"
+  },
+  {
+   "model": "nvidia/verifine-nav-judge-r2",
+   "benchmark": "verifine_robonav_judge_pearson",
+   "score": 0.85,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2610.08761",
+   "_note": "Figure 4 (robot navigation, Qwen3-VL 2B SFT); round mapping Base/R1/R2 from project page veri-fine.github.io data (policy:[68.09,74.14,77.59], judge:[null,0.82,0.85]), R2 navigation judge-human Pearson r [evidence raw/2610.08761.pdf p.10: \"Focus on the          0.85\"]"
+  }
+ ]
+}

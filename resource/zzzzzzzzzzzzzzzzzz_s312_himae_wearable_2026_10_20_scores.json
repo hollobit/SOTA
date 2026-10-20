@@ -1,0 +1,338 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-20",
+  "session": "S312",
+  "sources": [
+   "https://arxiv.org/abs/2510.25785"
+  ],
+  "note": "arXiv 2510.25785 HiMAE (Samsung): only Tables 11 and 16 print numbers; main AUROC/R²/BP figures are raster scatter plots without value labels (not read)."
+ },
+ "models": [
+  {
+   "id": "samsung/himae",
+   "vendor": "Samsung Research America",
+   "name": "HiMAE (Base)",
+   "type": "research",
+   "modalities": [
+    "ppg",
+    "ecg",
+    "time-series"
+   ],
+   "release_date": "2025-10-28",
+   "parameters": "1.25M",
+   "_note": "HiMAE-Base, depth [16,32,64,128,256], final config (Table 10)"
+  },
+  {
+   "id": "samsung/himae-small",
+   "vendor": "Samsung Research America",
+   "name": "HiMAE-small",
+   "type": "research",
+   "modalities": [
+    "ppg",
+    "time-series"
+   ],
+   "release_date": "2025-10-28",
+   "parameters": "309K"
+  },
+  {
+   "id": "samsung/himae-tiny",
+   "vendor": "Samsung Research America",
+   "name": "HiMAE-tiny",
+   "type": "research",
+   "modalities": [
+    "ppg",
+    "time-series"
+   ],
+   "release_date": "2025-10-28",
+   "parameters": "75.3K"
+  },
+  {
+   "id": "samsung/himae-noskip",
+   "vendor": "Samsung Research America",
+   "name": "HiMAE (no skip, Base)",
+   "type": "research",
+   "modalities": [
+    "ppg",
+    "ecg",
+    "time-series"
+   ],
+   "release_date": "2025-10-28",
+   "parameters": "1.10M",
+   "_note": "ablation variant without skip connections; appears in main generative comparisons"
+  },
+  {
+   "id": "samsung/himae-noskip-small",
+   "vendor": "Samsung Research America",
+   "name": "HiMAE (no skip, small)",
+   "type": "research",
+   "modalities": [
+    "ppg",
+    "time-series"
+   ],
+   "release_date": "2025-10-28",
+   "parameters": "271K"
+  },
+  {
+   "id": "samsung/himae-noskip-tiny",
+   "vendor": "Samsung Research America",
+   "name": "HiMAE (no skip, tiny)",
+   "type": "research",
+   "modalities": [
+    "ppg",
+    "time-series"
+   ],
+   "release_date": "2025-10-28",
+   "parameters": "66.1K"
+  },
+  {
+   "id": "baseline/himae-cnn",
+   "vendor": "baseline (HiMAE paper)",
+   "name": "CNN baseline (Base depth)",
+   "type": "research",
+   "modalities": [
+    "ppg",
+    "ecg",
+    "time-series"
+   ],
+   "release_date": "2025-10-28",
+   "parameters": "437K"
+  },
+  {
+   "id": "baseline/himae-cnn-small",
+   "vendor": "baseline (HiMAE paper)",
+   "name": "CNN baseline (small depth)",
+   "type": "research",
+   "modalities": [
+    "ppg",
+    "time-series"
+   ],
+   "release_date": "2025-10-28",
+   "parameters": "108K"
+  },
+  {
+   "id": "baseline/himae-cnn-tiny",
+   "vendor": "baseline (HiMAE paper)",
+   "name": "CNN baseline (tiny depth)",
+   "type": "research",
+   "modalities": [
+    "ppg",
+    "time-series"
+   ],
+   "release_date": "2025-10-28",
+   "parameters": "26.2K"
+  },
+  {
+   "id": "baseline/himae-lsm-1-vit",
+   "vendor": "baseline (HiMAE paper)",
+   "name": "LSM-1 (ViT) retrained by HiMAE authors",
+   "type": "research",
+   "modalities": [
+    "ecg",
+    "time-series"
+   ],
+   "release_date": "2025-10-28",
+   "_note": "LSM-1 architecture (Narayanswamy et al. 2024) pretrained by the HiMAE authors on their ECG data; not google/lsm-1 original weights"
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "himae_ppg_extrapolation_mae_lower_better",
+   "name": "HiMAE PPG temporal extrapolation MAE",
+   "category": "medical",
+   "metric": "MAE (lower better)",
+   "description": "Masked-reconstruction temporal extrapolation on 100 Hz wearable PPG (10M segments), MAE; HiMAE ablation protocol (Appendix G.1, Table 11), arXiv 2510.25785."
+  },
+  {
+   "id": "himae_ppg_extrapolation_mse_lower_better",
+   "name": "HiMAE PPG temporal extrapolation MSE",
+   "category": "medical",
+   "metric": "MSE (lower better)",
+   "description": "Masked-reconstruction temporal extrapolation on 100 Hz wearable PPG (10M segments), MSE; HiMAE ablation protocol (Appendix G.1, Table 11), arXiv 2510.25785."
+  },
+  {
+   "id": "himae_ecg_masked_recon_mse_lower_better",
+   "name": "HiMAE ECG masked reconstruction MSE",
+   "category": "medical",
+   "metric": "MSE (lower better)",
+   "description": "Masked autoencoding reconstruction loss (MSE) on ECG after ECG pretraining (Appendix G.2, Table 16), arXiv 2510.25785."
+  }
+ ],
+ "scores": [
+  {
+   "model": "baseline/himae-cnn-tiny",
+   "benchmark": "himae_ppg_extrapolation_mae_lower_better",
+   "score": 0.4052,
+   "unit": "MAE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row CNN, column HiMAE-tiny depth [evidence raw/2510.25785.pdf p.34: \"CNN                 0.4052      0.2345     0.4177      0.2491     0.4008         0.2315\"]"
+  },
+  {
+   "model": "baseline/himae-cnn-tiny",
+   "benchmark": "himae_ppg_extrapolation_mse_lower_better",
+   "score": 0.2345,
+   "unit": "MSE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row CNN, column HiMAE-tiny depth [evidence raw/2510.25785.pdf p.34: \"CNN                 0.4052      0.2345     0.4177      0.2491     0.4008         0.2315\"]"
+  },
+  {
+   "model": "baseline/himae-cnn-small",
+   "benchmark": "himae_ppg_extrapolation_mae_lower_better",
+   "score": 0.4177,
+   "unit": "MAE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row CNN, column HiMAE-small depth [evidence raw/2510.25785.pdf p.34: \"CNN                 0.4052      0.2345     0.4177      0.2491     0.4008         0.2315\"]"
+  },
+  {
+   "model": "baseline/himae-cnn-small",
+   "benchmark": "himae_ppg_extrapolation_mse_lower_better",
+   "score": 0.2491,
+   "unit": "MSE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row CNN, column HiMAE-small depth [evidence raw/2510.25785.pdf p.34: \"CNN                 0.4052      0.2345     0.4177      0.2491     0.4008         0.2315\"]"
+  },
+  {
+   "model": "baseline/himae-cnn",
+   "benchmark": "himae_ppg_extrapolation_mae_lower_better",
+   "score": 0.4008,
+   "unit": "MAE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row CNN, column HiMAE-Base depth [evidence raw/2510.25785.pdf p.34: \"CNN                 0.4052      0.2345     0.4177      0.2491     0.4008         0.2315\"]"
+  },
+  {
+   "model": "baseline/himae-cnn",
+   "benchmark": "himae_ppg_extrapolation_mse_lower_better",
+   "score": 0.2315,
+   "unit": "MSE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row CNN, column HiMAE-Base depth [evidence raw/2510.25785.pdf p.34: \"CNN                 0.4052      0.2345     0.4177      0.2491     0.4008         0.2315\"]"
+  },
+  {
+   "model": "samsung/himae-noskip-tiny",
+   "benchmark": "himae_ppg_extrapolation_mae_lower_better",
+   "score": 0.4031,
+   "unit": "MAE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE-noskip, column HiMAE-tiny depth [evidence raw/2510.25785.pdf p.34: \"HiMAE-noskip        0.4031      0.2365     0.4006      0.2465     0.3975         0.2339\"]"
+  },
+  {
+   "model": "samsung/himae-noskip-tiny",
+   "benchmark": "himae_ppg_extrapolation_mse_lower_better",
+   "score": 0.2365,
+   "unit": "MSE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE-noskip, column HiMAE-tiny depth [evidence raw/2510.25785.pdf p.34: \"HiMAE-noskip        0.4031      0.2365     0.4006      0.2465     0.3975         0.2339\"]"
+  },
+  {
+   "model": "samsung/himae-noskip-small",
+   "benchmark": "himae_ppg_extrapolation_mae_lower_better",
+   "score": 0.4006,
+   "unit": "MAE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE-noskip, column HiMAE-small depth [evidence raw/2510.25785.pdf p.34: \"HiMAE-noskip        0.4031      0.2365     0.4006      0.2465     0.3975         0.2339\"]"
+  },
+  {
+   "model": "samsung/himae-noskip-small",
+   "benchmark": "himae_ppg_extrapolation_mse_lower_better",
+   "score": 0.2465,
+   "unit": "MSE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE-noskip, column HiMAE-small depth [evidence raw/2510.25785.pdf p.34: \"HiMAE-noskip        0.4031      0.2365     0.4006      0.2465     0.3975         0.2339\"]"
+  },
+  {
+   "model": "samsung/himae-noskip",
+   "benchmark": "himae_ppg_extrapolation_mae_lower_better",
+   "score": 0.3975,
+   "unit": "MAE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE-noskip, column HiMAE-Base depth [evidence raw/2510.25785.pdf p.34: \"HiMAE-noskip        0.4031      0.2365     0.4006      0.2465     0.3975         0.2339\"]"
+  },
+  {
+   "model": "samsung/himae-noskip",
+   "benchmark": "himae_ppg_extrapolation_mse_lower_better",
+   "score": 0.2339,
+   "unit": "MSE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE-noskip, column HiMAE-Base depth [evidence raw/2510.25785.pdf p.34: \"HiMAE-noskip        0.4031      0.2365     0.4006      0.2465     0.3975         0.2339\"]"
+  },
+  {
+   "model": "samsung/himae-tiny",
+   "benchmark": "himae_ppg_extrapolation_mae_lower_better",
+   "score": 0.4008,
+   "unit": "MAE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE, column HiMAE-tiny depth [evidence raw/2510.25785.pdf p.34: \"HiMAE               0.4008      0.2309     0.3892      0.2232     0.3827         0.2210\"]"
+  },
+  {
+   "model": "samsung/himae-tiny",
+   "benchmark": "himae_ppg_extrapolation_mse_lower_better",
+   "score": 0.2309,
+   "unit": "MSE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE, column HiMAE-tiny depth [evidence raw/2510.25785.pdf p.34: \"HiMAE               0.4008      0.2309     0.3892      0.2232     0.3827         0.2210\"]"
+  },
+  {
+   "model": "samsung/himae-small",
+   "benchmark": "himae_ppg_extrapolation_mae_lower_better",
+   "score": 0.3892,
+   "unit": "MAE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE, column HiMAE-small depth [evidence raw/2510.25785.pdf p.34: \"HiMAE               0.4008      0.2309     0.3892      0.2232     0.3827         0.2210\"]"
+  },
+  {
+   "model": "samsung/himae-small",
+   "benchmark": "himae_ppg_extrapolation_mse_lower_better",
+   "score": 0.2232,
+   "unit": "MSE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE, column HiMAE-small depth [evidence raw/2510.25785.pdf p.34: \"HiMAE               0.4008      0.2309     0.3892      0.2232     0.3827         0.2210\"]"
+  },
+  {
+   "model": "samsung/himae",
+   "benchmark": "himae_ppg_extrapolation_mae_lower_better",
+   "score": 0.3827,
+   "unit": "MAE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE, column HiMAE-Base depth [evidence raw/2510.25785.pdf p.34: \"HiMAE               0.4008      0.2309     0.3892      0.2232     0.3827         0.2210\"]"
+  },
+  {
+   "model": "samsung/himae",
+   "benchmark": "himae_ppg_extrapolation_mse_lower_better",
+   "score": 0.221,
+   "unit": "MSE (normalized signal)",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 11 (MAE/MSE for different network depths, extrapolation task), row HiMAE, column HiMAE-Base depth [evidence raw/2510.25785.pdf p.34: \"HiMAE               0.4008      0.2309     0.3892      0.2232     0.3827         0.2210\"]"
+  },
+  {
+   "model": "samsung/himae",
+   "benchmark": "himae_ecg_masked_recon_mse_lower_better",
+   "score": 0.148,
+   "unit": "MSE",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 16 (masked-reconstruction loss on ECG), row HiMAE; depth of HiMAE/CNN assumed final Base config [evidence raw/2510.25785.pdf p.36: \"(ViT) is a close second, while the ablated                             HiMAE                    0.148\"]"
+  },
+  {
+   "model": "baseline/himae-lsm-1-vit",
+   "benchmark": "himae_ecg_masked_recon_mse_lower_better",
+   "score": 0.162,
+   "unit": "MSE",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 16 (masked-reconstruction loss on ECG), row LSM-1 (ViT); depth of HiMAE/CNN assumed final Base config [evidence raw/2510.25785.pdf p.36: \"HiMAE and CNN trail, reinforcing that the                              LSM-1 (ViT)              0.162\"]"
+  },
+  {
+   "model": "samsung/himae-noskip",
+   "benchmark": "himae_ecg_masked_recon_mse_lower_better",
+   "score": 0.184,
+   "unit": "MSE",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 16 (masked-reconstruction loss on ECG), row HiMAE (no skip); depth of HiMAE/CNN assumed final Base config [evidence raw/2510.25785.pdf p.36: \"full HiMAE design transfers effectively to                             HiMAE (no skip)          0.184\"]"
+  },
+  {
+   "model": "baseline/himae-cnn",
+   "benchmark": "himae_ecg_masked_recon_mse_lower_better",
+   "score": 0.207,
+   "unit": "MSE",
+   "_source": "https://arxiv.org/abs/2510.25785",
+   "_note": "Table 16 (masked-reconstruction loss on ECG), row CNN; depth of HiMAE/CNN assumed final Base config [evidence raw/2510.25785.pdf p.36: \"the ECG domain.                                                        CNN                      0.207\"]"
+  }
+ ]
+}

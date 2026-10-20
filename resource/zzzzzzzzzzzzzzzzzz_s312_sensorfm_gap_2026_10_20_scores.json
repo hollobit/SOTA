@@ -1,0 +1,3533 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-20",
+  "session": "S312",
+  "sources": [
+   "https://arxiv.org/abs/2605.22759"
+  ],
+  "note": "arXiv 2605.22759 SensorFM (Google) gap fill: ED.5/7/9/10/12 rows absent from the DB (179 overlapping values matched exactly)."
+ },
+ "models": [
+  {
+   "id": "baseline/sensorfm-demographics",
+   "vendor": "baseline",
+   "name": "Demographics-only supervised baseline (SensorFM paper)",
+   "type": "research",
+   "modalities": [
+    "tabular"
+   ],
+   "release_date": "2026-05"
+  },
+  {
+   "id": "baseline/sensorfm-feat-eng",
+   "vendor": "baseline",
+   "name": "Engineered-feature supervised baseline (SensorFM paper)",
+   "type": "research",
+   "modalities": [
+    "wearable-sensor"
+   ],
+   "release_date": "2026-05"
+  },
+  {
+   "id": "baseline/sensorfm-demos-feat-eng",
+   "vendor": "baseline",
+   "name": "Demographics + engineered-feature supervised baseline (SensorFM paper)",
+   "type": "research",
+   "modalities": [
+    "wearable-sensor",
+    "tabular"
+   ],
+   "release_date": "2026-05"
+  },
+  {
+   "id": "google/sensorfm-b-demos",
+   "vendor": "Google Research / DeepMind",
+   "name": "SensorFM-B + demographics (linear probe)",
+   "type": "research",
+   "modalities": [
+    "wearable-sensor",
+    "tabular"
+   ],
+   "release_date": "2026-05",
+   "parameters": "~100M (10^8)"
+  },
+  {
+   "id": "google/sensorfm-b-classroom-search",
+   "vendor": "Google Research / DeepMind",
+   "name": "SensorFM-B + agent classroom-search heads",
+   "type": "research",
+   "modalities": [
+    "wearable-sensor",
+    "tabular"
+   ],
+   "release_date": "2026-05",
+   "parameters": "~100M (10^8) backbone"
+  },
+  {
+   "id": "baseline/sensorfm-mean-fill",
+   "vendor": "baseline",
+   "name": "Mean Fill imputation baseline (SensorFM paper)",
+   "type": "research",
+   "modalities": [
+    "wearable-sensor"
+   ],
+   "release_date": "2026-05"
+  },
+  {
+   "id": "baseline/sensorfm-nn-fill",
+   "vendor": "baseline",
+   "name": "Nearest-neighbour Fill imputation baseline (SensorFM paper)",
+   "type": "research",
+   "modalities": [
+    "wearable-sensor"
+   ],
+   "release_date": "2026-05"
+  },
+  {
+   "id": "baseline/sensorfm-linear-interp",
+   "vendor": "baseline",
+   "name": "Linear Interpolation imputation baseline (SensorFM paper)",
+   "type": "research",
+   "modalities": [
+    "wearable-sensor"
+   ],
+   "release_date": "2026-05"
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "sensorfm_age_mae_lower_better",
+   "name": "SensorFM task: Age (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level Age regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_bmi_mae_lower_better",
+   "name": "SensorFM task: BMI (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level BMI regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_height_mae_lower_better",
+   "name": "SensorFM task: Height (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level Height regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_weight_mae_lower_better",
+   "name": "SensorFM task: Weight (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level Weight regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_currently_working_f1",
+   "name": "SensorFM task: Currently Working (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Currently Working binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_disability_f1",
+   "name": "SensorFM task: Disability (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Disability binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_disability_affects_work_f1",
+   "name": "SensorFM task: Disability Affects Work (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Disability Affects Work binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_smoking_f1",
+   "name": "SensorFM task: Smoking (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Smoking binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_medicaid_f1",
+   "name": "SensorFM task: Medicaid (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Medicaid binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_no_medications_f1",
+   "name": "SensorFM task: No Medications (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level No Medications binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_cardiovascular_dx_f1",
+   "name": "SensorFM task: Cardiovascular Dx (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Cardiovascular Dx binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_hypertension_dx_f1",
+   "name": "SensorFM task: Hypertension Dx (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Hypertension Dx binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_respiratory_dx_f1",
+   "name": "SensorFM task: Respiratory Dx (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Respiratory Dx binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_ascvd_risk_mae_lower_better",
+   "name": "SensorFM task: ASCVD Risk (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level ASCVD Risk regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_framingham_risk_mae_lower_better",
+   "name": "SensorFM task: Framingham Risk (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level Framingham Risk regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_framingham_30_risk_mae_lower_better",
+   "name": "SensorFM task: Framingham 30 Risk (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level Framingham 30 Risk regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_diabetes_dx_f1",
+   "name": "SensorFM task: Diabetes Dx (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Diabetes Dx binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_diabetes_med_f1",
+   "name": "SensorFM task: Diabetes Med. (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Diabetes Med. binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_hyperlipidemia_f1",
+   "name": "SensorFM task: Hyperlipidemia (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Hyperlipidemia binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_pre_diabetes_f1",
+   "name": "SensorFM task: Pre-Diabetes (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Pre-Diabetes binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_insulin_resistance_f1",
+   "name": "SensorFM task: Insulin Resistance (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Insulin Resistance binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_homa_ir_mae_lower_better",
+   "name": "SensorFM task: HOMA-IR (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level HOMA-IR regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_hba1c_mae_lower_better",
+   "name": "SensorFM task: HbA1c (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level HbA1c regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_triglycerides_mae_lower_better",
+   "name": "SensorFM task: Triglycerides (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level Triglycerides regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_mild_depression_f1",
+   "name": "SensorFM task: Mild Depression (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Mild Depression binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_mild_anxiety_f1",
+   "name": "SensorFM task: Mild Anxiety (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Mild Anxiety binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_persistent_stress_f1",
+   "name": "SensorFM task: Persistent Stress (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Persistent Stress binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_depress_anxiety_dx_f1",
+   "name": "SensorFM task: Depress./Anxiety Dx (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Depress./Anxiety Dx binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_mental_health_med_f1",
+   "name": "SensorFM task: Mental Health Med. (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Mental Health Med. binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_phq_8_mae_lower_better",
+   "name": "SensorFM task: PHQ-8 (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level PHQ-8 regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_gad_7_mae_lower_better",
+   "name": "SensorFM task: GAD-7 (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level GAD-7 regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_pss_mae_lower_better",
+   "name": "SensorFM task: PSS (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level PSS regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_sleep_disorder_treatment_f1",
+   "name": "SensorFM task: Sleep Disorder Treatment (F1)",
+   "category": "medical",
+   "metric": "F1",
+   "description": "Person-level Sleep Disorder Treatment binary classification from wearable sensor embeddings, 5-fold CV mean F1 (0-1). SensorFM paper Table ED.7/ED.12; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_sleep_disturbance_pro_mae_lower_better",
+   "name": "SensorFM task: Sleep Disturbance PRO (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level Sleep Disturbance PRO regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_sleep_impairment_pro_mae_lower_better",
+   "name": "SensorFM task: Sleep Impairment PRO (MAE, lower better)",
+   "category": "medical",
+   "metric": "MAE",
+   "description": "Person-level Sleep Impairment PRO regression from wearable sensor embeddings (PCA-50 linear probe, 5-fold CV mean MAE in task units). SensorFM paper Table ED.7; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_random_imp_80pct_mse_lower_better",
+   "name": "SensorFM Random Imputation 80% (MSE), lower better",
+   "category": "medical",
+   "metric": "MSE",
+   "description": "Wearable minute-level sensor reconstruction: random 80% masking of minute-level sensor values; MSE on known values (normalized). SensorFM paper Table ED.10; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_temporal_interp_20min_mse_lower_better",
+   "name": "SensorFM Temporal Interpolation 20 min (MSE), lower better",
+   "category": "medical",
+   "metric": "MSE",
+   "description": "Wearable minute-level sensor reconstruction: interpolation of a contiguous 20-minute gap; MSE on known values (normalized). SensorFM paper Table ED.10; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_temporal_interp_60min_mse_lower_better",
+   "name": "SensorFM Temporal Interpolation 60 min (MSE), lower better",
+   "category": "medical",
+   "metric": "MSE",
+   "description": "Wearable minute-level sensor reconstruction: interpolation of a contiguous 60-minute gap; MSE on known values (normalized). SensorFM paper Table ED.10; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_temporal_interp_180min_mse_lower_better",
+   "name": "SensorFM Temporal Interpolation 180 min (MSE), lower better",
+   "category": "medical",
+   "metric": "MSE",
+   "description": "Wearable minute-level sensor reconstruction: interpolation of a contiguous 180-minute gap; MSE on known values (normalized). SensorFM paper Table ED.10; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_temporal_extrap_20min_mse_lower_better",
+   "name": "SensorFM Temporal Extrapolation 20 min (MSE), lower better",
+   "category": "medical",
+   "metric": "MSE",
+   "description": "Wearable minute-level sensor reconstruction: forecasting of the final 20 minutes; MSE on known values (normalized). SensorFM paper Table ED.10; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_temporal_extrap_60min_mse_lower_better",
+   "name": "SensorFM Temporal Extrapolation 60 min (MSE), lower better",
+   "category": "medical",
+   "metric": "MSE",
+   "description": "Wearable minute-level sensor reconstruction: forecasting of the final 60 minutes; MSE on known values (normalized). SensorFM paper Table ED.10; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_temporal_extrap_180min_mse_lower_better",
+   "name": "SensorFM Temporal Extrapolation 180 min (MSE), lower better",
+   "category": "medical",
+   "metric": "MSE",
+   "description": "Wearable minute-level sensor reconstruction: forecasting of the final 180 minutes; MSE on known values (normalized). SensorFM paper Table ED.10; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_signal_imp_2of26_mse_lower_better",
+   "name": "SensorFM Signal Imputation 2/26 channels (MSE), lower better",
+   "category": "medical",
+   "metric": "MSE",
+   "description": "Wearable minute-level sensor reconstruction: imputation of 2 of 26 masked sensor feature channels; MSE on known values (normalized). SensorFM paper Table ED.10; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_signal_imp_6of26_mse_lower_better",
+   "name": "SensorFM Signal Imputation 6/26 channels (MSE), lower better",
+   "category": "medical",
+   "metric": "MSE",
+   "description": "Wearable minute-level sensor reconstruction: imputation of 6 of 26 masked sensor feature channels; MSE on known values (normalized). SensorFM paper Table ED.10; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_signal_imp_12of26_mse_lower_better",
+   "name": "SensorFM Signal Imputation 12/26 channels (MSE), lower better",
+   "category": "medical",
+   "metric": "MSE",
+   "description": "Wearable minute-level sensor reconstruction: imputation of 12 of 26 masked sensor feature channels; MSE on known values (normalized). SensorFM paper Table ED.10; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_signal_imp_20of26_mse_lower_better",
+   "name": "SensorFM Signal Imputation 20/26 channels (MSE), lower better",
+   "category": "medical",
+   "metric": "MSE",
+   "description": "Wearable minute-level sensor reconstruction: imputation of 20 of 26 masked sensor feature channels; MSE on known values (normalized). SensorFM paper Table ED.10; arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_cls_avg_auc",
+   "name": "SensorFM 20 classification tasks — average ROC-AUC",
+   "category": "medical",
+   "metric": "ROC-AUC",
+   "description": "Average ROC-AUC (logit-space mean) over the 20 binary wearable health classification tasks, PCA-50 linear probe, 5-fold CV. SensorFM paper Table ED.5 (5M pretraining subjects); arXiv 2605.22759."
+  },
+  {
+   "id": "sensorfm_reg_avg_pearson_r",
+   "name": "SensorFM 15 regression tasks — average Pearson r",
+   "category": "medical",
+   "metric": "Pearson r",
+   "description": "Average Pearson r (z-space mean) over the 15 wearable health regression tasks, PCA-50 linear probe, 5-fold CV. SensorFM paper Table ED.5 (5M pretraining subjects); arXiv 2605.22759."
+  }
+ ],
+ "scores": [
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_age_mae_lower_better",
+   "score": 7.035,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Age [evidence raw/2605.22759.pdf p.45: \"Age                            REG       MAE        7.035+−..135\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_age_mae_lower_better",
+   "score": 6.539,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Age [evidence raw/2605.22759.pdf p.45: \"135     6.539+−..101\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_age_mae_lower_better",
+   "score": 5.405,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Age [evidence raw/2605.22759.pdf p.45: \"101      5.405+−..082\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_age_mae_lower_better",
+   "score": 3.865,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Age [evidence raw/2605.22759.pdf p.45: \"082      3.865+−..075\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_bmi_mae_lower_better",
+   "score": 5.09,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), BMI [evidence raw/2605.22759.pdf p.45: \"BMI                            REG       MAE        5.090+−..062\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_bmi_mae_lower_better",
+   "score": 4.897,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), BMI [evidence raw/2605.22759.pdf p.45: \"062     4.897+−..053\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_bmi_mae_lower_better",
+   "score": 3.937,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), BMI [evidence raw/2605.22759.pdf p.45: \"053      3.937+−..068\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_bmi_mae_lower_better",
+   "score": 3.148,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), BMI [evidence raw/2605.22759.pdf p.45: \"3.148+−..024\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_height_mae_lower_better",
+   "score": 71.226,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Height [evidence raw/2605.22759.pdf p.45: \"Height                         REG       MAE       71.226+−..499\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_height_mae_lower_better",
+   "score": 69.46,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Height [evidence raw/2605.22759.pdf p.45: \"499    69.460+−..348\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_height_mae_lower_better",
+   "score": 61.985,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Height [evidence raw/2605.22759.pdf p.45: \"348     61.985+−..784\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_height_mae_lower_better",
+   "score": 58.773,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Height [evidence raw/2605.22759.pdf p.45: \"784     58.773+−..829\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_weight_mae_lower_better",
+   "score": 15.544,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Weight [evidence raw/2605.22759.pdf p.45: \"Weight                         REG       MAE       15.544+−..121\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_weight_mae_lower_better",
+   "score": 14.754,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Weight [evidence raw/2605.22759.pdf p.45: \"121    14.754+−..102\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_weight_mae_lower_better",
+   "score": 11.682,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Weight [evidence raw/2605.22759.pdf p.45: \"102     11.682+−..210\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_weight_mae_lower_better",
+   "score": 9.541,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Weight [evidence raw/2605.22759.pdf p.45: \"210      9.541+−..137\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_currently_working_f1",
+   "score": 0.805,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Currently Working [evidence raw/2605.22759.pdf p.45: \"Currently Working              CLS        F1          .805+−..002\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_currently_working_f1",
+   "score": 0.812,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Currently Working [evidence raw/2605.22759.pdf p.45: \"002       .812+−..007\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_currently_working_f1",
+   "score": 0.838,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Currently Working [evidence raw/2605.22759.pdf p.45: \"007       .838+−..005\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_currently_working_f1",
+   "score": 0.884,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Currently Working [evidence raw/2605.22759.pdf p.45: \"005       .884+−..009\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_disability_f1",
+   "score": 0.38,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Disability [evidence raw/2605.22759.pdf p.45: \"Disability                     CLS        F1          .380+−..016\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_disability_f1",
+   "score": 0.396,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Disability [evidence raw/2605.22759.pdf p.45: \"016       .396+−..012\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_disability_f1",
+   "score": 0.402,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Disability [evidence raw/2605.22759.pdf p.45: \"012       .402+−..018\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_disability_f1",
+   "score": 0.432,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Disability [evidence raw/2605.22759.pdf p.45: \"018       .432+−..033\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_disability_affects_work_f1",
+   "score": 0.641,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Disability Affects Work [evidence raw/2605.22759.pdf p.45: \"Disability Affects Work        CLS        F1          .641+−..032\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_disability_affects_work_f1",
+   "score": 0.69,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Disability Affects Work [evidence raw/2605.22759.pdf p.45: \"032       .690+−..031\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_disability_affects_work_f1",
+   "score": 0.681,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Disability Affects Work [evidence raw/2605.22759.pdf p.45: \"031       .681+−..046\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_disability_affects_work_f1",
+   "score": 0.727,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Disability Affects Work [evidence raw/2605.22759.pdf p.45: \".727+−..023\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_smoking_f1",
+   "score": 0.236,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Smoking [evidence raw/2605.22759.pdf p.45: \"Smoking                        CLS        F1          .236+−..059\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_smoking_f1",
+   "score": 0.259,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Smoking [evidence raw/2605.22759.pdf p.45: \"059       .259+−..065\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_smoking_f1",
+   "score": 0.283,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Smoking [evidence raw/2605.22759.pdf p.45: \"065       .283+−..054\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_smoking_f1",
+   "score": 0.416,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Smoking [evidence raw/2605.22759.pdf p.45: \"054       .416+−..088\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_medicaid_f1",
+   "score": 0.312,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Medicaid [evidence raw/2605.22759.pdf p.45: \"Medicaid                       CLS        F1          .312+−..021\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_medicaid_f1",
+   "score": 0.333,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Medicaid [evidence raw/2605.22759.pdf p.45: \"021       .333+−..027\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_medicaid_f1",
+   "score": 0.367,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Medicaid [evidence raw/2605.22759.pdf p.45: \"027       .367+−..029\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_medicaid_f1",
+   "score": 0.416,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Medicaid [evidence raw/2605.22759.pdf p.45: \"029       .416+−..021\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_no_medications_f1",
+   "score": 0.612,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), No Medications [evidence raw/2605.22759.pdf p.45: \"No Medications                 CLS        F1          .612+−..011\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_no_medications_f1",
+   "score": 0.618,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), No Medications [evidence raw/2605.22759.pdf p.45: \"011       .618+−..011\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_no_medications_f1",
+   "score": 0.641,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), No Medications [evidence raw/2605.22759.pdf p.45: \"011       .641+−..006\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_no_medications_f1",
+   "score": 0.667,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), No Medications [evidence raw/2605.22759.pdf p.45: \"006       .667+−..006\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_cardiovascular_dx_f1",
+   "score": 0.091,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Cardiovascular Dx [evidence raw/2605.22759.pdf p.45: \"Cardiovascular Dx              CLS        F1          .091+−..040\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_cardiovascular_dx_f1",
+   "score": 0.09,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Cardiovascular Dx [evidence raw/2605.22759.pdf p.45: \"040       .090+−..043\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_cardiovascular_dx_f1",
+   "score": 0.081,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Cardiovascular Dx [evidence raw/2605.22759.pdf p.45: \"043       .081+−..051\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_cardiovascular_dx_f1",
+   "score": 0.108,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Cardiovascular Dx [evidence raw/2605.22759.pdf p.45: \"051       .108+−..061\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_hypertension_dx_f1",
+   "score": 0.481,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Hypertension Dx [evidence raw/2605.22759.pdf p.45: \"Hypertension Dx                CLS        F1          .481+−..034\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_hypertension_dx_f1",
+   "score": 0.51,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Hypertension Dx [evidence raw/2605.22759.pdf p.45: \"034       .510+−..043\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_hypertension_dx_f1",
+   "score": 0.531,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Hypertension Dx [evidence raw/2605.22759.pdf p.45: \"043       .531+−..042\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_hypertension_dx_f1",
+   "score": 0.56,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Hypertension Dx [evidence raw/2605.22759.pdf p.45: \"042       .560+−..032\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_respiratory_dx_f1",
+   "score": 0.313,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Respiratory Dx [evidence raw/2605.22759.pdf p.45: \"Respiratory Dx                 CLS        F1          .313+−..058\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_respiratory_dx_f1",
+   "score": 0.329,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Respiratory Dx [evidence raw/2605.22759.pdf p.45: \"058       .329+−..055\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_respiratory_dx_f1",
+   "score": 0.353,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Respiratory Dx [evidence raw/2605.22759.pdf p.45: \"055       .353+−..060\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_respiratory_dx_f1",
+   "score": 0.375,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Respiratory Dx [evidence raw/2605.22759.pdf p.45: \"060       .375+−..069\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_ascvd_risk_mae_lower_better",
+   "score": 0.037,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), ASCVD Risk [evidence raw/2605.22759.pdf p.45: \"ASCVD Risk                     REG       MAE          .037+−..002\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_ascvd_risk_mae_lower_better",
+   "score": 0.034,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), ASCVD Risk [evidence raw/2605.22759.pdf p.45: \"002       .034+−..005\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_ascvd_risk_mae_lower_better",
+   "score": 0.032,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), ASCVD Risk [evidence raw/2605.22759.pdf p.45: \"005       .032+−..003\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_ascvd_risk_mae_lower_better",
+   "score": 0.029,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), ASCVD Risk [evidence raw/2605.22759.pdf p.45: \"003       .029+−..004\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_framingham_risk_mae_lower_better",
+   "score": 0.044,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Framingham Risk [evidence raw/2605.22759.pdf p.45: \"Framingham Risk                REG       MAE          .044+−..003\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_framingham_risk_mae_lower_better",
+   "score": 0.04,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Framingham Risk [evidence raw/2605.22759.pdf p.45: \"003       .040+−..006\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_framingham_risk_mae_lower_better",
+   "score": 0.037,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Framingham Risk [evidence raw/2605.22759.pdf p.45: \"006       .037+−..005\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_framingham_risk_mae_lower_better",
+   "score": 0.035,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Framingham Risk [evidence raw/2605.22759.pdf p.45: \"005       .035+−..005\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_framingham_30_risk_mae_lower_better",
+   "score": 0.124,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Framingham 30 Risk [evidence raw/2605.22759.pdf p.45: \"Framingham 30 Risk             REG       MAE          .124+−..010\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_framingham_30_risk_mae_lower_better",
+   "score": 0.111,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Framingham 30 Risk [evidence raw/2605.22759.pdf p.45: \"010       .111+−..011\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_framingham_30_risk_mae_lower_better",
+   "score": 0.1,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Framingham 30 Risk [evidence raw/2605.22759.pdf p.45: \"011       .100+−..009\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_framingham_30_risk_mae_lower_better",
+   "score": 0.091,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Framingham 30 Risk [evidence raw/2605.22759.pdf p.45: \"009       .091+−..010\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_diabetes_dx_f1",
+   "score": 0.238,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Diabetes Dx [evidence raw/2605.22759.pdf p.45: \"Diabetes Dx                    CLS        F1         .238+−..026\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_diabetes_dx_f1",
+   "score": 0.222,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Diabetes Dx [evidence raw/2605.22759.pdf p.45: \"026      .222+−..033\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_diabetes_dx_f1",
+   "score": 0.266,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Diabetes Dx [evidence raw/2605.22759.pdf p.45: \"033      .266+−..020\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_diabetes_dx_f1",
+   "score": 0.3,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Diabetes Dx [evidence raw/2605.22759.pdf p.45: \"020      .300+−..038\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_diabetes_med_f1",
+   "score": 0.225,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Diabetes Med. [evidence raw/2605.22759.pdf p.45: \"Diabetes Med.                  CLS        F1         .225+−..044\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_diabetes_med_f1",
+   "score": 0.208,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Diabetes Med. [evidence raw/2605.22759.pdf p.45: \"044      .208+−..028\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_diabetes_med_f1",
+   "score": 0.229,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Diabetes Med. [evidence raw/2605.22759.pdf p.45: \"028      .229+−..029\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_diabetes_med_f1",
+   "score": 0.259,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Diabetes Med. [evidence raw/2605.22759.pdf p.45: \"029      .259+−..022\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_hyperlipidemia_f1",
+   "score": 0.387,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Hyperlipidemia [evidence raw/2605.22759.pdf p.45: \"Hyperlipidemia                 CLS        F1         .387+−..045\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_hyperlipidemia_f1",
+   "score": 0.397,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Hyperlipidemia [evidence raw/2605.22759.pdf p.45: \"045      .397+−..045\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_hyperlipidemia_f1",
+   "score": 0.415,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Hyperlipidemia [evidence raw/2605.22759.pdf p.45: \"045      .415+−..057\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_hyperlipidemia_f1",
+   "score": 0.418,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Hyperlipidemia [evidence raw/2605.22759.pdf p.45: \"057      .418+−..047\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_pre_diabetes_f1",
+   "score": 0.416,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Pre-Diabetes [evidence raw/2605.22759.pdf p.45: \"Pre-Diabetes                   CLS        F1         .416+−..031\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_pre_diabetes_f1",
+   "score": 0.469,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Pre-Diabetes [evidence raw/2605.22759.pdf p.45: \"031      .469+−..068\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_pre_diabetes_f1",
+   "score": 0.469,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Pre-Diabetes [evidence raw/2605.22759.pdf p.45: \".469+−..053\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_pre_diabetes_f1",
+   "score": 0.483,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Pre-Diabetes [evidence raw/2605.22759.pdf p.45: \"053      .483+−..047\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_insulin_resistance_f1",
+   "score": 0.442,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Insulin Resistance [evidence raw/2605.22759.pdf p.45: \"Insulin Resistance             CLS        F1         .442+−..048\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_insulin_resistance_f1",
+   "score": 0.457,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Insulin Resistance [evidence raw/2605.22759.pdf p.45: \"048      .457+−..055\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_insulin_resistance_f1",
+   "score": 0.485,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Insulin Resistance [evidence raw/2605.22759.pdf p.45: \"055      .485+−..032\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_insulin_resistance_f1",
+   "score": 0.557,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Insulin Resistance [evidence raw/2605.22759.pdf p.45: \"032      .557+−..053\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_homa_ir_mae_lower_better",
+   "score": 1.314,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), HOMA-IR [evidence raw/2605.22759.pdf p.45: \"HOMA-IR                        REG       MAE        1.314+−..088\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_homa_ir_mae_lower_better",
+   "score": 1.311,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), HOMA-IR [evidence raw/2605.22759.pdf p.45: \"088     1.311+−..101\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_homa_ir_mae_lower_better",
+   "score": 1.234,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), HOMA-IR [evidence raw/2605.22759.pdf p.45: \"101     1.234+−..037\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_homa_ir_mae_lower_better",
+   "score": 1.165,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), HOMA-IR [evidence raw/2605.22759.pdf p.45: \"037     1.165+−..056\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_hba1c_mae_lower_better",
+   "score": 0.384,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), HbA1c [evidence raw/2605.22759.pdf p.45: \"HbA1c                          REG       MAE         .384+−..031\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_hba1c_mae_lower_better",
+   "score": 0.372,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), HbA1c [evidence raw/2605.22759.pdf p.45: \"031      .372+−..030\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_hba1c_mae_lower_better",
+   "score": 0.372,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), HbA1c [evidence raw/2605.22759.pdf p.45: \"030      .372+−..025\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_hba1c_mae_lower_better",
+   "score": 0.37,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), HbA1c [evidence raw/2605.22759.pdf p.45: \"025      .370+−..016\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_triglycerides_mae_lower_better",
+   "score": 51.48,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Triglycerides [evidence raw/2605.22759.pdf p.45: \"Triglycerides                  REG       MAE      51.480+−33..443\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_triglycerides_mae_lower_better",
+   "score": 50.132,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Triglycerides [evidence raw/2605.22759.pdf p.45: \"443   50.132+−33..860\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_triglycerides_mae_lower_better",
+   "score": 48.219,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Triglycerides [evidence raw/2605.22759.pdf p.45: \"48.219+−33..570\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_triglycerides_mae_lower_better",
+   "score": 47.769,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Triglycerides [evidence raw/2605.22759.pdf p.45: \"570   47.769+−33..613\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_mild_depression_f1",
+   "score": 0.487,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mild Depression [evidence raw/2605.22759.pdf p.45: \"Mild Depression                CLS        F1          .487+−..023\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_mild_depression_f1",
+   "score": 0.482,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mild Depression [evidence raw/2605.22759.pdf p.45: \"023      .482+−..021\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_mild_depression_f1",
+   "score": 0.512,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mild Depression [evidence raw/2605.22759.pdf p.45: \"021       .512+−..014\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_mild_depression_f1",
+   "score": 0.539,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mild Depression [evidence raw/2605.22759.pdf p.45: \"014       .539+−..016\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_mild_anxiety_f1",
+   "score": 0.413,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mild Anxiety [evidence raw/2605.22759.pdf p.45: \"Mild Anxiety                   CLS        F1          .413+−..025\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_mild_anxiety_f1",
+   "score": 0.407,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mild Anxiety [evidence raw/2605.22759.pdf p.45: \"025      .407+−..020\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_mild_anxiety_f1",
+   "score": 0.442,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mild Anxiety [evidence raw/2605.22759.pdf p.45: \"020       .442+−..024\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_mild_anxiety_f1",
+   "score": 0.461,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mild Anxiety [evidence raw/2605.22759.pdf p.45: \"024       .461+−..023\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_persistent_stress_f1",
+   "score": 0.684,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Persistent Stress [evidence raw/2605.22759.pdf p.45: \"Persistent Stress              CLS        F1          .684+−..022\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_persistent_stress_f1",
+   "score": 0.678,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Persistent Stress [evidence raw/2605.22759.pdf p.45: \"022      .678+−..021\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_persistent_stress_f1",
+   "score": 0.7,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Persistent Stress [evidence raw/2605.22759.pdf p.45: \"021       .700+−..019\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_persistent_stress_f1",
+   "score": 0.717,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Persistent Stress [evidence raw/2605.22759.pdf p.45: \"019       .717+−..022\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_depress_anxiety_dx_f1",
+   "score": 0.414,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Depress./Anxiety Dx [evidence raw/2605.22759.pdf p.45: \"Depress./Anxiety Dx            CLS        F1          .414+−..018\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_depress_anxiety_dx_f1",
+   "score": 0.429,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Depress./Anxiety Dx [evidence raw/2605.22759.pdf p.45: \"018      .429+−..015\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_depress_anxiety_dx_f1",
+   "score": 0.444,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Depress./Anxiety Dx [evidence raw/2605.22759.pdf p.45: \"015       .444+−..027\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_depress_anxiety_dx_f1",
+   "score": 0.461,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Depress./Anxiety Dx [evidence raw/2605.22759.pdf p.45: \"027       .461+−..016\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_mental_health_med_f1",
+   "score": 0.353,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mental Health Med. [evidence raw/2605.22759.pdf p.45: \"Mental Health Med.             CLS        F1          .353+−..017\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_mental_health_med_f1",
+   "score": 0.358,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mental Health Med. [evidence raw/2605.22759.pdf p.45: \"017      .358+−..019\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_mental_health_med_f1",
+   "score": 0.369,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mental Health Med. [evidence raw/2605.22759.pdf p.45: \"019       .369+−..021\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_mental_health_med_f1",
+   "score": 0.401,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Mental Health Med. [evidence raw/2605.22759.pdf p.45: \"021       .401+−..023\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_phq_8_mae_lower_better",
+   "score": 4.228,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), PHQ-8 [evidence raw/2605.22759.pdf p.45: \"PHQ-8                          REG       MAE         4.228+−..062\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_phq_8_mae_lower_better",
+   "score": 4.196,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), PHQ-8 [evidence raw/2605.22759.pdf p.45: \"062     4.196+−..064\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_phq_8_mae_lower_better",
+   "score": 4.072,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), PHQ-8 [evidence raw/2605.22759.pdf p.45: \"4.072+−..070\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_phq_8_mae_lower_better",
+   "score": 3.948,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), PHQ-8 [evidence raw/2605.22759.pdf p.45: \"070      3.948+−..078\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_gad_7_mae_lower_better",
+   "score": 3.951,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), GAD-7 [evidence raw/2605.22759.pdf p.45: \"GAD-7                          REG       MAE         3.951+−..078\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_gad_7_mae_lower_better",
+   "score": 3.925,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), GAD-7 [evidence raw/2605.22759.pdf p.45: \"078     3.925+−..079\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_gad_7_mae_lower_better",
+   "score": 3.827,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), GAD-7 [evidence raw/2605.22759.pdf p.45: \"079      3.827+−..075\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_gad_7_mae_lower_better",
+   "score": 3.732,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), GAD-7 [evidence raw/2605.22759.pdf p.45: \"075      3.732+−..085\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_pss_mae_lower_better",
+   "score": 5.618,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), PSS [evidence raw/2605.22759.pdf p.45: \"PSS                            REG       MAE         5.618+−..040\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_pss_mae_lower_better",
+   "score": 5.602,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), PSS [evidence raw/2605.22759.pdf p.45: \"040     5.602+−..076\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_pss_mae_lower_better",
+   "score": 5.424,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), PSS [evidence raw/2605.22759.pdf p.45: \"5.424+−..063\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_pss_mae_lower_better",
+   "score": 5.272,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), PSS [evidence raw/2605.22759.pdf p.45: \"063      5.272+−..048\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_sleep_disorder_treatment_f1",
+   "score": 0.66,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Disorder Treatment [evidence raw/2605.22759.pdf p.45: \"Sleep Disorder Treatment       CLS        F1          .660+−..026\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_sleep_disorder_treatment_f1",
+   "score": 0.684,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Disorder Treatment [evidence raw/2605.22759.pdf p.45: \"026      .684+−..037\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_sleep_disorder_treatment_f1",
+   "score": 0.681,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Disorder Treatment [evidence raw/2605.22759.pdf p.45: \"037       .681+−..038\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_sleep_disorder_treatment_f1",
+   "score": 0.683,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Disorder Treatment [evidence raw/2605.22759.pdf p.45: \"038        .683+−..034\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_sleep_disturbance_pro_mae_lower_better",
+   "score": 5.44,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Disturbance PRO [evidence raw/2605.22759.pdf p.45: \"Sleep Disturbance PRO          REG       MAE         5.440+−..109\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_sleep_disturbance_pro_mae_lower_better",
+   "score": 5.38,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Disturbance PRO [evidence raw/2605.22759.pdf p.45: \"109     5.380+−..096\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_sleep_disturbance_pro_mae_lower_better",
+   "score": 5.312,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Disturbance PRO [evidence raw/2605.22759.pdf p.45: \"5.312+−..097\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_sleep_disturbance_pro_mae_lower_better",
+   "score": 5.205,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Disturbance PRO [evidence raw/2605.22759.pdf p.45: \"097      5.205+−..084\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_sleep_impairment_pro_mae_lower_better",
+   "score": 5.879,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Impairment PRO [evidence raw/2605.22759.pdf p.45: \"Sleep Impairment PRO           REG       MAE         5.879+−..125\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_sleep_impairment_pro_mae_lower_better",
+   "score": 5.844,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Impairment PRO [evidence raw/2605.22759.pdf p.45: \"125     5.844+−..122\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_sleep_impairment_pro_mae_lower_better",
+   "score": 5.687,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Impairment PRO [evidence raw/2605.22759.pdf p.45: \"122      5.687+−..121\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_sleep_impairment_pro_mae_lower_better",
+   "score": 5.538,
+   "unit": "MAE (task units)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.7 (additional metrics across model scales, no demographics), Sleep Impairment PRO [evidence raw/2605.22759.pdf p.45: \"121      5.538+−..112\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_age_pearson_r",
+   "score": 0.662,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Age, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"Age                            REG         𝑟            -         .662+−..168\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_bmi_pearson_r",
+   "score": 0.441,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), BMI, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"BMI                            REG         𝑟            -         .441+−..158\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_height_pearson_r",
+   "score": 0.409,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Height, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"Height                         REG         𝑟            -         .409+−..174\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_weight_pearson_r",
+   "score": 0.46,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Weight, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"Weight                         REG         𝑟            -         .460+−..011\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_currently_working_auc",
+   "score": 0.637,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Currently Working, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Currently Working              CLS       ROC       .637+−..028\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_currently_working_auc",
+   "score": 0.769,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Currently Working, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"029    .769+−..021\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_currently_working_auc",
+   "score": 0.782,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Currently Working, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"022    .782+−..022\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_currently_working_auc",
+   "score": 0.912,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Currently Working, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"014   .912+−..012\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_disability_auc",
+   "score": 0.6,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Disability, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Disability                     CLS       ROC       .600+−..031\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_disability_auc",
+   "score": 0.702,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Disability, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"032    .702+−..023\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_disability_auc",
+   "score": 0.722,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Disability, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"024    .722+−..027\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_disability_auc",
+   "score": 0.758,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Disability, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"021   .758+−..022\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_disability_affects_work_auc",
+   "score": 0.534,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Disability Affects Work, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Disability Affects Work        CLS       ROC       .534+−..044\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_disability_affects_work_auc",
+   "score": 0.605,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Disability Affects Work, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"044    .605+−..050\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_disability_affects_work_auc",
+   "score": 0.625,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Disability Affects Work, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"052    .625+−..044\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_disability_affects_work_auc",
+   "score": 0.697,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Disability Affects Work, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"043   .697+−..041\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_smoking_auc",
+   "score": 0.629,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Smoking, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Smoking                        CLS       ROC       .629+−..049\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_smoking_auc",
+   "score": 0.754,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Smoking, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"051    .754+−..046\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_smoking_auc",
+   "score": 0.771,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Smoking, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"052    .771+−..037\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_smoking_auc",
+   "score": 0.867,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Smoking, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"098   .867+−..060\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_medicaid_auc",
+   "score": 0.589,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Medicaid, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Medicaid                       CLS       ROC       .589+−..020\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_medicaid_auc",
+   "score": 0.726,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Medicaid, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"020    .726+−..025\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_medicaid_auc",
+   "score": 0.729,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Medicaid, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"027    .729+−..025\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_medicaid_auc",
+   "score": 0.814,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Medicaid, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"023   .814+−..022\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_no_medications_auc",
+   "score": 0.617,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), No Medications, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"No Medications                 CLS       ROC       .617+−..018\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_no_medications_auc",
+   "score": 0.687,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), No Medications, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"018    .687+−..006\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_no_medications_auc",
+   "score": 0.699,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), No Medications, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"006    .699+−..008\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_no_medications_auc",
+   "score": 0.744,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), No Medications, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"009   .744+−..009\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_cardiovascular_auc",
+   "score": 0.701,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Cardiovascular Dx, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Cardiovascular Dx              CLS       ROC       .701+−..037\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_cardiovascular_auc",
+   "score": 0.696,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Cardiovascular Dx, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"039    .696+−..090\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_cardiovascular_auc",
+   "score": 0.706,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Cardiovascular Dx, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"107    .706+−..091\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_cardiovascular_auc",
+   "score": 0.696,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Cardiovascular Dx, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"058   .696+−..057\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_hypertension_dx_auc",
+   "score": 0.762,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Hypertension Dx, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Hypertension Dx                CLS       ROC       .762+−..038\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_hypertension_dx_auc",
+   "score": 0.747,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Hypertension Dx, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"043    .747+−..019\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_hypertension_dx_auc",
+   "score": 0.78,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Hypertension Dx, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"020    .780+−..021\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_hypertension_dx_auc",
+   "score": 0.786,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Hypertension Dx, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"025   .786+−..022\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_respiratory_dx_auc",
+   "score": 0.64,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Respiratory Dx, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Respiratory Dx                 CLS       ROC       .640+−..049\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_respiratory_dx_auc",
+   "score": 0.642,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Respiratory Dx, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"052    .642+−..039\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_respiratory_dx_auc",
+   "score": 0.64,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Respiratory Dx, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"041    .640+−..031\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_respiratory_dx_auc",
+   "score": 0.674,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Respiratory Dx, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"059   .674+−..046\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_ascvd_risk_pearson_r",
+   "score": 0.74,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), ASCVD Risk, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"ASCVD Risk                     REG         𝑟       .740+−..054\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_ascvd_risk_pearson_r",
+   "score": 0.604,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), ASCVD Risk, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \".604+−..069\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_ascvd_risk_pearson_r",
+   "score": 0.764,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), ASCVD Risk, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"079    .764+−..058\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_ascvd_risk_pearson_r",
+   "score": 0.784,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), ASCVD Risk, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"127   .784+−..059\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_framingham_risk_pearson_r",
+   "score": 0.743,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Framingham Risk, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Framingham Risk                REG         𝑟       .743+−..041\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_framingham_risk_pearson_r",
+   "score": 0.548,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Framingham Risk, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"047    .548+−..072\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_framingham_risk_pearson_r",
+   "score": 0.73,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Framingham Risk, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"081    .730+−..063\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_framingham_risk_pearson_r",
+   "score": 0.724,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Framingham Risk, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"133   .724+−..057\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_framingham_30_risk_pearson_r",
+   "score": 0.782,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Framingham 30 Risk, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Framingham 30 Risk             REG         𝑟       .782+−..038\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_framingham_30_risk_pearson_r",
+   "score": 0.592,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Framingham 30 Risk, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"045    .592+−..045\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_framingham_30_risk_pearson_r",
+   "score": 0.772,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Framingham 30 Risk, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"049    .772+−..043\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_framingham_30_risk_pearson_r",
+   "score": 0.756,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Framingham 30 Risk, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"062   .756+−..039\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_diabetes_dx_auc",
+   "score": 0.688,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Diabetes Dx, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Diabetes Dx                    CLS       ROC       .688+−..052\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_diabetes_dx_auc",
+   "score": 0.727,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Diabetes Dx, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"058    .727+−..059\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_diabetes_dx_auc",
+   "score": 0.734,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Diabetes Dx, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \".734+−..062\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_diabetes_dx_auc",
+   "score": 0.756,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Diabetes Dx, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"042   .756+−..043\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_diabetes_med_auc",
+   "score": 0.704,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Diabetes Med., column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Diabetes Med.                  CLS       ROC       .704+−..042\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_diabetes_med_auc",
+   "score": 0.672,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Diabetes Med., column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \".672+−..064\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_diabetes_med_auc",
+   "score": 0.706,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Diabetes Med., column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"071    .706+−..069\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_diabetes_med_auc",
+   "score": 0.705,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Diabetes Med., column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"049   .705+−..040\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_hyperlipidemia_auc",
+   "score": 0.688,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Hyperlipidemia, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Hyperlipidemia                 CLS       ROC       .688+−..014\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_hyperlipidemia_auc",
+   "score": 0.643,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Hyperlipidemia, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"015    .643+−..050\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_hyperlipidemia_auc",
+   "score": 0.67,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Hyperlipidemia, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"053    .670+−..041\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_hyperlipidemia_auc",
+   "score": 0.676,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Hyperlipidemia, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"033   .676+−..027\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_pre_diabetes_auc",
+   "score": 0.731,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Pre-Diabetes, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Pre-Diabetes                   CLS       ROC       .731+−..031\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_pre_diabetes_auc",
+   "score": 0.728,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Pre-Diabetes, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"033    .728+−..052\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_pre_diabetes_auc",
+   "score": 0.742,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Pre-Diabetes, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"059    .742+−..047\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_pre_diabetes_auc",
+   "score": 0.707,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Pre-Diabetes, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"078   .707+−..066\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_insulin_resistance_auc",
+   "score": 0.717,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Insulin Resistance, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Insulin Resistance             CLS       ROC       .717+−..044\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_insulin_resistance_auc",
+   "score": 0.71,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Insulin Resistance, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"048    .710+−..050\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_insulin_resistance_auc",
+   "score": 0.717,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Insulin Resistance, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"055    .717+−..040\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_insulin_resistance_auc",
+   "score": 0.763,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Insulin Resistance, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"050   .763+−..044\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_homa_ir_pearson_r",
+   "score": 0.316,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), HOMA-IR, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"HOMA-IR                        REG         𝑟       .316+−..068\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_homa_ir_pearson_r",
+   "score": 0.374,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), HOMA-IR, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"071    .374+−..069\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_homa_ir_pearson_r",
+   "score": 0.397,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), HOMA-IR, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"073    .397+−..042\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_homa_ir_pearson_r",
+   "score": 0.48,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), HOMA-IR, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"031   .480+−..029\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_hba1c_pearson_r",
+   "score": 0.282,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), HbA1c, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"HbA1c                          REG         𝑟       .282+−..067\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_hba1c_pearson_r",
+   "score": 0.221,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), HbA1c, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \".221+−..106\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_hba1c_pearson_r",
+   "score": 0.228,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), HbA1c, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"112    .228+−..090\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_hba1c_pearson_r",
+   "score": 0.292,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), HbA1c, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"030   .292+−..026\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_triglycerides_pearson_r",
+   "score": 0.251,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Triglycerides, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Triglycerides                  REG         𝑟       .251+−..042\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_triglycerides_pearson_r",
+   "score": 0.131,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Triglycerides, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"043    .131+−..065\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_triglycerides_pearson_r",
+   "score": 0.173,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Triglycerides, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"066    .173+−..043\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_triglycerides_pearson_r",
+   "score": 0.287,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Triglycerides, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"048   .287+−..054\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_mild_depression_auc",
+   "score": 0.653,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mild Depression, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Mild Depression                CLS       ROC       .653+−..009\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_mild_depression_auc",
+   "score": 0.682,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mild Depression, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"009    .682+−..014\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_mild_depression_auc",
+   "score": 0.705,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mild Depression, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"015    .705+−..006\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_mild_depression_auc",
+   "score": 0.73,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mild Depression, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"006   .730+−..011\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_mild_anxiety_auc",
+   "score": 0.641,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mild Anxiety, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Mild Anxiety                   CLS       ROC       .641+−..009\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_mild_anxiety_auc",
+   "score": 0.654,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mild Anxiety, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"009    .654+−..010\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_mild_anxiety_auc",
+   "score": 0.68,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mild Anxiety, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"011    .680+−..005\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_mild_anxiety_auc",
+   "score": 0.699,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mild Anxiety, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"005   .699+−..006\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_persistent_stress_auc",
+   "score": 0.676,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Persistent Stress, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Persistent Stress              CLS       ROC       .676+−..022\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_persistent_stress_auc",
+   "score": 0.664,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Persistent Stress, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"023    .664+−..033\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_persistent_stress_auc",
+   "score": 0.697,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Persistent Stress, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"034    .697+−..025\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_persistent_stress_auc",
+   "score": 0.717,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Persistent Stress, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"028   .717+−..026\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_depress_anxiety_dx_auc",
+   "score": 0.626,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Depress./Anxiety Dx, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Depress./Anxiety Dx            CLS       ROC       .626+−..012\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_depress_anxiety_dx_auc",
+   "score": 0.672,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Depress./Anxiety Dx, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"012    .672+−..022\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_depress_anxiety_dx_auc",
+   "score": 0.693,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Depress./Anxiety Dx, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"022    .693+−..015\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_depress_anxiety_dx_auc",
+   "score": 0.721,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Depress./Anxiety Dx, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"009   .721+−..008\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_mental_health_med_auc",
+   "score": 0.594,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mental Health Med., column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Mental Health Med.             CLS       ROC       .594+−..015\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_mental_health_med_auc",
+   "score": 0.773,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mental Health Med., column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"015    .773+−..006\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_mental_health_med_auc",
+   "score": 0.783,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mental Health Med., column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"006    .783+−..007\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_mental_health_med_auc",
+   "score": 0.826,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Mental Health Med., column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"022   .826+−..017\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_phq_8_pearson_r",
+   "score": 0.303,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), PHQ-8, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"PHQ-8                          REG         𝑟       .303+−..018\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_phq_8_pearson_r",
+   "score": 0.354,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), PHQ-8, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"018    .354+−..018\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_phq_8_pearson_r",
+   "score": 0.41,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), PHQ-8, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"018    .410+−..009\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_phq_8_pearson_r",
+   "score": 0.459,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), PHQ-8, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"019   .459+−..023\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_gad_7_pearson_r",
+   "score": 0.291,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), GAD-7, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"GAD-7                          REG         𝑟       .291+−..009\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_gad_7_pearson_r",
+   "score": 0.244,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), GAD-7, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"009    .244+−..130\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_gad_7_pearson_r",
+   "score": 0.294,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), GAD-7, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"140    .294+−..139\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_gad_7_pearson_r",
+   "score": 0.403,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), GAD-7, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"025   .403+−..025\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_pss_pearson_r",
+   "score": 0.378,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), PSS, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"PSS                            REG         𝑟       .378+−..019\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_pss_pearson_r",
+   "score": 0.305,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), PSS, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"019    .305+−..124\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_pss_pearson_r",
+   "score": 0.417,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), PSS, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"135    .417+−..040\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_pss_pearson_r",
+   "score": 0.476,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), PSS, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"014   .476+−..018\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_sleep_disorder_treatment_auc",
+   "score": 0.653,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Disorder Treatment, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Sleep Disorder Treatment       CLS       ROC       .653+−..037\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_sleep_disorder_treatment_auc",
+   "score": 0.61,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Disorder Treatment, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"039    .610+−..024\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_sleep_disorder_treatment_auc",
+   "score": 0.625,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Disorder Treatment, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"024    .625+−..047\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_sleep_disorder_treatment_auc",
+   "score": 0.653,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Disorder Treatment, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"038   .653+−..040\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_sleep_disturbance_pro_pearson_r",
+   "score": 0.195,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Disturbance PRO, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Sleep Disturbance PRO          REG         𝑟       .195+−..028\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_sleep_disturbance_pro_pearson_r",
+   "score": 0.283,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Disturbance PRO, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"028    .283+−..105\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_sleep_disturbance_pro_pearson_r",
+   "score": 0.326,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Disturbance PRO, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"112    .326+−..056\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_sleep_disturbance_pro_pearson_r",
+   "score": 0.393,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Disturbance PRO, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"016   .393+−..014\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demographics",
+   "benchmark": "sensorfm_sleep_impairment_pro_pearson_r",
+   "score": 0.344,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Impairment PRO, column baseline/sensorfm-demographics [evidence raw/2605.22759.pdf p.47: \"Sleep Impairment PRO           REG         𝑟       .344+−..023\"]"
+  },
+  {
+   "model": "baseline/sensorfm-feat-eng",
+   "benchmark": "sensorfm_sleep_impairment_pro_pearson_r",
+   "score": 0.31,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Impairment PRO, column baseline/sensorfm-feat-eng [evidence raw/2605.22759.pdf p.47: \"023    .310+−..138\"]"
+  },
+  {
+   "model": "baseline/sensorfm-demos-feat-eng",
+   "benchmark": "sensorfm_sleep_impairment_pro_pearson_r",
+   "score": 0.372,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Impairment PRO, column baseline/sensorfm-demos-feat-eng [evidence raw/2605.22759.pdf p.47: \"152    .372+−..143\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_sleep_impairment_pro_pearson_r",
+   "score": 0.46,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.9 (SensorFM-B 5M vs supervised baselines), Sleep Impairment PRO, column google/sensorfm-b-demos [evidence raw/2605.22759.pdf p.47: \"013   .460+−..016\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_age_pearson_r",
+   "score": 0.929,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Age, Classroom-Search (no demographic features) [evidence raw/2605.22759.pdf p.57: \"005              .929+−..005\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_bmi_pearson_r",
+   "score": 0.827,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), BMI, Classroom-Search (no demographic features) [evidence raw/2605.22759.pdf p.57: \"007              .827+−..012\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_height_pearson_r",
+   "score": 0.708,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Height, Classroom-Search (no demographic features) [evidence raw/2605.22759.pdf p.57: \"012              .708+−..017\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_weight_pearson_r",
+   "score": 0.841,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Weight, Classroom-Search (no demographic features) [evidence raw/2605.22759.pdf p.57: \"007              .841+−..012\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_currently_working_f1",
+   "score": 0.885,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Currently Working, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Currently Working              CLS        F1         .885+−..008\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_currently_working_f1",
+   "score": 0.888,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Currently Working, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"008         .888+−..010\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_disability_f1",
+   "score": 0.439,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Disability, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Disability                     CLS        F1         .439+−..032\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_disability_f1",
+   "score": 0.44,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Disability, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"032         .440+−..039\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_disability_affects_work_f1",
+   "score": 0.737,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Disability Affects Work, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Disability Affects Work        CLS        F1         .737+−..021\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_disability_affects_work_f1",
+   "score": 0.782,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Disability Affects Work, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"021         .782+−..030\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_smoking_f1",
+   "score": 0.428,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Smoking, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Smoking                        CLS        F1         .428+−..087\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_smoking_f1",
+   "score": 0.449,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Smoking, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"087         .449+−..107\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_medicaid_f1",
+   "score": 0.42,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Medicaid, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Medicaid                       CLS        F1         .420+−..025\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_medicaid_f1",
+   "score": 0.434,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Medicaid, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"025         .434+−..031\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_no_medications_f1",
+   "score": 0.671,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), No Medications, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"No Medications                 CLS        F1         .671+−..008\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_no_medications_f1",
+   "score": 0.665,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), No Medications, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"008         .665+−..012\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_cardiovascular_dx_f1",
+   "score": 0.11,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Cardiovascular Dx, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Cardiovascular Dx              CLS        F1         .110+−..036\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_cardiovascular_dx_f1",
+   "score": 0.128,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Cardiovascular Dx, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"036         .128+−..042\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_hypertension_dx_f1",
+   "score": 0.544,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Hypertension Dx, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Hypertension Dx                CLS        F1         .544+−..037\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_hypertension_dx_f1",
+   "score": 0.56,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Hypertension Dx, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"037         .560+−..038\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_respiratory_dx_f1",
+   "score": 0.369,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Respiratory Dx, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Respiratory Dx                 CLS        F1         .369+−..069\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_respiratory_dx_f1",
+   "score": 0.358,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Respiratory Dx, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"069         .358+−..056\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_ascvd_risk_pearson_r",
+   "score": 0.901,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), ASCVD Risk, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"078         .901+−..031\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_framingham_risk_pearson_r",
+   "score": 0.794,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Framingham Risk, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \".794+−..038\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_framingham_30_risk_pearson_r",
+   "score": 0.788,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Framingham 30 Risk, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \".788+−..035\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_diabetes_dx_f1",
+   "score": 0.293,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Diabetes Dx, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Diabetes Dx                    CLS        F1         .293+−..057\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_diabetes_dx_f1",
+   "score": 0.283,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Diabetes Dx, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"057         .283+−..039\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_diabetes_med_f1",
+   "score": 0.257,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Diabetes Med., Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Diabetes Med.                  CLS        F1         .257+−..043\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_diabetes_med_f1",
+   "score": 0.263,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Diabetes Med., Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"043         .263+−..023\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_hyperlipidemia_f1",
+   "score": 0.407,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Hyperlipidemia, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Hyperlipidemia                 CLS        F1         .407+−..067\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_hyperlipidemia_f1",
+   "score": 0.419,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Hyperlipidemia, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \".419+−..069\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_pre_diabetes_f1",
+   "score": 0.509,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Pre-Diabetes, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Pre-Diabetes                   CLS        F1         .509+−..040\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_pre_diabetes_f1",
+   "score": 0.544,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Pre-Diabetes, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"040         .544+−..019\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_insulin_resistance_f1",
+   "score": 0.567,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Insulin Resistance, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Insulin Resistance             CLS        F1         .567+−..055\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_insulin_resistance_f1",
+   "score": 0.56,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Insulin Resistance, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"055         .560+−..026\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_homa_ir_pearson_r",
+   "score": 0.499,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), HOMA-IR, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"030         .499+−..026\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_hba1c_pearson_r",
+   "score": 0.317,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), HbA1c, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"026         .317+−..063\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_triglycerides_pearson_r",
+   "score": 0.317,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Triglycerides, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \".317+−..065\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_mild_depression_f1",
+   "score": 0.533,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Mild Depression, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Mild Depression                CLS        F1         .533+−..016\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_mild_depression_f1",
+   "score": 0.537,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Mild Depression, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"016         .537+−..013\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_mild_anxiety_f1",
+   "score": 0.458,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Mild Anxiety, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Mild Anxiety                   CLS        F1         .458+−..023\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_mild_anxiety_f1",
+   "score": 0.464,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Mild Anxiety, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"023         .464+−..024\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_persistent_stress_f1",
+   "score": 0.718,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Persistent Stress, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Persistent Stress              CLS        F1         .718+−..018\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_persistent_stress_f1",
+   "score": 0.786,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Persistent Stress, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"018         .786+−..018\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_depress_anxiety_dx_f1",
+   "score": 0.463,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Depress./Anxiety Dx, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Depress./Anxiety Dx            CLS        F1         .463+−..012\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_depress_anxiety_dx_f1",
+   "score": 0.463,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Depress./Anxiety Dx, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"012         .463+−..012\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_mental_health_med_f1",
+   "score": 0.409,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Mental Health Med., Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Mental Health Med.             CLS        F1         .409+−..020\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_mental_health_med_f1",
+   "score": 0.412,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Mental Health Med., Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"020         .412+−..026\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_phq_8_pearson_r",
+   "score": 0.465,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), PHQ-8, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"024         .465+−..022\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_gad_7_pearson_r",
+   "score": 0.398,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), GAD-7, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"026         .398+−..014\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_pss_pearson_r",
+   "score": 0.468,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), PSS, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"019         .468+−..016\"]"
+  },
+  {
+   "model": "google/sensorfm-b-demos",
+   "benchmark": "sensorfm_sleep_disorder_treatment_f1",
+   "score": 0.679,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Sleep Disorder Treatment, Linear Probe (with demographics) [evidence raw/2605.22759.pdf p.57: \"Sleep Disorder Treatment       CLS        F1         .679+−..034\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_sleep_disorder_treatment_f1",
+   "score": 0.702,
+   "unit": "F1 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Sleep Disorder Treatment, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"034         .702+−..047\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_sleep_disturbance_pro_pearson_r",
+   "score": 0.398,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Sleep Disturbance PRO, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"014         .398+−..014\"]"
+  },
+  {
+   "model": "google/sensorfm-b-classroom-search",
+   "benchmark": "sensorfm_sleep_impairment_pro_pearson_r",
+   "score": 0.465,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.12 (classroom-search vs linear probe), Sleep Impairment PRO, Classroom-Search (with demographics) [evidence raw/2605.22759.pdf p.57: \"016         .465+−..015\"]"
+  },
+  {
+   "model": "baseline/sensorfm-mean-fill",
+   "benchmark": "sensorfm_random_imp_80pct_mse_lower_better",
+   "score": 0.915,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Random Imp. 80%, baseline/sensorfm-mean-fill [evidence raw/2605.22759.pdf p.48: \"80%                     0.915 ± 0.002     1.020 ± 0.001      0.854 ± 0.002      0.215 ± 0.001\"]"
+  },
+  {
+   "model": "baseline/sensorfm-nn-fill",
+   "benchmark": "sensorfm_random_imp_80pct_mse_lower_better",
+   "score": 1.02,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Random Imp. 80%, baseline/sensorfm-nn-fill [evidence raw/2605.22759.pdf p.48: \"80%                     0.915 ± 0.002     1.020 ± 0.001      0.854 ± 0.002      0.215 ± 0.001\"]"
+  },
+  {
+   "model": "baseline/sensorfm-linear-interp",
+   "benchmark": "sensorfm_random_imp_80pct_mse_lower_better",
+   "score": 0.854,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Random Imp. 80%, baseline/sensorfm-linear-interp [evidence raw/2605.22759.pdf p.48: \"80%                     0.915 ± 0.002     1.020 ± 0.001      0.854 ± 0.002      0.215 ± 0.001\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_random_imp_80pct_mse_lower_better",
+   "score": 0.215,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Random Imp. 80%, google/sensorfm-b [evidence raw/2605.22759.pdf p.48: \"80%                     0.915 ± 0.002     1.020 ± 0.001      0.854 ± 0.002      0.215 ± 0.001\"]"
+  },
+  {
+   "model": "baseline/sensorfm-mean-fill",
+   "benchmark": "sensorfm_temporal_interp_20min_mse_lower_better",
+   "score": 0.876,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 20 min, baseline/sensorfm-mean-fill [evidence raw/2605.22759.pdf p.48: \"20 min                  0.876 ± 0.008     0.693 ± 0.008      0.561 ± 0.006      0.353 ± 0.002\"]"
+  },
+  {
+   "model": "baseline/sensorfm-nn-fill",
+   "benchmark": "sensorfm_temporal_interp_20min_mse_lower_better",
+   "score": 0.693,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 20 min, baseline/sensorfm-nn-fill [evidence raw/2605.22759.pdf p.48: \"20 min                  0.876 ± 0.008     0.693 ± 0.008      0.561 ± 0.006      0.353 ± 0.002\"]"
+  },
+  {
+   "model": "baseline/sensorfm-linear-interp",
+   "benchmark": "sensorfm_temporal_interp_20min_mse_lower_better",
+   "score": 0.561,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 20 min, baseline/sensorfm-linear-interp [evidence raw/2605.22759.pdf p.48: \"20 min                  0.876 ± 0.008     0.693 ± 0.008      0.561 ± 0.006      0.353 ± 0.002\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_temporal_interp_20min_mse_lower_better",
+   "score": 0.353,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 20 min, google/sensorfm-b [evidence raw/2605.22759.pdf p.48: \"20 min                  0.876 ± 0.008     0.693 ± 0.008      0.561 ± 0.006      0.353 ± 0.002\"]"
+  },
+  {
+   "model": "baseline/sensorfm-mean-fill",
+   "benchmark": "sensorfm_temporal_interp_60min_mse_lower_better",
+   "score": 0.904,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 60 min, baseline/sensorfm-mean-fill [evidence raw/2605.22759.pdf p.48: \"60 min                  0.904 ± 0.005     0.943 ± 0.007      0.777 ± 0.007      0.468 ± 0.003\"]"
+  },
+  {
+   "model": "baseline/sensorfm-nn-fill",
+   "benchmark": "sensorfm_temporal_interp_60min_mse_lower_better",
+   "score": 0.943,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 60 min, baseline/sensorfm-nn-fill [evidence raw/2605.22759.pdf p.48: \"60 min                  0.904 ± 0.005     0.943 ± 0.007      0.777 ± 0.007      0.468 ± 0.003\"]"
+  },
+  {
+   "model": "baseline/sensorfm-linear-interp",
+   "benchmark": "sensorfm_temporal_interp_60min_mse_lower_better",
+   "score": 0.777,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 60 min, baseline/sensorfm-linear-interp [evidence raw/2605.22759.pdf p.48: \"60 min                  0.904 ± 0.005     0.943 ± 0.007      0.777 ± 0.007      0.468 ± 0.003\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_temporal_interp_60min_mse_lower_better",
+   "score": 0.468,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 60 min, google/sensorfm-b [evidence raw/2605.22759.pdf p.48: \"60 min                  0.904 ± 0.005     0.943 ± 0.007      0.777 ± 0.007      0.468 ± 0.003\"]"
+  },
+  {
+   "model": "baseline/sensorfm-mean-fill",
+   "benchmark": "sensorfm_temporal_interp_180min_mse_lower_better",
+   "score": 0.95,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 180 min, baseline/sensorfm-mean-fill [evidence raw/2605.22759.pdf p.48: \"180 min                 0.950 ± 0.007     1.163 ± 0.008      0.961 ± 0.008      0.574 ± 0.002\"]"
+  },
+  {
+   "model": "baseline/sensorfm-nn-fill",
+   "benchmark": "sensorfm_temporal_interp_180min_mse_lower_better",
+   "score": 1.163,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 180 min, baseline/sensorfm-nn-fill [evidence raw/2605.22759.pdf p.48: \"180 min                 0.950 ± 0.007     1.163 ± 0.008      0.961 ± 0.008      0.574 ± 0.002\"]"
+  },
+  {
+   "model": "baseline/sensorfm-linear-interp",
+   "benchmark": "sensorfm_temporal_interp_180min_mse_lower_better",
+   "score": 0.961,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 180 min, baseline/sensorfm-linear-interp [evidence raw/2605.22759.pdf p.48: \"180 min                 0.950 ± 0.007     1.163 ± 0.008      0.961 ± 0.008      0.574 ± 0.002\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_temporal_interp_180min_mse_lower_better",
+   "score": 0.574,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Interp. 180 min, google/sensorfm-b [evidence raw/2605.22759.pdf p.48: \"180 min                 0.950 ± 0.007     1.163 ± 0.008      0.961 ± 0.008      0.574 ± 0.002\"]"
+  },
+  {
+   "model": "baseline/sensorfm-mean-fill",
+   "benchmark": "sensorfm_temporal_extrap_20min_mse_lower_better",
+   "score": 0.923,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 20 min, baseline/sensorfm-mean-fill [evidence raw/2605.22759.pdf p.48: \"20 min                  0.923 ± 0.006     0.846 ± 0.010      0.846 ± 0.014      0.463 ± 0.004\"]"
+  },
+  {
+   "model": "baseline/sensorfm-nn-fill",
+   "benchmark": "sensorfm_temporal_extrap_20min_mse_lower_better",
+   "score": 0.846,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 20 min, baseline/sensorfm-nn-fill [evidence raw/2605.22759.pdf p.48: \"20 min                  0.923 ± 0.006     0.846 ± 0.010      0.846 ± 0.014      0.463 ± 0.004\"]"
+  },
+  {
+   "model": "baseline/sensorfm-linear-interp",
+   "benchmark": "sensorfm_temporal_extrap_20min_mse_lower_better",
+   "score": 0.846,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 20 min, baseline/sensorfm-linear-interp [evidence raw/2605.22759.pdf p.48: \"20 min                  0.923 ± 0.006     0.846 ± 0.010      0.846 ± 0.014      0.463 ± 0.004\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_temporal_extrap_20min_mse_lower_better",
+   "score": 0.463,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 20 min, google/sensorfm-b [evidence raw/2605.22759.pdf p.48: \"20 min                  0.923 ± 0.006     0.846 ± 0.010      0.846 ± 0.014      0.463 ± 0.004\"]"
+  },
+  {
+   "model": "baseline/sensorfm-mean-fill",
+   "benchmark": "sensorfm_temporal_extrap_60min_mse_lower_better",
+   "score": 0.937,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 60 min, baseline/sensorfm-mean-fill [evidence raw/2605.22759.pdf p.48: \"60 min                  0.937 ± 0.007     1.102 ± 0.014      1.102 ± 0.008      0.563 ± 0.004\"]"
+  },
+  {
+   "model": "baseline/sensorfm-nn-fill",
+   "benchmark": "sensorfm_temporal_extrap_60min_mse_lower_better",
+   "score": 1.102,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 60 min, baseline/sensorfm-nn-fill [evidence raw/2605.22759.pdf p.48: \"60 min                  0.937 ± 0.007     1.102 ± 0.014      1.102 ± 0.008      0.563 ± 0.004\"]"
+  },
+  {
+   "model": "baseline/sensorfm-linear-interp",
+   "benchmark": "sensorfm_temporal_extrap_60min_mse_lower_better",
+   "score": 1.102,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 60 min, baseline/sensorfm-linear-interp [evidence raw/2605.22759.pdf p.48: \"60 min                  0.937 ± 0.007     1.102 ± 0.014      1.102 ± 0.008      0.563 ± 0.004\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_temporal_extrap_60min_mse_lower_better",
+   "score": 0.563,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 60 min, google/sensorfm-b [evidence raw/2605.22759.pdf p.48: \"60 min                  0.937 ± 0.007     1.102 ± 0.014      1.102 ± 0.008      0.563 ± 0.004\"]"
+  },
+  {
+   "model": "baseline/sensorfm-mean-fill",
+   "benchmark": "sensorfm_temporal_extrap_180min_mse_lower_better",
+   "score": 0.974,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 180 min, baseline/sensorfm-mean-fill [evidence raw/2605.22759.pdf p.48: \"180 min                 0.974 ± 0.006     1.336 ± 0.010      1.336 ± 0.011      0.646 ± 0.003\"]"
+  },
+  {
+   "model": "baseline/sensorfm-nn-fill",
+   "benchmark": "sensorfm_temporal_extrap_180min_mse_lower_better",
+   "score": 1.336,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 180 min, baseline/sensorfm-nn-fill [evidence raw/2605.22759.pdf p.48: \"180 min                 0.974 ± 0.006     1.336 ± 0.010      1.336 ± 0.011      0.646 ± 0.003\"]"
+  },
+  {
+   "model": "baseline/sensorfm-linear-interp",
+   "benchmark": "sensorfm_temporal_extrap_180min_mse_lower_better",
+   "score": 1.336,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 180 min, baseline/sensorfm-linear-interp [evidence raw/2605.22759.pdf p.48: \"180 min                 0.974 ± 0.006     1.336 ± 0.010      1.336 ± 0.011      0.646 ± 0.003\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_temporal_extrap_180min_mse_lower_better",
+   "score": 0.646,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Temporal Extrap. 180 min, google/sensorfm-b [evidence raw/2605.22759.pdf p.48: \"180 min                 0.974 ± 0.006     1.336 ± 0.010      1.336 ± 0.011      0.646 ± 0.003\"]"
+  },
+  {
+   "model": "baseline/sensorfm-mean-fill",
+   "benchmark": "sensorfm_signal_imp_2of26_mse_lower_better",
+   "score": 1.016,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 2/26, baseline/sensorfm-mean-fill [evidence raw/2605.22759.pdf p.48: \"2/26                    1.016 ± 0.006     1.016 ± 0.017      1.016 ± 0.012      0.122 ± 0.003\"]"
+  },
+  {
+   "model": "baseline/sensorfm-nn-fill",
+   "benchmark": "sensorfm_signal_imp_2of26_mse_lower_better",
+   "score": 1.016,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 2/26, baseline/sensorfm-nn-fill [evidence raw/2605.22759.pdf p.48: \"2/26                    1.016 ± 0.006     1.016 ± 0.017      1.016 ± 0.012      0.122 ± 0.003\"]"
+  },
+  {
+   "model": "baseline/sensorfm-linear-interp",
+   "benchmark": "sensorfm_signal_imp_2of26_mse_lower_better",
+   "score": 1.016,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 2/26, baseline/sensorfm-linear-interp [evidence raw/2605.22759.pdf p.48: \"2/26                    1.016 ± 0.006     1.016 ± 0.017      1.016 ± 0.012      0.122 ± 0.003\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_signal_imp_2of26_mse_lower_better",
+   "score": 0.122,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 2/26, google/sensorfm-b [evidence raw/2605.22759.pdf p.48: \"2/26                    1.016 ± 0.006     1.016 ± 0.017      1.016 ± 0.012      0.122 ± 0.003\"]"
+  },
+  {
+   "model": "baseline/sensorfm-mean-fill",
+   "benchmark": "sensorfm_signal_imp_6of26_mse_lower_better",
+   "score": 1.02,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 6/26, baseline/sensorfm-mean-fill [evidence raw/2605.22759.pdf p.48: \"6/26                    1.020 ± 0.005     1.020 ± 0.006      1.020 ± 0.008      0.137 ± 0.002\"]"
+  },
+  {
+   "model": "baseline/sensorfm-nn-fill",
+   "benchmark": "sensorfm_signal_imp_6of26_mse_lower_better",
+   "score": 1.02,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 6/26, baseline/sensorfm-nn-fill [evidence raw/2605.22759.pdf p.48: \"6/26                    1.020 ± 0.005     1.020 ± 0.006      1.020 ± 0.008      0.137 ± 0.002\"]"
+  },
+  {
+   "model": "baseline/sensorfm-linear-interp",
+   "benchmark": "sensorfm_signal_imp_6of26_mse_lower_better",
+   "score": 1.02,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 6/26, baseline/sensorfm-linear-interp [evidence raw/2605.22759.pdf p.48: \"6/26                    1.020 ± 0.005     1.020 ± 0.006      1.020 ± 0.008      0.137 ± 0.002\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_signal_imp_6of26_mse_lower_better",
+   "score": 0.137,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 6/26, google/sensorfm-b [evidence raw/2605.22759.pdf p.48: \"6/26                    1.020 ± 0.005     1.020 ± 0.006      1.020 ± 0.008      0.137 ± 0.002\"]"
+  },
+  {
+   "model": "baseline/sensorfm-mean-fill",
+   "benchmark": "sensorfm_signal_imp_12of26_mse_lower_better",
+   "score": 1.025,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 12/26, baseline/sensorfm-mean-fill [evidence raw/2605.22759.pdf p.48: \"12/26                   1.025 ± 0.005     1.025 ± 0.003      1.025 ± 0.003      0.170 ± 0.001\"]"
+  },
+  {
+   "model": "baseline/sensorfm-nn-fill",
+   "benchmark": "sensorfm_signal_imp_12of26_mse_lower_better",
+   "score": 1.025,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 12/26, baseline/sensorfm-nn-fill [evidence raw/2605.22759.pdf p.48: \"12/26                   1.025 ± 0.005     1.025 ± 0.003      1.025 ± 0.003      0.170 ± 0.001\"]"
+  },
+  {
+   "model": "baseline/sensorfm-linear-interp",
+   "benchmark": "sensorfm_signal_imp_12of26_mse_lower_better",
+   "score": 1.025,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 12/26, baseline/sensorfm-linear-interp [evidence raw/2605.22759.pdf p.48: \"12/26                   1.025 ± 0.005     1.025 ± 0.003      1.025 ± 0.003      0.170 ± 0.001\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_signal_imp_12of26_mse_lower_better",
+   "score": 0.17,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 12/26, google/sensorfm-b [evidence raw/2605.22759.pdf p.48: \"12/26                   1.025 ± 0.005     1.025 ± 0.003      1.025 ± 0.003      0.170 ± 0.001\"]"
+  },
+  {
+   "model": "baseline/sensorfm-mean-fill",
+   "benchmark": "sensorfm_signal_imp_20of26_mse_lower_better",
+   "score": 1.022,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 20/26, baseline/sensorfm-mean-fill [evidence raw/2605.22759.pdf p.48: \"20/26                   1.022 ± 0.002     1.022 ± 0.003      1.022 ± 0.003      0.236 ± 0.001\"]"
+  },
+  {
+   "model": "baseline/sensorfm-nn-fill",
+   "benchmark": "sensorfm_signal_imp_20of26_mse_lower_better",
+   "score": 1.022,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 20/26, baseline/sensorfm-nn-fill [evidence raw/2605.22759.pdf p.48: \"20/26                   1.022 ± 0.002     1.022 ± 0.003      1.022 ± 0.003      0.236 ± 0.001\"]"
+  },
+  {
+   "model": "baseline/sensorfm-linear-interp",
+   "benchmark": "sensorfm_signal_imp_20of26_mse_lower_better",
+   "score": 1.022,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 20/26, baseline/sensorfm-linear-interp [evidence raw/2605.22759.pdf p.48: \"20/26                   1.022 ± 0.002     1.022 ± 0.003      1.022 ± 0.003      0.236 ± 0.001\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_signal_imp_20of26_mse_lower_better",
+   "score": 0.236,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.10 (generative tasks), Signal Imp. 20/26, google/sensorfm-b [evidence raw/2605.22759.pdf p.48: \"20/26                   1.022 ± 0.002     1.022 ± 0.003      1.022 ± 0.003      0.236 ± 0.001\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_random_imp_80pct_mse_lower_better",
+   "score": 0.371,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_random_imp_80pct_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.371 ± 0.001      0.292 ± 0.001      0.240 ± 0.001   0.215 ± 0.001\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_random_imp_80pct_mse_lower_better",
+   "score": 0.292,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_random_imp_80pct_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.371 ± 0.001      0.292 ± 0.001      0.240 ± 0.001   0.215 ± 0.001\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_random_imp_80pct_mse_lower_better",
+   "score": 0.24,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_random_imp_80pct_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.371 ± 0.001      0.292 ± 0.001      0.240 ± 0.001   0.215 ± 0.001\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_temporal_interp_20min_mse_lower_better",
+   "score": 0.451,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_temporal_interp_20min_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.451 ± 0.003      0.668 ± 0.006      0.389 ± 0.004   0.353 ± 0.002\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_temporal_interp_20min_mse_lower_better",
+   "score": 0.668,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_temporal_interp_20min_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.451 ± 0.003      0.668 ± 0.006      0.389 ± 0.004   0.353 ± 0.002\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_temporal_interp_20min_mse_lower_better",
+   "score": 0.389,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_temporal_interp_20min_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.451 ± 0.003      0.668 ± 0.006      0.389 ± 0.004   0.353 ± 0.002\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_temporal_extrap_20min_mse_lower_better",
+   "score": 0.539,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_temporal_extrap_20min_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.539 ± 0.004      0.841 ± 0.006      0.503 ± 0.003   0.463 ± 0.004\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_temporal_extrap_20min_mse_lower_better",
+   "score": 0.841,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_temporal_extrap_20min_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.539 ± 0.004      0.841 ± 0.006      0.503 ± 0.003   0.463 ± 0.004\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_temporal_extrap_20min_mse_lower_better",
+   "score": 0.503,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_temporal_extrap_20min_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.539 ± 0.004      0.841 ± 0.006      0.503 ± 0.003   0.463 ± 0.004\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_signal_imp_12of26_mse_lower_better",
+   "score": 0.305,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_signal_imp_12of26_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.305 ± 0.003      0.236 ± 0.001      0.192 ± 0.001   0.170 ± 0.001\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_signal_imp_12of26_mse_lower_better",
+   "score": 0.236,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_signal_imp_12of26_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.305 ± 0.003      0.236 ± 0.001      0.192 ± 0.001   0.170 ± 0.001\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_signal_imp_12of26_mse_lower_better",
+   "score": 0.192,
+   "unit": "MSE (normalized)",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_signal_imp_12of26_mse_lower_better [evidence raw/2605.22759.pdf p.43: \"5M          0.305 ± 0.003      0.236 ± 0.001      0.192 ± 0.001   0.170 ± 0.001\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_cls_avg_auc",
+   "score": 0.663,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_cls_avg_auc [evidence raw/2605.22759.pdf p.43: \"5M                .663               .682               .716          .752\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_cls_avg_auc",
+   "score": 0.682,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_cls_avg_auc [evidence raw/2605.22759.pdf p.43: \"5M                .663               .682               .716          .752\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_cls_avg_auc",
+   "score": 0.716,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_cls_avg_auc [evidence raw/2605.22759.pdf p.43: \"5M                .663               .682               .716          .752\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_cls_avg_auc",
+   "score": 0.752,
+   "unit": "ROC-AUC 0-1",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_cls_avg_auc [evidence raw/2605.22759.pdf p.43: \"5M                .663               .682               .716          .752\"]"
+  },
+  {
+   "model": "google/sensorfm-xxs",
+   "benchmark": "sensorfm_reg_avg_pearson_r",
+   "score": 0.402,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_reg_avg_pearson_r [evidence raw/2605.22759.pdf p.43: \"5M                .402               .427               .559          .612\"]"
+  },
+  {
+   "model": "google/sensorfm-xs",
+   "benchmark": "sensorfm_reg_avg_pearson_r",
+   "score": 0.427,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_reg_avg_pearson_r [evidence raw/2605.22759.pdf p.43: \"5M                .402               .427               .559          .612\"]"
+  },
+  {
+   "model": "google/sensorfm-s",
+   "benchmark": "sensorfm_reg_avg_pearson_r",
+   "score": 0.559,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_reg_avg_pearson_r [evidence raw/2605.22759.pdf p.43: \"5M                .402               .427               .559          .612\"]"
+  },
+  {
+   "model": "google/sensorfm-b",
+   "benchmark": "sensorfm_reg_avg_pearson_r",
+   "score": 0.612,
+   "unit": "Pearson r",
+   "_source": "https://arxiv.org/abs/2605.22759",
+   "_note": "Table ED.5 (scaling), 5M-subject pretraining row, sensorfm_reg_avg_pearson_r [evidence raw/2605.22759.pdf p.43: \"5M                .402               .427               .559          .612\"]"
+  }
+ ]
+}

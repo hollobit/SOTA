@@ -26,6 +26,7 @@ var Timeline = {
         'inflection': '🇺🇸 USA',
         'character': '🇺🇸 USA',
         'perplexity': '🇺🇸 USA',
+        'reflection': '🇺🇸 USA',  // S311b — Reflection AI (Beam 1.0)
         'groq': '🇺🇸 USA',
         'together': '🇺🇸 USA',
         'salesforce': '🇺🇸 USA',

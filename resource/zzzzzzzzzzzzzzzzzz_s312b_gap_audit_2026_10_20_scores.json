@@ -1,0 +1,2675 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-20",
+  "session": "S312b",
+  "sources": [
+   "https://artificialanalysis.ai/agents/search-api",
+   "https://arxiv.org/abs/2605.14698"
+  ],
+  "note": "Gap audit of S312. AA Search API: page data has only searchProviders (29) + modelBaseline — all stored; added the per-provider search time, model time, input and output tokens per task (charted on the page, missed in S312). NeuroAtlas: binomial top-3 win-count tables 3/6/11/12/13 (Table 6 is the only per-model sleep-staging evidence with printed numbers). Checked and not added: NeuroAtlas Table 1 (input specs only), SensorFM physician ICC (rater agreement, not model scores), VeriFine Table 3 (student-judge ablation), HiMAE Tables 17-18 (on-device cost), MAI Figs 2-10 (training internals)."
+ },
+ "models": [
+  {
+   "id": "baseline/neuroatlas-core-sleep-l1",
+   "name": "CoRe-Sleep (sequence length 1, no inter-epoch context)",
+   "vendor": "NeuroAtlas baseline (KU Leuven CoRe-Sleep)",
+   "type": "research",
+   "modalities": [
+    "eeg"
+   ],
+   "release_date": "2026-05",
+   "_note": "CoRe-Sleep used without temporal context (l=1) in NeuroAtlas sleep staging; distinct config from kuleuven/core-sleep (sequence model)."
+  },
+  {
+   "id": "baseline/neuroatlas-sleeptransformer-l1",
+   "name": "SleepTransformer (sequence length 1, no inter-epoch context)",
+   "vendor": "NeuroAtlas baseline (SleepTransformer)",
+   "type": "research",
+   "modalities": [
+    "eeg"
+   ],
+   "release_date": "2026-05",
+   "_note": "SleepTransformer used without temporal context (l=1); distinct config from eeg/sleeptransformer."
+  },
+  {
+   "id": "baseline/neuroatlas-sleepyco-l1",
+   "name": "SleePyCo (sequence length 1, no inter-epoch context)",
+   "vendor": "NeuroAtlas baseline (SleePyCo)",
+   "type": "research",
+   "modalities": [
+    "eeg"
+   ],
+   "release_date": "2026-05",
+   "_note": "SleePyCo used without temporal context (l=1); distinct config from gist/sleepyco."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "aa_search_search_time_per_task_s_lower_better",
+   "name": "AA Search Index — search time per task",
+   "category": "agent",
+   "metric": "s",
+   "description": "Measured Search API time per benchmark task (sum over the model's search calls; excludes model time). OpenAI Web Search time is an upper bound incl. OpenAI processing. Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_model_time_per_task_s_lower_better",
+   "name": "AA Search Index — candidate model time per task",
+   "category": "agent",
+   "metric": "s",
+   "description": "Derived candidate-model time per task (answer + reasoning tokens ÷ the model's canonical output speed) for GPT-5.6 Luna (medium) when using this Search API. Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_input_tokens_per_task",
+   "name": "AA Search Index — candidate model input tokens per task",
+   "category": "agent",
+   "metric": "tokens",
+   "description": "Average candidate-model input tokens per task, including the search results returned to the model. Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "aa_search_output_tokens_per_task",
+   "name": "AA Search Index — candidate model output tokens per task",
+   "category": "agent",
+   "metric": "tokens",
+   "description": "Average candidate-model reasoning + answer tokens per task. Source: Artificial Analysis Search API leaderboard (artificialanalysis.ai/agents/search-api), data as of 2026-10-19."
+  },
+  {
+   "id": "neuroatlas_seizure_top3_wins_all",
+   "name": "NeuroAtlas Seizure top-3 wins (all models, k=23)",
+   "category": "medical",
+   "metric": "top-3 win count",
+   "description": "Binomial top-3 win test (Table 3): number of the N=7 seizure-detection datasets on which the model ranks top-3 by Event-Sens vs FA/h AUC (0.1-100 FA/h), within the pool of all k=23 probed models. Score = number of cohorts on which the model ranks top-3 (numerator of wins/N). Source: arXiv 2605.14698 (NeuroAtlas)."
+  },
+  {
+   "id": "neuroatlas_seizure_top3_wins_eegfm",
+   "name": "NeuroAtlas Seizure top-3 wins (EEG-FM pool, k=11)",
+   "category": "medical",
+   "metric": "top-3 win count",
+   "description": "Binomial top-3 win test (Table 3): number of the N=7 seizure-detection datasets on which the model ranks top-3 by Event-Sens vs FA/h AUC, within the pool of the k=11 EEG foundation models. Score = number of cohorts on which the model ranks top-3 (numerator of wins/N). Source: arXiv 2605.14698 (NeuroAtlas)."
+  },
+  {
+   "id": "neuroatlas_sleep_top3_wins_all",
+   "name": "NeuroAtlas Sleep staging top-3 wins (all models, k=28)",
+   "category": "medical",
+   "metric": "top-3 win count",
+   "description": "Binomial top-3 win test (Table 6): number of the N=15 sleep-staging cohorts on which the model ranks top-3 by mean Cohen's kappa, within the pool of all k=28 probed models (linear probe). Score = number of cohorts on which the model ranks top-3 (numerator of wins/N). Source: arXiv 2605.14698 (NeuroAtlas)."
+  },
+  {
+   "id": "neuroatlas_sleep_top3_wins_no_suppre",
+   "name": "NeuroAtlas Sleep staging top-3 wins (no sequence-model Sup.-Pre, k=25)",
+   "category": "medical",
+   "metric": "top-3 win count",
+   "description": "Binomial top-3 win test (Table 6): number of the N=15 sleep-staging cohorts on which the model ranks top-3 by mean Cohen's kappa, within k=25 models excluding Supervised-Pre models using sequence modeling. Score = number of cohorts on which the model ranks top-3 (numerator of wins/N). Source: arXiv 2605.14698 (NeuroAtlas)."
+  },
+  {
+   "id": "neuroatlas_sleep_top3_wins_eegfm",
+   "name": "NeuroAtlas Sleep staging top-3 wins (EEG-FM pool, k=11)",
+   "category": "medical",
+   "metric": "top-3 win count",
+   "description": "Binomial top-3 win test (Table 6): number of the N=15 sleep-staging cohorts on which the model ranks top-3 by mean Cohen's kappa, within the k=11 EEG foundation models. Score = number of cohorts on which the model ranks top-3 (numerator of wins/N). Source: arXiv 2605.14698 (NeuroAtlas)."
+  },
+  {
+   "id": "neuroatlas_brainage_top3_wins_mae_all",
+   "name": "NeuroAtlas Brain Age top-3 wins by MAE (all models, k=26)",
+   "category": "medical",
+   "metric": "top-3 win count",
+   "description": "Binomial top-3 win test (Table 11): number of the N=7 main-pool brain-age cohorts on which the model ranks top-3 by CV-test MAE (lower better), within all k=26 models. Score = number of cohorts on which the model ranks top-3 (numerator of wins/N). Source: arXiv 2605.14698 (NeuroAtlas)."
+  },
+  {
+   "id": "neuroatlas_brainage_top3_wins_r_all",
+   "name": "NeuroAtlas Brain Age top-3 wins by Pearson r (all models, k=26)",
+   "category": "medical",
+   "metric": "top-3 win count",
+   "description": "Binomial top-3 win test (Table 11): number of the N=7 main-pool brain-age cohorts on which the model ranks top-3 by Pearson r between predicted and chronological age, within all k=26 models. Score = number of cohorts on which the model ranks top-3 (numerator of wins/N). Source: arXiv 2605.14698 (NeuroAtlas)."
+  },
+  {
+   "id": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "name": "NeuroAtlas Brain Age top-3 wins by MAE (EEG-FM pool, k=11)",
+   "category": "medical",
+   "metric": "top-3 win count",
+   "description": "Binomial top-3 win test (Table 11): number of the N=7 main-pool brain-age cohorts on which the model ranks top-3 by CV-test MAE (lower better), within the k=11 EEG foundation models. Score = number of cohorts on which the model ranks top-3 (numerator of wins/N). Source: arXiv 2605.14698 (NeuroAtlas)."
+  },
+  {
+   "id": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "name": "NeuroAtlas Brain Age top-3 wins by Pearson r (EEG-FM pool, k=11)",
+   "category": "medical",
+   "metric": "top-3 win count",
+   "description": "Binomial top-3 win test (Table 11): number of the N=7 main-pool brain-age cohorts on which the model ranks top-3 by Pearson r, within the k=11 EEG foundation models. Score = number of cohorts on which the model ranks top-3 (numerator of wins/N). Source: arXiv 2605.14698 (NeuroAtlas)."
+  },
+  {
+   "id": "neuroatlas_bci_top3_wins_flatten",
+   "name": "NeuroAtlas BCI top-3 wins (confound-filtered, token flattening, k=12)",
+   "category": "medical",
+   "metric": "top-3 win count",
+   "description": "Binomial top-3 win test (Table 12): number of the N=18 BCI dataset-tasks (17 datasets, DREAMER counted twice) on which the model ranks top-3 by normalized balanced accuracy, pool of k=12 models (8 EEG-FMs + 3 TS-FMs + EEGNet), confound filtering with per-patch token flattening. Score = number of cohorts on which the model ranks top-3 (numerator of wins/N). Source: arXiv 2605.14698 (NeuroAtlas)."
+  },
+  {
+   "id": "neuroatlas_bci_top3_wins_meanpool",
+   "name": "NeuroAtlas BCI top-3 wins (confound-filtered, mean pooling, k=12)",
+   "category": "medical",
+   "metric": "top-3 win count",
+   "description": "Binomial top-3 win test (Table 13): number of the N=18 BCI dataset-tasks (17 datasets, DREAMER counted twice) on which the model ranks top-3 by normalized balanced accuracy, pool of k=12 models (8 EEG-FMs + 3 TS-FMs + EEGNet), confound filtering with mean-pool aggregation. Score = number of cohorts on which the model ranks top-3 (numerator of wins/N). Source: arXiv 2605.14698 (NeuroAtlas)."
+  }
+ ],
+ "scores": [
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 23.315313,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-auto-dynamic-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 20.852478,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-auto-dynamic-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 154421.861944,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-auto-dynamic-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-auto-dynamic-highlights",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2728.341944,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-auto-dynamic-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 13.524441,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-medium-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 12.284723,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-medium-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 135783.750556,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-medium-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-medium",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1607.33537,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-medium-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 6.163723,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-lite-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 23.339521,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-lite-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 160676.247593,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-lite-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-lite-dynamic-highlights",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 3053.747037,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-lite-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 12.727553,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-high-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 13.656663,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-high-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 161457.182407,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-high-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-high",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1786.840185,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-high-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 1.896992,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row octen-web-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-09-08 (gap fill S312b)."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 12.291228,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row octen-web-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-09-08 (gap fill S312b)."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 236086.881481,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row octen-web-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-09-08 (gap fill S312b)."
+  },
+  {
+   "model": "octen/octen-search-highlights",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1608.186481,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row octen-web-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-09-08 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 16.601448,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-low-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 16.655142,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-low-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 124829.102082,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-low-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "perplexity/perplexity-search-low",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2179.161706,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row perplexity-low-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 25.499809,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_advanced-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 13.959573,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_advanced-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 166936.869815,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_advanced-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-advanced",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1826.472963,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_advanced-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 5.294285,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row brave-llm-context-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 15.319349,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row brave-llm-context-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 325834.375185,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row brave-llm-context-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "brave/brave-search-llm-context",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2004.386296,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row brave-llm-context-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-27 (gap fill S312b)."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 20.12439,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row openai-native-medium-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-09-28 (gap fill S312b)."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 9.070381,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row openai-native-medium-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-09-28 (gap fill S312b)."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 39893.208704,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row openai-native-medium-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-09-28 (gap fill S312b)."
+  },
+  {
+   "model": "openai/openai-web-search-medium",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1186.770185,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row openai-native-medium-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-09-28 (gap fill S312b)."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 6.669259,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row you-com-highlights-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-22 (gap fill S312b)."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 11.283985,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row you-com-highlights-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-22 (gap fill S312b)."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 340818.003703,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row you-com-highlights-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-22 (gap fill S312b)."
+  },
+  {
+   "model": "you-com/you-com-search-highlights",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1476.398548,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row you-com-highlights-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-22 (gap fill S312b)."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 8.973696,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row nimble-standard-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-09-22 (gap fill S312b)."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 29.068349,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row nimble-standard-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-09-22 (gap fill S312b)."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 276712.689815,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row nimble-standard-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-09-22 (gap fill S312b)."
+  },
+  {
+   "model": "nimble/nimble-search-standard",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 3803.307963,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row nimble-standard-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-09-22 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 15.584892,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa_auto-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 14.206169,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa_auto-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 296771.416111,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa_auto-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-auto",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1858.737593,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa_auto-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 42.799689,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row firecrawl_serp-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 16.387502,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row firecrawl_serp-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 211854.479444,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row firecrawl_serp-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "firecrawl/firecrawl-search",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2144.143704,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row firecrawl_serp-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 9.228614,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_basic-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 15.009473,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_basic-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 336671.459074,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_basic-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-basic",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1963.842037,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_basic-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 7.464472,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel-fast-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-19 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 9.56808,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel-fast-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-19 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 290844.087186,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel-fast-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-19 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-fast",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1251.889334,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel-fast-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-19 (gap fill S312b)."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 35.160497,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row tinyfish-web-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-31 (gap fill S312b)."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 20.263305,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row tinyfish-web-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-31 (gap fill S312b)."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 156825.01,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row tinyfish-web-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-31 (gap fill S312b)."
+  },
+  {
+   "model": "tinyfish/tinyfish-search-web",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2651.254444,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row tinyfish-web-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-31 (gap fill S312b)."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 5.857902,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row deepseek-summary-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 30.776918,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row deepseek-summary-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 379598.742222,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row deepseek-summary-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "deepseek/deepseek-search-summary",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 4026.857407,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row deepseek-summary-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-10-19 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 4.487022,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-instant-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-20 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 12.628097,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-instant-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-20 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 383539.740076,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-instant-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-20 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-instant",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1652.262422,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa-instant-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-20 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 8.575849,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa_fast-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 16.235752,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa_fast-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 389891.403704,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa_fast-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "exa/exa-search-fast",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2124.288704,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row exa_fast-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 20.107121,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-standard-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-09-17 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 15.461102,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-standard-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-09-17 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 399333.3816,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-standard-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-09-17 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-standard",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2022.933309,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-standard-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-09-17 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 12.723331,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-fast-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-09-17 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 15.775897,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-fast-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-09-17 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 414499.424815,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-fast-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-09-17 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-fast",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2064.121111,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-fast-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-09-17 (gap fill S312b)."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 20.149604,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row you_com-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 18.157668,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row you_com-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 277125.198216,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row you_com-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "you-com/you-com-search-snippets",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2375.752483,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row you_com-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 6.327812,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_turbo-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 16.671257,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_turbo-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 219774.489259,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_turbo-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "parallel/parallel-search-turbo",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2181.270185,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row parallel_turbo-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 12.889924,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row keenable_pro-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 13.81762,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row keenable_pro-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 355161.586481,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row keenable_pro-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "keenable/keenable-search-pro",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1807.899815,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row keenable_pro-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 4.12878,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row keenable_realtime-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 14.711437,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row keenable_realtime-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 306793.348333,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row keenable_realtime-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "keenable/keenable-search-realtime",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 1924.847037,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row keenable_realtime-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 22.884645,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row nimble-lite-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-09-18 (gap fill S312b)."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 26.604524,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row nimble-lite-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-09-18 (gap fill S312b)."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 174240.788704,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row nimble-lite-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-09-18 (gap fill S312b)."
+  },
+  {
+   "model": "nimble/nimble-search-lite",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 3480.940556,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row nimble-lite-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-09-18 (gap fill S312b)."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 21.512381,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row tavily_basic-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 19.812831,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row tavily_basic-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 317322.632778,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row tavily_basic-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "tavily/tavily-search-basic",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2592.314259,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row tavily_basic-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 12.318555,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row brave-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 19.181748,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row brave-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 357546.059074,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row brave-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "brave/brave-search-web",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2509.743333,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row brave-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-08-17 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_search_time_per_task_s_lower_better",
+   "score": 6.20437,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-flash-gpt-5-6-luna-medium-search-api, field searchTimePerTaskS; measured 2026-09-16 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 17.178145,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-flash-gpt-5-6-luna-medium-search-api, field candidateModelLatencyS; measured 2026-09-16 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 844846.145741,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-flash-gpt-5-6-luna-medium-search-api, field inputTokensPerTask; measured 2026-09-16 (gap fill S312b)."
+  },
+  {
+   "model": "linkup/linkup-search-flash",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2247.591481,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row linkup-flash-gpt-5-6-luna-medium-search-api, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-09-16 (gap fill S312b)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-medium",
+   "benchmark": "aa_search_model_time_per_task_s_lower_better",
+   "score": 18.451403,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row model_only-gpt-5-6-luna-medium-model-only, field candidateModelLatencyS; measured 2026-07-27 (gap fill S312b)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-medium",
+   "benchmark": "aa_search_input_tokens_per_task",
+   "score": 136.593704,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row model_only-gpt-5-6-luna-medium-model-only, field inputTokensPerTask; measured 2026-07-27 (gap fill S312b)."
+  },
+  {
+   "model": "openai/gpt-5.6-luna-medium",
+   "benchmark": "aa_search_output_tokens_per_task",
+   "score": 2414.184815,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/agents/search-api",
+   "_note": "AA Search API leaderboard RSC row model_only-gpt-5-6-luna-medium-model-only, field reasoningTokensPerTask + answerTokensPerTask; measured 2026-07-27 (gap fill S312b)."
+  },
+  {
+   "model": "sjtu/neurolm",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 6.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row NeuroLM, pool all; printed 6/7 [evidence raw/2605.14698.pdf p.32: \"NeuroLM          EEG-FM           6/7      < 10         6/7     0.002\"]"
+  },
+  {
+   "model": "sjtu/neurolm",
+   "benchmark": "neuroatlas_seizure_top3_wins_eegfm",
+   "score": 6.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row NeuroLM, pool eegfm; printed 6/7 [evidence raw/2605.14698.pdf p.32: \"NeuroLM          EEG-FM           6/7      < 10         6/7     0.002\"]"
+  },
+  {
+   "model": "imt-atlantique/reve",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 5.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row REVE, pool all; printed 5/7 [evidence raw/2605.14698.pdf p.32: \"REVE             EEG-FM           5/7      < 10−3       6/7     0.002\"]"
+  },
+  {
+   "model": "imt-atlantique/reve",
+   "benchmark": "neuroatlas_seizure_top3_wins_eegfm",
+   "score": 6.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row REVE, pool eegfm; printed 6/7 [evidence raw/2605.14698.pdf p.32: \"REVE             EEG-FM           5/7      < 10−3       6/7     0.002\"]"
+  },
+  {
+   "model": "rpi/seizuretransformer",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 3.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row Seizure-TF, pool all; printed 3/7 [evidence raw/2605.14698.pdf p.32: \"Seizure-TF       Supervised-Pre   3/7      0.052         –        –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-large",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row Moirai-L, pool all; printed 2/7 [evidence raw/2605.14698.pdf p.32: \"Moirai-L         TS-FM            2/7      0.229         –        –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-base",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row Chronos-B, pool all; printed 1/7 [evidence raw/2605.14698.pdf p.32: \"Chronos-B        TS-FM            1/7      0.624         –        –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-base",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row Moirai-B, pool all; printed 1/7 [evidence raw/2605.14698.pdf p.32: \"Moirai-B         TS-FM            1/7      0.624         –        –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-small",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row Moirai-S, pool all; printed 1/7 [evidence raw/2605.14698.pdf p.32: \"Moirai-S         TS-FM            1/7      0.624         –        –\"]"
+  },
+  {
+   "model": "imperial/neurorvq-eeg",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row NeuroRVQ, pool all; printed 1/7 [evidence raw/2605.14698.pdf p.32: \"NeuroRVQ         EEG-FM           1/7      0.624        1/7     0.892\"]"
+  },
+  {
+   "model": "imperial/neurorvq-eeg",
+   "benchmark": "neuroatlas_seizure_top3_wins_eegfm",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row NeuroRVQ, pool eegfm; printed 1/7 [evidence raw/2605.14698.pdf p.32: \"NeuroRVQ         EEG-FM           1/7      0.624        1/7     0.892\"]"
+  },
+  {
+   "model": "stanford/sleepfm",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row SleepFM, pool all; printed 1/7 [evidence raw/2605.14698.pdf p.32: \"SleepFM          EEG-FM           1/7      0.624        2/7     0.610\"]"
+  },
+  {
+   "model": "stanford/sleepfm",
+   "benchmark": "neuroatlas_seizure_top3_wins_eegfm",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row SleepFM, pool eegfm; printed 2/7 [evidence raw/2605.14698.pdf p.32: \"SleepFM          EEG-FM           1/7      0.624        2/7     0.610\"]"
+  },
+  {
+   "model": "uiuc/biot",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row BIOT, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"BIOT             EEG-FM           0/7      1.000        1/7     0.892\"]"
+  },
+  {
+   "model": "uiuc/biot",
+   "benchmark": "neuroatlas_seizure_top3_wins_eegfm",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row BIOT, pool eegfm; printed 1/7 [evidence raw/2605.14698.pdf p.32: \"BIOT             EEG-FM           0/7      1.000        1/7     0.892\"]"
+  },
+  {
+   "model": "zju/cbramod",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row CBraMod, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"CBraMod          EEG-FM           0/7      1.000        1/7     0.892\"]"
+  },
+  {
+   "model": "zju/cbramod",
+   "benchmark": "neuroatlas_seizure_top3_wins_eegfm",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row CBraMod, pool eegfm; printed 1/7 [evidence raw/2605.14698.pdf p.32: \"CBraMod          EEG-FM           0/7      1.000        1/7     0.892\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-cbramod-random-init",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row CBraMod (rand), pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"CBraMod (rand)   Random-Init      0/7      1.000         –        –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-small",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row Chronos-S, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"Chronos-S        TS-FM            0/7      1.000         –        –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-tiny",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row Chronos-T, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"Chronos-T        TS-FM            0/7      1.000         –        –\"]"
+  },
+  {
+   "model": "kuleuven/core-sleep",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row CoRe-Sleep, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"CoRe-Sleep       Supervised-Pre   0/7      1.000         –        –\"]"
+  },
+  {
+   "model": "hit/eegpt",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row EEGPT, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"EEGPT            EEG-FM           0/7      1.000        1/7     0.892\"]"
+  },
+  {
+   "model": "hit/eegpt",
+   "benchmark": "neuroatlas_seizure_top3_wins_eegfm",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row EEGPT, pool eegfm; printed 1/7 [evidence raw/2605.14698.pdf p.32: \"EEGPT            EEG-FM           0/7      1.000        1/7     0.892\"]"
+  },
+  {
+   "model": "sjtu/labram",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row LaBraM, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"LaBraM           EEG-FM           0/7      1.000        1/7     0.892\"]"
+  },
+  {
+   "model": "sjtu/labram",
+   "benchmark": "neuroatlas_seizure_top3_wins_eegfm",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row LaBraM, pool eegfm; printed 1/7 [evidence raw/2605.14698.pdf p.32: \"LaBraM           EEG-FM           0/7      1.000        1/7     0.892\"]"
+  },
+  {
+   "model": "cmu/moment-1-base",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row MOMENT-B, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"MOMENT-B         TS-FM            0/7      1.000         –        –\"]"
+  },
+  {
+   "model": "cmu/moment-1-small",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row MOMENT-S, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"MOMENT-S         TS-FM            0/7      1.000         –        –\"]"
+  },
+  {
+   "model": "usc/neuro-gpt",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row NeuroGPT, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"NeuroGPT         EEG-FM           0/7      1.000        0/7     1.000\"]"
+  },
+  {
+   "model": "usc/neuro-gpt",
+   "benchmark": "neuroatlas_seizure_top3_wins_eegfm",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row NeuroGPT, pool eegfm; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"NeuroGPT         EEG-FM           0/7      1.000        0/7     1.000\"]"
+  },
+  {
+   "model": "eeg/sleeptransformer",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row Sleep-TF, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"Sleep-TF         Supervised-Pre   0/7      1.000         –        –\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-b",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row STEEGFormer-B, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"STEEGFormer-B    EEG-FM           0/7      1.000        2/7     0.610\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-b",
+   "benchmark": "neuroatlas_seizure_top3_wins_eegfm",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row STEEGFormer-B, pool eegfm; printed 2/7 [evidence raw/2605.14698.pdf p.32: \"STEEGFormer-B    EEG-FM           0/7      1.000        2/7     0.610\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-s",
+   "benchmark": "neuroatlas_seizure_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row STEEGFormer-S, pool all; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"STEEGFormer-S    EEG-FM           0/7      1.000        0/7     1.000\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-s",
+   "benchmark": "neuroatlas_seizure_top3_wins_eegfm",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 3 (seizure binomial top-3 win test), row STEEGFormer-S, pool eegfm; printed 0/7 [evidence raw/2605.14698.pdf p.32: \"STEEGFormer-S    EEG-FM           0/7      1.000        0/7     1.000\"]"
+  },
+  {
+   "model": "kuleuven/core-sleep",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 15.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row CoRe-Sleep, pool all; printed 15/15 [evidence raw/2605.14698.pdf p.36: \"CoRe-Sleep                 Sup.-Pre           15/15     < 10−15         –           –            –         –\"]"
+  },
+  {
+   "model": "eeg/sleeptransformer",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 15.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row SleepTransformer, pool all; printed 15/15 [evidence raw/2605.14698.pdf p.36: \"SleepTransformer           Sup.-Pre           15/15     < 10−15         –           –            –         –\"]"
+  },
+  {
+   "model": "gist/sleepyco",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 13.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row SleePyCo, pool all; printed 13/15 [evidence raw/2605.14698.pdf p.36: \"SleePyCo                   Sup.-Pre           13/15     < 10−11         –           –            –         –\"]"
+  },
+  {
+   "model": "sjtu/neurolm",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 1.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row NeuroLM, pool all; printed 1/15 [evidence raw/2605.14698.pdf p.36: \"NeuroLM                    EEG-FM             1/15       0.817        6/15       0.006        13/15     < 10−6\"]"
+  },
+  {
+   "model": "sjtu/neurolm",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 6.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row NeuroLM, pool no_suppre; printed 6/15 [evidence raw/2605.14698.pdf p.36: \"NeuroLM                    EEG-FM             1/15       0.817        6/15       0.006        13/15     < 10−6\"]"
+  },
+  {
+   "model": "sjtu/neurolm",
+   "benchmark": "neuroatlas_sleep_top3_wins_eegfm",
+   "score": 13.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row NeuroLM, pool eegfm; printed 13/15 [evidence raw/2605.14698.pdf p.36: \"NeuroLM                    EEG-FM             1/15       0.817        6/15       0.006        13/15     < 10−6\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-base",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Moirai-B, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"Moirai-B                   TS-FM               0/15      1.000        7/15       < 10−4          –         –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-base",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 7.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Moirai-B, pool no_suppre; printed 7/15 [evidence raw/2605.14698.pdf p.36: \"Moirai-B                   TS-FM               0/15      1.000        7/15       < 10−4          –         –\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-core-sleep-l1",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row CoRe-Sleep (l=1), pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"CoRe-Sleep (l=1)           Sup.-Pre (ℓ=1)     0/15       1.000        8/15       < 10−4          –         –\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-core-sleep-l1",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 8.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row CoRe-Sleep (l=1), pool no_suppre; printed 8/15 [evidence raw/2605.14698.pdf p.36: \"CoRe-Sleep (l=1)           Sup.-Pre (ℓ=1)     0/15       1.000        8/15       < 10−4          –         –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-large",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Moirai-L, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"Moirai-L                   TS-FM               0/15      1.000        4/15       0.096           –         –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-large",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 4.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Moirai-L, pool no_suppre; printed 4/15 [evidence raw/2605.14698.pdf p.36: \"Moirai-L                   TS-FM               0/15      1.000        4/15       0.096           –         –\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-sleeptransformer-l1",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row SleepTransformer (l=1), pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"SleepTransformer (l=1)     Sup.-Pre (ℓ=1)     0/15       1.000        4/15       0.096           –         –\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-sleeptransformer-l1",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 4.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row SleepTransformer (l=1), pool no_suppre; printed 4/15 [evidence raw/2605.14698.pdf p.36: \"SleepTransformer (l=1)     Sup.-Pre (ℓ=1)     0/15       1.000        4/15       0.096           –         –\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-sleepyco-l1",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row SleePyCo (l=1), pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"SleePyCo (l=1)             Sup.-Pre (ℓ=1)     0/15       1.000        6/15       0.006           –         –\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-sleepyco-l1",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 6.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row SleePyCo (l=1), pool no_suppre; printed 6/15 [evidence raw/2605.14698.pdf p.36: \"SleePyCo (l=1)             Sup.-Pre (ℓ=1)     0/15       1.000        6/15       0.006           –         –\"]"
+  },
+  {
+   "model": "imt-atlantique/reve",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row REVE, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"REVE                       EEG-FM              0/15      1.000        3/15       0.265        10/15     0.002\"]"
+  },
+  {
+   "model": "imt-atlantique/reve",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 3.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row REVE, pool no_suppre; printed 3/15 [evidence raw/2605.14698.pdf p.36: \"REVE                       EEG-FM              0/15      1.000        3/15       0.265        10/15     0.002\"]"
+  },
+  {
+   "model": "imt-atlantique/reve",
+   "benchmark": "neuroatlas_sleep_top3_wins_eegfm",
+   "score": 10.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row REVE, pool eegfm; printed 10/15 [evidence raw/2605.14698.pdf p.36: \"REVE                       EEG-FM              0/15      1.000        3/15       0.265        10/15     0.002\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-small",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Moirai-S, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"Moirai-S                   TS-FM               0/15      1.000        1/15       0.853           –         –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-small",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 1.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Moirai-S, pool no_suppre; printed 1/15 [evidence raw/2605.14698.pdf p.36: \"Moirai-S                   TS-FM               0/15      1.000        1/15       0.853           –         –\"]"
+  },
+  {
+   "model": "uiuc/biot",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row BIOT, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"BIOT                       EEG-FM              0/15      1.000        4/15       0.096         8/15     0.029\"]"
+  },
+  {
+   "model": "uiuc/biot",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 4.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row BIOT, pool no_suppre; printed 4/15 [evidence raw/2605.14698.pdf p.36: \"BIOT                       EEG-FM              0/15      1.000        4/15       0.096         8/15     0.029\"]"
+  },
+  {
+   "model": "uiuc/biot",
+   "benchmark": "neuroatlas_sleep_top3_wins_eegfm",
+   "score": 8.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row BIOT, pool eegfm; printed 8/15 [evidence raw/2605.14698.pdf p.36: \"BIOT                       EEG-FM              0/15      1.000        4/15       0.096         8/15     0.029\"]"
+  },
+  {
+   "model": "hit/eegpt",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row EEGPT, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"EEGPT                      EEG-FM              0/15      1.000        0/15       1.000         6/15     0.203\"]"
+  },
+  {
+   "model": "hit/eegpt",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row EEGPT, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"EEGPT                      EEG-FM              0/15      1.000        0/15       1.000         6/15     0.203\"]"
+  },
+  {
+   "model": "hit/eegpt",
+   "benchmark": "neuroatlas_sleep_top3_wins_eegfm",
+   "score": 6.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row EEGPT, pool eegfm; printed 6/15 [evidence raw/2605.14698.pdf p.36: \"EEGPT                      EEG-FM              0/15      1.000        0/15       1.000         6/15     0.203\"]"
+  },
+  {
+   "model": "stanford/sleepfm",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row SleepFM, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"SleepFM                    EEG-FM              0/15      1.000        1/15       0.853         2/15     0.944\"]"
+  },
+  {
+   "model": "stanford/sleepfm",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 1.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row SleepFM, pool no_suppre; printed 1/15 [evidence raw/2605.14698.pdf p.36: \"SleepFM                    EEG-FM              0/15      1.000        1/15       0.853         2/15     0.944\"]"
+  },
+  {
+   "model": "stanford/sleepfm",
+   "benchmark": "neuroatlas_sleep_top3_wins_eegfm",
+   "score": 2.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row SleepFM, pool eegfm; printed 2/15 [evidence raw/2605.14698.pdf p.36: \"SleepFM                    EEG-FM              0/15      1.000        1/15       0.853         2/15     0.944\"]"
+  },
+  {
+   "model": "zju/cbramod",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 1.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row CBraMod, pool all; printed 1/15 [evidence raw/2605.14698.pdf p.36: \"CBraMod                    EEG-FM              1/15      0.817        1/15       0.853         2/15     0.944\"]"
+  },
+  {
+   "model": "zju/cbramod",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 1.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row CBraMod, pool no_suppre; printed 1/15 [evidence raw/2605.14698.pdf p.36: \"CBraMod                    EEG-FM              1/15      0.817        1/15       0.853         2/15     0.944\"]"
+  },
+  {
+   "model": "zju/cbramod",
+   "benchmark": "neuroatlas_sleep_top3_wins_eegfm",
+   "score": 2.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row CBraMod, pool eegfm; printed 2/15 [evidence raw/2605.14698.pdf p.36: \"CBraMod                    EEG-FM              1/15      0.817        1/15       0.853         2/15     0.944\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-b",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row STEEGFormer-B, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"STEEGFormer-B              EEG-FM              0/15      1.000        0/15       1.000         3/15     0.820\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-b",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row STEEGFormer-B, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"STEEGFormer-B              EEG-FM              0/15      1.000        0/15       1.000         3/15     0.820\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-b",
+   "benchmark": "neuroatlas_sleep_top3_wins_eegfm",
+   "score": 3.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row STEEGFormer-B, pool eegfm; printed 3/15 [evidence raw/2605.14698.pdf p.36: \"STEEGFormer-B              EEG-FM              0/15      1.000        0/15       1.000         3/15     0.820\"]"
+  },
+  {
+   "model": "imperial/neurorvq-eeg",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row NeuroRVQ, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"NeuroRVQ                   EEG-FM              0/15      1.000        0/15       1.000         1/15     0.992\"]"
+  },
+  {
+   "model": "imperial/neurorvq-eeg",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row NeuroRVQ, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"NeuroRVQ                   EEG-FM              0/15      1.000        0/15       1.000         1/15     0.992\"]"
+  },
+  {
+   "model": "imperial/neurorvq-eeg",
+   "benchmark": "neuroatlas_sleep_top3_wins_eegfm",
+   "score": 1.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row NeuroRVQ, pool eegfm; printed 1/15 [evidence raw/2605.14698.pdf p.36: \"NeuroRVQ                   EEG-FM              0/15      1.000        0/15       1.000         1/15     0.992\"]"
+  },
+  {
+   "model": "cmu/moment-1-base",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row MOMENT-B, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"MOMENT-B                   TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "cmu/moment-1-base",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row MOMENT-B, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"MOMENT-B                   TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "cmu/moment-1-small",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row MOMENT-S, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"MOMENT-S                   TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "cmu/moment-1-small",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row MOMENT-S, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"MOMENT-S                   TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "sjtu/labram",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row LaBraM, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"LaBraM                     EEG-FM              0/15      1.000        0/15       1.000         0/15     1.000\"]"
+  },
+  {
+   "model": "sjtu/labram",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row LaBraM, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"LaBraM                     EEG-FM              0/15      1.000        0/15       1.000         0/15     1.000\"]"
+  },
+  {
+   "model": "sjtu/labram",
+   "benchmark": "neuroatlas_sleep_top3_wins_eegfm",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row LaBraM, pool eegfm; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"LaBraM                     EEG-FM              0/15      1.000        0/15       1.000         0/15     1.000\"]"
+  },
+  {
+   "model": "cmu/moment-1-large",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row MOMENT-L, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"MOMENT-L                   TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "cmu/moment-1-large",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row MOMENT-L, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"MOMENT-L                   TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-s",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row STEEGFormer-S, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"STEEGFormer-S              EEG-FM              0/15      1.000        0/15       1.000         0/15     1.000\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-s",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row STEEGFormer-S, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"STEEGFormer-S              EEG-FM              0/15      1.000        0/15       1.000         0/15     1.000\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-s",
+   "benchmark": "neuroatlas_sleep_top3_wins_eegfm",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row STEEGFormer-S, pool eegfm; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"STEEGFormer-S              EEG-FM              0/15      1.000        0/15       1.000         0/15     1.000\"]"
+  },
+  {
+   "model": "usc/neuro-gpt",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row NeuroGPT, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"NeuroGPT                   EEG-FM              0/15      1.000        0/15       1.000         0/15     1.000\"]"
+  },
+  {
+   "model": "usc/neuro-gpt",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row NeuroGPT, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"NeuroGPT                   EEG-FM              0/15      1.000        0/15       1.000         0/15     1.000\"]"
+  },
+  {
+   "model": "usc/neuro-gpt",
+   "benchmark": "neuroatlas_sleep_top3_wins_eegfm",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row NeuroGPT, pool eegfm; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"NeuroGPT                   EEG-FM              0/15      1.000        0/15       1.000         0/15     1.000\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-large",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Chronos-L, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"Chronos-L                  TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-large",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Chronos-L, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"Chronos-L                  TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-cbramod-random-init",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row CBraMod-random, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"CBraMod-random             Random-Init         0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-cbramod-random-init",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row CBraMod-random, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"CBraMod-random             Random-Init         0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-base",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Chronos-B, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"Chronos-B                  TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-base",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Chronos-B, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"Chronos-B                  TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-small",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Chronos-S, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"Chronos-S                  TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-small",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Chronos-S, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"Chronos-S                  TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-tiny",
+   "benchmark": "neuroatlas_sleep_top3_wins_all",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Chronos-T, pool all; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"Chronos-T                  TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-tiny",
+   "benchmark": "neuroatlas_sleep_top3_wins_no_suppre",
+   "score": 0.0,
+   "unit": "cohorts (of 15)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 6 (sleep staging binomial top-3 win test), row Chronos-T, pool no_suppre; printed 0/15 [evidence raw/2605.14698.pdf p.36: \"Chronos-T                  TS-FM               0/15      1.000        0/15       1.000           –         –\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-sun2019-brain-age",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 5.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Sun et al. (2019), pool mae_all; printed 5/7 [evidence raw/2605.14698.pdf p.45: \"Sun et al. (2019)       Supervised-Pre Age     5/7      < 10            7/7     < 10                –        –      –           –\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-sun2019-brain-age",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 7.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Sun et al. (2019), pool r_all; printed 7/7 [evidence raw/2605.14698.pdf p.45: \"Sun et al. (2019)       Supervised-Pre Age     5/7      < 10            7/7     < 10                –        –      –           –\"]"
+  },
+  {
+   "model": "hit/eegpt",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 3.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row EEGPT, pool mae_all; printed 3/7 [evidence raw/2605.14698.pdf p.45: \"EEGPT                   EEG-FM                 3/7       0.038          2/7      0.189             3/7     0.292   4/7        0.093\"]"
+  },
+  {
+   "model": "hit/eegpt",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row EEGPT, pool r_all; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"EEGPT                   EEG-FM                 3/7       0.038          2/7      0.189             3/7     0.292   4/7        0.093\"]"
+  },
+  {
+   "model": "hit/eegpt",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "score": 3.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row EEGPT, pool mae_eegfm; printed 3/7 [evidence raw/2605.14698.pdf p.45: \"EEGPT                   EEG-FM                 3/7       0.038          2/7      0.189             3/7     0.292   4/7        0.093\"]"
+  },
+  {
+   "model": "hit/eegpt",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "score": 4.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row EEGPT, pool r_eegfm; printed 4/7 [evidence raw/2605.14698.pdf p.45: \"EEGPT                   EEG-FM                 3/7       0.038          2/7      0.189             3/7     0.292   4/7        0.093\"]"
+  },
+  {
+   "model": "imperial/neurorvq-eeg",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row NeuroRVQ-EEG, pool mae_all; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"NeuroRVQ-EEG            EEG-FM                 2/7       0.189          1/7      0.576             5/7     0.019   4/7        0.093\"]"
+  },
+  {
+   "model": "imperial/neurorvq-eeg",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row NeuroRVQ-EEG, pool r_all; printed 1/7 [evidence raw/2605.14698.pdf p.45: \"NeuroRVQ-EEG            EEG-FM                 2/7       0.189          1/7      0.576             5/7     0.019   4/7        0.093\"]"
+  },
+  {
+   "model": "imperial/neurorvq-eeg",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "score": 5.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row NeuroRVQ-EEG, pool mae_eegfm; printed 5/7 [evidence raw/2605.14698.pdf p.45: \"NeuroRVQ-EEG            EEG-FM                 2/7       0.189          1/7      0.576             5/7     0.019   4/7        0.093\"]"
+  },
+  {
+   "model": "imperial/neurorvq-eeg",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "score": 4.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row NeuroRVQ-EEG, pool r_eegfm; printed 4/7 [evidence raw/2605.14698.pdf p.45: \"NeuroRVQ-EEG            EEG-FM                 2/7       0.189          1/7      0.576             5/7     0.019   4/7        0.093\"]"
+  },
+  {
+   "model": "imt-atlantique/reve",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row REVE, pool mae_all; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"REVE                    EEG-FM                 2/7       0.189          2/7      0.189             3/7     0.292   2/7        0.610\"]"
+  },
+  {
+   "model": "imt-atlantique/reve",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row REVE, pool r_all; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"REVE                    EEG-FM                 2/7       0.189          2/7      0.189             3/7     0.292   2/7        0.610\"]"
+  },
+  {
+   "model": "imt-atlantique/reve",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "score": 3.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row REVE, pool mae_eegfm; printed 3/7 [evidence raw/2605.14698.pdf p.45: \"REVE                    EEG-FM                 2/7       0.189          2/7      0.189             3/7     0.292   2/7        0.610\"]"
+  },
+  {
+   "model": "imt-atlantique/reve",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row REVE, pool r_eegfm; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"REVE                    EEG-FM                 2/7       0.189          2/7      0.189             3/7     0.292   2/7        0.610\"]"
+  },
+  {
+   "model": "kuleuven/core-sleep",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row CoreSleep, pool mae_all; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"CoreSleep               Supervised-Pre Sleep   2/7       0.189          2/7      0.189              –        –      –           –\"]"
+  },
+  {
+   "model": "kuleuven/core-sleep",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row CoreSleep, pool r_all; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"CoreSleep               Supervised-Pre Sleep   2/7       0.189          2/7      0.189              –        –      –           –\"]"
+  },
+  {
+   "model": "eeg/sleeptransformer",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row SleepTransformer, pool mae_all; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"SleepTransformer        Supervised-Pre Sleep   2/7       0.189          2/7      0.189              –        –      –           –\"]"
+  },
+  {
+   "model": "eeg/sleeptransformer",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row SleepTransformer, pool r_all; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"SleepTransformer        Supervised-Pre Sleep   2/7       0.189          2/7      0.189              –        –      –           –\"]"
+  },
+  {
+   "model": "stanford/sleepfm",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row SleepFM, pool mae_all; printed 1/7 [evidence raw/2605.14698.pdf p.45: \"SleepFM                 EEG-FM                 1/7       0.576          1/7      0.576             3/7     0.292   3/7        0.292\"]"
+  },
+  {
+   "model": "stanford/sleepfm",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row SleepFM, pool r_all; printed 1/7 [evidence raw/2605.14698.pdf p.45: \"SleepFM                 EEG-FM                 1/7       0.576          1/7      0.576             3/7     0.292   3/7        0.292\"]"
+  },
+  {
+   "model": "stanford/sleepfm",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "score": 3.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row SleepFM, pool mae_eegfm; printed 3/7 [evidence raw/2605.14698.pdf p.45: \"SleepFM                 EEG-FM                 1/7       0.576          1/7      0.576             3/7     0.292   3/7        0.292\"]"
+  },
+  {
+   "model": "stanford/sleepfm",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "score": 3.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row SleepFM, pool r_eegfm; printed 3/7 [evidence raw/2605.14698.pdf p.45: \"SleepFM                 EEG-FM                 1/7       0.576          1/7      0.576             3/7     0.292   3/7        0.292\"]"
+  },
+  {
+   "model": "sjtu/neurolm-vq",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row NeuroLM-VQ, pool mae_all; printed 1/7 [evidence raw/2605.14698.pdf p.45: \"NeuroLM-VQ              EEG-FM                 1/7       0.576          1/7      0.576             2/7     0.610   3/7        0.292\"]"
+  },
+  {
+   "model": "sjtu/neurolm-vq",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row NeuroLM-VQ, pool r_all; printed 1/7 [evidence raw/2605.14698.pdf p.45: \"NeuroLM-VQ              EEG-FM                 1/7       0.576          1/7      0.576             2/7     0.610   3/7        0.292\"]"
+  },
+  {
+   "model": "sjtu/neurolm-vq",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row NeuroLM-VQ, pool mae_eegfm; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"NeuroLM-VQ              EEG-FM                 1/7       0.576          1/7      0.576             2/7     0.610   3/7        0.292\"]"
+  },
+  {
+   "model": "sjtu/neurolm-vq",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "score": 3.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row NeuroLM-VQ, pool r_eegfm; printed 3/7 [evidence raw/2605.14698.pdf p.45: \"NeuroLM-VQ              EEG-FM                 1/7       0.576          1/7      0.576             2/7     0.610   3/7        0.292\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-tiny",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Chronos-T5 (tiny), pool mae_all; printed 1/7 [evidence raw/2605.14698.pdf p.45: \"Chronos-T5 (tiny)       TS-FMs                 1/7       0.576          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-tiny",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Chronos-T5 (tiny), pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Chronos-T5 (tiny)       TS-FMs                 1/7       0.576          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "cmu/moment-1-base",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row MOMENT (base), pool mae_all; printed 1/7 [evidence raw/2605.14698.pdf p.45: \"MOMENT (base)           TS-FMs                 1/7       0.576          1/7      0.576              –        –      –           –\"]"
+  },
+  {
+   "model": "cmu/moment-1-base",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row MOMENT (base), pool r_all; printed 1/7 [evidence raw/2605.14698.pdf p.45: \"MOMENT (base)           TS-FMs                 1/7       0.576          1/7      0.576              –        –      –           –\"]"
+  },
+  {
+   "model": "gist/sleepyco",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row SleepyCo, pool mae_all; printed 1/7 [evidence raw/2605.14698.pdf p.45: \"SleepyCo                Supervised-Pre Sleep   1/7       0.576          2/7      0.189              –        –      –           –\"]"
+  },
+  {
+   "model": "gist/sleepyco",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row SleepyCo, pool r_all; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"SleepyCo                Supervised-Pre Sleep   1/7       0.576          2/7      0.189              –        –      –           –\"]"
+  },
+  {
+   "model": "uiuc/biot",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row BIOT, pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"BIOT                    EEG-FM                 0/7       1.000          0/7      1.000             2/7     0.610   2/7        0.610\"]"
+  },
+  {
+   "model": "uiuc/biot",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row BIOT, pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"BIOT                    EEG-FM                 0/7       1.000          0/7      1.000             2/7     0.610   2/7        0.610\"]"
+  },
+  {
+   "model": "uiuc/biot",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row BIOT, pool mae_eegfm; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"BIOT                    EEG-FM                 0/7       1.000          0/7      1.000             2/7     0.610   2/7        0.610\"]"
+  },
+  {
+   "model": "uiuc/biot",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row BIOT, pool r_eegfm; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"BIOT                    EEG-FM                 0/7       1.000          0/7      1.000             2/7     0.610   2/7        0.610\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-b",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row STEEGFormer-B, pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"STEEGFormer-B           EEG-FM                 0/7       1.000          0/7      1.000             2/7     0.610   1/7        0.892\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-b",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row STEEGFormer-B, pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"STEEGFormer-B           EEG-FM                 0/7       1.000          0/7      1.000             2/7     0.610   1/7        0.892\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-b",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row STEEGFormer-B, pool mae_eegfm; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"STEEGFormer-B           EEG-FM                 0/7       1.000          0/7      1.000             2/7     0.610   1/7        0.892\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-b",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row STEEGFormer-B, pool r_eegfm; printed 1/7 [evidence raw/2605.14698.pdf p.45: \"STEEGFormer-B           EEG-FM                 0/7       1.000          0/7      1.000             2/7     0.610   1/7        0.892\"]"
+  },
+  {
+   "model": "sjtu/labram",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row LaBraM, pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"LaBraM                  EEG-FM                 0/7       1.000          0/7      1.000             1/7     0.892   0/7        1.000\"]"
+  },
+  {
+   "model": "sjtu/labram",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row LaBraM, pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"LaBraM                  EEG-FM                 0/7       1.000          0/7      1.000             1/7     0.892   0/7        1.000\"]"
+  },
+  {
+   "model": "sjtu/labram",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "score": 1.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row LaBraM, pool mae_eegfm; printed 1/7 [evidence raw/2605.14698.pdf p.45: \"LaBraM                  EEG-FM                 0/7       1.000          0/7      1.000             1/7     0.892   0/7        1.000\"]"
+  },
+  {
+   "model": "sjtu/labram",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row LaBraM, pool r_eegfm; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"LaBraM                  EEG-FM                 0/7       1.000          0/7      1.000             1/7     0.892   0/7        1.000\"]"
+  },
+  {
+   "model": "zju/cbramod",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row CBraMod, pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"CBraMod                 EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   0/7        1.000\"]"
+  },
+  {
+   "model": "zju/cbramod",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row CBraMod, pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"CBraMod                 EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   0/7        1.000\"]"
+  },
+  {
+   "model": "zju/cbramod",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row CBraMod, pool mae_eegfm; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"CBraMod                 EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   0/7        1.000\"]"
+  },
+  {
+   "model": "zju/cbramod",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row CBraMod, pool r_eegfm; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"CBraMod                 EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   0/7        1.000\"]"
+  },
+  {
+   "model": "usc/neuro-gpt",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Neuro-GPT, pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Neuro-GPT               EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   0/7        1.000\"]"
+  },
+  {
+   "model": "usc/neuro-gpt",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Neuro-GPT, pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Neuro-GPT               EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   0/7        1.000\"]"
+  },
+  {
+   "model": "usc/neuro-gpt",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Neuro-GPT, pool mae_eegfm; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Neuro-GPT               EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   0/7        1.000\"]"
+  },
+  {
+   "model": "usc/neuro-gpt",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Neuro-GPT, pool r_eegfm; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Neuro-GPT               EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   0/7        1.000\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-s",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row STEEGFormer-S, pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"STEEGFormer-S           EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   2/7        0.610\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-s",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row STEEGFormer-S, pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"STEEGFormer-S           EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   2/7        0.610\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-s",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_eegfm",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row STEEGFormer-S, pool mae_eegfm; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"STEEGFormer-S           EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   2/7        0.610\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-s",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_eegfm",
+   "score": 2.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row STEEGFormer-S, pool r_eegfm; printed 2/7 [evidence raw/2605.14698.pdf p.45: \"STEEGFormer-S           EEG-FM                 0/7       1.000          0/7      1.000             0/7     1.000   2/7        0.610\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-cbramod-random-init",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row CBraMod (random init), pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"CBraMod (random init)   Random-init            0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-cbramod-random-init",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row CBraMod (random init), pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"CBraMod (random init)   Random-init            0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-base",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Chronos-T5 (base), pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Chronos-T5 (base)       TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-base",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Chronos-T5 (base), pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Chronos-T5 (base)       TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-large",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Chronos-T5 (large), pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Chronos-T5 (large)      TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-large",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Chronos-T5 (large), pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Chronos-T5 (large)      TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-small",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Chronos-T5 (small), pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Chronos-T5 (small)      TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "amazon/chronos-t5-small",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Chronos-T5 (small), pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Chronos-T5 (small)      TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "cmu/moment-1-large",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row MOMENT (large), pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"MOMENT (large)          TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "cmu/moment-1-large",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row MOMENT (large), pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"MOMENT (large)          TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "cmu/moment-1-small",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row MOMENT (small), pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"MOMENT (small)          TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "cmu/moment-1-small",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row MOMENT (small), pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"MOMENT (small)          TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-base",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Moirai (base), pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Moirai (base)           TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-base",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Moirai (base), pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Moirai (base)           TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-large",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Moirai (large), pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Moirai (large)          TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-large",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Moirai (large), pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Moirai (large)          TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-small",
+   "benchmark": "neuroatlas_brainage_top3_wins_mae_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Moirai (small), pool mae_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Moirai (small)          TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-small",
+   "benchmark": "neuroatlas_brainage_top3_wins_r_all",
+   "score": 0.0,
+   "unit": "cohorts (of 7)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 11 (brain-age binomial top-3 win tests), row Moirai (small), pool r_all; printed 0/7 [evidence raw/2605.14698.pdf p.45: \"Moirai (small)          TS-FMs                 0/7       1.000          0/7      1.000              –        –      –           –\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-s",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 15.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row ST-EEG-S, pool flatten; printed 15/18 [evidence raw/2605.14698.pdf p.50: \"ST-EEG-S       EEG-FM         15/18                       0.000\"]"
+  },
+  {
+   "model": "imt-atlantique/reve",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 8.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row REVE, pool flatten; printed 8/18 [evidence raw/2605.14698.pdf p.50: \"REVE           EEG-FM          8/18                       0.057\"]"
+  },
+  {
+   "model": "hit/eegpt",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 7.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row EEGPT, pool flatten; printed 7/18 [evidence raw/2605.14698.pdf p.50: \"EEGPT          EEG-FM          7/18                       0.139\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-eegnetv4",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 6.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row EEGNet, pool flatten; printed 6/18 [evidence raw/2605.14698.pdf p.50: \"EEGNet         Supervised      6/18                       0.283\"]"
+  },
+  {
+   "model": "cmu/moment-1-small",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 5.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row Moment-S, pool flatten; printed 5/18 [evidence raw/2605.14698.pdf p.50: \"Moment-S       TS-FM           5/18                       0.481\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-small",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 4.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row Moirai-S, pool flatten; printed 4/18 [evidence raw/2605.14698.pdf p.50: \"Moirai-S       TS-FM           4/18                       0.694\"]"
+  },
+  {
+   "model": "cmu/moment-1-base",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 4.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row Moment-B, pool flatten; printed 4/18 [evidence raw/2605.14698.pdf p.50: \"Moment-B       TS-FM           4/18                       0.694\"]"
+  },
+  {
+   "model": "uiuc/biot",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 3.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row BIOT, pool flatten; printed 3/18 [evidence raw/2605.14698.pdf p.50: \"BIOT           EEG-FM          3/18                       0.865\"]"
+  },
+  {
+   "model": "sjtu/neurolm",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 0.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row NeuroLM, pool flatten; printed 0/18 [evidence raw/2605.14698.pdf p.50: \"NeuroLM        EEG-FM          0/18                       1.000\"]"
+  },
+  {
+   "model": "imperial/neurorvq-eeg",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 0.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row NeuroRVQ, pool flatten; printed 0/18 [evidence raw/2605.14698.pdf p.50: \"NeuroRVQ       EEG-FM          0/18                       1.000\"]"
+  },
+  {
+   "model": "zju/cbramod",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 0.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row CBraMod, pool flatten; printed 0/18 [evidence raw/2605.14698.pdf p.50: \"CBraMod        EEG-FM          0/18                       1.000\"]"
+  },
+  {
+   "model": "sjtu/labram",
+   "benchmark": "neuroatlas_bci_top3_wins_flatten",
+   "score": 0.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 12 (BCI binomial top-3 win test, token flattening), row LaBraM, pool flatten; printed 0/18 [evidence raw/2605.14698.pdf p.50: \"LaBraM         EEG-FM          0/18                       1.000\"]"
+  },
+  {
+   "model": "hit/eegpt",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 13.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row EEGPT, pool meanpool; printed 13/18 [evidence raw/2605.14698.pdf p.50: \"EEGPT          EEG-FM         13/18                       0.000\"]"
+  },
+  {
+   "model": "sjtu/neurolm",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 10.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row NeuroLM, pool meanpool; printed 10/18 [evidence raw/2605.14698.pdf p.50: \"NeuroLM        EEG-FM         10/18                       0.005\"]"
+  },
+  {
+   "model": "baseline/neuroatlas-eegnetv4",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 8.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row EEGNet, pool meanpool; printed 8/18 [evidence raw/2605.14698.pdf p.50: \"EEGNet         Supervised      8/18                       0.057\"]"
+  },
+  {
+   "model": "imt-atlantique/reve",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 7.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row REVE, pool meanpool; printed 7/18 [evidence raw/2605.14698.pdf p.50: \"REVE           EEG-FM          7/18                       0.139\"]"
+  },
+  {
+   "model": "cmu/moment-1-small",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 4.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row Moment-S, pool meanpool; printed 4/18 [evidence raw/2605.14698.pdf p.50: \"Moment-S       TS-FM           4/18                       0.694\"]"
+  },
+  {
+   "model": "kuleuven/st-eegformer-s",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 4.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row ST-EEG-S, pool meanpool; printed 4/18 [evidence raw/2605.14698.pdf p.50: \"ST-EEG-S       EEG-FM          4/18                       0.694\"]"
+  },
+  {
+   "model": "sjtu/labram",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 2.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row LaBraM, pool meanpool; printed 2/18 [evidence raw/2605.14698.pdf p.50: \"LaBraM         EEG-FM          2/18                       0.961\"]"
+  },
+  {
+   "model": "imperial/neurorvq-eeg",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 2.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row NeuroRVQ, pool meanpool; printed 2/18 [evidence raw/2605.14698.pdf p.50: \"NeuroRVQ       EEG-FM          2/18                       0.961\"]"
+  },
+  {
+   "model": "cmu/moment-1-base",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 2.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row Moment-B, pool meanpool; printed 2/18 [evidence raw/2605.14698.pdf p.50: \"Moment-B       TS-FM           2/18                       0.961\"]"
+  },
+  {
+   "model": "uiuc/biot",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 1.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row BIOT, pool meanpool; printed 1/18 [evidence raw/2605.14698.pdf p.50: \"BIOT           EEG-FM          1/18                       0.994\"]"
+  },
+  {
+   "model": "zju/cbramod",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 1.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row CBraMod, pool meanpool; printed 1/18 [evidence raw/2605.14698.pdf p.50: \"CBraMod        EEG-FM          1/18                       0.994\"]"
+  },
+  {
+   "model": "salesforce/moirai-1.0-r-small",
+   "benchmark": "neuroatlas_bci_top3_wins_meanpool",
+   "score": 0.0,
+   "unit": "cohorts (of 18)",
+   "_source": "https://arxiv.org/abs/2605.14698",
+   "_note": "Table 13 (BCI binomial top-3 win test, mean pooling), row Moirai-S, pool meanpool; printed 0/18 [evidence raw/2605.14698.pdf p.50: \"Moirai-S       TS-FM           0/18                       1.000\"]"
+  }
+ ]
+}

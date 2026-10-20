@@ -64,6 +64,8 @@ var Agent = (function() {
             icon: '🌐',
             label: 'Web & Browsing',
             benchmarks: [
+                // 2026-10-20 S312 — Artificial Analysis Search API leaderboard (29 Search APIs × GPT-5.6 Luna medium)
+                'aa_search_index', 'aa_search_deepsearchqa_f1', 'aa_search_browsecomp_acc', 'aa_search_omniscience_acc',
                 // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (18)
                 'deepweb_bench', 'deepweb_bench_reasoning', 'lohosearch', 'lohosearch_calibration_error_lower_better', 'longwebbench_vfr_multi_image',
                 'longwebbench_vfr_single_image', 'mt_web2code_macro_score', 'mt_web2code_micro_score', 'teleswebench_localization_em',

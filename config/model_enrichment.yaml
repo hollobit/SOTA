@@ -4498,3 +4498,20 @@ models:
     pricing:
       input: 0.15
       output: 0.6
+  microsoft/mai-base-2:
+    architecture:
+      type: moe
+    _sources:
+    - https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2
+    lineage:
+      base_model_id: microsoft/mai-base-1
+      training_method: scaled-up successor pre-training (2.8T/80B MoE, MoE in every layer, Muon optimizer, MXFP8, activation gradient clipping, 50T tokens incl. 18% vision); no distillation from other models
+    links:
+      homepage: https://microsoft.ai
+  microsoft/mai-base-1:
+    architecture:
+      type: moe
+    _sources:
+    - https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2
+    links:
+      homepage: https://microsoft.ai
