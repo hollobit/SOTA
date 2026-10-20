@@ -1,1 +1,417 @@
-var Explorer={_PALETTE:["#10b981","#3b82f6","#f59e0b","#ef4444","#8b5cf6","#ec4899","#14b8a6","#f97316","#a3e635","#06b6d4"],_MERGE_MAP:{livecodebench_v6:"livecodebench",livecodebench_elo:null,tau_bench:"tau2_bench",arc_agi_1:"arc_agi_2",cybergym_success_rate:"cybergym"},_lowerIsBetter:function(b,o){return o&&o.higher_better===!1||o&&o.metric&&/_lower_better(_|$)/.test(o.metric)?!0:b?/_lower_better(_|$)/.test(b)||/price_per_mtok|per_mtok|_price_|ttft|latency|_cost_|cost_usd|cost_per/.test(b):!1},compare:function(b,o,k){var p=this._MERGE_MAP,S=this,E={};b.forEach(function(r){o.forEach(function(a){if(a.model_id===r){var l=a.benchmark_id;if(p[l]===null)return;p[l]&&(l=p[l]),E[l]=!0}})});var N={};k.forEach(function(r){N[r.id]=r});var s={};o.forEach(function(r){var a=r.benchmark_id;if(p[a]!==null){p[a]&&(a=p[a]);var l=r.model_id+"|"+a;s[l]?(S._lowerIsBetter(a,N[a])?r.value<s[l].value:r.value>s[l].value)&&(s[l]=r):s[l]=r}});var _=[];Object.keys(E).sort().forEach(function(r){var a=k.find(function(t){return t.id===r}),l={benchmark:r,benchName:a?a.name:r,category:a?a.category:"other",values:[]},h=S._lowerIsBetter(r,a);l.lowerBetter=h;var C=h?1/0:-1/0,M=-1;b.forEach(function(t,e){var n=s[t+"|"+r],i=n?n.value:null;l.values.push(i),i!==null&&(h?i<C:i>C)&&(C=i,M=e)}),l.winner=M,_.push(l)});var f=["reasoning","coding","math","cybersecurity","cyber_defense","agent","multimodal","multilingual","other"];return _.sort(function(r,a){var l=f.indexOf(r.category),h=f.indexOf(a.category);return l===-1&&(l=99),h===-1&&(h=99),l!==h?l-h:r.benchName.localeCompare(a.benchName)}),_},renderComparison:function(b,o,k,p,S){var E=document.getElementById(b);if(E){E.textContent="";var N=o.map(function(u){var c=k.find(function(d){return d.id===u});return c?c.name:u.split("/").pop()}),s=o.length,_=p.filter(function(u){return u.values.filter(function(c){return c!==null}).length===s}),f=!!(S&&S.sharedOnly),r=f?_:p,a=o.map(function(){return 0});r.forEach(function(u){u.winner>=0&&u.values.filter(function(c){return c!==null}).length>1&&a[u.winner]++});var l=0,h=p.length;p.forEach(function(u){var c=u.values.filter(function(d){return d!==null}).length;c>=2&&l++});var C=_.length,M=document.createElement("div");M.className="flex gap-4 mb-4 flex-wrap";var t=this._PALETTE.slice(0,o.length),e=document.createElement("div");e.className="bg-gray-900 border border-gray-800 rounded-lg px-4 py-2 text-center";var n=document.createElement("div");n.className="text-xs text-gray-500",n.textContent="Benchmarks",e.appendChild(n);var i=document.createElement("div");i.className="text-lg font-bold text-gray-300",i.textContent=f?C+" \uACF5\uB3D9 / "+h+" total":l+" shared / "+h+" total",e.appendChild(i);var m=document.createElement("div");m.className="text-xs text-gray-500",m.textContent=f?"\uBAA8\uB4E0 "+s+"\uAC1C \uBAA8\uB378 \uACF5\uD1B5":C+" shared by all "+s,e.appendChild(m),M.appendChild(e),o.forEach(function(u,c){var d=document.createElement("div");d.className="bg-gray-900 border border-gray-800 rounded-lg px-4 py-2 text-center",d.style.borderLeftWidth="3px",d.style.borderLeftColor=t[c];var x=document.createElement("div");x.className="text-sm font-semibold text-gray-200",x.textContent=N[c],d.appendChild(x);var g=document.createElement("div");g.className="text-2xl font-bold",g.style.color=t[c],g.textContent=a[c],d.appendChild(g);var w=document.createElement("div");w.className="text-xs text-gray-500",w.textContent="wins",d.appendChild(w),M.appendChild(d)}),E.appendChild(M);var y=document.createElement("table");y.className="sota-table text-sm";var V=document.createElement("thead"),T=document.createElement("tr"),W=document.createElement("th");W.textContent="Benchmark",T.appendChild(W);var A=document.createElement("th");A.textContent="Category",A.style.fontSize="11px",T.appendChild(A),N.forEach(function(u,c){var d=document.createElement("th"),x=document.createElement("span");x.className="cursor-pointer hover:underline transition",x.textContent=u,x.onclick=function(g){return function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(g)}}(o[c]),d.appendChild(x),d.style.color=t[c],d.style.borderBottom="2px solid "+t[c],T.appendChild(d)}),V.appendChild(T),y.appendChild(V);var z=document.createElement("tbody"),G="";if(f&&r.length===0){var j=document.createElement("tr"),L=document.createElement("td");L.colSpan=2+o.length,L.className="text-center text-gray-500 py-4",L.textContent="\uC120\uD0DD\uD55C "+s+"\uAC1C \uBAA8\uB378\uC774 \uBAA8\uB450 \uCC44\uC810\uB41C \uACF5\uD1B5 \uBCA4\uCE58\uB9C8\uD06C\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.",j.appendChild(L),z.appendChild(j)}r.forEach(function(u){var c=document.createElement("tr"),d=u.values.filter(function(B){return B!==null}).length;d===1&&(c.style.opacity="0.6");var x=document.createElement("td"),g=document.createElement("span");g.className="cursor-pointer hover:text-blue-400 transition",g.textContent=u.benchName,g.onclick=function(){Modal.showBenchmark(u.benchmark)},x.appendChild(g),c.appendChild(x);var w=document.createElement("td"),O=document.createElement("span");O.className="text-xs px-1.5 py-0.5 rounded bg-gray-800 text-gray-500",O.textContent=u.category,w.appendChild(O),c.appendChild(w),u.values.forEach(function(B,R){var v=document.createElement("td");v.style.textAlign="center",B!==null?(v.textContent=B>500?Math.round(B):B,R===u.winner&&u.values.filter(function(P){return P!==null}).length>1?(v.style.color=t[R],v.style.fontWeight="bold"):v.style.color=Theme.textSecondary,v.style.cursor="pointer",v.setAttribute("role","button"),v.setAttribute("title","\uD074\uB9AD\uD558\uBA74 \uAC80\uC99D \uC18C\uC2A4\uC640 \uC218\uC9D1\uC77C\xB7\uBCC0\uACBD \uC774\uB825 \uD45C\uC2DC"),v.addEventListener("click",function(P,D){return function(){typeof Modal!="undefined"&&Modal.showScoreSource&&Modal.showScoreSource(P,D)}}(o[R],u.benchmark))):(v.textContent="\u2014",v.style.color=Theme.textDisabled),c.appendChild(v)}),z.appendChild(c)}),y.appendChild(z),E.appendChild(y)}},renderRadar:function(b,o,k,p,S){var E=document.getElementById(b);if(E){var N=echarts.init(E),s=this._MERGE_MAP,_=o.map(function(t){var e=k.find(function(n){return n.id===t});return e?e.name:t.split("/").pop()}),f={};p.forEach(function(t){var e=t.benchmark_id;if(s[e]!==null){s[e]&&(e=s[e]);var n=t.model_id+"|"+e;(!f[n]||t.value>f[n])&&(f[n]=t.value)}});var r={};S.forEach(function(t){var e=0;o.forEach(function(n){f[n+"|"+t.id]&&e++}),e>=1&&(r[t.id]=e)});var a=Object.keys(r).filter(function(t){var e=0;return o.forEach(function(n){var i=f[n+"|"+t]||0;i>e&&(e=i)}),e<=100}).sort(function(t,e){if(r[e]!==r[t])return r[e]-r[t];function n(i){var m=o.map(function(y){return f[y+"|"+i]}).filter(Boolean);return m.length<2?0:Math.max.apply(null,m)-Math.min.apply(null,m)}return n(e)-n(t)}).slice(0,16);if(!(a.length<3)){var l=a.filter(function(t){return r[t]===o.length}).length,h=a.map(function(t){var e=S.find(function(m){return m.id===t}),n=e?e.name:t;n=n.replace("SWE-bench ","SWE-").replace("Terminal-Bench ","T-Bench ").replace("Humanity's Last Exam","HLE"),n.length>20&&(n=n.substring(0,18)+"..");var i=0;return o.forEach(function(m){var y=f[m+"|"+t]||0;y>i&&(i=y)}),{name:n,max:i<=100?100:Math.ceil(i/100)*100}}),C=this._PALETTE.slice(0,o.length),M=[{type:"radar",data:o.map(function(t,e){return{name:_[e],value:a.map(function(n){return f[t+"|"+n]||0}),lineStyle:{color:C[e],width:2},itemStyle:{color:C[e]},symbol:"circle",symbolSize:5,areaStyle:{color:C[e],opacity:.08}}})}];N.setOption({backgroundColor:"transparent",title:{text:"Model Comparison Radar",subtext:a.length+" axes \xB7 "+l+" shared by all "+o.length+" models",left:"center",textStyle:{color:Theme.textPrimary,fontSize:13},subtextStyle:{color:Theme.textMuted,fontSize:10}},tooltip:{trigger:"item",formatter:function(t){var e=["<strong>"+t.name+"</strong>"];return(t.value||[]).forEach(function(n,i){if(n&&n>0){var m=h[i],y=m.max===100?n.toFixed(1)+"%":n.toFixed(1);e.push(m.name+": "+y)}else e.push('<span style="color:'+Theme.textDisabled+'">'+h[i].name+": \u2014</span>")}),e.join("<br>")}},legend:{data:_,textStyle:{color:Theme.textMuted,fontSize:11},bottom:0},radar:{indicator:h,shape:"polygon",splitNumber:5,axisName:{color:Theme.textMuted,fontSize:9},splitLine:{lineStyle:{color:Theme.border}},splitArea:{areaStyle:{color:["transparent"]}},axisLine:{lineStyle:{color:Theme.borderStrong}}},series:M},!0),window.addEventListener("resize",function(){N.resize()})}}}};
+/**
+ * Model Explorer: compare 2 to 10 models side-by-side with radar chart.
+ * Uses safe DOM methods (createElement + textContent).
+ */
+var Explorer = {
+    _PALETTE: [
+        '#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6',
+        '#ec4899', '#14b8a6', '#f97316', '#a3e635', '#06b6d4'
+    ],
+
+    // Merge semantically identical benchmarks for display
+    _MERGE_MAP: {
+        'livecodebench_v6': 'livecodebench',
+        'livecodebench_elo': null,  // exclude Elo (different unit)
+        'tau_bench': 'tau2_bench',
+        'arc_agi_1': 'arc_agi_2',
+        'cybergym_success_rate': 'cybergym'
+    },
+
+    // Lower-is-better detection: token price, latency, cost, and any id/metadata
+    // that explicitly marks lower as better. Used so the "winner" (and radar)
+    // treat a cheaper/faster value as the best, not the largest number.
+    _lowerIsBetter: function(bid, bench) {
+        if (bench && bench.higher_better === false) return true;
+        // Direction is often marked only on the metric name (e.g. id "halluhard",
+        // metric "hallucination_rate_lower_better"), not the id — honor both.
+        if (bench && bench.metric && /_lower_better(_|$)/.test(bench.metric)) return true;
+        if (!bid) return false;
+        return /_lower_better(_|$)/.test(bid) ||
+               /price_per_mtok|per_mtok|_price_|ttft|latency|_cost_|cost_usd|cost_per/.test(bid);
+    },
+
+    compare: function(modelIds, scores, benchmarks) {
+        var mergeMap = this._MERGE_MAP;
+        var self = this;
+
+        // Collect all benchmarks across selected models, merging similar ones
+        var benchmarkSet = {};
+        modelIds.forEach(function(mid) {
+            scores.forEach(function(s) {
+                if (s.model_id === mid) {
+                    var bid = s.benchmark_id;
+                    // Apply merge: skip excluded, redirect to canonical
+                    if (mergeMap[bid] === null) return;
+                    if (mergeMap[bid]) bid = mergeMap[bid];
+                    benchmarkSet[bid] = true;
+                }
+            });
+        });
+
+        var benchById = {};
+        benchmarks.forEach(function(b) { benchById[b.id] = b; });
+
+        var scoreMap = {};
+        scores.forEach(function(s) {
+            var bid = s.benchmark_id;
+            if (mergeMap[bid] === null) return;
+            if (mergeMap[bid]) bid = mergeMap[bid];
+            var key = s.model_id + '|' + bid;
+            // Keep the best score if merged: lowest for lower-is-better (price/
+            // latency), highest otherwise.
+            if (!scoreMap[key]) {
+                scoreMap[key] = s;
+            } else if (self._lowerIsBetter(bid, benchById[bid]) ? s.value < scoreMap[key].value : s.value > scoreMap[key].value) {
+                scoreMap[key] = s;
+            }
+        });
+
+        var rows = [];
+        Object.keys(benchmarkSet).sort().forEach(function(bid) {
+            var bench = benchmarks.find(function(b) { return b.id === bid; });
+            var row = { benchmark: bid, benchName: bench ? bench.name : bid, category: bench ? bench.category : 'other', values: [] };
+            var lowerBetter = self._lowerIsBetter(bid, bench);
+            row.lowerBetter = lowerBetter;
+            var bestVal = lowerBetter ? Infinity : -Infinity, bestIdx = -1;
+            modelIds.forEach(function(mid, i) {
+                var s = scoreMap[mid + '|' + bid];
+                var val = s ? s.value : null;
+                row.values.push(val);
+                if (val !== null && (lowerBetter ? val < bestVal : val > bestVal)) { bestVal = val; bestIdx = i; }
+            });
+            row.winner = bestIdx;
+            rows.push(row);
+        });
+
+        // Sort by category then benchmark name
+        var catOrder = ['reasoning', 'coding', 'math', 'cybersecurity', 'cyber_defense', 'agent', 'multimodal', 'multilingual', 'other'];
+        rows.sort(function(a, b) {
+            var ca = catOrder.indexOf(a.category), cb = catOrder.indexOf(b.category);
+            if (ca === -1) ca = 99; if (cb === -1) cb = 99;
+            if (ca !== cb) return ca - cb;
+            return a.benchName.localeCompare(b.benchName);
+        });
+
+        return rows;
+    },
+
+    renderComparison: function(containerId, modelIds, models, rows, opts) {
+        var container = document.getElementById(containerId);
+        if (!container) return;
+        container.textContent = '';
+
+        var modelNames = modelIds.map(function(mid) {
+            var m = models.find(function(x) { return x.id === mid; });
+            return m ? m.name : mid.split('/').pop();
+        });
+
+        // "공동 비교 사례": benchmarks where every compared model has a value.
+        var nModels = modelIds.length;
+        var commonRows = rows.filter(function(r) {
+            return r.values.filter(function(v) { return v !== null; }).length === nModels;
+        });
+        var sharedOnly = !!(opts && opts.sharedOnly);
+        var displayRows = sharedOnly ? commonRows : rows;
+
+        // Summary: wins per model (over the rows actually shown, so a filtered
+        // view gives an apples-to-apples win count on fully-shared benchmarks)
+        var wins = modelIds.map(function() { return 0; });
+        displayRows.forEach(function(r) {
+            if (r.winner >= 0 && r.values.filter(function(v) { return v !== null; }).length > 1) {
+                wins[r.winner]++;
+            }
+        });
+
+        // Count benchmark coverage stats (always over the full result set)
+        var sharedCount = 0, totalCount = rows.length;
+        rows.forEach(function(r) {
+            var filled = r.values.filter(function(v) { return v !== null; }).length;
+            if (filled >= 2) sharedCount++;
+        });
+        var commonCount = commonRows.length;
+
+        var summaryDiv = document.createElement('div');
+        summaryDiv.className = 'flex gap-4 mb-4 flex-wrap';
+        var colors = this._PALETTE.slice(0, modelIds.length);
+
+        // Add coverage stats card
+        var coverageCard = document.createElement('div');
+        coverageCard.className = 'bg-gray-900 border border-gray-800 rounded-lg px-4 py-2 text-center';
+        var coverTitle = document.createElement('div');
+        coverTitle.className = 'text-xs text-gray-500';
+        coverTitle.textContent = 'Benchmarks';
+        coverageCard.appendChild(coverTitle);
+        var coverVal = document.createElement('div');
+        coverVal.className = 'text-lg font-bold text-gray-300';
+        coverVal.textContent = sharedOnly
+            ? (commonCount + ' 공동 / ' + totalCount + ' total')
+            : (sharedCount + ' shared / ' + totalCount + ' total');
+        coverageCard.appendChild(coverVal);
+        var coverSub = document.createElement('div');
+        coverSub.className = 'text-xs text-gray-500';
+        coverSub.textContent = sharedOnly
+            ? ('모든 ' + nModels + '개 모델 공통')
+            : (commonCount + ' shared by all ' + nModels);
+        coverageCard.appendChild(coverSub);
+        summaryDiv.appendChild(coverageCard);
+
+        modelIds.forEach(function(mid, i) {
+            var card = document.createElement('div');
+            card.className = 'bg-gray-900 border border-gray-800 rounded-lg px-4 py-2 text-center';
+            card.style.borderLeftWidth = '3px';
+            card.style.borderLeftColor = colors[i];
+
+            var name = document.createElement('div');
+            name.className = 'text-sm font-semibold text-gray-200';
+            name.textContent = modelNames[i];
+            card.appendChild(name);
+
+            var winCount = document.createElement('div');
+            winCount.className = 'text-2xl font-bold';
+            winCount.style.color = colors[i];
+            winCount.textContent = wins[i];
+            card.appendChild(winCount);
+
+            var label = document.createElement('div');
+            label.className = 'text-xs text-gray-500';
+            label.textContent = 'wins';
+            card.appendChild(label);
+
+            summaryDiv.appendChild(card);
+        });
+        container.appendChild(summaryDiv);
+
+        // Table
+        var table = document.createElement('table');
+        table.className = 'sota-table text-sm';
+
+        var thead = document.createElement('thead');
+        var headerRow = document.createElement('tr');
+        var thBench = document.createElement('th');
+        thBench.textContent = 'Benchmark';
+        headerRow.appendChild(thBench);
+        var thCat = document.createElement('th');
+        thCat.textContent = 'Category';
+        thCat.style.fontSize = '11px';
+        headerRow.appendChild(thCat);
+
+        modelNames.forEach(function(name, i) {
+            var th = document.createElement('th');
+            var span = document.createElement('span');
+            span.className = 'cursor-pointer hover:underline transition';
+            span.textContent = name;
+            span.onclick = (function(mid) { return function() {
+                if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid);
+            }; })(modelIds[i]);
+            th.appendChild(span);
+            th.style.color = colors[i];
+            th.style.borderBottom = '2px solid ' + colors[i];
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+        var lastCat = '';
+        if (sharedOnly && displayRows.length === 0) {
+            var emptyTr = document.createElement('tr');
+            var emptyTd = document.createElement('td');
+            emptyTd.colSpan = 2 + modelIds.length;
+            emptyTd.className = 'text-center text-gray-500 py-4';
+            emptyTd.textContent = '선택한 ' + nModels + '개 모델이 모두 채점된 공통 벤치마크가 없습니다.';
+            emptyTr.appendChild(emptyTd);
+            tbody.appendChild(emptyTr);
+        }
+        displayRows.forEach(function(row) {
+            var tr = document.createElement('tr');
+            var filledCount = row.values.filter(function(v) { return v !== null; }).length;
+            // Dim rows where only 1 model has data (unique to that model)
+            if (filledCount === 1) {
+                tr.style.opacity = '0.6';
+            }
+
+            // Benchmark name (clickable)
+            var tdBench = document.createElement('td');
+            var benchLink = document.createElement('span');
+            benchLink.className = 'cursor-pointer hover:text-blue-400 transition';
+            benchLink.textContent = row.benchName;
+            benchLink.onclick = function() { Modal.showBenchmark(row.benchmark); };
+            tdBench.appendChild(benchLink);
+            tr.appendChild(tdBench);
+
+            // Category
+            var tdCat = document.createElement('td');
+            var badge = document.createElement('span');
+            badge.className = 'text-xs px-1.5 py-0.5 rounded bg-gray-800 text-gray-500';
+            badge.textContent = row.category;
+            tdCat.appendChild(badge);
+            tr.appendChild(tdCat);
+
+            // Values
+            row.values.forEach(function(val, i) {
+                var td = document.createElement('td');
+                td.style.textAlign = 'center';
+                if (val !== null) {
+                    td.textContent = val > 500 ? Math.round(val) : val;
+                    if (i === row.winner && row.values.filter(function(v) { return v !== null; }).length > 1) {
+                        td.style.color = colors[i];
+                        td.style.fontWeight = 'bold';
+                    } else {
+                        td.style.color = Theme.textSecondary;
+                    }
+                    // Clickable \u2192 opens Modal.showScoreSource for this (model, benchmark)
+                    // The i-th column in the row corresponds to modelIds[i]
+                    td.style.cursor = 'pointer';
+                    td.setAttribute('role', 'button');
+                    td.setAttribute('title', '\ud074\ub9ad\ud558\uba74 \uac80\uc99d \uc18c\uc2a4\uc640 \uc218\uc9d1\uc77c\u00b7\ubcc0\uacbd \uc774\ub825 \ud45c\uc2dc');
+                    td.addEventListener('click', (function(mid, bid) {
+                        return function() {
+                            if (typeof Modal !== 'undefined' && Modal.showScoreSource) {
+                                Modal.showScoreSource(mid, bid);
+                            }
+                        };
+                    })(modelIds[i], row.benchmark));
+                } else {
+                    td.textContent = '\u2014';
+                    td.style.color = Theme.textDisabled;
+                }
+                tr.appendChild(td);
+            });
+
+            tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        container.appendChild(table);
+    },
+
+    renderRadar: function(containerId, modelIds, models, scores, benchmarks) {
+        var el = document.getElementById(containerId);
+        if (!el) return;
+        var chart = echarts.init(el);
+        var mergeMap = this._MERGE_MAP;
+
+        var modelNames = modelIds.map(function(mid) {
+            var m = models.find(function(x) { return x.id === mid; });
+            return m ? m.name : mid.split('/').pop();
+        });
+
+        var scoreMap = {};
+        scores.forEach(function(s) {
+            var bid = s.benchmark_id;
+            if (mergeMap[bid] === null) return;
+            if (mergeMap[bid]) bid = mergeMap[bid];
+            var key = s.model_id + '|' + bid;
+            if (!scoreMap[key] || s.value > scoreMap[key]) {
+                scoreMap[key] = s.value;
+            }
+        });
+
+        // Count how many selected models have each benchmark
+        var benchCount = {};
+        benchmarks.forEach(function(b) {
+            var cnt = 0;
+            modelIds.forEach(function(mid) {
+                if (scoreMap[mid + '|' + b.id]) cnt++;
+            });
+            if (cnt >= 1) benchCount[b.id] = cnt;
+        });
+
+        // Prefer benchmarks all selected models share; tiebreak on larger spread
+        // so axes are informative. Drop non-percentage metrics.
+        var radarBenchIds = Object.keys(benchCount).filter(function(bid) {
+            var maxVal = 0;
+            modelIds.forEach(function(mid) {
+                var v = scoreMap[mid + '|' + bid] || 0;
+                if (v > maxVal) maxVal = v;
+            });
+            return maxVal <= 100;
+        }).sort(function(a, b) {
+            // 1. more coverage first
+            if (benchCount[b] !== benchCount[a]) return benchCount[b] - benchCount[a];
+            // 2. bigger spread (max - min among scored models) first
+            function spread(bid) {
+                var vs = modelIds.map(function(m) { return scoreMap[m + '|' + bid]; }).filter(Boolean);
+                if (vs.length < 2) return 0;
+                return Math.max.apply(null, vs) - Math.min.apply(null, vs);
+            }
+            return spread(b) - spread(a);
+        }).slice(0, 16);
+
+        if (radarBenchIds.length < 3) return;
+
+        // How many of the chosen axes are truly shared across ALL selected models?
+        var fullyShared = radarBenchIds.filter(function(bid) { return benchCount[bid] === modelIds.length; }).length;
+
+        var indicators = radarBenchIds.map(function(bid) {
+            var b = benchmarks.find(function(x) { return x.id === bid; });
+            var name = b ? b.name : bid;
+            name = name.replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ').replace("Humanity's Last Exam", 'HLE');
+            if (name.length > 20) name = name.substring(0, 18) + '..';
+            var maxVal = 0;
+            modelIds.forEach(function(mid) {
+                var v = scoreMap[mid + '|' + bid] || 0;
+                if (v > maxVal) maxVal = v;
+            });
+            return { name: name, max: maxVal <= 100 ? 100 : Math.ceil(maxVal / 100) * 100 };
+        });
+
+        var radarColors = this._PALETTE.slice(0, modelIds.length);
+
+        var series = [{
+            type: 'radar',
+            data: modelIds.map(function(mid, i) {
+                return {
+                    name: modelNames[i],
+                    value: radarBenchIds.map(function(bid) {
+                        return scoreMap[mid + '|' + bid] || 0;
+                    }),
+                    lineStyle: { color: radarColors[i], width: 2 },
+                    itemStyle: { color: radarColors[i] },
+                    symbol: 'circle',
+                    symbolSize: 5,
+                    areaStyle: { color: radarColors[i], opacity: 0.08 }
+                };
+            })
+        }];
+
+        chart.setOption({
+            backgroundColor: 'transparent',
+            title: {
+                text: 'Model Comparison Radar',
+                subtext: radarBenchIds.length + ' axes · ' + fullyShared + ' shared by all ' + modelIds.length + ' models',
+                left: 'center',
+                textStyle: { color: Theme.textPrimary, fontSize: 13 },
+                subtextStyle: { color: Theme.textMuted, fontSize: 10 }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    var lines = ['<strong>' + params.name + '</strong>'];
+                    (params.value || []).forEach(function(v, i) {
+                        if (v && v > 0) {
+                            var ind = indicators[i];
+                            var pct = ind.max === 100 ? v.toFixed(1) + '%' : v.toFixed(1);
+                            lines.push(ind.name + ': ' + pct);
+                        } else {
+                            lines.push('<span style="color:' + Theme.textDisabled + '">' + indicators[i].name + ': —</span>');
+                        }
+                    });
+                    return lines.join('<br>');
+                }
+            },
+            legend: {
+                data: modelNames,
+                textStyle: { color: Theme.textMuted, fontSize: 11 }, bottom: 0
+            },
+            radar: {
+                indicator: indicators, shape: 'polygon', splitNumber: 5,
+                axisName: { color: Theme.textMuted, fontSize: 9 },
+                splitLine: { lineStyle: { color: Theme.border } },
+                splitArea: { areaStyle: { color: ['transparent'] } },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
+            },
+            series: series
+        }, true);
+        window.addEventListener('resize', function() { chart.resize(); });
+    }
+};

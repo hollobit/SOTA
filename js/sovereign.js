@@ -1,1 +1,3505 @@
-var Sovereign={REGIONS:[{code:"kr",label:"Korea",flag:"\u{1F1F0}\u{1F1F7}",note:"\uB3C5\uC790 AI \uD30C\uC6B4\uB370\uC774\uC158 \uBAA8\uB378 5\uD300 (LG \xB7 KT \xB7 SKT \xB7 Upstage \xB7 Naver) + Kakao \xB7 NCSoft \xB7 Trillion \xB7 Motif \xB7 Konan \xB7 Saltlux \xB7 Samsung Gauss",models:["lg/exaone-4.5-33b","lg/k-exaone-236b","lg/k-exaone-2.0-750b-a37b","lg/exaone-4.0-32b","lg/exaone-4.0.1-32b","lg/exaone-4.0-1.2b","lg/exaone-deep-32b","lg/exaone-deep-7.8b","lg/exaone-deep-2.4b","lg/exaone-3.5-32b","lg/exaone-3.5-7.8b","lg/exaone-3.5-2.4b","upstage/solar-pro-4","upstage/solar-mini-4","upstage/solar-open2-250b","upstage/solar-pro-3","upstage/solar-open-100b","upstage/solar-pro-2","upstage/solar-pro-2-preview","upstage/solar-pro","upstage/solar-mini","upstage/solar-docvision","skt/ax-k1","skt/ax-4.0","skt/ax-4.0-light","skt/ax-4.0-vl-light","kt/midm-k2.5-pro","kt/midm-2.0-base","kt/midm-2.0-mini","naver/hyperclova-x-think-32b","naver/hyperclova-x-think-14b","naver/hyperclova-x-seed-omni-8b","naver/hyperclova-x-seed-vision-3b","naver/hyperclova-x","kakao/kanana-2.5","naver/hyperclova-x-think-nemotron","kakao/kanana-2-30b-a3b-thinking","kakao/kanana-1.5-o-9.8b","kakao/kanana-1.5-8b","kakao/kanana-1.5-15.7b-a3b","kakao/kanana-flag-32.5b","kakao/kanana-2-3b-instruct","kakao/kanana-2-3b-base","kakao/kanana-2-1.3b-instruct","kakao/kanana-2-1.3b-base","kakao/kanana-2-30b-a3b-instruct-2601","naver/hyperclova-x-seed-think-14b","vaiv/llamion-14b","sk-telecom/a.x-4.0","skt/ax-k2","skt/ax-k2-alm","krafton/ax-k2-raon-speech-21b-a3b","naver/hcx-seed-think-32b","ncsoft/varco-vision-2.0-14b","ncsoft/llama-varco-8b","trillionlabs/tri-70b","trillionlabs/tri-21b","trillionlabs/tri-7b","motif/motif-3-beta","motif/motif-2-12.7b-reasoning","motif/motif-2-12.7b-instruct","konan/konan-llm-ond-4b","konan/konan-llm-ent-11","saltlux/luxia-21.4b","samsung/gauss-2-supreme","samsung/gauss-2-balanced","samsung/gauss-2-compact","snuh-naver/kmed-ai","lg/exaone-3.0-7.8b","lg/exaone-atelier","upstage/solar-10.7b","kakao/kogpt-6b","naver/hyperclova-x-hcx-003","naver/hyperclova-x-dash","naver/hyperclova-seed-coder-8b","naver/clova-x","naver/cue","kt/midm-1.0","ncsoft/varco-llm-1.0-52b","ncsoft/varco-llm-13b","trillionlabs/trillion-7b-preview","42dot/42dot-llm-sft-1.3b","42dot/42dot-llm-plm-1.3b","eleutherai/polyglot-ko-12.8b","eleutherai/polyglot-ko-5.8b","eleutherai/polyglot-ko-3.8b","eleutherai/polyglot-ko-1.3b","lunit/lunit-insight-mmg","lunit/lunit-scope-pdl1","vuno/vuno-med-chest-xray","vuno/vuno-med-deepbrain","lbox/lbox-caselaw","riiid/riiid-tutor"]},{code:"fr",label:"France",flag:"\u{1F1EB}\u{1F1F7}",note:"\uD504\uB791\uC2A4 sovereign frontier \u2014 Mistral \uD480\uB77C\uC778\uC5C5 (Mistral 7B\xB7Mixtral\xB7Nemo\xB7Saba\xB7Codestral\xB7Mathstral\xB7Pixtral\xB7Magistral\xB7Devstral\xB7Ministral\xB7Voxtral) + PleIAs \xB7 Lucie \xB7 CroissantLLM \xB7 HuggingFace SmolLM",models:["mistral/mistral-large-4-preview","mistral/mistral-large-3","mistral/mistral-medium-3.5","mistral/mistral-medium-3.5-eagle","mistral/mistral-medium-3.1","mistral/mistral-medium-3","cohere-alephalpha/command-pharia-1","aleph-alpha/pharia-1-llm-7b-control","tencent/hunyuan3d-2","tencent/hunyuan3d-2.1","tencent/hunyuan3d-2.5","tencent/hunyuanvideo-1.5","tencent/hunyuanvideo-1.5","bytedance/doubao-seed-2.0-pro","mistral/leanstral","mistral/mistral-large-2","mistral/mistral-large-1","mistral/mistral-small-4","mistral/mistral-small-3.2","mistral/mistral-small-3.1","mistral/mistral-small-3","mistral/mistral-small-2","mistral/mistral-small-1","mistral/magistral-medium-1.2","mistral/magistral-small-1.2","mistral/magistral-medium-1","mistral/magistral-small-1","mistral/devstral-2","mistral/devstral-medium","mistral/devstral-small-2","mistral/devstral-small-1.1","mistral/devstral-small-1","mistral/codestral-25.08","mistral/codestral-22b","mistral/codestral-mamba-7b","mistral/mathstral-7b","mistral/pixtral-large","mistral/pixtral-12b","mistral/voxtral-tts","mistral/ministral-3-14b","mistral/ministral-3-8b","mistral/ministral-3-3b","mistral/ministral-8b-v1","mistral/ministral-3b-v1","mistral/ministral-14b","mistral/mistral-7b","mistral/mixtral-8x7b","mistral/mixtral-8x22b","mistral/mistral-nemo-12b","mistral/mistral-saba-24b","mistral/ministral-3-3b","mistral/ministral-3-8b","mistral/ministral-3-14b","liquid/lfm2.5-8b-a1b","liquid/lfm2.5-vl-1.6b","liquid/lfm2.5-vl-450m","liquid/lfm2.5-audio-1.5b","liquid/lfm2.5-1.2b-jp","pleias/pleias-1.0-pico-3.5b","pleias/pleias-1.0-olmo-1b","pleias/pleias-rag-1b","pleias/pleias-rag-350m","openllm-france/lucie-7b","croissantllm/croissant-1.3b","huggingface/smollm3-3b","huggingface/smollm2-1.7b","huggingface/smollm2-360m","huggingface/smollm2-135m","huggingface/smollm-1.7b"]},{code:"cn",label:"China",flag:"\u{1F1E8}\u{1F1F3}",note:"\uC911\uAD6D frontier \uC804\uCCB4 \u2014 Qwen \uD480+specialists (incl. Qwen3-VL-235B/Wan-2.2-I2V) \xB7 DeepSeek (V3-V4/R1/Coder/Math/VL) \xB7 Kimi \xB7 GLM \xB7 Hunyuan \xB7 ERNIE \xB7 Doubao \xB7 iFlytek Spark \xB7 Yi \xB7 Baichuan \xB7 InternLM/InternVL3 \xB7 SenseNova-V6.5-Pro \xB7 Skywork \xB7 MiniCPM-o \xB7 Ovis2.5 (AIDC-AI) \xB7 Step-1o (StepFun) \xB7 JT3.5 (China Mobile) \xB7 TeleMM-2.0 (China Telecom) \xB7 PanGu \xB7 Aquila \xB7 MOSS \xB7 Yuan",models:["alibaba/qwen3.8-max-preview","alibaba/qwen3.7-max","alibaba/qwen3.7-max-20260517","alibaba/qwen3.7-max-preview","alibaba/qwen3.7-plus-preview","inclusionai/ling-3.0-flash","inclusionai/ling-3.0-flash-sante","startlux/startlux-v1.0-27b-preview","xhtoken/spark-x2.5-4b","xhtoken/spark-x2.5-1.7b","alibaba/qwen3.7-plus","alibaba/qwen3.6-max-preview","alibaba/qwen3.6-plus","alibaba/qwen3.6-27b","alibaba/qwen3.6-35b-a3b","alibaba/qwen3.5-max-preview","alibaba/qwen3.5-plus","alibaba/qwen3.5-397b","alibaba/qwen3.5-122b","alibaba/qwen3.5-27b","alibaba/terminal-universe-27b","alibaba/qwen3-235b-a22b-thinking-2507","alibaba/qwen3-235b-a22b-instruct-2507","alibaba/qwen3-235b-a22b","alibaba/qwen3-30b-a3b","alibaba/qwen3-32b","alibaba/qwen3-14b","alibaba/qwen3-8b","alibaba/qwen3-4b","alibaba/qwen3-1.7b","alibaba/qwen3-0.6b","alibaba/qwen3-next","alibaba/qwen2.5-72b","alibaba/qwen2.5-32b","alibaba/qwen2.5-14b","alibaba/qwen2.5-7b","deepseek/deepseek-v4-pro-max","deepseek/deepseek-v4-pro-thinking","deepseek/deepseek-v4-pro","deepseek/deepseek-v4-flash","deepseek/deepseek-v4.1-flash","deepseek/deepseek-v4.1-flash-base","deepseek/deepseek-v4.1-flash-1017","deepseek/deepseek-v3.2","deepseek/deepseek-v3.2-speciale","deepseek/deepseek-v3.1-terminus","deepseek/deepseek-v3","deepseek/deepseek-r1-0528","deepseek/deepseek-r1","zhipu/glm-5.2","zhipu/glm-4.6v","zhipu/glm-4.6v-flash","zhipu/scail-2","zhipu/glm-5.1","zhipu/glm-5","zhipu/glm-4.7","zhipu/glm-4.6","zhipu/glm-4.5","zhipu/glm-4.5-air","moonshot/kimi-k3","moonshot/kimi-k2.7-code","moonshot/kimi-k2.6","moonshot/kimi-k2.5","moonshot/kimi-k2.5-thinking","moonshot/kimi-k2.5-instant","moonshot/kimi-k2-thinking","moonshot/kimi-k2-instruct","moonshot/kimi-k2-base","moonshot/kimi-k1.5","meituan/longcat-2.0","meituan/longcat-flash-thinking","meituan/longcat-flash-thinking-2601","meituan/longcat-video","minimax/m3","minimax/m2.7","minimax/m2.5","minimax/m2.1","mimo/mimo-v2-pro","mimo/mimo-v2-flash","stepfun/step-3.7-flash","stepfun/step-3.5-flash","stepfun/step-2-pro","stepfun/step-2-mini","stepfun/step-1o","baidu/ernie-5.1","baidu/ernie-5.0","baidu/ernie-4.5-300b-a47b","baidu/ernie-4.5-turbo","baidu/ernie-speed","baidu/ernie-lite","baidu/ernie-image","baidu/paddleocr-vl-1.6","jd/joyai-vl-interaction","hidream/hidream-o1-image-dev-2604","alibaba/fun-realtime-tts","alibaba/fun-realtime-asr-preview","alibaba/fun-realtime-audiochat","alibaba/fun-audio-chat-8b","moonshot/kimi-audio-7b","alibaba/qwen3.5-omni","stepfun/step-audio-r1.1-realtime","stepfun/step-audio-2.5-realtime","stepfun/step-audio-editx","qwen/qwen3-vl-embedding-8b","qwen/qwen3-vl-reranker-8b","qwen/qwen3-vl-reranker-2b","tencent/conan-embedding-v2","kingsoft/qzhou-embedding","tencent/hunyuan-hy3","tencent/hunyuan-t1","tencent/hunyuan-large","tencent/hunyuan-turbo","tencent/hunyuan-7b","tencent/hunyuan-image-3.0","bytedance/doubao-2.1-pro","bytedance/seed-vla","bytedance/seed-2.1-pro","bytedance/seed-2.0-pro","bytedance/seed-1.6","bytedance/seed-1.5-pro","bytedance/seed-1.5-lite","bytedance/seed-oss-36b","bytedance/dreamina-seedance-2.0-720p","bytedance/seedance-2.0","bytedance/seedream-4.5","bytedance/seedream-4-2k","bytedance/seedream-5.0-lite","bytedance/seedream-4-fal","bytedance/seedream-4-high-res-fal","alibaba/wan2.7-t2v","alibaba/wan2.6-t2v","alibaba/wan2.6-t2i","alibaba/wan2.5-t2i-preview","alibaba/qwen-image-2.0-pro-2026-04-22","alibaba/qwen-image-2512","alibaba/qwen-image-2.0-2026-03-03","alibaba/qwen-robotclaw","alibaba/qwen-robotnav","alibaba/qwen-robotmanip","alibaba/qwen-robotworld","alibaba/qwen-vla-base","alibaba/qwen-vla-instruct","alibaba/qwen-vla-aloha-pretrain","alibaba/qwen-vla-aloha-no-pretrain","alibaba/gui-owl-1.5-8b","alibaba/gui-owl-1.5-32b","alibaba/qwen3-vl-235b-a22b-instruct","alibaba/wan-2.2-i2v-a14b","alibaba/wan-2.2","alibaba/wan-2.6","alibaba/wan-2.2-fun-a14b-control","alibaba/wan-2.2-fun-5b-control","kling/kling-v3-pro","kling/kling-o1-pro","kling/kling-o3-pro","alibaba-ath/happyhorse-1.0","tencent/hy3-preview","tencent/hy-world-2.0","xiaomi/mimo-v2.6-pro","xiaomi/mimo-v2.6-flash","xiaomi/mimo-v2.5-pro","xiaomi/mimo-v2.5","inclusionai/ling-2.6-1t","inclusionai/ling-2.6-flash","inclusionai/llada2-uni","inclusionai/ring-2.6-1t","iflytek/spark-x1","iflytek/spark-4-ultra","iflytek/spark-4","iflytek/antelope-3.0","01-ai/yi-lightning","01-ai/yi-large","01-ai/yi-1.5-34b","01-ai/yi-1.5-9b","01-ai/yi-1.5-6b","01-ai/yi-coder-9b","01-ai/yi-vl-34b","baichuan/baichuan-4","baichuan/baichuan-3","baichuan/baichuan-2-13b","baichuan/baichuan-2-7b","baichuan/baichuan-m1-14b","baichuan/baichuan-omni-1.5","shanghai-ai-lab/internlm-3-8b","shanghai-ai-lab/internlm-2.5-20b","shanghai-ai-lab/internlm-2.5-7b","shanghai-ai-lab/internlm-2.5-1.8b","shanghai-ai-lab/internvl-3","shanghai-ai-lab/internvl-2.5","shanghai-ai-lab/internvl3-78b","sensetime/sensenova-v6-5-pro","sensetime/sensenova-v6","sensetime/sensechat-5","sensetime/sensenova","china-mobile/jt3.5","china-mobile/jt-35b-flash","china-telecom/telemm-2.0","china-telecom/telemm-2.0-thinking","aidc-ai/ovis2.5-9b","skywork/skywork-moe","skywork/skywork-13b","skywork/skywork-r1v-3","skywork/skywork-o1","openbmb/minicpm-4.1-8b","openbmb/minicpm-4-8b","openbmb/minicpm3-4b","openbmb/minicpm-5-1b","openbmb/minicpm-v-2.6","openbmb/minicpm-o-2.6","openbmb/minicpm-o-4.5","openbmb/agentcpm-explore","openbmb/minicpm-5-1b","openbmb/minicpm-v-4.6","alibaba/qwen-3.5-0.8b","alibaba/qwen-3.5-2b","alibaba/qwen-3.5-4b","alibaba/qwen-3.5-9b","huawei/pangu-ultra-moe","huawei/pangu-5","huawei/pangu-embedding","baai/aquila2-34b","baai/aquila2-7b","baai/wudao-2","fnlp/moss-2","ieit/yuan-2.0","alibaba/qwq-32b","alibaba/qvq-72b-preview","alibaba/qwen2.5-coder-32b","alibaba/qwen2.5-coder-14b","alibaba/qwen2.5-coder-7b","alibaba/qwen2.5-math-72b","alibaba/qwen2.5-math-7b","alibaba/qwen2-vl-72b","alibaba/qwen3-vl-235b","alibaba/qwen2-audio","deepseek/deepseek-coder-v2","deepseek/deepseek-coder-v2-lite","deepseek/deepseek-math-7b","deepseek/deepseek-vl2","deepseek/janus-pro-7b","freedomintelligence/huatuogpt-ii","sjtu-xinhua-harvard/deeprare","tsinghua-bgi/phenobrain"]},{code:"jp",label:"Japan",flag:"\u{1F1EF}\u{1F1F5}",note:"Major sovereign players \u2014 PFN PLaMo \xB7 NTT tsuzumi \xB7 NEC cotomi \xB7 Fujitsu Takane \xB7 Rakuten AI \xB7 ELYZA \xB7 Swallow (Tokyo Tech) \xB7 Stockmark \xB7 NII llm-jp \xB7 SoftBank Sarashina \xB7 CyberAgent \xB7 Karakuri \xB7 ABEJA \xB7 Sakana",models:["pfn/plamo-3.0-prime","softbank/sarashina-cloud-pf","tokyo-tech/qwen3-swallow-32b-rl","nii/llm-jp-4-32b-a3b","pfn/plamo-100b","pfn/plamo-2-prime","pfn/plamo-2.1-prime","pfn/plamo-2-8b","ntt/tsuzumi-1","ntt/tsuzumi-2","nec/cotomi-pro","nec/cotomi-light","fujitsu/takane","rakuten/rakuten-ai-7b","rakuten/rakutenai-2.0-8x7b-instruct","rakuten/rakutenai-3.0","elyza/llama-3-elyza-jp-8b","elyza/llama-3-elyza-jp-70b","karakuri-ai/karakuri-lm-8x7b-chat","stockmark/stockmark-2-100b-instruct","llm-jp/llm-jp-3-172b-instruct3","tokyotech-llm/llama-3.3-swallow-70b-instruct","sbintuitions/sarashina2-13b","sbintuitions/sarashina2-vision-14b","cyberagent/calm3-22b-chat","abeja/abeja-qwen2.5-32b-japanese","sakana/tinyswallow-1.5b","sakana/fugu-ultra","sakana/fugu","sakana/fugu-mini","sakana/namazu","sakana/trinity","riken/pubcasefinder"]},{code:"in",label:"India",flag:"\u{1F1EE}\u{1F1F3}",note:"\uB3C5\uC790 sovereign AI Mission \u2014 Sarvam \xB7 BharatGen \xB7 Krutrim \xB7 Soket AI \xB7 AI4Bharat \xB7 BharatGPT + Tata MAITRI \xB7 Reliance JioBrain \xB7 L&T-Vyoma",models:["sarvam/sarvam-105b","sarvam/sarvam-30b","sarvam/sarvam-m","sarvam/sarvam-1","bharatgen/param2-17b-thinking","bharatgen/shrutam-2","bharatgen/param2-17b","bharatgen/param-1-2.9b","bharatgen/param2-sutra","bharatgen/param-1t-roadmap","ola/krutrim-2-12b","ola/krutrim-spectre","ola/krutrim","soketai/sutra-pro","soketai/sutra-light","soketai/pragna-1b","soketai/eka-roadmap","ai4bharat/indicllm","ai4bharat/indicbert-v2","ai4bharat/indictrans2","corover/bharatgpt","reliance/jiobrain","tata/maitri","lt-vyoma/sovereign-ai"]},{code:"il",label:"Israel",flag:"\u{1F1EE}\u{1F1F1}",note:"AI21 Jamba \uD480\uB77C\uC778\uC5C5 (1.0/1.5/1.6/1.7/Jamba2 + Reasoning + Maestro) + DICTA Hebrew sovereign LLM",models:["ai21/jamba2-mini","ai21/jamba2-3b","ai21/jamba-reasoning","ai21/maestro","ai21/jamba-large-1.7","ai21/jamba-1.7-mini","ai21/jamba-1.6-large","ai21/jamba-1.6-mini","ai21/jamba-large-1.5","ai21/jamba-1.5-mini","ai21/jamba-1.0","dicta/dictalm-3.0-24b-thinking","dicta/dictalm-3.0-24b-base","dicta/dictalm-3.0-12b-instruct","dicta/dictalm-3.0-1.7b-thinking","dicta/dictalm-3.0-24b","dicta/dictalm-2.0-instruct","dicta/dictalm-2.0"]},{code:"ae",label:"UAE",flag:"\u{1F1E6}\u{1F1EA}",note:"TII Falcon-H1/H1R/Perception/Falcon3/Mamba/Falcon2/180B + MBZUAI K2 Think V2 (G42+Cerebras, 73B fully-open reasoning) + Atlas-Chat/BiMediX (Arabic)",models:["tii/falcon-h1r-7b","tii/falcon-perception","tiiuae/falcon-h1-34b","tii/falcon-h1-arabic-34b","tii/falcon-h1-7b","tii/falcon-h1-3b","tii/falcon-h1-1.5b-deep","tii/falcon-h1-1.5b","tii/falcon-h1-0.5b","tii/falcon3-10b","tii/falcon3-7b","tii/falcon3-3b","tii/falcon3-1b","tii/falcon-ocr","tiiuae/falcon-mamba-7b","tii/falcon2-11b","tii/falcon-180b","mbzuai/k2-think-v2","mbzuai/k2-v2-instruct","mbzuai/llm360-k2-65b","mbzuai/atlas-chat-9b","mbzuai/bimedix","ifm/k2-horizon-375b-a23b","ifm/k2-horizon-mova-36b-a4b","ifm/k2-horizon-32b","ifm/k2-horizon-7b","ifm/k2-horizon-3.7b","ifm/k2-horizon-0.9b"]},{code:"sg",label:"Singapore",flag:"\u{1F1F8}\u{1F1EC}",note:"AI Singapore SEA-LION \uD480\uB77C\uC778\uC5C5 (Llama/Gemma2/Apertus \uAE30\uBC18) + SEA-LION ModernBERT/E5 \uC784\uBCA0\uB529 (2026-03) + GoTo Sahabat-AI (\uC778\uB3C4\uB124\uC2DC\uC544\uC5B4)",models:["ai-singapore/sea-lion-modernbert-600m","ai-singapore/sea-lion-modernbert-300m","ai-singapore/sea-lion-e5-embedding-600m","ai-singapore/sea-lion-v4.5","ai-singapore/sea-guard","ai-singapore/sea-lion-embedding","sarvam/sarvam-vision-3b","sber/gigachat-ultra","ai-singapore/apertus-sea-lion-v4-8b","ai-singapore/gemma-sea-lion-v4-4b-vl","ai-singapore/llama-sea-lion-v3.5-70b","ai-singapore/llama-sea-lion-v3.5-8b","ai-singapore/gemma2-sea-lion-v3-9b","ai-singapore/sea-lion-v2.1-7b","gotoai/sahabat-ai-v1-70b","gotoai/sahabat-ai-v1-8b"]},{code:"ch",label:"Switzerland",flag:"\u{1F1E8}\u{1F1ED}",note:"Swiss AI Initiative (ETH Zurich + EPFL + CSCS) \u2014 Apertus 8B/70B \uD480\uB77C\uC778\uC5C5 (Alps supercomputer, 1,811 languages incl. Swiss German + Romansh, Apache 2.0) + EPFL Meditron \uC758\uB8CC",models:["soofi-project/soofi-s-30b-a3b","swiss-ai/apertus-70b","swiss-ai/apertus-70b-instruct","swiss-ai/apertus-8b","swiss-ai/apertus-8b-instruct","swiss-ai/apertus-70b-meditronfo","swiss-ai/apertus-8b-meditronfo","epfl/olmo-2-32b-meditronfo","epfl/eurollm-22b-meditronfo","epfl/eurollm-9b-meditronfo","epfl/gemma-3-27b-meditronfo","epfl/meditron-70b","epfl/meditron-7b","epfl/llama-3-meditron-70b"]},{code:"ca",label:"Canada",flag:"\u{1F1E8}\u{1F1E6}",note:"Cohere Labs (Toronto, \uAD6C Cohere For AI) \u2014 Command A \uD480\uB77C\uC778\uC5C5 + Aya \uC2DC\uB9AC\uC988 + Cohere Transcribe",models:["cohere/command-a","cohere/command-a-plus","cohere/command-a-vision","cohere/command-a-reasoning","cohere/north-mini-code","cohere/command-r7b-arabic","cohere/cohere-transcribe","cohere/aya-23-35b","cohere/aya-vision-8b","cohere/tiny-aya-base"]},{code:"au",label:"Australia",flag:"\u{1F1E6}\u{1F1FA}",note:"Maincode (Melbourne AI factory) + Isaacus (Australian legal AI)",models:["maincode/maincoder-1b","isaacus/open-australian-legal-llm","isaacus/emubert"]},{code:"us-legal",label:"US (Legal AI)",flag:"\u2696\uFE0F",note:"Vertical legal AI (Harvey \xB7 CoCounsel \xB7 Vincent \xB7 Oliver)",models:["harvey/harvey-assistant","thomson-reuters/cocounsel-2","vlex/vincent-ai","vecflow/oliver"]},{code:"us-fin",label:"US (Finance)",flag:"\u{1F4B0}",note:"Bloomberg sovereign-data finance LLM",models:["bloomberg/bloomberg-gpt"]},{code:"ru",label:"Russia",flag:"\u{1F1F7}\u{1F1FA}",note:"Yandex YandexGPT 5 + Sber GigaChat 1/2/3 (incl. 3 Ultra Preview 702B-A36B MoE) + Vikhr opensource + T-Bank T-Pro 2.0 + MTS AI Cotype Pro 2",models:["yandex/yandexgpt-5-pro","yandex/yandexgpt-5-lite-8b","yandex/yandexgpt-4-pro","yandex/yalm-100b","sber/gigachat-3.1-ultra","sber/gigachat-3.5-ultra","sber/gigachat-3.1-lightning","sber/gigachat-3-ultra","sber/gigachat-3-lightning","sber/gigachat-3-ultra-preview","sber/gigachat-2-max","sber/gigachat-2-pro","sber/gigachat-2-lite","sber/gigachat-1.5","sber/rugpt-3.5-13b","vikhrmodels/vikhr-nemo-12b","vikhrmodels/vikhr-yandexgpt-5-lite-8b","tbank/t-pro-2.0","tbank/t-pro-1","tbank/t-lite-1","mts-ai/cotype-pro-2"]},{code:"de",label:"Germany",flag:"\u{1F1E9}\u{1F1EA}",note:"OpenGPT-X Teuken (Fraunhofer EU sovereign LLM, 24 EU \uC5B8\uC5B4) + Aleph Alpha Kolibri (2026-10, 78B-A3.5B Apache 2.0 DE/EN)/Pharia/TFree-HAT + Black Forest Labs FLUX 1/2 + TNG Chimera + Ellamind Propella + Occiglot",models:["opengpt-x/teuken-7b-instruct-v0.6","opengpt-x/teuken-7b-base-v0.6","opengpt-x/teuken-7b-instruct-commercial-v0.4","aleph-alpha/kolibri-1","aleph-alpha/kolibri-origin","aleph-alpha/kolibri-1-base","aleph-alpha/kolibri-origin-base","aleph-alpha/pharia-1-7b-control","aleph-alpha/pharia-1-7b-control-aligned","aleph-alpha/pharia-2-tfree","aleph-alpha/luminous","aleph-alpha/tfree-hat-pretrained-7b-base","aleph-alpha/llama-3.1-8b-tfree-hat-dpo","aleph-alpha/llama-3.1-70b-tfree-hat-sft","black-forest-labs/flux-2-dev","black-forest-labs/flux.1-pro","black-forest-labs/flux.1-dev","black-forest-labs/flux.1-schnell","black-forest-labs/flux.1-kontext-pro","black-forest-labs/flux.1-kontext-dev","tngtech/r1t-chimera","tngtech/r1t2-chimera","ellamind/propella-1-4b","occiglot/occiglot-7b-eu5","mpi-light/scimuse"]},{code:"uk",label:"United Kingdom",flag:"\u{1F1EC}\u{1F1E7}",note:"Stability AI (StableLM/Stable Diffusion) + Synthesia + Wayve + Imperial College MMedS \xB7 UK Sovereign AI Fund \xA3500M (2025)",models:["stabilityai/stablelm-2-12b","stabilityai/stablelm-2-1.6b","stabilityai/stable-code-3b","stabilityai/stable-lm-zephyr-3b","stabilityai/sd-3.5-large","synthesia/synthesia-vlm","wayve/lingo-2","icl/mmeds-llama-3"]},{code:"us-open",label:"US (Open-source / Open-weight)",flag:"\u{1F1FA}\u{1F1F8}",note:"Meta Llama 4 (Behemoth/Maverick/Scout) + Llama 3.1-3.3 \xB7 Microsoft Phi-4 family \xB7 Google Gemma 3 \xB7 IBM Granite 3 \xB7 Allen AI OLMo 2 \xB7 Databricks DBRX \xB7 Snowflake Arctic \xB7 Cohere Command \xB7 xAI Grok-1 \xB7 StarCoder 2",models:["meta/llama-4-behemoth","meta/llama-4-maverick","meta/llama-4-scout","meta/llama-3.3-70b","meta/llama-3.2-90b-vision","meta/llama-3.2-11b-vision","meta/llama-3.2-3b","meta/llama-3.2-1b","meta/llama-3.1-405b","meta/llama-3.1-70b","meta/llama-3.1-8b","microsoft/phi-4","microsoft/phi-4-mini","microsoft/phi-4-multimodal","microsoft/phi-4-reasoning","microsoft/phi-3.5-mini","google/gemma-3-27b","google/gemma-3-12b","google/gemma-3-4b","google/gemma-3-1b","google/gemma-2-27b","google/gemma-2-9b","ibm/granite-3.3-8b","ibm/granite-3.3-2b","ibm/granite-3.2-vision","ibm/granite-3.1-8b","allenai/olmo-2-13b","allenai/olmo-2-7b","allenai/tulu-3-70b","allenai/molmo-72b","databricks/dbrx-instruct","snowflake/arctic-instruct","cohere/tiny-aya-3b","cohere/command-a","cohere/command-r-plus","cohere/command-r","cohere/aya-expanse-32b","xai/grok-1","bigcode/starcoder2-15b","bigcode/starcoder2-7b"]},{code:"darpa",label:"DARPA AIxCC",flag:"\u{1F6E1}\uFE0F",note:"DARPA \uAD6D\uBC29\xB7\uB3C4\uBA54\uC778 Cyber Reasoning System",models:["darpa/aixcc-team-atlanta"]},{code:"mfg-industrial",label:"Manufacturing & Industrial",flag:"\u{1F3ED}",note:"Foxconn FoxBrain \xB7 Siemens SIFM \xB7 Hitachi HAL \xB7 GE Vernova \xB7 Bosch \xB7 AVEVA",models:["foxconn/foxbrain-70b","siemens/sifm","hitachi/hal","ge-vernova/predix-ai","bosch/industrial-genai","aveva/industrial-ai-assistant"]},{code:"mfg-robots",label:"Industrial Robotics",flag:"\u{1F916}",note:"Skild \xB7 Covariant \xB7 Figure \xB7 1X \xB7 Apptronik \xB7 Agility \xB7 Sanctuary \xB7 Tesla \xB7 Gemini Robotics-ER",models:["skild/skild-brain","covariant/rfm-1","figure-ai/helix","1x/world-model","apptronik/apollo-gemini","agility/digit-arc","sanctuary/carbon","tesla/optimus-vlm","google-deepmind/gemini-robotics-er-1.6","google-deepmind/gemini-robotics-er-1.5"]},{code:"mfg-cad-vision",label:"Industrial CAD / Vision / Twin",flag:"\u2699\uFE0F",note:"Autodesk Bernini \xB7 NVIDIA Omniverse Mega \xB7 Landing AI \xB7 PTC \xB7 Dassault",models:["autodesk/bernini","nvidia/omniverse-mega","landing-ai/visionagent","ptc/creo-copilot","dassault/3dx-aura"]}],_resolveReleaseDate:function(e){var a=this.RELEASE_DATES[e];if(a)return a;var t=this._modelById&&this._modelById[e];if(!t&&this._models){this._modelById={};for(var o=0;o<this._models.length;o++)this._modelById[this._models[o].id]=this._models[o];t=this._modelById[e]}if(!t)return null;var l=t.release_date||t.released_at;return l?/^\d{4}-\d{2}-\d{2}/.test(l)?l.slice(0,7):/^\d{4}-\d{2}$/.test(l)||/^\d{4}$/.test(l)?l:null:null},RELEASE_DATES:{"lg/exaone-4.5-33b":"2026-04","lg/k-exaone-236b":"2026-01","lg/exaone-4.0.1-32b":"2025-09","lg/exaone-4.0-32b":"2025-07","lg/exaone-4.0-1.2b":"2025-07","lg/exaone-deep-32b":"2025-03","lg/exaone-deep-7.8b":"2025-03","lg/exaone-deep-2.4b":"2025-03","lg/exaone-3.5-32b":"2024-12","lg/exaone-3.5-7.8b":"2024-12","lg/exaone-3.5-2.4b":"2024-12","upstage/solar-pro-4":"2026-08","upstage/solar-mini-4":"2026-09","upstage/solar-open2-250b":"2026-07","upstage/solar-pro-3":"2026-03","upstage/solar-open-100b":"2025-10","upstage/solar-pro-2":"2025-08","upstage/solar-pro-2-preview":"2025-06","upstage/solar-pro":"2024-09","upstage/solar-mini":"2024-04","upstage/solar-docvision":"2025","skt/ax-k1":"2026-01","skt/ax-4.0":"2025-07","skt/ax-4.0-light":"2025-07","skt/ax-4.0-vl-light":"2025-09","kt/midm-k2.5-pro":"2025-10","kt/midm-2.0-base":"2025-07","kt/midm-2.0-mini":"2025-07","naver/hyperclova-x-think-32b":"2025-12","naver/hyperclova-x-think-14b":"2025-06","naver/hyperclova-x-seed-omni-8b":"2025-07","naver/hyperclova-x-seed-vision-3b":"2025-04","naver/hyperclova-x":"2024-08","kakao/kanana-2-30b-a3b-thinking":"2026-01","kakao/kanana-1.5-o-9.8b":"2026-02","kakao/kanana-1.5-15.7b-a3b":"2025-09","kakao/kanana-1.5-8b":"2025-05","kakao/kanana-flag-32.5b":"2024-11","kakao/kanana-2-3b-instruct":"2026-07-27","kakao/kanana-2-3b-base":"2026-07-27","kakao/kanana-2-30b-a3b-instruct-2601":"2026-01","naver/hyperclova-x-seed-think-14b":"2026-05-27","vaiv/llamion-14b":"2026-05","skt/ax-k2":"2026-07-28","skt/ax-k2-alm":"2026-07-28","lg/k-exaone-2.0-750b-a37b":"2026-07-31","krafton/ax-k2-raon-speech-21b-a3b":"2026-07","kakao/kanana-2-1.3b-instruct":"2026-07-27","kakao/kanana-2-1.3b-base":"2026-07-27","ncsoft/varco-vision-2.0-14b":"2025-07","ncsoft/llama-varco-8b":"2024-09","trillionlabs/tri-70b":"2026-06","trillionlabs/tri-21b":"2025-02","trillionlabs/tri-7b":"2025-04","motif/motif-3-beta":"2026-07","motif/motif-2-12.7b-reasoning":"2025-11","motif/motif-2-12.7b-instruct":"2025-11","konan/konan-llm-ond-4b":"2025-09","konan/konan-llm-ent-11":"2025-06","saltlux/luxia-21.4b":"2024-03","samsung/gauss-2-supreme":"2024-11","samsung/gauss-2-balanced":"2024-11","samsung/gauss-2-compact":"2024-11","snuh-naver/kmed-ai":"2025","lg/exaone-3.0-7.8b":"2024-08","lg/exaone-atelier":"2024-04","upstage/solar-10.7b":"2023-12","kakao/kogpt-6b":"2021-11","naver/hyperclova-x-hcx-003":"2024-04","naver/hyperclova-x-dash":"2024-08","naver/hyperclova-seed-coder-8b":"2025-04","naver/clova-x":"2023-08","naver/cue":"2023-09","kt/midm-1.0":"2023-10","ncsoft/varco-llm-1.0-52b":"2023-08","ncsoft/varco-llm-13b":"2023-09","trillionlabs/trillion-7b-preview":"2024-09","42dot/42dot-llm-sft-1.3b":"2023-09","42dot/42dot-llm-plm-1.3b":"2023-09","eleutherai/polyglot-ko-12.8b":"2023-04","eleutherai/polyglot-ko-5.8b":"2023-04","eleutherai/polyglot-ko-3.8b":"2023-04","eleutherai/polyglot-ko-1.3b":"2023-04","lunit/lunit-insight-mmg":"2024-03","lunit/lunit-scope-pdl1":"2024-09","vuno/vuno-med-chest-xray":"2024-01","vuno/vuno-med-deepbrain":"2024-06","lbox/lbox-caselaw":"2024-05","riiid/riiid-tutor":"2024-03","deepseek/deepseek-v4-pro-max":"2026-04","deepseek/deepseek-v4-pro":"2026-04","deepseek/deepseek-v4-flash":"2026-04","deepseek/deepseek-v3.2":"2025-09","deepseek/deepseek-v3.2-speciale":"2025-10","deepseek/deepseek-v3.1-terminus":"2025-09","deepseek/deepseek-v3":"2024-12","deepseek/deepseek-r1-0528":"2025-05","deepseek/deepseek-r1":"2025-01","alibaba/qwen3.7-max":"2026-05","alibaba/qwen3.7-max-preview":"2026-05","alibaba/qwen3.7-plus-preview":"2026-05","alibaba/qwen3.6-plus":"2026-04","alibaba/qwen3.6-27b":"2026-04","alibaba/qwen3.6-35b-a3b":"2026-04","alibaba/qwen3.5-397b":"2025-12","alibaba/qwen3.5-122b":"2025-12","alibaba/qwen3.5-27b":"2025-12","alibaba/terminal-universe-27b":"2026-09","alibaba/qwen3-235b-a22b-thinking-2507":"2025-07","alibaba/qwen3-235b-a22b-instruct-2507":"2025-07","alibaba/qwen3-235b-a22b":"2025-04","alibaba/qwen3-30b-a3b":"2025-04","alibaba/qwen3-32b":"2025-04","alibaba/qwen3-14b":"2025-04","alibaba/qwen3-8b":"2025-04","alibaba/qwen3-4b":"2025-04","alibaba/qwen3-1.7b":"2025-04","alibaba/qwen3-0.6b":"2025-04","alibaba/qwen3-next":"2025-09","alibaba/qwen2.5-72b":"2024-09","alibaba/qwen2.5-32b":"2024-09","alibaba/qwen2.5-14b":"2024-09","alibaba/qwen2.5-7b":"2024-09","zhipu/glm-5.1":"2026-03","zhipu/glm-5":"2025-10","zhipu/glm-4.7":"2025-09","zhipu/glm-4.6":"2025-09","zhipu/glm-4.5":"2025-07","zhipu/glm-4.5-air":"2025-07","moonshot/kimi-k2.6":"2026-04","moonshot/kimi-k2.5":"2026-01","moonshot/kimi-k2-thinking":"2025-09","moonshot/kimi-k2-instruct":"2025-07","moonshot/kimi-k2-base":"2025-07","moonshot/kimi-k1.5":"2025-01","minimax/m2.7":"2026-03","minimax/m2.5":"2025-09","zhipu/glm-5.2":"2026-06","alibaba/qwen3.7-plus":"2026-05","alibaba/qwen3.5-plus":"2025-12","moonshot/kimi-k2.7-code":"2026-06","minimax/m3":"2026-06","meituan/longcat-flash-thinking":"2025-09","sakana/fugu":"2026-04","mimo/mimo-v2-pro":"2025-12","mimo/mimo-v2-flash":"2025-12","stepfun/step-3.7-flash":"2026-06","stepfun/step-3.5-flash":"2025-12","stepfun/step-2-pro":"2024-12","stepfun/step-2-mini":"2024-08","baidu/ernie-5.0":"2025-11","baidu/ernie-4.5-300b-a47b":"2025-06","baidu/ernie-4.5-turbo":"2025-04","baidu/ernie-speed":"2024-03","baidu/ernie-lite":"2024-03","tencent/hunyuan-t1":"2025-03","tencent/hunyuan-large":"2024-11","tencent/hunyuan-turbo":"2024-11","tencent/hunyuan-7b":"2024-11","bytedance/seed-2.0-pro":"2026-02","bytedance/seed-1.6":"2025-09","bytedance/seed-1.5-pro":"2025-04","bytedance/seed-1.5-lite":"2025-04","iflytek/spark-x1":"2025-04","iflytek/spark-4-ultra":"2024-10","iflytek/spark-4":"2024-06","iflytek/antelope-3.0":"2025-09","01-ai/yi-lightning":"2024-11","01-ai/yi-large":"2024-05","01-ai/yi-1.5-34b":"2024-05","01-ai/yi-1.5-9b":"2024-05","01-ai/yi-1.5-6b":"2024-05","01-ai/yi-coder-9b":"2024-09","01-ai/yi-vl-34b":"2024-01","baichuan/baichuan-4":"2024-05","baichuan/baichuan-3":"2024-01","baichuan/baichuan-2-13b":"2023-09","baichuan/baichuan-2-7b":"2023-09","baichuan/baichuan-m1-14b":"2025-01","baichuan/baichuan-omni-1.5":"2025-01","shanghai-ai-lab/internlm-3-8b":"2025-01","shanghai-ai-lab/internlm-2.5-20b":"2024-08","shanghai-ai-lab/internlm-2.5-7b":"2024-07","shanghai-ai-lab/internlm-2.5-1.8b":"2024-08","shanghai-ai-lab/internvl-3":"2025-04","shanghai-ai-lab/internvl-2.5":"2024-12","sensetime/sensenova-v6":"2025-04","sensetime/sensechat-5":"2024-04","sensetime/sensenova":"2023-04","skywork/skywork-moe":"2024-06","skywork/skywork-13b":"2023-10","skywork/skywork-r1v-3":"2025-04","skywork/skywork-o1":"2024-11","openbmb/minicpm-5-1b":"2026-05","openbmb/minicpm-4.1-8b":"2025-09","openbmb/minicpm-4-8b":"2025-06","openbmb/minicpm3-4b":"2024-09","openbmb/minicpm-v-2.6":"2024-08","openbmb/minicpm-o-2.6":"2025-01","huawei/pangu-ultra-moe":"2025-05","huawei/pangu-5":"2025-04","huawei/pangu-embedding":"2025-06","baai/aquila2-34b":"2024-04","baai/aquila2-7b":"2023-10","baai/wudao-2":"2021-06","fnlp/moss-2":"2024-08","ieit/yuan-2.0":"2023-12","alibaba/qwq-32b":"2025-03","alibaba/qvq-72b-preview":"2024-12","alibaba/qwen2.5-coder-32b":"2024-11","alibaba/qwen2.5-coder-14b":"2024-11","alibaba/qwen2.5-coder-7b":"2024-09","alibaba/qwen2.5-math-72b":"2024-09","alibaba/qwen2.5-math-7b":"2024-09","alibaba/qwen2-vl-72b":"2024-08","alibaba/qwen3-vl-235b":"2025-09","alibaba/qwen2-audio":"2024-08","deepseek/deepseek-coder-v2":"2024-06","deepseek/deepseek-coder-v2-lite":"2024-06","deepseek/deepseek-math-7b":"2024-02","deepseek/deepseek-vl2":"2024-12","deepseek/janus-pro-7b":"2025-01","tencent/hy3-preview":"2026-04","tencent/hy-world-2.0":"2026-04","xiaomi/mimo-v2.6-pro":"2026-09-22","xiaomi/mimo-v2.6-flash":"2026-09-22","xiaomi/mimo-v2.5-pro":"2026-04","xiaomi/mimo-v2.5":"2026-04","inclusionai/ling-2.6-1t":"2026-04","inclusionai/ling-2.6-flash":"2026-04","inclusionai/ring-2.6-1t":"2026-05","inclusionai/llada2-uni":"2026-04","freedomintelligence/huatuogpt-ii":"2024-05","mistral/mistral-large-4-preview":"2026-10","mistral/mistral-large-3":"2025-12","mistral/mistral-large-2":"2024-07","mistral/mistral-large-1":"2024-02","mistral/mistral-medium-3.5":"2026-05","mistral/mistral-medium-3.1":"2025-09","mistral/mistral-medium-3":"2025-05","mistral/mistral-small-4":"2026-02","mistral/mistral-small-3.2":"2025-07","mistral/mistral-small-3.1":"2025-03","mistral/mistral-small-3":"2025-01","mistral/mistral-small-2":"2024-09","mistral/mistral-small-1":"2023-09","mistral/magistral-medium-1.2":"2025-09","mistral/magistral-small-1.2":"2025-09","mistral/magistral-medium-1":"2025-06","mistral/magistral-small-1":"2025-06","mistral/devstral-2":"2025-12","mistral/devstral-medium":"2025-09","mistral/devstral-small-2":"2025-12","mistral/devstral-small-1.1":"2025-07","mistral/devstral-small-1":"2025-05","mistral/codestral-25.08":"2025-08","mistral/codestral-22b":"2024-05","mistral/codestral-mamba-7b":"2024-07","mistral/mathstral-7b":"2024-07","mistral/pixtral-large":"2024-11","mistral/pixtral-12b":"2024-09","mistral/voxtral-tts":"2025-04","mistral/ministral-3-14b":"2025-10","mistral/ministral-3-8b":"2025-10","mistral/ministral-3-3b":"2025-10","mistral/ministral-8b-v1":"2024-10","mistral/ministral-3b-v1":"2024-10","mistral/mistral-7b":"2023-09","mistral/mixtral-8x7b":"2023-12","mistral/mixtral-8x22b":"2024-04","mistral/mistral-nemo-12b":"2024-07","mistral/mistral-saba-24b":"2025-02","pleias/pleias-1.0-pico-3.5b":"2024-11","pleias/pleias-1.0-olmo-1b":"2024-11","pleias/pleias-rag-1b":"2025-03","pleias/pleias-rag-350m":"2025-03","openllm-france/lucie-7b":"2025-01","croissantllm/croissant-1.3b":"2024-02","huggingface/smollm3-3b":"2025-07","huggingface/smollm2-1.7b":"2024-11","huggingface/smollm2-360m":"2024-11","huggingface/smollm2-135m":"2024-11","huggingface/smollm-1.7b":"2024-07","sakana/namazu":"2024-03","ai-singapore/apertus-sea-lion-v4-8b":"2025-04","ai-singapore/gemma-sea-lion-v4-4b-vl":"2026-02","ai-singapore/llama-sea-lion-v3.5-70b":"2025-03","ai-singapore/llama-sea-lion-v3.5-8b":"2025-03","ai-singapore/gemma2-sea-lion-v3-9b":"2024-10","ai-singapore/sea-lion-v2.1-7b":"2024-04","gotoai/sahabat-ai-v1-70b":"2024-12","gotoai/sahabat-ai-v1-8b":"2024-12","sarvam/sarvam-1":"2024-10","sarvam/sarvam-m":"2025-05","sarvam/sarvam-30b":"2025-09","sarvam/sarvam-105b":"2025-09","bharatgen/param2-17b":"2025-07","bharatgen/param-1-2.9b":"2025-02","bharatgen/param2-sutra":"2026-02","bharatgen/param-1t-roadmap":"2026-01","ola/krutrim-2-12b":"2025-01","ola/krutrim-spectre":"2025-06","ola/krutrim":"2024-12","soketai/pragna-1b":"2024-04","soketai/sutra-pro":"2024-11","soketai/sutra-light":"2024-11","soketai/eka-roadmap":"2025-09","ai4bharat/indicllm":"2024-12","ai4bharat/indicbert-v2":"2024-08","ai4bharat/indictrans2":"2024-04","corover/bharatgpt":"2024-01","reliance/jiobrain":"2024-11","tata/maitri":"2024-10","lt-vyoma/sovereign-ai":"2026-01","ai21/jamba-large-1.7":"2025-08","ai21/jamba-1.7-mini":"2025-07","ai21/jamba-1.6-large":"2025-03","ai21/jamba-1.6-mini":"2025-03","ai21/jamba-large-1.5":"2024-08","ai21/jamba-1.5-mini":"2024-08","ai21/jamba-1.0":"2024-03","ai21/jamba2-mini":"2026-02","ai21/jamba2-3b":"2026-02","ai21/jamba-reasoning":"2025-09","ai21/maestro":"2025-04","dicta/dictalm-3.0-24b-thinking":"2025-12","dicta/dictalm-3.0-24b-base":"2025-12","dicta/dictalm-3.0-12b-instruct":"2025-12","dicta/dictalm-3.0-1.7b-thinking":"2025-12","dicta/dictalm-3.0-24b":"2025-09","dicta/dictalm-2.0-instruct":"2024-07","dicta/dictalm-2.0":"2024-04","tiiuae/falcon-h1-34b":"2025-05","tii/falcon-h1-arabic-34b":"2025-08","tii/falcon-h1r-7b":"2025-11","tii/falcon-h1-7b":"2025-05","tii/falcon-h1-3b":"2025-05","tii/falcon-h1-1.5b-deep":"2025-05","tii/falcon-h1-1.5b":"2025-05","tii/falcon-h1-0.5b":"2025-05","tii/falcon3-10b":"2024-12","tii/falcon3-7b":"2024-12","tii/falcon3-3b":"2024-12","tii/falcon3-1b":"2024-12","tii/falcon-ocr":"2026-03","tiiuae/falcon-mamba-7b":"2024-08","tii/falcon2-11b":"2024-05","tii/falcon-180b":"2023-09","tii/falcon-perception":"2025-03","mbzuai/llm360-k2-65b":"2024-08","mbzuai/atlas-chat-9b":"2024-09","mbzuai/bimedix":"2024-02","epfl/meditron-70b":"2023-11","epfl/meditron-7b":"2023-11","epfl/llama-3-meditron-70b":"2024-09","harvey/harvey-assistant":"2025-09","thomson-reuters/cocounsel-2":"2025-04","vlex/vincent-ai":"2024-06","vecflow/oliver":"2025-02","bloomberg/bloomberg-gpt":"2023-03","darpa/aixcc-team-atlanta":"2025-08","yandex/yandexgpt-5-pro":"2025-02","yandex/yandexgpt-5-lite-8b":"2025-02","yandex/yandexgpt-4-pro":"2024-04","yandex/yalm-100b":"2022-06","sber/gigachat-3.1-ultra":"2026-04","sber/gigachat-3.1-lightning":"2026-03","sber/gigachat-3-ultra":"2025-11","sber/gigachat-3-lightning":"2025-11","sber/gigachat-2-max":"2025-04","sber/gigachat-2-pro":"2025-04","sber/gigachat-2-lite":"2025-04","sber/gigachat-1.5":"2024-09","sber/rugpt-3.5-13b":"2023-09","vikhrmodels/vikhr-nemo-12b":"2024-09","vikhrmodels/vikhr-yandexgpt-5-lite-8b":"2025-03","tbank/t-pro-1":"2024-12","tbank/t-lite-1":"2024-12","aleph-alpha/kolibri-1":"2026-10","aleph-alpha/kolibri-origin":"2026-10","aleph-alpha/kolibri-1-base":"2026-10","aleph-alpha/kolibri-origin-base":"2026-10","aleph-alpha/pharia-1-7b-control":"2024-08","aleph-alpha/pharia-1-7b-control-aligned":"2024-08","aleph-alpha/pharia-2-tfree":"2025-09","aleph-alpha/luminous":"2022-04","black-forest-labs/flux.1-pro":"2024-08","black-forest-labs/flux.1-dev":"2024-08","black-forest-labs/flux.1-schnell":"2024-08","black-forest-labs/flux.1-kontext-pro":"2025-05","black-forest-labs/flux.1-kontext-dev":"2025-06","tngtech/r1t-chimera":"2025-04","tngtech/r1t2-chimera":"2025-08","stabilityai/stablelm-2-12b":"2024-04","stabilityai/stablelm-2-1.6b":"2024-01","stabilityai/stable-code-3b":"2024-03","stabilityai/stable-lm-zephyr-3b":"2023-12","stabilityai/sd-3.5-large":"2024-10","synthesia/synthesia-vlm":"2024-08","wayve/lingo-2":"2024-04","meta/llama-4-behemoth":"2025-04","meta/llama-4-maverick":"2025-04","meta/llama-4-scout":"2025-04","meta/llama-3.3-70b":"2024-12","meta/llama-3.2-90b-vision":"2024-09","meta/llama-3.2-11b-vision":"2024-09","meta/llama-3.2-3b":"2024-09","meta/llama-3.2-1b":"2024-09","meta/llama-3.1-405b":"2024-07","meta/llama-3.1-70b":"2024-07","meta/llama-3.1-8b":"2024-07","microsoft/phi-4":"2024-12","microsoft/phi-4-mini":"2025-02","microsoft/phi-4-multimodal":"2025-02","microsoft/phi-4-reasoning":"2025-04","microsoft/phi-3.5-mini":"2024-08","google/gemma-3-27b":"2025-03","google/gemma-3-12b":"2025-03","google/gemma-3-4b":"2025-03","google/gemma-3-1b":"2025-03","google/gemma-2-27b":"2024-06","google/gemma-2-9b":"2024-06","ibm/granite-3.3-8b":"2025-04","ibm/granite-3.3-2b":"2025-04","ibm/granite-3.2-vision":"2025-02","ibm/granite-3.1-8b":"2024-12","allenai/olmo-2-13b":"2024-11","allenai/olmo-2-7b":"2024-11","allenai/tulu-3-70b":"2024-11","allenai/molmo-72b":"2024-09","databricks/dbrx-instruct":"2024-03","snowflake/arctic-instruct":"2024-04","cohere/tiny-aya-3b":"2026-03","cohere/command-a":"2025-03","cohere/command-r-plus":"2024-04","cohere/command-r":"2024-04","cohere/aya-expanse-32b":"2024-10","xai/grok-1":"2024-03","bigcode/starcoder2-15b":"2024-02","bigcode/starcoder2-7b":"2024-02","foxconn/foxbrain-70b":"2025-03","siemens/sifm":"2024-04","hitachi/hal":"2024-03","ge-vernova/predix-ai":"2024-09","bosch/industrial-genai":"2024-09","aveva/industrial-ai-assistant":"2024-09","skild/skild-brain":"2025-07","covariant/rfm-1":"2024-03","figure-ai/helix":"2025-02","1x/world-model":"2024-12","apptronik/apollo-gemini":"2025-03","agility/digit-arc":"2024-10","sanctuary/carbon":"2024-04","tesla/optimus-vlm":"2024-10","google-deepmind/gemini-robotics-er-1.6":"2026-04","google-deepmind/gemini-robotics-er-1.5":"2025-09","landing-ai/visionagent":"2024-09","nvidia/omniverse-mega":"2025-01","autodesk/bernini":"2024-04","ptc/creo-copilot":"2024-06","dassault/3dx-aura":"2024-05","openai/gpt-5.5":"2026-04","openai/gpt-5.5-pro":"2026-04","openai/gpt-rosalind":"2026-06","openai/realtime-tts-2":"2026-05","openai/realtime-tts-1.5-max":"2026-03","google/gemini-3.1-flash-tts":"2026-03","cartesia/sonic-3.5":"2026-04","perplexity/sonar-pro":"2026-03","openai/gpt-5.4":"2026-02","openai/gpt-5.4-thinking":"2026-02","openai/gpt-5.4-pro":"2026-02","openai/gpt-5.4-mini":"2026-02","openai/gpt-5.3-codex":"2026-01","openai/gpt-5.2":"2025-12","openai/gpt-5.2-pro":"2025-12","openai/gpt-5.1":"2025-10","openai/gpt-5":"2025-08","openai/gpt-5-pro":"2025-08","openai/o3":"2025-01","openai/o4-mini":"2025-04","anthropic/claude-mythos-preview":"2026-03","anthropic/claude-opus-4.7":"2026-04","anthropic/claude-opus-4.6":"2026-02","anthropic/claude-opus-4.5":"2025-12","anthropic/claude-opus-4.1":"2025-08","anthropic/claude-opus-4":"2025-05","anthropic/claude-sonnet-4.6":"2025-12","anthropic/claude-sonnet-4.5":"2025-09","anthropic/claude-haiku-4.5":"2025-10","anthropic/claude-3.7-sonnet":"2025-02","google/gemini-3.5-flash":"2026-05","google/gemini-omni-flash":"2026-05","google/gemini-3.1-pro":"2026-03","google/gemini-3.1-pro-preview":"2026-02","google/gemini-3.1-flash-lite":"2026-03","google/gemini-3-pro":"2025-11","google/gemini-3-pro-preview":"2025-10","google/gemini-3-flash":"2025-11","google/gemini-2.5-pro":"2025-05","google/gemma-4-31b":"2026-03","google/gemma-4-26b-a4b":"2026-03","google/gemma-4-e2b-qat":"2026-06","google/gemma-4-e4b-qat":"2026-06","google/gemma-4-12b-qat":"2026-06","google/gemma-4-26b-a4b-qat":"2026-06","china-mobile/jt-35b-flash":"2026-05","xai/grok-text-to-speech":"2026-06","alibaba/fun-realtime-asr-preview":"2026-05","google/medgemma-27b":"2025-07","google/medgemma-4b-pt":"2025-07","google/medgemma-1.5-4b":"2026-04","google/med-palm-2":"2023-05","meta/muse-spark":"2026-04","nvidia/nemotron-3-super":"2025-09","nvidia/nemotron-3-ultra-550b-a55b":"2026-06","nvidia/cosmos-predict-2.5":"2025-09","nvidia/cosmos-reason-2":"2025-09","nvidia/cosmos-policy-robocasa":"2025-10","nvidia/gr00t-n1.7":"2025-11","nvidia/gr00t-n1.6":"2025-08","google-deepmind/genie-3":"2025-08","google-deepmind/genie-2":"2024-12","google-deepmind/gemini-robotics-er-1.6":"2026-04","google-deepmind/gemini-robotics-er-1.5":"2025-09","physical-intelligence/pi-zero":"2024-11","physical-intelligence/pi-zero-fast":"2025-04","openvla/openvla-7b":"2024-06","agibot/genie-envisioner":"2025-06","xai/grok-3":"2025-02","xai/grok-4":"2025-07","xai/grok-4-heavy":"2025-07","xai/grok-4.20":"2025-12"},FRONTIER_REFERENCE:["anthropic/claude-opus-4.7","openai/gpt-5.5","openai/gpt-5.5-pro","google/gemini-3.1-pro","meta/muse-spark"],PERF_SUITES:[{id:"reasoning",label:"\u{1F9E0} General Reasoning",note:"MMLU \xB7 MMLU-Pro \xB7 GPQA Diamond \xB7 HLE \xB7 IFBench \xB7 IFEval \xB7 SimpleQA Verified \xB7 ARC-Challenge \xB7 HellaSwag \xB7 TruthfulQA \xB7 WinoGrande \xB7 LongBench v2 \xB7 Arena Hard v2 \xB7 SuperGPQA \xB7 AA-LCR \xB7 CritPt",benchmarks:["mmlu","mmlu_pro","gpqa_diamond","hle","ifbench","ifeval","simpleqa_verified","arc_challenge","hellaswag","truthfulqa","winogrande","longbench_v2","arena_hard_v2","supergpqa","superqpga","aa_lcr","critpt","multi_challenge","bbh","mmlu_redux","piqa","boolq"]},{id:"math",label:"\u{1F9EE} Math & Reasoning",note:"GSM8K \xB7 MATH \xB7 MATH-500 \xB7 AIME 2024 \xB7 AIME 2025 \xB7 AIME 2026 \xB7 HMMT 2025/26 \xB7 IMO-AnswerBench \xB7 HRM8K \xB7 USAMO",benchmarks:["gsm8k","math","math_500","math_hmmt_aime","aime_2024","aime_2025","aime_2026","hmmt_2025","hmmt_2026","imo_answerbench","hrm8k","usamo","amc_23","matharena_apex","hmmt_feb_2026"]},{id:"coding",label:"\u{1F4BB} Coding & Software Engineering",note:"HumanEval \xB7 HumanEval+ \xB7 MBPP \xB7 MBPP+ \xB7 LiveCodeBench \xB7 LiveCodeBench v6 \xB7 SWE-bench Verified \xB7 SWE-bench Pro \xB7 SWE-bench Multilingual \xB7 Terminal-Bench 2 / v2.1 / Hard \xB7 GDPval-AA v2 (normalized) \xB7 GDPval-AA Elo \xB7 APEX-Agents \xB7 Artifacts \xB7 SciCode \xB7 WeirdML v2 \xB7 Codeforces ELO",benchmarks:["humaneval","humaneval_plus","mbpp","mbpp_plus","livecodebench","livecodebench_v6","swe_bench_verified","swe_bench_pro","swe_bench_multilingual","terminal_bench_2","terminal_bench_2_1","terminal_bench_hard","gdpval_aa_v2","gdpval_aa_elo","apex_agents","artifacts_bench","scicode","swe_rebench","weirdml_v2","codeforces_elo","repobench"]},{id:"korean",label:"\u{1F1F0}\u{1F1F7} Korean Benchmarks",note:"KMMLU \xB7 KMMLU-Pro \xB7 KMMLU-CoT \xB7 HAE-RAE \xB7 HAE-RAE-CoT \xB7 CLIcK \xB7 KoMT-Bench \xB7 LogicKor \xB7 KoBALT-700 \xB7 Ko-IFEval \xB7 KOBEST \xB7 K-MMBench \xB7 HRM8K \xB7 KMLE \xB7 KMMMU \xB7 Ko-AIME \xB7 KoSimpleQA \xB7 MATH-Ko \xB7 MBPP-Ko \xB7 K-Knowledge \xB7 K-Domain \xB7 Ko-GDPval (K-OfficeAgent) \xB7 KBank-MMLU \xB7 KBL \xB7 KorMedMCQA",benchmarks:["kmmlu","kmmlu_pro","kmmlu_cot","haerae","haerae_cot","click_ko","komt_bench","logickor","kobalt_700","ko_ifeval","kobest","k_mmbench","hrm8k","kmle","kmmmu","ko_aime_2025","ko_simpleqa","math_ko","mbpp_ko","kormedmcqa_v","k_knowledge","k_domain","ko_gdpval","kbank_mmlu","kbl","kormedmcqa"]},{id:"multilingual",label:"\u{1F310} Multilingual & Multimodal",note:"MMMLU \xB7 C-Eval \xB7 CMMLU \xB7 Chinese-SimpleQA \xB7 KMMMU \xB7 TMMLU+ \xB7 Global PIQA \xB7 Indo-MMLU \xB7 QIMMA \xB7 MMMU \xB7 MMMU-Pro \xB7 MathVision \xB7 MathVista \xB7 CharXiv \xB7 OCRBench \xB7 Video-MMMU \xB7 OALL (Arabic) \xB7 Indic pairwise win-rate \xB7 5 STEM visual (avg)",benchmarks:["mmmlu","c_eval","cmmlu","chinese_simpleqa","kmmmu","tmmlu_plus","global_piqa","indo_mmlu","qimma","sea_helm","mmmu","mmmu_pro","mathvision","mathvista","mathvista_mini","charxiv_reasoning","ocrbench","video_mmmu","docvqa","chartqa","ai2d","mmstar","mmbench_v1_1","oall_average","indian_language_pairwise_comparison_win_rate","5_stem_visual_benchmarks_avg"]},{id:"domain",label:"\u{1F3DB}\uFE0F Domain (Legal \xB7 Cyber \xB7 Agent \xB7 Medical)",note:"VLAIR (Document Q&A \xB7 Summarization \xB7 Chronology \xB7 Redlining \xB7 Data Extract \xB7 Transcript) \xB7 AIxCC \xB7 Cybench \xB7 CyberGym \xB7 BrowseComp \xB7 \u03C4\xB2-bench \xB7 \u03C4\xB3-bench \xB7 Tau2-all \xB7 \u03C4\xB2-Bench Telecom \xB7 OSWorld \xB7 MCP-Atlas \xB7 GAIA-2 \xB7 MedQA \xB7 PubMedQA \xB7 MedXpertQA \xB7 HealthBench \xB7 BFCL",benchmarks:["vlair_doc_qa","vlair_summarization","vlair_chronology","vlair_redlining","vlair_data_extract","vlair_transcript","aixcc_synth_vuln","cybench","cybergym","browsecomp","tau2_bench","tau3_bench","tau3_banking","tau2_telecom","osworld_verified","mcp_atlas","mcpmark","gaia","gaia2","balrog","mfg_news_rewrite","medqa","medqa_5op","pubmedqa","medxpertqa","medmcqa","healthbench","healthbench_hard","healthbench_professional","mmlu_med","fpb","convfinqa","finqa","bfcl","bfcl_v3","bfcl_v4","tau2_all","bench_telecom"]},{id:"creativity",label:"\u{1F3A8} Creativity",note:"Divergent Association (DAT) \xB7 Conditional DAT (novelty/appropriateness/gated) \xB7 PACE \xB7 Remote Associates (RAT) \xB7 Divergent RAT \xB7 Arena Creative Writing \xB7 EQ-Bench CW v3 \xB7 Mazur CW \xB7 Hivemind Diversity \xB7 LiveIdeaBench \xB7 NoveltyBench Utility",benchmarks:["creativity_dat","creativity_cdat","creativity_cdat_n","creativity_cdat_a","creativity_pace","creativity_rat","creativity_drat","creativity_arena_cw","creativity_eqbench_cw_v3","creativity_mazur_cw","creativity_hivemind_diversity","creativity_liveideabench","creativity_noveltybench_utility"]}],DIMENSIONS:[{id:"language",label:"\u{1F310} Language Adaptation",desc:"\uC9C0\uC5ED \uC5B8\uC5B4\xB7\uBB38\uD654 \uC801\uC751 \uB2A5\uB825 \u2014 frontier MMLU\uB85C\uB294 \uB4DC\uB7EC\uB098\uC9C0 \uC54A\uB294 \uB2E4\uAD6D\uC5B4 \uC801\uC6A9 \uC218\uC900\uC744 \uCE21\uC815.",benchmarks:["mmmlu","c_eval","cmmlu","chinese_simpleqa","global_piqa","swe_bench_multilingual"]},{id:"medical",label:"\u{1F3E5} Medical System Integration",desc:"\uC9C0\uC5ED \uC758\uB8CC \uC2DC\uC2A4\uD15C\xB7\uBA74\uD5C8 \uC815\uD569\uC131 \u2014 KMLE \xB7 USMLE \xB7 Arabic medical \xB7 AfriMed-QA \uB4F1 \uC758\uB8CC \uC2DC\uC2A4\uD15C\uBCC4 \uD3C9\uAC00.",benchmarks:["kmle","medqa","medqa_5op","pubmedqa","mmlu_med","medxpertqa","medmcqa","med_avg","healthbench","healthbench_professional","afrimed_qa","ehrqa"]},{id:"domain",label:"\u{1F3DB}\uFE0F Government / Regulated Domain",desc:"\uBC95\uB960\xB7\uAE08\uC735\xB7\uC0AC\uC774\uBC84 \uBC29\uC5B4 \uB4F1 sovereign \uB3C4\uBA54\uC778 \u2014 VLAIR \uBCC0\uD638\uC0AC \uD3C9\uAC00 \xB7 DARPA AIxCC \xB7 Bloomberg finance.",benchmarks:["vlair_doc_qa","vlair_summarization","vlair_chronology","vlair_redlining","vlair_data_extract","vlair_transcript","aixcc_synth_vuln","fpb","convfinqa","finqa"]}],_models:[],_benchmarks:[],_scores:[],_initialized:!1,_sortStates:{},_mapViewMode:"all",_ACTIVE_WINDOW_MONTHS:12,_cumViewMode:"region",VENDOR_ALIASES:{"KT (K-intelligence)":"KT","LG AI":"LG AI Research","Kakao Brain":"Kakao","NCSoft (NC AI)":"NCSoft",Naver:"Naver Cloud","BharatGen (IIT Bombay TIH)":"BharatGen","MBZUAI (UAE)":"MBZUAI"},_canonicalVendor:function(e){return e?this.VENDOR_ALIASES[e]||e:"Other"},_vendorCollapsed:{},KNOWN_PARAMS:{"kakao/kanana-2-3b-instruct":3,"kakao/kanana-2-3b-base":3,"skt/ax-k2":688,"skt/ax-k2-alm":20,"lg/k-exaone-2.0-750b-a37b":750,"krafton/ax-k2-raon-speech-21b-a3b":21,"kakao/kanana-2-1.3b-instruct":1.3,"kakao/kanana-2-1.3b-base":1.3,"ai21/jamba-large-1.5":398,"ai21/jamba-large-1.7":398,"ai21/jamba-1.6-large":398,"ai21/jamba-1.6-mini":52,"ai21/jamba-1.5-mini":52,"ai21/jamba-1.0":52,"ai21/jamba2-mini":52,"alibaba/qwen3-next":80,"alibaba/qwen3.6-plus":235,"alibaba/qwen3.7-max":500,"alibaba/qwen3.7-max-preview":500,"alibaba/qwen3.7-plus-preview":100,"baichuan/baichuan-3":175,"baichuan/baichuan-4":1e3,"baichuan/baichuan-omni-1.5":7,"baidu/ernie-5.0":600,"baidu/ernie-4.5-turbo":300,"baidu/ernie-speed":8,"baidu/ernie-lite":3,"bytedance/seed-2.0-pro":800,"bytedance/seed-1.6":600,"bytedance/seed-1.5-pro":200,"bytedance/seed-1.5-lite":12,"kakao/kanana-flag-32.5b":32.5,"kt/midm-k2.5-pro":50,"kt/midm-1.0":11,"upstage/solar-open2-250b":250,"upstage/solar-open-100b":102,"upstage/solar-mini-4":35,"alibaba/qwen3.8-max-preview":2400,"inclusionai/ling-3.0-flash":124,"poolside/laguna-s-2.1":118,"naver/hyperclova-x":100,"naver/hyperclova-x-hcx-003":80,"naver/hyperclova-x-dash":8,"skt/ax-k1":519,"kakao/kanana-1.5-o-9.8b":11.6,"snuh-naver/kmed-ai":7,"samsung/gauss-2-supreme":200,"samsung/gauss-2-balanced":30,"samsung/gauss-2-compact":7,"lg/exaone-atelier":5,"lg/k-exaone-236b":236,"kakao/kogpt-6b":6,"iflytek/spark-x1":70,"iflytek/spark-4-ultra":200,"iflytek/spark-4":80,"iflytek/antelope-3.0":50,"01-ai/yi-large":100,"01-ai/yi-lightning":100,"sensetime/sensenova-v6":100,"sensetime/sensechat-5":100,"sensetime/sensenova":100,"huawei/pangu-ultra-moe":718,"huawei/pangu-5":200,"huawei/pangu-embedding":7,"fnlp/moss-2":16,"minimax/m2.7":600,"minimax/m2.5":600,"mimo/mimo-v2-pro":200,"mimo/mimo-v2-flash":50,"stepfun/step-3.5-flash":50,"stepfun/step-2-pro":1e3,"stepfun/step-2-mini":16,"tencent/hunyuan-turbo":389,"zhipu/glm-5.1":700,"zhipu/glm-5":744,"zhipu/glm-4.7":355,"moonshot/kimi-k1.5":1e3,"moonshot/kimi-k2.5":1e3,"moonshot/kimi-k2.6":1e3,"moonshot/kimi-k2-thinking":1e3,"moonshot/kimi-k3":2800,"inclusionai/ring-2.6-1t":1e3,"inclusionai/ring-2.6-flash":104,"zhipu/glm-5.2":700,"minimax/m3":600,"meituan/longcat-2.0":560,"tencent/hunyuan-hy3":295,"baidu/ernie-5.1":600,"deepseek/deepseek-v3.2":685,"deepseek/deepseek-v3.2-speciale":685,"deepseek/deepseek-v3.1-terminus":685,"deepseek/deepseek-v4-pro-max":685,"deepseek/deepseek-v4-pro":685,"deepseek/deepseek-v4-flash":30,"freedomintelligence/huatuogpt-ii":13,"sarvam/sarvam-m":24,"bharatgen/param-1-2.9b":2.9,"bharatgen/param2-sutra":17,"bharatgen/param-1t-roadmap":1e3,"ola/krutrim-spectre":12,"ola/krutrim":7,"soketai/sutra-pro":50,"soketai/sutra-light":12,"soketai/eka-roadmap":100,"ai4bharat/indicllm":7,"ai4bharat/indicbert-v2":.3,"ai4bharat/indictrans2":1.1,"reliance/jiobrain":100,"tata/maitri":100,"lt-vyoma/sovereign-ai":100,"corover/bharatgpt":7,"ai21/jamba-reasoning":398,"ai21/maestro":100,"yandex/yandexgpt-5-pro":70,"yandex/yandexgpt-4-pro":30,"sber/gigachat-3.1-ultra":702,"sber/gigachat-3.1-lightning":10,"sber/gigachat-3-ultra":702,"sber/gigachat-3-lightning":30,"sber/gigachat-2-max":50,"sber/gigachat-2-pro":13,"sber/gigachat-2-lite":7,"sber/gigachat-1.5":30,"tbank/t-pro-1":30,"tbank/t-lite-1":8,"aleph-alpha/kolibri-1":78,"aleph-alpha/kolibri-origin":31,"aleph-alpha/kolibri-1-base":78,"aleph-alpha/kolibri-origin-base":31,"aleph-alpha/luminous":70,"aleph-alpha/pharia-2-tfree":70,"black-forest-labs/flux.1-pro":12,"black-forest-labs/flux.1-dev":12,"black-forest-labs/flux.1-schnell":12,"black-forest-labs/flux.1-kontext-pro":12,"black-forest-labs/flux.1-kontext-dev":12,"tngtech/r1t-chimera":671,"tngtech/r1t2-chimera":671,"stabilityai/sd-3.5-large":8.1,"stabilityai/stable-code-3b":3,"stabilityai/stable-lm-zephyr-3b":3,"synthesia/synthesia-vlm":100,"wayve/lingo-2":100,"siemens/sifm":70,"hitachi/hal":70,"ge-vernova/predix-ai":70,"bosch/industrial-genai":70,"aveva/industrial-ai-assistant":70,"skild/skild-brain":100,"covariant/rfm-1":8,"figure-ai/helix":7,"1x/world-model":7,"apptronik/apollo-gemini":7,"agility/digit-arc":7,"sanctuary/carbon":7,"tesla/optimus-vlm":7,"autodesk/bernini":5,"landing-ai/visionagent":7,"ptc/creo-copilot":70,"dassault/3dx-aura":70,"openai/gpt-5.5":1500,"openai/gpt-5.5-pro":1500,"openai/gpt-5.4":1500,"openai/gpt-5.4-thinking":1500,"openai/gpt-5.4-pro":1500,"openai/gpt-5.4-mini":8,"openai/gpt-5.3-codex":1500,"openai/gpt-5.2":1500,"openai/gpt-5.2-pro":1500,"openai/gpt-5.1":1500,"openai/gpt-5":1500,"openai/gpt-5-pro":1500,"openai/o3":200,"openai/o4-mini":8,"anthropic/claude-opus-4.7":500,"anthropic/claude-opus-4.6":500,"anthropic/claude-opus-4.5":500,"anthropic/claude-opus-4.1":500,"anthropic/claude-opus-4":500,"anthropic/claude-sonnet-4.6":200,"anthropic/claude-sonnet-4.5":200,"anthropic/claude-haiku-4.5":8,"anthropic/claude-mythos-preview":500,"anthropic/claude-3.7-sonnet":200,"google/gemini-3.5-flash":30,"google/gemini-omni-flash":30,"google/gemini-3.1-pro":1500,"google/gemini-3.1-pro-preview":1500,"google/gemini-3.1-flash-lite":8,"google/gemini-3-pro":1500,"google/gemini-3-pro-preview":1500,"google/gemini-3-flash":30,"google/gemini-2.5-pro":1e3,"google/gemma-4-31b":31,"google/gemma-4-26b-a4b":26,"google/gemma-4-e2b-qat":2,"google/gemma-4-e4b-qat":4,"google/gemma-4-12b-qat":12,"google/gemma-4-26b-a4b-qat":26,"china-mobile/jt-35b-flash":35,"google/medgemma-27b":27,"google/medgemma-4b-pt":4,"google/medgemma-1.5-4b":4,"google/med-palm-2":340,"meta/muse-spark":1500,"nvidia/nemotron-3-super":70,"nvidia/nemotron-3-ultra-550b-a55b":550,"nvidia/cosmos-policy-robocasa":2,"nvidia/cosmos-predict-2.5":14,"nvidia/cosmos-reason-2":7,"nvidia/gr00t-n1.6":7,"nvidia/gr00t-n1.7":7,"agibot/genie-envisioner":8,"google-deepmind/genie-3":100,"google-deepmind/genie-2":50,"google-deepmind/gemini-robotics-er-1.6":100,"google-deepmind/gemini-robotics-er-1.5":100,"physical-intelligence/pi-zero":3.3,"physical-intelligence/pi-zero-fast":3.3,"openvla/openvla-7b":7,"nvidia/omniverse-mega":30,"xai/grok-3":1500,"xai/grok-4":1500,"xai/grok-4-heavy":1500,"xai/grok-4.20":1500,"tencent/hy3-preview":295,"tencent/hy-world-2.0":1.2,"xiaomi/mimo-v2.6-pro":1020,"xiaomi/mimo-v2.6-flash":309,"xiaomi/mimo-v2.5-pro":1e3,"xiaomi/mimo-v2.5":100,"inclusionai/ling-2.6-1t":1e3,"inclusionai/ling-2.6-flash":104,"inclusionai/llada2-uni":16},FRONTIER_VENDOR_REGION:{"openai/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"anthropic/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"google/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"google-deepmind/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"meta/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"microsoft/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"runway/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"reve/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"recraft/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"nexgene-ai/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"yutori/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"holo/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"luma/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"black-forest-labs/":{code:"frontier-eu-prop",label:"EU Frontier (Germany)",flag:"\u{1F1E9}\u{1F1EA}"},"nvidia/":{code:"physical-ai",label:"Physical AI",flag:"\u{1F9BE}"},"agibot/":{code:"physical-ai",label:"Physical AI",flag:"\u{1F9BE}"},"openvla/":{code:"physical-ai",label:"Physical AI",flag:"\u{1F9BE}"},"physical-intelligence/":{code:"physical-ai",label:"Physical AI",flag:"\u{1F9BE}"},"xai/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"amazon/":{code:"frontier-us-prop",label:"US Frontier (proprietary)",flag:"\u{1F310}"},"minimax/":{code:"cn",label:"China",flag:"\u{1F1E8}\u{1F1F3}"},"kling/":{code:"cn",label:"China",flag:"\u{1F1E8}\u{1F1F3}"},"alibaba-ath/":{code:"cn",label:"China",flag:"\u{1F1E8}\u{1F1F3}"},"tencent/":{code:"cn",label:"China",flag:"\u{1F1E8}\u{1F1F3}"},"sjtu-xinhua-harvard/":{code:"cn",label:"China (academic-led)",flag:"\u{1F1E8}\u{1F1F3}"},"tsinghua-bgi/":{code:"cn",label:"China (academic-led)",flag:"\u{1F1E8}\u{1F1F3}"},"monarch-initiative/":{code:"frontier-us-prop",label:"US/EU Open Science",flag:"\u{1F310}"},"riken/":{code:"jp",label:"Japan",flag:"\u{1F1EF}\u{1F1F5}"},"mit-mgb/":{code:"frontier-us-prop",label:"US Frontier (research)",flag:"\u{1F310}"},"icl/":{code:"eu",label:"EU (Imperial College London)",flag:"\u{1F1EC}\u{1F1E7}"},"mpi-light/":{code:"eu",label:"EU (Max Planck)",flag:"\u{1F1E9}\u{1F1EA}"},"ut-austin/":{code:"frontier-us-prop",label:"US Frontier (research)",flag:"\u{1F310}"}},AGENT_PRODUCTS:[{id:"butterfly/manus",name:"Manus",region:"cn",flag:"\u{1F1E8}\u{1F1F3}",regionLabel:"China",vendor:"Butterfly Effect",status:"production",note:"General-purpose AI agent (also tracked in Agent menu as manus-ai/manus)",source_url:"https://manus.im/",crossLinkAgent:!0},{id:"alibaba/qwen-code",name:"Qwen Code",region:"cn",flag:"\u{1F1E8}\u{1F1F3}",regionLabel:"China",vendor:"Alibaba (QwenLM)",status:"production",note:"Open-source coding agent for terminal \u2014 fork of Gemini CLI",source_url:"https://github.com/QwenLM/qwen-code"},{id:"zhipu/autoglm",name:"AutoGLM / Z.ai Agent",region:"cn",flag:"\u{1F1E8}\u{1F1F3}",regionLabel:"China",vendor:"Zhipu AI (Z.ai)",status:"production",note:"Browser/phone agent powered by GLM family",source_url:"https://z.ai/"},{id:"bytedance/coze",name:"Coze",region:"cn",flag:"\u{1F1E8}\u{1F1F3}",regionLabel:"China",vendor:"ByteDance",status:"production",note:"Agent platform / bot builder powered by Doubao",source_url:"https://www.coze.com/"},{id:"moonshot/kimi",name:"Kimi (Researcher)",region:"cn",flag:"\u{1F1E8}\u{1F1F3}",regionLabel:"China",vendor:"Moonshot AI",status:"production",note:"Long-context assistant + Kimi Researcher deep-research agent",source_url:"https://www.kimi.com/"},{id:"upstage/solar-pro",name:"Solar Pro 2 + Document Parse",region:"kr",flag:"\u{1F1F0}\u{1F1F7}",regionLabel:"Korea",vendor:"Upstage",status:"production",note:"Solar Pro 2 with Document Parse / Information Extract agent APIs",source_url:"https://www.upstage.ai/"},{id:"sarvam/sarvam-agent",name:"Sarvam-M Agent",region:"in",flag:"\u{1F1EE}\u{1F1F3}",regionLabel:"India",vendor:"Sarvam AI",status:"production",note:"Indic-language assistant + Sarvam-M agent stack",source_url:"https://www.sarvam.ai/"}],_cycleSort:function(e,a,t){var o=this._sortStates[e]||{key:null,dir:null};o.key!==a?this._sortStates[e]={key:a,dir:t||"desc"}:o.dir==="desc"?this._sortStates[e]={key:a,dir:"asc"}:o.dir==="asc"?this._sortStates[e]={key:null,dir:null}:this._sortStates[e]={key:a,dir:t||"desc"}},_sortIndicator:function(e,a){var t=this._sortStates[e];return!t||t.key!==a?"":t.dir==="asc"?" \u25B2":t.dir==="desc"?" \u25BC":""},_makeSortableTh:function(e,a,t,o,l){var n=document.createElement("th");n.textContent=t+this._sortIndicator(e,a),n.style.cursor="pointer",n.setAttribute("role","button"),n.setAttribute("title","\uD074\uB9AD\uD558\uC5EC \uC815\uB82C ("+(o==="asc"?"asc \u2192 desc \u2192 off":"desc \u2192 asc \u2192 off")+")");var r=this._sortStates[e];return r&&r.key===a&&(n.style.color="#3b82f6",n.style.fontWeight="bold"),n.addEventListener("click",l),n},init:function(e,a,t){this._models=e||[],this._benchmarks=a||[],this._scores=t||[]},render:function(){this._models=App.data.models,this._benchmarks=App.data.benchmarks,this._scores=App.data.scores;var e=this,a=[function(){e._renderRegionMap()},function(){e._renderTimeline()},function(){e._renderCumulative()},function(){e._renderCompetitiveness()},function(){e._renderCountryRadar()},function(){e._renderCountryLeaderboard()}];if(this.DIMENSIONS.forEach(function(_){a.push(function(){e._renderDimension(_)})}),a.push(function(){e._renderPerfSuites()},function(){e._renderAgentProducts()},function(){e._renderHeatmap()}),App.renderChunked("sov-render",a,function(_){_()},{first:1,budget:8}),!this._initialized){let _=function(S){e._compMode=S,[[r,"gap"],[p,"raw"]].forEach(function(C){if(C[0]){var T=C[1]===S;C[0].className="px-3 py-1 "+(T?"bg-blue-600 text-white":"bg-gray-800 text-gray-300")}}),e._renderCompetitiveness()};var x=_,t=document.getElementById("sov-timeline-period"),o=document.getElementById("sov-timeline-y-mode");t&&t.addEventListener("change",function(){e._renderTimeline()}),o&&o.addEventListener("change",function(){e._renderTimeline()});var l=document.getElementById("sov-comp-leaderboard"),n=document.getElementById("sov-comp-period"),r=document.getElementById("sov-comp-mode-gap"),p=document.getElementById("sov-comp-mode-raw");if(l){l.textContent="";var f={};e._LEADERBOARDS.forEach(function(S){var C=S.group||"Other";if(!f[C]){var T=document.createElement("optgroup");T.label=C,f[C]=T,l.appendChild(T)}var M=document.createElement("option");M.value=S.id,M.textContent=S.label,f[C].appendChild(M)}),l.value=e._compLeaderboard,l.addEventListener("change",function(){e._compLeaderboard=l.value,e._renderCompetitiveness()})}n&&n.addEventListener("change",function(){e._compPeriod=n.value,e._renderCompetitiveness()}),r&&r.addEventListener("click",function(){_("gap")}),p&&p.addEventListener("click",function(){_("raw")});var c=document.getElementById("sov-map-view-all"),d=document.getElementById("sov-map-view-active"),m=document.getElementById("sov-map-view-vendor");c&&d&&(c.addEventListener("click",function(){e._mapViewMode="all",e._updateMapToggleStyles(),e._renderRegionMap()}),d.addEventListener("click",function(){e._mapViewMode="active",e._updateMapToggleStyles(),e._renderRegionMap()}),m&&m.addEventListener("click",function(){e._mapViewMode="vendor",e._updateMapToggleStyles(),e._renderRegionMap()}));var g=document.getElementById("sov-map-collapse-all"),i=document.getElementById("sov-map-expand-all");g&&g.addEventListener("click",function(){e._setAllVendorsCollapsed(!0),e._renderRegionMap()}),i&&i.addEventListener("click",function(){e._setAllVendorsCollapsed(!1),e._renderRegionMap()});var b=document.getElementById("sov-cum-view-region"),s=document.getElementById("sov-cum-view-vendor"),h=document.getElementById("sov-cum-granularity"),k=document.getElementById("sov-cum-region-select");b&&s&&(b.addEventListener("click",function(){e._cumViewMode="region",e._renderCumulative()}),s.addEventListener("click",function(){e._cumViewMode="vendor",e._renderCumulative()})),h&&h.addEventListener("change",function(){e._renderCumulative()}),k&&k.addEventListener("change",function(){e._renderCumulative()})}this._initialized=!0,typeof SovereignCharts!="undefined"&&SovereignCharts.renderAll&&SovereignCharts.renderAll()},_updateMapToggleStyles:function(){var e=document.getElementById("sov-map-view-all"),a=document.getElementById("sov-map-view-active"),t=document.getElementById("sov-map-view-vendor");if(!(!e||!a)){var o="px-3 py-1 bg-blue-600 text-white",l="px-3 py-1 bg-gray-800 text-gray-300";e.className=this._mapViewMode==="all"?o:l,a.className=this._mapViewMode==="active"?o:l,t&&(t.className=this._mapViewMode==="vendor"?o:l);var n=document.getElementById("sov-map-vendor-controls");n&&(this._mapViewMode==="vendor"?n.classList.remove("hidden"):n.classList.add("hidden"))}},_setAllVendorsCollapsed:function(e){var a=this;this.REGIONS.forEach(function(t){var o={};t.models.forEach(function(l){var n=a._models.find(function(p){return p.id===l});if(n){var r=a._canonicalVendor(n.vendor);o[r]||(o[r]=!0,a._vendorCollapsed[t.code+"||"+r]=e)}})})},_isActive:function(e){if(!e)return!1;var a=this._dateToTs(e),t=Date.now(),o=t-this._ACTIVE_WINDOW_MONTHS*30*24*3600*1e3;return a>=o},_extractParamsB:function(e,a,t){if(a&&this.KNOWN_PARAMS&&this.KNOWN_PARAMS[a]!=null)return this.KNOWN_PARAMS[a];var o=[];t&&o.push(String(t)),e&&o.push(String(e));for(var l=0;l<o.length;l++){var n=o[l].match(/(\d+(?:\.\d+)?)\s*([TB])\b/gi);if(!(!n||n.length===0)){var r=n.map(function(p){var f=p.match(/(\d+(?:\.\d+)?)\s*([TB])/i),c=parseFloat(f[1]);return isNaN(c)?null:/t/i.test(f[2])?c*1e3:c}).filter(function(p){return p!=null});if(r.length)return Math.max.apply(null,r)}}return null},_bestScoreFor:function(e){var a=0,t=typeof App!="undefined"&&App.getScoreIndex?App.getScoreIndex():null;if(t&&t.byModel)for(var o=t.byModel[e]||[],l=0;l<o.length;l++){var n=o[l].value;typeof n=="number"&&n>a&&(a=n)}else this._scores.forEach(function(r){r.model_id===e&&typeof r.value=="number"&&r.value>a&&(a=r.value)});return a>0?a:null},_renderTimeline:function(){var e=document.getElementById("sov-timeline");if(!e)return;var a=echarts.getInstanceByDom(e);a&&a.dispose(),Array.prototype.slice.call(e.children).forEach(function(u){var v=echarts.getInstanceByDom(u);v&&v.dispose()}),e.textContent="";var t=this,o=document.getElementById("sov-timeline-period"),l=document.getElementById("sov-timeline-y-mode"),n=o?o.value:"all",r=l?l.value:"params-log",p={};this._models.forEach(function(u){p[u.id]=u});var f={};this.REGIONS.forEach(function(u){u.models.forEach(function(v){f[v]=u})});function c(u){for(var v=Object.keys(t.FRONTIER_VENDOR_REGION),w=0;w<v.length;w++)if(u.indexOf(v[w])===0)return t.FRONTIER_VENDOR_REGION[v[w]];var E=p[u];return E?{code:"other",label:E.vendor||"Other",flag:"\xB7"}:null}var d=["#10b981","#3b82f6","#f59e0b","#ef4444","#8b5cf6","#ec4899","#14b8a6","#f97316","#06b6d4","#a855f7","#84cc16","#eab308","#22c55e","#0ea5e9","#d946ef","#f43f5e","#fbbf24","#6366f1","#7c3aed","#e11d48","#0284c7","#ca8a04","#be185d","#16a34a"],m={};this.REGIONS.forEach(function(u,v){m[u.flag+" "+u.label]=d[v%d.length]}),m["\u{1F310} US Frontier (proprietary)"]="#94a3b8",m["\u{1F9BE} Physical AI"]="#a855f7";var g=.05,i={},b={},s=0,h=0,k=0,x=0;Object.keys(f).forEach(function(u){p[u]&&x++}),this._models.forEach(function(u){var v=u.id;if(!b[v]){b[v]=!0;var w=f[v];if(w){s++;var E=t._resolveReleaseDate(v)||t._localReleaseDates&&t._localReleaseDates[v];if(E){var A=E.slice(0,4);if(n!=="all"){if(n==="2023"){if(parseInt(A,10)>2023)return}else if(A!==n)return}var R=w.flag+" "+w.label,N=t._extractParamsB(u.name,v,u.parameters||u.params),z=t._bestScoreFor(v),P=t._dateToTs(E),D=null,O=!1;if(r==="params-log"||r==="params-linear")N==null?(D=g,O=!0,k++):D=N;else if(r==="best-score"){if(z==null)return;D=z}var U=N?Math.max(8,Math.min(28,Math.sqrt(N)*2.4)):8;i[R]||(i[R]=[]),i[R].push({value:[P,D,v,u.name,E,N,z,R],symbolSize:U,itemStyle:O?{opacity:.4,borderColor:"#0b0f17",borderWidth:1}:null}),h++}}}});var _=[],S=[];function C(u){var v=i[u];if(!(!v||v.length===0)){var w=m[u]||"#94a3b8";v.forEach(function(E){E.itemStyle?E.itemStyle.color||(E.itemStyle.color=w):E.itemStyle={color:w,opacity:.78,borderColor:"#0b0f17",borderWidth:1}}),S.push(u),_.push({name:u,type:"scatter",data:v,itemStyle:{color:w,opacity:.78,borderColor:"#0b0f17",borderWidth:1},emphasis:{focus:"series",itemStyle:{borderColor:"#fff",borderWidth:2,opacity:1}}})}}if(this.REGIONS.forEach(function(u){C(u.flag+" "+u.label)}),_.length===0){var T=document.createElement("p");T.className="text-sm text-gray-500 italic",T.textContent="\u2014 \uC120\uD0DD\uD55C \uAE30\uAC04\uC5D0 \uD45C\uC2DC\uD560 \uBAA8\uB378\uC774 \uC5C6\uC2B5\uB2C8\uB2E4",e.appendChild(T);return}var M,I,L;r==="params-log"?(M="\uD30C\uB77C\uBBF8\uD130 (B) \u2014 log scale, \uBBF8\uACF5\uAC1C=\uD558\uB2E8",I="log",L=function(u){return u<=g*1.5?"?":u+"B"}):r==="params-linear"?(M="\uD30C\uB77C\uBBF8\uD130 (B) \u2014 linear",I="value",L=function(u){return u+"B"}):(M="Best benchmark score",I="value",L=function(u){return u.toFixed(0)});var B=document.createElement("p");B.className="text-xs text-gray-500 mb-2",B.textContent="\uD45C\uC2DC \uC911: "+h+" / "+x+" sovereign models"+(k>0&&r.indexOf("params")===0?" \xB7 \uADF8 \uC911 "+k+"\uAC1C\uB294 \uD30C\uB77C\uBBF8\uD130 \uBBF8\uACF5\uAC1C (y=\uD558\uB2E8 \uB9C8\uCEE4)":""),e.appendChild(B);var q=document.createElement("div");q.style.height="calc(100% - 24px)",e.appendChild(q);var y=echarts.init(q);y.setOption({backgroundColor:"transparent",tooltip:{trigger:"item",formatter:function(u){var v=u.value,w=["<strong>"+v[3]+"</strong>","\uAD6D\uAC00: "+v[7],"\uCD9C\uC2DC: "+v[4]];return v[5]!=null?w.push("\uD30C\uB77C\uBBF8\uD130: ~"+v[5]+"B"):r.indexOf("params")===0&&w.push("\uD30C\uB77C\uBBF8\uD130: <em>\uBBF8\uACF5\uAC1C</em>"),v[6]!=null&&w.push("Best \uBCA4\uCE58\uB9C8\uD06C: "+v[6].toFixed(1)),w.join("<br/>")}},legend:{data:S,textStyle:{color:Theme.textMuted,fontSize:10},top:0,type:"scroll",pageTextStyle:{color:Theme.textMuted,fontSize:10}},grid:{left:8,right:32,bottom:50,top:50,containLabel:!0},xAxis:{type:"time",name:"\uCD9C\uC2DC\uC77C",nameTextStyle:{color:Theme.textMuted,fontSize:10},axisLabel:{color:Theme.textMuted,fontSize:10},axisLine:{lineStyle:{color:Theme.borderStrong}},splitLine:{lineStyle:{color:Theme.border,opacity:.3}}},yAxis:{type:I,name:M,nameTextStyle:{color:Theme.textMuted,fontSize:10},axisLabel:{color:Theme.textMuted,fontSize:10,formatter:L},axisLine:{lineStyle:{color:Theme.borderStrong}},splitLine:{lineStyle:{color:Theme.border,opacity:.3}}},dataZoom:[{type:"inside",xAxisIndex:0,yAxisIndex:0},{type:"slider",xAxisIndex:0,height:14,bottom:8,textStyle:{color:Theme.textMuted,fontSize:9}}],series:_}),y.on("click",function(u){u&&u.value&&u.value[2]&&typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(u.value[2])}),window.addEventListener("resize",function(){y.resize()})},_dateToTs:function(e){var a=e.split("-"),t=parseInt(a[0],10),o=a.length>1?parseInt(a[1],10):6;return new Date(Date.UTC(t,o-1,15)).getTime()},_bucketKey:function(e,a){var t=e.split("-"),o=parseInt(t[0],10),l=t.length>1?parseInt(t[1],10):6;if(a==="year")return new Date(Date.UTC(o,11,31)).getTime();if(a==="quarter"){var n=(Math.floor((l-1)/3)+1)*3;return new Date(Date.UTC(o,n-1,28)).getTime()}else return new Date(Date.UTC(o,l-1,28)).getTime()},_formatBucketLabel:function(e,a){var t=new Date(e),o=t.getUTCFullYear(),l=t.getUTCMonth()+1;if(a==="year")return String(o);if(a==="quarter"){var n=Math.floor((l-1)/3)+1;return o+" Q"+n}return o+"-"+(l<10?"0"+l:l)},_renderCumulative:function(){var e=document.getElementById("sov-cumulative");if(!e)return;var a=echarts.getInstanceByDom(e);a&&a.dispose(),e.textContent="";var t=this,o=document.getElementById("sov-cum-granularity"),l=o?o.value:"quarter",n=document.getElementById("sov-cum-region-filter"),r=document.getElementById("sov-cum-region-select"),p=document.getElementById("sov-cum-view-region"),f=document.getElementById("sov-cum-view-vendor"),c="px-3 py-1 bg-blue-600 text-white",d="px-3 py-1 bg-gray-800 text-gray-300";if(p&&f&&(p.className=this._cumViewMode==="region"?c:d,f.className=this._cumViewMode==="vendor"?c:d),n)if(this._cumViewMode==="vendor"){if(n.classList.remove("hidden"),r&&r.options.length===0){var m=document.createElement("option");m.value="__all__",m.textContent="\uC804\uCCB4 region",r.appendChild(m),this.REGIONS.forEach(function(y){var u=document.createElement("option");u.value=y.code,u.textContent=y.flag+" "+y.label,r.appendChild(u)}),r.value="__all__"}}else n.classList.add("hidden");var g={};this._models.forEach(function(y){g[y.id]=y});var i={},b={};function s(y,u,v,w,E){i[y]||(i[y]=[],b[y]={label:u,region:v,vendor:w}),i[y].push(E)}var h=r?r.value:"__all__";this.REGIONS.forEach(function(y){t._cumViewMode==="vendor"&&h!=="__all__"&&y.code!==h||y.models.forEach(function(u){var v=g[u],w=t._resolveReleaseDate(u);if(!(!v||!w)){var E=t._bucketKey(w,l);if(t._cumViewMode==="region"){var A=y.code;s(A,y.flag+" "+y.label,y,null,E)}else{var R=v.vendor||"unknown",A=y.code+"||"+R,N=(h==="__all__"?y.flag+" ":"")+R;s(A,N,y,R,E)}}})});var k=Object.keys(i);if(k.length===0){var x=document.createElement("p");x.className="text-sm text-gray-500 italic",x.textContent="\u2014 \uB370\uC774\uD130\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4",e.appendChild(x);return}var _={};k.forEach(function(y){i[y].forEach(function(u){_[u]=!0})});var S=Object.keys(_).map(Number).sort(function(y,u){return y-u}),C=18,T=k.map(function(y){return{key:y,total:i[y].length}}).sort(function(y,u){return u.total-y.total}),M=t._cumViewMode==="vendor"?T.slice(0,C).map(function(y){return y.key}):k,I=M.map(function(y){var u={};i[y].forEach(function(A){u[A]=(u[A]||0)+1});var v=0,w=S.map(function(A){return v+=u[A]||0,[A,v]}),E=w.findIndex(function(A){return A[1]>0});return E>0&&(w=w.slice(E)),{name:b[y].label,type:"line",step:"end",showSymbol:!1,smooth:!1,data:w,emphasis:{focus:"series"},lineStyle:{width:2}}});I.forEach(function(y,u){var v=Theme.series[u%Theme.series.length];y.itemStyle={color:v},y.lineStyle.color=v});var L=I.map(function(y){return y.name}),B=t._cumViewMode==="region"?"\uC804\uCCB4 "+I.length+"\uAC1C region":"Top-"+Math.min(C,k.length)+" vendors"+(h!=="__all__"?" (filter: "+h+")":""),q=echarts.init(e);q.setOption({backgroundColor:"transparent",title:{text:t._cumViewMode==="region"?"\uAD6D\uAC00\uBCC4 \uB204\uC801 \uCD9C\uC2DC":"\uAD6D\uAC00-\uAC1C\uBC1C\uC0AC\uBCC4 \uB204\uC801 \uCD9C\uC2DC",subtext:B,textStyle:{color:Theme.textPrimary,fontSize:13},subtextStyle:{color:Theme.textMuted,fontSize:10},left:"left",top:0},tooltip:{trigger:"axis",axisPointer:{type:"cross",label:{backgroundColor:"#0b0f17"}},formatter:function(y){if(!y||y.length===0)return"";var u=t._formatBucketLabel(y[0].value[0],l),v=y.slice().sort(function(E,A){return A.value[1]-E.value[1]}),w=["<strong>"+u+"</strong>"];return v.slice(0,12).forEach(function(E){w.push(E.marker+" "+E.seriesName+": <strong>"+E.value[1]+"</strong>")}),v.length>12&&w.push("\u2026 +"+(v.length-12)+" more"),w.join("<br/>")}},legend:{data:L,textStyle:{color:Theme.textMuted,fontSize:10},top:36,type:"scroll"},grid:{left:8,right:32,bottom:50,top:80,containLabel:!0},xAxis:{type:"time",axisLabel:{color:Theme.textMuted,fontSize:10},axisLine:{lineStyle:{color:Theme.borderStrong}},splitLine:{lineStyle:{color:Theme.border,opacity:.3}}},yAxis:{type:"value",name:"Cumulative releases",nameTextStyle:{color:Theme.textMuted,fontSize:10},axisLabel:{color:Theme.textMuted,fontSize:10},splitLine:{lineStyle:{color:Theme.border,opacity:.3}}},dataZoom:[{type:"inside",xAxisIndex:0},{type:"slider",xAxisIndex:0,height:14,bottom:8,textStyle:{color:Theme.textMuted,fontSize:9}}],series:I}),window.addEventListener("resize",function(){q.resize()})},_getModelName:function(e){var a=typeof App!="undefined"&&App.idMap?App.idMap(this._models)[e]:this._models.find(function(t){return t.id===e});return a?a.name:e.split("/").pop()},_getBenchmark:function(e){return typeof App!="undefined"&&App.idMap?App.idMap(this._benchmarks)[e]:this._benchmarks.find(function(a){return a.id===e})},_getScore:function(e,a){var t=typeof App!="undefined"&&App.getScoreIndex?App.getScoreIndex():null;if(t&&t.byModelBench){var o=t.byModelBench[e+"|"+a];return o?o.value:null}var l=this._scores.find(function(n){return n.model_id===e&&n.benchmark_id===a});return l?l.value:null},_allSovereignIds:function(){var e={};this._models.forEach(function(t){e[t.id]=!0});var a=[];return this.REGIONS.forEach(function(t){t.models.forEach(function(o){e[o]&&a.push(o)})}),a},_regionFor:function(e){for(var a=0;a<this.REGIONS.length;a++)if(this.REGIONS[a].models.indexOf(e)!==-1)return this.REGIONS[a];return null},_LEADERBOARDS:[{id:"aa_intelligence_index",label:"Artificial Analysis (AAII)",scale:"index",group:"\uB9AC\uB354\uBCF4\uB4DC \xB7 \uC544\uB808\uB098 \xB7 \uC9C0\uC218"},{id:"arena_ai_text_elo",label:"LMArena / arena.ai Text",scale:"elo",group:"\uB9AC\uB354\uBCF4\uB4DC \xB7 \uC544\uB808\uB098 \xB7 \uC9C0\uC218"},{id:"livebench",label:"LiveBench",scale:"pct",group:"\uB9AC\uB354\uBCF4\uB4DC \xB7 \uC544\uB808\uB098 \xB7 \uC9C0\uC218"},{id:"epoch_capabilities_index",label:"Epoch Capabilities Index (ECI)",scale:"index",group:"\uB9AC\uB354\uBCF4\uB4DC \xB7 \uC544\uB808\uB098 \xB7 \uC9C0\uC218"},{id:"arena_webdev_elo",label:"arena.ai WebDev (coding)",scale:"elo",group:"\uB9AC\uB354\uBCF4\uB4DC \xB7 \uC544\uB808\uB098 \xB7 \uC9C0\uC218"},{id:"gpqa_diamond",label:"GPQA Diamond",scale:"pct",group:"\uD45C\uC900 \uC5ED\uB7C9 \uBCA4\uCE58\uB9C8\uD06C"},{id:"mmlu_pro",label:"MMLU-Pro",scale:"pct",group:"\uD45C\uC900 \uC5ED\uB7C9 \uBCA4\uCE58\uB9C8\uD06C"},{id:"mmlu",label:"MMLU",scale:"pct",group:"\uD45C\uC900 \uC5ED\uB7C9 \uBCA4\uCE58\uB9C8\uD06C"},{id:"aime_2025",label:"AIME 2025",scale:"pct",group:"\uD45C\uC900 \uC5ED\uB7C9 \uBCA4\uCE58\uB9C8\uD06C"},{id:"livecodebench",label:"LiveCodeBench",scale:"pct",group:"\uD45C\uC900 \uC5ED\uB7C9 \uBCA4\uCE58\uB9C8\uD06C"},{id:"ifeval",label:"IFEval",scale:"pct",group:"\uD45C\uC900 \uC5ED\uB7C9 \uBCA4\uCE58\uB9C8\uD06C"}],_COMP_REGION_CODES:["cn","kr","fr","jp","in","il","ae","sg","ch","ca","de","uk"],_COMP_PALETTE:["#ef4444","#3b82f6","#10b981","#f59e0b","#8b5cf6","#ec4899","#14b8a6","#f97316","#a3e635","#06b6d4","#eab308","#d946ef"],_compCache:{},_compLeaderboard:"gpqa_diamond",_compMode:"gap",_compPeriod:"all",_compRegions:function(){var e=this;return this._COMP_REGION_CODES.map(function(a){return e.REGIONS.find(function(t){return t.code===a})}).filter(Boolean)},_compModelName:function(e){var a=this._models&&(typeof App!="undefined"&&App.idMap?App.idMap(this._models)[e]:this._models.find(function(t){return t.id===e}));return a?a.name:e?e.split("/").pop():"\u2014"},_competitivenessSeries:function(e,a){var t=e+"|"+a;if(this._compCache[t])return this._compCache[t];var o=typeof App!="undefined"&&App.histDates?App.histDates():[],l=o.length?App.histBenchModelValues(e):[],n=this._compRegions(),r=this._COMP_PALETTE,p=n.map(function(d,m){return{code:d.code,label:d.label,flag:d.flag,color:r[m%r.length],models:d.models||[],seriesModels:[],values:[]}}),f=[];o.forEach(function(d,m){var g=l[m],i=null;for(var b in g)(i==null||g[b]>i)&&(i=g[b]);f.push(a==="gap"?i!=null?100:null:i),p.forEach(function(s){for(var h=null,k=null,x=0;x<s.models.length;x++){var _=g[s.models[x]];_!=null&&(h==null||_>h)&&(h=_,k=s.models[x])}var S=h==null?null:a==="gap"?i?Math.round(h/i*1e3)/10:null:h;s.values.push(S),s.seriesModels.push(k)})});var c={dates:o,series:p,frontier:f};return this._compCache[t]=c,c},_competitivenessHeatmap:function(){var e=this._compRegions(),a=typeof App!="undefined"&&App.getScoreIndex?App.getScoreIndex():null,t=a&&a.byModelBench||{},o=a&&a.byBench||{},l=[];return this._LEADERBOARDS.forEach(function(n){var r=null;(o[n.id]||[]).forEach(function(p){p&&p.value!=null&&(r==null||p.value>r)&&(r=p.value)}),e.forEach(function(p){var f=null,c=null;(p.models||[]).forEach(function(m){var g=t[m+"|"+n.id],i=g?g.value:null;i!=null&&(f==null||i>f)&&(f=i,c=m)});var d=f!=null&&r?Math.round(f/r*1e3)/10:null;l.push({code:p.code,label:p.label,flag:p.flag,benchId:n.id,benchLabel:n.label,gap:d,model:c})})}),l},_filterCompDates:function(e){if(this._compPeriod==="all"||e.length===0)return e;var a=this._compPeriod==="6m"?6:3,t=e[e.length-1],o=t.split("-"),l=+o[0],n=+o[1];for(n-=a;n<=0;)n+=12,l-=1;var r=l+"-"+(n<10?"0"+n:n)+"-"+o[2];return e.filter(function(p){return p>=r})},_renderCompetitiveness:function(){var e=document.getElementById("sov-comp-trend");if(!(!e||typeof echarts=="undefined")){var a=this;if(typeof App!="undefined"&&!App.hist&&App._ensureHistory){e.textContent="";var t=document.createElement("div");t.className="text-gray-500 text-sm p-8 text-center",t.textContent="\uCD94\uC774 \uB370\uC774\uD130 \uB85C\uB529 \uC911\u2026",e.appendChild(t),App._ensureHistory().then(function(){a._compCache={},a._renderCompetitiveness()});return}this._compLeaderboard||(this._compLeaderboard=this._LEADERBOARDS[0].id);var o=this._LEADERBOARDS.find(function(m){return m.id===a._compLeaderboard})||this._LEADERBOARDS[0],l=this._compMode,n=this._competitivenessSeries(o.id,l),r=this._filterCompDates(n.dates),p=n.dates.length-r.length,f=l==="gap"?"%":o.scale==="elo"?"":o.scale==="pct"?"%":"",c=n.series.map(function(m){return{name:m.flag+" "+m.label,type:"line",connectNulls:!1,symbol:"circle",symbolSize:4,lineStyle:{color:m.color,width:2},itemStyle:{color:m.color},data:m.values.slice(p),_models:m.seriesModels.slice(p)}});l==="gap"?c.push({name:"\u{1F310} US Frontier (100%)",type:"line",data:n.frontier.slice(p).map(function(m){return m==null?null:100}),lineStyle:{color:"#9ca3af",width:1.5,type:"dashed"},itemStyle:{color:"#9ca3af"},symbol:"none"}):c.push({name:"\u{1F310} US Frontier (top)",type:"line",data:n.frontier.slice(p),lineStyle:{color:"#9ca3af",width:1.5,type:"dashed"},itemStyle:{color:"#9ca3af"},symbol:"none"});var d=echarts.getInstanceByDom(e)||echarts.init(e);d.setOption({backgroundColor:"transparent",title:{text:o.label+(l==="gap"?" \u2014 \uD504\uB860\uD2F0\uC5B4 \uB300\uBE44 %":" \u2014 \uC6D0\uC810\uC218"),subtext:"\uAC01 \uAD6D\uAC00 \uCD5C\uACE0 \uC131\uC801 \uBAA8\uB378\uC758 \uACBD\uC7C1\uB825 \uCD94\uC774 ("+r.length+" snapshots)",left:"center",textStyle:{color:Theme.textPrimary,fontSize:13},subtextStyle:{color:Theme.textMuted,fontSize:10}},tooltip:{trigger:"axis",formatter:function(m){if(!m.length)return"";var g=["<strong>"+m[0].axisValue+"</strong>"];return m.forEach(function(i){if(i.value!=null){var b=c[i.seriesIndex],s=b&&b._models?b._models[i.dataIndex]:null,h=l==="gap"?i.value+"%":Math.round(i.value*10)/10+f;g.push(i.marker+i.seriesName+": <strong>"+h+"</strong>"+(s?' <span style="color:'+Theme.textMuted+'">('+a._compModelName(s)+")</span>":""))}}),g.join("<br>")}},legend:{type:"scroll",bottom:0,textStyle:{color:Theme.textMuted,fontSize:10}},grid:{left:48,right:24,top:52,bottom:56},xAxis:{type:"category",data:r,axisLabel:{color:Theme.textMuted,fontSize:9,rotate:40},axisLine:{lineStyle:{color:Theme.border}}},yAxis:{type:"value",name:l==="gap"?"% of frontier":o.label,nameTextStyle:{color:Theme.textMuted,fontSize:9},axisLabel:{color:Theme.textMuted,fontSize:9},splitLine:{lineStyle:{color:Theme.border}},max:l==="gap"?110:null},series:c},!0),window.addEventListener("resize",function(){d.resize()}),this._renderCompetitivenessHeatmap()}},_renderCompetitivenessHeatmap:function(){var e=document.getElementById("sov-comp-heatmap");if(!(!e||typeof echarts=="undefined")){var a=this,t=this._compRegions(),o=this._LEADERBOARDS,l=this._competitivenessHeatmap(),n={};t.forEach(function(c,d){n[c.code]=d});var r={};o.forEach(function(c,d){r[c.id]=d});var p=l.filter(function(c){return c.gap!=null}).map(function(c){return{value:[r[c.benchId],n[c.code],c.gap],model:c.model,benchId:c.benchId}}),f=echarts.getInstanceByDom(e)||echarts.init(e);f.setOption({backgroundColor:"transparent",title:{text:"\uD604\uC7AC \uC2A4\uB0C5\uC0F7 \u2014 \uAD6D\uAC00 \xD7 \uB9AC\uB354\uBCF4\uB4DC (\uD504\uB860\uD2F0\uC5B4 \uB300\uBE44 %)",left:"center",textStyle:{color:Theme.textPrimary,fontSize:13}},tooltip:{position:"top",formatter:function(c){return o[c.value[0]].label+"<br><strong>"+t[c.value[1]].flag+" "+t[c.value[1]].label+"</strong>: "+c.value[2]+"% of frontier"+(c.data.model?'<br><span style="color:'+Theme.textMuted+'">'+a._compModelName(c.data.model)+"</span>":"")}},grid:{left:90,right:16,top:40,bottom:70},xAxis:{type:"category",data:o.map(function(c){return c.label.replace(" (coding)","").replace("Artificial Analysis ","AA ")}),axisLabel:{color:Theme.textMuted,fontSize:9,rotate:30,interval:0},splitArea:{show:!0}},yAxis:{type:"category",data:t.map(function(c){return c.flag+" "+c.label}),axisLabel:{color:Theme.textMuted,fontSize:10},splitArea:{show:!0}},visualMap:{min:40,max:100,calculable:!0,orient:"horizontal",left:"center",bottom:6,inRange:{color:["#7f1d1d","#f59e0b","#10b981"]},textStyle:{color:Theme.textMuted,fontSize:9}},series:[{type:"heatmap",data:p,label:{show:!0,formatter:function(c){return c.value[2]},color:"#fff",fontSize:9},emphasis:{itemStyle:{borderColor:"#fff",borderWidth:1}}}]},!0),f.off("click"),f.on("click",function(c){c.data&&c.data.model&&typeof Modal!="undefined"&&Modal.showScoreSource&&Modal.showScoreSource(c.data.model,c.data.benchId)}),window.addEventListener("resize",function(){f.resize()})}},_renderCountryRadar:function(){var e=document.getElementById("sov-country-radar");if(e){e.textContent="";var a=this,t=[];if(this.REGIONS.forEach(function(r){var p=r.models.filter(function(c){return a._models.some(function(d){return d.id===c})});if(p.length!==0){var f=a.DIMENSIONS.map(function(c){var d=c.benchmarks.map(function(m){var g=null;return p.forEach(function(i){var b=a._getScore(i,m);b!=null&&(g==null||b>g)&&(g=b)}),g}).filter(function(m){return m!=null});return d.length===0?0:d.reduce(function(m,g){return m+g},0)/d.length});f.every(function(c){return c===0})||t.push({value:f,name:r.flag+" "+r.label,regionCode:r.code})}}),t.length===0){var o=document.createElement("p");o.className="text-sm text-gray-500 italic",o.textContent="\u2014 \uAD6D\uAC00\uBCC4 \uBE44\uAD50 \uB370\uC774\uD130\uAC00 \uBD80\uC871\uD569\uB2C8\uB2E4",e.appendChild(o);return}var l=this.DIMENSIONS.map(function(r){return{name:r.label,max:100}}),n=echarts.init(e);n.setOption({backgroundColor:"transparent",tooltip:{trigger:"item",formatter:function(r){var p=[r.name];return r.value.forEach(function(f,c){p.push(l[c].name+": "+f.toFixed(1))}),p.join("<br/>")}},legend:{data:t.map(function(r){return r.name}),textStyle:{color:Theme.textMuted,fontSize:10},top:0,type:"scroll"},radar:{indicator:l,shape:"polygon",axisName:{color:Theme.textMuted,fontSize:11},splitLine:{lineStyle:{color:Theme.border}},splitArea:{areaStyle:{color:["transparent"]}},axisLine:{lineStyle:{color:Theme.border}}},series:[{type:"radar",data:t.map(function(r,p){return{value:r.value,name:r.name,itemStyle:{color:Theme.series[p%Theme.series.length]},lineStyle:{color:Theme.series[p%Theme.series.length],width:2},areaStyle:{opacity:.08}}})}]}),window.addEventListener("resize",function(){n.resize()})}},_renderCountryLeaderboard:function(){var e=document.getElementById("sov-country-leaderboard");if(e){e.textContent="";var a=this,t="country-leaderboard",o=[],l=typeof App!="undefined"&&App.getScoreIndex?App.getScoreIndex():null;this.DIMENSIONS.forEach(function(i){var b=i.benchmarks.map(function(s){var h=0;return l&&l.byBench?h=(l.byBench[s]||[]).length:a._scores.forEach(function(k){k.benchmark_id===s&&h++}),{bid:s,cnt:h}}).filter(function(s){return s.cnt>0}).sort(function(s,h){return h.cnt-s.cnt}).slice(0,3).map(function(s){return s.bid});o=o.concat(b)});var n=this.REGIONS.map(function(i){var b=i.models.filter(function(h){return a._models.some(function(k){return k.id===h})});if(b.length===0)return null;var s={};return o.forEach(function(h){var k=null,x=null;b.forEach(function(_){var S=a._getScore(_,h);S!=null&&(k==null||S>k)&&(k=S,x=_)}),s[h]={val:k,model:x}}),{region:i,count:b.length,bests:s}}).filter(function(i){return i!=null}),r=this._sortStates[t];r&&r.key&&r.dir&&n.sort(function(i,b){var s,h;r.key==="region"?(s=i.region.label,h=b.region.label):r.key==="count"?(s=i.count,h=b.count):(s=i.bests[r.key]?i.bests[r.key].val:null,h=b.bests[r.key]?b.bests[r.key].val:null);var k=s==null,x=h==null;return k&&x?0:k?1:x?-1:typeof s=="string"?r.dir==="asc"?s.localeCompare(h):h.localeCompare(s):r.dir==="asc"?s-h:h-s});var p=document.createElement("table");p.className="sota-table text-sm";var f=document.createElement("thead"),c=document.createElement("tr");c.appendChild(a._makeSortableTh(t,"region","Region","asc",function(){a._cycleSort(t,"region","asc"),a._renderCountryLeaderboard()}));var d=a._makeSortableTh(t,"count","Models","desc",function(){a._cycleSort(t,"count","desc"),a._renderCountryLeaderboard()});d.style.fontSize="11px",c.appendChild(d),o.forEach(function(i){var b=a._getBenchmark(i),s=b?b.name:i,h=a._makeSortableTh(t,i,s,"desc",function(k){return function(){a._cycleSort(t,k,"desc"),a._renderCountryLeaderboard()}}(i));h.style.fontSize="11px",c.appendChild(h)}),f.appendChild(c),p.appendChild(f);var m=document.createElement("tbody"),g={};o.forEach(function(i){var b=0;a.REGIONS.forEach(function(s){s.models.forEach(function(h){var k=a._getScore(h,i);k!=null&&k>b&&(b=k)})}),g[i]=b}),n.forEach(function(i){var b=i.region,s=document.createElement("tr"),h=document.createElement("td");h.textContent=b.flag+" "+b.label,h.style.whiteSpace="nowrap",h.style.fontWeight="600",s.appendChild(h);var k=document.createElement("td");k.textContent=i.count,k.style.textAlign="center",k.style.color=Theme.textMuted,s.appendChild(k),o.forEach(function(x){var _=document.createElement("td");_.style.textAlign="center";var S=i.bests[x];if(S&&S.val!=null){_.textContent=S.val.toFixed(1);var C=g[x]>0?S.val/g[x]:0;C>=.99?(_.style.color=Theme.series[0],_.style.fontWeight="bold"):C>=.9?_.style.color=Theme.series[1]:C>=.75?_.style.color=Theme.series[2]:_.style.color=Theme.series[3],_.style.cursor="pointer",_.setAttribute("role","button"),_.title=(a._getModelName(S.model)||S.model)+" \xB7 \uD074\uB9AD \uC2DC \uAC80\uC99D \uC18C\uC2A4",_.addEventListener("click",function(T,M){return function(){typeof Modal!="undefined"&&Modal.showScoreSource&&Modal.showScoreSource(T,M)}}(S.model,x))}else _.textContent="\u2014",_.style.color=Theme.textDisabled;s.appendChild(_)}),m.appendChild(s)}),p.appendChild(m),e.appendChild(p)}},_renderRegionMap:function(){var e=document.getElementById("sov-region-map");if(!e)return;e.textContent="";var a=this;this._updateMapToggleStyles();var t=this._mapViewMode,o=t==="active",l=t==="vendor";function n(p){var f=a._models.find(function(i){return i.id===p});if(!f)return null;var c=a._resolveReleaseDate(p),d=document.createElement("div");d.className="flex items-center justify-between gap-2 text-xs";var m=document.createElement("span");m.className="text-gray-300 truncate cursor-pointer",m.textContent=f.name+(c?"  ("+c+")":""),m.title=p+" \u2014 \uD074\uB9AD\uD558\uBA74 \uBAA8\uB378 \uC0C1\uC138",m.addEventListener("click",function(i){return function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(i)}}(p)),d.appendChild(m);var g=document.createElement("span");return g.className="badge badge-"+(f.type||"open-weight"),g.textContent=(f.type||"open-weight").replace("-"," "),d.appendChild(g),d}function r(p){return p.slice().sort(function(f,c){var d=a._resolveReleaseDate(f)||"",m=a._resolveReleaseDate(c)||"";return!d&&!m?0:d?m?m.localeCompare(d):-1:1})}this.REGIONS.forEach(function(p){var f=document.createElement("div");f.className="bg-gray-900 border border-gray-800 rounded-lg p-4 flex flex-col";var c=p.models.filter(function(M){return a._models.some(function(I){return I.id===M})}),d=o?c.filter(function(M){return a._isActive(a._resolveReleaseDate(M))}):c,m=document.createElement("div");m.className="flex items-center gap-2 mb-2";var g=document.createElement("span");g.style.fontSize="20px",g.textContent=p.flag,m.appendChild(g);var i=document.createElement("span");i.className="text-widget text-gray-200 font-semibold",i.textContent=p.label,m.appendChild(i);var b=null;l&&(b={},d.forEach(function(M){var I=a._models.find(function(B){return B.id===M});if(I){var L=a._canonicalVendor(I.vendor);b[L]||(b[L]=[]),b[L].push(M)}}));var s=document.createElement("span");if(s.className="ml-auto text-xs text-gray-500",o)s.textContent=d.length+" / "+c.length+" active";else if(l){var h=b?Object.keys(b).length:0;s.textContent=h+" vendors \xB7 "+c.length+" models"}else s.textContent=c.length+" models";m.appendChild(s),f.appendChild(m);var k=document.createElement("p");k.className="text-xs text-gray-500 mb-3",k.textContent=p.note,f.appendChild(k);var x=document.createElement("div");if(x.className="flex flex-col gap-1",l&&b){var _={};Object.keys(b).forEach(function(M){var I=b[M].reduce(function(L,B){var q=a._resolveReleaseDate(B)||"";return q>L?q:L},"");_[M]=I});var S=Object.keys(b).sort(function(M,I){var L=_[M]||"",B=_[I]||"";return L!==B?B.localeCompare(L):M.localeCompare(I)});S.forEach(function(M){var I=r(b[M]),L=p.code+"||"+M,B=a._vendorCollapsed[L]===!0,q=document.createElement("div");q.className="flex items-center justify-between gap-2 mt-2 mb-1 pb-1 border-b border-gray-800 cursor-pointer hover:bg-gray-800",q.setAttribute("role","button"),q.setAttribute("aria-expanded",B?"false":"true"),q.title=B?"\uD074\uB9AD\uD558\uBA74 \uD3BC\uCE58\uAE30":"\uD074\uB9AD\uD558\uBA74 \uC811\uAE30";var y=document.createElement("span");y.className="flex items-center gap-1";var u=document.createElement("span");u.className="text-xs text-gray-500",u.textContent=B?"\u25B6":"\u25BC",u.style.width="10px",y.appendChild(u);var v=document.createElement("span");v.className="text-xs font-semibold text-gray-300",v.textContent=M,y.appendChild(v),q.appendChild(y);var w=document.createElement("span");w.className="text-xs text-gray-500",w.textContent=I.length+" models",q.appendChild(w),q.addEventListener("click",function(E){return function(){a._vendorCollapsed[E]=!a._vendorCollapsed[E],a._renderRegionMap()}}(L)),x.appendChild(q),B||I.forEach(function(E){var A=n(E);A&&(A.style.paddingLeft="18px",x.appendChild(A))})})}else{var C=r(d);C.forEach(function(M){var I=n(M);I&&x.appendChild(I)})}if(d.length===0){var T=document.createElement("div");T.className="text-xs text-gray-600 italic",T.textContent=o&&c.length>0?"\u2014 \uCD5C\uADFC "+a._ACTIVE_WINDOW_MONTHS+"\uAC1C\uC6D4 \uB0B4 \uCD9C\uC2DC \uBAA8\uB378 \uC5C6\uC74C":"\u2014 no models tracked yet",x.appendChild(T)}f.appendChild(x),e.appendChild(f)})},_renderDimension:function(e){var a=this,t=this._allSovereignIds(),o=t.map(function(g){var i=0,b=0;return e.benchmarks.forEach(function(s){var h=a._getScore(g,s);h!=null&&(i+=h,b++)}),{mid:g,avg:b?i/b:null,cnt:b}}).filter(function(g){return g.cnt>0});o.sort(function(g,i){return i.cnt!==g.cnt?i.cnt-g.cnt:(i.avg||0)-(g.avg||0)});var l=this.FRONTIER_REFERENCE.filter(function(g){return e.benchmarks.some(function(i){return a._getScore(g,i)!=null})}),n=o.slice(0,6).map(function(g){return g.mid}),r=l.slice(0,3),p=n.concat(r),f=e.benchmarks.filter(function(g){return p.some(function(i){return a._getScore(i,g)!=null})}),c=document.getElementById("sov-"+e.id+"-chart"),d=document.getElementById("sov-"+e.id+"-table");if(!(!c||!d)){if(c.textContent="",d.textContent="",c._sovDimDrillWired||(c.addEventListener("click",function(g){if(g.shiftKey&&typeof SovereignCharts!="undefined"&&SovereignCharts.openDimensionLeaderboard){SovereignCharts.openDimensionLeaderboard(e.id);return}}),c.title=(c.title||"")+" \xB7 Shift+click for leaderboard",c._sovDimDrillWired=!0),f.length===0||p.length===0){var m=document.createElement("p");m.className="text-sm text-gray-500 italic",m.textContent="\u2014 \uC774 \uCC28\uC6D0\uC5D0 \uD574\uB2F9\uD558\uB294 \uB370\uC774\uD130\uAC00 \uC544\uC9C1 \uC5C6\uC2B5\uB2C8\uB2E4",c.appendChild(m);return}this._renderDimChart(c,e,f,n,r),this._renderDimTable(d,e,f,n,r)}},_renderDimChart:function(e,a,t,o,l){var n=echarts.init(e),r=this,p=t.map(function(m){var g=r._getBenchmark(m);return g?g.name:m});function f(m,g){return m.map(function(i,b){var s=g?Theme.textMuted:Theme.series[b%Theme.series.length];return{name:r._getModelName(i)+(g?"  \xB7 frontier":""),type:"bar",data:t.map(function(h){var k=r._getScore(i,h);return k!=null?k:null}),itemStyle:{color:s,opacity:g?.55:1,borderColor:g?Theme.borderStrong:"transparent",borderWidth:g?1:0}}})}var c=f(o,!1).concat(f(l,!0)),d=o.map(function(m){return r._getModelName(m)}).concat(l.map(function(m){return r._getModelName(m)+"  \xB7 frontier"}));n.setOption({backgroundColor:"transparent",tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},legend:{data:d,textStyle:{color:Theme.textMuted,fontSize:10},top:0,type:"scroll"},grid:{left:8,right:16,bottom:70,top:40,containLabel:!0},xAxis:{type:"category",data:p,axisLabel:{color:Theme.textMuted,fontSize:9,rotate:30,interval:0,formatter:function(m){return m.length>22?m.slice(0,20)+"\u2026":m}},axisLine:{lineStyle:{color:Theme.borderStrong}}},yAxis:{type:"value",axisLabel:{color:Theme.textMuted},splitLine:{lineStyle:{color:Theme.border}}},series:c}),window.addEventListener("resize",function(){n.resize()})},_renderDimTable:function(e,a,t,o,l){var n=this,r="dim-"+a.id,p=o.concat(l),f={};o.forEach(function(s){f[s]="sovereign"}),l.forEach(function(s){f[s]="frontier"});var c={};t.forEach(function(s){var h=0;p.forEach(function(k){var x=n._getScore(k,s);x!=null&&x>h&&(h=x)}),c[s]=h});var d=this._sortStates[r];d&&d.key&&d.dir&&p.sort(function(s,h){var k,x;if(d.key==="model")k=n._getModelName(s),x=n._getModelName(h);else if(d.key==="region"){var _=n._regionFor(s),S=n._regionFor(h);k=_?_.label:f[s]==="frontier"?"frontier":"\u2014",x=S?S.label:f[h]==="frontier"?"frontier":"\u2014"}else k=n._getScore(s,d.key),x=n._getScore(h,d.key);var C=k==null,T=x==null;return C&&T?0:C?1:T?-1:typeof k=="string"?d.dir==="asc"?k.localeCompare(x):x.localeCompare(k):d.dir==="asc"?k-x:x-k});var m=document.createElement("table");m.className="sota-table text-sm";var g=document.createElement("thead"),i=document.createElement("tr");i.appendChild(n._makeSortableTh(r,"model","Model","asc",function(){n._cycleSort(r,"model","asc"),n._renderDimension(a)})),i.appendChild(n._makeSortableTh(r,"region","Region","asc",function(){n._cycleSort(r,"region","asc"),n._renderDimension(a)})),t.forEach(function(s){var h=n._getBenchmark(s),k=h?h.name:s,x=n._makeSortableTh(r,s,k,"desc",function(_){return function(){n._cycleSort(r,_,"desc"),n._renderDimension(a)}}(s));x.style.fontSize="11px",i.appendChild(x)}),g.appendChild(i),m.appendChild(g);var b=document.createElement("tbody");p.forEach(function(s){var h=document.createElement("tr");f[s]==="frontier"&&(h.style.opacity="0.7");var k=document.createElement("td");k.textContent=n._getModelName(s),k.style.whiteSpace="nowrap",k.style.cursor="pointer",k.title=s+" \u2014 \uD074\uB9AD\uD558\uBA74 \uBAA8\uB378 \uC0C1\uC138",k.addEventListener("click",function(S){return function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(S)}}(s)),h.appendChild(k);var x=document.createElement("td"),_=n._regionFor(s);x.textContent=_?_.flag+" "+_.label:f[s]==="frontier"?"frontier":"\u2014",x.style.fontSize="11px",x.style.color=f[s]==="frontier"?Theme.textMuted:Theme.textPrimary,h.appendChild(x),t.forEach(function(S){var C=document.createElement("td");C.style.textAlign="center";var T=n._getScore(s,S);if(T!=null){C.textContent=T.toFixed(1);var M=c[S]>0?T/c[S]:0;M>=.95?(C.style.color=Theme.series[0],C.style.fontWeight="bold"):M>=.85?C.style.color=Theme.series[1]:M>=.7?C.style.color=Theme.series[2]:C.style.color=Theme.series[3],C.style.cursor="pointer",C.setAttribute("role","button"),C.title="\uD074\uB9AD\uD558\uBA74 \uAC80\uC99D \uC18C\uC2A4\xB7\uC218\uC9D1\uC77C \uC774\uB825",C.addEventListener("click",function(I,L){return function(){typeof Modal!="undefined"&&Modal.showScoreSource&&Modal.showScoreSource(I,L)}}(s,S))}else C.textContent="\u2014",C.style.color=Theme.textDisabled;h.appendChild(C)}),b.appendChild(h)}),m.appendChild(b),e.appendChild(m)},_renderPerfSuites:function(){var e=document.getElementById("sov-perf-suites");if(e){e.textContent="";var a=this,t=[],o={};this.REGIONS.forEach(function(i){i.models.forEach(function(b){o[b]||a._models.some(function(s){return s.id===b})&&(o[b]=!0,t.push(b))})});var l=0,n={},r=this.PERF_SUITES.reduce(function(i,b){return i.concat(b.benchmarks)},[]),p=typeof App!="undefined"&&App.getScoreIndex?App.getScoreIndex():null;if(p&&p.byBench)r.forEach(function(i){var b=p.byBench[i];if(b)for(var s=0;s<b.length;s++)o[b[s].model_id]&&(l++,n[i]=(n[i]||0)+1)});else{var f={};r.forEach(function(i){f[i]=!0}),this._scores.forEach(function(i){f[i.benchmark_id]&&o[i.model_id]&&(l++,n[i.benchmark_id]=(n[i.benchmark_id]||0)+1)})}var c=Object.keys(n).length,d=document.createElement("p");d.className="text-xs text-gray-500 mb-3";var m=document.createElement("strong");m.className="text-gray-300",m.textContent=l+" verified sovereign scores",d.appendChild(m),d.appendChild(document.createTextNode(" across "));var g=document.createElement("strong");g.className="text-gray-300",g.textContent=String(c),d.appendChild(g),d.appendChild(document.createTextNode(" active benchmarks \xB7 19 sovereign regions \xB7 click any score cell for source/history modal \xB7 click model name for details")),e.appendChild(d),this.PERF_SUITES.forEach(function(i){var b=i.benchmarks.filter(function(u){return t.some(function(v){return a._getScore(v,u)!=null})});if(b.length!==0){var s=t.filter(function(u){return b.some(function(v){return a._getScore(u,v)!=null})});if(s.length!==0){s.sort(function(u,v){var w=b.reduce(function(A,R){var N=a._getScore(u,R);return A+(N!=null?N:0)},0),E=b.reduce(function(A,R){var N=a._getScore(v,R);return A+(N!=null?N:0)},0);return E!==w?E-w:a._getModelName(u).localeCompare(a._getModelName(v))});var h=25,k=s.length>h;k&&(s=s.slice(0,h));var x={};b.forEach(function(u){var v=0;t.forEach(function(w){var E=a._getScore(w,u);E!=null&&E>v&&(v=E)}),x[u]=v});var _=document.createElement("div");_.className="mt-6 mb-2";var S=document.createElement("h4");S.className="text-sm font-semibold text-gray-200",S.textContent=i.label+"  ("+b.length+" benchmarks \xB7 "+(k?"top "+h+" / ":"")+s.length+" models)",_.appendChild(S);var C=document.createElement("p");C.className="text-xs text-gray-500",C.textContent=i.note,_.appendChild(C),e.appendChild(_);var T=document.createElement("div");T.className="overflow-x-auto";var M=document.createElement("table");M.className="sota-table text-sm";var I=document.createElement("thead"),L=document.createElement("tr"),B=document.createElement("th");B.textContent="Model",L.appendChild(B);var q=document.createElement("th");q.textContent="Region",q.style.fontSize="11px",L.appendChild(q),b.forEach(function(u){var v=document.createElement("th"),w=a._getBenchmark(u);v.textContent=w?w.name:u,v.style.fontSize="10px",v.style.whiteSpace="nowrap",L.appendChild(v)}),I.appendChild(L),M.appendChild(I);var y=document.createElement("tbody");s.forEach(function(u){var v=a._models.find(function(N){return N.id===u}),w=a._regionFor(u),E=document.createElement("tr"),A=document.createElement("td");A.textContent=v?v.name:u,A.style.whiteSpace="nowrap",A.style.cursor="pointer",A.title=u+" \u2014 \uD074\uB9AD\uD558\uBA74 \uBAA8\uB378 \uC0C1\uC138",A.addEventListener("click",function(N){return function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(N)}}(u)),E.appendChild(A);var R=document.createElement("td");R.textContent=w?w.flag+" "+w.label:"\u2014",R.style.fontSize="11px",R.style.color=Theme.textMuted,R.style.whiteSpace="nowrap",E.appendChild(R),b.forEach(function(N){var z=document.createElement("td");z.style.textAlign="center";var P=a._getScore(u,N);if(P!=null){var D=a._getBenchmark(N),O=D&&D.metric?D.metric:"";z.textContent=P.toFixed(O==="fps"||O==="seconds"||O==="hours"||O==="elo"?0:1);var U=x[N]>0?P/x[N]:0;U>=.99?(z.style.color=Theme.series[0],z.style.fontWeight="bold"):U>=.85?z.style.color=Theme.series[1]:U>=.7?z.style.color=Theme.series[2]:z.style.color=Theme.series[3],z.style.cursor="pointer",z.setAttribute("role","button"),z.title="\uD074\uB9AD\uD558\uBA74 \uAC80\uC99D \uC18C\uC2A4",z.addEventListener("click",function(F,j){return function(){typeof Modal!="undefined"&&Modal.showScoreSource&&Modal.showScoreSource(F,j)}}(u,N))}else z.textContent="\u2014",z.style.color=Theme.textDisabled;E.appendChild(z)}),y.appendChild(E)}),M.appendChild(y),T.appendChild(M),e.appendChild(T)}}})}},_renderHeatmap:function(){var e=document.getElementById("sov-heatmap");if(e){e.textContent="";var a=this,t=[];this.REGIONS.forEach(function(d){var m=d.models.filter(function(g){return a._models.some(function(i){return i.id===g})});t=t.concat(m.slice(0,2))});var o=[];this.DIMENSIONS.forEach(function(d){o=o.concat(d.benchmarks)});var l=o.filter(function(d){var m=0;return t.forEach(function(g){a._getScore(g,d)!=null&&m++}),m>=2});if(l.length===0||t.length===0){var n=document.createElement("p");n.className="text-sm text-gray-500 italic",n.textContent="\u2014 \uD788\uD2B8\uB9F5\uC5D0 \uD45C\uC2DC\uD560 \uAD50\uCC28 \uB370\uC774\uD130\uAC00 \uBD80\uC871\uD569\uB2C8\uB2E4",e.appendChild(n);return}var r=t.map(function(d){var m=a._regionFor(d);return a._getModelName(d)+(m?"  "+m.flag:"")}),p=l.map(function(d){var m=a._getBenchmark(d);return m?m.name:d}),f=[];t.forEach(function(d,m){l.forEach(function(g,i){var b=a._getScore(d,g);f.push([i,m,b!=null?b:"-"])})});var c=echarts.init(e);c.setOption({backgroundColor:"transparent",tooltip:{position:"top",formatter:function(d){return p[d.data[0]]+" \u2192 "+r[d.data[1]]+"<br/>"+(typeof d.data[2]=="number"?d.data[2].toFixed(1):"no data")}},grid:{left:8,right:16,bottom:80,top:30,containLabel:!0},xAxis:{type:"category",data:p,splitArea:{show:!0},axisLabel:{color:Theme.textMuted,rotate:35,fontSize:9,interval:0,formatter:function(d){return d.length>18?d.slice(0,16)+"\u2026":d}}},yAxis:{type:"category",data:r,splitArea:{show:!0},axisLabel:{color:Theme.textMuted,fontSize:10}},visualMap:{min:0,max:100,calculable:!0,orient:"horizontal",left:"center",bottom:0,textStyle:{color:Theme.textMuted,fontSize:10},inRange:{color:["#1f2937","#3b82f6","#10b981","#fbbf24"]}},series:[{name:"score",type:"heatmap",data:f.filter(function(d){return typeof d[2]=="number"}),label:{show:!0,color:"#fff",fontSize:9,formatter:function(d){return typeof d.data[2]=="number"?d.data[2].toFixed(0):""}}}]}),c.on("click",function(d){var m=t[d.data[1]],g=l[d.data[0]];typeof Modal!="undefined"&&Modal.showScoreSource&&Modal.showScoreSource(m,g)}),window.addEventListener("resize",function(){c.resize()})}},_renderAgentProducts:function(){var e=document.getElementById("sov-agent-products");if(e){e.textContent="";var a=this.AGENT_PRODUCTS||[];if(!a.length){var t=document.createElement("p");t.className="text-xs text-gray-500",t.textContent="No sovereign agent products listed.",e.appendChild(t);return}var o={production:"bg-green-900/40 text-green-300 border-green-700",beta:"bg-amber-900/40 text-amber-300 border-amber-700",preview:"bg-blue-900/40 text-blue-300 border-blue-700"};a.forEach(function(l){var n=document.createElement("div");n.className="bg-gray-900 border border-gray-800 rounded-lg p-4 flex flex-col hover:border-blue-600 transition",n.dataset.productId=l.id;var r=document.createElement("div");r.className="flex items-center gap-2 mb-2 flex-wrap";var p=document.createElement("span");p.style.fontSize="18px",p.textContent=l.flag||"",r.appendChild(p);var f=document.createElement("span");f.className="text-xs text-gray-400 uppercase tracking-wide",f.textContent=l.regionLabel||"",r.appendChild(f);var c=document.createElement("span"),d=o[l.status]||"bg-gray-800 text-gray-300 border-gray-700";c.className="ml-auto text-xs px-2 py-0.5 rounded border "+d,c.textContent=l.status||"unknown",r.appendChild(c),n.appendChild(r);var m=document.createElement("div");m.className="text-base font-semibold text-gray-100 mb-1",m.textContent=l.name,n.appendChild(m);var g=document.createElement("div");if(g.className="text-xs text-gray-400 mb-2",g.textContent=l.vendor||"",n.appendChild(g),l.note){var i=document.createElement("div");i.className="text-xs text-gray-500 mb-3 leading-relaxed",i.textContent=l.note,n.appendChild(i)}var b=document.createElement("div");if(b.className="mt-auto flex items-center gap-2 flex-wrap",l.source_url){var s=document.createElement("a");s.href=l.source_url,s.target="_blank",s.rel="noopener noreferrer",s.className="text-xs text-blue-400 hover:text-blue-300 underline",s.textContent="Primary source \u2197",s.title=l.source_url,b.appendChild(s)}if(l.crossLinkAgent){var h=document.createElement("span");h.className="text-xs text-amber-300 bg-amber-900/30 border border-amber-700 rounded px-1.5 py-0.5",h.textContent="Also in Agent menu",h.title="\uC774 \uC81C\uD488\uC740 \uC0C1\uC704 Agent \uBA54\uB274\uC758 AGENT_PRODUCTS \uB9AC\uC2A4\uD2B8\uC5D0\uB3C4 \uD3EC\uD568\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.",b.appendChild(h)}n.appendChild(b),e.appendChild(n)})}}};
+/**
+ * Sovereign AI tab: compares regional/sovereign LLMs against frontier baselines
+ * across three axes that frontier-only metrics don't capture:
+ *   1. Language Adaptation       — regional language / cultural reasoning
+ *   2. Medical System Integration — regional medical licensing / clinical
+ *   3. Government / Regulated Domain — legal, finance, sovereign cyber
+ *
+ * Sovereign AI is the new axis of frontier competition in 2026: language
+ * adaptation, healthcare-system fit, and government-policy alignment. This
+ * tab makes those values legible alongside the global frontier leaderboard.
+ */
+var Sovereign = {
+    REGIONS: [
+        {
+            code: 'kr', label: 'Korea', flag: '🇰🇷',
+            note: '독자 AI 파운데이션 모델 5팀 (LG · KT · SKT · Upstage · Naver) + Kakao · NCSoft · Trillion · Motif · Konan · Saltlux · Samsung Gauss',
+            models: [
+                'lg/exaone-4.5-33b', 'lg/k-exaone-236b', 'lg/k-exaone-2.0-750b-a37b',
+                'lg/exaone-4.0-32b', 'lg/exaone-4.0.1-32b', 'lg/exaone-4.0-1.2b',
+                'lg/exaone-deep-32b', 'lg/exaone-deep-7.8b', 'lg/exaone-deep-2.4b',
+                'lg/exaone-3.5-32b', 'lg/exaone-3.5-7.8b', 'lg/exaone-3.5-2.4b',
+                'upstage/solar-pro-4', 'upstage/solar-mini-4', 'upstage/solar-open2-250b', 'upstage/solar-pro-3', 'upstage/solar-open-100b',
+                'upstage/solar-pro-2', 'upstage/solar-pro-2-preview',
+                'upstage/solar-pro', 'upstage/solar-mini', 'upstage/solar-docvision',
+                'skt/ax-k1', 'skt/ax-4.0', 'skt/ax-4.0-light', 'skt/ax-4.0-vl-light',
+                'kt/midm-k2.5-pro', 'kt/midm-2.0-base', 'kt/midm-2.0-mini',
+                'naver/hyperclova-x-think-32b', 'naver/hyperclova-x-think-14b',
+                'naver/hyperclova-x-seed-omni-8b', 'naver/hyperclova-x-seed-vision-3b',
+                'naver/hyperclova-x',
+                'kakao/kanana-2.5',   // 2026-05 S145 — 150B (May 2026 announcement)
+                'naver/hyperclova-x-think-nemotron', // S145 — Naver collab with NVIDIA Nemotron
+                'kakao/kanana-2-30b-a3b-thinking', 'kakao/kanana-1.5-o-9.8b', 'kakao/kanana-1.5-8b',
+                'kakao/kanana-1.5-15.7b-a3b', 'kakao/kanana-flag-32.5b',
+                // 2026-07-27 S212f — Kanana 2 SLM (1.3B/3B, base+instruct)
+                'kakao/kanana-2-3b-instruct', 'kakao/kanana-2-3b-base',
+                'kakao/kanana-2-1.3b-instruct', 'kakao/kanana-2-1.3b-base',
+                // 2026-08-02 S226 — recently-added Korean models missing from Sovereign
+                'kakao/kanana-2-30b-a3b-instruct-2601',  // Kanana 2 30B-A3B instruct flagship (13 scores)
+                'naver/hyperclova-x-seed-think-14b',     // Naver HyperCLOVA-X SEED Think 14B, May 2026 (15 scores)
+                'vaiv/llamion-14b',                      // VAIV Llamion 14B (S223 net-new, KoMMLU 66.87)
+                'sk-telecom/a.x-4.0',  // 2026-06-04 S52 — SK Telecom A.X 4.0 Korean Foundation Model
+                'skt/ax-k2', 'skt/ax-k2-alm',  // 2026-07-28 S214 — SKT A.X K2 688B-A33B MoE + K2 ALM (audio)
+                'krafton/ax-k2-raon-speech-21b-a3b',  // 2026-07 S215 — KRAFTON bilingual speech LM on A.X K2 Light
+                'naver/hcx-seed-think-32b',  // 2026-06-04 S52 — NAVER HCX-SEED-Think-32B
+                'ncsoft/varco-vision-2.0-14b', 'ncsoft/llama-varco-8b',
+                'trillionlabs/tri-70b', 'trillionlabs/tri-21b', 'trillionlabs/tri-7b',
+                'motif/motif-3-beta', 'motif/motif-2-12.7b-reasoning', 'motif/motif-2-12.7b-instruct',
+                'konan/konan-llm-ond-4b', 'konan/konan-llm-ent-11',
+                'saltlux/luxia-21.4b',
+                'samsung/gauss-2-supreme', 'samsung/gauss-2-balanced', 'samsung/gauss-2-compact',
+                'snuh-naver/kmed-ai',
+                // Historical lineage
+                'lg/exaone-3.0-7.8b', 'lg/exaone-atelier',
+                'upstage/solar-10.7b',
+                'kakao/kogpt-6b',
+                'naver/hyperclova-x-hcx-003', 'naver/hyperclova-x-dash',
+                'naver/hyperclova-seed-coder-8b', 'naver/clova-x', 'naver/cue',
+                'kt/midm-1.0',
+                'ncsoft/varco-llm-1.0-52b', 'ncsoft/varco-llm-13b',
+                'trillionlabs/trillion-7b-preview',
+                '42dot/42dot-llm-sft-1.3b', '42dot/42dot-llm-plm-1.3b',
+                'eleutherai/polyglot-ko-12.8b', 'eleutherai/polyglot-ko-5.8b',
+                'eleutherai/polyglot-ko-3.8b', 'eleutherai/polyglot-ko-1.3b',
+                // Korean vertical AI
+                'lunit/lunit-insight-mmg', 'lunit/lunit-scope-pdl1',
+                'vuno/vuno-med-chest-xray', 'vuno/vuno-med-deepbrain',
+                'lbox/lbox-caselaw',
+                'riiid/riiid-tutor'
+            ]
+        },
+        {
+            code: 'fr', label: 'France', flag: '🇫🇷',
+            note: '프랑스 sovereign frontier — Mistral 풀라인업 (Mistral 7B·Mixtral·Nemo·Saba·Codestral·Mathstral·Pixtral·Magistral·Devstral·Ministral·Voxtral) + PleIAs · Lucie · CroissantLLM · HuggingFace SmolLM',
+            models: [
+                // Mistral — flagship & frontier
+                'mistral/mistral-large-4-preview',  // 2026-10-06 S296 — 1T / 52B-active MoE trained on 3,800 Grace Blackwell GPUs in Mistral's EU datacenters; AAII 38.4, Vals Index 48.05, Cybench 93
+                'mistral/mistral-large-3', 'mistral/mistral-medium-3.5', 'mistral/mistral-medium-3.5-eagle', 'mistral/mistral-medium-3.1', 'mistral/mistral-medium-3',
+                'cohere-alephalpha/command-pharia-1',  // 2026-04-24 S145 — Cohere+Aleph Alpha merger; Command-Pharia 1 Q4 2026 EU sovereign
+                'aleph-alpha/pharia-1-llm-7b-control',  // 2026 S151 audit — Aleph Alpha Pharia-1 LLM Control variant
+                // 2026-06-28 S151 — Tencent + ByteDance high-score-coverage sovereign frontier
+                'tencent/hunyuan3d-2', 'tencent/hunyuan3d-2.1', 'tencent/hunyuan3d-2.5',
+                'tencent/hunyuanvideo-1.5', 'tencent/hunyuanvideo-1.5',
+                'bytedance/doubao-seed-2.0-pro',
+                'mistral/leanstral',
+                'mistral/mistral-large-2', 'mistral/mistral-large-1',
+                'mistral/mistral-small-4', 'mistral/mistral-small-3.2', 'mistral/mistral-small-3.1', 'mistral/mistral-small-3', 'mistral/mistral-small-2', 'mistral/mistral-small-1',
+                // Mistral — reasoning
+                'mistral/magistral-medium-1.2', 'mistral/magistral-small-1.2', 'mistral/magistral-medium-1', 'mistral/magistral-small-1',
+                // Mistral — code
+                'mistral/devstral-2', 'mistral/devstral-medium', 'mistral/devstral-small-2', 'mistral/devstral-small-1.1', 'mistral/devstral-small-1',
+                'mistral/codestral-25.08', 'mistral/codestral-22b', 'mistral/codestral-mamba-7b',
+                // Mistral — math
+                'mistral/mathstral-7b',
+                // Mistral — vision / multimodal / audio
+                'mistral/pixtral-large', 'mistral/pixtral-12b', 'mistral/voxtral-tts',
+                // Mistral — Ministraux (edge)
+                'mistral/ministral-3-14b', 'mistral/ministral-3-8b', 'mistral/ministral-3-3b',
+                'mistral/ministral-8b-v1', 'mistral/ministral-3b-v1',
+                'mistral/ministral-14b',  // 2026-06-06 S56 — Ministral 14B (ErrorQuake b=1.12 light tail, paired with DS-V3.2)
+                // Mistral — original / regional
+                'mistral/mistral-7b', 'mistral/mixtral-8x7b', 'mistral/mixtral-8x22b',
+                'mistral/mistral-nemo-12b', 'mistral/mistral-saba-24b',
+                // 2026-06-19 S140 — Ministral 3 family + Liquid AI (US/MIT-derived)
+                'mistral/ministral-3-3b', 'mistral/ministral-3-8b', 'mistral/ministral-3-14b',
+                'liquid/lfm2.5-8b-a1b', 'liquid/lfm2.5-vl-1.6b', 'liquid/lfm2.5-vl-450m',
+                'liquid/lfm2.5-audio-1.5b', 'liquid/lfm2.5-1.2b-jp',
+                // PleIAs (Common Corpus)
+                'pleias/pleias-1.0-pico-3.5b', 'pleias/pleias-1.0-olmo-1b',
+                'pleias/pleias-rag-1b', 'pleias/pleias-rag-350m',
+                // CNRS / academic
+                'openllm-france/lucie-7b', 'croissantllm/croissant-1.3b',
+                // Hugging Face SmolLM family
+                'huggingface/smollm3-3b', 'huggingface/smollm2-1.7b', 'huggingface/smollm2-360m', 'huggingface/smollm2-135m', 'huggingface/smollm-1.7b'
+            ]
+        },
+        {
+            code: 'cn', label: 'China', flag: '🇨🇳',
+            note: '중국 frontier 전체 — Qwen 풀+specialists (incl. Qwen3-VL-235B/Wan-2.2-I2V) · DeepSeek (V3-V4/R1/Coder/Math/VL) · Kimi · GLM · Hunyuan · ERNIE · Doubao · iFlytek Spark · Yi · Baichuan · InternLM/InternVL3 · SenseNova-V6.5-Pro · Skywork · MiniCPM-o · Ovis2.5 (AIDC-AI) · Step-1o (StepFun) · JT3.5 (China Mobile) · TeleMM-2.0 (China Telecom) · PanGu · Aquila · MOSS · Yuan',
+            models: [
+                // Alibaba Qwen — full param lineup
+                'alibaba/qwen3.8-max-preview', 'alibaba/qwen3.7-max', 'alibaba/qwen3.7-max-20260517', 'alibaba/qwen3.7-max-preview', 'alibaba/qwen3.7-plus-preview',
+                'inclusionai/ling-3.0-flash',
+                'inclusionai/ling-3.0-flash-sante',  // 2026-09-09 S276 — health/medicine MoE on Ling-3.0-flash (MedXpertQA-Text 53.9, DiagnosisArena 83.8)
+                'startlux/startlux-v1.0-27b-preview', // 2026-09-09 S276 — CAICT MCP special test 39.25 (#2 of 6)
+                'xhtoken/spark-x2.5-4b', 'xhtoken/spark-x2.5-1.7b', // 2026-09-09 S276 — Ascend-trained 1M-ctx small models (BrowseComp 40.9, SWE-Bench Pro 44.4)
+                'alibaba/qwen3.7-plus',  // 2026-06-02 S46 — Qwen3.7-Plus GA (Multimodal Agent Intelligence, qwen.ai blog)
+                'alibaba/qwen3.6-max-preview',  // 2026-04-20 S179 audit — ECI 149.65
+                'alibaba/qwen3.6-plus', 'alibaba/qwen3.6-27b', 'alibaba/qwen3.6-35b-a3b',
+                'alibaba/qwen3.5-max-preview', 'alibaba/qwen3.5-plus',
+                'alibaba/qwen3.5-397b', 'alibaba/qwen3.5-122b', 'alibaba/qwen3.5-27b',
+                'alibaba/terminal-universe-27b',  // S270 2026-09-04 Qwen Terminal-Universe paper model (Qwen3.5-27B base)
+                'alibaba/qwen3-235b-a22b-thinking-2507', 'alibaba/qwen3-235b-a22b-instruct-2507', 'alibaba/qwen3-235b-a22b',
+                'alibaba/qwen3-30b-a3b', 'alibaba/qwen3-32b', 'alibaba/qwen3-14b', 'alibaba/qwen3-8b', 'alibaba/qwen3-4b', 'alibaba/qwen3-1.7b', 'alibaba/qwen3-0.6b',
+                'alibaba/qwen3-next',
+                'alibaba/qwen2.5-72b', 'alibaba/qwen2.5-32b', 'alibaba/qwen2.5-14b', 'alibaba/qwen2.5-7b',
+                // DeepSeek
+                'deepseek/deepseek-v4-pro-max', 'deepseek/deepseek-v4-pro-thinking', 'deepseek/deepseek-v4-pro', 'deepseek/deepseek-v4-flash',
+                'deepseek/deepseek-v4.1-flash', 'deepseek/deepseek-v4.1-flash-base',  // 2026-09-10 S278 — 552B CED MoE, TB2.1 90.6
+                'deepseek/deepseek-v4.1-flash-1017',  // 2026-10-17 S310 — minor update, TB4.0 42.3
+                'minimax/m3.1-flash',  // 2026-10-19 S311 — M3.1 Flash, AA II 42.4 (vs M3 29.2)
+                'deepseek/deepseek-v3.2', 'deepseek/deepseek-v3.2-speciale',
+                'deepseek/deepseek-v3.1-terminus', 'deepseek/deepseek-v3',
+                'deepseek/deepseek-r1-0528', 'deepseek/deepseek-r1',
+                // Zhipu GLM
+                'zhipu/glm-5.2', // 2026-06-17 S137 — AAII v4.1 51 open-weights leader
+                'zhipu/glm-4.6v', 'zhipu/glm-4.6v-flash', // 2026-04 S144 — VLM family (106B + 9B)
+                'zhipu/scail-2', // 2026-06-19 S138 — unified character animation (arxiv 2606.10804)
+                'zhipu/glm-5.1', 'zhipu/glm-5', 'zhipu/glm-4.7', 'zhipu/glm-4.6', 'zhipu/glm-4.5', 'zhipu/glm-4.5-air',
+                // Moonshot Kimi
+                'moonshot/kimi-k3',  // 2026-07-16 S182 — first open 3T-class MoE, AAII v4.1 57
+                'moonshot/kimi-k2.7-code',  // 2026-06-12 S179 audit — ECI 150.02, AAII v4.1 42
+                'moonshot/kimi-k2.6', 'moonshot/kimi-k2.5', 'moonshot/kimi-k2.5-thinking', 'moonshot/kimi-k2.5-instant',
+                'moonshot/kimi-k2-thinking',
+                'moonshot/kimi-k2-instruct', 'moonshot/kimi-k2-base', 'moonshot/kimi-k1.5',
+                // 2026-07-01 S160 — Meituan LongCat family (1.6T total / 48B active MoE, 50K+ AI ASICs non-NVIDIA)
+                'meituan/longcat-2.0', 'meituan/longcat-flash-thinking', 'meituan/longcat-flash-thinking-2601', 'meituan/longcat-video',
+                // MiniMax / MiMo / StepFun
+                'minimax/m3', 'minimax/m2.7', 'minimax/m2.5', 'minimax/m2.1',
+                'mimo/mimo-v2-pro', 'mimo/mimo-v2-flash',
+                'stepfun/step-3.7-flash', 'stepfun/step-3.5-flash', 'stepfun/step-2-pro', 'stepfun/step-2-mini', // 2026-06-10 S67 — step-3.7-flash AAII 43
+                'stepfun/step-1o',
+                // Baidu ERNIE
+                'baidu/ernie-5.1', 'baidu/ernie-5.0', 'baidu/ernie-4.5-300b-a47b', 'baidu/ernie-4.5-turbo', 'baidu/ernie-speed', 'baidu/ernie-lite',
+                'baidu/ernie-image',  // 2026-06-05 S55 — Baidu ERNIE Image (AA T2I Arena Elo 1176)
+                'baidu/paddleocr-vl-1.6',  // 2026-06 S138 — OmniDocBench v1.6 96.33 SOTA (arxiv 2606.03264)
+                'jd/joyai-vl-interaction',  // 2026-06 S138 — JD.com 8B real-time VLM (arxiv 2606.14777)
+                'hidream/hidream-o1-image-dev-2604',  // 2026-06-05 S55 — HiDream O1 Image Dev 2604 (AA T2I Elo 1192)
+                'alibaba/fun-realtime-tts',  // 2026-06-05 S55 — Alibaba FunAudioLLM Fun-Realtime-TTS (AA TTS Arena Elo 1227 SOTA)
+                'alibaba/fun-realtime-asr-preview',  // 2026-06-08 S58 — Alibaba FunAudioLLM Fun-Realtime-ASR (AA Transcribe WER 1.7% NEW SOTA, beats Scribe v2 2.2%)
+                // 2026-06-19 S139 — Audio AI frontier + China Embedding refresh
+                'alibaba/fun-realtime-audiochat', 'alibaba/fun-audio-chat-8b',
+                'moonshot/kimi-audio-7b',
+                'alibaba/qwen3.5-omni',     // 2026-03-30 S149 — 113 languages, 99% Big Bench Audio (NEW S2S SOTA)
+                'stepfun/step-audio-r1.1-realtime',  // 2026-01-14 S149 — open-weight realtime S2S
+                'stepfun/step-audio-2.5-realtime',   // 2026-05-24 S149
+                'stepfun/step-audio-editx',          // 2026 S149 — open-weight TTS Arena 1113 #1 open
+                'qwen/qwen3-vl-embedding-8b', 'qwen/qwen3-vl-reranker-8b', 'qwen/qwen3-vl-reranker-2b',
+                'tencent/conan-embedding-v2', 'kingsoft/qzhou-embedding',
+                // Tencent Hunyuan
+                'tencent/hunyuan-hy3',  // 2026-07-06 S181 — GA 295B-A21B MoE Apache 2.0; SWE-Verified 78 / GPQA-D 90.4 / HLE 53.2
+                'tencent/hunyuan-t1', 'tencent/hunyuan-large', 'tencent/hunyuan-turbo', 'tencent/hunyuan-7b',
+                'tencent/hunyuan-image-3.0',
+                // ByteDance Doubao Seed + Seedream image/video family
+                'bytedance/doubao-2.1-pro',  // 2026-06-23 S144 — Doubao-Seed-2.1 Pro multimodal+agent
+                'bytedance/seed-vla',        // 2026 S144 — ByteDance VLA robot foundation
+                'bytedance/seed-2.1-pro',    // 2026-07 S175 — Agents' Last Exam ALE-V1 19.5% pass rate (Claude Code)
+                'bytedance/seed-2.0-pro', 'bytedance/seed-1.6', 'bytedance/seed-1.5-pro', 'bytedance/seed-1.5-lite',
+                'bytedance/seed-oss-36b',  // 2026-06-06 S56 — ByteDance Seed-OSS 36B (ErrorQuake b=0.57 heaviest)
+                'bytedance/dreamina-seedance-2.0-720p', 'bytedance/seedance-2.0',
+                'bytedance/seedream-4.5', 'bytedance/seedream-4-2k', 'bytedance/seedream-5.0-lite',
+                'bytedance/seedream-4-fal', 'bytedance/seedream-4-high-res-fal',
+                // 2026-05 Alibaba image/video gen + robotics (sovereign expansion)
+                'alibaba/wan2.7-t2v',  // 2026-06-04 S51 — Wan 2.7 T2V NEW arena.ai T2V Arena #3
+                'alibaba/wan2.6-t2v', 'alibaba/wan2.6-t2i', 'alibaba/wan2.5-t2i-preview',
+                'alibaba/qwen-image-2.0-pro-2026-04-22', 'alibaba/qwen-image-2512', 'alibaba/qwen-image-2.0-2026-03-03',
+                'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav',
+                // 2026-06-16 S137 — Qwen RobotSuite trio (RobotManip LIBERO-Plus 91.4 SOTA, RobotWorld 20B MMDiT WorldModelBench 8.99 open-source SOTA)
+                'alibaba/qwen-robotmanip', 'alibaba/qwen-robotworld',
+                // 2026-06-01 S45 — Qwen-VLA family (arxiv 2605.30280, Alibaba Qwen Team)
+                'alibaba/qwen-vla-base', 'alibaba/qwen-vla-instruct',
+                'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',
+                'alibaba/gui-owl-1.5-8b', 'alibaba/gui-owl-1.5-32b',
+                // 2026-05 Alibaba VLM frontier — S37 CompassRank + S38 PAI-Bench-U entries
+                'alibaba/qwen3-vl-235b-a22b-instruct', 'alibaba/wan-2.2-i2v-a14b',
+                // 2026-05-30/31 Alibaba Wan video gen — S39 conditional + S41 WorldArena frontier
+                'alibaba/wan-2.2', 'alibaba/wan-2.6',
+                'alibaba/wan-2.2-fun-a14b-control', 'alibaba/wan-2.2-fun-5b-control',
+                // 2026-05 Kuaishou Kling (video gen)
+                'kling/kling-v3-pro', 'kling/kling-o1-pro', 'kling/kling-o3-pro',
+                // 2026-05 Alibaba-ATH happyhorse (video gen #2 across all arena video boards)
+                'alibaba-ath/happyhorse-1.0',
+                // Apr 2026 sweep — new Chinese flagships
+                'tencent/hy3-preview', 'tencent/hy-world-2.0',
+                'xiaomi/mimo-v2.6-pro', 'xiaomi/mimo-v2.6-flash',  // 2026-09-22 S282 — 1.02T/42B and 309B/15B, MIT, omnimodal
+                'xiaomi/mimo-v2.5-pro', 'xiaomi/mimo-v2.5',
+                'inclusionai/ling-2.6-1t', 'inclusionai/ling-2.6-flash', 'inclusionai/llada2-uni', 'inclusionai/ring-2.6-1t', // 2026-06-10 S67 — AAII 38
+                // iFlytek Spark (state-backed)
+                'iflytek/spark-x1', 'iflytek/spark-4-ultra', 'iflytek/spark-4', 'iflytek/antelope-3.0',
+                // 01.AI (Lee Kai-Fu)
+                '01-ai/yi-lightning', '01-ai/yi-large', '01-ai/yi-1.5-34b', '01-ai/yi-1.5-9b', '01-ai/yi-1.5-6b',
+                '01-ai/yi-coder-9b', '01-ai/yi-vl-34b',
+                // Baichuan
+                'baichuan/baichuan-4', 'baichuan/baichuan-3', 'baichuan/baichuan-2-13b', 'baichuan/baichuan-2-7b',
+                'baichuan/baichuan-m1-14b', 'baichuan/baichuan-omni-1.5',
+                // Shanghai AI Lab — InternLM/InternVL
+                'shanghai-ai-lab/internlm-3-8b', 'shanghai-ai-lab/internlm-2.5-20b',
+                'shanghai-ai-lab/internlm-2.5-7b', 'shanghai-ai-lab/internlm-2.5-1.8b',
+                'shanghai-ai-lab/internvl-3', 'shanghai-ai-lab/internvl-2.5',
+                'shanghai-ai-lab/internvl3-78b',
+                // SenseTime
+                'sensetime/sensenova-v6-5-pro', 'sensetime/sensenova-v6', 'sensetime/sensechat-5', 'sensetime/sensenova',
+                // 2026-05 Sovereign-CN VLM frontier — S37 CompassRank entries
+                'china-mobile/jt3.5', 'china-mobile/jt-35b-flash',  // 2026-06-08 S57 — JT 35B Flash AAII 36 #1/131 free
+                'china-telecom/telemm-2.0', 'china-telecom/telemm-2.0-thinking',
+                'aidc-ai/ovis2.5-9b',
+                // Skywork (Kunlun)
+                'skywork/skywork-moe', 'skywork/skywork-13b', 'skywork/skywork-r1v-3', 'skywork/skywork-o1',
+                // OpenBMB MiniCPM (Tsinghua)
+                'openbmb/minicpm-4.1-8b', 'openbmb/minicpm-4-8b', 'openbmb/minicpm3-4b', 'openbmb/minicpm-5-1b', // 2026-06-10 S67 — AAII 18 leading 1B open-weights
+                'openbmb/minicpm-v-2.6', 'openbmb/minicpm-o-2.6', 'openbmb/minicpm-o-4.5',
+                'openbmb/agentcpm-explore',            // 2026-09-09 S276 — 4B agent model (GAIA 63.9, xbench-DeepSearch 70.0)
+                'openbmb/minicpm-5-1b',                // 2026-05-19 S140 — AAII v4.1 = 17.9 (1B open SOTA, +7.4 vs next)
+                'openbmb/minicpm-v-4.6',              // 2026-05-11 S140 — iOS/Android/HarmonyOS VLM
+                'alibaba/qwen-3.5-0.8b','alibaba/qwen-3.5-2b','alibaba/qwen-3.5-4b','alibaba/qwen-3.5-9b', // 2026-03 S140 — Qwen 3.5 Small family
+                // Huawei PanGu
+                'huawei/pangu-ultra-moe', 'huawei/pangu-5', 'huawei/pangu-embedding',
+                // BAAI Aquila / Wudao
+                'baai/aquila2-34b', 'baai/aquila2-7b', 'baai/wudao-2',
+                // Fudan / Inspur
+                'fnlp/moss-2', 'ieit/yuan-2.0',
+                // Qwen specialists (reasoning, vision, code, math, audio)
+                'alibaba/qwq-32b', 'alibaba/qvq-72b-preview',
+                'alibaba/qwen2.5-coder-32b', 'alibaba/qwen2.5-coder-14b', 'alibaba/qwen2.5-coder-7b',
+                'alibaba/qwen2.5-math-72b', 'alibaba/qwen2.5-math-7b',
+                'alibaba/qwen2-vl-72b', 'alibaba/qwen3-vl-235b', 'alibaba/qwen2-audio',
+                // DeepSeek specialists
+                'deepseek/deepseek-coder-v2', 'deepseek/deepseek-coder-v2-lite',
+                'deepseek/deepseek-math-7b', 'deepseek/deepseek-vl2', 'deepseek/janus-pro-7b',
+                // Medical specialist
+                'freedomintelligence/huatuogpt-ii',
+                // 2026-05-28 Session 30 — SJTU+Xinhua+Harvard DeepRare rare-disease agentic + Tsinghua+BGI PhenoBrain
+                'sjtu-xinhua-harvard/deeprare', 'tsinghua-bgi/phenobrain'
+            ]
+        },
+        {
+            code: 'jp', label: 'Japan', flag: '🇯🇵',
+            note: 'Major sovereign players — PFN PLaMo · NTT tsuzumi · NEC cotomi · Fujitsu Takane · Rakuten AI · ELYZA · Swallow (Tokyo Tech) · Stockmark · NII llm-jp · SoftBank Sarashina · CyberAgent · Karakuri · ABEJA · Sakana',
+            models: [
+                // Preferred Networks (PFN) — flagship JP sovereign
+                'pfn/plamo-3.0-prime',  // 2026-06-22 S145 — 256K ctx
+                'softbank/sarashina-cloud-pf', // 2026-06-01 S145 — Sarashina enterprise on Cloud PF Type A
+                'tokyo-tech/qwen3-swallow-32b-rl',  // S145 — Tokyo Tech Qwen3-Swallow RL
+                'nii/llm-jp-4-32b-a3b', // 2026-04-03 S145 — National Institute of Informatics LLM-jp-4
+                'pfn/plamo-100b', 'pfn/plamo-2-prime', 'pfn/plamo-2.1-prime', 'pfn/plamo-2-8b',
+                // NTT
+                'ntt/tsuzumi-1', 'ntt/tsuzumi-2',
+                // NEC
+                'nec/cotomi-pro', 'nec/cotomi-light',
+                // Fujitsu × Cohere
+                'fujitsu/takane',
+                // Rakuten
+                'rakuten/rakuten-ai-7b', 'rakuten/rakutenai-2.0-8x7b-instruct', 'rakuten/rakutenai-3.0',
+                // ELYZA
+                'elyza/llama-3-elyza-jp-8b', 'elyza/llama-3-elyza-jp-70b',
+                // Karakuri
+                'karakuri-ai/karakuri-lm-8x7b-chat',
+                // Stockmark (GENIAC Phase 2)
+                'stockmark/stockmark-2-100b-instruct',
+                // NII LLM-JP Consortium
+                'llm-jp/llm-jp-3-172b-instruct3',
+                // Tokyo Tech + AIST (Swallow)
+                'tokyotech-llm/llama-3.3-swallow-70b-instruct',
+                // SB Intuitions (SoftBank)
+                'sbintuitions/sarashina2-13b', 'sbintuitions/sarashina2-vision-14b',
+                // CyberAgent
+                'cyberagent/calm3-22b-chat',
+                // ABEJA
+                'abeja/abeja-qwen2.5-32b-japanese',
+                // Sakana (existing + new)
+                'sakana/tinyswallow-1.5b',
+                'sakana/fugu-ultra', 'sakana/fugu', 'sakana/fugu-mini', 'sakana/namazu',
+                'sakana/trinity',   // 2025-12 S141 — ICLR 2026 0.6B coordinator + 10K head (Fugu predecessor)
+                // 2026-05-28 Session 30 — RIKEN PubCaseFinder (phenotype-driven rare disease HPO tool)
+                'riken/pubcasefinder'
+            ]
+        },
+        {
+            code: 'in', label: 'India', flag: '🇮🇳',
+            note: '독자 sovereign AI Mission — Sarvam · BharatGen · Krutrim · Soket AI · AI4Bharat · BharatGPT + Tata MAITRI · Reliance JioBrain · L&T-Vyoma',
+            models: [
+                // Sarvam — full lineup (incl. MoE 30B/105B)
+                'sarvam/sarvam-105b', 'sarvam/sarvam-30b',
+                'sarvam/sarvam-m', 'sarvam/sarvam-1',
+                // BharatGen (govt-funded IIT Bombay TIH)
+                'bharatgen/param2-17b-thinking',  // 2026-04 reasoning
+                'bharatgen/shrutam-2',  // 2026-05 ASR
+                'bharatgen/param2-17b', 'bharatgen/param-1-2.9b',
+                'bharatgen/param2-sutra', 'bharatgen/param-1t-roadmap',
+                // Krutrim (Ola)
+                'ola/krutrim-2-12b', 'ola/krutrim-spectre', 'ola/krutrim',
+                // Soket AI (Project EKA)
+                'soketai/sutra-pro', 'soketai/sutra-light',
+                'soketai/pragna-1b', 'soketai/eka-roadmap',
+                // AI4Bharat (IIT Madras govt-backed)
+                'ai4bharat/indicllm', 'ai4bharat/indicbert-v2', 'ai4bharat/indictrans2',
+                // CoRover
+                'corover/bharatgpt',
+                // Conglomerate / industry-led (announced)
+                'reliance/jiobrain', 'tata/maitri', 'lt-vyoma/sovereign-ai'
+            ]
+        },
+        {
+            code: 'il', label: 'Israel', flag: '🇮🇱',
+            note: 'AI21 Jamba 풀라인업 (1.0/1.5/1.6/1.7/Jamba2 + Reasoning + Maestro) + DICTA Hebrew sovereign LLM',
+            models: [
+                // AI21 Jamba — flagships (latest first)
+                'ai21/jamba2-mini', 'ai21/jamba2-3b', 'ai21/jamba-reasoning', 'ai21/maestro',
+                'ai21/jamba-large-1.7', 'ai21/jamba-1.7-mini',
+                'ai21/jamba-1.6-large', 'ai21/jamba-1.6-mini',
+                'ai21/jamba-large-1.5', 'ai21/jamba-1.5-mini',
+                'ai21/jamba-1.0',
+                // DICTA — Hebrew sovereign LLM
+                'dicta/dictalm-3.0-24b-thinking', 'dicta/dictalm-3.0-24b-base',
+                'dicta/dictalm-3.0-12b-instruct', 'dicta/dictalm-3.0-1.7b-thinking',
+                'dicta/dictalm-3.0-24b',
+                'dicta/dictalm-2.0-instruct', 'dicta/dictalm-2.0'
+            ]
+        },
+        {
+            code: 'ae', label: 'UAE', flag: '🇦🇪',
+            note: 'TII Falcon-H1/H1R/Perception/Falcon3/Mamba/Falcon2/180B + MBZUAI K2 Think V2 (G42+Cerebras, 73B fully-open reasoning) + Atlas-Chat/BiMediX (Arabic)',
+            models: [
+                // TII Falcon-H1 family (May 2025) + Reasoning + Perception
+                'tii/falcon-h1r-7b',  // 2026-01-05 reasoning
+                'tii/falcon-perception',  // 2026-04 vision
+                'tiiuae/falcon-h1-34b', 'tii/falcon-h1-arabic-34b', 'tii/falcon-h1-7b',
+                'tii/falcon-h1-3b', 'tii/falcon-h1-1.5b-deep', 'tii/falcon-h1-1.5b', 'tii/falcon-h1-0.5b',
+                // TII Falcon3 family (Dec 2024)
+                'tii/falcon3-10b', 'tii/falcon3-7b', 'tii/falcon3-3b', 'tii/falcon3-1b',
+                // TII older
+                'tii/falcon-ocr', 'tiiuae/falcon-mamba-7b', 'tii/falcon2-11b', 'tii/falcon-180b',
+                // MBZUAI / G42 / Cerebras
+                'mbzuai/k2-think-v2',  // 2026-01-27 73B reasoning SOTA
+                'mbzuai/k2-v2-instruct',
+                'mbzuai/llm360-k2-65b', 'mbzuai/atlas-chat-9b', 'mbzuai/bimedix',
+                // 2026-09-03 S265 — IFM (Institute of Foundation Models, MBZUAI) K2 Horizon fleet,
+                // billed as the largest fully open-source launch to date (weights + training code + data)
+                'ifm/k2-horizon-375b-a23b', 'ifm/k2-horizon-mova-36b-a4b', 'ifm/k2-horizon-32b',
+                'ifm/k2-horizon-7b', 'ifm/k2-horizon-3.7b', 'ifm/k2-horizon-0.9b'
+            ]
+        },
+        {
+            code: 'sg', label: 'Singapore', flag: '🇸🇬',
+            note: 'AI Singapore SEA-LION 풀라인업 (Llama/Gemma2/Apertus 기반) + SEA-LION ModernBERT/E5 임베딩 (2026-03) + GoTo Sahabat-AI (인도네시아어)',
+            models: [
+                // SEA-LION encoder / embedding suite (Mar-Apr 2026)
+                'ai-singapore/sea-lion-modernbert-600m', 'ai-singapore/sea-lion-modernbert-300m',
+                'ai-singapore/sea-lion-e5-embedding-600m',
+                'ai-singapore/sea-lion-v4.5',       // 2026-05-26 S145 — v4.5 suite (agentic + speed)
+                'ai-singapore/sea-guard',           // 2026-02-04 S145 — safety layer
+                'ai-singapore/sea-lion-embedding',  // 2026-03 S145 — multilingual embed
+                'sarvam/sarvam-vision-3b',         // 2026-02-05 S145 — Sarvam SSM-VLM India
+                'sber/gigachat-ultra',             // 2026-03 S145 — Russia reasoning
+                // SEA-LION v4 (text generation)
+                'ai-singapore/apertus-sea-lion-v4-8b', 'ai-singapore/gemma-sea-lion-v4-4b-vl',
+                'ai-singapore/llama-sea-lion-v3.5-70b', 'ai-singapore/llama-sea-lion-v3.5-8b',
+                'ai-singapore/gemma2-sea-lion-v3-9b', 'ai-singapore/sea-lion-v2.1-7b',
+                // GoTo Sahabat-AI
+                'gotoai/sahabat-ai-v1-70b', 'gotoai/sahabat-ai-v1-8b'
+            ]
+        },
+        {
+            code: 'ch', label: 'Switzerland', flag: '🇨🇭',
+            note: 'Swiss AI Initiative (ETH Zurich + EPFL + CSCS) — Apertus 8B/70B 풀라인업 (Alps supercomputer, 1,811 languages incl. Swiss German + Romansh, Apache 2.0) + EPFL Meditron 의료',
+            models: [
+                // German sovereign — Soofi S (Deutsche Telekom Industrial AI Cloud, Jul 2026)
+                'soofi-project/soofi-s-30b-a3b',  // S182 — hybrid Mamba MoE 31.6B-A3.2B, beats OLMo 3.1 32B + Apertus 70B on En+De
+                // Swiss AI Initiative — Apertus flagship (ETH + EPFL + CSCS, Sep 2025)
+                'swiss-ai/apertus-70b', 'swiss-ai/apertus-70b-instruct',
+                'swiss-ai/apertus-8b', 'swiss-ai/apertus-8b-instruct',
+                // 2026-05-29 S141 — EPFL MeditronFO fully-open medical pipeline (arxiv 2605.16215)
+                'swiss-ai/apertus-70b-meditronfo', 'swiss-ai/apertus-8b-meditronfo',
+                'epfl/olmo-2-32b-meditronfo', 'epfl/eurollm-22b-meditronfo',
+                'epfl/eurollm-9b-meditronfo', 'epfl/gemma-3-27b-meditronfo',
+                // EPFL medical
+                'epfl/meditron-70b', 'epfl/meditron-7b', 'epfl/llama-3-meditron-70b'
+            ]
+        },
+        {
+            code: 'ca', label: 'Canada', flag: '🇨🇦',
+            note: 'Cohere Labs (Toronto, 구 Cohere For AI) — Command A 풀라인업 + Aya 시리즈 + Cohere Transcribe',
+            models: [
+                // Cohere Labs flagships
+                'cohere/command-a', 'cohere/command-a-plus', 'cohere/command-a-vision', 'cohere/command-a-reasoning', 'cohere/north-mini-code', // 2026-06-10 S67 — command-a-plus AAII 37, north-mini-code Apache 2.0 MoE 30B/3B coding-specialist
+                'cohere/command-r7b-arabic',
+                'cohere/cohere-transcribe',
+                // Aya multilingual series
+                'cohere/aya-23-35b', 'cohere/aya-vision-8b', 'cohere/tiny-aya-base'
+            ]
+        },
+        {
+            code: 'au', label: 'Australia', flag: '🇦🇺',
+            note: 'Maincode (Melbourne AI factory) + Isaacus (Australian legal AI)',
+            models: [
+                'maincode/maincoder-1b',
+                'isaacus/open-australian-legal-llm', 'isaacus/emubert'
+            ]
+        },
+        {
+            code: 'us-legal', label: 'US (Legal AI)', flag: '⚖️',
+            note: 'Vertical legal AI (Harvey · CoCounsel · Vincent · Oliver)',
+            models: [
+                'harvey/harvey-assistant',
+                'thomson-reuters/cocounsel-2',
+                'vlex/vincent-ai',
+                'vecflow/oliver'
+            ]
+        },
+        {
+            code: 'us-fin', label: 'US (Finance)', flag: '💰',
+            note: 'Bloomberg sovereign-data finance LLM',
+            models: ['bloomberg/bloomberg-gpt']
+        },
+        {
+            code: 'ru', label: 'Russia', flag: '🇷🇺',
+            note: 'Yandex YandexGPT 5 + Sber GigaChat 1/2/3 (incl. 3 Ultra Preview 702B-A36B MoE) + Vikhr opensource + T-Bank T-Pro 2.0 + MTS AI Cotype Pro 2',
+            models: [
+                'yandex/yandexgpt-5-pro', 'yandex/yandexgpt-5-lite-8b', 'yandex/yandexgpt-4-pro', 'yandex/yalm-100b',
+                'sber/gigachat-3.1-ultra', 'sber/gigachat-3.5-ultra', 'sber/gigachat-3.1-lightning',
+                'sber/gigachat-3-ultra', 'sber/gigachat-3-lightning', 'sber/gigachat-3-ultra-preview',
+                'sber/gigachat-2-max', 'sber/gigachat-2-pro', 'sber/gigachat-2-lite', 'sber/gigachat-1.5',
+                'sber/rugpt-3.5-13b',
+                'vikhrmodels/vikhr-nemo-12b', 'vikhrmodels/vikhr-yandexgpt-5-lite-8b',
+                'tbank/t-pro-2.0', 'tbank/t-pro-1', 'tbank/t-lite-1',
+                'mts-ai/cotype-pro-2'
+            ]
+        },
+        {
+            code: 'de', label: 'Germany', flag: '🇩🇪',
+            note: 'OpenGPT-X Teuken (Fraunhofer EU sovereign LLM, 24 EU 언어) + Aleph Alpha Kolibri (2026-10, 78B-A3.5B Apache 2.0 DE/EN)/Pharia/TFree-HAT + Black Forest Labs FLUX 1/2 + TNG Chimera + Ellamind Propella + Occiglot',
+            models: [
+                // OpenGPT-X Teuken (Fraunhofer + Jülich + TU Dresden + DFKI)
+                'opengpt-x/teuken-7b-instruct-v0.6', 'opengpt-x/teuken-7b-base-v0.6',
+                'opengpt-x/teuken-7b-instruct-commercial-v0.4',
+                // Aleph Alpha
+                'aleph-alpha/kolibri-1', 'aleph-alpha/kolibri-origin',  // 2026-10 S296 — Kolibri: 78.1B / 3.46B-active MoE trained from scratch in Germany, Apache 2.0, DE/EN, 1M ctx; GPQA-D 84.3 / AIME 2025 96.9 / τ²-telecom 94.7 (tech report Tables 28/29)
+                'aleph-alpha/kolibri-1-base', 'aleph-alpha/kolibri-origin-base',
+                'aleph-alpha/pharia-1-7b-control', 'aleph-alpha/pharia-1-7b-control-aligned',
+                'aleph-alpha/pharia-2-tfree', 'aleph-alpha/luminous',
+                'aleph-alpha/tfree-hat-pretrained-7b-base',
+                'aleph-alpha/llama-3.1-8b-tfree-hat-dpo', 'aleph-alpha/llama-3.1-70b-tfree-hat-sft',
+                // Black Forest Labs (FLUX 1 + 2)
+                'black-forest-labs/flux-2-dev',
+                'black-forest-labs/flux.1-pro', 'black-forest-labs/flux.1-dev', 'black-forest-labs/flux.1-schnell',
+                'black-forest-labs/flux.1-kontext-pro', 'black-forest-labs/flux.1-kontext-dev',
+                // TNG
+                'tngtech/r1t-chimera', 'tngtech/r1t2-chimera',
+                // Ellamind (BMWE-funded sovereign SLM)
+                'ellamind/propella-1-4b',
+                // Occiglot (DFKI + hessian.AI)
+                'occiglot/occiglot-7b-eu5',
+                // 2026-05-28 Session 30 — Max Planck Institute for the Science of Light (SciMuse research-idea generation)
+                'mpi-light/scimuse'
+            ]
+        },
+        {
+            code: 'uk', label: 'United Kingdom', flag: '🇬🇧',
+            note: 'Stability AI (StableLM/Stable Diffusion) + Synthesia + Wayve + Imperial College MMedS · UK Sovereign AI Fund £500M (2025)',
+            models: [
+                'stabilityai/stablelm-2-12b', 'stabilityai/stablelm-2-1.6b',
+                'stabilityai/stable-code-3b', 'stabilityai/stable-lm-zephyr-3b',
+                'stabilityai/sd-3.5-large',
+                'synthesia/synthesia-vlm', 'wayve/lingo-2',
+                // 2026-05-28 Session 30 — Imperial College London MMedS-Llama 3 medical SLM
+                'icl/mmeds-llama-3'
+            ]
+        },
+        {
+            code: 'us-open', label: 'US (Open-source / Open-weight)', flag: '🇺🇸',
+            note: 'Meta Llama 4 (Behemoth/Maverick/Scout) + Llama 3.1-3.3 · Microsoft Phi-4 family · Google Gemma 3 · IBM Granite 3 · Allen AI OLMo 2 · Databricks DBRX · Snowflake Arctic · Cohere Command · xAI Grok-1 · StarCoder 2',
+            models: [
+                // Meta Llama 4 + 3.x
+                'meta/llama-4-behemoth', 'meta/llama-4-maverick', 'meta/llama-4-scout',
+                'meta/llama-3.3-70b',
+                'meta/llama-3.2-90b-vision', 'meta/llama-3.2-11b-vision', 'meta/llama-3.2-3b', 'meta/llama-3.2-1b',
+                'meta/llama-3.1-405b', 'meta/llama-3.1-70b', 'meta/llama-3.1-8b',
+                // Microsoft Phi-4
+                'microsoft/phi-4', 'microsoft/phi-4-mini', 'microsoft/phi-4-multimodal', 'microsoft/phi-4-reasoning',
+                'microsoft/phi-3.5-mini',
+                // Google Gemma
+                'google/gemma-3-27b', 'google/gemma-3-12b', 'google/gemma-3-4b', 'google/gemma-3-1b',
+                'google/gemma-2-27b', 'google/gemma-2-9b',
+                // IBM Granite
+                'ibm/granite-3.3-8b', 'ibm/granite-3.3-2b', 'ibm/granite-3.2-vision', 'ibm/granite-3.1-8b',
+                // Allen AI
+                'allenai/olmo-2-13b', 'allenai/olmo-2-7b', 'allenai/tulu-3-70b', 'allenai/molmo-72b',
+                // Databricks / Snowflake
+                'databricks/dbrx-instruct',
+                'snowflake/arctic-instruct',
+                // Cohere
+                'cohere/tiny-aya-3b', 'cohere/command-a', 'cohere/command-r-plus', 'cohere/command-r', 'cohere/aya-expanse-32b',
+                // xAI
+                'xai/grok-1',
+                // StarCoder
+                'bigcode/starcoder2-15b', 'bigcode/starcoder2-7b'
+            ]
+        },
+        {
+            code: 'darpa', label: 'DARPA AIxCC', flag: '🛡️',
+            note: 'DARPA 국방·도메인 Cyber Reasoning System',
+            models: ['darpa/aixcc-team-atlanta']
+        },
+        {
+            code: 'mfg-industrial', label: 'Manufacturing & Industrial', flag: '🏭',
+            note: 'Foxconn FoxBrain · Siemens SIFM · Hitachi HAL · GE Vernova · Bosch · AVEVA',
+            models: [
+                'foxconn/foxbrain-70b',
+                'siemens/sifm',
+                'hitachi/hal',
+                'ge-vernova/predix-ai',
+                'bosch/industrial-genai',
+                'aveva/industrial-ai-assistant'
+            ]
+        },
+        {
+            code: 'mfg-robots', label: 'Industrial Robotics', flag: '🤖',
+            note: 'Skild · Covariant · Figure · 1X · Apptronik · Agility · Sanctuary · Tesla · Gemini Robotics-ER',
+            models: [
+                'skild/skild-brain',
+                'covariant/rfm-1',
+                'figure-ai/helix',
+                '1x/world-model',
+                'apptronik/apollo-gemini',
+                'agility/digit-arc',
+                'sanctuary/carbon',
+                'tesla/optimus-vlm',
+                'google-deepmind/gemini-robotics-er-1.6',
+                'google-deepmind/gemini-robotics-er-1.5'
+            ]
+        },
+        {
+            code: 'mfg-cad-vision', label: 'Industrial CAD / Vision / Twin', flag: '⚙️',
+            note: 'Autodesk Bernini · NVIDIA Omniverse Mega · Landing AI · PTC · Dassault',
+            models: [
+                'autodesk/bernini',
+                'nvidia/omniverse-mega',
+                'landing-ai/visionagent',
+                'ptc/creo-copilot',
+                'dassault/3dx-aura'
+            ]
+        }
+    ],
+
+    // Resolve release month for a model id with DB fallback.
+    // Order: explicit RELEASE_DATES entry → DB `release_date` (YYYY-MM-DD → YYYY-MM)
+    //      → DB `released_at` → null.
+    // This means newly-added sovereign models pick up their date from data/export/models.json
+    // without requiring a manual RELEASE_DATES entry.
+    _resolveReleaseDate: function(mid) {
+        var hard = this.RELEASE_DATES[mid];
+        if (hard) return hard;
+        var m = this._modelById && this._modelById[mid];
+        if (!m && this._models) {
+            // Build index lazily on first use
+            this._modelById = {};
+            for (var i = 0; i < this._models.length; i++) this._modelById[this._models[i].id] = this._models[i];
+            m = this._modelById[mid];
+        }
+        if (!m) return null;
+        var d = m.release_date || m.released_at;
+        if (!d) return null;
+        // Normalize YYYY-MM-DD → YYYY-MM (or pass through YYYY/YYYY-MM)
+        if (/^\d{4}-\d{2}-\d{2}/.test(d)) return d.slice(0, 7);
+        if (/^\d{4}-\d{2}$/.test(d)) return d;
+        if (/^\d{4}$/.test(d)) return d;
+        return null;
+    },
+
+    // Release / announcement dates (YYYY-MM, or YYYY when month is unknown).
+    // Used for sorting newest-first and surfacing the year next to model names.
+    // NOTE: For models with `release_date` in DB, _resolveReleaseDate() falls back to that
+    // automatically — only add hardcoded entries here for cases where DB date is missing or wrong.
+    RELEASE_DATES: {
+        // Korea — LG
+        'lg/exaone-4.5-33b': '2026-04', 'lg/k-exaone-236b': '2026-01',
+        'lg/exaone-4.0.1-32b': '2025-09', 'lg/exaone-4.0-32b': '2025-07', 'lg/exaone-4.0-1.2b': '2025-07',
+        'lg/exaone-deep-32b': '2025-03', 'lg/exaone-deep-7.8b': '2025-03', 'lg/exaone-deep-2.4b': '2025-03',
+        'lg/exaone-3.5-32b': '2024-12', 'lg/exaone-3.5-7.8b': '2024-12', 'lg/exaone-3.5-2.4b': '2024-12',
+        // Korea — Upstage
+        'upstage/solar-pro-4': '2026-08', 'upstage/solar-mini-4': '2026-09', 'upstage/solar-open2-250b': '2026-07', 'upstage/solar-pro-3': '2026-03', 'upstage/solar-open-100b': '2025-10',
+        'upstage/solar-pro-2': '2025-08', 'upstage/solar-pro-2-preview': '2025-06',
+        'upstage/solar-pro': '2024-09', 'upstage/solar-mini': '2024-04', 'upstage/solar-docvision': '2025',
+        // Korea — SKT
+        'skt/ax-k1': '2026-01', 'skt/ax-4.0': '2025-07', 'skt/ax-4.0-light': '2025-07', 'skt/ax-4.0-vl-light': '2025-09',
+        // Korea — KT
+        'kt/midm-k2.5-pro': '2025-10', 'kt/midm-2.0-base': '2025-07', 'kt/midm-2.0-mini': '2025-07',
+        // Korea — Naver
+        'naver/hyperclova-x-think-32b': '2025-12', 'naver/hyperclova-x-think-14b': '2025-06',
+        'naver/hyperclova-x-seed-omni-8b': '2025-07', 'naver/hyperclova-x-seed-vision-3b': '2025-04',
+        'naver/hyperclova-x': '2024-08',
+        // Korea — Kakao
+        'kakao/kanana-2-30b-a3b-thinking': '2026-01', 'kakao/kanana-1.5-o-9.8b': '2026-02',
+        'kakao/kanana-1.5-15.7b-a3b': '2025-09',
+        'kakao/kanana-1.5-8b': '2025-05', 'kakao/kanana-flag-32.5b': '2024-11',
+        'kakao/kanana-2-3b-instruct': '2026-07-27', 'kakao/kanana-2-3b-base': '2026-07-27',
+        'kakao/kanana-2-30b-a3b-instruct-2601': '2026-01', 'naver/hyperclova-x-seed-think-14b': '2026-05-27', 'vaiv/llamion-14b': '2026-05',
+        'skt/ax-k2': '2026-07-28', 'skt/ax-k2-alm': '2026-07-28',
+        'lg/k-exaone-2.0-750b-a37b': '2026-07-31',
+        'krafton/ax-k2-raon-speech-21b-a3b': '2026-07',
+        'kakao/kanana-2-1.3b-instruct': '2026-07-27', 'kakao/kanana-2-1.3b-base': '2026-07-27',
+        // Korea — others
+        'ncsoft/varco-vision-2.0-14b': '2025-07', 'ncsoft/llama-varco-8b': '2024-09',
+        'trillionlabs/tri-70b': '2026-06', 'trillionlabs/tri-21b': '2025-02', 'trillionlabs/tri-7b': '2025-04',
+        'motif/motif-3-beta': '2026-07',
+        'motif/motif-2-12.7b-reasoning': '2025-11', 'motif/motif-2-12.7b-instruct': '2025-11',
+        'konan/konan-llm-ond-4b': '2025-09', 'konan/konan-llm-ent-11': '2025-06',
+        'saltlux/luxia-21.4b': '2024-03',
+        'samsung/gauss-2-supreme': '2024-11', 'samsung/gauss-2-balanced': '2024-11', 'samsung/gauss-2-compact': '2024-11',
+        'snuh-naver/kmed-ai': '2025',
+        // Korea — historical lineage
+        'lg/exaone-3.0-7.8b': '2024-08', 'lg/exaone-atelier': '2024-04',
+        'upstage/solar-10.7b': '2023-12',
+        'kakao/kogpt-6b': '2021-11',
+        'naver/hyperclova-x-hcx-003': '2024-04', 'naver/hyperclova-x-dash': '2024-08',
+        'naver/hyperclova-seed-coder-8b': '2025-04', 'naver/clova-x': '2023-08', 'naver/cue': '2023-09',
+        'kt/midm-1.0': '2023-10',
+        'ncsoft/varco-llm-1.0-52b': '2023-08', 'ncsoft/varco-llm-13b': '2023-09',
+        'trillionlabs/trillion-7b-preview': '2024-09',
+        '42dot/42dot-llm-sft-1.3b': '2023-09', '42dot/42dot-llm-plm-1.3b': '2023-09',
+        'eleutherai/polyglot-ko-12.8b': '2023-04', 'eleutherai/polyglot-ko-5.8b': '2023-04',
+        'eleutherai/polyglot-ko-3.8b': '2023-04', 'eleutherai/polyglot-ko-1.3b': '2023-04',
+        // Korean vertical AI
+        'lunit/lunit-insight-mmg': '2024-03', 'lunit/lunit-scope-pdl1': '2024-09',
+        'vuno/vuno-med-chest-xray': '2024-01', 'vuno/vuno-med-deepbrain': '2024-06',
+        'lbox/lbox-caselaw': '2024-05',
+        'riiid/riiid-tutor': '2024-03',
+
+        // China — DeepSeek
+        'deepseek/deepseek-v4-pro-max': '2026-04', 'deepseek/deepseek-v4-pro': '2026-04', 'deepseek/deepseek-v4-flash': '2026-04',
+        'deepseek/deepseek-v3.2': '2025-09', 'deepseek/deepseek-v3.2-speciale': '2025-10',
+        'deepseek/deepseek-v3.1-terminus': '2025-09', 'deepseek/deepseek-v3': '2024-12',
+        'deepseek/deepseek-r1-0528': '2025-05', 'deepseek/deepseek-r1': '2025-01',
+        // China — Alibaba Qwen
+        'alibaba/qwen3.7-max': '2026-05', 'alibaba/qwen3.7-max-preview': '2026-05', 'alibaba/qwen3.7-plus-preview': '2026-05',
+        'alibaba/qwen3.6-plus': '2026-04', 'alibaba/qwen3.6-27b': '2026-04', 'alibaba/qwen3.6-35b-a3b': '2026-04',
+        'alibaba/qwen3.5-397b': '2025-12', 'alibaba/qwen3.5-122b': '2025-12', 'alibaba/qwen3.5-27b': '2025-12',
+        'alibaba/terminal-universe-27b': '2026-09',
+        'alibaba/qwen3-235b-a22b-thinking-2507': '2025-07', 'alibaba/qwen3-235b-a22b-instruct-2507': '2025-07', 'alibaba/qwen3-235b-a22b': '2025-04',
+        'alibaba/qwen3-30b-a3b': '2025-04',
+        'alibaba/qwen3-32b': '2025-04', 'alibaba/qwen3-14b': '2025-04', 'alibaba/qwen3-8b': '2025-04',
+        'alibaba/qwen3-4b': '2025-04', 'alibaba/qwen3-1.7b': '2025-04', 'alibaba/qwen3-0.6b': '2025-04',
+        'alibaba/qwen3-next': '2025-09',
+        'alibaba/qwen2.5-72b': '2024-09', 'alibaba/qwen2.5-32b': '2024-09', 'alibaba/qwen2.5-14b': '2024-09', 'alibaba/qwen2.5-7b': '2024-09',
+        // China — Zhipu GLM
+        'zhipu/glm-5.1': '2026-03', 'zhipu/glm-5': '2025-10', 'zhipu/glm-4.7': '2025-09',
+        'zhipu/glm-4.6': '2025-09', 'zhipu/glm-4.5': '2025-07', 'zhipu/glm-4.5-air': '2025-07',
+        // China — Moonshot Kimi
+        'moonshot/kimi-k2.6': '2026-04', 'moonshot/kimi-k2.5': '2026-01', 'moonshot/kimi-k2-thinking': '2025-09',
+        'moonshot/kimi-k2-instruct': '2025-07', 'moonshot/kimi-k2-base': '2025-07', 'moonshot/kimi-k1.5': '2025-01',
+        // China — MiniMax / MiMo / StepFun
+        'minimax/m2.7': '2026-03', 'minimax/m2.5': '2025-09',
+        // 2026-07-20 S191 timeline audit — flagship LLMs invisible/misdated in DB.
+        // Dates anchored to sibling/variant ids (see commit); DB had None or
+        // placeholder 2026-01-01/2025-01-01 → these override so they plot right.
+        'zhipu/glm-5.2': '2026-06',                 // DB None; glm-5.1=2026-04
+        'alibaba/qwen3.7-plus': '2026-05',          // DB 2025-01-01; qwen3.7-max=2026-05
+        'alibaba/qwen3.5-plus': '2025-12',          // DB None; qwen3.5-397b family
+        'moonshot/kimi-k2.7-code': '2026-06',       // DB 2026-01-01; k2.7-code-thinking=2026-06-12
+        'minimax/m3': '2026-06',                    // DB 2026-01-01; M3 GA ~2026-06 (after M2.7)
+        'meituan/longcat-flash-thinking': '2025-09',// DB 2026-01-01; LongCat Flash Thinking Sep-2025
+        'sakana/fugu': '2026-04',                   // DB None; fugu-ultra/mini=2026-04-24
+        'mimo/mimo-v2-pro': '2025-12', 'mimo/mimo-v2-flash': '2025-12',
+        'stepfun/step-3.7-flash': '2026-06', 'stepfun/step-3.5-flash': '2025-12', 'stepfun/step-2-pro': '2024-12', 'stepfun/step-2-mini': '2024-08',
+        // China — Baidu ERNIE
+        'baidu/ernie-5.0': '2025-11', 'baidu/ernie-4.5-300b-a47b': '2025-06', 'baidu/ernie-4.5-turbo': '2025-04',
+        'baidu/ernie-speed': '2024-03', 'baidu/ernie-lite': '2024-03',
+        // China — Tencent Hunyuan
+        'tencent/hunyuan-t1': '2025-03', 'tencent/hunyuan-large': '2024-11', 'tencent/hunyuan-turbo': '2024-11', 'tencent/hunyuan-7b': '2024-11',
+        // China — ByteDance Doubao Seed
+        'bytedance/seed-2.0-pro': '2026-02', 'bytedance/seed-1.6': '2025-09', 'bytedance/seed-1.5-pro': '2025-04', 'bytedance/seed-1.5-lite': '2025-04',
+        // China — iFlytek Spark
+        'iflytek/spark-x1': '2025-04', 'iflytek/spark-4-ultra': '2024-10', 'iflytek/spark-4': '2024-06', 'iflytek/antelope-3.0': '2025-09',
+        // China — 01.AI
+        '01-ai/yi-lightning': '2024-11', '01-ai/yi-large': '2024-05',
+        '01-ai/yi-1.5-34b': '2024-05', '01-ai/yi-1.5-9b': '2024-05', '01-ai/yi-1.5-6b': '2024-05',
+        '01-ai/yi-coder-9b': '2024-09', '01-ai/yi-vl-34b': '2024-01',
+        // China — Baichuan
+        'baichuan/baichuan-4': '2024-05', 'baichuan/baichuan-3': '2024-01',
+        'baichuan/baichuan-2-13b': '2023-09', 'baichuan/baichuan-2-7b': '2023-09',
+        'baichuan/baichuan-m1-14b': '2025-01', 'baichuan/baichuan-omni-1.5': '2025-01',
+        // China — Shanghai AI Lab InternLM
+        'shanghai-ai-lab/internlm-3-8b': '2025-01', 'shanghai-ai-lab/internlm-2.5-20b': '2024-08',
+        'shanghai-ai-lab/internlm-2.5-7b': '2024-07', 'shanghai-ai-lab/internlm-2.5-1.8b': '2024-08',
+        'shanghai-ai-lab/internvl-3': '2025-04', 'shanghai-ai-lab/internvl-2.5': '2024-12',
+        // China — SenseTime
+        'sensetime/sensenova-v6': '2025-04', 'sensetime/sensechat-5': '2024-04', 'sensetime/sensenova': '2023-04',
+        // China — Skywork
+        'skywork/skywork-moe': '2024-06', 'skywork/skywork-13b': '2023-10',
+        'skywork/skywork-r1v-3': '2025-04', 'skywork/skywork-o1': '2024-11',
+        // China — OpenBMB MiniCPM
+        'openbmb/minicpm-5-1b': '2026-05', 'openbmb/minicpm-4.1-8b': '2025-09', 'openbmb/minicpm-4-8b': '2025-06', 'openbmb/minicpm3-4b': '2024-09',
+        'openbmb/minicpm-v-2.6': '2024-08', 'openbmb/minicpm-o-2.6': '2025-01',
+        // China — Huawei PanGu
+        'huawei/pangu-ultra-moe': '2025-05', 'huawei/pangu-5': '2025-04', 'huawei/pangu-embedding': '2025-06',
+        // China — BAAI Aquila
+        'baai/aquila2-34b': '2024-04', 'baai/aquila2-7b': '2023-10', 'baai/wudao-2': '2021-06',
+        // China — Fudan / Inspur
+        'fnlp/moss-2': '2024-08', 'ieit/yuan-2.0': '2023-12',
+        // China — Qwen specialists
+        'alibaba/qwq-32b': '2025-03', 'alibaba/qvq-72b-preview': '2024-12',
+        'alibaba/qwen2.5-coder-32b': '2024-11', 'alibaba/qwen2.5-coder-14b': '2024-11', 'alibaba/qwen2.5-coder-7b': '2024-09',
+        'alibaba/qwen2.5-math-72b': '2024-09', 'alibaba/qwen2.5-math-7b': '2024-09',
+        'alibaba/qwen2-vl-72b': '2024-08', 'alibaba/qwen3-vl-235b': '2025-09', 'alibaba/qwen2-audio': '2024-08',
+        // China — DeepSeek specialists
+        'deepseek/deepseek-coder-v2': '2024-06', 'deepseek/deepseek-coder-v2-lite': '2024-06',
+        'deepseek/deepseek-math-7b': '2024-02', 'deepseek/deepseek-vl2': '2024-12', 'deepseek/janus-pro-7b': '2025-01',
+        // China — Apr 2026 sweep
+        'tencent/hy3-preview': '2026-04', 'tencent/hy-world-2.0': '2026-04',
+        'xiaomi/mimo-v2.6-pro': '2026-09-22', 'xiaomi/mimo-v2.6-flash': '2026-09-22',
+        'xiaomi/mimo-v2.5-pro': '2026-04', 'xiaomi/mimo-v2.5': '2026-04',
+        'inclusionai/ling-2.6-1t': '2026-04', 'inclusionai/ling-2.6-flash': '2026-04', 'inclusionai/ring-2.6-1t': '2026-05',
+        'inclusionai/llada2-uni': '2026-04',
+        // China — medical
+        'freedomintelligence/huatuogpt-ii': '2024-05',
+
+        // France — Mistral flagship + reasoning
+        'mistral/mistral-large-4-preview': '2026-10', 'mistral/mistral-large-3': '2025-12', 'mistral/mistral-large-2': '2024-07', 'mistral/mistral-large-1': '2024-02',
+        'mistral/mistral-medium-3.5': '2026-05', 'mistral/mistral-medium-3.1': '2025-09', 'mistral/mistral-medium-3': '2025-05',
+        'mistral/mistral-small-4': '2026-02', 'mistral/mistral-small-3.2': '2025-07', 'mistral/mistral-small-3.1': '2025-03', 'mistral/mistral-small-3': '2025-01', 'mistral/mistral-small-2': '2024-09', 'mistral/mistral-small-1': '2023-09',
+        'mistral/magistral-medium-1.2': '2025-09', 'mistral/magistral-small-1.2': '2025-09',
+        'mistral/magistral-medium-1': '2025-06', 'mistral/magistral-small-1': '2025-06',
+        // France — Mistral code
+        'mistral/devstral-2': '2025-12', 'mistral/devstral-medium': '2025-09', 'mistral/devstral-small-2': '2025-12', 'mistral/devstral-small-1.1': '2025-07', 'mistral/devstral-small-1': '2025-05',
+        'mistral/codestral-25.08': '2025-08', 'mistral/codestral-22b': '2024-05', 'mistral/codestral-mamba-7b': '2024-07',
+        // France — Mistral math/vision/audio
+        'mistral/mathstral-7b': '2024-07',
+        'mistral/pixtral-large': '2024-11', 'mistral/pixtral-12b': '2024-09',
+        'mistral/voxtral-tts': '2025-04',
+        // France — Ministraux
+        'mistral/ministral-3-14b': '2025-10', 'mistral/ministral-3-8b': '2025-10', 'mistral/ministral-3-3b': '2025-10',
+        'mistral/ministral-8b-v1': '2024-10', 'mistral/ministral-3b-v1': '2024-10',
+        // France — Mistral original / regional
+        'mistral/mistral-7b': '2023-09', 'mistral/mixtral-8x7b': '2023-12', 'mistral/mixtral-8x22b': '2024-04',
+        'mistral/mistral-nemo-12b': '2024-07', 'mistral/mistral-saba-24b': '2025-02',
+        // France — PleIAs
+        'pleias/pleias-1.0-pico-3.5b': '2024-11', 'pleias/pleias-1.0-olmo-1b': '2024-11',
+        'pleias/pleias-rag-1b': '2025-03', 'pleias/pleias-rag-350m': '2025-03',
+        // France — CNRS / academic
+        'openllm-france/lucie-7b': '2025-01', 'croissantllm/croissant-1.3b': '2024-02',
+        // France — HuggingFace SmolLM
+        'huggingface/smollm3-3b': '2025-07', 'huggingface/smollm2-1.7b': '2024-11', 'huggingface/smollm2-360m': '2024-11', 'huggingface/smollm2-135m': '2024-11', 'huggingface/smollm-1.7b': '2024-07',
+
+        // Japan / India / Israel / UAE / SG / CH / US
+        'sakana/namazu': '2024-03',
+        // Singapore — SEA-LION lineup
+        'ai-singapore/apertus-sea-lion-v4-8b': '2025-04', 'ai-singapore/gemma-sea-lion-v4-4b-vl': '2026-02',
+        'ai-singapore/llama-sea-lion-v3.5-70b': '2025-03', 'ai-singapore/llama-sea-lion-v3.5-8b': '2025-03',
+        'ai-singapore/gemma2-sea-lion-v3-9b': '2024-10', 'ai-singapore/sea-lion-v2.1-7b': '2024-04',
+        'gotoai/sahabat-ai-v1-70b': '2024-12', 'gotoai/sahabat-ai-v1-8b': '2024-12',
+        // India — Sarvam
+        'sarvam/sarvam-1': '2024-10', 'sarvam/sarvam-m': '2025-05',
+        'sarvam/sarvam-30b': '2025-09', 'sarvam/sarvam-105b': '2025-09',
+        // India — BharatGen
+        'bharatgen/param2-17b': '2025-07', 'bharatgen/param-1-2.9b': '2025-02',
+        'bharatgen/param2-sutra': '2026-02', 'bharatgen/param-1t-roadmap': '2026-01',
+        // India — Krutrim
+        'ola/krutrim-2-12b': '2025-01', 'ola/krutrim-spectre': '2025-06', 'ola/krutrim': '2024-12',
+        // India — Soket AI
+        'soketai/pragna-1b': '2024-04', 'soketai/sutra-pro': '2024-11', 'soketai/sutra-light': '2024-11', 'soketai/eka-roadmap': '2025-09',
+        // India — AI4Bharat
+        'ai4bharat/indicllm': '2024-12', 'ai4bharat/indicbert-v2': '2024-08', 'ai4bharat/indictrans2': '2024-04',
+        // India — CoRover / industry
+        'corover/bharatgpt': '2024-01',
+        'reliance/jiobrain': '2024-11', 'tata/maitri': '2024-10', 'lt-vyoma/sovereign-ai': '2026-01',
+        // Israel — AI21 Jamba
+        'ai21/jamba-large-1.7': '2025-08', 'ai21/jamba-1.7-mini': '2025-07',
+        'ai21/jamba-1.6-large': '2025-03', 'ai21/jamba-1.6-mini': '2025-03',
+        'ai21/jamba-large-1.5': '2024-08', 'ai21/jamba-1.5-mini': '2024-08',
+        'ai21/jamba-1.0': '2024-03',
+        'ai21/jamba2-mini': '2026-02', 'ai21/jamba2-3b': '2026-02',
+        'ai21/jamba-reasoning': '2025-09', 'ai21/maestro': '2025-04',
+        // Israel — Dicta
+        'dicta/dictalm-3.0-24b-thinking': '2025-12', 'dicta/dictalm-3.0-24b-base': '2025-12',
+        'dicta/dictalm-3.0-12b-instruct': '2025-12', 'dicta/dictalm-3.0-1.7b-thinking': '2025-12',
+        'dicta/dictalm-3.0-24b': '2025-09', 'dicta/dictalm-2.0-instruct': '2024-07', 'dicta/dictalm-2.0': '2024-04',
+        // UAE — TII Falcon-H1 (May 2025)
+        'tiiuae/falcon-h1-34b': '2025-05', 'tii/falcon-h1-arabic-34b': '2025-08', 'tii/falcon-h1r-7b': '2025-11',
+        'tii/falcon-h1-7b': '2025-05', 'tii/falcon-h1-3b': '2025-05',
+        'tii/falcon-h1-1.5b-deep': '2025-05', 'tii/falcon-h1-1.5b': '2025-05', 'tii/falcon-h1-0.5b': '2025-05',
+        // UAE — Falcon3 (Dec 2024)
+        'tii/falcon3-10b': '2024-12', 'tii/falcon3-7b': '2024-12', 'tii/falcon3-3b': '2024-12', 'tii/falcon3-1b': '2024-12',
+        // UAE — older Falcon
+        'tii/falcon-ocr': '2026-03', 'tiiuae/falcon-mamba-7b': '2024-08', 'tii/falcon2-11b': '2024-05', 'tii/falcon-180b': '2023-09', 'tii/falcon-perception': '2025-03',
+        // UAE — MBZUAI
+        'mbzuai/llm360-k2-65b': '2024-08', 'mbzuai/atlas-chat-9b': '2024-09', 'mbzuai/bimedix': '2024-02',
+        'epfl/meditron-70b': '2023-11', 'epfl/meditron-7b': '2023-11', 'epfl/llama-3-meditron-70b': '2024-09',
+        'harvey/harvey-assistant': '2025-09', 'thomson-reuters/cocounsel-2': '2025-04', 'vlex/vincent-ai': '2024-06', 'vecflow/oliver': '2025-02',
+        'bloomberg/bloomberg-gpt': '2023-03',
+        'darpa/aixcc-team-atlanta': '2025-08',
+
+        // Russia
+        'yandex/yandexgpt-5-pro': '2025-02', 'yandex/yandexgpt-5-lite-8b': '2025-02',
+        'yandex/yandexgpt-4-pro': '2024-04', 'yandex/yalm-100b': '2022-06',
+        'sber/gigachat-3.1-ultra': '2026-04', 'sber/gigachat-3.1-lightning': '2026-03',
+        'sber/gigachat-3-ultra': '2025-11', 'sber/gigachat-3-lightning': '2025-11',
+        'sber/gigachat-2-max': '2025-04', 'sber/gigachat-2-pro': '2025-04', 'sber/gigachat-2-lite': '2025-04',
+        'sber/gigachat-1.5': '2024-09', 'sber/rugpt-3.5-13b': '2023-09',
+        'vikhrmodels/vikhr-nemo-12b': '2024-09', 'vikhrmodels/vikhr-yandexgpt-5-lite-8b': '2025-03',
+        'tbank/t-pro-1': '2024-12', 'tbank/t-lite-1': '2024-12',
+
+        // Germany
+        'aleph-alpha/kolibri-1': '2026-10', 'aleph-alpha/kolibri-origin': '2026-10', 'aleph-alpha/kolibri-1-base': '2026-10', 'aleph-alpha/kolibri-origin-base': '2026-10',
+        'aleph-alpha/pharia-1-7b-control': '2024-08', 'aleph-alpha/pharia-1-7b-control-aligned': '2024-08',
+        'aleph-alpha/pharia-2-tfree': '2025-09', 'aleph-alpha/luminous': '2022-04',
+        'black-forest-labs/flux.1-pro': '2024-08', 'black-forest-labs/flux.1-dev': '2024-08', 'black-forest-labs/flux.1-schnell': '2024-08',
+        'black-forest-labs/flux.1-kontext-pro': '2025-05', 'black-forest-labs/flux.1-kontext-dev': '2025-06',
+        'tngtech/r1t-chimera': '2025-04', 'tngtech/r1t2-chimera': '2025-08',
+
+        // UK
+        'stabilityai/stablelm-2-12b': '2024-04', 'stabilityai/stablelm-2-1.6b': '2024-01',
+        'stabilityai/stable-code-3b': '2024-03', 'stabilityai/stable-lm-zephyr-3b': '2023-12',
+        'stabilityai/sd-3.5-large': '2024-10',
+        'synthesia/synthesia-vlm': '2024-08', 'wayve/lingo-2': '2024-04',
+
+        // US Open — Meta Llama
+        'meta/llama-4-behemoth': '2025-04', 'meta/llama-4-maverick': '2025-04', 'meta/llama-4-scout': '2025-04',
+        'meta/llama-3.3-70b': '2024-12',
+        'meta/llama-3.2-90b-vision': '2024-09', 'meta/llama-3.2-11b-vision': '2024-09',
+        'meta/llama-3.2-3b': '2024-09', 'meta/llama-3.2-1b': '2024-09',
+        'meta/llama-3.1-405b': '2024-07', 'meta/llama-3.1-70b': '2024-07', 'meta/llama-3.1-8b': '2024-07',
+        // US Open — Microsoft Phi
+        'microsoft/phi-4': '2024-12', 'microsoft/phi-4-mini': '2025-02',
+        'microsoft/phi-4-multimodal': '2025-02', 'microsoft/phi-4-reasoning': '2025-04',
+        'microsoft/phi-3.5-mini': '2024-08',
+        // US Open — Google Gemma
+        'google/gemma-3-27b': '2025-03', 'google/gemma-3-12b': '2025-03', 'google/gemma-3-4b': '2025-03', 'google/gemma-3-1b': '2025-03',
+        'google/gemma-2-27b': '2024-06', 'google/gemma-2-9b': '2024-06',
+        // US Open — IBM Granite
+        'ibm/granite-3.3-8b': '2025-04', 'ibm/granite-3.3-2b': '2025-04',
+        'ibm/granite-3.2-vision': '2025-02', 'ibm/granite-3.1-8b': '2024-12',
+        // US Open — Allen AI
+        'allenai/olmo-2-13b': '2024-11', 'allenai/olmo-2-7b': '2024-11',
+        'allenai/tulu-3-70b': '2024-11', 'allenai/molmo-72b': '2024-09',
+        // US Open — Databricks / Snowflake
+        'databricks/dbrx-instruct': '2024-03',
+        'snowflake/arctic-instruct': '2024-04',
+        // US Open — Cohere
+        'cohere/tiny-aya-3b': '2026-03', 'cohere/command-a': '2025-03', 'cohere/command-r-plus': '2024-04', 'cohere/command-r': '2024-04', 'cohere/aya-expanse-32b': '2024-10',
+        // US Open — xAI
+        'xai/grok-1': '2024-03',
+        // US Open — StarCoder
+        'bigcode/starcoder2-15b': '2024-02', 'bigcode/starcoder2-7b': '2024-02',
+
+        // Manufacturing
+        'foxconn/foxbrain-70b': '2025-03',
+        'siemens/sifm': '2024-04', 'hitachi/hal': '2024-03', 'ge-vernova/predix-ai': '2024-09', 'bosch/industrial-genai': '2024-09', 'aveva/industrial-ai-assistant': '2024-09',
+        'skild/skild-brain': '2025-07', 'covariant/rfm-1': '2024-03', 'figure-ai/helix': '2025-02', '1x/world-model': '2024-12',
+        'apptronik/apollo-gemini': '2025-03', 'agility/digit-arc': '2024-10', 'sanctuary/carbon': '2024-04', 'tesla/optimus-vlm': '2024-10',
+        'google-deepmind/gemini-robotics-er-1.6': '2026-04', 'google-deepmind/gemini-robotics-er-1.5': '2025-09',
+        'landing-ai/visionagent': '2024-09',
+        'nvidia/omniverse-mega': '2025-01',
+        'autodesk/bernini': '2024-04', 'ptc/creo-copilot': '2024-06', 'dassault/3dx-aura': '2024-05',
+
+        // US Frontier (proprietary) — vendor-fallback group on the timeline
+        'openai/gpt-5.5': '2026-04', 'openai/gpt-5.5-pro': '2026-04',
+        'openai/gpt-rosalind': '2026-06',  // 2026-06-03 S50 — OpenAI life sciences model
+        'openai/realtime-tts-2': '2026-05', 'openai/realtime-tts-1.5-max': '2026-03',  // 2026-06-05 S55
+        'google/gemini-3.1-flash-tts': '2026-03',  // 2026-06-05 S55 — Google TTS
+        'cartesia/sonic-3.5': '2026-04',  // 2026-06-05 S55 — Cartesia TTS
+        'perplexity/sonar-pro': '2026-03',  // 2026-06-06 S56 — Perplexity Sonar Pro (Opper Roundtable)
+        'openai/gpt-5.4': '2026-02', 'openai/gpt-5.4-thinking': '2026-02',
+        'openai/gpt-5.4-pro': '2026-02', 'openai/gpt-5.4-mini': '2026-02',
+        'openai/gpt-5.3-codex': '2026-01',
+        'openai/gpt-5.2': '2025-12', 'openai/gpt-5.2-pro': '2025-12',
+        'openai/gpt-5.1': '2025-10',
+        'openai/gpt-5': '2025-08', 'openai/gpt-5-pro': '2025-08',
+        'openai/o3': '2025-01', 'openai/o4-mini': '2025-04',
+        'anthropic/claude-mythos-preview': '2026-03',
+        'anthropic/claude-opus-4.7': '2026-04', 'anthropic/claude-opus-4.6': '2026-02',
+        'anthropic/claude-opus-4.5': '2025-12', 'anthropic/claude-opus-4.1': '2025-08',
+        'anthropic/claude-opus-4': '2025-05',
+        'anthropic/claude-sonnet-4.6': '2025-12', 'anthropic/claude-sonnet-4.5': '2025-09',
+        'anthropic/claude-haiku-4.5': '2025-10',
+        'anthropic/claude-3.7-sonnet': '2025-02',
+        'google/gemini-3.5-flash': '2026-05', 'google/gemini-omni-flash': '2026-05',
+        'google/gemini-3.1-pro': '2026-03', 'google/gemini-3.1-pro-preview': '2026-02',
+        'google/gemini-3.1-flash-lite': '2026-03',
+        'google/gemini-3-pro': '2025-11', 'google/gemini-3-pro-preview': '2025-10',
+        'google/gemini-3-flash': '2025-11',
+        'google/gemini-2.5-pro': '2025-05',
+        'google/gemma-4-31b': '2026-03', 'google/gemma-4-26b-a4b': '2026-03',
+        // 2026-06-05 S57 — Gemma 4 QAT family (Quantization-Aware Training)
+        'google/gemma-4-e2b-qat': '2026-06', 'google/gemma-4-e4b-qat': '2026-06',
+        'google/gemma-4-12b-qat': '2026-06', 'google/gemma-4-26b-a4b-qat': '2026-06',
+        // 2026-05-14 S57 — China Mobile JT 35B Flash
+        'china-mobile/jt-35b-flash': '2026-05',
+        'xai/grok-text-to-speech': '2026-06',  // 2026-06-08 S58 — xAI TTS (AA TTS Arena #3 Elo 1208)
+        'alibaba/fun-realtime-asr-preview': '2026-05',  // 2026-06-08 S58 — NEW AA Transcribe SOTA 1.7% WER
+        'google/medgemma-27b': '2025-07', 'google/medgemma-4b-pt': '2025-07', 'google/medgemma-1.5-4b': '2026-04',
+        'google/med-palm-2': '2023-05',
+        'meta/muse-spark': '2026-04',
+        'nvidia/nemotron-3-super': '2025-09',
+        'nvidia/nemotron-3-ultra-550b-a55b': '2026-06',  // 2026-06-04 S54 — 550B/55B MoE, AAII 48 #9/89, OpenMDW
+
+        // Physical AI — vendor-fallback group
+        'nvidia/cosmos-predict-2.5': '2025-09', 'nvidia/cosmos-reason-2': '2025-09', 'nvidia/cosmos-policy-robocasa': '2025-10',
+        'nvidia/gr00t-n1.7': '2025-11', 'nvidia/gr00t-n1.6': '2025-08',
+        'google-deepmind/genie-3': '2025-08', 'google-deepmind/genie-2': '2024-12',
+        'google-deepmind/gemini-robotics-er-1.6': '2026-04', 'google-deepmind/gemini-robotics-er-1.5': '2025-09',
+        'physical-intelligence/pi-zero': '2024-11', 'physical-intelligence/pi-zero-fast': '2025-04',
+        'openvla/openvla-7b': '2024-06',
+        'agibot/genie-envisioner': '2025-06',
+
+        // xAI Grok
+        'xai/grok-3': '2025-02', 'xai/grok-4': '2025-07',
+        'xai/grok-4-heavy': '2025-07', 'xai/grok-4.20': '2025-12'
+    },
+
+    FRONTIER_REFERENCE: [
+        'anthropic/claude-opus-4.7',
+        'openai/gpt-5.5',
+        'openai/gpt-5.5-pro',
+        'google/gemini-3.1-pro',
+        'meta/muse-spark'
+    ],
+
+    // Performance benchmark suites — broader than the 3 dimension panels.
+    // Each suite renders as its own table inside #sov-perf-suites with its
+    // own model rows. Sovereign-only (excludes frontier US vendors).
+    PERF_SUITES: [
+        {
+            id: 'reasoning',
+            label: '🧠 General Reasoning',
+            note: 'MMLU · MMLU-Pro · GPQA Diamond · HLE · IFBench · IFEval · SimpleQA Verified · ARC-Challenge · HellaSwag · TruthfulQA · WinoGrande · LongBench v2 · Arena Hard v2 · SuperGPQA · AA-LCR · CritPt',
+            benchmarks: [
+                'mmlu', 'mmlu_pro', 'gpqa_diamond', 'hle',
+                'ifbench', 'ifeval', 'simpleqa_verified',
+                'arc_challenge', 'hellaswag', 'truthfulqa', 'winogrande',
+                'longbench_v2', 'arena_hard_v2', 'supergpqa', 'superqpga',
+                'aa_lcr', 'critpt', 'multi_challenge',
+                'bbh', 'mmlu_redux', 'piqa', 'boolq'
+            ]
+        },
+        {
+            id: 'math',
+            label: '🧮 Math & Reasoning',
+            note: 'GSM8K · MATH · MATH-500 · AIME 2024 · AIME 2025 · AIME 2026 · HMMT 2025/26 · IMO-AnswerBench · HRM8K · USAMO',
+            benchmarks: [
+                'gsm8k', 'math', 'math_500', 'math_hmmt_aime',
+                'aime_2024', 'aime_2025', 'aime_2026',
+                'hmmt_2025', 'hmmt_2026', 'imo_answerbench',
+                'hrm8k', 'usamo', 'amc_23', 'matharena_apex', 'hmmt_feb_2026'
+            ]
+        },
+        {
+            id: 'coding',
+            label: '💻 Coding & Software Engineering',
+            note: 'HumanEval · HumanEval+ · MBPP · MBPP+ · LiveCodeBench · LiveCodeBench v6 · SWE-bench Verified · SWE-bench Pro · SWE-bench Multilingual · Terminal-Bench 2 / v2.1 / Hard · GDPval-AA v2 (normalized) · GDPval-AA Elo · APEX-Agents · Artifacts · SciCode · WeirdML v2 · Codeforces ELO',
+            benchmarks: [
+                'humaneval', 'humaneval_plus',
+                'mbpp', 'mbpp_plus',
+                'livecodebench', 'livecodebench_v6',
+                'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
+                'terminal_bench_2', 'terminal_bench_2_1', 'terminal_bench_hard',
+                'gdpval_aa_v2', 'gdpval_aa_elo', 'apex_agents', 'artifacts_bench',
+                'scicode', 'swe_rebench', 'weirdml_v2',
+                'codeforces_elo', 'repobench'
+            ]
+        },
+        {
+            id: 'korean',
+            label: '🇰🇷 Korean Benchmarks',
+            note: 'KMMLU · KMMLU-Pro · KMMLU-CoT · HAE-RAE · HAE-RAE-CoT · CLIcK · KoMT-Bench · LogicKor · KoBALT-700 · Ko-IFEval · KOBEST · K-MMBench · HRM8K · KMLE · KMMMU · Ko-AIME · KoSimpleQA · MATH-Ko · MBPP-Ko · K-Knowledge · K-Domain · Ko-GDPval (K-OfficeAgent) · KBank-MMLU · KBL · KorMedMCQA',
+            benchmarks: [
+                'kmmlu', 'kmmlu_pro', 'kmmlu_cot', 'haerae', 'haerae_cot', 'click_ko', 'komt_bench', 'logickor',
+                'kobalt_700', 'ko_ifeval', 'kobest', 'k_mmbench',
+                'hrm8k', 'kmle', 'kmmmu', 'ko_aime_2025',
+                'ko_simpleqa', 'math_ko', 'mbpp_ko', 'kormedmcqa_v',
+                'k_knowledge', 'k_domain', 'ko_gdpval',
+                'kbank_mmlu', 'kbl', 'kormedmcqa'
+            ]
+        },
+        {
+            id: 'multilingual',
+            label: '🌐 Multilingual & Multimodal',
+            note: 'MMMLU · C-Eval · CMMLU · Chinese-SimpleQA · KMMMU · TMMLU+ · Global PIQA · Indo-MMLU · QIMMA · MMMU · MMMU-Pro · MathVision · MathVista · CharXiv · OCRBench · Video-MMMU · OALL (Arabic) · Indic pairwise win-rate · 5 STEM visual (avg)',
+            benchmarks: [
+                'mmmlu', 'c_eval', 'cmmlu', 'chinese_simpleqa', 'kmmmu',
+                'tmmlu_plus', 'global_piqa', 'indo_mmlu', 'qimma', 'sea_helm',
+                'mmmu', 'mmmu_pro', 'mathvision', 'mathvista', 'mathvista_mini',
+                'charxiv_reasoning', 'ocrbench', 'video_mmmu', 'docvqa', 'chartqa', 'ai2d',
+                'mmstar', 'mmbench_v1_1',
+                // S145 — sovereign regional/multimodal: Arabic (Falcon-H1-Arabic), Indic (Sarvam-105B), STEM-visual (EXAONE-4.5-33B)
+                'oall_average', 'indian_language_pairwise_comparison_win_rate', '5_stem_visual_benchmarks_avg'
+            ]
+        },
+        {
+            id: 'domain',
+            label: '🏛️ Domain (Legal · Cyber · Agent · Medical)',
+            note: 'VLAIR (Document Q&A · Summarization · Chronology · Redlining · Data Extract · Transcript) · AIxCC · Cybench · CyberGym · BrowseComp · τ²-bench · τ³-bench · Tau2-all · τ²-Bench Telecom · OSWorld · MCP-Atlas · GAIA-2 · MedQA · PubMedQA · MedXpertQA · HealthBench · BFCL',
+            benchmarks: [
+                'vlair_doc_qa', 'vlair_summarization', 'vlair_chronology',
+                'vlair_redlining', 'vlair_data_extract', 'vlair_transcript',
+                'aixcc_synth_vuln', 'cybench', 'cybergym',
+                'browsecomp', 'tau2_bench', 'tau3_bench', 'tau3_banking', 'tau2_telecom', 'osworld_verified',
+                'mcp_atlas', 'mcpmark', 'gaia', 'gaia2', 'balrog', 'mfg_news_rewrite',
+                'medqa', 'medqa_5op', 'pubmedqa', 'medxpertqa', 'medmcqa',
+                'healthbench', 'healthbench_hard', 'healthbench_professional', 'mmlu_med',
+                'fpb', 'convfinqa', 'finqa',
+                'bfcl', 'bfcl_v3', 'bfcl_v4',
+                // S145 — Solar-Pro-3 agent/telecom aggregates
+                'tau2_all', 'bench_telecom'
+            ]
+        },
+        {
+            id: 'creativity',
+            label: '🎨 Creativity',
+            note: 'Divergent Association (DAT) · Conditional DAT (novelty/appropriateness/gated) · PACE · Remote Associates (RAT) · Divergent RAT · Arena Creative Writing · EQ-Bench CW v3 · Mazur CW · Hivemind Diversity · LiveIdeaBench · NoveltyBench Utility',
+            benchmarks: [
+                'creativity_dat', 'creativity_cdat', 'creativity_cdat_n', 'creativity_cdat_a',
+                'creativity_pace', 'creativity_rat', 'creativity_drat',
+                'creativity_arena_cw', 'creativity_eqbench_cw_v3', 'creativity_mazur_cw',
+                'creativity_hivemind_diversity', 'creativity_liveideabench', 'creativity_noveltybench_utility'
+            ]
+        }
+    ],
+
+    DIMENSIONS: [
+        {
+            id: 'language',
+            label: '🌐 Language Adaptation',
+            desc: '지역 언어·문화 적응 능력 — frontier MMLU로는 드러나지 않는 다국어 적용 수준을 측정.',
+            benchmarks: ['mmmlu', 'c_eval', 'cmmlu', 'chinese_simpleqa', 'global_piqa', 'swe_bench_multilingual']
+        },
+        {
+            id: 'medical',
+            label: '🏥 Medical System Integration',
+            desc: '지역 의료 시스템·면허 정합성 — KMLE · USMLE · Arabic medical · AfriMed-QA 등 의료 시스템별 평가.',
+            benchmarks: ['kmle', 'medqa', 'medqa_5op', 'pubmedqa', 'mmlu_med', 'medxpertqa', 'medmcqa', 'med_avg', 'healthbench', 'healthbench_professional', 'afrimed_qa', 'ehrqa']
+        },
+        {
+            id: 'domain',
+            label: '🏛️ Government / Regulated Domain',
+            desc: '법률·금융·사이버 방어 등 sovereign 도메인 — VLAIR 변호사 평가 · DARPA AIxCC · Bloomberg finance.',
+            benchmarks: ['vlair_doc_qa', 'vlair_summarization', 'vlair_chronology', 'vlair_redlining', 'vlair_data_extract', 'vlair_transcript', 'aixcc_synth_vuln', 'fpb', 'convfinqa', 'finqa']
+        }
+    ],
+
+    _models: [],
+    _benchmarks: [],
+    _scores: [],
+    _initialized: false,
+
+    // Sort state per table — table id → { key, dir }.
+    // dir: 'asc' | 'desc' | null (cleared)
+    _sortStates: {},
+
+    // Map view mode:
+    //   'all'    — every registered model in flat list per region (date-sorted)
+    //   'active' — only models released within last 12 months
+    //   'vendor' — group models by vendor inside each region card
+    _mapViewMode: 'all',
+    _ACTIVE_WINDOW_MONTHS: 12,
+
+    // Cumulative chart state
+    _cumViewMode: 'region',  // 'region' | 'vendor'
+
+    // Vendor alias canonicalization. Multiple vendor strings get rolled up to
+    // a single canonical name in 개발사별 보기 view. Preserves the underlying
+    // data; only affects vendor-grouped rendering. Keep aliases conservative:
+    // only merge when the same parent organization is responsible for the
+    // models (different sub-divisions like NC AI / NCSoft, IIT Bombay TIH /
+    // BharatGen). Genuinely distinct consortia (GoTo + AISG vs AISG, EPFL +
+    // Yale + ICRC vs EPFL + Yale, SNUH + Naver vs Naver Cloud) stay separate.
+    VENDOR_ALIASES: {
+        // Korea
+        'KT (K-intelligence)':                'KT',
+        'LG AI':                              'LG AI Research',
+        'Kakao Brain':                        'Kakao',
+        'NCSoft (NC AI)':                     'NCSoft',
+        'Naver':                              'Naver Cloud',
+        // India
+        'BharatGen (IIT Bombay TIH)':         'BharatGen',
+        // UAE
+        'MBZUAI (UAE)':                       'MBZUAI'
+    },
+
+    _canonicalVendor: function(vendor) {
+        if (!vendor) return 'Other';
+        return this.VENDOR_ALIASES[vendor] || vendor;
+    },
+
+    // Vendor-mode collapse state. Key: regionCode + '||' + canonical vendor.
+    // Default: undefined → expanded. Stored Boolean → true means collapsed.
+    _vendorCollapsed: {},
+
+    // Known parameter sizes (in B) for models whose name doesn't expose "XB".
+    // Used by the timeline to plot models that would otherwise be dropped.
+    // Total params for MoE (followed by active in parens), single number for dense.
+    KNOWN_PARAMS: {
+        // Kakao Kanana 2 SLM (2026-07-27)
+        'kakao/kanana-2-3b-instruct': 3, 'kakao/kanana-2-3b-base': 3,
+        'skt/ax-k2': 688, 'skt/ax-k2-alm': 20,
+        'lg/k-exaone-2.0-750b-a37b': 750,
+        'krafton/ax-k2-raon-speech-21b-a3b': 21,
+        'kakao/kanana-2-1.3b-instruct': 1.3, 'kakao/kanana-2-1.3b-base': 1.3,
+        // AI21 Jamba family — names don't carry the size suffix
+        'ai21/jamba-large-1.5': 398, 'ai21/jamba-large-1.7': 398,
+        'ai21/jamba-1.6-large': 398, 'ai21/jamba-1.6-mini': 52,
+        'ai21/jamba-1.5-mini': 52, 'ai21/jamba-1.0': 52,
+        'ai21/jamba2-mini': 52,
+        // Alibaba Qwen ambiguous names
+        'alibaba/qwen3-next': 80, 'alibaba/qwen3.6-plus': 235,
+        'alibaba/qwen3.7-max': 500, 'alibaba/qwen3.7-max-preview': 500, 'alibaba/qwen3.7-plus-preview': 100,
+        // Baichuan
+        'baichuan/baichuan-3': 175, 'baichuan/baichuan-4': 1000,
+        'baichuan/baichuan-omni-1.5': 7,
+        // Baidu ERNIE — proprietary, approx
+        'baidu/ernie-5.0': 600, 'baidu/ernie-4.5-turbo': 300,
+        'baidu/ernie-speed': 8, 'baidu/ernie-lite': 3,
+        // ByteDance Doubao Seed — proprietary
+        'bytedance/seed-2.0-pro': 800, 'bytedance/seed-1.6': 600,
+        'bytedance/seed-1.5-pro': 200, 'bytedance/seed-1.5-lite': 12,
+        // Korean — variants without B in name
+        'kakao/kanana-flag-32.5b': 32.5,
+        'kt/midm-k2.5-pro': 50, 'kt/midm-1.0': 11,
+        'upstage/solar-open2-250b': 250, 'upstage/solar-open-100b': 102, 'upstage/solar-mini-4': 35,
+        'alibaba/qwen3.8-max-preview': 2400, 'inclusionai/ling-3.0-flash': 124, 'poolside/laguna-s-2.1': 118,
+        'naver/hyperclova-x': 100, 'naver/hyperclova-x-hcx-003': 80,
+        'naver/hyperclova-x-dash': 8,
+        'skt/ax-k1': 519,
+        'kakao/kanana-1.5-o-9.8b': 11.6,
+        'snuh-naver/kmed-ai': 7,
+        'samsung/gauss-2-supreme': 200, 'samsung/gauss-2-balanced': 30,
+        'samsung/gauss-2-compact': 7,
+        'lg/exaone-atelier': 5, 'lg/k-exaone-236b': 236,
+        'kakao/kogpt-6b': 6,
+        // China — additional
+        'iflytek/spark-x1': 70, 'iflytek/spark-4-ultra': 200,
+        'iflytek/spark-4': 80, 'iflytek/antelope-3.0': 50,
+        '01-ai/yi-large': 100, '01-ai/yi-lightning': 100,
+        'sensetime/sensenova-v6': 100, 'sensetime/sensechat-5': 100, 'sensetime/sensenova': 100,
+        'huawei/pangu-ultra-moe': 718, 'huawei/pangu-5': 200, 'huawei/pangu-embedding': 7,
+        'fnlp/moss-2': 16,
+        'minimax/m2.7': 600, 'minimax/m2.5': 600,
+        'mimo/mimo-v2-pro': 200, 'mimo/mimo-v2-flash': 50,
+        'stepfun/step-3.5-flash': 50, 'stepfun/step-2-pro': 1000, 'stepfun/step-2-mini': 16,
+        'tencent/hunyuan-turbo': 389,
+        'zhipu/glm-5.1': 700, 'zhipu/glm-5': 744, 'zhipu/glm-4.7': 355,
+        'moonshot/kimi-k1.5': 1000, 'moonshot/kimi-k2.5': 1000, 'moonshot/kimi-k2.6': 1000,
+        'moonshot/kimi-k2-thinking': 1000,
+        // 2026-07-20 S192 — >1T-class flagships (curated totals; DB param string
+        // was ignored by the old name-only parser, so these plotted in the "?" row)
+        'moonshot/kimi-k3': 2800,            // 2.8T total MoE (~50B active)
+        'inclusionai/ring-2.6-1t': 1000, 'inclusionai/ring-2.6-flash': 104,
+        'zhipu/glm-5.2': 700, 'minimax/m3': 600, 'meituan/longcat-2.0': 560,
+        'tencent/hunyuan-hy3': 295, 'baidu/ernie-5.1': 600,
+        'deepseek/deepseek-v3.2': 685, 'deepseek/deepseek-v3.2-speciale': 685,
+        'deepseek/deepseek-v3.1-terminus': 685,
+        'deepseek/deepseek-v4-pro-max': 685, 'deepseek/deepseek-v4-pro': 685, 'deepseek/deepseek-v4-flash': 30,
+        'freedomintelligence/huatuogpt-ii': 13,
+        // India
+        'sarvam/sarvam-m': 24,
+        'bharatgen/param-1-2.9b': 2.9,
+        'bharatgen/param2-sutra': 17, 'bharatgen/param-1t-roadmap': 1000,
+        'ola/krutrim-spectre': 12, 'ola/krutrim': 7,
+        'soketai/sutra-pro': 50, 'soketai/sutra-light': 12, 'soketai/eka-roadmap': 100,
+        'ai4bharat/indicllm': 7, 'ai4bharat/indicbert-v2': 0.3, 'ai4bharat/indictrans2': 1.1,
+        'reliance/jiobrain': 100, 'tata/maitri': 100, 'lt-vyoma/sovereign-ai': 100,
+        'corover/bharatgpt': 7,
+        // Israel — Dicta
+        'ai21/jamba-reasoning': 398, 'ai21/maestro': 100,
+        // Russia
+        'yandex/yandexgpt-5-pro': 70, 'yandex/yandexgpt-4-pro': 30,
+        'sber/gigachat-3.1-ultra': 702, 'sber/gigachat-3.1-lightning': 10,
+        'sber/gigachat-3-ultra': 702, 'sber/gigachat-3-lightning': 30,
+        'sber/gigachat-2-max': 50, 'sber/gigachat-2-pro': 13, 'sber/gigachat-2-lite': 7,
+        'sber/gigachat-1.5': 30,
+        'tbank/t-pro-1': 30, 'tbank/t-lite-1': 8,
+        // Germany
+        'aleph-alpha/kolibri-1': 78, 'aleph-alpha/kolibri-origin': 31, 'aleph-alpha/kolibri-1-base': 78, 'aleph-alpha/kolibri-origin-base': 31,  // S296 — total params (3.46B / 3.27B active)
+        'aleph-alpha/luminous': 70, 'aleph-alpha/pharia-2-tfree': 70,
+        'black-forest-labs/flux.1-pro': 12, 'black-forest-labs/flux.1-dev': 12,
+        'black-forest-labs/flux.1-schnell': 12,
+        'black-forest-labs/flux.1-kontext-pro': 12, 'black-forest-labs/flux.1-kontext-dev': 12,
+        'tngtech/r1t-chimera': 671, 'tngtech/r1t2-chimera': 671,
+        // UK
+        'stabilityai/sd-3.5-large': 8.1,
+        'stabilityai/stable-code-3b': 3,
+        'stabilityai/stable-lm-zephyr-3b': 3,
+        'synthesia/synthesia-vlm': 100,
+        'wayve/lingo-2': 100,
+        // Manufacturing
+        'siemens/sifm': 70, 'hitachi/hal': 70, 'ge-vernova/predix-ai': 70,
+        'bosch/industrial-genai': 70, 'aveva/industrial-ai-assistant': 70,
+        'skild/skild-brain': 100, 'covariant/rfm-1': 8,
+        'figure-ai/helix': 7, '1x/world-model': 7,
+        'apptronik/apollo-gemini': 7, 'agility/digit-arc': 7,
+        'sanctuary/carbon': 7, 'tesla/optimus-vlm': 7,
+        'autodesk/bernini': 5, 'landing-ai/visionagent': 7,
+        'ptc/creo-copilot': 70, 'dassault/3dx-aura': 70,
+        // Frontier (US) — global frontier vendors not in any sovereign region
+        'openai/gpt-5.5': 1500, 'openai/gpt-5.5-pro': 1500,
+        'openai/gpt-5.4': 1500, 'openai/gpt-5.4-thinking': 1500, 'openai/gpt-5.4-pro': 1500,
+        'openai/gpt-5.4-mini': 8, 'openai/gpt-5.3-codex': 1500, 'openai/gpt-5.2': 1500,
+        'openai/gpt-5.2-pro': 1500, 'openai/gpt-5.1': 1500, 'openai/gpt-5': 1500,
+        'openai/gpt-5-pro': 1500, 'openai/o3': 200, 'openai/o4-mini': 8,
+        'anthropic/claude-opus-4.7': 500, 'anthropic/claude-opus-4.6': 500,
+        'anthropic/claude-opus-4.5': 500, 'anthropic/claude-opus-4.1': 500,
+        'anthropic/claude-opus-4': 500, 'anthropic/claude-sonnet-4.6': 200,
+        'anthropic/claude-sonnet-4.5': 200, 'anthropic/claude-haiku-4.5': 8,
+        'anthropic/claude-mythos-preview': 500, 'anthropic/claude-3.7-sonnet': 200,
+        'google/gemini-3.5-flash': 30, 'google/gemini-omni-flash': 30,
+        'google/gemini-3.1-pro': 1500, 'google/gemini-3.1-pro-preview': 1500,
+        'google/gemini-3.1-flash-lite': 8, 'google/gemini-3-pro': 1500,
+        'google/gemini-3-pro-preview': 1500, 'google/gemini-3-flash': 30,
+        'google/gemini-2.5-pro': 1000, 'google/gemma-4-31b': 31, 'google/gemma-4-26b-a4b': 26,
+        'google/gemma-4-e2b-qat': 2, 'google/gemma-4-e4b-qat': 4, 'google/gemma-4-12b-qat': 12, 'google/gemma-4-26b-a4b-qat': 26,
+        'china-mobile/jt-35b-flash': 35,
+        'google/medgemma-27b': 27, 'google/medgemma-4b-pt': 4, 'google/medgemma-1.5-4b': 4,
+        'google/med-palm-2': 340,
+        'meta/muse-spark': 1500,
+        'nvidia/nemotron-3-super': 70, 'nvidia/nemotron-3-ultra-550b-a55b': 550, 'nvidia/cosmos-policy-robocasa': 2,
+        'nvidia/cosmos-predict-2.5': 14, 'nvidia/cosmos-reason-2': 7,
+        'nvidia/gr00t-n1.6': 7, 'nvidia/gr00t-n1.7': 7,
+        'agibot/genie-envisioner': 8,
+        'google-deepmind/genie-3': 100, 'google-deepmind/genie-2': 50,
+        'google-deepmind/gemini-robotics-er-1.6': 100, 'google-deepmind/gemini-robotics-er-1.5': 100,
+        'physical-intelligence/pi-zero': 3.3, 'physical-intelligence/pi-zero-fast': 3.3,
+        'openvla/openvla-7b': 7,
+        'nvidia/omniverse-mega': 30,
+        // xAI Grok (proprietary, approx total params)
+        'xai/grok-3': 1500, 'xai/grok-4': 1500, 'xai/grok-4-heavy': 1500, 'xai/grok-4.20': 1500,
+        // Apr 2026 sweep
+        'tencent/hy3-preview': 295, 'tencent/hy-world-2.0': 1.2,
+        'xiaomi/mimo-v2.6-pro': 1020, 'xiaomi/mimo-v2.6-flash': 309,
+        'xiaomi/mimo-v2.5-pro': 1000, 'xiaomi/mimo-v2.5': 100,
+        'inclusionai/ling-2.6-1t': 1000, 'inclusionai/ling-2.6-flash': 104,
+        'inclusionai/llada2-uni': 16
+    },
+
+    // Vendor-prefix → fallback group for models that aren't in any
+    // sovereign region but should still appear on the timeline.
+    FRONTIER_VENDOR_REGION: {
+        'openai/':              { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'anthropic/':           { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'google/':              { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'google-deepmind/':     { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'meta/':                { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'microsoft/':           { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'runway/':              { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'reve/':                { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'recraft/':             { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'nexgene-ai/':          { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'yutori/':              { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'holo/':                { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'luma/':                { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'black-forest-labs/':   { code: 'frontier-eu-prop', label: 'EU Frontier (Germany)',     flag: '🇩🇪' },
+        'nvidia/':              { code: 'physical-ai',      label: 'Physical AI',                flag: '🦾' },
+        'agibot/':              { code: 'physical-ai',      label: 'Physical AI',                flag: '🦾' },
+        'openvla/':             { code: 'physical-ai',      label: 'Physical AI',                flag: '🦾' },
+        'physical-intelligence/':{ code: 'physical-ai',     label: 'Physical AI',                flag: '🦾' },
+        'xai/':                 { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'amazon/':              { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },  // 2026-06-09 S63 — Amazon Nova Micro/Lite/Pro
+        'minimax/':             { code: 'cn',               label: 'China',                      flag: '🇨🇳' },  // 2026-06-09 S63 — MiniMax M2/M3 etc.
+        'kling/':               { code: 'cn',               label: 'China',                      flag: '🇨🇳' },
+        'alibaba-ath/':         { code: 'cn',               label: 'China',                      flag: '🇨🇳' },
+        'tencent/':             { code: 'cn',               label: 'China',                      flag: '🇨🇳' },
+        'sjtu-xinhua-harvard/': { code: 'cn',               label: 'China (academic-led)',       flag: '🇨🇳' },
+        'tsinghua-bgi/':        { code: 'cn',               label: 'China (academic-led)',       flag: '🇨🇳' },
+        'monarch-initiative/':  { code: 'frontier-us-prop', label: 'US/EU Open Science',         flag: '🌐' },
+        'riken/':               { code: 'jp',               label: 'Japan',                      flag: '🇯🇵' },
+        'mit-mgb/':             { code: 'frontier-us-prop', label: 'US Frontier (research)',     flag: '🌐' },
+        'icl/':                 { code: 'eu',               label: 'EU (Imperial College London)', flag: '🇬🇧' },
+        'mpi-light/':           { code: 'eu',               label: 'EU (Max Planck)',            flag: '🇩🇪' },
+        'ut-austin/':           { code: 'frontier-us-prop', label: 'US Frontier (research)',     flag: '🌐' }
+    },
+
+    // Sovereign agent products — regional equivalents of Cursor / Devin /
+    // Claude Code. Strict-attribution: each entry has a verifiable primary
+    // source URL (vendor site or official GitHub). Metadata only — no scores.
+    // `crossLinkAgent: true` flags products already in main Agent menu's
+    // AGENT_PRODUCTS list (rendered with a cross-link badge).
+    AGENT_PRODUCTS: [
+        // ── 🇨🇳 China ──
+        {
+            id: 'butterfly/manus',
+            name: 'Manus',
+            region: 'cn', flag: '🇨🇳', regionLabel: 'China',
+            vendor: 'Butterfly Effect',
+            status: 'production',
+            note: 'General-purpose AI agent (also tracked in Agent menu as manus-ai/manus)',
+            source_url: 'https://manus.im/',
+            crossLinkAgent: true
+        },
+        {
+            id: 'alibaba/qwen-code',
+            name: 'Qwen Code',
+            region: 'cn', flag: '🇨🇳', regionLabel: 'China',
+            vendor: 'Alibaba (QwenLM)',
+            status: 'production',
+            note: 'Open-source coding agent for terminal — fork of Gemini CLI',
+            source_url: 'https://github.com/QwenLM/qwen-code'
+        },
+        {
+            id: 'zhipu/autoglm',
+            name: 'AutoGLM / Z.ai Agent',
+            region: 'cn', flag: '🇨🇳', regionLabel: 'China',
+            vendor: 'Zhipu AI (Z.ai)',
+            status: 'production',
+            note: 'Browser/phone agent powered by GLM family',
+            source_url: 'https://z.ai/'
+        },
+        {
+            id: 'bytedance/coze',
+            name: 'Coze',
+            region: 'cn', flag: '🇨🇳', regionLabel: 'China',
+            vendor: 'ByteDance',
+            status: 'production',
+            note: 'Agent platform / bot builder powered by Doubao',
+            source_url: 'https://www.coze.com/'
+        },
+        {
+            id: 'moonshot/kimi',
+            name: 'Kimi (Researcher)',
+            region: 'cn', flag: '🇨🇳', regionLabel: 'China',
+            vendor: 'Moonshot AI',
+            status: 'production',
+            note: 'Long-context assistant + Kimi Researcher deep-research agent',
+            source_url: 'https://www.kimi.com/'
+        },
+        // ── 🇰🇷 Korea ──
+        {
+            id: 'upstage/solar-pro',
+            name: 'Solar Pro 2 + Document Parse',
+            region: 'kr', flag: '🇰🇷', regionLabel: 'Korea',
+            vendor: 'Upstage',
+            status: 'production',
+            note: 'Solar Pro 2 with Document Parse / Information Extract agent APIs',
+            source_url: 'https://www.upstage.ai/'
+        },
+        // ── 🇮🇳 India ──
+        {
+            id: 'sarvam/sarvam-agent',
+            name: 'Sarvam-M Agent',
+            region: 'in', flag: '🇮🇳', regionLabel: 'India',
+            vendor: 'Sarvam AI',
+            status: 'production',
+            note: 'Indic-language assistant + Sarvam-M agent stack',
+            source_url: 'https://www.sarvam.ai/'
+        }
+    ],
+
+    _cycleSort: function(tableId, key, defaultDir) {
+        var s = this._sortStates[tableId] || { key: null, dir: null };
+        if (s.key !== key) {
+            this._sortStates[tableId] = { key: key, dir: defaultDir || 'desc' };
+        } else if (s.dir === 'desc') {
+            this._sortStates[tableId] = { key: key, dir: 'asc' };
+        } else if (s.dir === 'asc') {
+            this._sortStates[tableId] = { key: null, dir: null };
+        } else {
+            this._sortStates[tableId] = { key: key, dir: defaultDir || 'desc' };
+        }
+    },
+
+    _sortIndicator: function(tableId, key) {
+        var s = this._sortStates[tableId];
+        if (!s || s.key !== key) return '';
+        return s.dir === 'asc' ? ' ▲' : s.dir === 'desc' ? ' ▼' : '';
+    },
+
+    _makeSortableTh: function(tableId, key, label, defaultDir, onClick) {
+        var th = document.createElement('th');
+        th.textContent = label + this._sortIndicator(tableId, key);
+        th.style.cursor = 'pointer';
+        th.setAttribute('role', 'button');
+        th.setAttribute('title', '클릭하여 정렬 (' + (defaultDir === 'asc' ? 'asc → desc → off' : 'desc → asc → off') + ')');
+        var s = this._sortStates[tableId];
+        if (s && s.key === key) {
+            th.style.color = '#3b82f6';
+            th.style.fontWeight = 'bold';
+        }
+        th.addEventListener('click', onClick);
+        return th;
+    },
+
+    init: function(models, benchmarks, scores) {
+        this._models = models || [];
+        this._benchmarks = benchmarks || [];
+        this._scores = scores || [];
+    },
+
+    render: function() {
+        this._models = App.data.models;
+        this._benchmarks = App.data.benchmarks;
+        this._scores = App.data.scores;
+
+        var self = this;
+        // Sections render as separate tasks, in the same order, so the tab paints
+        // after the first one instead of blocking until every chart is built.
+        var stages = [
+            function() { self._renderRegionMap(); },
+            function() { self._renderTimeline(); },
+            function() { self._renderCumulative(); },
+            function() { self._renderCompetitiveness(); },
+            function() { self._renderCountryRadar(); },
+            function() { self._renderCountryLeaderboard(); }
+        ];
+        this.DIMENSIONS.forEach(function(dim) {
+            stages.push(function() { self._renderDimension(dim); });
+        });
+        stages.push(function() { self._renderPerfSuites(); },
+                    function() { self._renderAgentProducts(); },
+                    function() { self._renderHeatmap(); });
+        App.renderChunked('sov-render', stages, function(fn) { fn(); }, { first: 1, budget: 8 });
+
+        // Wire timeline filter + map view toggle controls (only on first render)
+        if (!this._initialized) {
+            var periodSel = document.getElementById('sov-timeline-period');
+            var yModeSel = document.getElementById('sov-timeline-y-mode');
+            if (periodSel) periodSel.addEventListener('change', function() { self._renderTimeline(); });
+            if (yModeSel) yModeSel.addEventListener('change', function() { self._renderTimeline(); });
+
+            // Competitiveness section controls
+            var compLbSel = document.getElementById('sov-comp-leaderboard');
+            var compPeriodSel = document.getElementById('sov-comp-period');
+            var compGapBtn = document.getElementById('sov-comp-mode-gap');
+            var compRawBtn = document.getElementById('sov-comp-mode-raw');
+            if (compLbSel) {
+                // populate options from _LEADERBOARDS, grouped via <optgroup>
+                compLbSel.textContent = '';
+                var groups = {};
+                self._LEADERBOARDS.forEach(function(lb) {
+                    var gName = lb.group || 'Other';
+                    if (!groups[gName]) {
+                        var og = document.createElement('optgroup'); og.label = gName;
+                        groups[gName] = og; compLbSel.appendChild(og);
+                    }
+                    var o = document.createElement('option'); o.value = lb.id; o.textContent = lb.label;
+                    groups[gName].appendChild(o);
+                });
+                compLbSel.value = self._compLeaderboard;
+                compLbSel.addEventListener('change', function() { self._compLeaderboard = compLbSel.value; self._renderCompetitiveness(); });
+            }
+            if (compPeriodSel) compPeriodSel.addEventListener('change', function() { self._compPeriod = compPeriodSel.value; self._renderCompetitiveness(); });
+            function setCompMode(mode) {
+                self._compMode = mode;
+                [[compGapBtn, 'gap'], [compRawBtn, 'raw']].forEach(function(pair) {
+                    if (!pair[0]) return;
+                    var on = pair[1] === mode;
+                    pair[0].className = 'px-3 py-1 ' + (on ? 'bg-blue-600 text-white' : 'bg-gray-800 text-gray-300');
+                });
+                self._renderCompetitiveness();
+            }
+            if (compGapBtn) compGapBtn.addEventListener('click', function() { setCompMode('gap'); });
+            if (compRawBtn) compRawBtn.addEventListener('click', function() { setCompMode('raw'); });
+
+            var btnAll = document.getElementById('sov-map-view-all');
+            var btnActive = document.getElementById('sov-map-view-active');
+            var btnVendor = document.getElementById('sov-map-view-vendor');
+            if (btnAll && btnActive) {
+                btnAll.addEventListener('click', function() {
+                    self._mapViewMode = 'all';
+                    self._updateMapToggleStyles();
+                    self._renderRegionMap();
+                });
+                btnActive.addEventListener('click', function() {
+                    self._mapViewMode = 'active';
+                    self._updateMapToggleStyles();
+                    self._renderRegionMap();
+                });
+                if (btnVendor) {
+                    btnVendor.addEventListener('click', function() {
+                        self._mapViewMode = 'vendor';
+                        self._updateMapToggleStyles();
+                        self._renderRegionMap();
+                    });
+                }
+            }
+
+            // Vendor collapse/expand all buttons
+            var btnCollapseAll = document.getElementById('sov-map-collapse-all');
+            var btnExpandAll = document.getElementById('sov-map-expand-all');
+            if (btnCollapseAll) {
+                btnCollapseAll.addEventListener('click', function() {
+                    self._setAllVendorsCollapsed(true);
+                    self._renderRegionMap();
+                });
+            }
+            if (btnExpandAll) {
+                btnExpandAll.addEventListener('click', function() {
+                    self._setAllVendorsCollapsed(false);
+                    self._renderRegionMap();
+                });
+            }
+
+            // Cumulative chart controls
+            var cumRegionBtn = document.getElementById('sov-cum-view-region');
+            var cumVendorBtn = document.getElementById('sov-cum-view-vendor');
+            var cumGranSel = document.getElementById('sov-cum-granularity');
+            var cumRegionSel = document.getElementById('sov-cum-region-select');
+            if (cumRegionBtn && cumVendorBtn) {
+                cumRegionBtn.addEventListener('click', function() {
+                    self._cumViewMode = 'region';
+                    self._renderCumulative();
+                });
+                cumVendorBtn.addEventListener('click', function() {
+                    self._cumViewMode = 'vendor';
+                    self._renderCumulative();
+                });
+            }
+            if (cumGranSel) cumGranSel.addEventListener('change', function() { self._renderCumulative(); });
+            if (cumRegionSel) cumRegionSel.addEventListener('change', function() { self._renderCumulative(); });
+        }
+        this._initialized = true;
+
+        if (typeof SovereignCharts !== 'undefined' && SovereignCharts.renderAll) {
+            SovereignCharts.renderAll();
+        }
+    },
+
+    _updateMapToggleStyles: function() {
+        var btnAll = document.getElementById('sov-map-view-all');
+        var btnActive = document.getElementById('sov-map-view-active');
+        var btnVendor = document.getElementById('sov-map-view-vendor');
+        if (!btnAll || !btnActive) return;
+        var activeCls = 'px-3 py-1 bg-blue-600 text-white';
+        var inactiveCls = 'px-3 py-1 bg-gray-800 text-gray-300';
+        btnAll.className = this._mapViewMode === 'all' ? activeCls : inactiveCls;
+        btnActive.className = this._mapViewMode === 'active' ? activeCls : inactiveCls;
+        if (btnVendor) btnVendor.className = this._mapViewMode === 'vendor' ? activeCls : inactiveCls;
+        // Show vendor collapse/expand controls only in vendor mode
+        var controls = document.getElementById('sov-map-vendor-controls');
+        if (controls) {
+            if (this._mapViewMode === 'vendor') controls.classList.remove('hidden');
+            else controls.classList.add('hidden');
+        }
+    },
+
+    _setAllVendorsCollapsed: function(collapsed) {
+        var self = this;
+        // Walk every region's models, collect canonical vendor labels per region,
+        // and set collapsed state. We do this lazily during render too, but
+        // doing it here ensures the next render reflects intent for every group.
+        this.REGIONS.forEach(function(region) {
+            var seenVendors = {};
+            region.models.forEach(function(mid) {
+                var m = self._models.find(function(x) { return x.id === mid; });
+                if (!m) return;
+                var v = self._canonicalVendor(m.vendor);
+                if (seenVendors[v]) return;
+                seenVendors[v] = true;
+                self._vendorCollapsed[region.code + '||' + v] = collapsed;
+            });
+        });
+    },
+
+    // Returns true if a release date is within the active window (last N months from today).
+    _isActive: function(yyyyMm) {
+        if (!yyyyMm) return false;
+        var ts = this._dateToTs(yyyyMm);
+        var now = Date.now();
+        var cutoff = now - this._ACTIVE_WINDOW_MONTHS * 30 * 24 * 3600 * 1000;
+        return ts >= cutoff;
+    },
+
+    // Extract approximate parameter count (in billions of params). Tries, in order:
+    //   1. KNOWN_PARAMS lookup by model_id (curated, authoritative when present)
+    //   2. Parse the DB `parameters` string (e.g. "2.8T-A~50B", "1T", "295B-A21B")
+    //   3. Parse the model name ("EXAONE 4.5 33B")
+    // Both B (billions) and T (trillions → ×1000) units are handled; the LARGEST
+    // number wins so MoE totals ("2.8T-A~50B" → 2800) beat the active-param count.
+    // Returns null only when no source encodes a size (→ plotted in the "?" row).
+    _extractParamsB: function(modelName, modelId, paramsStr) {
+        if (modelId && this.KNOWN_PARAMS && this.KNOWN_PARAMS[modelId] != null) {
+            return this.KNOWN_PARAMS[modelId];
+        }
+        var sources = [];
+        if (paramsStr) sources.push(String(paramsStr));
+        if (modelName) sources.push(String(modelName));
+        for (var s = 0; s < sources.length; s++) {
+            var matches = sources[s].match(/(\d+(?:\.\d+)?)\s*([TB])\b/gi);
+            if (!matches || matches.length === 0) continue;
+            var nums = matches.map(function(tok) {
+                var mm = tok.match(/(\d+(?:\.\d+)?)\s*([TB])/i);
+                var n = parseFloat(mm[1]);
+                if (isNaN(n)) return null;
+                return /t/i.test(mm[2]) ? n * 1000 : n;   // T (trillions) → billions
+            }).filter(function(n) { return n != null; });
+            if (nums.length) return Math.max.apply(null, nums);
+        }
+        return null;
+    },
+
+    _bestScoreFor: function(modelId) {
+        var best = 0;
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byModel) {
+            var rows = idx.byModel[modelId] || [];
+            for (var i = 0; i < rows.length; i++) {
+                var v = rows[i].value;
+                if (typeof v === 'number' && v > best) best = v;
+            }
+        } else {
+            this._scores.forEach(function(s) {
+                if (s.model_id === modelId && typeof s.value === 'number' && s.value > best) {
+                    best = s.value;
+                }
+            });
+        }
+        return best > 0 ? best : null;
+    },
+
+    // ─────────────── Release timeline (date × params, color by region) ───────────────
+    _renderTimeline: function() {
+        var el = document.getElementById('sov-timeline');
+        if (!el) return;
+        // Dispose any previous ECharts instance bound to this element OR any
+        // child host div so a re-render fully replaces the chart instead of
+        // merging into a cached instance with stale options.
+        var prev = echarts.getInstanceByDom(el);
+        if (prev) prev.dispose();
+        Array.prototype.slice.call(el.children).forEach(function(child) {
+            var ci = echarts.getInstanceByDom(child);
+            if (ci) ci.dispose();
+        });
+        el.textContent = '';
+        var self = this;
+
+        var periodSel = document.getElementById('sov-timeline-period');
+        var yModeSel = document.getElementById('sov-timeline-y-mode');
+        var period = periodSel ? periodSel.value : 'all';
+        var yMode = yModeSel ? yModeSel.value : 'params-log';
+
+        var modelById = {};
+        this._models.forEach(function(m) { modelById[m.id] = m; });
+
+        // Build a model_id → region lookup so we can group models by their
+        // sovereign region. Models not in any region fall back to a vendor-
+        // based group (e.g., openai/* → 'US Frontier (proprietary)').
+        var regionByModel = {};
+        this.REGIONS.forEach(function(region) {
+            region.models.forEach(function(mid) { regionByModel[mid] = region; });
+        });
+        function vendorFallbackRegion(mid) {
+            var keys = Object.keys(self.FRONTIER_VENDOR_REGION);
+            for (var i = 0; i < keys.length; i++) {
+                if (mid.indexOf(keys[i]) === 0) return self.FRONTIER_VENDOR_REGION[keys[i]];
+            }
+            // Last resort: stub region from the model's vendor metadata
+            var m = modelById[mid];
+            return m ? { code: 'other', label: m.vendor || 'Other', flag: '·' } : null;
+        }
+
+        // Region color palette — distinct color per region beyond the 6 Theme.series.
+        var regionPalette = [
+            '#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899',
+            '#14b8a6', '#f97316', '#06b6d4', '#a855f7', '#84cc16', '#eab308',
+            '#22c55e', '#0ea5e9', '#d946ef', '#f43f5e', '#fbbf24', '#6366f1',
+            '#7c3aed', '#e11d48', '#0284c7', '#ca8a04', '#be185d', '#16a34a'
+        ];
+        // Color allocator: ordered by REGIONS list, then alphabetic for fallback.
+        var regionColorByLabel = {};
+        this.REGIONS.forEach(function(r, idx) {
+            regionColorByLabel[r.flag + ' ' + r.label] = regionPalette[idx % regionPalette.length];
+        });
+        // Reserve fallback colors
+        regionColorByLabel['🌐 US Frontier (proprietary)'] = '#94a3b8';
+        regionColorByLabel['🦾 Physical AI'] = '#a855f7';
+
+        // Sentinel y-value used to plot models without param data so the user
+        // can still see them. ECharts log axis can't render 0, so we use a
+        // small number (0.05B = 50M) and label this row clearly.
+        var UNKNOWN_PARAMS_Y = 0.05;
+
+        // Iterate ONLY models that belong to a sovereign region. Frontier
+        // vendors (Anthropic/OpenAI/Google/Meta/NVIDIA/xAI/Physical Intelligence)
+        // are intentionally excluded so the timeline focuses on sovereign AI
+        // categories only — the user's requirement.
+        var pointsByLabel = {};   // legend label → array of points
+        var processedIds = {};    // dedupe in case a model appears in 2 regions
+        var totalProcessed = 0, totalKept = 0, totalUnknownParams = 0;
+        // Total population for the coverage badge: sovereign-region members only.
+        var sovereignPopulation = 0;
+        Object.keys(regionByModel).forEach(function(mid) {
+            if (modelById[mid]) sovereignPopulation++;
+        });
+
+        this._models.forEach(function(model) {
+            var mid = model.id;
+            if (processedIds[mid]) return;
+            processedIds[mid] = true;
+
+            // Sovereign-only filter: skip models not in any sovereign region.
+            var region = regionByModel[mid];
+            if (!region) return;
+            totalProcessed++;
+
+            var date = self._resolveReleaseDate(mid) || (self._localReleaseDates && self._localReleaseDates[mid]);
+            if (!date) return;
+
+            // Period filter
+            var year = date.slice(0, 4);
+            if (period !== 'all') {
+                if (period === '2023') {
+                    if (parseInt(year, 10) > 2023) return;
+                } else if (year !== period) {
+                    return;
+                }
+            }
+
+            var label = region.flag + ' ' + region.label;
+
+            var paramsB = self._extractParamsB(model.name, mid, model.parameters || model.params);
+            var bestScore = self._bestScoreFor(mid);
+            var ts = self._dateToTs(date);
+
+            // Y value depends on mode
+            var yVal = null, isUnknownPlaceholder = false;
+            if (yMode === 'params-log' || yMode === 'params-linear') {
+                if (paramsB == null) {
+                    // Plot at sentinel position so the user sees these
+                    // models exist. Marker is desaturated (lower opacity).
+                    yVal = UNKNOWN_PARAMS_Y;
+                    isUnknownPlaceholder = true;
+                    totalUnknownParams++;
+                } else {
+                    yVal = paramsB;
+                }
+            } else if (yMode === 'best-score') {
+                if (bestScore == null) return;
+                yVal = bestScore;
+            }
+
+            var symbolSize = paramsB ? Math.max(8, Math.min(28, Math.sqrt(paramsB) * 2.4)) : 8;
+
+            if (!pointsByLabel[label]) pointsByLabel[label] = [];
+            pointsByLabel[label].push({
+                value: [ts, yVal, mid, model.name, date, paramsB, bestScore, label],
+                symbolSize: symbolSize,
+                itemStyle: isUnknownPlaceholder ? { opacity: 0.4, borderColor: '#0b0f17', borderWidth: 1 } : null
+            });
+            totalKept++;
+        });
+
+        // Build series in REGIONS order, then fallback groups
+        var seriesData = [];
+        var legendNames = [];
+        function pushSeries(label) {
+            var pts = pointsByLabel[label];
+            if (!pts || pts.length === 0) return;
+            var color = regionColorByLabel[label] || '#94a3b8';
+            // Apply default color to points that don't already have an item style
+            pts.forEach(function(p) {
+                if (!p.itemStyle) {
+                    p.itemStyle = { color: color, opacity: 0.78, borderColor: '#0b0f17', borderWidth: 1 };
+                } else if (!p.itemStyle.color) {
+                    p.itemStyle.color = color;
+                }
+            });
+            legendNames.push(label);
+            seriesData.push({
+                name: label,
+                type: 'scatter',
+                data: pts,
+                itemStyle: { color: color, opacity: 0.78, borderColor: '#0b0f17', borderWidth: 1 },
+                emphasis: { focus: 'series', itemStyle: { borderColor: '#fff', borderWidth: 2, opacity: 1 } }
+            });
+        }
+        // Sovereign regions only (in declared order). Vendor fallback labels
+        // are deliberately excluded — frontier models live in the Frontier
+        // Compare tab and Physical AI tab, not in the Sovereign timeline.
+        this.REGIONS.forEach(function(r) { pushSeries(r.flag + ' ' + r.label); });
+
+        if (seriesData.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-sm text-gray-500 italic';
+            empty.textContent = '— 선택한 기간에 표시할 모델이 없습니다';
+            el.appendChild(empty);
+            return;
+        }
+
+        var yAxisName, yAxisType, yAxisLabel;
+        if (yMode === 'params-log') {
+            yAxisName = '파라미터 (B) — log scale, 미공개=하단';
+            yAxisType = 'log';
+            yAxisLabel = function(v) {
+                if (v <= UNKNOWN_PARAMS_Y * 1.5) return '?';
+                return v + 'B';
+            };
+        } else if (yMode === 'params-linear') {
+            yAxisName = '파라미터 (B) — linear';
+            yAxisType = 'value';
+            yAxisLabel = function(v) { return v + 'B'; };
+        } else {
+            yAxisName = 'Best benchmark score';
+            yAxisType = 'value';
+            yAxisLabel = function(v) { return v.toFixed(0); };
+        }
+        // Coverage badge for the empty p element area — surface counts so user
+        // sees how many points are placeholder vs real
+        var coverageBadge = document.createElement('p');
+        coverageBadge.className = 'text-xs text-gray-500 mb-2';
+        coverageBadge.textContent = '표시 중: ' + totalKept + ' / ' + sovereignPopulation
+            + ' sovereign models' + (totalUnknownParams > 0 && (yMode.indexOf('params') === 0)
+                ? ' · 그 중 ' + totalUnknownParams + '개는 파라미터 미공개 (y=하단 마커)' : '');
+        el.appendChild(coverageBadge);
+        var chartHost = document.createElement('div');
+        chartHost.style.height = 'calc(100% - 24px)';
+        el.appendChild(chartHost);
+
+        var chart = echarts.init(chartHost);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+                trigger: 'item',
+                formatter: function(p) {
+                    var v = p.value;
+                    var lines = [
+                        '<strong>' + v[3] + '</strong>',
+                        '국가: ' + v[7],
+                        '출시: ' + v[4]
+                    ];
+                    if (v[5] != null) {
+                        lines.push('파라미터: ~' + v[5] + 'B');
+                    } else if (yMode.indexOf('params') === 0) {
+                        lines.push('파라미터: <em>미공개</em>');
+                    }
+                    if (v[6] != null) lines.push('Best 벤치마크: ' + v[6].toFixed(1));
+                    return lines.join('<br/>');
+                }
+            },
+            legend: {
+                data: legendNames,
+                textStyle: { color: Theme.textMuted, fontSize: 10 },
+                top: 0,
+                type: 'scroll',
+                pageTextStyle: { color: Theme.textMuted, fontSize: 10 }
+            },
+            grid: { left: 8, right: 32, bottom: 50, top: 50, containLabel: true },
+            xAxis: {
+                type: 'time',
+                name: '출시일',
+                nameTextStyle: { color: Theme.textMuted, fontSize: 10 },
+                axisLabel: { color: Theme.textMuted, fontSize: 10 },
+                axisLine: { lineStyle: { color: Theme.borderStrong } },
+                splitLine: { lineStyle: { color: Theme.border, opacity: 0.3 } }
+            },
+            yAxis: {
+                type: yAxisType,
+                name: yAxisName,
+                nameTextStyle: { color: Theme.textMuted, fontSize: 10 },
+                axisLabel: {
+                    color: Theme.textMuted, fontSize: 10,
+                    formatter: yAxisLabel
+                },
+                axisLine: { lineStyle: { color: Theme.borderStrong } },
+                splitLine: { lineStyle: { color: Theme.border, opacity: 0.3 } }
+            },
+            dataZoom: [
+                { type: 'inside', xAxisIndex: 0, yAxisIndex: 0 },
+                { type: 'slider', xAxisIndex: 0, height: 14, bottom: 8, textStyle: { color: Theme.textMuted, fontSize: 9 } }
+            ],
+            series: seriesData
+        });
+        chart.on('click', function(p) {
+            if (p && p.value && p.value[2]) {
+                if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(p.value[2]);
+            }
+        });
+        window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    _dateToTs: function(yyyyMm) {
+        // Convert "YYYY-MM" or "YYYY" to unix-ms timestamp (mid-month for sorting clarity)
+        var parts = yyyyMm.split('-');
+        var y = parseInt(parts[0], 10);
+        var m = parts.length > 1 ? parseInt(parts[1], 10) : 6;  // mid-year if month unknown
+        return new Date(Date.UTC(y, m - 1, 15)).getTime();
+    },
+
+    // Bucket a YYYY-MM date string into a time bucket key for cumulative aggregation.
+    // Returns end-of-period timestamp so cumulative steps land at period boundaries.
+    _bucketKey: function(yyyyMm, granularity) {
+        var parts = yyyyMm.split('-');
+        var y = parseInt(parts[0], 10);
+        var m = parts.length > 1 ? parseInt(parts[1], 10) : 6;
+        if (granularity === 'year') {
+            return new Date(Date.UTC(y, 11, 31)).getTime();
+        } else if (granularity === 'quarter') {
+            var qEnd = (Math.floor((m - 1) / 3) + 1) * 3;  // 3, 6, 9, 12
+            return new Date(Date.UTC(y, qEnd - 1, 28)).getTime();  // safe last day
+        } else {
+            // month: end of given month (28 is safe for any month)
+            return new Date(Date.UTC(y, m - 1, 28)).getTime();
+        }
+    },
+
+    _formatBucketLabel: function(ts, granularity) {
+        var d = new Date(ts);
+        var y = d.getUTCFullYear();
+        var m = d.getUTCMonth() + 1;
+        if (granularity === 'year') return String(y);
+        if (granularity === 'quarter') {
+            var q = Math.floor((m - 1) / 3) + 1;
+            return y + ' Q' + q;
+        }
+        return y + '-' + (m < 10 ? '0' + m : m);
+    },
+
+    // ─────────────── Cumulative release count by region or region+vendor ───────────────
+    _renderCumulative: function() {
+        var el = document.getElementById('sov-cumulative');
+        if (!el) return;
+        var prev = echarts.getInstanceByDom(el);
+        if (prev) prev.dispose();
+        el.textContent = '';
+        var self = this;
+
+        var granSel = document.getElementById('sov-cum-granularity');
+        var granularity = granSel ? granSel.value : 'quarter';
+        var regionFilterWrap = document.getElementById('sov-cum-region-filter');
+        var regionSel = document.getElementById('sov-cum-region-select');
+
+        // Highlight active toggle button
+        var btnRegion = document.getElementById('sov-cum-view-region');
+        var btnVendor = document.getElementById('sov-cum-view-vendor');
+        var activeCls = 'px-3 py-1 bg-blue-600 text-white';
+        var inactiveCls = 'px-3 py-1 bg-gray-800 text-gray-300';
+        if (btnRegion && btnVendor) {
+            btnRegion.className = this._cumViewMode === 'region' ? activeCls : inactiveCls;
+            btnVendor.className = this._cumViewMode === 'vendor' ? activeCls : inactiveCls;
+        }
+
+        // Show region selector only in vendor mode
+        if (regionFilterWrap) {
+            if (this._cumViewMode === 'vendor') {
+                regionFilterWrap.classList.remove('hidden');
+                // Populate region select if empty
+                if (regionSel && regionSel.options.length === 0) {
+                    var opt = document.createElement('option');
+                    opt.value = '__all__';
+                    opt.textContent = '전체 region';
+                    regionSel.appendChild(opt);
+                    this.REGIONS.forEach(function(r) {
+                        var o = document.createElement('option');
+                        o.value = r.code;
+                        o.textContent = r.flag + ' ' + r.label;
+                        regionSel.appendChild(o);
+                    });
+                    regionSel.value = '__all__';
+                }
+            } else {
+                regionFilterWrap.classList.add('hidden');
+            }
+        }
+
+        // Collect (date, seriesKey) tuples
+        var modelById = {};
+        this._models.forEach(function(m) { modelById[m.id] = m; });
+
+        var seriesEvents = {};  // seriesKey → array of bucketTs
+        var seriesMeta = {};    // seriesKey → { label, region, vendor }
+
+        function addEvent(seriesKey, label, region, vendor, bucketTs) {
+            if (!seriesEvents[seriesKey]) {
+                seriesEvents[seriesKey] = [];
+                seriesMeta[seriesKey] = { label: label, region: region, vendor: vendor };
+            }
+            seriesEvents[seriesKey].push(bucketTs);
+        }
+
+        var regionFilter = regionSel ? regionSel.value : '__all__';
+
+        this.REGIONS.forEach(function(region) {
+            if (self._cumViewMode === 'vendor' && regionFilter !== '__all__' && region.code !== regionFilter) {
+                return;
+            }
+            region.models.forEach(function(mid) {
+                var m = modelById[mid];
+                var date = self._resolveReleaseDate(mid);
+                if (!m || !date) return;
+                var bucketTs = self._bucketKey(date, granularity);
+                if (self._cumViewMode === 'region') {
+                    var key = region.code;
+                    addEvent(key, region.flag + ' ' + region.label, region, null, bucketTs);
+                } else {
+                    var vendor = m.vendor || 'unknown';
+                    var key = region.code + '||' + vendor;
+                    var label = (regionFilter === '__all__' ? region.flag + ' ' : '') + vendor;
+                    addEvent(key, label, region, vendor, bucketTs);
+                }
+            });
+        });
+
+        var seriesKeys = Object.keys(seriesEvents);
+        if (seriesKeys.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-sm text-gray-500 italic';
+            empty.textContent = '— 데이터가 없습니다';
+            el.appendChild(empty);
+            return;
+        }
+
+        // Build the union of all bucket timestamps for x-axis
+        var allBuckets = {};
+        seriesKeys.forEach(function(k) {
+            seriesEvents[k].forEach(function(ts) { allBuckets[ts] = true; });
+        });
+        var bucketList = Object.keys(allBuckets).map(Number).sort(function(a, b) { return a - b; });
+
+        // For each series, build cumulative count over bucketList
+        // Vendor view can be huge — cap to top-N by total count to stay legible
+        var TOP_N_VENDORS = 18;
+        var seriesTotals = seriesKeys.map(function(k) {
+            return { key: k, total: seriesEvents[k].length };
+        }).sort(function(a, b) { return b.total - a.total; });
+        var keepKeys = (self._cumViewMode === 'vendor')
+            ? seriesTotals.slice(0, TOP_N_VENDORS).map(function(x) { return x.key; })
+            : seriesKeys;
+
+        var seriesData = keepKeys.map(function(k) {
+            // Count events per bucket
+            var perBucket = {};
+            seriesEvents[k].forEach(function(ts) { perBucket[ts] = (perBucket[ts] || 0) + 1; });
+            var cumulative = 0;
+            var data = bucketList.map(function(ts) {
+                cumulative += (perBucket[ts] || 0);
+                return [ts, cumulative];
+            });
+            // Trim leading zeros so each series starts when its first model ships
+            var firstNonZero = data.findIndex(function(d) { return d[1] > 0; });
+            if (firstNonZero > 0) data = data.slice(firstNonZero);
+            return {
+                name: seriesMeta[k].label,
+                type: 'line',
+                step: 'end',
+                showSymbol: false,
+                smooth: false,
+                data: data,
+                emphasis: { focus: 'series' },
+                lineStyle: { width: 2 }
+            };
+        });
+
+        // Color via Theme.series cycling
+        seriesData.forEach(function(s, i) {
+            var color = Theme.series[i % Theme.series.length];
+            s.itemStyle = { color: color };
+            s.lineStyle.color = color;
+        });
+
+        var legendData = seriesData.map(function(s) { return s.name; });
+        var subtitle = self._cumViewMode === 'region'
+            ? '전체 ' + seriesData.length + '개 region'
+            : 'Top-' + Math.min(TOP_N_VENDORS, seriesKeys.length) + ' vendors'
+              + (regionFilter !== '__all__' ? ' (filter: ' + regionFilter + ')' : '');
+
+        var chart = echarts.init(el);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            title: {
+                text: self._cumViewMode === 'region' ? '국가별 누적 출시' : '국가-개발사별 누적 출시',
+                subtext: subtitle,
+                textStyle: { color: Theme.textPrimary, fontSize: 13 },
+                subtextStyle: { color: Theme.textMuted, fontSize: 10 },
+                left: 'left', top: 0
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { type: 'cross', label: { backgroundColor: '#0b0f17' } },
+                formatter: function(arr) {
+                    if (!arr || arr.length === 0) return '';
+                    var label = self._formatBucketLabel(arr[0].value[0], granularity);
+                    var sorted = arr.slice().sort(function(a, b) { return b.value[1] - a.value[1]; });
+                    var lines = ['<strong>' + label + '</strong>'];
+                    sorted.slice(0, 12).forEach(function(p) {
+                        lines.push(p.marker + ' ' + p.seriesName + ': <strong>' + p.value[1] + '</strong>');
+                    });
+                    if (sorted.length > 12) lines.push('… +' + (sorted.length - 12) + ' more');
+                    return lines.join('<br/>');
+                }
+            },
+            legend: {
+                data: legendData,
+                textStyle: { color: Theme.textMuted, fontSize: 10 },
+                top: 36,
+                type: 'scroll'
+            },
+            grid: { left: 8, right: 32, bottom: 50, top: 80, containLabel: true },
+            xAxis: {
+                type: 'time',
+                axisLabel: { color: Theme.textMuted, fontSize: 10 },
+                axisLine: { lineStyle: { color: Theme.borderStrong } },
+                splitLine: { lineStyle: { color: Theme.border, opacity: 0.3 } }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Cumulative releases',
+                nameTextStyle: { color: Theme.textMuted, fontSize: 10 },
+                axisLabel: { color: Theme.textMuted, fontSize: 10 },
+                splitLine: { lineStyle: { color: Theme.border, opacity: 0.3 } }
+            },
+            dataZoom: [
+                { type: 'inside', xAxisIndex: 0 },
+                { type: 'slider', xAxisIndex: 0, height: 14, bottom: 8, textStyle: { color: Theme.textMuted, fontSize: 9 } }
+            ],
+            series: seriesData
+        });
+        window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    _getModelName: function(mid) {
+        var m = ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._models)[mid] : this._models.find(function(m) { return m.id === mid; }));
+        return m ? m.name : mid.split('/').pop();
+    },
+
+    _getBenchmark: function(bid) {
+        return ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._benchmarks)[bid] : this._benchmarks.find(function(b) { return b.id === bid; }));
+    },
+
+    _getScore: function(modelId, benchId) {
+        // O(1) via the shared score index (App.getScoreIndex().byModelBench)
+        // instead of an O(N) scan of ~18K scores. This helper is called
+        // ~280K times per Sovereign render; the linear .find made the tab
+        // take ~9s of pure CPU. Index lookup drops that to ~10ms.
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byModelBench) {
+            var hit = idx.byModelBench[modelId + '|' + benchId];
+            return hit ? hit.value : null;
+        }
+        var s = this._scores.find(function(s) {
+            return s.model_id === modelId && s.benchmark_id === benchId;
+        });
+        return s ? s.value : null;
+    },
+
+    _allSovereignIds: function() {
+        var present = {};
+        this._models.forEach(function(m) { present[m.id] = true; });
+        var ids = [];
+        this.REGIONS.forEach(function(r) {
+            r.models.forEach(function(mid) {
+                if (present[mid]) ids.push(mid);
+            });
+        });
+        return ids;
+    },
+
+    _regionFor: function(modelId) {
+        for (var i = 0; i < this.REGIONS.length; i++) {
+            if (this.REGIONS[i].models.indexOf(modelId) !== -1) return this.REGIONS[i];
+        }
+        return null;
+    },
+
+    // ─────────────── Country leaderboard competitiveness & trend ───────────────
+    // Tracks how each country's TOP model's competitiveness changes over time
+    // across the major leaderboards / arenas / indices, using the dated score
+    // history snapshots. Two metric modes: gap-to-frontier % (comparable across
+    // leaderboards) and raw native score. Excludes OpenRouter (usage ranking,
+    // not a benchmark) and Stanford AI Index (annual report, no per-model live
+    // scores). HF Open LLM omitted — the leaderboard is archived (≤2 models).
+    // Two groups. Global leaderboards/arenas/indices are frontier-focused (few
+    // sovereign models submit → mostly CN/FR/AE), so a second group of standard
+    // capability benchmarks (widely reported by sovereign labs → 7-10 countries)
+    // keeps the per-country trend meaningful across many countries.
+    _LEADERBOARDS: [
+        { id: 'aa_intelligence_index', label: 'Artificial Analysis (AAII)', scale: 'index', group: '리더보드 · 아레나 · 지수' },
+        { id: 'arena_ai_text_elo',          label: 'LMArena / arena.ai Text',        scale: 'elo',   group: '리더보드 · 아레나 · 지수' },
+        { id: 'livebench',                  label: 'LiveBench',                       scale: 'pct',   group: '리더보드 · 아레나 · 지수' },
+        { id: 'epoch_capabilities_index',   label: 'Epoch Capabilities Index (ECI)',  scale: 'index', group: '리더보드 · 아레나 · 지수' },
+        { id: 'arena_webdev_elo',           label: 'arena.ai WebDev (coding)',        scale: 'elo',   group: '리더보드 · 아레나 · 지수' },
+        { id: 'gpqa_diamond',               label: 'GPQA Diamond',                    scale: 'pct',   group: '표준 역량 벤치마크' },
+        { id: 'mmlu_pro',                   label: 'MMLU-Pro',                        scale: 'pct',   group: '표준 역량 벤치마크' },
+        { id: 'mmlu',                       label: 'MMLU',                            scale: 'pct',   group: '표준 역량 벤치마크' },
+        { id: 'aime_2025',                  label: 'AIME 2025',                       scale: 'pct',   group: '표준 역량 벤치마크' },
+        { id: 'livecodebench',              label: 'LiveCodeBench',                   scale: 'pct',   group: '표준 역량 벤치마크' },
+        { id: 'ifeval',                     label: 'IFEval',                          scale: 'pct',   group: '표준 역량 벤치마크' }
+    ],
+    // Major national regions with general-purpose LLMs (domain-only regions like
+    // us-legal / darpa / mfg-* have no general-leaderboard scores → excluded).
+    _COMP_REGION_CODES: ['cn', 'kr', 'fr', 'jp', 'in', 'il', 'ae', 'sg', 'ch', 'ca', 'de', 'uk'],
+    _COMP_PALETTE: ['#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899',
+                    '#14b8a6', '#f97316', '#a3e635', '#06b6d4', '#eab308', '#d946ef'],
+    _compCache: {},
+    _compLeaderboard: 'gpqa_diamond',  // default to a broadly-covered metric so the first view shows many countries
+    _compMode: 'gap',         // 'gap' | 'raw'
+    _compPeriod: 'all',       // 'all' | '6m' | '3m'
+
+    _compRegions: function() {
+        var self = this;
+        return this._COMP_REGION_CODES.map(function(c) {
+            return self.REGIONS.find(function(r) { return r.code === c; });
+        }).filter(Boolean);
+    },
+
+    _compModelName: function(mid) {
+        var m = this._models && ((typeof App !== 'undefined' && App.idMap) ? App.idMap(this._models)[mid] : this._models.find(function(x) { return x.id === mid; }));
+        return m ? m.name : (mid ? mid.split('/').pop() : '—');
+    },
+
+    // Pure: build per-country time series for one leaderboard + mode.
+    // Returns { dates, series:[{code,label,flag,color,values[],models[]}], frontier[] }.
+    _competitivenessSeries: function(bid, mode) {
+        var key = bid + '|' + mode;
+        if (this._compCache[key]) return this._compCache[key];
+        var dates = (typeof App !== 'undefined' && App.histDates) ? App.histDates() : [];
+        var perDate = dates.length ? App.histBenchModelValues(bid) : [];
+        var regions = this._compRegions();
+        var pal = this._COMP_PALETTE;
+        var series = regions.map(function(r, i) {
+            return { code: r.code, label: r.label, flag: r.flag, color: pal[i % pal.length],
+                     models: r.models || [], seriesModels: [], values: [] };
+        });
+        var frontier = [];
+        dates.forEach(function(d, di) {
+            var mv = perDate[di], globalTop = null;
+            for (var mid in mv) {
+                if (globalTop == null || mv[mid] > globalTop) globalTop = mv[mid];
+            }
+            frontier.push(mode === 'gap' ? (globalTop != null ? 100 : null) : globalTop);
+            series.forEach(function(ser) {
+                var best = null, bestModel = null;
+                for (var j = 0; j < ser.models.length; j++) {
+                    var v = mv[ser.models[j]];
+                    if (v != null && (best == null || v > best)) { best = v; bestModel = ser.models[j]; }
+                }
+                var val = best == null ? null
+                    : (mode === 'gap' ? (globalTop ? Math.round(best / globalTop * 1000) / 10 : null) : best);
+                ser.values.push(val);
+                ser.seriesModels.push(bestModel);
+            });
+        });
+        var res = { dates: dates, series: series, frontier: frontier };
+        this._compCache[key] = res;
+        return res;
+    },
+
+    // Pure: latest-snapshot gap% matrix, countries × leaderboards.
+    _competitivenessHeatmap: function() {
+        // "Current snapshot" heatmap: read the CURRENT score index (current.json),
+        // NOT the history time-series. current.json is cache-busted per deploy
+        // (?v=<hash>), so this always reflects the latest corrected scores;
+        // deriving "current" from the 60 aggressively-cached history files made
+        // the heatmap lag behind updates.
+        var regions = this._compRegions();
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        var byMB = (idx && idx.byModelBench) || {};
+        var byB = (idx && idx.byBench) || {};
+        var out = [];
+        this._LEADERBOARDS.forEach(function(lb) {
+            // Global frontier top on this benchmark from current scores.
+            var globalTop = null;
+            (byB[lb.id] || []).forEach(function(s) {
+                if (s && s.value != null && (globalTop == null || s.value > globalTop)) globalTop = s.value;
+            });
+            regions.forEach(function(r) {
+                var best = null, bestModel = null;
+                (r.models || []).forEach(function(mid) {
+                    var s = byMB[mid + '|' + lb.id];
+                    var v = s ? s.value : null;
+                    if (v != null && (best == null || v > best)) { best = v; bestModel = mid; }
+                });
+                var gap = (best != null && globalTop) ? Math.round(best / globalTop * 1000) / 10 : null;
+                out.push({ code: r.code, label: r.label, flag: r.flag, benchId: lb.id,
+                           benchLabel: lb.label, gap: gap, model: bestModel });
+            });
+        });
+        return out;
+    },
+
+    _filterCompDates: function(dates) {
+        if (this._compPeriod === 'all' || dates.length === 0) return dates;
+        var months = this._compPeriod === '6m' ? 6 : 3;
+        var last = dates[dates.length - 1];
+        // date strings are YYYY-MM-DD; compute cutoff by string math on year/month
+        var parts = last.split('-'); var y = +parts[0], m = +parts[1];
+        m -= months; while (m <= 0) { m += 12; y -= 1; }
+        var cutoff = y + '-' + (m < 10 ? '0' + m : m) + '-' + parts[2];
+        return dates.filter(function(d) { return d >= cutoff; });
+    },
+
+    _renderCompetitiveness: function() {
+        var el = document.getElementById('sov-comp-trend');
+        if (!el || typeof echarts === 'undefined') return;
+        var self = this;
+        // Lazy-load history the first time; re-render when it arrives.
+        if (typeof App !== 'undefined' && !App.hist && App._ensureHistory) {
+            el.textContent = '';
+            var loading = document.createElement('div');
+            loading.className = 'text-gray-500 text-sm p-8 text-center';
+            loading.textContent = '추이 데이터 로딩 중…';
+            el.appendChild(loading);
+            App._ensureHistory().then(function() { self._compCache = {}; self._renderCompetitiveness(); });
+            return;
+        }
+        if (!this._compLeaderboard) this._compLeaderboard = this._LEADERBOARDS[0].id;
+        var lb = this._LEADERBOARDS.find(function(x) { return x.id === self._compLeaderboard; }) || this._LEADERBOARDS[0];
+        var mode = this._compMode;
+        var data = this._competitivenessSeries(lb.id, mode);
+        var dates = this._filterCompDates(data.dates);
+        var offset = data.dates.length - dates.length;
+
+        var unit = mode === 'gap' ? '%' : (lb.scale === 'elo' ? '' : (lb.scale === 'pct' ? '%' : ''));
+        var lineSeries = data.series.map(function(ser) {
+            return {
+                name: ser.flag + ' ' + ser.label,
+                type: 'line', connectNulls: false, symbol: 'circle', symbolSize: 4,
+                lineStyle: { color: ser.color, width: 2 }, itemStyle: { color: ser.color },
+                data: ser.values.slice(offset),
+                _models: ser.seriesModels.slice(offset)
+            };
+        });
+        // Frontier reference line
+        if (mode === 'gap') {
+            lineSeries.push({
+                name: '🌐 US Frontier (100%)', type: 'line', data: data.frontier.slice(offset).map(function(v){return v==null?null:100;}),
+                lineStyle: { color: '#9ca3af', width: 1.5, type: 'dashed' }, itemStyle: { color: '#9ca3af' }, symbol: 'none'
+            });
+        } else {
+            lineSeries.push({
+                name: '🌐 US Frontier (top)', type: 'line', data: data.frontier.slice(offset),
+                lineStyle: { color: '#9ca3af', width: 1.5, type: 'dashed' }, itemStyle: { color: '#9ca3af' }, symbol: 'none'
+            });
+        }
+
+        var chart = echarts.getInstanceByDom(el) || echarts.init(el);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            title: {
+                text: lb.label + (mode === 'gap' ? ' — 프론티어 대비 %' : ' — 원점수'),
+                subtext: '각 국가 최고 성적 모델의 경쟁력 추이 (' + dates.length + ' snapshots)',
+                left: 'center', textStyle: { color: Theme.textPrimary, fontSize: 13 },
+                subtextStyle: { color: Theme.textMuted, fontSize: 10 }
+            },
+            tooltip: {
+                trigger: 'axis',
+                formatter: function(params) {
+                    if (!params.length) return '';
+                    var lines = ['<strong>' + params[0].axisValue + '</strong>'];
+                    params.forEach(function(p) {
+                        if (p.value == null) return;
+                        var s = lineSeries[p.seriesIndex];
+                        var mdl = (s && s._models) ? s._models[p.dataIndex] : null;
+                        var val = mode === 'gap' ? (p.value + '%') : (Math.round(p.value * 10) / 10 + unit);
+                        lines.push(p.marker + p.seriesName + ': <strong>' + val + '</strong>' +
+                            (mdl ? ' <span style="color:' + Theme.textMuted + '">(' + self._compModelName(mdl) + ')</span>' : ''));
+                    });
+                    return lines.join('<br>');
+                }
+            },
+            legend: { type: 'scroll', bottom: 0, textStyle: { color: Theme.textMuted, fontSize: 10 } },
+            grid: { left: 48, right: 24, top: 52, bottom: 56 },
+            xAxis: { type: 'category', data: dates, axisLabel: { color: Theme.textMuted, fontSize: 9, rotate: 40 },
+                     axisLine: { lineStyle: { color: Theme.border } } },
+            yAxis: { type: 'value', name: mode === 'gap' ? '% of frontier' : lb.label,
+                     nameTextStyle: { color: Theme.textMuted, fontSize: 9 },
+                     axisLabel: { color: Theme.textMuted, fontSize: 9 },
+                     splitLine: { lineStyle: { color: Theme.border } },
+                     max: mode === 'gap' ? 110 : null },
+            series: lineSeries
+        }, true);
+        window.addEventListener('resize', function() { chart.resize(); });
+
+        this._renderCompetitivenessHeatmap();
+    },
+
+    _renderCompetitivenessHeatmap: function() {
+        var el = document.getElementById('sov-comp-heatmap');
+        if (!el || typeof echarts === 'undefined') return;
+        var self = this;
+        var regions = this._compRegions();
+        var lbs = this._LEADERBOARDS;
+        var matrix = this._competitivenessHeatmap();
+        var regIndex = {}; regions.forEach(function(r, i) { regIndex[r.code] = i; });
+        var lbIndex = {}; lbs.forEach(function(l, i) { lbIndex[l.id] = i; });
+        var cells = matrix.filter(function(c) { return c.gap != null; }).map(function(c) {
+            return { value: [lbIndex[c.benchId], regIndex[c.code], c.gap], model: c.model, benchId: c.benchId };
+        });
+        var chart = echarts.getInstanceByDom(el) || echarts.init(el);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            title: { text: '현재 스냅샷 — 국가 × 리더보드 (프론티어 대비 %)', left: 'center',
+                     textStyle: { color: Theme.textPrimary, fontSize: 13 } },
+            tooltip: {
+                position: 'top',
+                formatter: function(p) {
+                    return lbs[p.value[0]].label + '<br><strong>' + regions[p.value[1]].flag + ' ' +
+                        regions[p.value[1]].label + '</strong>: ' + p.value[2] + '% of frontier' +
+                        (p.data.model ? '<br><span style="color:' + Theme.textMuted + '">' + self._compModelName(p.data.model) + '</span>' : '');
+                }
+            },
+            grid: { left: 90, right: 16, top: 40, bottom: 70 },
+            xAxis: { type: 'category', data: lbs.map(function(l) { return l.label.replace(' (coding)', '').replace('Artificial Analysis ', 'AA '); }),
+                     axisLabel: { color: Theme.textMuted, fontSize: 9, rotate: 30, interval: 0 },
+                     splitArea: { show: true } },
+            yAxis: { type: 'category', data: regions.map(function(r) { return r.flag + ' ' + r.label; }),
+                     axisLabel: { color: Theme.textMuted, fontSize: 10 }, splitArea: { show: true } },
+            visualMap: { min: 40, max: 100, calculable: true, orient: 'horizontal', left: 'center', bottom: 6,
+                         inRange: { color: ['#7f1d1d', '#f59e0b', '#10b981'] },
+                         textStyle: { color: Theme.textMuted, fontSize: 9 } },
+            series: [{
+                type: 'heatmap', data: cells,
+                label: { show: true, formatter: function(p) { return p.value[2]; }, color: '#fff', fontSize: 9 },
+                emphasis: { itemStyle: { borderColor: '#fff', borderWidth: 1 } }
+            }]
+        }, true);
+        chart.off('click');
+        chart.on('click', function(p) {
+            if (p.data && p.data.model && typeof Modal !== 'undefined' && Modal.showScoreSource) {
+                Modal.showScoreSource(p.data.model, p.data.benchId);
+            }
+        });
+        window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    // ─────────────── Country aggregate radar (3-axis per country) ───────────────
+    _renderCountryRadar: function() {
+        var el = document.getElementById('sov-country-radar');
+        if (!el) return;
+        el.textContent = '';
+        var self = this;
+
+        // For each region, compute mean best-score across each dimension's benchmarks
+        var radarData = [];
+        this.REGIONS.forEach(function(region) {
+            var presentModels = region.models.filter(function(mid) {
+                return self._models.some(function(m) { return m.id === mid; });
+            });
+            if (presentModels.length === 0) return;
+            var dimMeans = self.DIMENSIONS.map(function(dim) {
+                // For each benchmark in this dimension, take best score across the country's models;
+                // average those bests over benchmarks that have at least one score.
+                var benchBests = dim.benchmarks.map(function(bid) {
+                    var best = null;
+                    presentModels.forEach(function(mid) {
+                        var v = self._getScore(mid, bid);
+                        if (v != null && (best == null || v > best)) best = v;
+                    });
+                    return best;
+                }).filter(function(v) { return v != null; });
+                if (benchBests.length === 0) return 0;
+                return benchBests.reduce(function(a, b) { return a + b; }, 0) / benchBests.length;
+            });
+            // Skip countries with no scores in any dimension
+            if (dimMeans.every(function(v) { return v === 0; })) return;
+            radarData.push({
+                value: dimMeans,
+                name: region.flag + ' ' + region.label,
+                regionCode: region.code
+            });
+        });
+
+        if (radarData.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-sm text-gray-500 italic';
+            empty.textContent = '— 국가별 비교 데이터가 부족합니다';
+            el.appendChild(empty);
+            return;
+        }
+
+        var indicators = this.DIMENSIONS.map(function(d) { return { name: d.label, max: 100 }; });
+        var chart = echarts.init(el);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+                trigger: 'item',
+                formatter: function(p) {
+                    var lines = [p.name];
+                    p.value.forEach(function(v, i) {
+                        lines.push(indicators[i].name + ': ' + v.toFixed(1));
+                    });
+                    return lines.join('<br/>');
+                }
+            },
+            legend: {
+                data: radarData.map(function(d) { return d.name; }),
+                textStyle: { color: Theme.textMuted, fontSize: 10 },
+                top: 0, type: 'scroll'
+            },
+            radar: {
+                indicator: indicators,
+                shape: 'polygon',
+                axisName: { color: Theme.textMuted, fontSize: 11 },
+                splitLine: { lineStyle: { color: Theme.border } },
+                splitArea: { areaStyle: { color: ['transparent'] } },
+                axisLine: { lineStyle: { color: Theme.border } }
+            },
+            series: [{
+                type: 'radar',
+                data: radarData.map(function(d, i) {
+                    return {
+                        value: d.value,
+                        name: d.name,
+                        itemStyle: { color: Theme.series[i % Theme.series.length] },
+                        lineStyle: { color: Theme.series[i % Theme.series.length], width: 2 },
+                        areaStyle: { opacity: 0.08 }
+                    };
+                })
+            }]
+        });
+        window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    // ─────────────── Country leaderboard (full models × benchmarks per country) ───────────────
+    _renderCountryLeaderboard: function() {
+        var el = document.getElementById('sov-country-leaderboard');
+        if (!el) return;
+        el.textContent = '';
+        var self = this;
+        var TABLE_ID = 'country-leaderboard';
+
+        // Pick representative benchmarks: top-3 per dimension by score coverage
+        var unionBids = [];
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        this.DIMENSIONS.forEach(function(dim) {
+            var picked = dim.benchmarks.map(function(bid) {
+                var cnt = 0;
+                if (idx && idx.byBench) {
+                    cnt = (idx.byBench[bid] || []).length;
+                } else {
+                    self._scores.forEach(function(s) { if (s.benchmark_id === bid) cnt++; });
+                }
+                return { bid: bid, cnt: cnt };
+            }).filter(function(x) { return x.cnt > 0; })
+              .sort(function(a, b) { return b.cnt - a.cnt; })
+              .slice(0, 3)
+              .map(function(x) { return x.bid; });
+            unionBids = unionBids.concat(picked);
+        });
+
+        // Build row data first so we can sort
+        var rowData = this.REGIONS.map(function(region) {
+            var presentModels = region.models.filter(function(mid) {
+                return self._models.some(function(m) { return m.id === mid; });
+            });
+            if (presentModels.length === 0) return null;
+            var benchBests = {};
+            unionBids.forEach(function(bid) {
+                var bestVal = null, bestModel = null;
+                presentModels.forEach(function(mid) {
+                    var v = self._getScore(mid, bid);
+                    if (v != null && (bestVal == null || v > bestVal)) {
+                        bestVal = v;
+                        bestModel = mid;
+                    }
+                });
+                benchBests[bid] = { val: bestVal, model: bestModel };
+            });
+            return { region: region, count: presentModels.length, bests: benchBests };
+        }).filter(function(r) { return r != null; });
+
+        // Apply current sort
+        var s = this._sortStates[TABLE_ID];
+        if (s && s.key && s.dir) {
+            rowData.sort(function(a, b) {
+                var va, vb;
+                if (s.key === 'region') { va = a.region.label; vb = b.region.label; }
+                else if (s.key === 'count') { va = a.count; vb = b.count; }
+                else { va = a.bests[s.key] ? a.bests[s.key].val : null; vb = b.bests[s.key] ? b.bests[s.key].val : null; }
+                var aNull = va == null, bNull = vb == null;
+                if (aNull && bNull) return 0;
+                if (aNull) return 1;
+                if (bNull) return -1;
+                if (typeof va === 'string') {
+                    return s.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                }
+                return s.dir === 'asc' ? va - vb : vb - va;
+            });
+        }
+
+        var table = document.createElement('table');
+        table.className = 'sota-table text-sm';
+
+        var thead = document.createElement('thead');
+        var hr = document.createElement('tr');
+        hr.appendChild(self._makeSortableTh(TABLE_ID, 'region', 'Region', 'asc', function() {
+            self._cycleSort(TABLE_ID, 'region', 'asc');
+            self._renderCountryLeaderboard();
+        }));
+        var thC = self._makeSortableTh(TABLE_ID, 'count', 'Models', 'desc', function() {
+            self._cycleSort(TABLE_ID, 'count', 'desc');
+            self._renderCountryLeaderboard();
+        });
+        thC.style.fontSize = '11px';
+        hr.appendChild(thC);
+        unionBids.forEach(function(bid) {
+            var b = self._getBenchmark(bid);
+            var label = b ? b.name : bid;
+            var th = self._makeSortableTh(TABLE_ID, bid, label, 'desc', (function(localBid) {
+                return function() {
+                    self._cycleSort(TABLE_ID, localBid, 'desc');
+                    self._renderCountryLeaderboard();
+                };
+            })(bid));
+            th.style.fontSize = '11px';
+            hr.appendChild(th);
+        });
+        thead.appendChild(hr);
+        table.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+
+        // For color coding: per-benchmark global best across all regions in the leaderboard
+        var globalMaxes = {};
+        unionBids.forEach(function(bid) {
+            var max = 0;
+            self.REGIONS.forEach(function(region) {
+                region.models.forEach(function(mid) {
+                    var v = self._getScore(mid, bid);
+                    if (v != null && v > max) max = v;
+                });
+            });
+            globalMaxes[bid] = max;
+        });
+
+        rowData.forEach(function(row) {
+            var region = row.region;
+            var tr = document.createElement('tr');
+
+            var tdR = document.createElement('td');
+            tdR.textContent = region.flag + ' ' + region.label;
+            tdR.style.whiteSpace = 'nowrap';
+            tdR.style.fontWeight = '600';
+            tr.appendChild(tdR);
+
+            var tdC = document.createElement('td');
+            tdC.textContent = row.count;
+            tdC.style.textAlign = 'center';
+            tdC.style.color = Theme.textMuted;
+            tr.appendChild(tdC);
+
+            unionBids.forEach(function(bid) {
+                var td = document.createElement('td');
+                td.style.textAlign = 'center';
+                var best = row.bests[bid];
+                if (best && best.val != null) {
+                    td.textContent = best.val.toFixed(1);
+                    var ratio = globalMaxes[bid] > 0 ? best.val / globalMaxes[bid] : 0;
+                    if (ratio >= 0.99) { td.style.color = Theme.series[0]; td.style.fontWeight = 'bold'; }
+                    else if (ratio >= 0.9) td.style.color = Theme.series[1];
+                    else if (ratio >= 0.75) td.style.color = Theme.series[2];
+                    else td.style.color = Theme.series[3];
+                    td.style.cursor = 'pointer';
+                    td.setAttribute('role', 'button');
+                    td.title = (self._getModelName(best.model) || best.model) + ' · 클릭 시 검증 소스';
+                    td.addEventListener('click', (function(m, b) {
+                        return function() {
+                            if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(m, b);
+                        };
+                    })(best.model, bid));
+                } else {
+                    td.textContent = '—';
+                    td.style.color = Theme.textDisabled;
+                }
+                tr.appendChild(td);
+            });
+
+            tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        el.appendChild(table);
+    },
+
+    _renderRegionMap: function() {
+        var container = document.getElementById('sov-region-map');
+        if (!container) return;
+        container.textContent = '';
+        var self = this;
+        this._updateMapToggleStyles();
+
+        var mode = this._mapViewMode;
+        var activeMode = mode === 'active';
+        var vendorMode = mode === 'vendor';
+
+        function buildModelRow(mid) {
+            var m = self._models.find(function(x) { return x.id === mid; });
+            if (!m) return null;
+            var releaseDate = self._resolveReleaseDate(mid);
+            var row = document.createElement('div');
+            row.className = 'flex items-center justify-between gap-2 text-xs';
+            var name = document.createElement('span');
+            name.className = 'text-gray-300 truncate cursor-pointer';
+            name.textContent = m.name + (releaseDate ? '  (' + releaseDate + ')' : '');
+            name.title = mid + ' — 클릭하면 모델 상세';
+            name.addEventListener('click', (function(modelId) {
+                return function() {
+                    if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
+                };
+            })(mid));
+            row.appendChild(name);
+            var badge = document.createElement('span');
+            badge.className = 'badge badge-' + (m.type || 'open-weight');
+            badge.textContent = (m.type || 'open-weight').replace('-', ' ');
+            row.appendChild(badge);
+            return row;
+        }
+
+        function sortByDateDesc(ids) {
+            return ids.slice().sort(function(a, b) {
+                var da = self._resolveReleaseDate(a) || '';
+                var db = self._resolveReleaseDate(b) || '';
+                if (!da && !db) return 0;
+                if (!da) return 1;
+                if (!db) return -1;
+                return db.localeCompare(da);
+            });
+        }
+
+        this.REGIONS.forEach(function(region) {
+            var card = document.createElement('div');
+            card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-4 flex flex-col';
+
+            // Determine which models pass current view filter.
+            var presentModels = region.models.filter(function(mid) {
+                return self._models.some(function(m) { return m.id === mid; });
+            });
+            var visibleModels = activeMode
+                ? presentModels.filter(function(mid) { return self._isActive(self._resolveReleaseDate(mid)); })
+                : presentModels;
+
+            // ── Card header ──
+            var head = document.createElement('div');
+            head.className = 'flex items-center gap-2 mb-2';
+            var flag = document.createElement('span');
+            flag.style.fontSize = '20px';
+            flag.textContent = region.flag;
+            head.appendChild(flag);
+            var label = document.createElement('span');
+            label.className = 'text-widget text-gray-200 font-semibold';
+            label.textContent = region.label;
+            head.appendChild(label);
+
+            // Compute vendor count for vendor-mode header.
+            // Vendor names normalized via VENDOR_ALIASES so e.g.
+            // 'KT' + 'KT (K-intelligence)' merge into a single 'KT' bucket.
+            var vendorGroups = null;
+            if (vendorMode) {
+                vendorGroups = {};
+                visibleModels.forEach(function(mid) {
+                    var m = self._models.find(function(x) { return x.id === mid; });
+                    if (!m) return;
+                    var v = self._canonicalVendor(m.vendor);
+                    if (!vendorGroups[v]) vendorGroups[v] = [];
+                    vendorGroups[v].push(mid);
+                });
+            }
+
+            var count = document.createElement('span');
+            count.className = 'ml-auto text-xs text-gray-500';
+            if (activeMode) {
+                count.textContent = visibleModels.length + ' / ' + presentModels.length + ' active';
+            } else if (vendorMode) {
+                var vendorCount = vendorGroups ? Object.keys(vendorGroups).length : 0;
+                count.textContent = vendorCount + ' vendors · ' + presentModels.length + ' models';
+            } else {
+                count.textContent = presentModels.length + ' models';
+            }
+            head.appendChild(count);
+            card.appendChild(head);
+
+            var note = document.createElement('p');
+            note.className = 'text-xs text-gray-500 mb-3';
+            note.textContent = region.note;
+            card.appendChild(note);
+
+            // ── Body ──
+            var body = document.createElement('div');
+            body.className = 'flex flex-col gap-1';
+
+            if (vendorMode && vendorGroups) {
+                // Sort vendors by latest model date desc, then alphabetically
+                var vendorLatest = {};
+                Object.keys(vendorGroups).forEach(function(v) {
+                    var mostRecent = vendorGroups[v].reduce(function(acc, mid) {
+                        var d = self._resolveReleaseDate(mid) || '';
+                        return d > acc ? d : acc;
+                    }, '');
+                    vendorLatest[v] = mostRecent;
+                });
+                var sortedVendors = Object.keys(vendorGroups).sort(function(a, b) {
+                    var da = vendorLatest[a] || '', db = vendorLatest[b] || '';
+                    if (da !== db) return db.localeCompare(da);
+                    return a.localeCompare(b);
+                });
+
+                sortedVendors.forEach(function(vendor) {
+                    var ids = sortByDateDesc(vendorGroups[vendor]);
+                    var collapseKey = region.code + '||' + vendor;
+                    var isCollapsed = self._vendorCollapsed[collapseKey] === true;
+
+                    // Vendor sub-header (clickable to toggle)
+                    var vendorHead = document.createElement('div');
+                    vendorHead.className = 'flex items-center justify-between gap-2 mt-2 mb-1 pb-1 border-b border-gray-800 cursor-pointer hover:bg-gray-800';
+                    vendorHead.setAttribute('role', 'button');
+                    vendorHead.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+                    vendorHead.title = isCollapsed ? '클릭하면 펼치기' : '클릭하면 접기';
+
+                    var vNameWrap = document.createElement('span');
+                    vNameWrap.className = 'flex items-center gap-1';
+                    var caret = document.createElement('span');
+                    caret.className = 'text-xs text-gray-500';
+                    caret.textContent = isCollapsed ? '▶' : '▼';
+                    caret.style.width = '10px';
+                    vNameWrap.appendChild(caret);
+                    var vName = document.createElement('span');
+                    vName.className = 'text-xs font-semibold text-gray-300';
+                    vName.textContent = vendor;
+                    vNameWrap.appendChild(vName);
+                    vendorHead.appendChild(vNameWrap);
+
+                    var vCount = document.createElement('span');
+                    vCount.className = 'text-xs text-gray-500';
+                    vCount.textContent = ids.length + ' models';
+                    vendorHead.appendChild(vCount);
+
+                    vendorHead.addEventListener('click', (function(key) {
+                        return function() {
+                            self._vendorCollapsed[key] = !self._vendorCollapsed[key];
+                            self._renderRegionMap();
+                        };
+                    })(collapseKey));
+
+                    body.appendChild(vendorHead);
+
+                    // Vendor's models (indented) — render only if not collapsed
+                    if (!isCollapsed) {
+                        ids.forEach(function(mid) {
+                            var row = buildModelRow(mid);
+                            if (!row) return;
+                            row.style.paddingLeft = '18px';
+                            body.appendChild(row);
+                        });
+                    }
+                });
+            } else {
+                // Flat list (all / active modes)
+                var sortedModels = sortByDateDesc(visibleModels);
+                sortedModels.forEach(function(mid) {
+                    var row = buildModelRow(mid);
+                    if (row) body.appendChild(row);
+                });
+            }
+
+            if (visibleModels.length === 0) {
+                var empty = document.createElement('div');
+                empty.className = 'text-xs text-gray-600 italic';
+                empty.textContent = activeMode && presentModels.length > 0
+                    ? '— 최근 ' + self._ACTIVE_WINDOW_MONTHS + '개월 내 출시 모델 없음'
+                    : '— no models tracked yet';
+                body.appendChild(empty);
+            }
+            card.appendChild(body);
+            container.appendChild(card);
+        });
+    },
+
+    _renderDimension: function(dim) {
+        var self = this;
+        var sovIds = this._allSovereignIds();
+        var sovScored = sovIds.map(function(mid) {
+            var sum = 0, cnt = 0;
+            dim.benchmarks.forEach(function(bid) {
+                var v = self._getScore(mid, bid);
+                if (v != null) { sum += v; cnt++; }
+            });
+            return { mid: mid, avg: cnt ? sum / cnt : null, cnt: cnt };
+        }).filter(function(x) { return x.cnt > 0; });
+        sovScored.sort(function(a, b) {
+            if (b.cnt !== a.cnt) return b.cnt - a.cnt;
+            return (b.avg || 0) - (a.avg || 0);
+        });
+
+        var frScored = this.FRONTIER_REFERENCE.filter(function(mid) {
+            return dim.benchmarks.some(function(bid) {
+                return self._getScore(mid, bid) != null;
+            });
+        });
+
+        var topSov = sovScored.slice(0, 6).map(function(x) { return x.mid; });
+        var topFrontier = frScored.slice(0, 3);
+
+        var combined = topSov.concat(topFrontier);
+        var activeBids = dim.benchmarks.filter(function(bid) {
+            return combined.some(function(mid) { return self._getScore(mid, bid) != null; });
+        });
+
+        var chartEl = document.getElementById('sov-' + dim.id + '-chart');
+        var tableEl = document.getElementById('sov-' + dim.id + '-table');
+        if (!chartEl || !tableEl) return;
+        chartEl.textContent = '';
+        tableEl.textContent = '';
+
+        // W5: Shift+click on dimension chart card opens per-dimension leaderboard modal.
+        if (!chartEl._sovDimDrillWired) {
+            chartEl.addEventListener('click', function(e) {
+                if (e.shiftKey && typeof SovereignCharts !== 'undefined' && SovereignCharts.openDimensionLeaderboard) {
+                    SovereignCharts.openDimensionLeaderboard(dim.id);
+                    return;
+                }
+            });
+            chartEl.title = (chartEl.title || '') + ' · Shift+click for leaderboard';
+            chartEl._sovDimDrillWired = true;
+        }
+
+        if (activeBids.length === 0 || combined.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-sm text-gray-500 italic';
+            empty.textContent = '— 이 차원에 해당하는 데이터가 아직 없습니다';
+            chartEl.appendChild(empty);
+            return;
+        }
+
+        this._renderDimChart(chartEl, dim, activeBids, topSov, topFrontier);
+        this._renderDimTable(tableEl, dim, activeBids, topSov, topFrontier);
+    },
+
+    _renderDimChart: function(el, dim, activeBids, sovIds, frIds) {
+        var chart = echarts.init(el);
+        var self = this;
+        var benchNames = activeBids.map(function(bid) {
+            var b = self._getBenchmark(bid);
+            return b ? b.name : bid;
+        });
+
+        function buildSeries(modelIds, isFrontier) {
+            return modelIds.map(function(mid, i) {
+                var color = isFrontier ? Theme.textMuted : Theme.series[i % Theme.series.length];
+                return {
+                    name: self._getModelName(mid) + (isFrontier ? '  · frontier' : ''),
+                    type: 'bar',
+                    data: activeBids.map(function(bid) {
+                        var v = self._getScore(mid, bid);
+                        return v != null ? v : null;
+                    }),
+                    itemStyle: {
+                        color: color,
+                        opacity: isFrontier ? 0.55 : 1.0,
+                        borderColor: isFrontier ? Theme.borderStrong : 'transparent',
+                        borderWidth: isFrontier ? 1 : 0
+                    }
+                };
+            });
+        }
+
+        var series = buildSeries(sovIds, false).concat(buildSeries(frIds, true));
+        var legend = sovIds.map(function(mid) { return self._getModelName(mid); })
+            .concat(frIds.map(function(mid) { return self._getModelName(mid) + '  · frontier'; }));
+
+        chart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            legend: { data: legend, textStyle: { color: Theme.textMuted, fontSize: 10 }, top: 0, type: 'scroll' },
+            grid: { left: 8, right: 16, bottom: 70, top: 40, containLabel: true },
+            xAxis: {
+                type: 'category', data: benchNames,
+                axisLabel: {
+                    color: Theme.textMuted, fontSize: 9, rotate: 30, interval: 0,
+                    formatter: function(v) { return v.length > 22 ? v.slice(0, 20) + '…' : v; }
+                },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
+            },
+            yAxis: {
+                type: 'value', axisLabel: { color: Theme.textMuted },
+                splitLine: { lineStyle: { color: Theme.border } }
+            },
+            series: series
+        });
+        window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    _renderDimTable: function(el, dim, activeBids, sovIds, frIds) {
+        var self = this;
+        var TABLE_ID = 'dim-' + dim.id;
+        var rows = sovIds.concat(frIds);
+        var rowKind = {};
+        sovIds.forEach(function(m) { rowKind[m] = 'sovereign'; });
+        frIds.forEach(function(m) { rowKind[m] = 'frontier'; });
+
+        var maxes = {};
+        activeBids.forEach(function(bid) {
+            var max = 0;
+            rows.forEach(function(mid) {
+                var v = self._getScore(mid, bid);
+                if (v != null && v > max) max = v;
+            });
+            maxes[bid] = max;
+        });
+
+        // Apply sort
+        var s = this._sortStates[TABLE_ID];
+        if (s && s.key && s.dir) {
+            rows.sort(function(a, b) {
+                var va, vb;
+                if (s.key === 'model') { va = self._getModelName(a); vb = self._getModelName(b); }
+                else if (s.key === 'region') {
+                    var ra = self._regionFor(a), rb = self._regionFor(b);
+                    va = ra ? ra.label : (rowKind[a] === 'frontier' ? 'frontier' : '—');
+                    vb = rb ? rb.label : (rowKind[b] === 'frontier' ? 'frontier' : '—');
+                }
+                else { va = self._getScore(a, s.key); vb = self._getScore(b, s.key); }
+                var aNull = va == null, bNull = vb == null;
+                if (aNull && bNull) return 0;
+                if (aNull) return 1;
+                if (bNull) return -1;
+                if (typeof va === 'string') {
+                    return s.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                }
+                return s.dir === 'asc' ? va - vb : vb - va;
+            });
+        }
+
+        var table = document.createElement('table');
+        table.className = 'sota-table text-sm';
+
+        var thead = document.createElement('thead');
+        var hr = document.createElement('tr');
+        hr.appendChild(self._makeSortableTh(TABLE_ID, 'model', 'Model', 'asc', function() {
+            self._cycleSort(TABLE_ID, 'model', 'asc');
+            self._renderDimension(dim);
+        }));
+        hr.appendChild(self._makeSortableTh(TABLE_ID, 'region', 'Region', 'asc', function() {
+            self._cycleSort(TABLE_ID, 'region', 'asc');
+            self._renderDimension(dim);
+        }));
+        activeBids.forEach(function(bid) {
+            var b = self._getBenchmark(bid);
+            var label = b ? b.name : bid;
+            var th = self._makeSortableTh(TABLE_ID, bid, label, 'desc', (function(localBid) {
+                return function() {
+                    self._cycleSort(TABLE_ID, localBid, 'desc');
+                    self._renderDimension(dim);
+                };
+            })(bid));
+            th.style.fontSize = '11px';
+            hr.appendChild(th);
+        });
+        thead.appendChild(hr);
+        table.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+        rows.forEach(function(mid) {
+            var tr = document.createElement('tr');
+            if (rowKind[mid] === 'frontier') tr.style.opacity = '0.7';
+
+            var tdName = document.createElement('td');
+            tdName.textContent = self._getModelName(mid);
+            tdName.style.whiteSpace = 'nowrap';
+            tdName.style.cursor = 'pointer';
+            tdName.title = mid + ' — 클릭하면 모델 상세';
+            tdName.addEventListener('click', (function(m) {
+                return function() {
+                    if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(m);
+                };
+            })(mid));
+            tr.appendChild(tdName);
+
+            var tdRegion = document.createElement('td');
+            var region = self._regionFor(mid);
+            tdRegion.textContent = region ? (region.flag + ' ' + region.label) : (rowKind[mid] === 'frontier' ? 'frontier' : '—');
+            tdRegion.style.fontSize = '11px';
+            tdRegion.style.color = rowKind[mid] === 'frontier' ? Theme.textMuted : Theme.textPrimary;
+            tr.appendChild(tdRegion);
+
+            activeBids.forEach(function(bid) {
+                var td = document.createElement('td');
+                td.style.textAlign = 'center';
+                var v = self._getScore(mid, bid);
+                if (v != null) {
+                    td.textContent = v.toFixed(1);
+                    var ratio = maxes[bid] > 0 ? v / maxes[bid] : 0;
+                    if (ratio >= 0.95) { td.style.color = Theme.series[0]; td.style.fontWeight = 'bold'; }
+                    else if (ratio >= 0.85) td.style.color = Theme.series[1];
+                    else if (ratio >= 0.7) td.style.color = Theme.series[2];
+                    else td.style.color = Theme.series[3];
+                    td.style.cursor = 'pointer';
+                    td.setAttribute('role', 'button');
+                    td.title = '클릭하면 검증 소스·수집일 이력';
+                    td.addEventListener('click', (function(m, b) {
+                        return function() {
+                            if (typeof Modal !== 'undefined' && Modal.showScoreSource) {
+                                Modal.showScoreSource(m, b);
+                            }
+                        };
+                    })(mid, bid));
+                } else {
+                    td.textContent = '—';
+                    td.style.color = Theme.textDisabled;
+                }
+                tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        el.appendChild(table);
+    },
+
+    // ─────────────── Sovereign Performance Suites (multi-table leaderboard) ───────────────
+    _renderPerfSuites: function() {
+        var el = document.getElementById('sov-perf-suites');
+        if (!el) return;
+        el.textContent = '';
+        var self = this;
+
+        // Build sovereign model set: union of all REGIONS.models that exist in DB.
+        // This excludes frontier US-Frontier vendors (Anthropic/OpenAI/Google/Meta/xAI) and Physical AI vendors.
+        var sovIds = [];
+        var seenSov = {};
+        this.REGIONS.forEach(function(r) {
+            r.models.forEach(function(mid) {
+                if (seenSov[mid]) return;
+                if (!self._models.some(function(m) { return m.id === mid; })) return;
+                seenSov[mid] = true;
+                sovIds.push(mid);
+            });
+        });
+
+        // Summary banner
+        var totalScores = 0;
+        var benchHits = {};
+        var allBenchIds = this.PERF_SUITES.reduce(function(acc, s) { return acc.concat(s.benchmarks); }, []);
+        var idxSov = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idxSov && idxSov.byBench) {
+            allBenchIds.forEach(function(bid) {
+                var rows = idxSov.byBench[bid];
+                if (!rows) return;
+                for (var i = 0; i < rows.length; i++) {
+                    if (seenSov[rows[i].model_id]) {
+                        totalScores++;
+                        benchHits[bid] = (benchHits[bid] || 0) + 1;
+                    }
+                }
+            });
+        } else {
+            var allBenchSet = {};
+            allBenchIds.forEach(function(b) { allBenchSet[b] = true; });
+            this._scores.forEach(function(s) {
+                if (allBenchSet[s.benchmark_id] && seenSov[s.model_id]) {
+                    totalScores++;
+                    benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
+                }
+            });
+        }
+        var activeBenchCount = Object.keys(benchHits).length;
+        var summary = document.createElement('p');
+        summary.className = 'text-xs text-gray-500 mb-3';
+        var sb = document.createElement('strong');
+        sb.className = 'text-gray-300';
+        sb.textContent = totalScores + ' verified sovereign scores';
+        summary.appendChild(sb);
+        summary.appendChild(document.createTextNode(' across '));
+        var sc = document.createElement('strong');
+        sc.className = 'text-gray-300';
+        sc.textContent = String(activeBenchCount);
+        summary.appendChild(sc);
+        summary.appendChild(document.createTextNode(' active benchmarks · 19 sovereign regions · click any score cell for source/history modal · click model name for details'));
+        el.appendChild(summary);
+
+        // Render one table per suite
+        this.PERF_SUITES.forEach(function(suite) {
+            var activeBids = suite.benchmarks.filter(function(bid) {
+                return sovIds.some(function(mid) { return self._getScore(mid, bid) != null; });
+            });
+            if (activeBids.length === 0) return;
+
+            // Filter sovereign models to those with ≥1 score on this suite's active benches.
+            // Sort by best avg across the suite so highest scorers float to the top.
+            var rowIds = sovIds.filter(function(mid) {
+                return activeBids.some(function(bid) { return self._getScore(mid, bid) != null; });
+            });
+            if (rowIds.length === 0) return;
+            rowIds.sort(function(a, b) {
+                var sa = activeBids.reduce(function(acc, bid) { var v = self._getScore(a, bid); return acc + (v != null ? v : 0); }, 0);
+                var sb2 = activeBids.reduce(function(acc, bid) { var v = self._getScore(b, bid); return acc + (v != null ? v : 0); }, 0);
+                if (sb2 !== sa) return sb2 - sa;
+                return self._getModelName(a).localeCompare(self._getModelName(b));
+            });
+
+            // Cap display to top 25 models per suite to keep tables readable.
+            var TOP_N = 25;
+            var trimmed = rowIds.length > TOP_N;
+            if (trimmed) rowIds = rowIds.slice(0, TOP_N);
+
+            // Per-benchmark max for color coding (across all sov models, not trimmed list)
+            var maxes = {};
+            activeBids.forEach(function(bid) {
+                var max = 0;
+                sovIds.forEach(function(mid) {
+                    var v = self._getScore(mid, bid);
+                    if (v != null && v > max) max = v;
+                });
+                maxes[bid] = max;
+            });
+
+            // Suite header
+            var head = document.createElement('div');
+            head.className = 'mt-6 mb-2';
+            var title = document.createElement('h4');
+            title.className = 'text-sm font-semibold text-gray-200';
+            title.textContent = suite.label + '  (' + activeBids.length + ' benchmarks · ' + (trimmed ? 'top ' + TOP_N + ' / ' : '') + rowIds.length + ' models)';
+            head.appendChild(title);
+            var note = document.createElement('p');
+            note.className = 'text-xs text-gray-500';
+            note.textContent = suite.note;
+            head.appendChild(note);
+            el.appendChild(head);
+
+            // Table wrapped for horizontal scroll
+            var wrap = document.createElement('div');
+            wrap.className = 'overflow-x-auto';
+            var table = document.createElement('table');
+            table.className = 'sota-table text-sm';
+
+            var thead = document.createElement('thead');
+            var hr = document.createElement('tr');
+            var thM = document.createElement('th'); thM.textContent = 'Model'; hr.appendChild(thM);
+            var thR = document.createElement('th'); thR.textContent = 'Region'; thR.style.fontSize = '11px'; hr.appendChild(thR);
+            activeBids.forEach(function(bid) {
+                var th = document.createElement('th');
+                var b = self._getBenchmark(bid);
+                th.textContent = b ? b.name : bid;
+                th.style.fontSize = '10px';
+                th.style.whiteSpace = 'nowrap';
+                hr.appendChild(th);
+            });
+            thead.appendChild(hr);
+            table.appendChild(thead);
+
+            var tbody = document.createElement('tbody');
+            rowIds.forEach(function(mid) {
+                var m = self._models.find(function(x) { return x.id === mid; });
+                var region = self._regionFor(mid);
+                var tr = document.createElement('tr');
+
+                var tdName = document.createElement('td');
+                tdName.textContent = m ? m.name : mid;
+                tdName.style.whiteSpace = 'nowrap';
+                tdName.style.cursor = 'pointer';
+                tdName.title = mid + ' — 클릭하면 모델 상세';
+                tdName.addEventListener('click', (function(modelId) {
+                    return function() {
+                        if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
+                    };
+                })(mid));
+                tr.appendChild(tdName);
+
+                var tdR = document.createElement('td');
+                tdR.textContent = region ? (region.flag + ' ' + region.label) : '—';
+                tdR.style.fontSize = '11px';
+                tdR.style.color = Theme.textMuted;
+                tdR.style.whiteSpace = 'nowrap';
+                tr.appendChild(tdR);
+
+                activeBids.forEach(function(bid) {
+                    var td = document.createElement('td');
+                    td.style.textAlign = 'center';
+                    var v = self._getScore(mid, bid);
+                    if (v != null) {
+                        var bench = self._getBenchmark(bid);
+                        var unit = bench && bench.metric ? bench.metric : '';
+                        td.textContent = v.toFixed(unit === 'fps' || unit === 'seconds' || unit === 'hours' || unit === 'elo' ? 0 : 1);
+                        var ratio = maxes[bid] > 0 ? v / maxes[bid] : 0;
+                        if (ratio >= 0.99) { td.style.color = Theme.series[0]; td.style.fontWeight = 'bold'; }
+                        else if (ratio >= 0.85) td.style.color = Theme.series[1];
+                        else if (ratio >= 0.7) td.style.color = Theme.series[2];
+                        else td.style.color = Theme.series[3];
+                        td.style.cursor = 'pointer';
+                        td.setAttribute('role', 'button');
+                        td.title = '클릭하면 검증 소스';
+                        td.addEventListener('click', (function(m, b) {
+                            return function() {
+                                if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(m, b);
+                            };
+                        })(mid, bid));
+                    } else {
+                        td.textContent = '—';
+                        td.style.color = Theme.textDisabled;
+                    }
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            wrap.appendChild(table);
+            el.appendChild(wrap);
+        });
+    },
+
+    _renderHeatmap: function() {
+        var el = document.getElementById('sov-heatmap');
+        if (!el) return;
+        el.textContent = '';
+        var self = this;
+
+        var modelIds = [];
+        this.REGIONS.forEach(function(r) {
+            var present = r.models.filter(function(mid) {
+                return self._models.some(function(m) { return m.id === mid; });
+            });
+            modelIds = modelIds.concat(present.slice(0, 2));
+        });
+
+        var unionBids = [];
+        this.DIMENSIONS.forEach(function(d) { unionBids = unionBids.concat(d.benchmarks); });
+
+        var activeBids = unionBids.filter(function(bid) {
+            var cnt = 0;
+            modelIds.forEach(function(mid) {
+                if (self._getScore(mid, bid) != null) cnt++;
+            });
+            return cnt >= 2;
+        });
+
+        if (activeBids.length === 0 || modelIds.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-sm text-gray-500 italic';
+            empty.textContent = '— 히트맵에 표시할 교차 데이터가 부족합니다';
+            el.appendChild(empty);
+            return;
+        }
+
+        var modelLabels = modelIds.map(function(mid) {
+            var r = self._regionFor(mid);
+            return self._getModelName(mid) + (r ? '  ' + r.flag : '');
+        });
+        var benchLabels = activeBids.map(function(bid) {
+            var b = self._getBenchmark(bid);
+            return b ? b.name : bid;
+        });
+        var data = [];
+        modelIds.forEach(function(mid, mi) {
+            activeBids.forEach(function(bid, bi) {
+                var v = self._getScore(mid, bid);
+                data.push([bi, mi, v != null ? v : '-']);
+            });
+        });
+
+        var chart = echarts.init(el);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+                position: 'top',
+                formatter: function(p) {
+                    return benchLabels[p.data[0]] + ' → ' + modelLabels[p.data[1]] + '<br/>' +
+                        (typeof p.data[2] === 'number' ? p.data[2].toFixed(1) : 'no data');
+                }
+            },
+            grid: { left: 8, right: 16, bottom: 80, top: 30, containLabel: true },
+            xAxis: {
+                type: 'category', data: benchLabels,
+                splitArea: { show: true },
+                axisLabel: {
+                    color: Theme.textMuted, rotate: 35, fontSize: 9, interval: 0,
+                    formatter: function(v) { return v.length > 18 ? v.slice(0, 16) + '…' : v; }
+                }
+            },
+            yAxis: {
+                type: 'category', data: modelLabels,
+                splitArea: { show: true },
+                axisLabel: { color: Theme.textMuted, fontSize: 10 }
+            },
+            visualMap: {
+                min: 0, max: 100, calculable: true, orient: 'horizontal', left: 'center', bottom: 0,
+                textStyle: { color: Theme.textMuted, fontSize: 10 },
+                inRange: { color: ['#1f2937', '#3b82f6', '#10b981', '#fbbf24'] }
+            },
+            series: [{
+                name: 'score', type: 'heatmap',
+                data: data.filter(function(d) { return typeof d[2] === 'number'; }),
+                label: {
+                    show: true, color: '#fff', fontSize: 9,
+                    formatter: function(p) { return typeof p.data[2] === 'number' ? p.data[2].toFixed(0) : ''; }
+                }
+            }]
+        });
+        chart.on('click', function(p) {
+            var mid = modelIds[p.data[1]];
+            var bid = activeBids[p.data[0]];
+            if (typeof Modal !== 'undefined' && Modal.showScoreSource) {
+                Modal.showScoreSource(mid, bid);
+            }
+        });
+        window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    // Render the sovereign agent products grid. Cards are grouped visually
+    // by region (via flag in header). DOM-only — no innerHTML, no scores.
+    _renderAgentProducts: function() {
+        var container = document.getElementById('sov-agent-products');
+        if (!container) return;
+        container.textContent = '';
+
+        var products = this.AGENT_PRODUCTS || [];
+        if (!products.length) {
+            var empty = document.createElement('p');
+            empty.className = 'text-xs text-gray-500';
+            empty.textContent = 'No sovereign agent products listed.';
+            container.appendChild(empty);
+            return;
+        }
+
+        // Status → badge color mapping.
+        var statusColor = {
+            production: 'bg-green-900/40 text-green-300 border-green-700',
+            beta:       'bg-amber-900/40 text-amber-300 border-amber-700',
+            preview:    'bg-blue-900/40 text-blue-300 border-blue-700'
+        };
+
+        products.forEach(function(p) {
+            var card = document.createElement('div');
+            card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-4 flex flex-col hover:border-blue-600 transition';
+            card.dataset.productId = p.id;
+
+            // Header: flag + region label + status badge
+            var head = document.createElement('div');
+            head.className = 'flex items-center gap-2 mb-2 flex-wrap';
+
+            var flag = document.createElement('span');
+            flag.style.fontSize = '18px';
+            flag.textContent = p.flag || '';
+            head.appendChild(flag);
+
+            var regionEl = document.createElement('span');
+            regionEl.className = 'text-xs text-gray-400 uppercase tracking-wide';
+            regionEl.textContent = p.regionLabel || '';
+            head.appendChild(regionEl);
+
+            var statusBadge = document.createElement('span');
+            var sCls = statusColor[p.status] || 'bg-gray-800 text-gray-300 border-gray-700';
+            statusBadge.className = 'ml-auto text-xs px-2 py-0.5 rounded border ' + sCls;
+            statusBadge.textContent = p.status || 'unknown';
+            head.appendChild(statusBadge);
+
+            card.appendChild(head);
+
+            // Product name (large)
+            var name = document.createElement('div');
+            name.className = 'text-base font-semibold text-gray-100 mb-1';
+            name.textContent = p.name;
+            card.appendChild(name);
+
+            // Vendor line
+            var vendor = document.createElement('div');
+            vendor.className = 'text-xs text-gray-400 mb-2';
+            vendor.textContent = p.vendor || '';
+            card.appendChild(vendor);
+
+            // Optional descriptive note
+            if (p.note) {
+                var note = document.createElement('div');
+                note.className = 'text-xs text-gray-500 mb-3 leading-relaxed';
+                note.textContent = p.note;
+                card.appendChild(note);
+            }
+
+            // Footer: source link + cross-link badge if applicable
+            var footer = document.createElement('div');
+            footer.className = 'mt-auto flex items-center gap-2 flex-wrap';
+
+            if (p.source_url) {
+                var link = document.createElement('a');
+                link.href = p.source_url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.className = 'text-xs text-blue-400 hover:text-blue-300 underline';
+                link.textContent = 'Primary source ↗';
+                link.title = p.source_url;
+                footer.appendChild(link);
+            }
+
+            if (p.crossLinkAgent) {
+                var crossBadge = document.createElement('span');
+                crossBadge.className = 'text-xs text-amber-300 bg-amber-900/30 border border-amber-700 rounded px-1.5 py-0.5';
+                crossBadge.textContent = 'Also in Agent menu';
+                crossBadge.title = '이 제품은 상위 Agent 메뉴의 AGENT_PRODUCTS 리스트에도 포함되어 있습니다.';
+                footer.appendChild(crossBadge);
+            }
+
+            card.appendChild(footer);
+            container.appendChild(card);
+        });
+    }
+};
