@@ -135,7 +135,24 @@ var MedicalAI = {
             icon: '⌚',
             note: 'Sensor foundation models for wearable streams — Google SensorFM (4 sizes: XXS/XS/S/B, 1T+ minutes pretrain, 35 downstream tasks across CV/Metabolic/Mental/Sleep/Demographic/Lifestyle). Integrates with Gemini Personal Health Agent. arxiv 2605.22759.',
             models: [
-                'google/sensorfm-b', 'google/sensorfm-s', 'google/sensorfm-xs', 'google/sensorfm-xxs'
+                'google/sensorfm-b', 'google/sensorfm-s', 'google/sensorfm-xs', 'google/sensorfm-xxs',
+                'google/sensorfm-b-demos',           // 2026-10-20 S312 — SensorFM-B + demographics (ED.9/ED.12)
+                // 2026-10-20 S312 — OpenMHC (Stanford, arXiv 2607.16235): reimplemented LSM-2 / WBM on My Heart Counts
+                'stanford/openmhc-lsm-2', 'stanford/openmhc-wbm',
+                // 2026-10-20 S312 — HiMAE (Samsung, arXiv 2510.25785): hierarchical MAE for wearable PPG/ECG
+                'samsung/himae'
+            ]
+        },
+        {
+            code: 'eeg-bci',
+            label: 'EEG & BCI Foundation Models (NeuroAtlas)',
+            icon: '🧠',
+            note: 'NeuroAtlas (KU Leuven / MIT, arXiv 2605.14698): EEG foundation models on clinical seizure detection (7 cohorts, Event-Sens@FA AUC + leave-one-dataset-out), brain-age regression (10 cohorts, MAE / Pearson r) and 18 BCI datasets (normalized balanced accuracy, flatten vs mean-pool probes). Time-series FMs (Chronos, Moirai, MOMENT) and supervised models (SeizureTransformer, EEGNet) as references.',
+            models: [
+                'sjtu/labram', 'zju/cbramod', 'uiuc/biot', 'hit/eegpt', 'usc/neuro-gpt', 'sjtu/neurolm', 'sjtu/neurolm-vq',
+                'imperial/neurorvq-eeg', 'imt-atlantique/reve', 'stanford/sleepfm',
+                'kuleuven/st-eegformer-s', 'kuleuven/st-eegformer-b', 'kuleuven/st-eegformer-l',
+                'rpi/seizuretransformer', 'kuleuven/core-sleep', 'gist/sleepyco'
             ]
         },
         {

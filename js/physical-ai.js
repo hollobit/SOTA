@@ -18,6 +18,7 @@ var PhysicalAI = {
                 'nvidia/cosmos-policy-robocasa',
                 // 2026-05-30 Session 38 — NVIDIA Cosmos3 + Cosmos-Reason2 (PAI-Bench SOTA family)
                 'nvidia/cosmos-3-super', 'nvidia/cosmos-3-nano',
+                'nvidia/alpamayo-1.5-8b', 'nvidia/verifine-alpamayo-1.5-8b-r3',  // 2026-10-20 S312 — VeriFine (arXiv 2610.08761) judge-driven self-improvement of Alpamayo-1.5 (reasoning score + minADE6)
                 'nvidia/alpamayo2-super',           // 2026-08-04 S233 — 34B AV VLA (32B VLM + 2.3B diffusion) on Cosmos3-Super; LingoQA 79.2 / AlpaSim 1.50 / minADE6@6.4s 0.911m
                 'nvidia/cosmos-reason2-32b', 'nvidia/cosmos-reason2-8b',
                 // 2026-06-02 S46 — Cosmos 3 Tech Report (NVIDIA): Edge + post-trained variants
