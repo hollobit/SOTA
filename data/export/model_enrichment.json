@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "generated_at": "2026-10-18",
-    "covered_models": 998,
+    "generated_at": "2026-10-20",
+    "covered_models": 999,
     "schema_version": "1.0"
   },
   "models": {
@@ -53736,6 +53736,68 @@
         "name": "MIT",
         "commercial": true,
         "modify_redistribute": true
+      }
+    },
+    "minimax/m3.1-flash": {
+      "architecture": {
+        "type": "moe",
+        "total_params_b": null,
+        "active_params_b": null,
+        "layers": null,
+        "attention": null,
+        "attention_pattern": null,
+        "experts_total": null,
+        "experts_active": null,
+        "vision_encoder_b": null
+      },
+      "training": {
+        "pretrain_tokens": null,
+        "compute_flops": null,
+        "phases": []
+      },
+      "safety": {
+        "aisi_cyber_tier": null,
+        "cbrn_risk": null,
+        "metr_autonomy_50pct": null,
+        "apollo_schemer_score": null,
+        "self_reported_safety_card": null
+      },
+      "throughput": {
+        "tokens_per_second": null,
+        "latency_p50_ms": null
+      },
+      "quantizations": [],
+      "api_providers": [
+        "minimax_api",
+        "openrouter"
+      ],
+      "_sources": [
+        "https://www.minimax.io/blog/minimax-m31f",
+        "https://artificialanalysis.ai/models/minimax-m3-1-flash"
+      ],
+      "links": {
+        "homepage": "https://www.minimax.io",
+        "system_card": null,
+        "model_card": null,
+        "huggingface": null,
+        "paper": null,
+        "github": null,
+        "blog": "https://www.minimax.io/blog/minimax-m31f"
+      },
+      "pricing": {
+        "input": 0.15,
+        "output": 0.6,
+        "cached_input": null,
+        "currency": "USD"
+      },
+      "benchmarks_meta": {
+        "arena_elo": null,
+        "arena_elo_source": null,
+        "intelligence_index_override": null
+      },
+      "lineage": {
+        "base_model_id": "minimax/m3",
+        "training_method": "next-generation Flash successor of M3 — more aggressive sparsity for ~3x faster online inference (P50 170+ TPS) and 70% lower agentic usage cost; early version served anonymously as \"Space Bunny\""
       }
     }
   }

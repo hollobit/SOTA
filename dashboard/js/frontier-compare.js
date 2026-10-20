@@ -374,6 +374,7 @@ var FrontierCompare = {
         'deepseek/deepseek-v4-pro-0813',  // 2026-08-13 S242 — SWE-Verified 73.6, SWE-Pro 52.1, Terminal-2 59.1; $0.435/$0.87, 1M ctx
         'deepseek/deepseek-v4.1-flash',  // 2026-09-10 S278 — 552B CED MoE 8B/16B active; TB2.1 90.6, DeepSWE 74.2, CyberGym 88.1, Codeforces 3471
         'deepseek/deepseek-v4.1-flash-1017',  // 2026-10-17 S310 — V4.1-Flash minor update (deepseek-flash); TB4.0 42.3, DeepSWE 77.0, ProgramBench 29.1, HLE 42.6
+        'minimax/m3.1-flash',  // 2026-10-19 S311 — MiniMax M3.1 Flash ($0.15/$0.60); AA II 42.4, DeepSWE 73.7, CyberGym 82.2, OSWorld 2.0 61.7, ALE 29.6
         'deepseek/deepseek-v4-pro',
         'deepseek/deepseek-v4-flash',
         'deepseek/deepseek-v4-flash-0731',  // 2026-07-31 S226c — official 0731 flash release; Timeline frontier graph

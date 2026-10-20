@@ -504,6 +504,8 @@ var Agent = (function() {
         'microsoft/skillopt',
         // 2026-06-09 S63 — MiniMax M3 (IFBench 83 #1 SOTA, GDPval-AA 58 #3 agentic) + Anti-hallucination Non-Hall 84 #1
         'minimax/m3',
+        // 2026-10-19 S311 — MiniMax M3.1 Flash (AutomationBench 62.2, BankerToolBench 76.2, ALE 29.6, OSWorld 2.0 61.7)
+        'minimax/m3.1-flash',
         // 2026-06-09 S65 — Claude Fable 5 + Mythos 5 (Toolathlon 61.7 NEW SOTA, OSWorld 85 NEW SOTA, BrowseComp 88)
         'anthropic/claude-fable-5',
         'anthropic/claude-mythos-5',

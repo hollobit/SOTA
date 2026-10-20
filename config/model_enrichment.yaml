@@ -4480,3 +4480,21 @@ models:
       name: MIT
       commercial: true
       modify_redistribute: true
+  minimax/m3.1-flash:
+    architecture:
+      type: moe
+    api_providers:
+    - minimax_api
+    - openrouter
+    _sources:
+    - https://www.minimax.io/blog/minimax-m31f
+    - https://artificialanalysis.ai/models/minimax-m3-1-flash
+    lineage:
+      base_model_id: minimax/m3
+      training_method: next-generation Flash successor of M3 — more aggressive sparsity for ~3x faster online inference (P50 170+ TPS) and 70% lower agentic usage cost; early version served anonymously as "Space Bunny"
+    links:
+      homepage: https://www.minimax.io
+      blog: https://www.minimax.io/blog/minimax-m31f
+    pricing:
+      input: 0.15
+      output: 0.6

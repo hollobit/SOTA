@@ -137,6 +137,7 @@ var Sovereign = {
                 'deepseek/deepseek-v4-pro-max', 'deepseek/deepseek-v4-pro-thinking', 'deepseek/deepseek-v4-pro', 'deepseek/deepseek-v4-flash',
                 'deepseek/deepseek-v4.1-flash', 'deepseek/deepseek-v4.1-flash-base',  // 2026-09-10 S278 — 552B CED MoE, TB2.1 90.6
                 'deepseek/deepseek-v4.1-flash-1017',  // 2026-10-17 S310 — minor update, TB4.0 42.3
+                'minimax/m3.1-flash',  // 2026-10-19 S311 — M3.1 Flash, AA II 42.4 (vs M3 29.2)
                 'deepseek/deepseek-v3.2', 'deepseek/deepseek-v3.2-speciale',
                 'deepseek/deepseek-v3.1-terminus', 'deepseek/deepseek-v3',
                 'deepseek/deepseek-r1-0528', 'deepseek/deepseek-r1',
