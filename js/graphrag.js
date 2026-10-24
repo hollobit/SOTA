@@ -1,1 +1,864 @@
-(function(k){"use strict";var O={_loaded:!1,_loading:null,_graph:null,_byId:null,_edgesOut:null,_edgesIn:null,_fieldValues:null,_filters:{types:[],model_type:"",vendor:"",category:"",metric:""},_stopwords:{the:1,a:1,an:1,and:1,or:1,of:1,in:1,on:1,for:1,to:1,by:1,with:1,at:1,from:1,is:1,are:1,was:1,were:1,be:1,this:1,that:1,as:1,it:1,its:1,into:1,via:1,per:1,also:1,not:1,no:1,new:1,used:1,based:1,both:1},_hangulAliases:{\uD55C\uAD6D\uC5B4:"korean",\uD55C\uAD6D:"korean",\uD55C\uAE00:"korean",\uAD6D\uC5B4:"korean",\uC601\uC5B4:"english",\uC911\uAD6D\uC5B4:"chinese",\uC77C\uBCF8\uC5B4:"japanese",\uB2E4\uAD6D\uC5B4:"multilingual",\uB2E4\uC911\uC5B8\uC5B4:"multilingual",\uC758\uB8CC:"medical clinical",\uC758\uD559:"medical",\uC784\uC0C1:"clinical",\uAC04\uD638:"nursing",\uC57D\uD559:"pharmacology",\uC2DC\uD5D8:"exam qa",\uBB38\uC81C:"problems",\uD3C9\uAC00:"benchmark eval",\uBCA4\uCE58\uB9C8\uD06C:"benchmark",\uB370\uC774\uD130\uC14B:"dataset",\uC218\uD559:"math",\uC0B0\uC218:"math",\uC218\uB9AC:"math",\uC62C\uB9BC\uD53C\uC544\uB4DC:"olympiad",\uC62C\uB9BC\uD53D:"olympiad",\uACFC\uD559:"science",\uBB3C\uB9AC:"physics",\uD654\uD559:"chemistry",\uC0DD\uBB3C:"biology",\uB85C\uBD07:"robot robotics",\uB85C\uBD07\uACF5\uD559:"robotics",\uC870\uC791:"manipulation",\uB9E4\uB2C8\uD4F0\uB808\uC774\uC158:"manipulation",\uC8FC\uD589:"navigation driving",\uC790\uC728\uC8FC\uD589:"driving",\uB0B4\uBE44\uAC8C\uC774\uC158:"navigation",\uBE44\uC804:"vision",vla:"vla",\uBAA8\uB378:"model",\uC624\uD508\uC18C\uC2A4:"open source",\uC624\uD508\uC6E8\uC774\uD2B8:"open weights",\uCD94\uB860:"reasoning inference",\uC0AC\uACE0:"thinking",\uCF54\uB529:"coding code",\uCF54\uB4DC:"code",\uC5D0\uC774\uC804\uD2B8:"agent",\uC5D0\uC774\uC804\uD2B8\uD615:"agent",\uB3C4\uAD6C:"tool",\uAC80\uC0C9:"search retrieval",\uB9AC\uD2B8\uB9AC\uBC8C:"retrieval",\uC784\uBCA0\uB529:"embedding",\uB9AC\uB7AD\uCEE4:"reranker",\uC7AC\uC815\uB82C:"reranker",\uCEE8\uD14D\uC2A4\uD2B8:"context",\uBB38\uB9E5:"context",\uB871\uCEE8\uD14D\uC2A4\uD2B8:"long context",\uC774\uBBF8\uC9C0:"image",\uC601\uC0C1:"video",\uBE44\uB514\uC624:"video",\uC74C\uC131:"speech audio",\uC624\uB514\uC624:"audio",\uC74C\uC545:"music",\uC74C\uC6D0:"audio",\uCC57\uBD07:"chat",\uB300\uD654:"chat",\uC0AC\uC774\uBC84:"cyber security",\uBCF4\uC548:"security cyber",\uD574\uD0B9:"cyber exploit",\uCDE8\uC57D\uC810:"vulnerability cve",\uACF5\uACA9:"attack",\uC548\uC804:"safety",\uC815\uB82C:"alignment",\uC5E3\uC9C0:"edge",\uC628\uB514\uBC14\uC774\uC2A4:"on-device edge",\uBAA8\uBC14\uC77C:"mobile edge",\uC591\uC790\uD654:"quantization",\uCD94\uB860\uC18D\uB3C4:"inference throughput",\uD1A0\uD070:"tokens",\uC18D\uB3C4:"throughput speed",\uBE44\uC6A9:"cost price",\uAC00\uACA9:"cost price"},_tokenize:function(t){if(!t)return[];for(var r=t.toLowerCase().replace(/[^a-z0-9가-힣\s\-/.]/g," "),e=[],a=r.split(/\s+/),o=0;o<a.length;o++){var n=a[o].replace(/^[\-/.]+|[\-/.]+$/g,"");if(!(!n||n.length<2||this._stopwords[n])){if(/[가-힣]/.test(n)&&this._hangulAliases[n]){e.push(n);for(var l=this._hangulAliases[n].split(/\s+/),p=0;p<l.length;p++)l[p]&&e.push(l[p])}else e.push(n);if(/[\-/.]/.test(n))for(var d=n.split(/[\-/.]+/),i=0;i<d.length;i++)d[i]&&d[i].length>=2&&!this._stopwords[d[i]]&&d[i]!==n&&e.push(d[i])}}return e},load:function(){if(this._loaded)return Promise.resolve();if(this._loading)return this._loading;var t=this,r=window.location.pathname.indexOf("/dashboard/")!==-1?"../data":"data";return this._loading=fetch(window.App&&App.dataUrl?App.dataUrl(r+"/graphrag.json"):r+"/graphrag.json").then(function(e){if(!e.ok)throw new Error("graphrag.json HTTP "+e.status);return e.json()}).then(function(e){return t._graph=e,t._byId={},e.nodes.forEach(function(a){t._byId[a.id]=a}),t._edgesOut={},t._edgesIn={},e.edges.forEach(function(a){(t._edgesOut[a.from]=t._edgesOut[a.from]||[]).push(a),(t._edgesIn[a.to]=t._edgesIn[a.to]||[]).push(a)}),t._loaded=!0,t._loading=null,e}),this._loading},search:function(t,r){r=r||{};var e=r.limit||30,a=r.types||null;if(!this._loaded||!this._graph)return[];var o=this._graph.bm25;if(!o)return[];var n=this._tokenize(t);if(n.length===0)return[];for(var l={},p=o.k1,d=o.b,i=o.avgdl,s=0;s<n.length;s++){var c=n[s],y=o.idf[c];if(y!==void 0){var h=o.inverted[c];if(h)for(var u=0;u<h.length;u++){var f=h[u][0],m=h[u][1],g=o.doc_lengths[f]||i,v=m+p*(1-d+d*g/i),b=y*m*(p+1)/v;l[f]=(l[f]||0)+b}}}var E=t.toLowerCase().trim(),x=this;Object.keys(l).forEach(function(_){var C=x._byId[_];if(C){var M=(C.name||C.label||"").toLowerCase();M.indexOf(E)>=0&&(l[_]*=1.8),C.type==="model"&&(l[_]*=1.1)}});var w=r.filters||{},N=Object.keys(l).map(function(_){return{id:_,score:l[_]}}).filter(function(_){var C=x._byId[_.id];return!C||a&&a.length&&a.indexOf(C.type)<0?!1:x._passesFieldFilters(C,w)}).sort(function(_,C){return C.score-_.score}).slice(0,e);return N},_passesFieldFilters:function(t,r){return r?!(r.model_type&&(t.type!=="model"||t.model_type!==r.model_type)||r.vendor&&(t.type!=="model"||t.vendor!==r.vendor)||r.category&&(t.type!=="benchmark"||t.category!==r.category)||r.metric&&(t.type!=="benchmark"||t.metric!==r.metric)):!0},_collectFieldValues:function(){if(this._fieldValues)return this._fieldValues;var t={},r={},e={},a={};(this._graph.nodes||[]).forEach(function(n){n.type==="model"?(n.model_type&&(t[n.model_type]=1),n.vendor&&(r[n.vendor]=1)):n.type==="benchmark"&&(n.category&&(e[n.category]=1),n.metric&&(a[n.metric]=1))});var o=function(n){return Object.keys(n).sort()};return this._fieldValues={model_type:o(t),vendor:o(r),category:o(e),metric:o(a)},this._fieldValues},_browseByFilters:function(t,r,e){var a=this,o=[];return(this._graph.nodes||[]).forEach(function(n){if(!(t&&t.length&&t.indexOf(n.type)<0)&&a._passesFieldFilters(n,r)){var l=typeof n.neighbors=="number"?n.neighbors:(a._edgesOut[n.id]||[]).length+(a._edgesIn[n.id]||[]).length;o.push({id:n.id,score:l})}}),o.sort(function(n,l){return l.score-n.score}),o.slice(0,e||40)},neighbors:function(t,r){r=r||8;var e={},a=function(o,n,l,p){e[o]=e[o]||[],!(e[o].length>=r)&&e[o].push({edge:n,otherId:l,dir:p})};return(this._edgesOut[t]||[]).forEach(function(o){a(o.type,o,o.to,"out")}),(this._edgesIn[t]||[]).forEach(function(o){a(o.type,o,o.from,"in")}),e},_renderFilterBar:function(){var t=this,r=this._collectFieldValues(),e=this._filters,a=document.createElement("div");a.className="mb-3 p-2 rounded border border-gray-800 bg-gray-900/40";var o=document.createElement("div");o.className="flex flex-wrap items-center gap-1.5 mb-2";var n=document.createElement("span");n.className="text-[11px] text-gray-500 mr-1",n.textContent="Type:",o.appendChild(n);var l=[["model","Models"],["benchmark","Benchmarks"],["vendor","Vendors"],["category","Categories"]],p=function(h,u,f){var m=document.createElement("button");return m.className="text-[11px] px-2 py-0.5 rounded-full border transition "+(u?"bg-blue-500 border-blue-500 text-white":"bg-gray-800 border-gray-700 text-gray-300 hover:border-gray-500"),m.textContent=h,m.addEventListener("click",f),m};o.appendChild(p("All",!(e.types&&e.types.length),function(){e.types=[],t.render()})),l.forEach(function(h){var u=e.types&&e.types.indexOf(h[0])>=0;o.appendChild(p(h[1],u,function(){e.types=e.types||[];var f=e.types.indexOf(h[0]);f>=0?e.types.splice(f,1):e.types.push(h[0]),t.render()}))}),a.appendChild(o);var d=document.createElement("div");d.className="flex flex-wrap items-center gap-2";var i=function(h,u,f,m){var g=document.createElement("label");g.className="text-[11px] text-gray-500 flex items-center gap-1",g.appendChild(document.createTextNode(h));var v=document.createElement("select");v.className="bg-gray-800 border border-gray-700 rounded text-[11px] text-gray-200 px-1 py-0.5 max-w-[160px]";var b=document.createElement("option");return b.value="",b.textContent="any",v.appendChild(b),f.forEach(function(E){var x=document.createElement("option");x.value=E,x.textContent=E,E===m&&(x.selected=!0),v.appendChild(x)}),v.value=m||"",v.addEventListener("change",function(){e[u]=v.value,t.render()}),g.appendChild(v),g};d.appendChild(i("Model type","model_type",r.model_type,e.model_type)),d.appendChild(i("Vendor","vendor",r.vendor,e.vendor)),d.appendChild(i("Bench category","category",r.category,e.category)),d.appendChild(i("Bench metric","metric",r.metric,e.metric));var s=e.types&&e.types.length||e.model_type||e.vendor||e.category||e.metric;if(s){var c=document.createElement("button");c.className="text-[11px] px-2 py-0.5 rounded border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500",c.textContent="\u2715 Clear filters",c.addEventListener("click",function(){t._filters={types:[],model_type:"",vendor:"",category:"",metric:""},t.render()}),d.appendChild(c)}a.appendChild(d);var y=document.createElement("div");return y.className="text-[10px] text-gray-600 mt-1",y.textContent="Combine a keyword with facets (AND). Leave the search empty to browse purely by filters. Model-type/Vendor imply models; Bench category/metric imply benchmarks.",a.appendChild(y),a},render:function(){var t=this,r=document.getElementById("graphrag-results");if(r){if(this._chart){try{this._chart.dispose()}catch(h){}this._chart=null}if(r.textContent="",!this._loaded){r.appendChild(this._loadingNote()),this.load().then(function(){t.render()});return}var e=this._graph._meta,a=document.createElement("div");a.className="text-xs text-gray-500 mb-3",a.textContent="Graph: "+e.counts.nodes+" nodes \xB7 "+e.counts.models+" models \xB7 "+e.counts.benchmarks+" benchmarks \xB7 "+e.counts.vendors+" vendors \xB7 "+this._graph.edges.length+" edges.",r.appendChild(a),r.appendChild(this._renderFilterBar());var o=this._lastQuery||"",n=this._filters||{},l=n.types&&n.types.length?n.types:null,p=!!(n.model_type||n.vendor||n.category||n.metric||l);if(!o&&!p){r.appendChild(this._helpCard());return}var d,i;if(o?(d=this.search(o,{limit:30,types:l,filters:n}),i="keyword"):(d=this._browseByFilters(l,n,40),i="browse"),d.length===0){var s=document.createElement("div");s.className="text-sm text-gray-400 p-4",s.textContent=o?'No results for "'+o+'" with the current filters. Try fewer keywords or clear filters.':"No entities match the current filters.",r.appendChild(s);return}var c=document.createElement("div");if(c.className="text-sm text-gray-300 mb-3",i==="keyword"){c.appendChild(document.createTextNode("Results for "));var y=document.createElement("b");y.textContent=o,c.appendChild(y),c.appendChild(document.createTextNode(" \u2014 "+d.length+" entities (BM25-ranked, filtered):"))}else c.appendChild(document.createTextNode("Browsing "+d.length+" entities matching filters (ranked by connectivity):"));r.appendChild(c),r.appendChild(t._buildGraphPanel(d)),d.forEach(function(h,u){r.appendChild(t._buildResultCard(h,u))})}},_buildGraphPanel:function(t){var r=this,e=document.createElement("div");e.className="bg-gray-900 border border-gray-800 rounded p-3 mb-4";var a=document.createElement("div");a.className="flex items-center justify-between mb-2";var o=document.createElement("div");o.className="text-xs text-gray-400",o.textContent="Graph Relationship Visualization \u2014 top results + 1-hop neighbors. Drag to rearrange \xB7 click a node for details.",a.appendChild(o);var n=document.createElement("div");n.className="flex items-center gap-1";var l=function(c,y,h){var u=document.createElement("button");return u.className="text-[11px] px-2 py-0.5 rounded border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500",u.textContent=c,u.title=y,u.addEventListener("click",h),u};n.appendChild(l("\u21BB Refresh","Re-layout the graph",function(){r.render()}));var p=l("\u26F6 Maximize","Toggle a taller graph canvas",function(){if(r._graphMaximized=!r._graphMaximized,i.style.height=r._graphMaximized?"78vh":"440px",p.textContent=r._graphMaximized?"\u26F6 Restore":"\u26F6 Maximize",r._chart)try{r._chart.resize()}catch(c){}});n.appendChild(p),a.appendChild(n),e.appendChild(a);var d=document.createElement("div");d.style.cssText="position:relative;width:100%";var i=document.createElement("div");i.id="graphrag-graph",i.style.height=r._graphMaximized?"78vh":"440px",i.style.width="100%",d.appendChild(i);var s=document.createElement("div");return s.id="graphrag-detail",s.style.cssText="position:absolute;top:6px;right:6px;width:260px;max-height:calc(100% - 12px);overflow-y:auto;background:rgba(17,24,39,.96);border:1px solid #374151;border-radius:6px;padding:10px;display:none;z-index:5;box-shadow:0 4px 16px rgba(0,0,0,.4)",d.appendChild(s),e.appendChild(d),requestAnimationFrame(function(){if(typeof echarts=="undefined"){i.textContent="(graph view requires ECharts; falling back to result list)",i.style.cssText="color:#9ca3af;font-size:11px;padding:8px";return}r._renderGraphInto(i,t)}),e},_showNodeDetail:function(t){var r=this,e=document.getElementById("graphrag-detail"),a=this._byId[t];if(!(!e||!a)){e.textContent="",e.style.display="block";var o=document.createElement("div");o.className="flex items-center justify-between mb-1.5";var n=document.createElement("span");n.className="text-[10px] px-1.5 py-0.5 rounded text-white",n.style.background=this._edgeColorForType(a.type),n.textContent=a.type,o.appendChild(n);var l=document.createElement("button");l.className="text-gray-500 hover:text-white text-sm leading-none",l.textContent="\xD7",l.title="Close",l.addEventListener("click",function(){e.style.display="none"}),o.appendChild(l),e.appendChild(o);var p=document.createElement("div");p.className="text-sm font-semibold text-gray-100 mb-1 break-words",p.textContent=a.name||a.label||a.id,e.appendChild(p);var d=function(u,f){if(!(f==null||f==="")){var m=document.createElement("div");m.className="flex gap-2 text-[11px] py-0.5";var g=document.createElement("span");g.className="text-gray-500 min-w-[64px]",g.textContent=u;var v=document.createElement("span");v.className="text-gray-200 break-words flex-1",v.textContent=String(f),m.appendChild(g),m.appendChild(v),e.appendChild(m)}};if(a.type==="model"?(d("Vendor",a.vendor),d("Type",a.model_type),d("Released",a.release_date)):a.type==="benchmark"&&(d("Category",a.category),d("Metric",a.metric)),a.description){var i=document.createElement("div");i.className="text-[11px] text-gray-400 mt-1.5 mb-1 line-clamp-4",i.textContent=a.description.length>260?a.description.slice(0,260)+"\u2026":a.description,e.appendChild(i)}var s=this.neighbors(t,6),c=Object.keys(s);if(c.length){var y=document.createElement("div");y.className="text-[10px] uppercase tracking-wide text-gray-500 mt-2 mb-1",y.textContent="Relationships",e.appendChild(y),c.forEach(function(u){s[u].slice(0,4).forEach(function(f){var m=r._byId[f.otherId];if(m){var g=document.createElement("div");g.className="text-[11px] py-0.5 flex gap-1 items-baseline";var v=document.createElement("span");v.className="text-[9px] px-1 rounded",v.style.cssText="background:"+r._edgeColor(f.edge.type)+"22;color:"+r._edgeColor(f.edge.type),v.textContent=f.edge.type;var b=document.createElement("a");b.href="#",b.className="text-blue-400 hover:underline truncate",b.textContent=m.name||m.label||m.id,b.addEventListener("click",function(E){E.preventDefault(),r._showNodeDetail(f.otherId)}),g.appendChild(v),g.appendChild(b),e.appendChild(g)}})})}var h=document.createElement("button");h.className="mt-2 w-full text-[11px] px-2 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white",h.textContent="Open full page \u2192",h.addEventListener("click",function(){r._openNode(t)}),e.appendChild(h)}},_edgeColorForType:function(t){return{model:"#2563eb",benchmark:"#059669",vendor:"#7c3aed",category:"#d97706"}[t]||"#6b7280"},_renderGraphInto:function(t,r){var e=this,a=r.slice(0,5).map(function(i){return i.id}),o={};a.forEach(function(i){e._addGraphNode(o,i,!0)}),a.forEach(function(i){var s=e.neighbors(i,4);Object.keys(s).forEach(function(c){s[c].forEach(function(y){e._addGraphNode(o,y.otherId,!1)})})});var n={},l=[];Object.keys(o).forEach(function(i){(e._edgesOut[i]||[]).forEach(function(s){if(o[s.to]){var c=s.from+"|"+s.to+"|"+s.type;n[c]||(n[c]=!0,l.push({source:s.from,target:s.to,value:s.type,lineStyle:{color:e._edgeColor(s.type),width:s.type==="TOP_RANKED_ON"?2:1},label:{show:!1,formatter:s.type}}))}})});var p=Object.values(o);try{var d=echarts.init(t,"dark");d.setOption({backgroundColor:"transparent",tooltip:{formatter:function(i){return i.dataType==="edge"?i.data.value:i.data.label+'<br/><span style="opacity:.7">'+i.data.type+"</span>"}},legend:[{data:["model","benchmark","vendor","category"],textStyle:{color:"#9ca3af",fontSize:10},top:4,right:8,orient:"horizontal"}],series:[{type:"graph",layout:"force",roam:!0,draggable:!0,symbolSize:function(i,s){return s.data.symbolSize||18},label:{show:!0,position:"right",formatter:"{b}",color:"#e5e7eb",fontSize:10},force:{repulsion:220,edgeLength:[50,130],gravity:.05,friction:.25,layoutAnimation:!0},emphasis:{focus:"adjacency",lineStyle:{width:2}},edgeSymbol:["none","arrow"],edgeSymbolSize:[4,6],categories:[{name:"model",itemStyle:{color:"#60a5fa"}},{name:"benchmark",itemStyle:{color:"#34d399"}},{name:"vendor",itemStyle:{color:"#c084fc"}},{name:"category",itemStyle:{color:"#fbbf24"}}],data:p,links:l}]}),d.on("click",function(i){i.dataType==="node"&&i.data&&i.data.id&&e._showNodeDetail(i.data.id)}),e._chart=d,window.addEventListener("resize",function(){try{d.resize()}catch(i){}})}catch(i){console.warn("graph render failed",i),t.textContent="Graph render failed: "+i.message}},_addGraphNode:function(t,r,e){if(t[r]){e&&(t[r].symbolSize=28);return}var a=this._byId[r];if(a){var o={model:0,benchmark:1,vendor:2,category:3}[a.type];t[r]={id:r,name:this._labelize(a),label:a.name||a.label||r,type:a.type,category:o==null?0:o,symbolSize:e?28:14}}},_labelize:function(t){var r=t.name||t.label||t.id||"";return r.length>28?r.slice(0,25)+"\u2026":r},_edgeColor:function(t){return{TOP_RANKED_ON:"#fbbf24",SCORED_ON:"#60a5fa",MAKES:"#c084fc",IN_CATEGORY:"#f59e0b",BENCH_RELATED:"#34d399",SAME_VENDOR_FAMILY:"#6b7280"}[t]||"#4b5563"},_helpCard:function(){var t=document.createElement("div");t.className="text-sm text-gray-400 p-6 bg-gray-900 rounded border border-gray-800 leading-relaxed";var r=document.createElement("div");r.textContent="Type a question in the global search bar at the top of the page. The query is BM25-matched against model and benchmark names, vendors, categories, and descriptions. Each result also shows its 1-hop neighborhood (vendor \xB7 category \xB7 top models \xB7 related benchmarks).",t.appendChild(r);var e=document.createElement("div");return e.className="mt-3 text-gray-500",e.textContent="Examples: ",["korean medical","long context","opus 4.8 cyber","edge slm under 4b","image to video arena","usamo 2026 saturation"].forEach(function(a,o){o>0&&e.appendChild(document.createTextNode(" \xB7 "));var n=document.createElement("code");n.className="bg-gray-800 px-1 rounded text-gray-300",n.textContent=a,e.appendChild(n)}),t.appendChild(e),t},_loadingNote:function(){var t=document.createElement("div");return t.className="text-sm text-gray-400 p-4",t.textContent="Loading GraphRAG index (~1 MB gzipped)\u2026",t},_typeBadge:function(t){var r={model:"bg-blue-900 text-blue-200",benchmark:"bg-green-900 text-green-200",vendor:"bg-purple-900 text-purple-200",category:"bg-amber-900 text-amber-200"},e=document.createElement("span");return e.className="text-[10px] uppercase tracking-wider rounded px-1.5 py-0.5 "+(r[t]||"bg-gray-800 text-gray-300"),e.textContent=t,e},_buildResultCard:function(t,r){var e=this,a=this._byId[t.id];if(!a){var o=document.createElement("div");return o.textContent="Missing node "+t.id,o}var n=document.createElement("div");n.className="bg-gray-900 border border-gray-800 rounded p-3 mb-3";var l=document.createElement("div");l.className="flex items-center gap-2 mb-1",l.appendChild(this._typeBadge(a.type));var p=document.createElement("div");p.className="flex-1 font-medium text-gray-100 truncate",p.textContent=a.name||a.label||t.id,l.appendChild(p);var d=document.createElement("span");d.className="text-[10px] text-gray-500 tabular-nums",d.textContent=t.score!=null?t.score.toFixed(2):"",l.appendChild(d),n.appendChild(l);var i=document.createElement("div");i.className="text-xs text-gray-400 mb-2",a.type==="model"?i.textContent=(a.vendor||"")+" \xB7 "+(a.model_type||"")+(a.release_date?" \xB7 "+a.release_date:""):a.type==="benchmark"?i.textContent=(a.category||"")+" \xB7 "+(a.metric||"")+(a.description?" \u2014 "+a.description.slice(0,160):""):a.type==="vendor"?i.textContent="Vendor \u2014 "+(this._edgesOut[t.id]||[]).length+" models":a.type==="category"&&(i.textContent="Benchmark category"),n.appendChild(i);var s=this.neighbors(t.id,6),c=document.createElement("div");c.className="flex flex-wrap gap-1 mt-1";var y=[["TOP_RANKED_ON","Top-ranked on"],["SCORED_ON","Scored on"],["MAKES","Made by"],["IN_CATEGORY","In category"],["BENCH_RELATED","Related benchmarks"],["SAME_VENDOR_FAMILY","Family"]];return y.forEach(function(h){var u=h[0],f=h[1],m=s[u];if(!(!m||m.length===0)){var g=document.createElement("div");g.className="w-full text-[11px] text-gray-500 mt-1";var v=document.createElement("span");v.className="text-gray-600",v.textContent=f+":",g.appendChild(v),g.appendChild(document.createTextNode(" ")),m.forEach(function(b,E){var x=e._byId[b.otherId];if(x){E>0&&g.appendChild(document.createTextNode(" \xB7 "));var w=document.createElement("a");w.href="#",w.className="text-blue-300 hover:underline";var N=x.name||x.label;b.edge.type==="TOP_RANKED_ON"?N="#"+b.edge.rank+" "+N+" ("+b.edge.w+")":b.edge.type==="SCORED_ON"&&(N+=" ("+b.edge.w+")"),w.textContent=N,w.addEventListener("click",function(_){_.preventDefault(),e._openNode(b.otherId)}),g.appendChild(w)}}),c.appendChild(g)}}),n.appendChild(c),l.style.cursor="pointer",l.title="Open detail",l.addEventListener("click",function(){e._openNode(t.id)}),n},_openNode:function(t){var r=this._byId[t];if(r){if(r.type==="model"&&typeof Modal!="undefined"&&Modal.showModel){Modal.showModel(r.id.replace(/^model:/,""));return}if(r.type==="benchmark"&&typeof Modal!="undefined"&&Modal.showBenchmark){Modal.showBenchmark(r.id.replace(/^benchmark:/,""));return}if(r.type==="vendor"&&typeof Modal!="undefined"&&Modal.showVendor){Modal.showVendor(r.id.replace(/^vendor:/,""));return}this._lastQuery=r.name||r.label||"";var e=document.getElementById("global-search");e&&(e.value=this._lastQuery),this.render()}},runQuery:function(t){this._lastQuery=t,typeof App!="undefined"&&App.setTab&&App.setTab("graphrag"),this.render()}};k.GraphRAG=O})(typeof window!="undefined"?window:this);
+/**
+ * GraphRAG — client-side semantic + graph-relationship search.
+ *
+ * Data: fetched as `<base>/graphrag.json` where <base> is `../data` for
+ *       local dashboard/ dev (`dashboard/data` symlinks to `../data/export/`)
+ *       and `data` for the deployed `public/` directory.
+ *   - nodes: model / benchmark / vendor / category
+ *   - edges: SCORED_ON / TOP_RANKED_ON / MAKES / IN_CATEGORY /
+ *            BENCH_RELATED / SAME_VENDOR_FAMILY
+ *   - bm25:  inverted index for sparse retrieval
+ *
+ * Public API (window.GraphRAG):
+ *   - load()                     — fetch & index (idempotent)
+ *   - search(q, opts)            — returns ranked entities with neighbors
+ *   - render()                   — renders the #tab-graphrag section
+ *   - runQuery(q)                — invoked from the global search bar
+ *
+ * Lazy: graphrag.json is only fetched the first time it's needed.
+ */
+(function (root) {
+    'use strict';
+
+    var GraphRAG = {
+        _loaded: false,
+        _loading: null,
+        _graph: null,
+        _byId: null,
+        _edgesOut: null,
+        _edgesIn: null,
+        _fieldValues: null,
+        // Composite search filter state (aiap3-style multi-field linked search).
+        _filters: { types: [], model_type: '', vendor: '', category: '', metric: '' },
+        _stopwords: {
+            'the':1,'a':1,'an':1,'and':1,'or':1,'of':1,'in':1,'on':1,'for':1,'to':1,
+            'by':1,'with':1,'at':1,'from':1,'is':1,'are':1,'was':1,'were':1,
+            'be':1,'this':1,'that':1,'as':1,'it':1,'its':1,'into':1,'via':1,
+            'per':1,'also':1,'not':1,'no':1,'new':1,'used':1,'based':1,'both':1
+        },
+
+        // Hangul → English alias lexicon. Almost all benchmark descriptions in
+        // the corpus are English, so a Korean query like "한국어 의료 시험"
+        // would never match. We expand each Hangul token to one or more English
+        // tokens before BM25 lookup. A token can map to multiple English aliases
+        // (joined by space) — all are added to the token list so any of them
+        // can fire on the inverted index.
+        _hangulAliases: {
+            // Languages / locales
+            '한국어':'korean','한국':'korean','한글':'korean','국어':'korean',
+            '영어':'english','중국어':'chinese','일본어':'japanese',
+            '다국어':'multilingual','다중언어':'multilingual',
+            // Domains
+            '의료':'medical clinical','의학':'medical','임상':'clinical',
+            '간호':'nursing','약학':'pharmacology',
+            '시험':'exam qa','문제':'problems','평가':'benchmark eval',
+            '벤치마크':'benchmark','데이터셋':'dataset',
+            // Math / science
+            '수학':'math','산수':'math','수리':'math',
+            '올림피아드':'olympiad','올림픽':'olympiad',
+            '과학':'science','물리':'physics','화학':'chemistry','생물':'biology',
+            // Robotics / physical AI
+            '로봇':'robot robotics','로봇공학':'robotics',
+            '조작':'manipulation','매니퓰레이션':'manipulation',
+            '주행':'navigation driving','자율주행':'driving','내비게이션':'navigation',
+            '비전':'vision','vla':'vla',
+            // ML
+            '모델':'model','오픈소스':'open source','오픈웨이트':'open weights',
+            '추론':'reasoning inference','사고':'thinking',
+            '코딩':'coding code','코드':'code',
+            '에이전트':'agent','에이전트형':'agent','도구':'tool',
+            '검색':'search retrieval','리트리벌':'retrieval',
+            '임베딩':'embedding','리랭커':'reranker','재정렬':'reranker',
+            '컨텍스트':'context','문맥':'context','롱컨텍스트':'long context',
+            // Modalities
+            '이미지':'image','영상':'video','비디오':'video','음성':'speech audio',
+            '오디오':'audio','음악':'music','음원':'audio',
+            '챗봇':'chat','대화':'chat',
+            // Cyber / safety
+            '사이버':'cyber security','보안':'security cyber','해킹':'cyber exploit',
+            '취약점':'vulnerability cve','공격':'attack',
+            '안전':'safety','정렬':'alignment',
+            // Hardware / inference
+            '엣지':'edge','온디바이스':'on-device edge','모바일':'mobile edge',
+            '양자화':'quantization','추론속도':'inference throughput',
+            '토큰':'tokens','속도':'throughput speed',
+            '비용':'cost price','가격':'cost price'
+        },
+
+        _tokenize: function(q) {
+            if (!q) return [];
+            var s = q.toLowerCase().replace(/[^a-z0-9가-힣\s\-/.]/g, ' ');
+            var out = [];
+            var parts = s.split(/\s+/);
+            for (var i = 0; i < parts.length; i++) {
+                var t = parts[i].replace(/^[\-/.]+|[\-/.]+$/g, '');
+                if (!t || t.length < 2 || this._stopwords[t]) continue;
+                // Hangul alias expansion: replace Hangul token with its
+                // English aliases (still keeping the original for any future
+                // direct Hangul match).
+                if (/[가-힣]/.test(t) && this._hangulAliases[t]) {
+                    out.push(t);
+                    var aliases = this._hangulAliases[t].split(/\s+/);
+                    for (var j = 0; j < aliases.length; j++) {
+                        if (aliases[j]) out.push(aliases[j]);
+                    }
+                } else {
+                    out.push(t);
+                }
+                // Also emit sub-tokens split on - / . so a query like
+                // "CXRMate" or "MIMIC-CXR" matches nodes tokenized as
+                // "cxrmate-2" / "mimic-cxr" (must mirror build_graphrag.py).
+                if (/[\-/.]/.test(t)) {
+                    var subs = t.split(/[\-/.]+/);
+                    for (var k = 0; k < subs.length; k++) {
+                        if (subs[k] && subs[k].length >= 2 && !this._stopwords[subs[k]] && subs[k] !== t) {
+                            out.push(subs[k]);
+                        }
+                    }
+                }
+            }
+            return out;
+        },
+
+        load: function() {
+            if (this._loaded) return Promise.resolve();
+            if (this._loading) return this._loading;
+            var self = this;
+            // Resolve the dashboard's data base path the same way app.js does.
+            // - Local dev:  dashboard/index.html, with `data/` symlinked to
+            //               `../data/export/`, so `data/graphrag.json` works.
+            // - Deployed:   public/index.html with `public/data/` containing
+            //               the rsynced export — also `data/graphrag.json`.
+            var base = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
+            this._loading = fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/graphrag.json') : base + '/graphrag.json')
+                .then(function(r) {
+                    if (!r.ok) throw new Error('graphrag.json HTTP ' + r.status);
+                    return r.json();
+                })
+                .then(function(g) {
+                    self._graph = g;
+                    self._byId = {};
+                    g.nodes.forEach(function(n) { self._byId[n.id] = n; });
+                    self._edgesOut = {};
+                    self._edgesIn = {};
+                    g.edges.forEach(function(e) {
+                        (self._edgesOut[e.from] = self._edgesOut[e.from] || []).push(e);
+                        (self._edgesIn[e.to] = self._edgesIn[e.to] || []).push(e);
+                    });
+                    self._loaded = true;
+                    self._loading = null;
+                    return g;
+                });
+            return this._loading;
+        },
+
+        search: function(query, opts) {
+            opts = opts || {};
+            var limit = opts.limit || 30;
+            var typeFilter = opts.types || null;
+            if (!this._loaded || !this._graph) return [];
+            var bm = this._graph.bm25;
+            if (!bm) return [];
+            var tokens = this._tokenize(query);
+            if (tokens.length === 0) return [];
+
+            var scores = {};
+            var k1 = bm.k1, b = bm.b, avgdl = bm.avgdl;
+            for (var i = 0; i < tokens.length; i++) {
+                var t = tokens[i];
+                var idf = bm.idf[t];
+                if (idf === undefined) continue;
+                var posting = bm.inverted[t];
+                if (!posting) continue;
+                for (var j = 0; j < posting.length; j++) {
+                    var docId = posting[j][0];
+                    var tf = posting[j][1];
+                    var dl = bm.doc_lengths[docId] || avgdl;
+                    var denom = tf + k1 * (1 - b + b * dl / avgdl);
+                    var s = idf * tf * (k1 + 1) / denom;
+                    scores[docId] = (scores[docId] || 0) + s;
+                }
+            }
+
+            var qLower = query.toLowerCase().trim();
+            var self = this;
+            Object.keys(scores).forEach(function(nid) {
+                var n = self._byId[nid];
+                if (!n) return;
+                var nameLower = (n.name || n.label || '').toLowerCase();
+                if (nameLower.indexOf(qLower) >= 0) scores[nid] *= 1.8;
+                if (n.type === 'model') scores[nid] *= 1.1;
+            });
+
+            var flt = opts.filters || {};
+            var ranked = Object.keys(scores)
+                .map(function(nid) { return { id: nid, score: scores[nid] }; })
+                .filter(function(r) {
+                    var n = self._byId[r.id];
+                    if (!n) return false;
+                    if (typeFilter && typeFilter.length && typeFilter.indexOf(n.type) < 0) return false;
+                    return self._passesFieldFilters(n, flt);
+                })
+                .sort(function(a, b) { return b.score - a.score; })
+                .slice(0, limit);
+            return ranked;
+        },
+
+        // Composite (AND) field filters, aiap3-style. A model-scoped field
+        // (model_type / vendor) implies model nodes; a benchmark-scoped field
+        // (category / metric) implies benchmark nodes. Empty fields are ignored.
+        _passesFieldFilters: function(n, flt) {
+            if (!flt) return true;
+            if (flt.model_type) { if (n.type !== 'model' || n.model_type !== flt.model_type) return false; }
+            if (flt.vendor)     { if (n.type !== 'model' || n.vendor !== flt.vendor) return false; }
+            if (flt.category)   { if (n.type !== 'benchmark' || n.category !== flt.category) return false; }
+            if (flt.metric)     { if (n.type !== 'benchmark' || n.metric !== flt.metric) return false; }
+            return true;
+        },
+
+        // Distinct field values across the graph, for populating filter dropdowns.
+        _collectFieldValues: function() {
+            if (this._fieldValues) return this._fieldValues;
+            var mt = {}, vn = {}, cat = {}, met = {};
+            (this._graph.nodes || []).forEach(function(n) {
+                if (n.type === 'model') { if (n.model_type) mt[n.model_type] = 1; if (n.vendor) vn[n.vendor] = 1; }
+                else if (n.type === 'benchmark') { if (n.category) cat[n.category] = 1; if (n.metric) met[n.metric] = 1; }
+            });
+            var srt = function(o) { return Object.keys(o).sort(); };
+            this._fieldValues = { model_type: srt(mt), vendor: srt(vn), category: srt(cat), metric: srt(met) };
+            return this._fieldValues;
+        },
+
+        // Browse-by-facet: results driven purely by active filters (no keyword),
+        // ranked by connectivity (neighbor count) — mirrors aiap3 get_by_type.
+        _browseByFilters: function(typeFilter, flt, limit) {
+            var self = this;
+            var out = [];
+            (this._graph.nodes || []).forEach(function(n) {
+                if (typeFilter && typeFilter.length && typeFilter.indexOf(n.type) < 0) return;
+                if (!self._passesFieldFilters(n, flt)) return;
+                var deg = (typeof n.neighbors === 'number')
+                    ? n.neighbors
+                    : ((self._edgesOut[n.id] || []).length + (self._edgesIn[n.id] || []).length);
+                out.push({ id: n.id, score: deg });
+            });
+            out.sort(function(a, b) { return b.score - a.score; });
+            return out.slice(0, limit || 40);
+        },
+
+        neighbors: function(nodeId, perTypeLimit) {
+            perTypeLimit = perTypeLimit || 8;
+            var out = {};
+            var push = function(typeKey, e, otherId, dir) {
+                out[typeKey] = out[typeKey] || [];
+                if (out[typeKey].length >= perTypeLimit) return;
+                out[typeKey].push({ edge: e, otherId: otherId, dir: dir });
+            };
+            (this._edgesOut[nodeId] || []).forEach(function(e) { push(e.type, e, e.to, 'out'); });
+            (this._edgesIn[nodeId] || []).forEach(function(e) { push(e.type, e, e.from, 'in'); });
+            return out;
+        },
+
+        // Composite filter bar — node-type facets + field dropdowns (model type,
+        // vendor, category, metric). Mirrors aiap3's multi-field linked search.
+        _renderFilterBar: function() {
+            var self = this;
+            var fv = this._collectFieldValues();
+            var f = this._filters;
+            var wrap = document.createElement('div');
+            wrap.className = 'mb-3 p-2 rounded border border-gray-800 bg-gray-900/40';
+
+            // Row 1 — node-type facet chips
+            var row1 = document.createElement('div');
+            row1.className = 'flex flex-wrap items-center gap-1.5 mb-2';
+            var lbl = document.createElement('span');
+            lbl.className = 'text-[11px] text-gray-500 mr-1';
+            lbl.textContent = 'Type:';
+            row1.appendChild(lbl);
+            var TYPES = [['model', 'Models'], ['benchmark', 'Benchmarks'], ['vendor', 'Vendors'], ['category', 'Categories']];
+            var mkChip = function(label, active, onclick) {
+                var b = document.createElement('button');
+                b.className = 'text-[11px] px-2 py-0.5 rounded-full border transition ' + (active
+                    ? 'bg-blue-500 border-blue-500 text-white'
+                    : 'bg-gray-800 border-gray-700 text-gray-300 hover:border-gray-500');
+                b.textContent = label;
+                b.addEventListener('click', onclick);
+                return b;
+            };
+            row1.appendChild(mkChip('All', !(f.types && f.types.length), function() {
+                f.types = []; self.render();
+            }));
+            TYPES.forEach(function(t) {
+                var active = f.types && f.types.indexOf(t[0]) >= 0;
+                row1.appendChild(mkChip(t[1], active, function() {
+                    f.types = f.types || [];
+                    var i = f.types.indexOf(t[0]);
+                    if (i >= 0) f.types.splice(i, 1); else f.types.push(t[0]);
+                    self.render();
+                }));
+            });
+            wrap.appendChild(row1);
+
+            // Row 2 — field-value dropdowns (composite AND filters)
+            var row2 = document.createElement('div');
+            row2.className = 'flex flex-wrap items-center gap-2';
+            var mkSelect = function(labelText, key, values, curValue) {
+                var span = document.createElement('label');
+                span.className = 'text-[11px] text-gray-500 flex items-center gap-1';
+                span.appendChild(document.createTextNode(labelText));
+                var sel = document.createElement('select');
+                sel.className = 'bg-gray-800 border border-gray-700 rounded text-[11px] text-gray-200 px-1 py-0.5 max-w-[160px]';
+                var optAny = document.createElement('option');
+                optAny.value = ''; optAny.textContent = 'any';
+                sel.appendChild(optAny);
+                values.forEach(function(v) {
+                    var o = document.createElement('option');
+                    o.value = v; o.textContent = v;
+                    if (v === curValue) o.selected = true;
+                    sel.appendChild(o);
+                });
+                sel.value = curValue || '';
+                sel.addEventListener('change', function() { f[key] = sel.value; self.render(); });
+                span.appendChild(sel);
+                return span;
+            };
+            row2.appendChild(mkSelect('Model type', 'model_type', fv.model_type, f.model_type));
+            row2.appendChild(mkSelect('Vendor', 'vendor', fv.vendor, f.vendor));
+            row2.appendChild(mkSelect('Bench category', 'category', fv.category, f.category));
+            row2.appendChild(mkSelect('Bench metric', 'metric', fv.metric, f.metric));
+
+            var active = (f.types && f.types.length) || f.model_type || f.vendor || f.category || f.metric;
+            if (active) {
+                var clr = document.createElement('button');
+                clr.className = 'text-[11px] px-2 py-0.5 rounded border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500';
+                clr.textContent = '✕ Clear filters';
+                clr.addEventListener('click', function() {
+                    self._filters = { types: [], model_type: '', vendor: '', category: '', metric: '' };
+                    self.render();
+                });
+                row2.appendChild(clr);
+            }
+            wrap.appendChild(row2);
+
+            var hint = document.createElement('div');
+            hint.className = 'text-[10px] text-gray-600 mt-1';
+            hint.textContent = 'Combine a keyword with facets (AND). Leave the search empty to browse purely by filters. Model-type/Vendor imply models; Bench category/metric imply benchmarks.';
+            wrap.appendChild(hint);
+            return wrap;
+        },
+
+        render: function() {
+            var self = this;
+            var container = document.getElementById('graphrag-results');
+            if (!container) return;
+            // Dispose previous ECharts instance to free WebGL contexts and
+            // avoid leaks on re-render with new query.
+            if (this._chart) { try { this._chart.dispose(); } catch (e) {} this._chart = null; }
+            container.textContent = '';
+            if (!this._loaded) {
+                container.appendChild(this._loadingNote());
+                this.load().then(function() { self.render(); });
+                return;
+            }
+            var meta = this._graph._meta;
+            var statsBar = document.createElement('div');
+            statsBar.className = 'text-xs text-gray-500 mb-3';
+            statsBar.textContent = 'Graph: ' + meta.counts.nodes + ' nodes · ' +
+                meta.counts.models + ' models · ' +
+                meta.counts.benchmarks + ' benchmarks · ' +
+                meta.counts.vendors + ' vendors · ' +
+                this._graph.edges.length + ' edges.';
+            container.appendChild(statsBar);
+
+            // Composite filter bar (type facets + field filters) — aiap3-style.
+            container.appendChild(this._renderFilterBar());
+
+            var q = this._lastQuery || '';
+            var flt = this._filters || {};
+            var typeArr = (flt.types && flt.types.length) ? flt.types : null;
+            var hasFieldFilter = !!(flt.model_type || flt.vendor || flt.category || flt.metric || typeArr);
+
+            if (!q && !hasFieldFilter) {
+                container.appendChild(this._helpCard());
+                return;
+            }
+
+            var results, mode;
+            if (q) {
+                results = this.search(q, { limit: 30, types: typeArr, filters: flt });
+                mode = 'keyword';
+            } else {
+                // Browse-by-facet: filters only, no keyword.
+                results = this._browseByFilters(typeArr, flt, 40);
+                mode = 'browse';
+            }
+
+            if (results.length === 0) {
+                var none = document.createElement('div');
+                none.className = 'text-sm text-gray-400 p-4';
+                none.textContent = q
+                    ? ('No results for "' + q + '" with the current filters. Try fewer keywords or clear filters.')
+                    : 'No entities match the current filters.';
+                container.appendChild(none);
+                return;
+            }
+            var resHeader = document.createElement('div');
+            resHeader.className = 'text-sm text-gray-300 mb-3';
+            if (mode === 'keyword') {
+                resHeader.appendChild(document.createTextNode('Results for '));
+                var qb = document.createElement('b');
+                qb.textContent = q;
+                resHeader.appendChild(qb);
+                resHeader.appendChild(document.createTextNode(' — ' + results.length + ' entities (BM25-ranked, filtered):'));
+            } else {
+                resHeader.appendChild(document.createTextNode('Browsing ' + results.length + ' entities matching filters (ranked by connectivity):'));
+            }
+            container.appendChild(resHeader);
+
+            // Knowledge-graph visualization for the top results + 1-hop
+            // neighborhood. Placed above the result cards. Falls back to a
+            // text hint if ECharts isn't available.
+            container.appendChild(self._buildGraphPanel(results));
+
+            results.forEach(function(r, idx) {
+                container.appendChild(self._buildResultCard(r, idx));
+            });
+        },
+
+        // ─── Knowledge-graph visualization (ECharts force layout) ─────────
+        // aiap3-style: graph + click-to-select inline detail side-panel with
+        // node properties & relationships, plus refresh/maximize header tools.
+        _buildGraphPanel: function(results) {
+            var self = this;
+            var wrap = document.createElement('div');
+            wrap.className = 'bg-gray-900 border border-gray-800 rounded p-3 mb-4';
+
+            var head = document.createElement('div');
+            head.className = 'flex items-center justify-between mb-2';
+            var title = document.createElement('div');
+            title.className = 'text-xs text-gray-400';
+            title.textContent = 'Graph Relationship Visualization — top results + 1-hop neighbors. Drag to rearrange · click a node for details.';
+            head.appendChild(title);
+            var tools = document.createElement('div');
+            tools.className = 'flex items-center gap-1';
+            var mkTool = function(label, tip, onclick) {
+                var b = document.createElement('button');
+                b.className = 'text-[11px] px-2 py-0.5 rounded border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500';
+                b.textContent = label; b.title = tip;
+                b.addEventListener('click', onclick);
+                return b;
+            };
+            tools.appendChild(mkTool('↻ Refresh', 'Re-layout the graph', function() { self.render(); }));
+            var maxBtn = mkTool('⛶ Maximize', 'Toggle a taller graph canvas', function() {
+                self._graphMaximized = !self._graphMaximized;
+                gdiv.style.height = self._graphMaximized ? '78vh' : '440px';
+                maxBtn.textContent = self._graphMaximized ? '⛶ Restore' : '⛶ Maximize';
+                if (self._chart) { try { self._chart.resize(); } catch (e) {} }
+            });
+            tools.appendChild(maxBtn);
+            head.appendChild(tools);
+            wrap.appendChild(head);
+
+            // Relative container holds the canvas + an absolute detail panel.
+            var stage = document.createElement('div');
+            stage.style.cssText = 'position:relative;width:100%';
+            var gdiv = document.createElement('div');
+            gdiv.id = 'graphrag-graph';
+            gdiv.style.height = self._graphMaximized ? '78vh' : '440px';
+            gdiv.style.width = '100%';
+            stage.appendChild(gdiv);
+
+            var detail = document.createElement('div');
+            detail.id = 'graphrag-detail';
+            detail.style.cssText = 'position:absolute;top:6px;right:6px;width:260px;max-height:calc(100% - 12px);overflow-y:auto;' +
+                'background:rgba(17,24,39,.96);border:1px solid #374151;border-radius:6px;padding:10px;display:none;z-index:5;box-shadow:0 4px 16px rgba(0,0,0,.4)';
+            stage.appendChild(detail);
+            wrap.appendChild(stage);
+
+            requestAnimationFrame(function() {
+                if (typeof echarts === 'undefined') {
+                    gdiv.textContent = '(graph view requires ECharts; falling back to result list)';
+                    gdiv.style.cssText = 'color:#9ca3af;font-size:11px;padding:8px';
+                    return;
+                }
+                self._renderGraphInto(gdiv, results);
+            });
+            return wrap;
+        },
+
+        // aiap3-style inline detail panel: node type badge + properties +
+        // clickable relationships, without leaving the graph view.
+        _showNodeDetail: function(nodeId) {
+            var self = this;
+            var panel = document.getElementById('graphrag-detail');
+            var n = this._byId[nodeId];
+            if (!panel || !n) return;
+            panel.textContent = '';
+            panel.style.display = 'block';
+
+            var hd = document.createElement('div');
+            hd.className = 'flex items-center justify-between mb-1.5';
+            var badge = document.createElement('span');
+            badge.className = 'text-[10px] px-1.5 py-0.5 rounded text-white';
+            badge.style.background = this._edgeColorForType(n.type);
+            badge.textContent = n.type;
+            hd.appendChild(badge);
+            var close = document.createElement('button');
+            close.className = 'text-gray-500 hover:text-white text-sm leading-none';
+            close.textContent = '×'; close.title = 'Close';
+            close.addEventListener('click', function() { panel.style.display = 'none'; });
+            hd.appendChild(close);
+            panel.appendChild(hd);
+
+            var nm = document.createElement('div');
+            nm.className = 'text-sm font-semibold text-gray-100 mb-1 break-words';
+            nm.textContent = n.name || n.label || n.id;
+            panel.appendChild(nm);
+
+            // Property rows (fields vary by node type).
+            var rowOf = function(k, v) {
+                if (v == null || v === '') return;
+                var r = document.createElement('div');
+                r.className = 'flex gap-2 text-[11px] py-0.5';
+                var kk = document.createElement('span'); kk.className = 'text-gray-500 min-w-[64px]'; kk.textContent = k;
+                var vv = document.createElement('span'); vv.className = 'text-gray-200 break-words flex-1'; vv.textContent = String(v);
+                r.appendChild(kk); r.appendChild(vv); panel.appendChild(r);
+            };
+            if (n.type === 'model') { rowOf('Vendor', n.vendor); rowOf('Type', n.model_type); rowOf('Released', n.release_date); }
+            else if (n.type === 'benchmark') { rowOf('Category', n.category); rowOf('Metric', n.metric); }
+            if (n.description) {
+                var ds = document.createElement('div');
+                ds.className = 'text-[11px] text-gray-400 mt-1.5 mb-1 line-clamp-4';
+                ds.textContent = n.description.length > 260 ? n.description.slice(0, 260) + '…' : n.description;
+                panel.appendChild(ds);
+            }
+
+            // Relationships (1-hop), grouped by relation type, clickable.
+            var nbrs = this.neighbors(nodeId, 6);
+            var relKeys = Object.keys(nbrs);
+            if (relKeys.length) {
+                var rt = document.createElement('div');
+                rt.className = 'text-[10px] uppercase tracking-wide text-gray-500 mt-2 mb-1';
+                rt.textContent = 'Relationships';
+                panel.appendChild(rt);
+                relKeys.forEach(function(rk) {
+                    nbrs[rk].slice(0, 4).forEach(function(x) {
+                        var other = self._byId[x.otherId];
+                        if (!other) return;
+                        var line = document.createElement('div');
+                        line.className = 'text-[11px] py-0.5 flex gap-1 items-baseline';
+                        var rel = document.createElement('span');
+                        rel.className = 'text-[9px] px-1 rounded';
+                        rel.style.cssText = 'background:' + self._edgeColor(x.edge.type) + '22;color:' + self._edgeColor(x.edge.type);
+                        rel.textContent = x.edge.type;
+                        var a = document.createElement('a');
+                        a.href = '#'; a.className = 'text-blue-400 hover:underline truncate';
+                        a.textContent = other.name || other.label || other.id;
+                        a.addEventListener('click', function(e) { e.preventDefault(); self._showNodeDetail(x.otherId); });
+                        line.appendChild(rel); line.appendChild(a);
+                        panel.appendChild(line);
+                    });
+                });
+            }
+
+            var open = document.createElement('button');
+            open.className = 'mt-2 w-full text-[11px] px-2 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white';
+            open.textContent = 'Open full page →';
+            open.addEventListener('click', function() { self._openNode(nodeId); });
+            panel.appendChild(open);
+        },
+
+        _edgeColorForType: function(t) {
+            return { model: '#2563eb', benchmark: '#059669', vendor: '#7c3aed', category: '#d97706' }[t] || '#6b7280';
+        },
+
+        // Build the (nodes, edges) payload for the top results + neighbors
+        // and instantiate the ECharts force-directed graph.
+        _renderGraphInto: function(el, results) {
+            var self = this;
+            // Pick top N results to seed (don't overwhelm the canvas).
+            var seeds = results.slice(0, 5).map(function(r) { return r.id; });
+            // Collect nodes — seeds first, then 1-hop neighbors (≤4 per type).
+            var nodeMap = {}; // id -> node spec
+            seeds.forEach(function(id) { self._addGraphNode(nodeMap, id, true); });
+            seeds.forEach(function(id) {
+                var nbrs = self.neighbors(id, 4);
+                Object.keys(nbrs).forEach(function(t) {
+                    nbrs[t].forEach(function(x) { self._addGraphNode(nodeMap, x.otherId, false); });
+                });
+            });
+            // Build edge list. Only emit each undirected edge once.
+            var seenEdges = {};
+            var edges = [];
+            Object.keys(nodeMap).forEach(function(nid) {
+                (self._edgesOut[nid] || []).forEach(function(e) {
+                    if (!nodeMap[e.to]) return;
+                    var k = e.from + '|' + e.to + '|' + e.type;
+                    if (seenEdges[k]) return;
+                    seenEdges[k] = true;
+                    edges.push({
+                        source: e.from, target: e.to,
+                        value: e.type,
+                        lineStyle: { color: self._edgeColor(e.type), width: e.type === 'TOP_RANKED_ON' ? 2 : 1 },
+                        label: { show: false, formatter: e.type }
+                    });
+                });
+            });
+            var nodes = Object.values(nodeMap);
+
+            // Init ECharts instance (dark theme matches dashboard).
+            try {
+                var chart = echarts.init(el, 'dark');
+                chart.setOption({
+                    backgroundColor: 'transparent',
+                    tooltip: {
+                        formatter: function(p) {
+                            if (p.dataType === 'edge') return p.data.value;
+                            return p.data.label + '<br/><span style="opacity:.7">' + p.data.type + '</span>';
+                        }
+                    },
+                    legend: [{
+                        data: ['model','benchmark','vendor','category'],
+                        textStyle: { color: '#9ca3af', fontSize: 10 },
+                        top: 4, right: 8, orient: 'horizontal'
+                    }],
+                    series: [{
+                        type: 'graph', layout: 'force',
+                        roam: true, draggable: true,
+                        symbolSize: function(v, p) { return p.data.symbolSize || 18; },
+                        label: {
+                            show: true, position: 'right', formatter: '{b}',
+                            color: '#e5e7eb', fontSize: 10
+                        },
+                        force: {
+                            repulsion: 220, edgeLength: [50, 130],
+                            gravity: 0.05, friction: 0.25, layoutAnimation: true
+                        },
+                        emphasis: { focus: 'adjacency', lineStyle: { width: 2 } },
+                        edgeSymbol: ['none','arrow'], edgeSymbolSize: [4, 6],
+                        categories: [
+                            { name: 'model',     itemStyle: { color: '#60a5fa' } },
+                            { name: 'benchmark', itemStyle: { color: '#34d399' } },
+                            { name: 'vendor',    itemStyle: { color: '#c084fc' } },
+                            { name: 'category',  itemStyle: { color: '#fbbf24' } }
+                        ],
+                        data: nodes, links: edges
+                    }]
+                });
+                chart.on('click', function(p) {
+                    if (p.dataType === 'node' && p.data && p.data.id) {
+                        // aiap3-style: open the inline detail panel (stay in the
+                        // graph) instead of jumping to the full-page modal.
+                        self._showNodeDetail(p.data.id);
+                    }
+                });
+                // Keep a reference for resize / disposal.
+                self._chart = chart;
+                // Resize on window resize.
+                window.addEventListener('resize', function() { try { chart.resize(); } catch(e){} });
+            } catch (e) {
+                console.warn('graph render failed', e);
+                el.textContent = 'Graph render failed: ' + e.message;
+            }
+        },
+
+        _addGraphNode: function(map, id, isSeed) {
+            if (map[id]) {
+                if (isSeed) map[id].symbolSize = 28; // promote seed-rank size
+                return;
+            }
+            var n = this._byId[id];
+            if (!n) return;
+            var catIdx = ({model:0,benchmark:1,vendor:2,category:3})[n.type];
+            map[id] = {
+                id: id, name: this._labelize(n), label: n.name || n.label || id,
+                type: n.type, category: catIdx == null ? 0 : catIdx,
+                symbolSize: isSeed ? 28 : 14
+            };
+        },
+
+        _labelize: function(n) {
+            var s = n.name || n.label || n.id || '';
+            return s.length > 28 ? (s.slice(0, 25) + '…') : s;
+        },
+
+        _edgeColor: function(type) {
+            return ({
+                TOP_RANKED_ON: '#fbbf24',
+                SCORED_ON: '#60a5fa',
+                MAKES: '#c084fc',
+                IN_CATEGORY: '#f59e0b',
+                BENCH_RELATED: '#34d399',
+                SAME_VENDOR_FAMILY: '#6b7280'
+            })[type] || '#4b5563';
+        },
+
+        _helpCard: function() {
+            var hint = document.createElement('div');
+            hint.className = 'text-sm text-gray-400 p-6 bg-gray-900 rounded border border-gray-800 leading-relaxed';
+            var line1 = document.createElement('div');
+            line1.textContent = 'Type a question in the global search bar at the top of the page. ' +
+                'The query is BM25-matched against model and benchmark names, vendors, categories, and descriptions. ' +
+                'Each result also shows its 1-hop neighborhood (vendor · category · top models · related benchmarks).';
+            hint.appendChild(line1);
+            var line2 = document.createElement('div');
+            line2.className = 'mt-3 text-gray-500';
+            line2.textContent = 'Examples: ';
+            ['korean medical', 'long context', 'opus 4.8 cyber', 'edge slm under 4b',
+             'image to video arena', 'usamo 2026 saturation'].forEach(function(ex, i) {
+                if (i > 0) line2.appendChild(document.createTextNode(' · '));
+                var code = document.createElement('code');
+                code.className = 'bg-gray-800 px-1 rounded text-gray-300';
+                code.textContent = ex;
+                line2.appendChild(code);
+            });
+            hint.appendChild(line2);
+            return hint;
+        },
+
+        _loadingNote: function() {
+            var n = document.createElement('div');
+            n.className = 'text-sm text-gray-400 p-4';
+            n.textContent = 'Loading GraphRAG index (~1 MB gzipped)…';
+            return n;
+        },
+
+        _typeBadge: function(type) {
+            var colors = {
+                model:     'bg-blue-900 text-blue-200',
+                benchmark: 'bg-green-900 text-green-200',
+                vendor:    'bg-purple-900 text-purple-200',
+                category:  'bg-amber-900 text-amber-200'
+            };
+            var b = document.createElement('span');
+            b.className = 'text-[10px] uppercase tracking-wider rounded px-1.5 py-0.5 ' +
+                (colors[type] || 'bg-gray-800 text-gray-300');
+            b.textContent = type;
+            return b;
+        },
+
+        _buildResultCard: function(r, idx) {
+            var self = this;
+            var node = this._byId[r.id];
+            if (!node) {
+                var miss = document.createElement('div');
+                miss.textContent = 'Missing node ' + r.id;
+                return miss;
+            }
+            var card = document.createElement('div');
+            card.className = 'bg-gray-900 border border-gray-800 rounded p-3 mb-3';
+
+            var head = document.createElement('div');
+            head.className = 'flex items-center gap-2 mb-1';
+            head.appendChild(this._typeBadge(node.type));
+            var title = document.createElement('div');
+            title.className = 'flex-1 font-medium text-gray-100 truncate';
+            title.textContent = node.name || node.label || r.id;
+            head.appendChild(title);
+            var score = document.createElement('span');
+            score.className = 'text-[10px] text-gray-500 tabular-nums';
+            score.textContent = (r.score != null) ? r.score.toFixed(2) : '';
+            head.appendChild(score);
+            card.appendChild(head);
+
+            var sub = document.createElement('div');
+            sub.className = 'text-xs text-gray-400 mb-2';
+            if (node.type === 'model') {
+                sub.textContent = (node.vendor || '') + ' · ' + (node.model_type || '') +
+                    (node.release_date ? ' · ' + node.release_date : '');
+            } else if (node.type === 'benchmark') {
+                sub.textContent = (node.category || '') + ' · ' + (node.metric || '') +
+                    (node.description ? ' — ' + node.description.slice(0, 160) : '');
+            } else if (node.type === 'vendor') {
+                sub.textContent = 'Vendor — ' + (this._edgesOut[r.id] || []).length + ' models';
+            } else if (node.type === 'category') {
+                sub.textContent = 'Benchmark category';
+            }
+            card.appendChild(sub);
+
+            var nbrs = this.neighbors(r.id, 6);
+            var nbrWrap = document.createElement('div');
+            nbrWrap.className = 'flex flex-wrap gap-1 mt-1';
+
+            var order = [
+                ['TOP_RANKED_ON','Top-ranked on'],
+                ['SCORED_ON','Scored on'],
+                ['MAKES','Made by'],
+                ['IN_CATEGORY','In category'],
+                ['BENCH_RELATED','Related benchmarks'],
+                ['SAME_VENDOR_FAMILY','Family']
+            ];
+            order.forEach(function(pair) {
+                var typeKey = pair[0];
+                var label = pair[1];
+                var arr = nbrs[typeKey];
+                if (!arr || arr.length === 0) return;
+                var line = document.createElement('div');
+                line.className = 'w-full text-[11px] text-gray-500 mt-1';
+                var lblSpan = document.createElement('span');
+                lblSpan.className = 'text-gray-600';
+                lblSpan.textContent = label + ':';
+                line.appendChild(lblSpan);
+                line.appendChild(document.createTextNode(' '));
+                arr.forEach(function(item, i) {
+                    var other = self._byId[item.otherId];
+                    if (!other) return;
+                    if (i > 0) line.appendChild(document.createTextNode(' · '));
+                    var pill = document.createElement('a');
+                    pill.href = '#';
+                    pill.className = 'text-blue-300 hover:underline';
+                    var lbl = other.name || other.label;
+                    if (item.edge.type === 'TOP_RANKED_ON') {
+                        lbl = '#' + item.edge.rank + ' ' + lbl + ' (' + item.edge.w + ')';
+                    } else if (item.edge.type === 'SCORED_ON') {
+                        lbl += ' (' + item.edge.w + ')';
+                    }
+                    pill.textContent = lbl;
+                    pill.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        self._openNode(item.otherId);
+                    });
+                    line.appendChild(pill);
+                });
+                nbrWrap.appendChild(line);
+            });
+            card.appendChild(nbrWrap);
+
+            head.style.cursor = 'pointer';
+            head.title = 'Open detail';
+            head.addEventListener('click', function() { self._openNode(r.id); });
+            return card;
+        },
+
+        _openNode: function(nodeId) {
+            var n = this._byId[nodeId];
+            if (!n) return;
+            if (n.type === 'model' && typeof Modal !== 'undefined' && Modal.showModel) {
+                Modal.showModel(n.id.replace(/^model:/, ''));
+                return;
+            }
+            if (n.type === 'benchmark' && typeof Modal !== 'undefined' && Modal.showBenchmark) {
+                Modal.showBenchmark(n.id.replace(/^benchmark:/, ''));
+                return;
+            }
+            if (n.type === 'vendor' && typeof Modal !== 'undefined' && Modal.showVendor) {
+                Modal.showVendor(n.id.replace(/^vendor:/, ''));
+                return;
+            }
+            this._lastQuery = n.name || n.label || '';
+            var inp = document.getElementById('global-search');
+            if (inp) inp.value = this._lastQuery;
+            this.render();
+        },
+
+        runQuery: function(q) {
+            this._lastQuery = q;
+            if (typeof App !== 'undefined' && App.setTab) {
+                App.setTab('graphrag');
+            }
+            this.render();
+        }
+    };
+
+    root.GraphRAG = GraphRAG;
+})(typeof window !== 'undefined' ? window : this);
