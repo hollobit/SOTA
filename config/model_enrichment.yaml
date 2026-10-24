@@ -4515,3 +4515,30 @@ models:
     - https://microsoft.ai/pdf/Frontier-Pre-training-at-Microsoft-AI.pdf?v=2
     links:
       homepage: https://microsoft.ai
+  moonshot/kimi-k3.1-pro:
+    architecture:
+      type: moe
+    api_providers:
+    - moonshot_api
+    - openrouter
+    _sources:
+    - https://www.kimi.ai/blog/kimi-k3-1-pro
+    - https://artificialanalysis.ai/models/kimi-k3-1-pro
+    lineage:
+      base_model_id: moonshot/kimi-k3
+      training_method: post-trained Kimi K3 with substantially larger post-training compute (large-scale joint RL across hundreds of domains); cyber-related data removed at mid-training and cyber RL environments filtered before open-weight release
+    links:
+      homepage: https://www.kimi.ai
+      blog: https://www.kimi.ai/blog/kimi-k3-1-pro
+    pricing:
+      input: 2.0
+      output: 10.0
+  moonshot/kimi-k3.1-pro-highspeed:
+    _sources:
+    - https://openrouter.ai/moonshotai/kimi-k3.1-pro
+    lineage:
+      base_model_id: moonshot/kimi-k3.1-pro
+      training_method: same model served 2-3x faster (Highspeed endpoint)
+    pricing:
+      input: 4.0
+      output: 20.0

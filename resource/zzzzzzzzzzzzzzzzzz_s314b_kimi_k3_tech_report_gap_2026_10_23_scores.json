@@ -1,0 +1,2201 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-23",
+  "session": "S314",
+  "sources": [
+   "https://arxiv.org/abs/2607.24653"
+  ],
+  "note": "Gap fill of the Kimi K3 technical report (arXiv 2607.24653v2) against rows ingested earlier from the GitHub PDF / K3 blog: Tables 2-5, Fig 1/10/14, prose. Comparator cells differing from stored values -> *_rerun_kimik3tr; new benchmarks kimik3tr_*.",
+  "papers": [
+   {
+    "paper": "2607.24653",
+    "source_url": "https://arxiv.org/abs/2607.24653",
+    "title": "Kimi K3: Open Frontier Intelligence — Technical Report of Kimi K3",
+    "tables_mined": [
+     "Figure 1 (main results; only Kimi Code Bench 2.0 panel not duplicated by Table 2)",
+     "Table 2",
+     "Table 3",
+     "Table 4",
+     "Table 5",
+     "Figure 10 (legend values)",
+     "Figure 14 (printed final speedups)",
+     "Sec 6.1.3 / 6.2.2 / 6.4 prose numbers"
+    ],
+    "tables_skipped": {
+     "Table 1": "architecture comparison K2 vs K3 (hyperparameters)",
+     "Figure 7": "scaling-law curves, no printed per-model scores",
+     "Figure 8": "RL training curves, no printed numbers",
+     "Figure 13": "score-vs-cost scatter, labels only (no printed values)",
+     "Figure 15": "MiniTriton rooflines (system throughput, not model benchmark)",
+     "Pre-training/base-model tables": "none in this report (no Kimi-K3-Base evaluation table) -> moonshot/kimi-k3-base not created"
+    },
+    "_cells_present_in_db": 209,
+    "_cells_new": 214
+   }
+  ]
+ },
+ "models": [
+  {
+   "id": "anthropic/claude-opus-4.8-high",
+   "vendor": "Anthropic",
+   "name": "Claude Opus 4.8 (high)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": null,
+   "parameters": null
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "aa_briefcase_rerun_kimik3tr",
+   "name": "AA-Briefcase (long-horizon knowledge work) — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "elo",
+   "description": "Values for AA-Briefcase (long-horizon knowledge work) as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on aa_briefcase. Kept separate, never overwriting aa_briefcase."
+  },
+  {
+   "id": "aa_intelligence_index_v4_1_rerun_kimik3tr",
+   "name": "Artificial Analysis Intelligence Index v4.1 — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "composite",
+   "metric": "index",
+   "description": "Values for Artificial Analysis Intelligence Index v4.1 as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on aa_intelligence_index_v4_1. Kept separate, never overwriting aa_intelligence_index_v4_1."
+  },
+  {
+   "id": "aa_lcr_rerun_kimik3tr",
+   "name": "AA-LCR — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "long-context",
+   "metric": "accuracy",
+   "description": "Values for AA-LCR as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on aa_lcr. Kept separate, never overwriting aa_lcr."
+  },
+  {
+   "id": "agents_last_exam_rerun_kimik3tr",
+   "name": "Agents' Last Exam (ALE) — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "full_pass_rate",
+   "description": "Values for Agents' Last Exam (ALE) as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on agents_last_exam. Kept separate, never overwriting agents_last_exam."
+  },
+  {
+   "id": "apex_agents_rerun_kimik3tr",
+   "name": "Apex Agents — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "pass@1",
+   "description": "Values for Apex Agents as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on apex_agents. Kept separate, never overwriting apex_agents."
+  },
+  {
+   "id": "arena_ai_text_elo_rerun_kimik3tr",
+   "name": "Arena.ai Text Elo — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "general",
+   "metric": "elo",
+   "description": "Values for Arena.ai Text Elo as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on arena_ai_text_elo. Kept separate, never overwriting arena_ai_text_elo."
+  },
+  {
+   "id": "arena_webdev_elo_rerun_kimik3tr",
+   "name": "arena.ai WebDev Arena Elo — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Values for arena.ai WebDev Arena Elo as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on arena_webdev_elo. Kept separate, never overwriting arena_webdev_elo."
+  },
+  {
+   "id": "automationbench_rerun_kimik3tr",
+   "name": "AutomationBench — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "accuracy",
+   "description": "Values for AutomationBench as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on automationbench. Kept separate, never overwriting automationbench."
+  },
+  {
+   "id": "browsecomp_rerun_kimik3tr",
+   "name": "BrowseComp — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "accuracy",
+   "description": "Values for BrowseComp as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on browsecomp. Kept separate, never overwriting browsecomp."
+  },
+  {
+   "id": "charxiv_rerun_kimik3tr",
+   "name": "charxiv — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "quantization",
+   "metric": "score",
+   "description": "Values for charxiv as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on charxiv. Kept separate, never overwriting charxiv."
+  },
+  {
+   "id": "critpt_rerun_kimik3tr",
+   "name": "CritPt — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "Values for CritPt as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on critpt. Kept separate, never overwriting critpt."
+  },
+  {
+   "id": "frontierswe_rerun_kimik3tr",
+   "name": "Frontierswe — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "language",
+   "metric": "score",
+   "description": "Values for Frontierswe as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on frontierswe. Kept separate, never overwriting frontierswe."
+  },
+  {
+   "id": "gdpval_aa_elo_rerun_kimik3tr",
+   "name": "GDPval-AA Elo — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "elo_rating",
+   "description": "Values for GDPval-AA Elo as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on gdpval_aa_elo. Kept separate, never overwriting gdpval_aa_elo."
+  },
+  {
+   "id": "gpqa_diamond_rerun_kimik3tr",
+   "name": "GPQA Diamond — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "science-hard",
+   "metric": "accuracy",
+   "description": "Values for GPQA Diamond as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on gpqa_diamond. Kept separate, never overwriting gpqa_diamond."
+  },
+  {
+   "id": "hle_rerun_kimik3tr",
+   "name": "Humanity's Last Exam — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "Values for Humanity's Last Exam as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on hle. Kept separate, never overwriting hle."
+  },
+  {
+   "id": "hle_with_tools_rerun_kimik3tr",
+   "name": "HLE with Tools — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "Values for HLE with Tools as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on hle_with_tools. Kept separate, never overwriting hle_with_tools."
+  },
+  {
+   "id": "job_bench_rerun_kimik3tr",
+   "name": "Job Bench — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "accuracy",
+   "description": "Values for Job Bench as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on job_bench. Kept separate, never overwriting job_bench."
+  },
+  {
+   "id": "kimi_code_bench_v2_rerun_kimik3tr",
+   "name": "Kimi Code Bench v2 — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "coding",
+   "metric": "score",
+   "description": "Values for Kimi Code Bench v2 as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on kimi_code_bench_v2. Kept separate, never overwriting kimi_code_bench_v2."
+  },
+  {
+   "id": "kimik3tr_agent_arena_score",
+   "name": "arena.ai Agent Arena score (as cited in Kimi K3 report)",
+   "category": "agent",
+   "metric": "score",
+   "description": "arena.ai Agent Arena leaderboard score as of ~2026-07-23, cited in Table 5 of the Kimi K3 technical report (arXiv 2607.24653). Scale differs from arena_agent_net_improvement."
+  },
+  {
+   "id": "kimik3tr_attnres_kernel_speedup_vs_fla_triton",
+   "name": "AttnRes GPU kernel optimization speedup (Kimi K3 case study)",
+   "category": "coding",
+   "metric": "speedup %",
+   "description": "Final speedup (%) over the FLA Triton baseline after autonomous GPU-kernel optimization of AttnRes on NVIDIA Hopper within a 24h budget; Figure 14 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_browsecomp_cost_per_task_usd_lower_better",
+   "name": "BrowseComp cost per task (USD, Kimi K3 report)",
+   "category": "cost",
+   "metric": "USD (lower better)",
+   "description": "Per-task inference cost on BrowseComp as reported in Sec 6.4 of arXiv 2607.24653 (Kimi-measured for Kimi K3)."
+  },
+  {
+   "id": "kimik3tr_browsecomp_full_1m_no_context_mgmt",
+   "name": "BrowseComp (full 1M context, no context management)",
+   "category": "agent",
+   "metric": "accuracy %",
+   "description": "BrowseComp evaluated with the full 1M-token context and no context management (main result uses 300K-token compaction); Sec 6.1.3 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_caisi_cyber_range_32step_steps",
+   "name": "UK AISI/NIST CAISI 32-step simulated enterprise network — steps completed",
+   "category": "cybersecurity",
+   "metric": "steps",
+   "description": "Steps completed on a 32-step simulated enterprise network cyber range (~20 human-expert hours) from the UK AISI + NIST CAISI joint assessment, as cited in Sec 6.2.2 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_caisi_exploitbench",
+   "name": "ExploitBench (UK AISI/NIST CAISI joint assessment, as cited by Kimi)",
+   "category": "cybersecurity",
+   "metric": "%",
+   "description": "ExploitBench exploit-development score from the UK AISI + NIST CAISI joint assessment of Kimi K3, as cited in Sec 6.2.2 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_camera_repair_replication_completion",
+   "name": "Camera Repair Management System black-box replication — completion",
+   "category": "coding",
+   "metric": "completion 0-1",
+   "description": "Final verifier-assessed completion on a black-box system replication task (rebuild a hidden 3D-camera repair system as a web app via oracle queries); Figure 10 legend of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_coding_experience_claude_code",
+   "name": "Kimi Coding Experience (in-house) — Claude Code harness",
+   "category": "coding",
+   "metric": "score",
+   "description": "Moonshot in-house Coding Experience benchmark (practical experience of working with the model as a coding agent), Claude Code harness; Table 3 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_coding_experience_codex",
+   "name": "Kimi Coding Experience (in-house) — Codex harness",
+   "category": "coding",
+   "metric": "score",
+   "description": "Moonshot in-house Coding Experience benchmark, Codex harness; Table 3 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_coding_experience_kimi_code",
+   "name": "Kimi Coding Experience (in-house) — Kimi Code harness",
+   "category": "coding",
+   "metric": "score",
+   "description": "Moonshot in-house Coding Experience benchmark, Kimi Code harness; Table 3 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_deepswe_1_1_mini_swe_agent",
+   "name": "DeepSWE v1.1 — mini-SWE-agent harness (official leaderboard, as cited by Kimi)",
+   "category": "coding",
+   "metric": "resolve %",
+   "description": "DeepSWE v1.1 official leaderboard score with the mini-SWE-agent harness, cited in Sec 6.1.3 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_exploit_dev_suite_36_solve_rate",
+   "name": "Kimi in-house exploit-development suite (36 tasks) — solve rate",
+   "category": "cybersecurity",
+   "metric": "%",
+   "description": "Moonshot in-house Tier-2 exploit-development suite: 16 user-space CVE exploitation + 20 Linux kernel privilege-escalation tasks, all expert-solvable; fraction solved. Sec 6.2.2 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_code_bench_2_claude_code",
+   "name": "Kimi Code Bench 2.0 — Claude Code harness",
+   "category": "coding",
+   "metric": "%",
+   "description": "Moonshot in-house Kimi Code Bench 2.0 (realistic end-to-end SWE tasks across languages/stacks) with the Claude Code harness; Table 3 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_code_bench_2_codex",
+   "name": "Kimi Code Bench 2.0 — Codex harness",
+   "category": "coding",
+   "metric": "%",
+   "description": "Kimi Code Bench 2.0 with the Codex harness; Table 3 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_code_bench_2_kimi_code",
+   "name": "Kimi Code Bench 2.0 — Kimi Code harness",
+   "category": "coding",
+   "metric": "%",
+   "description": "Kimi Code Bench 2.0 with the Kimi Code harness; Table 3 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_3d_webgl_shader_lose_rate_lower_better",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — 3D / WebGL / Shader (lose rate (lower better))",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; 3D / WebGL / Shader domain, lose rate (lower better) from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_3d_webgl_shader_tie_rate",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — 3D / WebGL / Shader (tie rate)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; 3D / WebGL / Shader domain, tie rate from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_3d_webgl_shader_win_minus_lose",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — 3D / WebGL / Shader (win minus lose)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; 3D / WebGL / Shader domain, win minus lose from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_3d_webgl_shader_win_rate",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — 3D / WebGL / Shader (win rate)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; 3D / WebGL / Shader domain, win rate from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_games_lose_rate_lower_better",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Games (lose rate (lower better))",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Games domain, lose rate (lower better) from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_games_tie_rate",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Games (tie rate)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Games domain, tie rate from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_games_win_minus_lose",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Games (win minus lose)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Games domain, win minus lose from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_games_win_rate",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Games (win rate)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Games domain, win rate from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_overall_lose_rate_lower_better",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Overall (lose rate (lower better))",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Overall domain, lose rate (lower better) from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_overall_tie_rate",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Overall (tie rate)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Overall domain, tie rate from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_overall_win_minus_lose",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Overall (win minus lose)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Overall domain, win minus lose from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_overall_win_rate",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Overall (win rate)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Overall domain, win rate from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_website_ui_clone_lose_rate_lower_better",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Website / UI Clone (lose rate (lower better))",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Website / UI Clone domain, lose rate (lower better) from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_website_ui_clone_tie_rate",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Website / UI Clone (tie rate)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Website / UI Clone domain, tie rate from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_website_ui_clone_win_minus_lose",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Website / UI Clone (win minus lose)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Website / UI Clone domain, win minus lose from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_website_ui_clone_win_rate",
+   "name": "Kimi Webdev Bench vs Claude Opus 4.8 — Website / UI Clone (win rate)",
+   "category": "coding",
+   "metric": "% of prompts",
+   "description": "Moonshot in-house Kimi Webdev Bench, blind expert pairwise judging of Kimi K3 (max) vs Claude Opus 4.8 (max), both with Claude Code; Website / UI Clone domain, win rate from Kimi K3's perspective. Table 4 of arXiv 2607.24653."
+  },
+  {
+   "id": "kimik3tr_worldvqa_forceanswer_acc",
+   "name": "WorldVQA (ForceAnswer prompt)",
+   "category": "multimodal",
+   "metric": "accuracy %",
+   "description": "WorldVQA world-knowledge VQA with an answer forced via prompt engineering (models otherwise refuse), averaged over 3 runs, no tools; Table 2 of arXiv 2607.24653."
+  },
+  {
+   "id": "mcp_atlas_rerun_kimik3tr",
+   "name": "MCP-Atlas (All 1000) — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "tool_use",
+   "metric": "pass_rate",
+   "description": "Values for MCP-Atlas (All 1000) as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on mcp_atlas. Kept separate, never overwriting mcp_atlas."
+  },
+  {
+   "id": "mmmu_pro_rerun_kimik3tr",
+   "name": "MMMU-Pro — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "vision-language",
+   "metric": "accuracy",
+   "description": "Values for MMMU-Pro as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on mmmu_pro. Kept separate, never overwriting mmmu_pro."
+  },
+  {
+   "id": "officeqa_pro_rerun_kimik3tr",
+   "name": "OfficeQA Pro — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "accuracy",
+   "description": "Values for OfficeQA Pro as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on officeqa_pro. Kept separate, never overwriting officeqa_pro."
+  },
+  {
+   "id": "osworld_v2_rerun_kimik3tr",
+   "name": "OSWorld 2.0 (binary, 500 steps) — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Values for OSWorld 2.0 (binary, 500 steps) as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on osworld_v2. Kept separate, never overwriting osworld_v2."
+  },
+  {
+   "id": "osworld_verified_rerun_kimik3tr",
+   "name": "OSWorld-Verified — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "success_rate",
+   "description": "Values for OSWorld-Verified as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on osworld_verified. Kept separate, never overwriting osworld_verified."
+  },
+  {
+   "id": "posttrainbench_rerun_kimik3tr",
+   "name": "PostTrainBench — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "score",
+   "description": "Values for PostTrainBench as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on posttrainbench. Kept separate, never overwriting posttrainbench."
+  },
+  {
+   "id": "programbench_rerun_kimik3tr",
+   "name": "Programbench — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "coding",
+   "metric": "score",
+   "description": "Values for Programbench as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on programbench. Kept separate, never overwriting programbench."
+  },
+  {
+   "id": "scicode_rerun_kimik3tr",
+   "name": "SciCode — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "coding",
+   "metric": "pass@1",
+   "description": "Values for SciCode as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on scicode. Kept separate, never overwriting scicode."
+  },
+  {
+   "id": "swe_marathon_rerun_kimik3tr",
+   "name": "SWE-Marathon — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "coding",
+   "metric": "resolved_pct",
+   "description": "Values for SWE-Marathon as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on swe_marathon. Kept separate, never overwriting swe_marathon."
+  },
+  {
+   "id": "tau3_banking_rerun_kimik3tr",
+   "name": "tau3-Bench Banking — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agents",
+   "metric": "pass@1",
+   "description": "Values for tau3-Bench Banking as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on tau3_banking. Kept separate, never overwriting tau3_banking."
+  },
+  {
+   "id": "terminal_bench_2_1_rerun_kimik3tr",
+   "name": "Terminal Bench 2.1 — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "accuracy",
+   "description": "Values for Terminal Bench 2.1 as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on terminal_bench_2_1. Kept separate, never overwriting terminal_bench_2_1."
+  },
+  {
+   "id": "toolathlon_verified_rerun_kimik3tr",
+   "name": "Toolathlon-Verified — Kimi K3 tech report values (arXiv 2607.24653)",
+   "category": "agent",
+   "metric": "pass@1",
+   "description": "Values for Toolathlon-Verified as printed in the Kimi K3 technical report (arXiv 2607.24653; Kimi re-runs or Kimi-cited third-party snapshots as of 2026-07-23/24) where they differ from values already stored on toolathlon_verified. Kept separate, never overwriting toolathlon_verified."
+  }
+ ],
+ "scores": [
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "gpqa_diamond_rerun_kimik3tr",
+   "score": 94.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row GPQA Diamond [evidence raw/2607.24653.pdf p.27: \"GPQA Diamond                      93.5              92.6               94.1           91.0            93.5            91.2\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "gpqa_diamond_rerun_kimik3tr",
+   "score": 91.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row GPQA Diamond [evidence raw/2607.24653.pdf p.27: \"GPQA Diamond                      93.5              92.6               94.1           91.0            93.5            91.2\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "gpqa_diamond_rerun_kimik3tr",
+   "score": 93.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row GPQA Diamond [evidence raw/2607.24653.pdf p.27: \"GPQA Diamond                      93.5              92.6               94.1           91.0            93.5            91.2\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "critpt_rerun_kimik3tr",
+   "score": 23.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row CritPt [evidence raw/2607.24653.pdf p.27: \"CritPt                            23.4              28.6               32.3           20.9            27.1            20.9\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "critpt_rerun_kimik3tr",
+   "score": 32.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row CritPt [evidence raw/2607.24653.pdf p.27: \"CritPt                            23.4              28.6               32.3           20.9            27.1            20.9\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_lcr_rerun_kimik3tr",
+   "score": 74.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AA-LCR [evidence raw/2607.24653.pdf p.27: \"AA-LCR                            74.7              70.0               73.7           67.7            74.3            71.3\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_lcr_rerun_kimik3tr",
+   "score": 73.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AA-LCR [evidence raw/2607.24653.pdf p.27: \"AA-LCR                            74.7              70.0               73.7           67.7            74.3            71.3\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "hle_rerun_kimik3tr",
+   "score": 53.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row HLE-Full (no tools) [evidence raw/2607.24653.pdf p.27: \"HLE-Full                       43.5 / 56.0       53.3 / 63.0        44.5 / 58.0    49.8 / 57.9     41.4 / 52.2         -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "hle_rerun_kimik3tr",
+   "score": 44.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row HLE-Full (no tools) [evidence raw/2607.24653.pdf p.27: \"HLE-Full                       43.5 / 56.0       53.3 / 63.0        44.5 / 58.0    49.8 / 57.9     41.4 / 52.2         -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "hle_with_tools_rerun_kimik3tr",
+   "score": 63.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row HLE-Full (w/ tools) [evidence raw/2607.24653.pdf p.27: \"HLE-Full                       43.5 / 56.0       53.3 / 63.0        44.5 / 58.0    49.8 / 57.9     41.4 / 52.2         -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "hle_with_tools",
+   "score": 58.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row HLE-Full (w/ tools) [evidence raw/2607.24653.pdf p.27: \"HLE-Full                       43.5 / 56.0       53.3 / 63.0        44.5 / 58.0    49.8 / 57.9     41.4 / 52.2         -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "programbench_rerun_kimik3tr",
+   "score": 76.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row ProgramBench [evidence raw/2607.24653.pdf p.27: \"ProgramBench                      77.8              76.8               77.6            71.9           70.8            63.7\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "programbench",
+   "score": 77.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row ProgramBench [evidence raw/2607.24653.pdf p.27: \"ProgramBench                      77.8              76.8               77.6            71.9           70.8            63.7\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "programbench_rerun_kimik3tr",
+   "score": 71.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row ProgramBench [evidence raw/2607.24653.pdf p.27: \"ProgramBench                      77.8              76.8               77.6            71.9           70.8            63.7\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "programbench",
+   "score": 70.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row ProgramBench [evidence raw/2607.24653.pdf p.27: \"ProgramBench                      77.8              76.8               77.6            71.9           70.8            63.7\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "programbench",
+   "score": 63.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row ProgramBench [evidence raw/2607.24653.pdf p.27: \"ProgramBench                      77.8              76.8               77.6            71.9           70.8            63.7\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_2_1_rerun_kimik3tr",
+   "score": 84.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Terminal-Bench 2.1 [evidence raw/2607.24653.pdf p.27: \"Terminal-Bench 2.1                88.3              88.0               88.8            84.6           83.4            82.7\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "frontierswe",
+   "score": 86.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row FrontierSWE [evidence raw/2607.24653.pdf p.27: \"FrontierSWE                       81.2              86.6               71.3            66.7           64.9            67.3\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "frontierswe",
+   "score": 71.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row FrontierSWE [evidence raw/2607.24653.pdf p.27: \"FrontierSWE                       81.2              86.6               71.3            66.7           64.9            67.3\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "frontierswe",
+   "score": 66.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row FrontierSWE [evidence raw/2607.24653.pdf p.27: \"FrontierSWE                       81.2              86.6               71.3            66.7           64.9            67.3\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "frontierswe",
+   "score": 64.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row FrontierSWE [evidence raw/2607.24653.pdf p.27: \"FrontierSWE                       81.2              86.6               71.3            66.7           64.9            67.3\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "frontierswe_rerun_kimik3tr",
+   "score": 67.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row FrontierSWE [evidence raw/2607.24653.pdf p.27: \"FrontierSWE                       81.2              86.6               71.3            66.7           64.9            67.3\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "swe_marathon_rerun_kimik3tr",
+   "score": 35.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row SWE-Marathon [evidence raw/2607.24653.pdf p.27: \"SWE-Marathon                      42.0              35.0               39.0            40.0           14.0            13.0\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "swe_marathon",
+   "score": 39.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row SWE-Marathon [evidence raw/2607.24653.pdf p.27: \"SWE-Marathon                      42.0              35.0               39.0            40.0           14.0            13.0\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "swe_marathon_rerun_kimik3tr",
+   "score": 40.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row SWE-Marathon [evidence raw/2607.24653.pdf p.27: \"SWE-Marathon                      42.0              35.0               39.0            40.0           14.0            13.0\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "swe_marathon_rerun_kimik3tr",
+   "score": 14.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row SWE-Marathon [evidence raw/2607.24653.pdf p.27: \"SWE-Marathon                      42.0              35.0               39.0            40.0           14.0            13.0\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "posttrainbench",
+   "score": 41.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row PostTrainBench [evidence raw/2607.24653.pdf p.27: \"PostTrainBench                    36.6              41.4               34.6            34.1           28.4            34.3\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "posttrainbench_rerun_kimik3tr",
+   "score": 34.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row PostTrainBench [evidence raw/2607.24653.pdf p.27: \"PostTrainBench                    36.6              41.4               34.6            34.1           28.4            34.3\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "posttrainbench",
+   "score": 34.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row PostTrainBench [evidence raw/2607.24653.pdf p.27: \"PostTrainBench                    36.6              41.4               34.6            34.1           28.4            34.3\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "mls_bench_lite",
+   "score": 49.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MLS-Bench-Lite [evidence raw/2607.24653.pdf p.27: \"MLS-Bench-Lite                    48.3              49.9               46.2            42.8           35.5            40.4\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mls_bench_lite",
+   "score": 46.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MLS-Bench-Lite [evidence raw/2607.24653.pdf p.27: \"MLS-Bench-Lite                    48.3              49.9               46.2            42.8           35.5            40.4\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "mls_bench_lite",
+   "score": 40.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MLS-Bench-Lite [evidence raw/2607.24653.pdf p.27: \"MLS-Bench-Lite                    48.3              49.9               46.2            42.8           35.5            40.4\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "scicode_rerun_kimik3tr",
+   "score": 58.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row SciCode [evidence raw/2607.24653.pdf p.27: \"SciCode                           58.7              60.2               56.1            53.5           56.1            50.5\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "scicode_rerun_kimik3tr",
+   "score": 56.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row SciCode [evidence raw/2607.24653.pdf p.27: \"SciCode                           58.7              60.2               56.1            53.5           56.1            50.5\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "scicode_rerun_kimik3tr",
+   "score": 50.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row SciCode [evidence raw/2607.24653.pdf p.27: \"SciCode                           58.7              60.2               56.1            53.5           56.1            50.5\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "browsecomp_rerun_kimik3tr",
+   "score": 88.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row BrowseComp [evidence raw/2607.24653.pdf p.27: \"BrowseComp                        91.2              88.0              90.4             84.3           84.4             -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "deepsearchqa",
+   "score": 94.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row DeepSearchQA (F1) [evidence raw/2607.24653.pdf p.27: \"DeepSearchQA (F1)                 95.0              94.2                -              93.1             -              -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "research_rubrics",
+   "score": 73.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row ResearchRubrics [evidence raw/2607.24653.pdf p.27: \"ResearchRubrics                   76.2                -               73.8             73.5           64.0           71.1\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "research_rubrics",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row ResearchRubrics [evidence raw/2607.24653.pdf p.27: \"ResearchRubrics                   76.2                -               73.8             73.5           64.0           71.1\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "research_rubrics",
+   "score": 64.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row ResearchRubrics [evidence raw/2607.24653.pdf p.27: \"ResearchRubrics                   76.2                -               73.8             73.5           64.0           71.1\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "research_rubrics",
+   "score": 71.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row ResearchRubrics [evidence raw/2607.24653.pdf p.27: \"ResearchRubrics                   76.2                -               73.8             73.5           64.0           71.1\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "gdpval_aa_elo_rerun_kimik3tr",
+   "score": 1686.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row GDPval-AA v2 (Elo) [evidence raw/2607.24653.pdf p.27: \"GDPval-AA v2 (Elo)                1686              1747              1736             1593           1491           1510\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "gdpval_aa_elo_rerun_kimik3tr",
+   "score": 1747.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row GDPval-AA v2 (Elo) [evidence raw/2607.24653.pdf p.27: \"GDPval-AA v2 (Elo)                1686              1747              1736             1593           1491           1510\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "gdpval_aa_elo_rerun_kimik3tr",
+   "score": 1736.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row GDPval-AA v2 (Elo) [evidence raw/2607.24653.pdf p.27: \"GDPval-AA v2 (Elo)                1686              1747              1736             1593           1491           1510\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "gdpval_aa_elo_rerun_kimik3tr",
+   "score": 1593.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row GDPval-AA v2 (Elo) [evidence raw/2607.24653.pdf p.27: \"GDPval-AA v2 (Elo)                1686              1747              1736             1593           1491           1510\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "gdpval_aa_elo_rerun_kimik3tr",
+   "score": 1491.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row GDPval-AA v2 (Elo) [evidence raw/2607.24653.pdf p.27: \"GDPval-AA v2 (Elo)                1686              1747              1736             1593           1491           1510\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "gdpval_aa_elo_rerun_kimik3tr",
+   "score": 1510.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row GDPval-AA v2 (Elo) [evidence raw/2607.24653.pdf p.27: \"GDPval-AA v2 (Elo)                1686              1747              1736             1593           1491           1510\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "toolathlon_verified",
+   "score": 76.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Toolathlon-Verified [evidence raw/2607.24653.pdf p.27: \"Toolathlon-Verified               76.5              77.9              74.9             76.2           73.5           59.9\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "toolathlon_verified_rerun_kimik3tr",
+   "score": 77.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Toolathlon-Verified [evidence raw/2607.24653.pdf p.27: \"Toolathlon-Verified               76.5              77.9              74.9             76.2           73.5           59.9\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "toolathlon_verified_rerun_kimik3tr",
+   "score": 76.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Toolathlon-Verified [evidence raw/2607.24653.pdf p.27: \"Toolathlon-Verified               76.5              77.9              74.9             76.2           73.5           59.9\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "toolathlon_verified",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Toolathlon-Verified [evidence raw/2607.24653.pdf p.27: \"Toolathlon-Verified               76.5              77.9              74.9             76.2           73.5           59.9\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "toolathlon_verified",
+   "score": 59.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Toolathlon-Verified [evidence raw/2607.24653.pdf p.27: \"Toolathlon-Verified               76.5              77.9              74.9             76.2           73.5           59.9\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "mcpmark",
+   "score": 87.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MCPMark-Verified [evidence raw/2607.24653.pdf p.27: \"MCPMark-Verified                  94.5              87.4              92.9             76.4           92.9             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mcpmark",
+   "score": 92.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MCPMark-Verified [evidence raw/2607.24653.pdf p.27: \"MCPMark-Verified                  94.5              87.4              92.9             76.4           92.9             -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "mcp_atlas_rerun_kimik3tr",
+   "score": 84.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MCP-Atlas [evidence raw/2607.24653.pdf p.27: \"MCP-Atlas                         84.2              84.7              83.6             83.6           82.8           82.6\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mcp_atlas_rerun_kimik3tr",
+   "score": 83.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MCP-Atlas [evidence raw/2607.24653.pdf p.27: \"MCP-Atlas                         84.2              84.7              83.6             83.6           82.8           82.6\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "mcp_atlas_rerun_kimik3tr",
+   "score": 83.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MCP-Atlas [evidence raw/2607.24653.pdf p.27: \"MCP-Atlas                         84.2              84.7              83.6             83.6           82.8           82.6\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mcp_atlas_rerun_kimik3tr",
+   "score": 82.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MCP-Atlas [evidence raw/2607.24653.pdf p.27: \"MCP-Atlas                         84.2              84.7              83.6             83.6           82.8           82.6\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "mcp_atlas_rerun_kimik3tr",
+   "score": 82.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MCP-Atlas [evidence raw/2607.24653.pdf p.27: \"MCP-Atlas                         84.2              84.7              83.6             83.6           82.8           82.6\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "automationbench_rerun_kimik3tr",
+   "score": 29.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AutomationBench [evidence raw/2607.24653.pdf p.27: \"AutomationBench                   30.8              29.1              29.7             27.2           22.7           12.9\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "automationbench_rerun_kimik3tr",
+   "score": 29.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AutomationBench [evidence raw/2607.24653.pdf p.27: \"AutomationBench                   30.8              29.1              29.7             27.2           22.7           12.9\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "automationbench_rerun_kimik3tr",
+   "score": 27.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AutomationBench [evidence raw/2607.24653.pdf p.27: \"AutomationBench                   30.8              29.1              29.7             27.2           22.7           12.9\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "automationbench_rerun_kimik3tr",
+   "score": 22.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AutomationBench [evidence raw/2607.24653.pdf p.27: \"AutomationBench                   30.8              29.1              29.7             27.2           22.7           12.9\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "automationbench",
+   "score": 12.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AutomationBench [evidence raw/2607.24653.pdf p.27: \"AutomationBench                   30.8              29.1              29.7             27.2           22.7           12.9\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "job_bench_rerun_kimik3tr",
+   "score": 54.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row JobBench [evidence raw/2607.24653.pdf p.27: \"JobBench                          54.3              57.4              45.4             48.4           38.3           43.4\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_briefcase_rerun_kimik3tr",
+   "score": 1583.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AA-Briefcase (Elo) [evidence raw/2607.24653.pdf p.27: \"AA-Briefcase (Elo)                1548              1583              1495             1354           1158           1260\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_briefcase_rerun_kimik3tr",
+   "score": 1495.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AA-Briefcase (Elo) [evidence raw/2607.24653.pdf p.27: \"AA-Briefcase (Elo)                1548              1583              1495             1354           1158           1260\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "aa_briefcase",
+   "score": 1354.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AA-Briefcase (Elo) [evidence raw/2607.24653.pdf p.27: \"AA-Briefcase (Elo)                1548              1583              1495             1354           1158           1260\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "aa_briefcase",
+   "score": 1158.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AA-Briefcase (Elo) [evidence raw/2607.24653.pdf p.27: \"AA-Briefcase (Elo)                1548              1583              1495             1354           1158           1260\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "aa_briefcase",
+   "score": 1260.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row AA-Briefcase (Elo) [evidence raw/2607.24653.pdf p.27: \"AA-Briefcase (Elo)                1548              1583              1495             1354           1158           1260\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "agents_last_exam_rerun_kimik3tr",
+   "score": 25.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Agents’ Last Exam [evidence raw/2607.24653.pdf p.27: \"Agents’ Last Exam                 28.3              25.7†             29.6             27.0           26.6           20.4\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "agents_last_exam_rerun_kimik3tr",
+   "score": 29.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Agents’ Last Exam [evidence raw/2607.24653.pdf p.27: \"Agents’ Last Exam                 28.3              25.7†             29.6             27.0           26.6           20.4\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "agents_last_exam_rerun_kimik3tr",
+   "score": 26.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Agents’ Last Exam [evidence raw/2607.24653.pdf p.27: \"Agents’ Last Exam                 28.3              25.7†             29.6             27.0           26.6           20.4\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "apex_agents_rerun_kimik3tr",
+   "score": 41.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row APEX-Agents [evidence raw/2607.24653.pdf p.27: \"APEX-Agents                       41.0              43.3              39.9             39.4           38.5           35.6\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "apex_agents",
+   "score": 43.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row APEX-Agents [evidence raw/2607.24653.pdf p.27: \"APEX-Agents                       41.0              43.3              39.9             39.4           38.5           35.6\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "apex_agents",
+   "score": 39.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row APEX-Agents [evidence raw/2607.24653.pdf p.27: \"APEX-Agents                       41.0              43.3              39.9             39.4           38.5           35.6\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "apex_agents",
+   "score": 39.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row APEX-Agents [evidence raw/2607.24653.pdf p.27: \"APEX-Agents                       41.0              43.3              39.9             39.4           38.5           35.6\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "apex_agents_rerun_kimik3tr",
+   "score": 38.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row APEX-Agents [evidence raw/2607.24653.pdf p.27: \"APEX-Agents                       41.0              43.3              39.9             39.4           38.5           35.6\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "apex_agents_rerun_kimik3tr",
+   "score": 35.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row APEX-Agents [evidence raw/2607.24653.pdf p.27: \"APEX-Agents                       41.0              43.3              39.9             39.4           38.5           35.6\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "officeqa_pro",
+   "score": 63.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OfficeQA Pro [evidence raw/2607.24653.pdf p.27: \"OfficeQA Pro                      63.3              69.9              63.2             63.9           60.9           41.4\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "officeqa_pro_rerun_kimik3tr",
+   "score": 69.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OfficeQA Pro [evidence raw/2607.24653.pdf p.27: \"OfficeQA Pro                      63.3              69.9              63.2             63.9           60.9           41.4\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "officeqa_pro",
+   "score": 63.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OfficeQA Pro [evidence raw/2607.24653.pdf p.27: \"OfficeQA Pro                      63.3              69.9              63.2             63.9           60.9           41.4\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "officeqa_pro_rerun_kimik3tr",
+   "score": 63.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OfficeQA Pro [evidence raw/2607.24653.pdf p.27: \"OfficeQA Pro                      63.3              69.9              63.2             63.9           60.9           41.4\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "officeqa_pro_rerun_kimik3tr",
+   "score": 60.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OfficeQA Pro [evidence raw/2607.24653.pdf p.27: \"OfficeQA Pro                      63.3              69.9              63.2             63.9           60.9           41.4\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "officeqa_pro",
+   "score": 41.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OfficeQA Pro [evidence raw/2607.24653.pdf p.27: \"OfficeQA Pro                      63.3              69.9              63.2             63.9           60.9           41.4\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_verified_rerun_kimik3tr",
+   "score": 79.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OSWorld-Verified [evidence raw/2607.24653.pdf p.27: \"OSWorld-Verified                  84.8              85.0              83.0             83.4           79.0             -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "osworld_v2",
+   "score": 66.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OSWorld 2.0 [evidence raw/2607.24653.pdf p.27: \"OSWorld 2.0                       58.3              66.1              62.6             55.7           49.5             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "osworld_v2_rerun_kimik3tr",
+   "score": 62.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OSWorld 2.0 [evidence raw/2607.24653.pdf p.27: \"OSWorld 2.0                       58.3              66.1              62.6             55.7           49.5             -\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "osworld_v2_rerun_kimik3tr",
+   "score": 55.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OSWorld 2.0 [evidence raw/2607.24653.pdf p.27: \"OSWorld 2.0                       58.3              66.1              62.6             55.7           49.5             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "osworld_v2_rerun_kimik3tr",
+   "score": 49.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OSWorld 2.0 [evidence raw/2607.24653.pdf p.27: \"OSWorld 2.0                       58.3              66.1              62.6             55.7           49.5             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "saas_bench",
+   "score": 61.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row SaaS-Bench [evidence raw/2607.24653.pdf p.27: \"SaaS-Bench                        60.1                -               61.4             56.1           43.8             -\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "saas_bench",
+   "score": 56.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row SaaS-Bench [evidence raw/2607.24653.pdf p.27: \"SaaS-Bench                        60.1                -               61.4             56.1           43.8             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "saas_bench",
+   "score": 43.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row SaaS-Bench [evidence raw/2607.24653.pdf p.27: \"SaaS-Bench                        60.1                -               61.4             56.1           43.8             -\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "tau3_banking_rerun_kimik3tr",
+   "score": 33.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row τ 3 -Banking [evidence raw/2607.24653.pdf p.27: \"τ 3 -Banking                      33.4              26.8              33.0             27.6           31.3           26.8\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "tau3_banking_rerun_kimik3tr",
+   "score": 26.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row τ 3 -Banking [evidence raw/2607.24653.pdf p.27: \"τ 3 -Banking                      33.4              26.8              33.0             27.6           31.3           26.8\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "tau3_banking_rerun_kimik3tr",
+   "score": 33.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row τ 3 -Banking [evidence raw/2607.24653.pdf p.27: \"τ 3 -Banking                      33.4              26.8              33.0             27.6           31.3           26.8\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "tau3_banking_rerun_kimik3tr",
+   "score": 27.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row τ 3 -Banking [evidence raw/2607.24653.pdf p.27: \"τ 3 -Banking                      33.4              26.8              33.0             27.6           31.3           26.8\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "tau3_banking_rerun_kimik3tr",
+   "score": 26.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row τ 3 -Banking [evidence raw/2607.24653.pdf p.27: \"τ 3 -Banking                      33.4              26.8              33.0             27.6           31.3           26.8\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_worldvqa_forceanswer_acc",
+   "score": 51.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row WorldVQA ForceAnswer [evidence raw/2607.24653.pdf p.27: \"WorldVQA ForceAnswer              51.0              56.7               41.8           39.1            38.5             -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "kimik3tr_worldvqa_forceanswer_acc",
+   "score": 56.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row WorldVQA ForceAnswer [evidence raw/2607.24653.pdf p.27: \"WorldVQA ForceAnswer              51.0              56.7               41.8           39.1            38.5             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "kimik3tr_worldvqa_forceanswer_acc",
+   "score": 41.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row WorldVQA ForceAnswer [evidence raw/2607.24653.pdf p.27: \"WorldVQA ForceAnswer              51.0              56.7               41.8           39.1            38.5             -\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "kimik3tr_worldvqa_forceanswer_acc",
+   "score": 39.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row WorldVQA ForceAnswer [evidence raw/2607.24653.pdf p.27: \"WorldVQA ForceAnswer              51.0              56.7               41.8           39.1            38.5             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "kimik3tr_worldvqa_forceanswer_acc",
+   "score": 38.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row WorldVQA ForceAnswer [evidence raw/2607.24653.pdf p.27: \"WorldVQA ForceAnswer              51.0              56.7               41.8           39.1            38.5             -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "omnidocbench_v1_5_composite",
+   "score": 89.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OmniDocBench [evidence raw/2607.24653.pdf p.27: \"OmniDocBench                      91.1              89.8               85.8           87.9            89.4             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "omnidocbench_v1_5_composite",
+   "score": 85.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OmniDocBench [evidence raw/2607.24653.pdf p.27: \"OmniDocBench                      91.1              89.8               85.8           87.9            89.4             -\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "omnidocbench_v1_5_composite",
+   "score": 87.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OmniDocBench [evidence raw/2607.24653.pdf p.27: \"OmniDocBench                      91.1              89.8               85.8           87.9            89.4             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "omnidocbench_v1_5_composite",
+   "score": 89.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row OmniDocBench [evidence raw/2607.24653.pdf p.27: \"OmniDocBench                      91.1              89.8               85.8           87.9            89.4             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "video_mme_w_sub",
+   "score": 89.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Video-MME (w/ sub) [evidence raw/2607.24653.pdf p.27: \"Video-MME (w/ sub)                90.0                -                89.5           86.0            89.3             -\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "video_mme_w_sub",
+   "score": 86.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Video-MME (w/ sub) [evidence raw/2607.24653.pdf p.27: \"Video-MME (w/ sub)                90.0                -                89.5           86.0            89.3             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "video_mme_w_sub",
+   "score": 89.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Video-MME (w/ sub) [evidence raw/2607.24653.pdf p.27: \"Video-MME (w/ sub)                90.0                -                89.5           86.0            89.3             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mmvu",
+   "score": 81.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MMVU [evidence raw/2607.24653.pdf p.27: \"MMVU                              82.1                -                81.2           79.2            81.7             -\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "mmvu",
+   "score": 79.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MMVU [evidence raw/2607.24653.pdf p.27: \"MMVU                              82.1                -                81.2           79.2            81.7             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mmvu",
+   "score": 81.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MMVU [evidence raw/2607.24653.pdf p.27: \"MMVU                              82.1                -                81.2           79.2            81.7             -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "babyvision",
+   "score": 90.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row BabyVision w/ Python [evidence raw/2607.24653.pdf p.27: \"BabyVision w/ Python              85.7              90.5               88.9           81.2            83.6             -\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "babyvision",
+   "score": 81.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row BabyVision w/ Python [evidence raw/2607.24653.pdf p.27: \"BabyVision w/ Python              85.7              90.5               88.9           81.2            83.6             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "babyvision",
+   "score": 83.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row BabyVision w/ Python [evidence raw/2607.24653.pdf p.27: \"BabyVision w/ Python              85.7              90.5               88.9           81.2            83.6             -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "mmmu_pro",
+   "score": 81.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MMMU-Pro (no tools) [evidence raw/2607.24653.pdf p.27: \"MMMU-Pro                       81.6 / 83.4       81.2 / 86.5        83.0 / 84.6    78.9 / 82.7     81.2 / 83.2         -\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "mmmu_pro",
+   "score": 78.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MMMU-Pro (no tools) [evidence raw/2607.24653.pdf p.27: \"MMMU-Pro                       81.6 / 83.4       81.2 / 86.5        83.0 / 84.6    78.9 / 82.7     81.2 / 83.2         -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mmmu_pro_rerun_kimik3tr",
+   "score": 81.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MMMU-Pro (no tools) [evidence raw/2607.24653.pdf p.27: \"MMMU-Pro                       81.6 / 83.4       81.2 / 86.5        83.0 / 84.6    78.9 / 82.7     81.2 / 83.2         -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "mmmu_pro_(w/_python)",
+   "score": 86.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MMMU-Pro (w/ Python) [evidence raw/2607.24653.pdf p.27: \"MMMU-Pro                       81.6 / 83.4       81.2 / 86.5        83.0 / 84.6    78.9 / 82.7     81.2 / 83.2         -\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "mmmu_pro_(w/_python)",
+   "score": 82.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MMMU-Pro (w/ Python) [evidence raw/2607.24653.pdf p.27: \"MMMU-Pro                       81.6 / 83.4       81.2 / 86.5        83.0 / 84.6    78.9 / 82.7     81.2 / 83.2         -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mmmu_pro_(w/_python)",
+   "score": 83.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row MMMU-Pro (w/ Python) [evidence raw/2607.24653.pdf p.27: \"MMMU-Pro                       81.6 / 83.4       81.2 / 86.5        83.0 / 84.6    78.9 / 82.7     81.2 / 83.2         -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "charxiv",
+   "score": 88.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row CharXiv (RQ) (no tools) [evidence raw/2607.24653.pdf p.27: \"CharXiv (RQ)                   84.8 / 91.3       88.9 / 93.5        84.6 / 89.1    80.5 / 89.9     84.1 / 89.0         -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "charxiv_rerun_kimik3tr",
+   "score": 84.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row CharXiv (RQ) (no tools) [evidence raw/2607.24653.pdf p.27: \"CharXiv (RQ)                   84.8 / 91.3       88.9 / 93.5        84.6 / 89.1    80.5 / 89.9     84.1 / 89.0         -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "charxiv_rq_(w/_python)",
+   "score": 93.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row CharXiv (RQ) (w/ Python) [evidence raw/2607.24653.pdf p.27: \"CharXiv (RQ)                   84.8 / 91.3       88.9 / 93.5        84.6 / 89.1    80.5 / 89.9     84.1 / 89.0         -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "charxiv_rq_(w/_python)",
+   "score": 89.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row CharXiv (RQ) (w/ Python) [evidence raw/2607.24653.pdf p.27: \"CharXiv (RQ)                   84.8 / 91.3       88.9 / 93.5        84.6 / 89.1    80.5 / 89.9     84.1 / 89.0         -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "charxiv_rq_(w/_python)",
+   "score": 89.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row CharXiv (RQ) (w/ Python) [evidence raw/2607.24653.pdf p.27: \"CharXiv (RQ)                   84.8 / 91.3       88.9 / 93.5        84.6 / 89.1    80.5 / 89.9     84.1 / 89.0         -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "mathvision",
+   "score": 94.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Math-Vision (no tools) [evidence raw/2607.24653.pdf p.27: \"Math-Vision                    94.3 / 97.8       94.8 / 98.6        95.8 / 97.8    86.7 / 97.1     92.2 / 96.8         -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mathvision",
+   "score": 95.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Math-Vision (no tools) [evidence raw/2607.24653.pdf p.27: \"Math-Vision                    94.3 / 97.8       94.8 / 98.6        95.8 / 97.8    86.7 / 97.1     92.2 / 96.8         -\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "mathvision",
+   "score": 86.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Math-Vision (no tools) [evidence raw/2607.24653.pdf p.27: \"Math-Vision                    94.3 / 97.8       94.8 / 98.6        95.8 / 97.8    86.7 / 97.1     92.2 / 96.8         -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mathvision",
+   "score": 92.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Math-Vision (no tools) [evidence raw/2607.24653.pdf p.27: \"Math-Vision                    94.3 / 97.8       94.8 / 98.6        95.8 / 97.8    86.7 / 97.1     92.2 / 96.8         -\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "mathvision_(w/_python)",
+   "score": 98.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Math-Vision (w/ Python) [evidence raw/2607.24653.pdf p.27: \"Math-Vision                    94.3 / 97.8       94.8 / 98.6        95.8 / 97.8    86.7 / 97.1     92.2 / 96.8         -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mathvision_(w/_python)",
+   "score": 97.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Math-Vision (w/ Python) [evidence raw/2607.24653.pdf p.27: \"Math-Vision                    94.3 / 97.8       94.8 / 98.6        95.8 / 97.8    86.7 / 97.1     92.2 / 96.8         -\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "mathvision_(w/_python)",
+   "score": 97.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Math-Vision (w/ Python) [evidence raw/2607.24653.pdf p.27: \"Math-Vision                    94.3 / 97.8       94.8 / 98.6        95.8 / 97.8    86.7 / 97.1     92.2 / 96.8         -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mathvision_(w/_python)",
+   "score": 96.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 2 (main comparison; Kimi K3 max, Fable 5 max w/ fallback, GPT-5.6 Sol max, Opus 4.8 max, GPT-5.5 xhigh, GLM-5.2 max), row Math-Vision (w/ Python) [evidence raw/2607.24653.pdf p.27: \"Math-Vision                    94.3 / 97.8       94.8 / 98.6        95.8 / 97.8    86.7 / 97.1     92.2 / 96.8         -\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_code_bench_2_claude_code",
+   "score": 73.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Kimi Code Bench 2.0 @ Claude Code [evidence raw/2607.24653.pdf p.29: \"Kimi Code Bench 2.0         Claude Code          73.7           76.9a            -             71.7           -            64.2\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "kimik3tr_kimi_code_bench_2_claude_code",
+   "score": 76.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Kimi Code Bench 2.0 @ Claude Code [evidence raw/2607.24653.pdf p.29: \"Kimi Code Bench 2.0         Claude Code          73.7           76.9a            -             71.7           -            64.2\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "kimik3tr_kimi_code_bench_2_claude_code",
+   "score": 71.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Kimi Code Bench 2.0 @ Claude Code [evidence raw/2607.24653.pdf p.29: \"Kimi Code Bench 2.0         Claude Code          73.7           76.9a            -             71.7           -            64.2\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "kimik3tr_kimi_code_bench_2_claude_code",
+   "score": 64.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Kimi Code Bench 2.0 @ Claude Code [evidence raw/2607.24653.pdf p.29: \"Kimi Code Bench 2.0         Claude Code          73.7           76.9a            -             71.7           -            64.2\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_code_bench_2_kimi_code",
+   "score": 72.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Kimi Code Bench 2.0 @ Kimi Code [evidence raw/2607.24653.pdf p.29: \"Kimi Code           72.9             -              -              -           66.0            -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "kimik3tr_kimi_code_bench_2_kimi_code",
+   "score": 66.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Kimi Code Bench 2.0 @ Kimi Code [evidence raw/2607.24653.pdf p.29: \"Kimi Code           72.9             -              -              -           66.0            -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "kimik3tr_kimi_code_bench_2_codex",
+   "score": 64.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Kimi Code Bench 2.0 @ Codex [evidence raw/2607.24653.pdf p.29: \"Codex              -               -            64.8b            -           69.0c           -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "kimik3tr_kimi_code_bench_2_codex",
+   "score": 69.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Kimi Code Bench 2.0 @ Codex [evidence raw/2607.24653.pdf p.29: \"Codex              -               -            64.8b            -           69.0c           -\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_coding_experience_claude_code",
+   "score": 59.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Coding Experience @ Claude Code [evidence raw/2607.24653.pdf p.29: \"Coding Experience           Claude Code          59.9           59.8             -             58.0           -            53.3\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "kimik3tr_coding_experience_claude_code",
+   "score": 59.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Coding Experience @ Claude Code [evidence raw/2607.24653.pdf p.29: \"Coding Experience           Claude Code          59.9           59.8             -             58.0           -            53.3\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "kimik3tr_coding_experience_claude_code",
+   "score": 58.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Coding Experience @ Claude Code [evidence raw/2607.24653.pdf p.29: \"Coding Experience           Claude Code          59.9           59.8             -             58.0           -            53.3\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "kimik3tr_coding_experience_claude_code",
+   "score": 53.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Coding Experience @ Claude Code [evidence raw/2607.24653.pdf p.29: \"Coding Experience           Claude Code          59.9           59.8             -             58.0           -            53.3\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_coding_experience_kimi_code",
+   "score": 56.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Coding Experience @ Kimi Code [evidence raw/2607.24653.pdf p.29: \"Kimi Code           56.6             -              -              -             -             -\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "kimik3tr_coding_experience_codex",
+   "score": 59.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Coding Experience @ Codex [evidence raw/2607.24653.pdf p.29: \"Codex              -               -             59.3            -           56.8            -\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "kimik3tr_coding_experience_codex",
+   "score": 56.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 3 (in-house benchmarks, Kimi-measured), row Coding Experience @ Codex [evidence raw/2607.24653.pdf p.29: \"Codex              -               -             59.3            -           56.8            -\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_intelligence_index_v4_1_rerun_kimik3tr",
+   "score": 57.1,
+   "unit": "index",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row AA Intelligence Index v4.1 [evidence raw/2607.24653.pdf p.32: \"Intelligence Index v4.1 (#4/580)                                       57.1                       59.9                          58.9                         55.\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_intelligence_index_v4_1_rerun_kimik3tr",
+   "score": 59.9,
+   "unit": "index",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row AA Intelligence Index v4.1 [evidence raw/2607.24653.pdf p.32: \"Intelligence Index v4.1 (#4/580)                                       57.1                       59.9                          58.9                         55.\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "aa_intelligence_index_v4_1_rerun_kimik3tr",
+   "score": 55.7,
+   "unit": "index",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row AA Intelligence Index v4.1 [evidence raw/2607.24653.pdf p.32: \"Intelligence Index v4.1 (#4/580)                                       57.1                       59.9                          58.9                         55.\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "aa_intelligence_index_v4_1_rerun_kimik3tr",
+   "score": 55.0,
+   "unit": "index",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row AA Intelligence Index v4.1 [evidence raw/2607.24653.pdf p.32: \"Intelligence Index v4.1 (#4/580)                                       57.1                       59.9                          58.9                         55.\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "aa_intelligence_index_v4_1_rerun_kimik3tr",
+   "score": 51.1,
+   "unit": "index",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row AA Intelligence Index v4.1 [evidence raw/2607.24653.pdf p.32: \"Intelligence Index v4.1 (#4/580)                                       57.1                       59.9                          58.9                         55.\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "vals_index",
+   "score": 75.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Vals Index [evidence raw/2607.24653.pdf p.32: \"Vals Index (#2/39)                                                     74.7                       75.1                          73.1                         70.\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "vals_index",
+   "score": 73.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Vals Index [evidence raw/2607.24653.pdf p.32: \"Vals Index (#2/39)                                                     74.7                       75.1                          73.1                         70.\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "vals_index",
+   "score": 70.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Vals Index [evidence raw/2607.24653.pdf p.32: \"Vals Index (#2/39)                                                     74.7                       75.1                          73.1                         70.\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "vals_index",
+   "score": 68.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Vals Index [evidence raw/2607.24653.pdf p.32: \"Vals Index (#2/39)                                                     74.7                       75.1                          73.1                         70.\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "vals_index",
+   "score": 65.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Vals Index [evidence raw/2607.24653.pdf p.32: \"Vals Index (#2/39)                                                     74.7                       75.1                          73.1                         70.\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "arena_webdev_elo_rerun_kimik3tr",
+   "score": 1678.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row WebDev Arena (Elo) [evidence raw/2607.24653.pdf p.32: \"WebDev Arena (Elo, #1/99)                                             1,678                       1,634                        1,630                        1,56\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "arena_webdev_elo_rerun_kimik3tr",
+   "score": 1634.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row WebDev Arena (Elo) [evidence raw/2607.24653.pdf p.32: \"WebDev Arena (Elo, #1/99)                                             1,678                       1,634                        1,630                        1,56\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "arena_webdev_elo_rerun_kimik3tr",
+   "score": 1630.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row WebDev Arena (Elo) [evidence raw/2607.24653.pdf p.32: \"WebDev Arena (Elo, #1/99)                                             1,678                       1,634                        1,630                        1,56\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "arena_webdev_elo_rerun_kimik3tr",
+   "score": 1565.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row WebDev Arena (Elo) [evidence raw/2607.24653.pdf p.32: \"WebDev Arena (Elo, #1/99)                                             1,678                       1,634                        1,630                        1,56\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "arena_webdev_elo_rerun_kimik3tr",
+   "score": 1507.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row WebDev Arena (Elo) [evidence raw/2607.24653.pdf p.32: \"WebDev Arena (Elo, #1/99)                                             1,678                       1,634                        1,630                        1,56\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "arena_webdev_elo_rerun_kimik3tr",
+   "score": 1592.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row WebDev Arena (Elo) [evidence raw/2607.24653.pdf p.32: \"WebDev Arena (Elo, #1/99)                                             1,678                       1,634                        1,630                        1,56\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "arena_ai_text_elo_rerun_kimik3tr",
+   "score": 1486.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Text Arena (Elo) [evidence raw/2607.24653.pdf p.32: \"Text Arena (Elo, #8/200)                                              1,486                       1,507                        1,485a                      1,484\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "arena_ai_text_elo_rerun_kimik3tr",
+   "score": 1507.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Text Arena (Elo) [evidence raw/2607.24653.pdf p.32: \"Text Arena (Elo, #8/200)                                              1,486                       1,507                        1,485a                      1,484\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "arena_ai_text_elo_rerun_kimik3tr",
+   "score": 1485.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Text Arena (Elo) [evidence raw/2607.24653.pdf p.32: \"Text Arena (Elo, #8/200)                                              1,486                       1,507                        1,485a                      1,484\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8-high",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1484.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Text Arena (Elo) [evidence raw/2607.24653.pdf p.32: \"Text Arena (Elo, #8/200)                                              1,486                       1,507                        1,485a                      1,484\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "arena_ai_text_elo_rerun_kimik3tr",
+   "score": 1469.0,
+   "unit": "Elo",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Text Arena (Elo) [evidence raw/2607.24653.pdf p.32: \"Text Arena (Elo, #8/200)                                              1,486                       1,507                        1,485a                      1,484\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_agent_arena_score",
+   "score": 9.1,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Agent Arena [evidence raw/2607.24653.pdf p.32: \"Agent Arena (#4/37)                                                    9.1                         12.7                         10.1                         9.8\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "kimik3tr_agent_arena_score",
+   "score": 12.7,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Agent Arena [evidence raw/2607.24653.pdf p.32: \"Agent Arena (#4/37)                                                    9.1                         12.7                         10.1                         9.8\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "kimik3tr_agent_arena_score",
+   "score": 10.1,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Agent Arena [evidence raw/2607.24653.pdf p.32: \"Agent Arena (#4/37)                                                    9.1                         12.7                         10.1                         9.8\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "kimik3tr_agent_arena_score",
+   "score": 9.8,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Agent Arena [evidence raw/2607.24653.pdf p.32: \"Agent Arena (#4/37)                                                    9.1                         12.7                         10.1                         9.8\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "kimik3tr_agent_arena_score",
+   "score": 8.8,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Agent Arena [evidence raw/2607.24653.pdf p.32: \"Agent Arena (#4/37)                                                    9.1                         12.7                         10.1                         9.8\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "kimik3tr_agent_arena_score",
+   "score": 6.5,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 5 (third-party evaluations as cited by Kimi, as of 2026-07-23), row Agent Arena [evidence raw/2607.24653.pdf p.32: \"Agent Arena (#4/37)                                                    9.1                         12.7                         10.1                         9.8\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "kimi_code_bench_v2",
+   "score": 76.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 1 (main results), panel 'Kimi Code Bench 2.0 (Internal)' — best harness per model (matches Table 3: Kimi Code for K3, Claude Code for Claude/GLM, Codex for GPT) [evidence raw/2607.24653.pdf p.1: \"Fable 5                                                                                76.9                       Kimi K3                                   77.8\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "kimi_code_bench_v2_rerun_kimik3tr",
+   "score": 71.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 1 (main results), panel 'Kimi Code Bench 2.0 (Internal)' — best harness per model (matches Table 3: Kimi Code for K3, Claude Code for Claude/GLM, Codex for GPT) [evidence raw/2607.24653.pdf p.1: \"Opus 4.8                                                                            71.7                          Fable 5                                  76.8 \"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "kimi_code_bench_v2",
+   "score": 64.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 1 (main results), panel 'Kimi Code Bench 2.0 (Internal)' — best harness per model (matches Table 3: Kimi Code for K3, Claude Code for Claude/GLM, Codex for GPT) [evidence raw/2607.24653.pdf p.1: \"GPT-5.6 Sol                                                                      64.8                             GPT-5.5                               70.8    \"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "kimi_code_bench_v2",
+   "score": 64.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 1 (main results), panel 'Kimi Code Bench 2.0 (Internal)' — best harness per model (matches Table 3: Kimi Code for K3, Claude Code for Claude/GLM, Codex for GPT) [evidence raw/2607.24653.pdf p.1: \"GLM-5.2                                                                          64.2                             GLM-5.2                            63.7       \"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_games_win_rate",
+   "score": 55.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Games, win [evidence raw/2607.24653.pdf p.29: \"Games                     55.6%      3.7%      40.7%       +14.9%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_games_tie_rate",
+   "score": 3.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Games, tie [evidence raw/2607.24653.pdf p.29: \"Games                     55.6%      3.7%      40.7%       +14.9%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_games_lose_rate_lower_better",
+   "score": 40.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Games, lose [evidence raw/2607.24653.pdf p.29: \"Games                     55.6%      3.7%      40.7%       +14.9%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_games_win_minus_lose",
+   "score": 14.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Games, net [evidence raw/2607.24653.pdf p.29: \"Games                     55.6%      3.7%      40.7%       +14.9%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_3d_webgl_shader_win_rate",
+   "score": 72.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), 3D / WebGL / Shader, win [evidence raw/2607.24653.pdf p.29: \"3D / WebGL / Shader       72.7%     13.7%      13.6%       +59.1%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_3d_webgl_shader_tie_rate",
+   "score": 13.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), 3D / WebGL / Shader, tie [evidence raw/2607.24653.pdf p.29: \"3D / WebGL / Shader       72.7%     13.7%      13.6%       +59.1%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_3d_webgl_shader_lose_rate_lower_better",
+   "score": 13.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), 3D / WebGL / Shader, lose [evidence raw/2607.24653.pdf p.29: \"3D / WebGL / Shader       72.7%     13.7%      13.6%       +59.1%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_3d_webgl_shader_win_minus_lose",
+   "score": 59.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), 3D / WebGL / Shader, net [evidence raw/2607.24653.pdf p.29: \"3D / WebGL / Shader       72.7%     13.7%      13.6%       +59.1%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_website_ui_clone_win_rate",
+   "score": 52.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Website / UI Clone, win [evidence raw/2607.24653.pdf p.29: \"Website / UI Clone        52.6%     21.1%      26.3%       +26.3%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_website_ui_clone_tie_rate",
+   "score": 21.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Website / UI Clone, tie [evidence raw/2607.24653.pdf p.29: \"Website / UI Clone        52.6%     21.1%      26.3%       +26.3%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_website_ui_clone_lose_rate_lower_better",
+   "score": 26.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Website / UI Clone, lose [evidence raw/2607.24653.pdf p.29: \"Website / UI Clone        52.6%     21.1%      26.3%       +26.3%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_website_ui_clone_win_minus_lose",
+   "score": 26.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Website / UI Clone, net [evidence raw/2607.24653.pdf p.29: \"Website / UI Clone        52.6%     21.1%      26.3%       +26.3%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_overall_win_rate",
+   "score": 58.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Overall, win [evidence raw/2607.24653.pdf p.29: \"Overall                   58.6%     13.8%      27.6%       +31.0%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_overall_tie_rate",
+   "score": 13.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Overall, tie [evidence raw/2607.24653.pdf p.29: \"Overall                   58.6%     13.8%      27.6%       +31.0%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_overall_lose_rate_lower_better",
+   "score": 27.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Overall, lose [evidence raw/2607.24653.pdf p.29: \"Overall                   58.6%     13.8%      27.6%       +31.0%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_kimi_webdev_bench_vs_opus_4_8_overall_win_minus_lose",
+   "score": 31.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Table 4 (Kimi Webdev Bench, blind expert pairwise: Kimi K3 max vs Claude Opus 4.8 max, both Claude Code), Overall, net [evidence raw/2607.24653.pdf p.29: \"Overall                   58.6%     13.8%      27.6%       +31.0%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_camera_repair_replication_completion",
+   "score": 1.0,
+   "unit": "completion 0-1",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 10 (Camera Repair Management System black-box replication; final verifier-assessed completion printed in legend) [evidence raw/2607.24653.pdf p.17: \"100       Kimi K3 (1.000)\"]"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "kimik3tr_camera_repair_replication_completion",
+   "score": 0.918,
+   "unit": "completion 0-1",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 10 (Camera Repair Management System black-box replication; final verifier-assessed completion printed in legend) [evidence raw/2607.24653.pdf p.17: \"Opus 4.8 (0.918)\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "kimik3tr_camera_repair_replication_completion",
+   "score": 0.893,
+   "unit": "completion 0-1",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 10 (Camera Repair Management System black-box replication; final verifier-assessed completion printed in legend) [evidence raw/2607.24653.pdf p.17: \"GPT-5.5 (0.893)\"]"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "kimik3tr_camera_repair_replication_completion",
+   "score": 0.56,
+   "unit": "completion 0-1",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 10 (Camera Repair Management System black-box replication; final verifier-assessed completion printed in legend) [evidence raw/2607.24653.pdf p.17: \"Kimi K2.6 (0.560)\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_attnres_kernel_speedup_vs_fla_triton",
+   "score": 59.7,
+   "unit": "% speedup",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 14 (case study: AttnRes GPU kernel optimization, final speedup vs FLA Triton baseline within 24h budget; label printed in figure) [evidence raw/2607.24653.pdf p.33: \"60                                                                     Kimi K3 +59.7%\"]"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "kimik3tr_attnres_kernel_speedup_vs_fla_triton",
+   "score": 57.1,
+   "unit": "% speedup",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 14 (case study: AttnRes GPU kernel optimization, final speedup vs FLA Triton baseline within 24h budget; label printed in figure) [evidence raw/2607.24653.pdf p.33: \"Claude Fable 5 +57.1%\"]"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "kimik3tr_attnres_kernel_speedup_vs_fla_triton",
+   "score": 30.8,
+   "unit": "% speedup",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 14 (case study: AttnRes GPU kernel optimization, final speedup vs FLA Triton baseline within 24h budget; label printed in figure) [evidence raw/2607.24653.pdf p.33: \"30                                                                      GPT-5.5 +30.8%\"]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "kimik3tr_attnres_kernel_speedup_vs_fla_triton",
+   "score": 17.3,
+   "unit": "% speedup",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Figure 14 (case study: AttnRes GPU kernel optimization, final speedup vs FLA Triton baseline within 24h budget; label printed in figure) [evidence raw/2607.24653.pdf p.33: \"GPT-5.6 Sol +17.3%\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_exploit_dev_suite_36_solve_rate",
+   "score": 38.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Sec 6.2.2 in-house exploit-development suite (36 tasks: 16 user-space + 20 Linux kernel), 14/36 solved [evidence raw/2607.24653.pdf p.31: \"solving 14 of 36 tasks (38.9%) versus 8 of 36 (22.2%) for GLM-5.2. Its successes are unevenly distributed, however:\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "kimik3tr_exploit_dev_suite_36_solve_rate",
+   "score": 22.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Sec 6.2.2 in-house exploit-development suite (36 tasks), GLM-5.2 baseline 8/36 solved [evidence raw/2607.24653.pdf p.31: \"solving 14 of 36 tasks (38.9%) versus 8 of 36 (22.2%) for GLM-5.2. Its successes are unevenly distributed, however:\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_caisi_exploitbench",
+   "score": 32.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Sec 6.2.2, UK AISI + NIST CAISI joint assessment cited by Kimi: ExploitBench [evidence raw/2607.24653.pdf p.31: \"(CAISI) [125] reaches conclusions consistent with ours. Kimi K3 outperforms GLM-5.2 on exploit development (32%\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "kimik3tr_caisi_exploitbench",
+   "score": 24.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Sec 6.2.2, UK AISI + NIST CAISI joint assessment cited by Kimi: ExploitBench (GLM-5.2) [evidence raw/2607.24653.pdf p.31: \"vs. 24% on ExploitBench; 17 vs. 11 steps on a 32-step simulated enterprise network that takes a human expert roughly\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_caisi_cyber_range_32step_steps",
+   "score": 17.0,
+   "unit": "steps",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Sec 6.2.2, CAISI/AISI 32-step simulated enterprise network: steps completed [evidence raw/2607.24653.pdf p.31: \"vs. 24% on ExploitBench; 17 vs. 11 steps on a 32-step simulated enterprise network that takes a human expert roughly\"]"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "kimik3tr_caisi_cyber_range_32step_steps",
+   "score": 11.0,
+   "unit": "steps",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Sec 6.2.2, CAISI/AISI 32-step simulated enterprise network: steps completed (GLM-5.2) [evidence raw/2607.24653.pdf p.31: \"vs. 24% on ExploitBench; 17 vs. 11 steps on a 32-step simulated enterprise network that takes a human expert roughly\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_browsecomp_full_1m_no_context_mgmt",
+   "score": 90.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Sec 6.1.3: BrowseComp with full 1M context and no context management (vs 91.2 with 300K compaction) [evidence raw/2607.24653.pdf p.26: \"management, Kimi K3 achieves 90.4%.\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_deepswe_1_1_mini_swe_agent",
+   "score": 67.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Sec 6.1.3: DeepSWE v1.1 official leaderboard, mini-SWE-agent harness [evidence raw/2607.24653.pdf p.26: \"(Kimi K3 attains 67.3 with the mini-SWE-agent harness). On Terminal-Bench 2.1, we report the best score across\"]"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "kimik3tr_browsecomp_cost_per_task_usd_lower_better",
+   "score": 2.03,
+   "unit": "USD",
+   "_source": "https://arxiv.org/abs/2607.24653",
+   "_note": "Sec 6.4 cost efficiency: BrowseComp cost per task (USD), Kimi-measured [evidence raw/2607.24653.pdf p.32: \"the best score (91.2%) at $2.03 per task — half the cost of GPT-5.6 Sol (90.4%) and an order of magnitude cheaper\"]"
+  }
+ ]
+}

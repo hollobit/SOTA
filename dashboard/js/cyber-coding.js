@@ -765,6 +765,7 @@ var CyberCoding = {
         'deepseek/deepseek-v4.1-flash',  // 2026-09-10 S278 — 552B CED MoE 8B/16B active; TB2.1 90.6, DeepSWE 74.2, CyberGym 88.1, Codeforces 3471
         'deepseek/deepseek-v4.1-flash-1017',  // 2026-10-17 S310 — V4.1-Flash minor update (deepseek-flash); TB4.0 42.3, DeepSWE 77.0, ProgramBench 29.1, HLE 42.6
         'minimax/m3.1-flash',  // 2026-10-19 S311 — MiniMax M3.1 Flash ($0.15/$0.60); AA II 42.4, DeepSWE 73.7, CyberGym 82.2, OSWorld 2.0 61.7, ALE 29.6
+        'moonshot/kimi-k3.1-pro',  // 2026-10-23 S314 — Kimi K3.1 Pro (post-trained K3, $2/$10); AA II 55.1 (#4), TB4.0 65.7, SWE-Marathon 51.7, DeepSWE 75.5, BrowseComp 92.1
         'deepseek/deepseek-v4-pro-max',
         'deepseek/deepseek-v4-flash-0731',  // 2026-08-01 S220 — official 0731 release (AA Intelligence Index 50, Cybergym 76.7, DeepSWE 54.4)
         // 2026-08-01 S223 — arxiv 6-mo batch net-new coding/cyber models

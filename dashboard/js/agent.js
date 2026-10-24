@@ -207,7 +207,9 @@ var Agent = (function() {
                 'vals_financial_agent_1_1',
                 // 2026-10-03 — recent finance / business agent suites (S290–S292b)
                 'vals_index_sep2026', 'big_finance_bench', 'bluefin_heldout_overall', 'dataclawbench',
-                'business_arena_net_worth_usd', 'ceo_arena_mean_score_usd_k', 'kellybench_avg_roi'
+                'business_arena_net_worth_usd', 'ceo_arena_mean_score_usd_k', 'kellybench_avg_roi',
+                // 2026-10-23 S314 — Kimi K3.1 Pro launch finance agent evals
+                'officeqa_pro_v2', 'frontier_finance'
             ]
         },
         {
@@ -508,6 +510,8 @@ var Agent = (function() {
         'minimax/m3',
         // 2026-10-19 S311 — MiniMax M3.1 Flash (AutomationBench 62.2, BankerToolBench 76.2, ALE 29.6, OSWorld 2.0 61.7)
         'minimax/m3.1-flash',
+        // 2026-10-23 S314 — Kimi K3.1 Pro (GDPval-AA 1846 #3, AutomationBench-AA 73.3, OfficeQA Pro v2 64.4, BrowseComp 92.1)
+        'moonshot/kimi-k3.1-pro',
         // 2026-06-09 S65 — Claude Fable 5 + Mythos 5 (Toolathlon 61.7 NEW SOTA, OSWorld 85 NEW SOTA, BrowseComp 88)
         'anthropic/claude-fable-5',
         'anthropic/claude-mythos-5',

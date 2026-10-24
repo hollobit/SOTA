@@ -175,7 +175,33 @@ var MedicalAI = {
                 'shanghai-ai-lab/intern-medical-25b',
                 'openbmb/uni-med-vlm-8b',
                 'microsoft/medimageinsight',
-                'microsoft/healthgpt'
+                'microsoft/healthgpt',
+                'jdhealth/citrus-v-33b',           // 2025-09 S313 — unified grounding + clinical reasoning (JD Health)
+                'jdhealth/citrus-v-8b',            // 2025-09 S313
+                'zju/omniv-med-7b',                // 2025-04 S313 — 2D/3D/video universal medical VLM
+                'pku/mimo-med-7b',                 // 2025-10 S313 — visual referring input + pixel grounding output
+                'snu/medic-ad-7b',                 // 2026-03 S313 — anomaly detection + clinical reasoning
+                'cuhk/med-mantis-8b',              // 2025-05 S313 — multi-image medical VLM (Med-MIM)
+                'mdanderson/coral-qwen2.5-vl-7b',  // 2026-07 S313 — counterfactual grounding (CORAL)
+                'zju/medcot',                      // 2024-12 S313 — hierarchical expert CoT Med-VQA
+                'polyu/conceptvlm',                // 2026-04 S313 — key-concept learning (npj Digit Med)
+                'johnsnowlabs/medical-vlm-24b',    // 2025-05 S313 — John Snow Labs (Mistral-Small-3.1 base)
+                'google/medgemma-4b-rl-cxr'        // 2026-10 S313 — MedGemma Nature Medicine paper
+            ]
+        },
+        {
+            code: '3d-medical-vlm',
+            label: '3D Medical VLMs (CT/MRI volumes)',
+            icon: '🧊',
+            note: 'S313 — volumetric report generation / VQA / segmentation: MedVL-SAM2 (CT-RATE + Dice) · Med3DVLM (M3D) · MS-VLM (KAIST, slice-sequence encoder) · data-efficient 3D VLM with a 2D encoder (Sci Rep) · M3D-LaMed · CT-CHAT · RadFM',
+            models: [
+                'ufl/medvl-sam2',
+                'ufl/med3dvlm',
+                'kaist/ms-vlm',
+                'ghntc/data-efficient-3d-vlm',
+                'baai/m3d-lamed-7b',
+                'hamamci/ct-chat',
+                'shanghai-ai-lab/radfm'
             ]
         },
         {

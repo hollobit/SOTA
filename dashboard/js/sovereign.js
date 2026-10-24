@@ -138,6 +138,7 @@ var Sovereign = {
                 'deepseek/deepseek-v4.1-flash', 'deepseek/deepseek-v4.1-flash-base',  // 2026-09-10 S278 — 552B CED MoE, TB2.1 90.6
                 'deepseek/deepseek-v4.1-flash-1017',  // 2026-10-17 S310 — minor update, TB4.0 42.3
                 'minimax/m3.1-flash',  // 2026-10-19 S311 — M3.1 Flash, AA II 42.4 (vs M3 29.2)
+                'moonshot/kimi-k3.1-pro',  // 2026-10-23 S314 — K3.1 Pro, AA II 55.1 (vs K3 43.6); weights by Nov 4
                 'deepseek/deepseek-v3.2', 'deepseek/deepseek-v3.2-speciale',
                 'deepseek/deepseek-v3.1-terminus', 'deepseek/deepseek-v3',
                 'deepseek/deepseek-r1-0528', 'deepseek/deepseek-r1',
@@ -1172,6 +1173,7 @@ var Sovereign = {
         // 2026-07-20 S192 — >1T-class flagships (curated totals; DB param string
         // was ignored by the old name-only parser, so these plotted in the "?" row)
         'moonshot/kimi-k3': 2800,            // 2.8T total MoE (~50B active)
+        'moonshot/kimi-k3.1-pro': 2800,      // 2026-10-23 S314 — post-trained K3 (AA: 2.8T total / 104B active)
         'inclusionai/ring-2.6-1t': 1000, 'inclusionai/ring-2.6-flash': 104,
         'zhipu/glm-5.2': 700, 'minimax/m3': 600, 'meituan/longcat-2.0': 560,
         'tencent/hunyuan-hy3': 295, 'baidu/ernie-5.1': 600,

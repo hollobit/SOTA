@@ -1,0 +1,947 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-24",
+  "session": "S314c",
+  "sources": [
+   "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "https://artificialanalysis.ai/models/kimi-k3-1-pro/providers",
+   "https://openrouter.ai/moonshotai/kimi-k3.1-pro"
+  ],
+  "note": "Gap audit of S314: TB4.0 cost chart data, AA providers page (Highspeed endpoint, gdpval normalized), AA refresh of Kimi K3 / K3 (Low) AA-sourced rows, K3.1 Pro AA-3D Elo, OpenRouter throughput/latency."
+ },
+ "models": [
+  {
+   "id": "moonshot/kimi-k3.1-pro-high",
+   "vendor": "Moonshot AI",
+   "name": "Kimi K3.1 Pro (high)",
+   "type": "open-weight",
+   "modalities": [
+    "text",
+    "vision"
+   ],
+   "release_date": "2026-10-23",
+   "context_window": 1048576,
+   "parameters": "Kimi K3.1 Pro at reasoning effort 'high' (tbench.ai point in the Kimi blog chart)",
+   "knowledge_cutoff": null
+  },
+  {
+   "id": "inclusionai/ling-3.1-flash-1019",
+   "vendor": "InclusionAI",
+   "name": "Ling 3.1 Flash 1019",
+   "type": "proprietary",
+   "modalities": [
+    "text"
+   ],
+   "release_date": "2026-10-22",
+   "context_window": 1048576,
+   "parameters": "dated 2026-10-19 snapshot of Ling 3.1 Flash (AA lists it separately; weights not open per AA)",
+   "knowledge_cutoff": null
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "name": "Terminal-Bench 4.0 — average cost per task (tbench.ai)",
+   "category": "coding",
+   "metric": "usd_lower_better",
+   "description": "Average USD cost per Terminal-Bench 4.0 task as plotted in the Kimi K3.1 Pro blog score-vs-cost chart (data from tbench.ai; DeepSeek point from Artificial Analysis)."
+  },
+  {
+   "id": "openrouter_throughput_tps",
+   "name": "OpenRouter median throughput (tokens/s, provider endpoint)",
+   "category": "efficiency",
+   "metric": "tokens_per_second",
+   "description": "Median output throughput reported on the model's OpenRouter page for a given provider endpoint (snapshot date in note)."
+  },
+  {
+   "id": "openrouter_latency_s_lower_better",
+   "name": "OpenRouter median latency (s, provider endpoint)",
+   "category": "efficiency",
+   "metric": "seconds_lower_better",
+   "description": "Median round-trip latency reported on the model's OpenRouter page for a given provider endpoint (snapshot date in note)."
+  }
+ ],
+ "scores": [
+  {
+   "model": "moonshot/kimi-k3.1-pro-high",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 4.16,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'Kimi K3.1 Pro', point 'high': cost $4.16, score 52.8%. (tbench.ai data)"
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 5.25,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'Kimi K3.1 Pro', point 'max': cost $5.25, score 65.7%. (tbench.ai data)"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 22.22,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'Claude Sonnet 5.5', point 'max': cost $22.22, score 61.82%. (tbench.ai data)"
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 14.3,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'Claude Opus 5.5', point 'max': cost $14.3, score 64.85%. (tbench.ai data)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-low",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 7.15,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'Claude Fable 5.1', point 'low': cost $7.15, score 43.33%. (tbench.ai data)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-medium",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 8.58,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'Claude Fable 5.1', point 'medium': cost $8.58, score 53.94%. (tbench.ai data)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-high",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 12.08,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'Claude Fable 5.1', point 'high': cost $12.08, score 54.55%. (tbench.ai data)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 14.76,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'Claude Fable 5.1', point 'xhigh': cost $14.76, score 57.88%. (tbench.ai data)"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 18.92,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'Claude Fable 5.1', point 'max': cost $18.92, score 57.88%. (tbench.ai data)"
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 4.72,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'GPT-6 Astra', point 'low': cost $4.72, score 50.61%. (tbench.ai data)"
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 5.8,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'GPT-6 Astra', point 'medium': cost $5.8, score 54.24%. (tbench.ai data)"
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 6.88,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'GPT-6 Astra', point 'high': cost $6.88, score 57.88%. (tbench.ai data)"
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 7.12,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'GPT-6 Astra', point 'xhigh': cost $7.12, score 57.88%. (tbench.ai data)"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 9.9,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'GPT-6 Astra', point 'max': cost $9.9, score 58.18%. (tbench.ai data)"
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 8.27,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'GLM-5.3': cost $8.27, score 41.82%. (tbench.ai data)"
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 0.88,
+   "unit": "USD/task",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog Terminal-Bench 4.0 score-vs-cost chart (embedded chart JSON), series 'DeepSeek-V4.1-Flash-1017': cost $0.88, score 33.8%. (DeepSeek data from Artificial Analysis)"
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro-high",
+   "benchmark": "terminal_bench_4_0",
+   "score": 52.8,
+   "unit": "%",
+   "_source": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "_note": "Kimi K3.1 Pro blog TB4.0 score-vs-cost chart, K3.1 Pro 'high' effort point (52.8%, $4.16/task)."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro-highspeed",
+   "benchmark": "aa_output_tps",
+   "score": 126.082156,
+   "unit": "tok/s",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro/providers",
+   "_note": "Artificial Analysis providers page, endpoint 'Kimi High Speed' (kimi_kimi-k3-1-pro_highspeed, API id kimi-k3.1-pro-highspeed), field performance.outputSpeed.median; 2026-10-24."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro-highspeed",
+   "benchmark": "aa_ttft_sec",
+   "score": 2.240227,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro/providers",
+   "_note": "Artificial Analysis providers page, endpoint 'Kimi High Speed' (kimi_kimi-k3-1-pro_highspeed, API id kimi-k3.1-pro-highspeed), field performance.timeToFirstToken.median; 2026-10-24."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro-highspeed",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 18.1029,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro/providers",
+   "_note": "Artificial Analysis providers page, endpoint 'Kimi High Speed' (kimi_kimi-k3-1-pro_highspeed, API id kimi-k3.1-pro-highspeed), field performance.timeToFirstAnswerToken.totalTime; 2026-10-24."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro-highspeed",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 2.94,
+   "unit": "USD/1M",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro/providers",
+   "_note": "Artificial Analysis providers page, endpoint 'Kimi High Speed' (kimi_kimi-k3-1-pro_highspeed, API id kimi-k3.1-pro-highspeed), field pricing.price1mBlended7To2To1; 2026-10-24."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 67.286,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro/providers",
+   "_note": "Artificial Analysis providers page model summary field gdpvalNormalized (not present on the model page object); 2026-10-24."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro",
+   "benchmark": "aa_3d_elo",
+   "score": 1110.1642,
+   "unit": "Elo",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC field aa3dElo (AA-3D interactive 3D experience arena), 2026-10-23."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1534.14,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field gdpval; refresh of earlier AA value 1523.97."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "terminal_bench_science_aa",
+   "score": 8.095238,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field terminalBenchScience; previously missing."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "scicode",
+   "score": 59.490741,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field scicode; refresh of earlier AA value 59."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_lcr",
+   "score": 88.666667,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field lcr; refresh of earlier AA value 75."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "critpt",
+   "score": 23.428571,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field critpt; refresh of earlier AA value 23."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "automationbench_aa",
+   "score": 58.272978,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field automationBenchPartialScore; refresh of earlier AA value 53."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 1174.283875,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field intelligenceIndexTimePerTask; refresh of earlier AA value 907.36."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 2.000132,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field intelligenceIndexCostPerTask.cost.total; refresh of earlier AA value 1.5764."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 48455.232101,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field intelligenceIndexOutputTokensPerTask.output; refresh of earlier AA value 37893.1."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_output_tps",
+   "score": 38.511634,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field timescaleData.medianOutputSpeed; refresh of earlier AA value 40.26."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 55.378683,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field timeToFirstAnswerToken.total; refresh of earlier AA value 53.957."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1498.75,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field briefcaseBreakdown.overall.elo; refresh of earlier AA value 1510.23."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1657.84,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field briefcaseBreakdown.analyticalQuality.elo; refresh of earlier AA value 1693.15."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_capability_index_healthcare_medical_v4_3",
+   "score": 42.543494,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field capabilities.healthcareAndMedical; refresh of earlier AA value 45.0435."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_ttft_sec",
+   "score": 3.446324,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3, read on the Kimi K3.1 Pro page 2026-10-23), field timescaleData.medianTimeToFirstChunk; previously missing."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "mlcr_aa",
+   "score": 10.555556,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field mlcrOverall; previously missing."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1129.55,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field gdpval; refresh of earlier AA value 1118.6."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "frontiercode_1_1_aa",
+   "score": 28.4774,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field frontierCode; previously missing."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "terminal_bench_science_aa",
+   "score": 0.952381,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field terminalBenchScience; previously missing."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 320.940633,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field intelligenceIndexTimePerTask; refresh of earlier AA value 326.777."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.146306,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field intelligenceIndexCostPerTask.cost.total; previously missing."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 12221.680392,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field intelligenceIndexOutputTokensPerTask.output; previously missing."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_output_tps",
+   "score": 37.515261,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field timescaleData.medianOutputSpeed; refresh of earlier AA value 40.8855."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 57.130692,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field timeToFirstAnswerToken.total; refresh of earlier AA value 51.3018."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 984.38,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field briefcaseBreakdown.overall.elo; refresh of earlier AA value 981.62."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 955.86,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field briefcaseBreakdown.presentation.elo; refresh of earlier AA value 946.78."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_capability_index_healthcare_medical_v4_3",
+   "score": 30.299386,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field capabilities.healthcareAndMedical; previously missing."
+  },
+  {
+   "model": "moonshot/kimi-k3-low",
+   "benchmark": "aa_ttft_sec",
+   "score": 3.819054,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+   "_note": "Artificial Analysis model page RSC (slug kimi-k3-low, read on the Kimi K3.1 Pro page 2026-10-23), field timescaleData.medianTimeToFirstChunk; previously missing."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro",
+   "benchmark": "openrouter_throughput_tps",
+   "score": 36,
+   "unit": "tok/s",
+   "_source": "https://openrouter.ai/moonshotai/kimi-k3.1-pro",
+   "_note": "OpenRouter provider table, Moonshot AI (moonshotai/mxfp4), 2026-10-23 snapshot."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro",
+   "benchmark": "openrouter_latency_s_lower_better",
+   "score": 4.44,
+   "unit": "s",
+   "_source": "https://openrouter.ai/moonshotai/kimi-k3.1-pro",
+   "_note": "OpenRouter provider table, Moonshot AI (moonshotai/mxfp4), 2026-10-23 snapshot."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro-highspeed",
+   "benchmark": "openrouter_throughput_tps",
+   "score": 74,
+   "unit": "tok/s",
+   "_source": "https://openrouter.ai/moonshotai/kimi-k3.1-pro",
+   "_note": "OpenRouter provider table, Moonshot AI Highspeed (moonshotai/highspeed), 2026-10-23 snapshot."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro-highspeed",
+   "benchmark": "openrouter_latency_s_lower_better",
+   "score": 4.09,
+   "unit": "s",
+   "_source": "https://openrouter.ai/moonshotai/kimi-k3.1-pro",
+   "_note": "OpenRouter provider table, Moonshot AI Highspeed (moonshotai/highspeed), 2026-10-23 snapshot."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_intelligence_index_v4_3",
+   "score": 43.897358,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field intelligenceIndex; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_omniscience_index",
+   "score": -0.316667,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field omniscience; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_omniscience_acc",
+   "score": 29.85,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field omniscienceAccuracy; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 56.996911,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field omniscienceHallucinationRate; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "gdp_pdf",
+   "score": 12.6,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field gdpPdfAllPass; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1645.05,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field gdpval; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 32.828283,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field terminalBench40; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "scicode",
+   "score": 56.828704,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field scicode; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_lcr",
+   "score": 82.333333,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field lcr; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "hle",
+   "score": 43.466172,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field hle; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "critpt",
+   "score": 26.0,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field critpt; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "automationbench_aa",
+   "score": 67.546607,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field automationBenchPartialScore; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.192,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field price1mBlended7To2To1; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 1.488643,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field intelligenceIndexCostPerTask.cost.total; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 144825.293633,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field intelligenceIndexOutputTokensPerTask.output; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1522.09,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field briefcaseBreakdown.overall.elo; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1800.34,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field briefcaseBreakdown.analyticalQuality.elo; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1308.47,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field briefcaseBreakdown.presentation.elo; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 54.489796,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field briefcaseBreakdown.rubricPassRate; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 45.459011,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field capabilities.financeAndAccounting; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 47.894618,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field capabilities.strategyAndOps; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 41.63057,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field capabilities.legal; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 44.311268,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field capabilities.engineering; 2026-10-23."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 49.851202,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+   "_note": "Artificial Analysis RSC object 'Ling 3.1 Flash 1019' (slug ling-3-1-flash-1019) embedded in the Kimi K3.1 Pro model page data, field capabilities.economics; 2026-10-23."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_omniscience_acc",
+   "score": 39.266667,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field omniscienceAccuracy; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_omniscience_non_hall",
+   "score": 75.933041,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field omniscienceHallucinationRate; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "mlcr_aa",
+   "score": 7.777778,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field mlcrOverall; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "gdp_pdf",
+   "score": 18.6,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field gdpPdfAllPass; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "gdpval_aa_v2_1_elo",
+   "score": 1401.12,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field gdpval; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 8.080808,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field terminalBench40; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "frontiercode_1_1_aa",
+   "score": 27.6476,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field frontierCode; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "terminal_bench_science_aa",
+   "score": 1.904762,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field terminalBenchScience; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_lcr",
+   "score": 78.333333,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field lcr; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "hle",
+   "score": 43.883225,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field hle; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "critpt",
+   "score": 14.857143,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field critpt; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "mmmu_pro",
+   "score": 80.924855,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field mmmuPro; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "automationbench_aa",
+   "score": 49.708118,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field automationBenchPartialScore; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_ii_time_per_task_s_lower_better",
+   "score": 289.11565,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field intelligenceIndexTimePerTask; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 0.78,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field price1mBlended7To2To1; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_ii_cost_per_task_usd_lower_better",
+   "score": 0.844185,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field intelligenceIndexCostPerTask.cost.total; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_ii_output_tokens_per_task",
+   "score": 40398.964247,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field intelligenceIndexOutputTokensPerTask.output; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_output_tps",
+   "score": 142.891267,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field timescaleData.medianOutputSpeed; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 14.761589,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field timeToFirstAnswerToken.total; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1278.6,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field briefcaseBreakdown.overall.elo; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1256.39,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field briefcaseBreakdown.analyticalQuality.elo; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1300.01,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field briefcaseBreakdown.presentation.elo; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 45.656566,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field briefcaseBreakdown.rubricPassRate; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_openness_index",
+   "score": 27.777778,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field openness.opennessIndex; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_capability_index_finance_accounting_v4_3",
+   "score": 42.501949,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field capabilities.financeAndAccounting; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_capability_index_strategy_ops_v4_3",
+   "score": 42.671401,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field capabilities.strategyAndOps; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_capability_index_legal_v4_3",
+   "score": 44.546992,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field capabilities.legal; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_capability_index_healthcare_medical_v4_3",
+   "score": 38.96539,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field capabilities.healthcareAndMedical; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_capability_index_engineering_v4_3",
+   "score": 40.442876,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field capabilities.engineering; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_capability_index_economics_v4_3",
+   "score": 50.99167,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field capabilities.economics; 2026-10-23. AA evaluates the Xhigh effort setting."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_ttft_sec",
+   "score": 0.764932,
+   "unit": "",
+   "_source": "https://artificialanalysis.ai/models/muse-spark-open",
+   "_note": "Artificial Analysis RSC object 'Muse Spark Open (Xhigh)' (slug muse-spark-open) embedded in the Kimi K3.1 Pro model page data, field timescaleData.medianTimeToFirstChunk; 2026-10-23. AA evaluates the Xhigh effort setting."
+  }
+ ]
+}
