@@ -1,1 +1,530 @@
-window.PriceSky=function(){"use strict";var q=725536,k=5,N=.62,ve=5,W=[{lo:0,hi:.1,label:"< $0.1"},{lo:.1,hi:.3,label:"$0.1\u20130.3"},{lo:.3,hi:1,label:"$0.3\u20131"},{lo:1,hi:3,label:"$1\u20133"},{lo:3,hi:10,label:"$3\u201310"},{lo:10,hi:30,label:"$10\u201330"},{lo:30,hi:1/0,label:"\u2265 $30"}],ge=[[0,"#1e3a8a"],[.3,"#0ea5e9"],[.55,"#22c55e"],[.75,"#facc15"],[.9,"#f97316"],[1,"#ef4444"]],i=null,b=null,c=null,o=null,f={},I=!1,ne=!1,P=null,y={mode:"model",sort:"price",agg:"max",color:"perf",minCov:6,spin:!1},V=null,Z=null,O=null,j=0,$=0;function M(e){return document.getElementById(e)}function be(e){for(var t=0;t<W.length;t++)if(e>=W[t].lo&&e<W[t].hi)return t;return W.length-1}function R(e){return Math.round(e*100)+"%"}function we(e,t){O||(O=ge.map(function(p){return[p[0],new i.Color(p[1])]})),e=Math.max(0,Math.min(1,e));for(var n=1;n<O.length;n++)if(e<=O[n][0]){var s=O[n-1],l=O[n],a=(e-s[0])/(l[0]-s[0]);return t.copy(s[1]).lerp(l[1],a)}return t.copy(O[O.length-1][1])}function xe(){var e=Price.api,t=e.scoreIdx(),n=b.pricedModels(),s=n.models,l=[];e.metrics.forEach(function(r){var d=t[r[0]]||{},v=[];if(Object.keys(d).forEach(function(z){s[z]&&v.push({id:z,v:+d[z]})}),!(v.length<8)){var x=b.lowerBetter(r[0]);v.sort(function(z,G){return x?z.v-G.v:G.v-z.v});var L={},C=v.length,H=0;v.forEach(function(z,G){(G===0||z.v!==v[G-1].v)&&(H=G+1),L[z.id]={v:z.v,rank:H,pct:C>1?1-(H-1)/(C-1):1}}),l.push({id:r[0],label:r[1],cat:r[2],inv:x,n:C,cells:L})}});var a=[];Object.keys(s).forEach(function(r){var d=0,v=0;if(l.forEach(function(L){var C=L.cells[r];C&&(d++,v+=C.pct)}),!(d<y.minCov)){var x=s[r];a.push({id:r,name:x.name,vendor:x.vendor,color:x.color,price:x.price,rel:x.rel,cov:d,comp:v/d,band:be(x.price)})}});var p={};a.forEach(function(r){p[r.id]=1}),l=l.filter(function(r){return Object.keys(r.cells).filter(function(d){return p[d]}).length>=ve}),a.forEach(function(r){var d=0,v=0;l.forEach(function(x){var L=x.cells[r.id];L&&(d++,v+=L.pct)}),r.cov=d,r.comp=d?v/d:0}),a=a.filter(function(r){return r.cov>0});var h=a.slice().sort(function(r,d){return d.comp-r.comp});h.forEach(function(r,d){r.compRank=d+1});var E={price:function(r,d){return r.price-d.price||d.comp-r.comp},comp:function(r,d){return d.comp-r.comp},vendor:function(r,d){return r.vendor<d.vendor?-1:r.vendor>d.vendor?1:r.price-d.price},value:function(r,d){return re(d)-re(r)}};a.sort(E[y.sort]||E.price);var A=a.map(function(r){return r.price}),S=A.length?Math.log10(Math.min.apply(null,A)):-2,D=A.length?Math.log10(Math.max.apply(null,A)):2;D-S<.5&&(D=S+.5);var B=W.map(function(r,d){return{i:d,label:r.label,models:[]}});return a.forEach(function(r){B[r.band].models.push(r)}),B=B.filter(function(r){return r.models.length}),B.forEach(function(r){var d=r.models.map(function(v){return v.comp}).sort(function(v,x){return v-x});r.median=d[Math.floor((d.length-1)/2)]*.5+d[Math.ceil((d.length-1)/2)]*.5,r.top=r.models.slice().sort(function(v,x){return x.comp-v.comp}).slice(0,3),r.best=r.top[0]}),{models:a,metrics:l,bands:B,lmin:S,lmax:D,basis:n.basis,total:Object.keys(s).length}}function re(e){return e.comp/(Math.log10(Math.max(e.price,.01))+3)}function Q(e,t){var n=[];if(e.models.forEach(function(l){var a=t?t.cells[l.id]:{pct:l.comp,v:l.comp};a&&n.push({m:l,pct:a.pct,v:a.v,rank:a.rank})}),!n.length)return null;n.sort(function(l,a){return a.pct-l.pct});var s=y.agg==="max"?n[0].pct:n[Math.floor((n.length-1)/2)].pct*.5+n[Math.ceil((n.length-1)/2)].pct*.5;return{pct:s,top:n.slice(0,3),n:n.length}}function ye(){var e=M("pricesky-canvas"),t=new i.WebGLRenderer({antialias:!0,powerPreference:"high-performance"});t.setPixelRatio(Math.min(window.devicePixelRatio||1,2)),t.setSize(e.clientWidth,e.clientHeight),t.setClearColor(q,1),e.appendChild(t.domElement);var n=new i.Scene;n.fog=new i.Fog(q,45,120);var s=new i.PerspectiveCamera(42,e.clientWidth/e.clientHeight,.1,500),l=b.controls(),a=new l(s,t.domElement);a.enableDamping=!0,a.dampingFactor=.08,a.maxDistance=110,a.minDistance=4,a.maxPolarAngle=Math.PI*.495,a.autoRotateSpeed=.6,n.add(new i.HemisphereLight(14412542,725536,.75));var p=new i.DirectionalLight(16777215,1.15);p.position.set(-12,22,16),n.add(p);var h=new i.DirectionalLight(8166655,.35);h.position.set(14,6,-12),n.add(h),c={renderer:t,scene:n,camera:s,controls:a,raycaster:new i.Raycaster,pointer:new i.Vector2,group:null,mesh:null,cells:null,hi:null},new ResizeObserver(function(){e.clientWidth&&(t.setSize(e.clientWidth,e.clientHeight),s.aspect=e.clientWidth/e.clientHeight,s.updateProjectionMatrix())}).observe(e),new IntersectionObserver(function(E){var A=E[0].isIntersecting&&!document.hidden;A&&!I?(I=!0,X()):A||(I=!1)}).observe(e),t.domElement.addEventListener("pointermove",Ce),t.domElement.addEventListener("pointerleave",function(){ae(null),a.enableZoom=!1}),a.enableZoom=!1,t.domElement.addEventListener("pointerdown",function(){a.enableZoom=!0}),t.domElement.addEventListener("click",Pe),t.domElement.addEventListener("pointerdown",function(){P=null})}function Me(){var e=y.mode==="band",t=e?o.bands.length:o.models.length,n=e?2.4:.36,s=e?1.7:.27,l=e?.46:.44,a=t*n;return{bandMode:e,nCol:t,dx:n,fw:s,fd:l,width:a,x:function(p){return-a/2+n*(p+.5)},z:function(p){return p<0?1:-p*N},depth:o.metrics.length*N}}function F(){o=xe(),c.group&&b.disposeGroup(c.group),c.hi&&(c.hi=null);var e=new i.Group;if(c.group=e,c.scene.add(e),!o.models.length||!o.metrics.length){le();return}var t=Me();o.L=t;var n=[],s=[-1].concat(o.metrics.map(function(u,w){return w}));t.bandMode?o.bands.forEach(function(u,w){s.forEach(function(m){var g=Q(u,m<0?null:o.metrics[m]);n.push({col:w,row:m,band:u,bc:g,pct:g?g.pct:0,missing:!g})})}):o.models.forEach(function(u,w){s.forEach(function(m){var g=m<0?{pct:u.comp}:o.metrics[m].cells[u.id];n.push({col:w,row:m,model:u,cell:g||null,pct:g?g.pct:0,missing:!g})})});var l=new i.BoxGeometry(1,1,1);l.translate(0,.5,0);var a=new i.InstancedMesh(l,new i.MeshStandardMaterial({roughness:.45,metalness:.1}),n.length);e.add(a),c.mesh=a,c.cells=n;var p=new i.BoxGeometry(1,1,1);p.translate(0,-.5,0);var h=t.bandMode?o.bands.map(function(u){var w=u.models.map(function(m){return m.price}).sort(function(m,g){return m-g});return w[Math.floor(w.length/2)]}):o.models.map(function(u){return u.price}),E=new i.InstancedMesh(p,new i.MeshStandardMaterial({color:10980346,roughness:.5,transparent:!0,opacity:.85}),h.length),A=new i.Matrix4,S=new i.Quaternion,D=new i.Vector3,B=new i.Vector3;h.forEach(function(u,w){var m=.15+2.6*(Math.log10(u)-o.lmin)/(o.lmax-o.lmin);D.set(t.x(w),-.02,2.1),B.set(t.fw,m,.44),A.compose(D,S,B),E.setMatrixAt(w,A)}),e.add(E);var r=b.textSprite("\u25BC \uD1A0\uD070 \uAC00\uACA9 ("+o.basis+", log)",{size:30,color:"#c4b5fd",scale:.012,center:[1,.5]});r.position.set(-t.width/2-.4,-.6,2.1),e.add(r);var d=2.5,v=-t.depth+N*.3;if(t.bandMode)o.bands.forEach(function(u,w){var m=new i.Mesh(new i.PlaneGeometry(t.dx*.92,d-v),new i.MeshBasicMaterial({color:w%2?1976635:1516884,transparent:!0,opacity:.6,side:i.DoubleSide,depthWrite:!1}));m.rotation.x=-Math.PI/2,m.position.set(t.x(w),-.01,(d+v)/2),e.add(m);var g=b.textSprite(u.label+"  ("+u.models.length+")",{size:34,bold:!0,color:"#93c5fd",scale:.013,center:[.5,1]});g.position.set(t.x(w),-2.95,2.1),e.add(g)});else{for(var x=0,L=null,C=1;C<=o.models.length;C++)if(!(C<o.models.length&&o.models[C].band===o.models[x].band&&y.sort==="price")){if(y.sort!=="price"){x=C;continue}var H=t.x(x)-t.dx/2,z=t.x(C-1)+t.dx/2,G=o.models[x].band,_=new i.Mesh(new i.PlaneGeometry(z-H,d-v),new i.MeshBasicMaterial({color:G%2?1976635:1516884,transparent:!0,opacity:.55,side:i.DoubleSide,depthWrite:!1}));_.rotation.x=-Math.PI/2,_.position.set((H+z)/2,-.01,(d+v)/2),e.add(_);var ce=b.textSprite(W[G].label,{size:34,bold:!0,color:"#93c5fd",scale:.012,center:[.5,1]}),Y=(H+z)/2,se=L!==null&&Y-L.x<3.2&&!L.low;ce.position.set(Y,se?-3.65:-2.95,2.1),e.add(ce),L={x:Y,low:se};var de=new i.BufferGeometry;de.setAttribute("position",new i.Float32BufferAttribute([H,0,d,H,0,v],3)),e.add(new i.Line(de,new i.LineBasicMaterial({color:3900150,transparent:!0,opacity:.5}))),x=C}if(y.sort!=="price"){var J=new i.Mesh(new i.PlaneGeometry(t.width,d-v),new i.MeshBasicMaterial({color:1516884,transparent:!0,opacity:.5,side:i.DoubleSide,depthWrite:!1}));J.rotation.x=-Math.PI/2,J.position.set(0,-.01,(d+v)/2),e.add(J)}}var K=null;s.forEach(function(u){var w=u<0?"\u2605 \uC885\uD569 (\uD3C9\uADE0 \uBC31\uBD84\uC704)":o.metrics[u].label+(o.metrics[u].inv?" \u2193":""),m=b.textSprite(w,{size:u<0?34:28,bold:u<0,color:u<0?"#fde68a":"#cbd5e1",scale:.0115,center:[1,.5]});if(m.position.set(-t.width/2-.35,.12,t.z(u)),e.add(m),u>=0&&o.metrics[u].cat!==K){K=o.metrics[u].cat;var g=b.textSprite(K,{size:26,color:"#64748b",scale:.011,center:[0,.5]});g.position.set(t.width/2+.35,.12,t.z(u)),e.add(g)}});var fe=[];[.25,.5,.75,1].forEach(function(u){var w=u*k;fe.push(-t.width/2,w,v,t.width/2,w,v);var m=b.textSprite(R(u),{size:26,color:"#64748b",scale:.011,center:[1,.5]});m.position.set(-t.width/2-.25,w,v),e.add(m)});var pe=new i.BufferGeometry;pe.setAttribute("position",new i.Float32BufferAttribute(fe,3)),e.add(new i.LineSegments(pe,new i.LineBasicMaterial({color:3359061,transparent:!0,opacity:.6})));var ee=[];t.bandMode?o.bands.forEach(function(u,w){var m=Q(u,null);if(m){var g=b.textSprite(m.top[0].m.name,{size:28,color:"#f8fafc",bg:"rgba(15,23,42,0.75)",scale:.0105,center:[.5,0]});g.position.set(t.x(w),k*m.pct+.25,t.z(-1)),g.userData.tall=1,e.add(g)}}):o.models.slice().sort(function(u,w){return u.compRank-w.compRank}).forEach(function(u){if(!(ee.length>=8)){for(var w=o.models.indexOf(u),m=t.x(w),g=0;ee.some(function(he){return he.l===g&&Math.abs(he.x-m)<4.2});)g++;if(!(g>4)){ee.push({x:m,l:g});var te=b.textSprite(u.name,{size:28,color:"#f8fafc",bg:"rgba(15,23,42,0.75)",scale:.0105,center:[.5,0]});te.position.set(m,k*u.comp+.35+g*.6,t.z(-1)),te.userData.tall=1,e.add(te);var ue=new i.BufferGeometry;ue.setAttribute("position",new i.Float32BufferAttribute([m,k*u.comp,t.z(-1),m,k*u.comp+.35+g*.6,t.z(-1)],3));var me=new i.Line(ue,new i.LineBasicMaterial({color:9741240,transparent:!0,opacity:.5}));me.userData.tall=1,e.add(me)}}}),T(),le(),oe(o.camPreset||"bird",!0)}function T(e){if(!(!c.mesh||!o||!o.L)){var t=o.L,n=new i.Matrix4,s=new i.Quaternion,l=new i.Vector3,a=new i.Vector3,p=new i.Color,h=new i.Color(q),E=new i.Color(2569289),A=new i.Color(16639626),S=V?V.col:-1,D=V?V.row:null;if(Z&&!t.bandMode){var B=o.models.map(function(r){return r.id}).indexOf(Z);B>=0&&S<0&&(S=B)}c.cells.forEach(function(r,d){var v=r.missing?.03:(.04+k*r.pct)*(1-j)+.06*j,x=r.row<0?1:.92;l.set(t.x(r.col),0,t.z(r.row)),a.set(t.fw*x,v,t.fd*x),n.compose(l,s,a),c.mesh.setMatrixAt(d,n),r.missing?p.copy(E):y.color==="vendor"&&!t.bandMode?p.set(r.model.color):we(r.pct,p),r.row<0&&!r.missing&&y.color==="perf"&&p.lerp(A,.18);var L=S<0||r.col===S||D!==null&&r.row===D;L?S>=0&&r.col===S&&!r.missing&&p.lerp(new i.Color(16777215),.12):p.lerp(h,.7),c.mesh.setColorAt(d,p)}),c.mesh.instanceMatrix.needsUpdate=!0,c.mesh.instanceColor&&(c.mesh.instanceColor.needsUpdate=!0),c.group.children.forEach(function(r){r.userData.tall&&(r.visible=j<.5)}),e||Ee(S)}}function Ee(e){if(c.hi&&(b.disposeGroup(c.hi),c.hi=null),!(e<0||!o.L)){var t=o.L,n,s;if(t.bandMode){var l=o.bands[e];n=l.label+" \xB7 "+l.models.length+"\uAC1C \uBAA8\uB378",s=k*(Q(l,null)||{pct:0}).pct}else{var a=o.models[e];n=a.name+"  "+b.fmtPrice(a.price)+" \xB7 \uC885\uD569 "+R(a.comp),s=k*a.comp}var p=new i.Group,h=b.textSprite(n,{size:32,bold:!0,color:"#0f172a",bg:"rgba(250,204,21,0.95)",scale:.0115,center:[.5,0]});h.position.set(t.x(e),Math.max(s,k*.2)+2.4,t.z(-1)),p.add(h),c.hi=p,c.group.add(p)}}function oe(e,t){if(!(!o||!o.L)){o.camPreset=e,$=e==="top"?1:0;var n=o.L,s=n.depth,l=Math.max(n.width,s*1.45,12),a=(2.5-s)/2,p=new i.Vector3(0,1.2,a),h;e==="front"?h=new i.Vector3(0,3.2,2.5+l*.78):e==="side"?(h=new i.Vector3(-l*.55-s*1.4,4.5,a),p.set(-l*.15,1.5,a)):e==="top"?(h=new i.Vector3(-1.5,l*.8+s*.5,a+1.2),p.set(-1.5,0,a+1.19)):(h=new i.Vector3(-l*.3,l*.36+4,2.5+l*.5+s*.3),p.set(-l*.06,.2,a+1.5)),t?(c.camera.position.copy(h),c.controls.target.copy(p),P=null):P={t0:performance.now(),dur:1100,p0:c.camera.position.clone(),g0:c.controls.target.clone(),p1:h,g1:p},f.cams&&[].forEach.call(f.cams.querySelectorAll("button"),function(E){E.classList.toggle("p3d-chip-on",E.getAttribute("data-cam")===e)})}}function Le(e){if(!(!o.L||e<0)){var t=o.L.x(e),n=(2.5-o.L.depth)/2;P={t0:performance.now(),dur:1e3,p0:c.camera.position.clone(),g0:c.controls.target.clone(),p1:new i.Vector3(t-9,8,9),g1:new i.Vector3(t,1.5,n+1)}}}function ie(e){if(!c.mesh)return null;var t=c.renderer.domElement.getBoundingClientRect();c.pointer.set((e.clientX-t.left)/t.width*2-1,-((e.clientY-t.top)/t.height)*2+1),c.raycaster.setFromCamera(c.pointer,c.camera);var n=c.raycaster.intersectObject(c.mesh,!1)[0];return n?c.cells[n.instanceId]:null}var U=0;function Ce(e){U||(U=requestAnimationFrame(function(){U=0,ae(ie(e),e)}))}function ae(e,t){var n=f.tip;if(!e){V&&(V=null,T()),n&&(n.style.display="none"),c&&(c.renderer.domElement.style.cursor="");return}(!V||V.col!==e.col||V.row!==e.row)&&(V={col:e.col,row:e.row},T()),c.renderer.domElement.style.cursor="pointer",n.innerHTML=o.L.bandMode?Se(e):ze(e);var s=f.wrap.getBoundingClientRect(),l=t.clientX-s.left+16,a=t.clientY-s.top+12;n.style.display="block",n.style.left=Math.min(l,s.width-n.offsetWidth-8)+"px",n.style.top=Math.max(4,Math.min(a,s.height-n.offsetHeight-8))+"px"}function ze(e){var t=e.model,n=b.esc,s=e.row>=0?o.metrics[e.row]:null,l=o.metrics.map(function(h){var E=h.cells[t.id];return E?{mt:h,c:E}:null}).filter(Boolean).sort(function(h,E){return E.c.pct-h.c.pct}),a=function(h){return'<tr><td style="padding-right:8px">'+n(h.mt.label)+'</td><td style="text-align:right">'+b.fmtVal(h.c.v)+'</td><td style="text-align:right;color:#94a3b8;padding-left:6px">#'+h.c.rank+"/"+h.mt.n+"</td></tr>"},p=s?e.missing?'<div style="color:#94a3b8">'+n(s.label)+": \uC810\uC218 \uC5C6\uC74C</div>":'<div style="color:#fde68a">'+n(s.label)+": <b>"+b.fmtVal(e.cell.v)+"</b> \xB7 #"+e.cell.rank+"/"+s.n+" \xB7 \uC0C1\uC704 "+R(1-e.cell.pct)+"</div>":'<div style="color:#fde68a">\uC885\uD569 \uBC31\uBD84\uC704 <b>'+R(t.comp)+"</b> \xB7 "+t.compRank+"\uC704 / "+o.models.length+"</div>";return'<div style="font-weight:600;color:#f8fafc">'+n(t.name)+'</div><div style="color:#94a3b8;font-size:11px;margin-bottom:4px">'+n(t.vendor)+(t.rel?" \xB7 "+n(t.rel):"")+" \xB7 "+b.fmtPrice(t.price)+" / 1M ("+n(o.basis)+") \xB7 "+W[t.band].label+"</div>"+p+'<div style="font-size:11px;color:#cbd5e1;margin-top:4px">\uC885\uD569 '+R(t.comp)+" \xB7 \uC9C0\uD45C "+t.cov+"/"+o.metrics.length+'\uAC1C \uBCF4\uC720</div><div style="font-size:11px;color:#86efac;margin-top:4px">\uAC15\uC810</div><table style="font-size:11px;color:#cbd5e1">'+l.slice(0,3).map(a).join("")+"</table>"+(l.length>3?'<div style="font-size:11px;color:#fca5a5;margin-top:2px">\uC57D\uC810</div><table style="font-size:11px;color:#cbd5e1">'+l.slice(-Math.min(3,l.length-3)).map(a).join("")+"</table>":"")+'<div style="color:#64748b;font-size:10px;margin-top:4px">\uD074\uB9AD: \uBAA8\uB378 \uC0C1\uC138</div>'}function Se(e){var t=e.band,n=b.esc,s=e.row>=0?o.metrics[e.row]:null,l=e.bc,a=s?s.label:"\uC885\uD569 (\uD3C9\uADE0 \uBC31\uBD84\uC704)";return l?'<div style="font-weight:600;color:#f8fafc">'+n(t.label)+" \xB7 "+t.models.length+'\uAC1C \uBAA8\uB378</div><div style="color:#fde68a">'+n(a)+" \u2014 "+(y.agg==="max"?"\uCD5C\uACE0":"\uC911\uC559\uAC12")+" \uBC31\uBD84\uC704 <b>"+R(l.pct)+"</b> ("+l.n+'\uAC1C \uBAA8\uB378 \uBCF4\uC720)</div><table style="font-size:11px;color:#cbd5e1;margin-top:4px">'+l.top.map(function(p,h){return'<tr><td style="color:#94a3b8;padding-right:6px">'+(h+1)+'</td><td style="padding-right:8px">'+n(p.m.name)+'</td><td style="text-align:right">'+(s?b.fmtVal(p.v):R(p.pct))+'</td><td style="text-align:right;color:#94a3b8;padding-left:6px">'+b.fmtPrice(p.m.price)+"</td></tr>"}).join("")+'</table><div style="color:#64748b;font-size:10px;margin-top:4px">\uD074\uB9AD: 1\uC704 \uBAA8\uB378 \uC0C1\uC138</div>':'<div style="font-weight:600;color:#f8fafc">'+n(t.label)+'</div><div style="color:#94a3b8">'+n(a)+": \uC774 \uAC00\uACA9\uB300\uC5D0 \uC810\uC218 \uC788\uB294 \uBAA8\uB378 \uC5C6\uC74C</div>"}function Pe(e){var t=ie(e);!t||typeof Modal=="undefined"||!Modal.showModel||(o.L.bandMode?t.bc&&Modal.showModel(t.bc.top[0].m.id):Modal.showModel(t.model.id))}function le(){if(!(!f.info||!o)){var e=o.L;if(!o.models.length){f.info.textContent="\uD604\uC7AC \uD544\uD130\uC5D0\uC11C \uC9C0\uD45C "+y.minCov+"\uAC1C \uC774\uC0C1\uC744 \uAC00\uC9C4 \uAC00\uACA9 \uBCF4\uC720 \uBAA8\uB378\uC774 \uC5C6\uC2B5\uB2C8\uB2E4. \uCD5C\uC18C \uC9C0\uD45C \uC218\uB97C \uB0AE\uCD94\uAC70\uB098 \uAE30\uAC04\uC744 \uB298\uB824 \uBCF4\uC138\uC694.",f.bands.innerHTML="";return}f.info.textContent=(e&&e.bandMode?o.bands.length+"\uAC1C \uAC00\uACA9\uB300":o.models.length+"\uAC1C \uBAA8\uB378")+" \xD7 "+o.metrics.length+"\uAC1C \uC9C0\uD45C (+\uC885\uD569) \xB7 \uAC00\uACA9 \uBCF4\uC720 "+o.total+"\uAC1C \uC911 \uC9C0\uD45C "+y.minCov+"\uAC1C \uC774\uC0C1 \uBCF4\uC720 \uBAA8\uB378\uB9CC \xB7 \uB192\uC774 = \uC9C0\uD45C \uB0B4 \uBC31\uBD84\uC704 (100% = 1\uC704) \xB7 \uAC00\uACA9 \uAE30\uC900: "+o.basis,f.covVal.textContent=y.minCov,[].forEach.call(f.modes.querySelectorAll("button"),function(n){n.classList.toggle("p3d-chip-on",n.getAttribute("data-mode")===y.mode)}),f.agg.parentNode.style.display=e&&e.bandMode?"":"none",f.sort.parentNode.style.display=e&&e.bandMode?"none":"";var t=b.esc;f.bands.innerHTML='<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-3">\uAC00\uACA9\uB300</th><th class="pr-3 text-right">\uBAA8\uB378</th><th class="pr-3 text-right">\uC885\uD569 \uC911\uC559\uAC12</th><th class="pr-3">\uC885\uD569 1\uC704</th><th class="pr-3">\uC885\uD569 2\xB73\uC704</th></tr></thead><tbody>'+o.bands.map(function(n){var s='<span style="display:inline-block;width:'+Math.round(n.median*60)+'px;height:6px;border-radius:3px;background:linear-gradient(90deg,#0ea5e9,#facc15);margin-right:6px;vertical-align:middle"></span>';return'<tr class="border-t border-gray-800 text-gray-300"><td class="py-1 pr-3 font-semibold text-blue-300">'+t(n.label)+'</td><td class="pr-3 text-right">'+n.models.length+'</td><td class="pr-3 text-right whitespace-nowrap">'+s+R(n.median)+'</td><td class="pr-3"><a href="#" data-mid="'+t(n.best.id)+'" class="text-blue-400 hover:underline">'+t(n.best.name)+'</a> <span class="text-gray-500">'+R(n.best.comp)+" \xB7 "+b.fmtPrice(n.best.price)+'</span></td><td class="pr-3">'+(n.top.slice(1).map(function(l){return'<a href="#" data-mid="'+t(l.id)+'" class="text-blue-400 hover:underline">'+t(l.name)+'</a> <span class="text-gray-500">'+R(l.comp)+" \xB7 "+b.fmtPrice(l.price)+"</span>"}).join(" \xB7 ")||"\u2014")+"</td></tr>"}).join("")+"</tbody></table>",f.searchList&&(f.searchList.innerHTML=o.models.map(function(n){return'<option value="'+t(n.name)+'">'}).join(""))}}function Ae(){f.wrap=M("pricesky-wrap"),f.tip=M("pricesky-tip"),f.info=M("pricesky-info"),f.bands=M("pricesky-bands"),f.modes=M("pricesky-modes"),f.cams=M("pricesky-cams"),f.sort=M("pricesky-sort"),f.agg=M("pricesky-agg"),f.color=M("pricesky-color"),f.cov=M("pricesky-cov"),f.covVal=M("pricesky-cov-val"),f.search=M("pricesky-search"),f.searchList=M("pricesky-search-list"),f.modes.addEventListener("click",function(e){var t=e.target.closest("button");t&&(y.mode=t.getAttribute("data-mode"),V=null,F())}),f.cams.addEventListener("click",function(e){var t=e.target.closest("button[data-cam]");t&&oe(t.getAttribute("data-cam"))}),M("pricesky-spin").addEventListener("change",function(e){y.spin=e.target.checked,c.controls.autoRotate=y.spin}),f.sort.addEventListener("change",function(){y.sort=f.sort.value,F()}),f.agg.addEventListener("change",function(){y.agg=f.agg.value,F()}),f.color.addEventListener("change",function(){y.color=f.color.value,T()}),f.cov.addEventListener("input",function(){f.covVal.textContent=f.cov.value}),f.cov.addEventListener("change",function(){y.minCov=+f.cov.value,F()}),f.search.addEventListener("input",function(){var e=f.search.value.trim().toLowerCase();if(Z=null,e&&o){var t=o.models.filter(function(n){return n.name.toLowerCase()===e})[0]||o.models.filter(function(n){return n.name.toLowerCase().indexOf(e)!==-1})[0];t&&(Z=t.id,y.mode==="model"&&Le(o.models.indexOf(t)))}T()}),f.bands.addEventListener("click",function(e){var t=e.target.closest("a[data-mid]");t&&(e.preventDefault(),typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(t.getAttribute("data-mid")))}),["price-basis","price-hitrate","price-period","price-vendor","price-country"].forEach(function(e){var t=M(e);t&&t.addEventListener("change",function(){Ve()&&c&&F()})})}function Ve(){var e=M("pricesky-wrap");return!!(e&&e.style.display!=="none")}function X(){if(I){if(requestAnimationFrame(X),P){var e=Math.min(1,(performance.now()-P.t0)/P.dur),t=e<.5?4*e*e*e:1-Math.pow(-2*e+2,3)/2;c.camera.position.lerpVectors(P.p0,P.p1,t),c.controls.target.lerpVectors(P.g0,P.g1,t),e>=1&&(P=null)}j!==$&&(j+=($-j)*.14,Math.abs($-j)<.01&&(j=$),T(!0)),c.controls.update(),c.renderer.render(c.scene,c.camera)}}function Be(){b=Price3D.util,i=b.three(),c||ye(),ne||(Ae(),ne=!0),F(),I||(I=!0,X())}function Re(){I=!1,f.tip&&(f.tip.style.display="none")}return document.addEventListener("visibilitychange",function(){document.hidden&&(I=!1)}),{show:Be,hide:Re}}();
+/* Price tab — 3D "all-metric skyline" (three.js).
+ *
+ * One integrated view of every priced model against every metric at once:
+ *   X = models ordered by token price (floor stripes = price bands),
+ *   Z = metric rows (front row "★ 종합" = mean percentile over the metrics a model has),
+ *   Y = the model's percentile inside that metric (lower-is-better metrics flipped).
+ * Below the floor a front row of bars hangs down with the (log) price itself, so
+ * "what you pay" and "what you get" read off the same column.
+ * The "가격대별" mode collapses the columns into price bands (best or median per band).
+ *
+ * Model set, prices, vendor colours and filters come from Price3D.util.pricedModels(),
+ * so this view always agrees with the 2D chart and the metric corridor.
+ */
+window.PriceSky = (function () {
+    'use strict';
+
+    var BG = 0x0b1220, HMAX = 5, ROW = 0.62, MIN_COV_METRIC = 5;
+    var BANDS = [
+        { lo: 0, hi: 0.1, label: '< $0.1' }, { lo: 0.1, hi: 0.3, label: '$0.1–0.3' }, { lo: 0.3, hi: 1, label: '$0.3–1' },
+        { lo: 1, hi: 3, label: '$1–3' }, { lo: 3, hi: 10, label: '$3–10' }, { lo: 10, hi: 30, label: '$10–30' },
+        { lo: 30, hi: Infinity, label: '≥ $30' }
+    ];
+    // Perceptual "cold → hot" ramp: low percentile = deep blue, top = red.
+    var RAMP = [[0, '#1e3a8a'], [0.3, '#0ea5e9'], [0.55, '#22c55e'], [0.75, '#facc15'], [0.9, '#f97316'], [1, '#ef4444']];
+
+    var THREE = null, U = null;
+    var st = null, data = null, ui = {}, visible = false, wired = false, flight = null;
+    var opt = { mode: 'model', sort: 'price', agg: 'max', color: 'perf', minCov: 6, spin: false };
+    var hover = null, searchModel = null, rampCols = null;
+    var flat = 0, flatTo = 0;              // 0 = bars, 1 = flat heatmap tiles (top view)
+
+    function $(id) { return document.getElementById(id); }
+    function bandOf(p) { for (var i = 0; i < BANDS.length; i++) if (p >= BANDS[i].lo && p < BANDS[i].hi) return i; return BANDS.length - 1; }
+    function pctStr(x) { return Math.round(x * 100) + '%'; }
+    function rampColor(t, out) {
+        if (!rampCols) rampCols = RAMP.map(function (r) { return [r[0], new THREE.Color(r[1])]; });
+        t = Math.max(0, Math.min(1, t));
+        for (var i = 1; i < rampCols.length; i++) {
+            if (t <= rampCols[i][0]) {
+                var a = rampCols[i - 1], b = rampCols[i], f = (t - a[0]) / (b[0] - a[0]);
+                return out.copy(a[1]).lerp(b[1], f);
+            }
+        }
+        return out.copy(rampCols[rampCols.length - 1][1]);
+    }
+
+    // ------------------------------------------------------------------ data
+    function buildData() {
+        var api = Price.api, idx = api.scoreIdx();
+        var pm = U.pricedModels(), priced = pm.models;
+
+        // Percentile of every priced model inside every metric (computed over all priced models,
+        // so a model's percentile does not change when the coverage slider hides others).
+        var metrics = [];
+        api.metrics.forEach(function (def) {
+            var mp = idx[def[0]] || {}, pts = [];
+            Object.keys(mp).forEach(function (id) { if (priced[id]) pts.push({ id: id, v: +mp[id] }); });
+            if (pts.length < 8) return;
+            var inv = U.lowerBetter(def[0]);
+            pts.sort(function (a, b) { return inv ? a.v - b.v : b.v - a.v; });
+            var cells = {}, n = pts.length, rank = 0;
+            pts.forEach(function (p, i) {
+                if (i === 0 || p.v !== pts[i - 1].v) rank = i + 1;          // ties share a rank
+                cells[p.id] = { v: p.v, rank: rank, pct: n > 1 ? 1 - (rank - 1) / (n - 1) : 1 };
+            });
+            metrics.push({ id: def[0], label: def[1], cat: def[2], inv: inv, n: n, cells: cells });
+        });
+
+        // Models with enough metric coverage.
+        var models = [];
+        Object.keys(priced).forEach(function (id) {
+            var cov = 0, sum = 0;
+            metrics.forEach(function (m) { var c = m.cells[id]; if (c) { cov++; sum += c.pct; } });
+            if (cov < opt.minCov) return;
+            var o = priced[id];
+            models.push({ id: id, name: o.name, vendor: o.vendor, color: o.color, price: o.price, rel: o.rel,
+                          cov: cov, comp: sum / cov, band: bandOf(o.price) });
+        });
+        // Rows: metrics that still have a few models after the coverage cut.
+        var inSet = {}; models.forEach(function (m) { inSet[m.id] = 1; });
+        metrics = metrics.filter(function (m) { return Object.keys(m.cells).filter(function (id) { return inSet[id]; }).length >= MIN_COV_METRIC; });
+        // Composite on the surviving rows only.
+        models.forEach(function (mo) {
+            var cov = 0, sum = 0;
+            metrics.forEach(function (m) { var c = m.cells[mo.id]; if (c) { cov++; sum += c.pct; } });
+            mo.cov = cov; mo.comp = cov ? sum / cov : 0;
+        });
+        models = models.filter(function (m) { return m.cov > 0; });
+        var byComp = models.slice().sort(function (a, b) { return b.comp - a.comp; });
+        byComp.forEach(function (m, i) { m.compRank = i + 1; });
+
+        var sorters = {
+            price: function (a, b) { return a.price - b.price || b.comp - a.comp; },
+            comp: function (a, b) { return b.comp - a.comp; },
+            vendor: function (a, b) { return a.vendor < b.vendor ? -1 : a.vendor > b.vendor ? 1 : a.price - b.price; },
+            value: function (a, b) { return valueScore(b) - valueScore(a); }
+        };
+        models.sort(sorters[opt.sort] || sorters.price);
+
+        var ps = models.map(function (m) { return m.price; });
+        var lmin = ps.length ? Math.log10(Math.min.apply(null, ps)) : -2, lmax = ps.length ? Math.log10(Math.max.apply(null, ps)) : 2;
+        if (lmax - lmin < 0.5) lmax = lmin + 0.5;
+
+        // Band summaries.
+        var bands = BANDS.map(function (b, i) { return { i: i, label: b.label, models: [] }; });
+        models.forEach(function (m) { bands[m.band].models.push(m); });
+        bands = bands.filter(function (b) { return b.models.length; });
+        bands.forEach(function (b) {
+            var cs = b.models.map(function (m) { return m.comp; }).sort(function (x, y) { return x - y; });
+            b.median = cs[Math.floor((cs.length - 1) / 2)] * 0.5 + cs[Math.ceil((cs.length - 1) / 2)] * 0.5;
+            b.top = b.models.slice().sort(function (x, y) { return y.comp - x.comp; }).slice(0, 3);
+            b.best = b.top[0];
+        });
+        return { models: models, metrics: metrics, bands: bands, lmin: lmin, lmax: lmax, basis: pm.basis, total: Object.keys(priced).length };
+    }
+    // "Value" = composite percentile per decade of price above the cheapest ($0.01 → 0).
+    function valueScore(m) { return m.comp / (Math.log10(Math.max(m.price, 0.01)) + 3); }
+
+    // Band-mode cell: best or median percentile among a band's models for one metric.
+    function bandCell(b, row) {
+        var arr = [];
+        b.models.forEach(function (m) {
+            var c = row ? row.cells[m.id] : { pct: m.comp, v: m.comp };
+            if (c) arr.push({ m: m, pct: c.pct, v: c.v, rank: c.rank });
+        });
+        if (!arr.length) return null;
+        arr.sort(function (x, y) { return y.pct - x.pct; });
+        var pct = opt.agg === 'max' ? arr[0].pct : arr[Math.floor((arr.length - 1) / 2)].pct * 0.5 + arr[Math.ceil((arr.length - 1) / 2)].pct * 0.5;
+        return { pct: pct, top: arr.slice(0, 3), n: arr.length };
+    }
+
+    // ---------------------------------------------------------------- scene
+    function initScene() {
+        var host = $('pricesky-canvas');
+        var r = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+        r.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        r.setSize(host.clientWidth, host.clientHeight);
+        r.setClearColor(BG, 1);
+        host.appendChild(r.domElement);
+        var scene = new THREE.Scene();
+        scene.fog = new THREE.Fog(BG, 45, 120);
+        var cam = new THREE.PerspectiveCamera(42, host.clientWidth / host.clientHeight, 0.1, 500);
+        var Controls = U.controls();
+        var controls = new Controls(cam, r.domElement);
+        controls.enableDamping = true; controls.dampingFactor = 0.08;
+        controls.maxDistance = 110; controls.minDistance = 4; controls.maxPolarAngle = Math.PI * 0.495;
+        controls.autoRotateSpeed = 0.6;
+        scene.add(new THREE.HemisphereLight(0xdbeafe, 0x0b1220, 0.75));
+        var dl = new THREE.DirectionalLight(0xffffff, 1.15); dl.position.set(-12, 22, 16); scene.add(dl);
+        var rl = new THREE.DirectionalLight(0x7c9cff, 0.35); rl.position.set(14, 6, -12); scene.add(rl);
+        st = { renderer: r, scene: scene, camera: cam, controls: controls, raycaster: new THREE.Raycaster(), pointer: new THREE.Vector2(),
+               group: null, mesh: null, cells: null, hi: null };
+        new ResizeObserver(function () {
+            if (!host.clientWidth) return;
+            r.setSize(host.clientWidth, host.clientHeight);
+            cam.aspect = host.clientWidth / host.clientHeight; cam.updateProjectionMatrix();
+        }).observe(host);
+        new IntersectionObserver(function (entries) {
+            var on = entries[0].isIntersecting && !document.hidden;
+            if (on && !visible) { visible = true; loop(); } else if (!on) visible = false;
+        }).observe(host);
+        r.domElement.addEventListener('pointermove', onPointerMove);
+        r.domElement.addEventListener('pointerleave', function () { setHover(null); controls.enableZoom = false; });
+        // Wheel zoom only after the canvas is clicked, so scrolling the page past the view never gets trapped.
+        controls.enableZoom = false;
+        r.domElement.addEventListener('pointerdown', function () { controls.enableZoom = true; });
+        r.domElement.addEventListener('click', onClick);
+        r.domElement.addEventListener('pointerdown', function () { flight = null; });
+    }
+
+    // Layout: columns along X, rows along -Z, composite row at the front (z = +gap).
+    function layout() {
+        var bandMode = opt.mode === 'band';
+        var nCol = bandMode ? data.bands.length : data.models.length;
+        var dx = bandMode ? 2.4 : 0.36;
+        var fw = bandMode ? 1.7 : 0.27, fd = bandMode ? 0.46 : 0.44;
+        var width = nCol * dx;
+        return { bandMode: bandMode, nCol: nCol, dx: dx, fw: fw, fd: fd, width: width,
+                 x: function (c) { return -width / 2 + dx * (c + 0.5); },
+                 z: function (r) { return r < 0 ? 1.0 : -r * ROW; },          // r = -1 → composite row
+                 depth: data.metrics.length * ROW };
+    }
+
+    function build() {
+        data = buildData();
+        if (st.group) U.disposeGroup(st.group);
+        if (st.hi) st.hi = null;
+        var g = new THREE.Group(); st.group = g; st.scene.add(g);
+        if (!data.models.length || !data.metrics.length) { renderHud(); return; }
+        var L = layout(); data.L = L;
+
+        // --- cells (one InstancedMesh of unit boxes with their base at y = 0)
+        var cells = [];
+        var rows = [-1].concat(data.metrics.map(function (_, i) { return i; }));
+        if (L.bandMode) {
+            data.bands.forEach(function (b, c) {
+                rows.forEach(function (r) {
+                    var bc = bandCell(b, r < 0 ? null : data.metrics[r]);
+                    cells.push({ col: c, row: r, band: b, bc: bc, pct: bc ? bc.pct : 0, missing: !bc });
+                });
+            });
+        } else {
+            data.models.forEach(function (m, c) {
+                rows.forEach(function (r) {
+                    var cell = r < 0 ? { pct: m.comp } : data.metrics[r].cells[m.id];
+                    cells.push({ col: c, row: r, model: m, cell: cell || null, pct: cell ? cell.pct : 0, missing: !cell });
+                });
+            });
+        }
+        var box = new THREE.BoxGeometry(1, 1, 1); box.translate(0, 0.5, 0);
+        var mesh = new THREE.InstancedMesh(box, new THREE.MeshStandardMaterial({ roughness: 0.45, metalness: 0.1 }), cells.length);
+        g.add(mesh); st.mesh = mesh; st.cells = cells;
+
+        // --- price bars hanging below the floor in front of the composite row
+        var pBox = new THREE.BoxGeometry(1, 1, 1); pBox.translate(0, -0.5, 0);
+        var cols = L.bandMode ? data.bands.map(function (b) {
+            var ps = b.models.map(function (m) { return m.price; }).sort(function (x, y) { return x - y; });
+            return ps[Math.floor(ps.length / 2)];
+        }) : data.models.map(function (m) { return m.price; });
+        var pm = new THREE.InstancedMesh(pBox, new THREE.MeshStandardMaterial({ color: 0xa78bfa, roughness: 0.5, transparent: true, opacity: 0.85 }), cols.length);
+        var M = new THREE.Matrix4(), Q = new THREE.Quaternion(), P = new THREE.Vector3(), S = new THREE.Vector3();
+        cols.forEach(function (p, c) {
+            var h = 0.15 + 2.6 * (Math.log10(p) - data.lmin) / (data.lmax - data.lmin);
+            P.set(L.x(c), -0.02, 2.1); S.set(L.fw, h, 0.44); M.compose(P, Q, S); pm.setMatrixAt(c, M);
+        });
+        g.add(pm);
+        var pl = U.textSprite('▼ 토큰 가격 (' + data.basis + ', log)', { size: 30, color: '#c4b5fd', scale: 0.012, center: [1, 0.5] });
+        pl.position.set(-L.width / 2 - 0.4, -0.6, 2.1); g.add(pl);
+
+        // --- floor: price-band stripes (model mode) or plain plate (band mode)
+        var zFront = 2.5, zBack = -L.depth + ROW * 0.3;
+        if (!L.bandMode) {
+            var start = 0, lastBand = null;
+            for (var c = 1; c <= data.models.length; c++) {
+                if (c < data.models.length && data.models[c].band === data.models[start].band && opt.sort === 'price') continue;
+                if (opt.sort !== 'price') { start = c; continue; }
+                var x0 = L.x(start) - L.dx / 2, x1 = L.x(c - 1) + L.dx / 2, bi = data.models[start].band;
+                var tile = new THREE.Mesh(new THREE.PlaneGeometry(x1 - x0, zFront - zBack),
+                    new THREE.MeshBasicMaterial({ color: bi % 2 ? 0x1e293b : 0x172554, transparent: true, opacity: 0.55, side: THREE.DoubleSide, depthWrite: false }));
+                tile.rotation.x = -Math.PI / 2; tile.position.set((x0 + x1) / 2, -0.01, (zFront + zBack) / 2); g.add(tile);
+                var bl = U.textSprite(BANDS[bi].label, { size: 34, bold: true, color: '#93c5fd', scale: 0.012, center: [0.5, 1] });
+                var bx = (x0 + x1) / 2, drop = lastBand !== null && bx - lastBand.x < 3.2 && !lastBand.low;
+                bl.position.set(bx, drop ? -3.65 : -2.95, 2.1); g.add(bl);
+                lastBand = { x: bx, low: drop };
+                var sep = new THREE.BufferGeometry(); sep.setAttribute('position', new THREE.Float32BufferAttribute([x0, 0, zFront, x0, 0, zBack], 3));
+                g.add(new THREE.Line(sep, new THREE.LineBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.5 })));
+                start = c;
+            }
+            if (opt.sort !== 'price') {
+                var fl = new THREE.Mesh(new THREE.PlaneGeometry(L.width, zFront - zBack),
+                    new THREE.MeshBasicMaterial({ color: 0x172554, transparent: true, opacity: 0.5, side: THREE.DoubleSide, depthWrite: false }));
+                fl.rotation.x = -Math.PI / 2; fl.position.set(0, -0.01, (zFront + zBack) / 2); g.add(fl);
+            }
+        } else {
+            data.bands.forEach(function (b, c) {
+                var tile = new THREE.Mesh(new THREE.PlaneGeometry(L.dx * 0.92, zFront - zBack),
+                    new THREE.MeshBasicMaterial({ color: c % 2 ? 0x1e293b : 0x172554, transparent: true, opacity: 0.6, side: THREE.DoubleSide, depthWrite: false }));
+                tile.rotation.x = -Math.PI / 2; tile.position.set(L.x(c), -0.01, (zFront + zBack) / 2); g.add(tile);
+                var bl = U.textSprite(b.label + '  (' + b.models.length + ')', { size: 34, bold: true, color: '#93c5fd', scale: 0.013, center: [0.5, 1] });
+                bl.position.set(L.x(c), -2.95, 2.1); g.add(bl);
+            });
+        }
+
+        // --- row labels (left) and a back wall scale
+        var catPrev = null;
+        rows.forEach(function (r) {
+            var txt = r < 0 ? '★ 종합 (평균 백분위)' : data.metrics[r].label + (data.metrics[r].inv ? ' ↓' : '');
+            var s = U.textSprite(txt, { size: r < 0 ? 34 : 28, bold: r < 0, color: r < 0 ? '#fde68a' : '#cbd5e1', scale: 0.0115, center: [1, 0.5] });
+            s.position.set(-L.width / 2 - 0.35, 0.12, L.z(r)); g.add(s);
+            if (r >= 0 && data.metrics[r].cat !== catPrev) {
+                catPrev = data.metrics[r].cat;
+                var cs = U.textSprite(catPrev, { size: 26, color: '#64748b', scale: 0.011, center: [0, 0.5] });
+                cs.position.set(L.width / 2 + 0.35, 0.12, L.z(r)); g.add(cs);
+            }
+        });
+        var wp = [];
+        [0.25, 0.5, 0.75, 1].forEach(function (t) {
+            var y = t * HMAX; wp.push(-L.width / 2, y, zBack, L.width / 2, y, zBack);
+            var s = U.textSprite(pctStr(t), { size: 26, color: '#64748b', scale: 0.011, center: [1, 0.5] });
+            s.position.set(-L.width / 2 - 0.25, y, zBack); g.add(s);
+        });
+        var wg = new THREE.BufferGeometry(); wg.setAttribute('position', new THREE.Float32BufferAttribute(wp, 3));
+        g.add(new THREE.LineSegments(wg, new THREE.LineBasicMaterial({ color: 0x334155, transparent: true, opacity: 0.6 })));
+
+        // --- names above the composite row: top composite models (model mode) / best per band (band mode)
+        var named = [];
+        if (L.bandMode) {
+            data.bands.forEach(function (b, c) {
+                var bc = bandCell(b, null); if (!bc) return;
+                var s = U.textSprite(bc.top[0].m.name, { size: 28, color: '#f8fafc', bg: 'rgba(15,23,42,0.75)', scale: 0.0105, center: [0.5, 0] });
+                s.position.set(L.x(c), HMAX * bc.pct + 0.25, L.z(-1)); s.userData.tall = 1; g.add(s);
+            });
+        } else {
+            data.models.slice().sort(function (a, b) { return a.compRank - b.compRank; }).forEach(function (m) {
+                if (named.length >= 8) return;
+                var c = data.models.indexOf(m), x = L.x(c);
+                var lvl = 0; while (named.some(function (q) { return q.l === lvl && Math.abs(q.x - x) < 4.2; })) lvl++;
+                if (lvl > 4) return;
+                named.push({ x: x, l: lvl });
+                var s = U.textSprite(m.name, { size: 28, color: '#f8fafc', bg: 'rgba(15,23,42,0.75)', scale: 0.0105, center: [0.5, 0] });
+                s.position.set(x, HMAX * m.comp + 0.35 + lvl * 0.6, L.z(-1)); s.userData.tall = 1; g.add(s);
+                var lg = new THREE.BufferGeometry(); lg.setAttribute('position', new THREE.Float32BufferAttribute([x, HMAX * m.comp, L.z(-1), x, HMAX * m.comp + 0.35 + lvl * 0.6, L.z(-1)], 3));
+                var ln = new THREE.Line(lg, new THREE.LineBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.5 })); ln.userData.tall = 1; g.add(ln);
+            });
+        }
+
+        applyStyles();
+        renderHud();
+        camPreset(data.camPreset || 'bird', true);
+    }
+
+    // Colour + size every cell; the hovered model's column and metric's row stay lit, the rest dim.
+    function applyStyles(quick) {
+        if (!st.mesh || !data || !data.L) return;
+        var L = data.L, M = new THREE.Matrix4(), Q = new THREE.Quaternion(), P = new THREE.Vector3(), S = new THREE.Vector3();
+        var c = new THREE.Color(), bg = new THREE.Color(BG), miss = new THREE.Color(0x273449), gold = new THREE.Color(0xfde68a);
+        var focusCol = hover ? hover.col : -1, focusRow = hover ? hover.row : null;
+        if (searchModel && !L.bandMode) { var si = data.models.map(function (m) { return m.id; }).indexOf(searchModel); if (si >= 0 && focusCol < 0) focusCol = si; }
+        st.cells.forEach(function (k, i) {
+            var h = k.missing ? 0.03 : (0.04 + HMAX * k.pct) * (1 - flat) + 0.06 * flat;
+            var shrink = k.row < 0 ? 1 : 0.92;
+            P.set(L.x(k.col), 0, L.z(k.row)); S.set(L.fw * shrink, h, L.fd * shrink); M.compose(P, Q, S); st.mesh.setMatrixAt(i, M);
+            if (k.missing) c.copy(miss);
+            else if (opt.color === 'vendor' && !L.bandMode) c.set(k.model.color);
+            else rampColor(k.pct, c);
+            if (k.row < 0 && !k.missing && opt.color === 'perf') c.lerp(gold, 0.18);
+            var lit = focusCol < 0 || k.col === focusCol || (focusRow !== null && k.row === focusRow);
+            if (!lit) c.lerp(bg, 0.7);
+            else if (focusCol >= 0 && k.col === focusCol && !k.missing) c.lerp(new THREE.Color(0xffffff), 0.12);
+            st.mesh.setColorAt(i, c);
+        });
+        st.mesh.instanceMatrix.needsUpdate = true; if (st.mesh.instanceColor) st.mesh.instanceColor.needsUpdate = true;
+        st.group.children.forEach(function (o) { if (o.userData.tall) o.visible = flat < 0.5; });
+        if (!quick) drawFocusLabel(focusCol);
+    }
+
+    function drawFocusLabel(col) {
+        if (st.hi) { U.disposeGroup(st.hi); st.hi = null; }
+        if (col < 0 || !data.L) return;
+        var L = data.L, txt, h;
+        if (L.bandMode) { var b = data.bands[col]; txt = b.label + ' · ' + b.models.length + '개 모델'; h = HMAX * (bandCell(b, null) || { pct: 0 }).pct; }
+        else { var m = data.models[col]; txt = m.name + '  ' + U.fmtPrice(m.price) + ' · 종합 ' + pctStr(m.comp); h = HMAX * m.comp; }
+        var g = new THREE.Group();
+        var s = U.textSprite(txt, { size: 32, bold: true, color: '#0f172a', bg: 'rgba(250,204,21,0.95)', scale: 0.0115, center: [0.5, 0] });
+        s.position.set(L.x(col), Math.max(h, HMAX * 0.2) + 2.4, L.z(-1)); g.add(s);
+        st.hi = g; st.group.add(g);
+    }
+
+    // --------------------------------------------------------------- camera
+    function camPreset(name, instant) {
+        if (!data || !data.L) return;
+        data.camPreset = name;
+        flatTo = name === 'top' ? 1 : 0;
+        var L = data.L, d = L.depth, w = Math.max(L.width, d * 1.45, 12), midZ = (2.5 - d) / 2;
+        var tgt = new THREE.Vector3(0, 1.2, midZ), pos;
+        if (name === 'front') pos = new THREE.Vector3(0, 3.2, 2.5 + w * 0.78);
+        else if (name === 'side') { pos = new THREE.Vector3(-w * 0.55 - d * 1.4, 4.5, midZ); tgt.set(-w * 0.15, 1.5, midZ); }
+        else if (name === 'top') { pos = new THREE.Vector3(-1.5, w * 0.8 + d * 0.5, midZ + 1.2); tgt.set(-1.5, 0, midZ + 1.19); }
+        else { pos = new THREE.Vector3(-w * 0.3, w * 0.36 + 4, 2.5 + w * 0.5 + d * 0.3); tgt.set(-w * 0.06, 0.2, midZ + 1.5); }
+        if (instant) { st.camera.position.copy(pos); st.controls.target.copy(tgt); flight = null; }
+        else flight = { t0: performance.now(), dur: 1100, p0: st.camera.position.clone(), g0: st.controls.target.clone(), p1: pos, g1: tgt };
+        if (ui.cams) [].forEach.call(ui.cams.querySelectorAll('button'), function (b) { b.classList.toggle('p3d-chip-on', b.getAttribute('data-cam') === name); });
+    }
+    function focusColumn(col) {
+        if (!data.L || col < 0) return;
+        var x = data.L.x(col), midZ = (2.5 - data.L.depth) / 2;
+        flight = { t0: performance.now(), dur: 1000, p0: st.camera.position.clone(), g0: st.controls.target.clone(),
+                   p1: new THREE.Vector3(x - 9, 8, 9), g1: new THREE.Vector3(x, 1.5, midZ + 1) };
+    }
+
+    // -------------------------------------------------------------- picking
+    function pick(ev) {
+        if (!st.mesh) return null;
+        var rect = st.renderer.domElement.getBoundingClientRect();
+        st.pointer.set(((ev.clientX - rect.left) / rect.width) * 2 - 1, -((ev.clientY - rect.top) / rect.height) * 2 + 1);
+        st.raycaster.setFromCamera(st.pointer, st.camera);
+        var hit = st.raycaster.intersectObject(st.mesh, false)[0];
+        return hit ? st.cells[hit.instanceId] : null;
+    }
+    var moveRaf = 0;
+    function onPointerMove(ev) {
+        if (moveRaf) return;
+        moveRaf = requestAnimationFrame(function () { moveRaf = 0; setHover(pick(ev), ev); });
+    }
+    function setHover(k, ev) {
+        var tip = ui.tip;
+        if (!k) { if (hover) { hover = null; applyStyles(); } if (tip) tip.style.display = 'none'; if (st) st.renderer.domElement.style.cursor = ''; return; }
+        if (!hover || hover.col !== k.col || hover.row !== k.row) { hover = { col: k.col, row: k.row }; applyStyles(); }
+        st.renderer.domElement.style.cursor = 'pointer';
+        tip.innerHTML = data.L.bandMode ? bandTip(k) : modelTip(k);
+        var box = ui.wrap.getBoundingClientRect(), x = ev.clientX - box.left + 16, y = ev.clientY - box.top + 12;
+        tip.style.display = 'block';
+        tip.style.left = Math.min(x, box.width - tip.offsetWidth - 8) + 'px';
+        tip.style.top = Math.max(4, Math.min(y, box.height - tip.offsetHeight - 8)) + 'px';
+    }
+    function modelTip(k) {
+        var m = k.model, esc = U.esc, row = k.row >= 0 ? data.metrics[k.row] : null;
+        var mine = data.metrics.map(function (mt) { var c = mt.cells[m.id]; return c ? { mt: mt, c: c } : null; }).filter(Boolean)
+            .sort(function (a, b) { return b.c.pct - a.c.pct; });
+        var line = function (o) {
+            return '<tr><td style="padding-right:8px">' + esc(o.mt.label) + '</td><td style="text-align:right">' + U.fmtVal(o.c.v) +
+                   '</td><td style="text-align:right;color:#94a3b8;padding-left:6px">#' + o.c.rank + '/' + o.mt.n + '</td></tr>';
+        };
+        var head = row
+            ? (k.missing ? '<div style="color:#94a3b8">' + esc(row.label) + ': 점수 없음</div>'
+                         : '<div style="color:#fde68a">' + esc(row.label) + ': <b>' + U.fmtVal(k.cell.v) + '</b> · #' + k.cell.rank + '/' + row.n + ' · 상위 ' + pctStr(1 - k.cell.pct) + '</div>')
+            : '<div style="color:#fde68a">종합 백분위 <b>' + pctStr(m.comp) + '</b> · ' + m.compRank + '위 / ' + data.models.length + '</div>';
+        return '<div style="font-weight:600;color:#f8fafc">' + esc(m.name) + '</div>' +
+            '<div style="color:#94a3b8;font-size:11px;margin-bottom:4px">' + esc(m.vendor) + (m.rel ? ' · ' + esc(m.rel) : '') + ' · ' +
+            U.fmtPrice(m.price) + ' / 1M (' + esc(data.basis) + ') · ' + BANDS[m.band].label + '</div>' + head +
+            '<div style="font-size:11px;color:#cbd5e1;margin-top:4px">종합 ' + pctStr(m.comp) + ' · 지표 ' + m.cov + '/' + data.metrics.length + '개 보유</div>' +
+            '<div style="font-size:11px;color:#86efac;margin-top:4px">강점</div><table style="font-size:11px;color:#cbd5e1">' + mine.slice(0, 3).map(line).join('') + '</table>' +
+            (mine.length > 3 ? '<div style="font-size:11px;color:#fca5a5;margin-top:2px">약점</div><table style="font-size:11px;color:#cbd5e1">' + mine.slice(-Math.min(3, mine.length - 3)).map(line).join('') + '</table>' : '') +
+            '<div style="color:#64748b;font-size:10px;margin-top:4px">클릭: 모델 상세</div>';
+    }
+    function bandTip(k) {
+        var b = k.band, esc = U.esc, row = k.row >= 0 ? data.metrics[k.row] : null, bc = k.bc;
+        var title = row ? row.label : '종합 (평균 백분위)';
+        if (!bc) return '<div style="font-weight:600;color:#f8fafc">' + esc(b.label) + '</div><div style="color:#94a3b8">' + esc(title) + ': 이 가격대에 점수 있는 모델 없음</div>';
+        return '<div style="font-weight:600;color:#f8fafc">' + esc(b.label) + ' · ' + b.models.length + '개 모델</div>' +
+            '<div style="color:#fde68a">' + esc(title) + ' — ' + (opt.agg === 'max' ? '최고' : '중앙값') + ' 백분위 <b>' + pctStr(bc.pct) + '</b> (' + bc.n + '개 모델 보유)</div>' +
+            '<table style="font-size:11px;color:#cbd5e1;margin-top:4px">' + bc.top.map(function (t, i) {
+                return '<tr><td style="color:#94a3b8;padding-right:6px">' + (i + 1) + '</td><td style="padding-right:8px">' + esc(t.m.name) + '</td><td style="text-align:right">' +
+                    (row ? U.fmtVal(t.v) : pctStr(t.pct)) + '</td><td style="text-align:right;color:#94a3b8;padding-left:6px">' + U.fmtPrice(t.m.price) + '</td></tr>';
+            }).join('') + '</table>' +
+            '<div style="color:#64748b;font-size:10px;margin-top:4px">클릭: 1위 모델 상세</div>';
+    }
+    function onClick(ev) {
+        var k = pick(ev); if (!k || typeof Modal === 'undefined' || !Modal.showModel) return;
+        if (data.L.bandMode) { if (k.bc) Modal.showModel(k.bc.top[0].m.id); }
+        else Modal.showModel(k.model.id);
+    }
+
+    // ------------------------------------------------------------------- HUD
+    function renderHud() {
+        if (!ui.info || !data) return;
+        var L = data.L;
+        if (!data.models.length) {
+            ui.info.textContent = '현재 필터에서 지표 ' + opt.minCov + '개 이상을 가진 가격 보유 모델이 없습니다. 최소 지표 수를 낮추거나 기간을 늘려 보세요.';
+            ui.bands.innerHTML = ''; return;
+        }
+        ui.info.textContent = (L && L.bandMode ? data.bands.length + '개 가격대' : data.models.length + '개 모델') +
+            ' × ' + data.metrics.length + '개 지표 (+종합) · 가격 보유 ' + data.total + '개 중 지표 ' + opt.minCov + '개 이상 보유 모델만 · 높이 = 지표 내 백분위 (100% = 1위)' +
+            ' · 가격 기준: ' + data.basis;
+        ui.covVal.textContent = opt.minCov;
+        [].forEach.call(ui.modes.querySelectorAll('button'), function (b) { b.classList.toggle('p3d-chip-on', b.getAttribute('data-mode') === opt.mode); });
+        ui.agg.parentNode.style.display = L && L.bandMode ? '' : 'none';
+        ui.sort.parentNode.style.display = L && L.bandMode ? 'none' : '';
+        var esc = U.esc;
+        ui.bands.innerHTML = '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left">' +
+            '<th class="py-1 pr-3">가격대</th><th class="pr-3 text-right">모델</th><th class="pr-3 text-right">종합 중앙값</th><th class="pr-3">종합 1위</th><th class="pr-3">종합 2·3위</th></tr></thead><tbody>' +
+            data.bands.map(function (b) {
+                var bar = '<span style="display:inline-block;width:' + Math.round(b.median * 60) + 'px;height:6px;border-radius:3px;background:linear-gradient(90deg,#0ea5e9,#facc15);margin-right:6px;vertical-align:middle"></span>';
+                return '<tr class="border-t border-gray-800 text-gray-300"><td class="py-1 pr-3 font-semibold text-blue-300">' + esc(b.label) + '</td>' +
+                    '<td class="pr-3 text-right">' + b.models.length + '</td><td class="pr-3 text-right whitespace-nowrap">' + bar + pctStr(b.median) + '</td>' +
+                    '<td class="pr-3"><a href="#" data-mid="' + esc(b.best.id) + '" class="text-blue-400 hover:underline">' + esc(b.best.name) + '</a> <span class="text-gray-500">' + pctStr(b.best.comp) + ' · ' + U.fmtPrice(b.best.price) + '</span></td>' +
+                    '<td class="pr-3">' + (b.top.slice(1).map(function (m) {
+                        return '<a href="#" data-mid="' + esc(m.id) + '" class="text-blue-400 hover:underline">' + esc(m.name) + '</a> <span class="text-gray-500">' + pctStr(m.comp) + ' · ' + U.fmtPrice(m.price) + '</span>';
+                    }).join(' · ') || '—') + '</td></tr>';
+            }).join('') + '</tbody></table>';
+        if (ui.searchList) ui.searchList.innerHTML = data.models.map(function (m) { return '<option value="' + esc(m.name) + '">'; }).join('');
+    }
+
+    function wireHud() {
+        ui.wrap = $('pricesky-wrap'); ui.tip = $('pricesky-tip'); ui.info = $('pricesky-info'); ui.bands = $('pricesky-bands');
+        ui.modes = $('pricesky-modes'); ui.cams = $('pricesky-cams'); ui.sort = $('pricesky-sort'); ui.agg = $('pricesky-agg');
+        ui.color = $('pricesky-color'); ui.cov = $('pricesky-cov'); ui.covVal = $('pricesky-cov-val');
+        ui.search = $('pricesky-search'); ui.searchList = $('pricesky-search-list');
+        ui.modes.addEventListener('click', function (e) {
+            var b = e.target.closest('button'); if (!b) return; opt.mode = b.getAttribute('data-mode'); hover = null; build();
+        });
+        ui.cams.addEventListener('click', function (e) {
+            var b = e.target.closest('button[data-cam]'); if (b) camPreset(b.getAttribute('data-cam'));
+        });
+        $('pricesky-spin').addEventListener('change', function (e) { opt.spin = e.target.checked; st.controls.autoRotate = opt.spin; });
+        ui.sort.addEventListener('change', function () { opt.sort = ui.sort.value; build(); });
+        ui.agg.addEventListener('change', function () { opt.agg = ui.agg.value; build(); });
+        ui.color.addEventListener('change', function () { opt.color = ui.color.value; applyStyles(); });
+        ui.cov.addEventListener('input', function () { ui.covVal.textContent = ui.cov.value; });
+        ui.cov.addEventListener('change', function () { opt.minCov = +ui.cov.value; build(); });
+        ui.search.addEventListener('input', function () {
+            var q = ui.search.value.trim().toLowerCase(); searchModel = null;
+            if (q && data) {
+                var hit = data.models.filter(function (m) { return m.name.toLowerCase() === q; })[0] ||
+                          data.models.filter(function (m) { return m.name.toLowerCase().indexOf(q) !== -1; })[0];
+                if (hit) { searchModel = hit.id; if (opt.mode === 'model') focusColumn(data.models.indexOf(hit)); }
+            }
+            applyStyles();
+        });
+        ui.bands.addEventListener('click', function (e) {
+            var a = e.target.closest('a[data-mid]'); if (!a) return; e.preventDefault();
+            if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(a.getAttribute('data-mid'));
+        });
+        ['price-basis', 'price-hitrate', 'price-period', 'price-vendor', 'price-country'].forEach(function (id) {
+            var el = $(id); if (el) el.addEventListener('change', function () { if (isShown() && st) build(); });
+        });
+    }
+    function isShown() { var w = $('pricesky-wrap'); return !!(w && w.style.display !== 'none'); }
+
+    function loop() {
+        if (!visible) return;
+        requestAnimationFrame(loop);
+        if (flight) {
+            var t = Math.min(1, (performance.now() - flight.t0) / flight.dur), e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            st.camera.position.lerpVectors(flight.p0, flight.p1, e);
+            st.controls.target.lerpVectors(flight.g0, flight.g1, e);
+            if (t >= 1) flight = null;
+        }
+        if (flat !== flatTo) {
+            flat += (flatTo - flat) * 0.14; if (Math.abs(flatTo - flat) < 0.01) flat = flatTo;
+            applyStyles(true);
+        }
+        st.controls.update();
+        st.renderer.render(st.scene, st.camera);
+    }
+
+    // Called by Price3D.setView('sky') once three.js is loaded.
+    function show() {
+        U = Price3D.util; THREE = U.three();
+        if (!st) { initScene(); }
+        if (!wired) { wireHud(); wired = true; }
+        build();
+        if (!visible) { visible = true; loop(); }
+    }
+    function hide() { visible = false; if (ui.tip) ui.tip.style.display = 'none'; }
+
+    document.addEventListener('visibilitychange', function () { if (document.hidden) visible = false; });
+
+    return { show: show, hide: hide };
+})();

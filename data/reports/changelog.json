@@ -5457,5 +5457,17 @@
   "type": "Data",
   "title": "S314c — Kimi K3.1 Pro 빠진 부분 재점검: 각주 기반 정정 3건 + 비용·엔드포인트·AA 갱신 (모델 +2, 벤치마크 +3, 점수 110행)",
   "detail": "▸ 정정(블로그 각주 확인): ① Terminal-Bench Science 표의 DeepSeek 15.7은 이전 버전 DeepSeek-V4.1-Flash의 공식 점수 → 해당 모델로 이동, V4.1-Flash-1017의 Kimi 내부 측정값 9.3은 *_rerun_kimi_k31에 기록. ② ExploitBench·ExploitGym의 'Claude Fable 5.1' 열은 각주상 Claude Mythos 5.1(Opus 5.5 시스템 카드) — ExploitGym 30.4% = Mythos 264건/약 870건(Opus 300건 = 34.5%)으로 확인해 Mythos 5.1로 이동. ③ Highspeed의 OpenRouter 처리량을 AA 지표 id에 넣었던 것을 OpenRouter 전용 id로 분리. ▸ 추가: Terminal-Bench 4.0 점수-비용 차트의 내장 데이터(tbench.ai)에서 과제당 비용 14개 점(K3.1 Pro max $5.25 / high $4.16, Opus 5.5 $14.30, Sonnet 5.5 $22.22, Fable·GPT-6 Astra 노력 단계별) + K3.1 Pro (high) 점수 52.8. AA 제공자 페이지: Highspeed 엔드포인트 126.1 tok/s·TTFT 2.24초·혼합가 $2.94, K3.1 Pro GDPval-AA 정규화 67.3. AA-3D Elo 1110. OpenRouter 처리량·지연(표준 36 tps/4.44초, Highspeed 74 tps/4.09초). ▸ AA 갱신: Kimi K3·K3 (Low)의 AA 출처 값 27개를 최신 페이지 값으로 갱신·보충(K3 AA-LCR 75→88.7, AutomationBench-AA 53.0→58.3, 과제당 비용 $1.58→$2.00 등). 블로그 출처 값과 AA MLCR은 유지. ▸ 재점검 2차: AA 출시 기사 차트 6장은 AA 페이지 데이터와 동일(반올림). 같은 페이지 데이터의 최근 모델 81개를 DB와 대조 — 새 스냅샷 Ling 3.1 Flash 1019(InclusionAI, II 43.9) 모델과 AA 지표 24행 추가, Muse Spark Open(Meta)은 II만 있던 상태라 AA 세부 지표 31행 보충. Nemotron 3.5 Bolt E4B는 AA 평가값 없음. 블로그 금융 차트·표지 이미지는 새 수치 없음. DB 4,799 모델 · 14,100 벤치마크 · 107,292 점수."
+ },
+ {
+  "date": "2026-10-25",
+  "type": "Data",
+  "title": "S315 — Terminal-Bench 4.0 출시 글 + 공식 리더보드(Pareto): 벤치마크 +7, 점수 233행",
+  "detail": "▸ 공식 리더보드 35행(에이전트×모델×effort, 각 330 trial)을 페이지 RSC 데이터에서 추출. 정확도 33행은 DB 값과 일치(S306에서 반영됨). Opus 5.5(max) 64.85, Sonnet 5.5(max) 61.82는 저장된 벤더 값(66.4 / 70.6)과 달라 terminal_bench_4_0_rerun_tbench_official에 기록. ▸ 신규 지표(35개 모델): pass@2, pass@5, 전체 실행 비용(USD), 총 토큰(B), 출력 토큰(M), 평균 trial 시간(분), task당 비용(빈칸 채움). Muse Spark 1.3은 비용 $0(미집계)이라 비용 지표 제외. ▸ 출시 글 차트 데이터: TB3.0 vs TB4.0 trial 결과 그리드에서 Grok 4.6의 TB3.0 통과율 26.49%(98/370) 추가(다른 모델은 기존 TB3.0 값과 0.3pt 이내 일치). terminal_bench_4_0 설명 갱신(8개 task 제거·19개 수정, 8시간 timeout, semantic versioning). Kimi K3.1 Pro는 아직 공식 리더보드에 없음(65.7은 Moonshot 측정값). Cyber & Coding 탭에 신규 지표 반영."
+ },
+ {
+  "date": "2026-10-25",
+  "type": "Data",
+  "title": "S315b — Terminal-Bench 4.0 빠진 부분 재점검: pass@3/4, timeout·오류 비율, Grok 4.7 비용 정정 (벤치마크 +4, 점수 +86)",
+  "detail": "▸ Harbor Hub 리더보드(출시 글이 링크한 원 데이터)를 렌더해 대조: 35행이 tbench.ai와 같고, Grok 4.7 비용이 '부분 집계 324/330 trial'로 표시됨 → task당 비용을 330이 아닌 324로 나눠 11.16 → 11.37로 정정하고 총비용 주석에 명시. ▸ 누락 지표 추가: pass@3, pass@4(35개 모델). ▸ 출시 글 trial 결과 그리드에서 timeout·오류로 끝난 trial 비율(8개 모델, TB4.0 vs TB3.0): Sonnet 5 16.49% → 11.21%, Fable 5 9.19% → 5.15%, Opus 4.8 7.57% → 1.52%, Grok 4.6 6.49% → 0.30% 등. 글의 '4.0에서 timeout·오류 감소' 주장을 수치로 확인. ▸ 리더보드 'Release Date'가 DB와 다른 5개 모델(GPT-5.6 Sol/Terra/Luna는 06-26 프리뷰 vs GA, Grok 4.5는 07-16 vs 검증된 07-08, Sonnet 5는 06-30 vs 04-01)은 출처 확인 전까지 DB 값 유지. 나머지 차트(누적 완료, task별 시간, 비용-정확도)는 리더보드와 같은 데이터거나 task 단위라 제외."
  }
 ]

@@ -1,2 +1,291 @@
-var Charts={_instances:{},_getOrCreate:function(a){var n=document.getElementById(a);if(!n)return null;var e=this._instances[a];try{if(e&&!e.isDisposed()&&e.getDom()===n&&e.getWidth()>=10&&e.getHeight()>=10)return e}catch(f){}if(n.offsetParent===null&&n.offsetWidth===0)return null;if(e&&(e.isDisposed()||e.getDom()!==n)){try{e.isDisposed()||e.dispose()}catch(f){}e=null,delete this._instances[a]}if(e)try{(e.getWidth()<10||e.getHeight()<10)&&(e.dispose(),e=null,delete this._instances[a])}catch(f){e=null,delete this._instances[a]}if(e)return e;this._instances[a]=echarts.init(n,"dark");var i=this._instances[a];if(this._sizeChanged(i),requestAnimationFrame(function(){try{!i.isDisposed()&&Charts._sizeChanged(i)&&i.resize()}catch(f){}}),typeof ResizeObserver!="undefined")try{var u=new ResizeObserver(function(){try{if(i.isDisposed()||n.clientWidth<1||n.clientHeight<1||!Charts._sizeChanged(i))return;i.resize()}catch(f){}});u.observe(n)}catch(f){}return window.addEventListener("resize",function(){try{!i.isDisposed()&&Charts._sizeChanged(i)&&i.resize()}catch(f){}}),i},_sizeChanged:function(a){var n=a.getDom(),e=n.clientWidth,i=n.clientHeight;return a.__lastW===e&&a.__lastH===i?!1:(a.__lastW=e,a.__lastH=i,!0)},resizeAll:function(a){var n=this;Object.keys(this._instances).forEach(function(e){try{var i=n._instances[e];if(!i||i.isDisposed())return;var u=i.getDom();if(a&&!a.contains(u)||!n._sizeChanged(i))return;i.resize()}catch(f){}})},renderTrendLine:function(a,n,e){var i=this._getOrCreate(a);if(i){var u=Object.keys(e).sort(),f={};u.forEach(function(t){(e[t]||[]).forEach(function(r){r.benchmark_id===n&&(f[r.model_id]=!0)})});var l=Object.keys(f),h=l.map(function(t){return{name:t.split("/").pop(),type:"line",smooth:!0,data:u.map(function(r){var o=(e[r]||[]).find(function(s){return s.model_id===t&&s.benchmark_id===n});return o?o.value:null})}});i.setOption({title:{text:n.toUpperCase()+" SOTA Trend",left:"center"},tooltip:{trigger:"axis"},legend:{bottom:0,type:"scroll"},xAxis:{type:"category",data:u},yAxis:{type:"value",name:"Score"},series:h},!0)}},renderRadar:function(a,n,e){var i=this._getOrCreate(a);if(i){var u={};e.forEach(function(t){var r=0;n.forEach(function(o){var s=o.scores[t]||0;s>r&&(r=s)}),r<=100?u[t]=100:r<=1e3?u[t]=Math.ceil(r/100)*100:u[t]=Math.ceil(r/1e3)*1e3});var f={};n.forEach(function(t){f[t.name]={},e.forEach(function(r){f[t.name][r]=t.scores[r]||0})});var l=e.map(function(t){var r=t.toUpperCase();return u[t]>100&&(r+=" (max:"+u[t]+")"),{name:r,max:u[t]}}),h=n.map(function(t){return{name:t.name,value:e.map(function(r){return t.scores[r]||0})}});i.setOption({title:{text:"Model Comparison",left:"center"},tooltip:{trigger:"item",formatter:function(t){if(!t.value)return"";var r=[t.name];return e.forEach(function(o,s){var c=t.value[s];if(c>0){var d=c>500?Math.round(c):c.toFixed(1);r.push(o+": "+d)}}),r.join("<br>")}},legend:{bottom:0},radar:{indicator:l},series:[{type:"radar",data:h}]},!0)}},renderHeatmap:function(a,n,e,i){var u=this._getOrCreate(a);if(u){var f=[],l=[];e.forEach(function(t,r){var o=0,s=1/0;i.forEach(function(c){c[r]!==null&&(c[r]>o&&(o=c[r]),c[r]<s&&(s=c[r]))}),f.push(o),l.push(s===1/0?0:s)});var h=[];i.forEach(function(t,r){t.forEach(function(o,s){if(o!==null){var c=f[s]-l[s],d=c>0?(o-l[s])/c*100:50;h.push([s,r,o,d])}})}),u.setOption({title:{text:"Benchmark Scores Heatmap (normalized per column)",left:"center",textStyle:{fontSize:13}},tooltip:{formatter:function(t){var r=t.value[2],o=r>500?Math.round(r):r.toFixed(1);return n[t.value[1]]+`
-`+e[t.value[0]]+": "+o}},xAxis:{type:"category",data:e,axisLabel:{rotate:45,fontSize:10},axisLine:{lineStyle:{color:Theme.borderStrong}}},yAxis:{type:"category",data:n,axisLabel:{fontSize:10},axisLine:{lineStyle:{color:Theme.borderStrong}}},visualMap:{min:0,max:100,calculable:!0,orient:"horizontal",left:"center",bottom:0,inRange:{color:Theme.heatmap},textStyle:{color:Theme.textMuted},text:["Best","Worst"]},series:[{type:"heatmap",data:h.map(function(t){return[t[0],t[1],t[3]]}),label:{show:!0,fontSize:9,color:Theme.textPrimary,formatter:function(t){var r=h.find(function(s){return s[0]===t.value[0]&&s[1]===t.value[1]});if(r){var o=r[2];return o>500?Math.round(o):o.toFixed(1)}return""}},emphasis:{itemStyle:{borderColor:Theme.textWhite,borderWidth:1}}}]},!0)}}};
+/**
+ * ECharts wrapper functions for the dashboard.
+ */
+var Charts = {
+    _instances: {},
+
+    _getOrCreate: function(containerId) {
+        var el = document.getElementById(containerId);
+        if (!el) return null;
+        var existing = this._instances[containerId];
+        // Fast path: a live instance on this exact element with real dimensions.
+        // getWidth/getHeight are ECharts' cached sizes, so this avoids the forced
+        // layout of reading offsetParent/offsetWidth on every call (that read was
+        // ~110 ms of layout thrash on the Timeline / Comparison tabs).
+        try {
+            if (existing && !existing.isDisposed() && existing.getDom() === el &&
+                existing.getWidth() >= 10 && existing.getHeight() >= 10) return existing;
+        } catch (e) {}
+        // If parent is display:none (offsetParent === null), can't measure — skip.
+        // The caller can re-invoke when the tab becomes visible.
+        if (el.offsetParent === null && el.offsetWidth === 0) return null;
+
+        if (existing && (existing.isDisposed() || existing.getDom() !== el)) {
+            // Container was replaced (e.g. innerHTML re-render): the old instance
+            // points at a detached node — drop it and init on the new element.
+            try { if (!existing.isDisposed()) existing.dispose(); } catch (e) {}
+            existing = null;
+            delete this._instances[containerId];
+        }
+        if (existing) {
+            // Detect cached chart with bad (zero) dimensions — happens when
+            // ECharts.init ran while parent was display:none. Dispose + reinit.
+            try {
+                if (existing.getWidth() < 10 || existing.getHeight() < 10) {
+                    existing.dispose();
+                    existing = null;
+                    delete this._instances[containerId];
+                }
+            } catch (e) {
+                // Disposed already or in bad state
+                existing = null;
+                delete this._instances[containerId];
+            }
+        }
+        if (existing) return existing;
+
+        this._instances[containerId] = echarts.init(el, 'dark');
+        var chart = this._instances[containerId];
+        this._sizeChanged(chart);  // record the init size
+        // Defer a resize to the next frame so any pending layout (e.g. tab
+        // just transitioned from display:none) is reflected before ECharts
+        // remeasures its container. setOption may run before this fires —
+        // that's fine, resize() will repaint at correct dimensions.
+        requestAnimationFrame(function() {
+            try { if (!chart.isDisposed() && Charts._sizeChanged(chart)) chart.resize(); } catch (e) {}
+        });
+        // ResizeObserver covers the case where the element grows later
+        // (e.g. parent grid finalising after fonts load).
+        if (typeof ResizeObserver !== 'undefined') {
+            try {
+                var ro = new ResizeObserver(function() {
+                    // Skip hide (0×0 when the tab goes display:none) and no-op
+                    // notifications: resize() re-renders the whole chart, and
+                    // every tab switch used to re-render the previous tab's
+                    // charts at zero size.
+                    try {
+                        if (chart.isDisposed()) return;
+                        if (el.clientWidth < 1 || el.clientHeight < 1) return;
+                        if (!Charts._sizeChanged(chart)) return;
+                        chart.resize();
+                    } catch (e) {}
+                });
+                ro.observe(el);
+            } catch (e) {}
+        }
+        window.addEventListener('resize', function() {
+            try { if (!chart.isDisposed() && Charts._sizeChanged(chart)) chart.resize(); } catch (e) {}
+        });
+        return chart;
+    },
+
+    /**
+     * Force resize all known chart instances. Call after a tab becomes visible.
+     */
+    // Container size (clientWidth × clientHeight) last seen for an instance;
+    // true when it differs now (first call records it and reports a change).
+    // Compared against our own record because ECharts' getWidth() excludes
+    // container padding, so it never equals clientWidth on padded containers.
+    _sizeChanged: function(inst) {
+        var dom = inst.getDom();
+        var w = dom.clientWidth, h = dom.clientHeight;
+        if (inst.__lastW === w && inst.__lastH === h) return false;
+        inst.__lastW = w; inst.__lastH = h;
+        return true;
+    },
+
+    resizeAll: function(scopeEl) {
+        // Only charts inside scopeEl (the tab being shown) and only when their
+        // container size actually changed: ECharts resize() re-renders the whole
+        // chart even at the same size, and every tab switch used to resize every
+        // chart of every tab twice.
+        var self = this;
+        Object.keys(this._instances).forEach(function(id) {
+            try {
+                var inst = self._instances[id];
+                if (!inst || inst.isDisposed()) return;
+                var dom = inst.getDom();
+                if (scopeEl && !scopeEl.contains(dom)) return;
+                if (!self._sizeChanged(inst)) return;
+                inst.resize();
+            } catch (e) {}
+        });
+    },
+
+    renderTrendLine: function(containerId, benchmarkId, historyData) {
+        var chart = this._getOrCreate(containerId);
+        if (!chart) return;
+
+        var dates = Object.keys(historyData).sort();
+        var modelSet = {};
+        dates.forEach(function(d) {
+            (historyData[d] || []).forEach(function(s) {
+                if (s.benchmark_id === benchmarkId) modelSet[s.model_id] = true;
+            });
+        });
+        var models = Object.keys(modelSet);
+
+        var series = models.map(function(modelId) {
+            return {
+                name: modelId.split('/').pop(),
+                type: 'line',
+                smooth: true,
+                data: dates.map(function(d) {
+                    var entry = (historyData[d] || []).find(function(s) {
+                        return s.model_id === modelId && s.benchmark_id === benchmarkId;
+                    });
+                    return entry ? entry.value : null;
+                })
+            };
+        });
+
+        chart.setOption({
+            title: { text: benchmarkId.toUpperCase() + ' SOTA Trend', left: 'center' },
+            tooltip: { trigger: 'axis' },
+            legend: { bottom: 0, type: 'scroll' },
+            xAxis: { type: 'category', data: dates },
+            yAxis: { type: 'value', name: 'Score' },
+            series: series
+        }, true);
+    },
+
+    renderRadar: function(containerId, modelsData, benchmarkIds) {
+        var chart = this._getOrCreate(containerId);
+        if (!chart) return;
+
+        // Calculate per-axis max from actual data
+        var axisMax = {};
+        benchmarkIds.forEach(function(b) {
+            var max = 0;
+            modelsData.forEach(function(m) {
+                var v = m.scores[b] || 0;
+                if (v > max) max = v;
+            });
+            // Round up to nice number for axis
+            if (max <= 100) axisMax[b] = 100;
+            else if (max <= 1000) axisMax[b] = Math.ceil(max / 100) * 100;
+            else axisMax[b] = Math.ceil(max / 1000) * 1000;
+        });
+
+        // Store raw values for tooltip
+        var rawValues = {};
+        modelsData.forEach(function(m) {
+            rawValues[m.name] = {};
+            benchmarkIds.forEach(function(b) {
+                rawValues[m.name][b] = m.scores[b] || 0;
+            });
+        });
+
+        var indicator = benchmarkIds.map(function(b) {
+            var name = b.toUpperCase();
+            if (axisMax[b] > 100) name += ' (max:' + axisMax[b] + ')';
+            return { name: name, max: axisMax[b] };
+        });
+
+        var data = modelsData.map(function(m) {
+            return {
+                name: m.name,
+                value: benchmarkIds.map(function(b) { return m.scores[b] || 0; })
+            };
+        });
+
+        chart.setOption({
+            title: { text: 'Model Comparison', left: 'center' },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    if (!params.value) return '';
+                    var lines = [params.name];
+                    benchmarkIds.forEach(function(b, i) {
+                        var v = params.value[i];
+                        if (v > 0) {
+                            var display = v > 500 ? Math.round(v) : v.toFixed(1);
+                            lines.push(b + ': ' + display);
+                        }
+                    });
+                    return lines.join('<br>');
+                }
+            },
+            legend: { bottom: 0 },
+            radar: { indicator: indicator },
+            series: [{ type: 'radar', data: data }]
+        }, true);
+    },
+
+    renderHeatmap: function(containerId, models, benchmarks, matrix) {
+        var chart = this._getOrCreate(containerId);
+        if (!chart) return;
+
+        // Normalize: for each column (benchmark), compute relative score 0-100
+        var colMax = [];
+        var colMin = [];
+        benchmarks.forEach(function(b, j) {
+            var max = 0, min = Infinity;
+            matrix.forEach(function(row) {
+                if (row[j] !== null) {
+                    if (row[j] > max) max = row[j];
+                    if (row[j] < min) min = row[j];
+                }
+            });
+            colMax.push(max);
+            colMin.push(min === Infinity ? 0 : min);
+        });
+
+        var data = [];
+        matrix.forEach(function(row, i) {
+            row.forEach(function(val, j) {
+                if (val !== null) {
+                    // Normalize to 0-100 within each benchmark column
+                    var range = colMax[j] - colMin[j];
+                    var norm = range > 0 ? ((val - colMin[j]) / range) * 100 : 50;
+                    data.push([j, i, val, norm]);
+                }
+            });
+        });
+
+        chart.setOption({
+            title: { text: 'Benchmark Scores Heatmap (normalized per column)', left: 'center', textStyle: { fontSize: 13 } },
+            tooltip: {
+                formatter: function(p) {
+                    var raw = p.value[2];
+                    var display = raw > 500 ? Math.round(raw) : raw.toFixed(1);
+                    return models[p.value[1]] + '\n' + benchmarks[p.value[0]] + ': ' + display;
+                }
+            },
+            xAxis: {
+                type: 'category', data: benchmarks,
+                axisLabel: { rotate: 45, fontSize: 10 },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
+            },
+            yAxis: {
+                type: 'category', data: models,
+                axisLabel: { fontSize: 10 },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
+            },
+            visualMap: {
+                min: 0, max: 100, calculable: true,
+                orient: 'horizontal', left: 'center', bottom: 0,
+                inRange: { color: Theme.heatmap },
+                textStyle: { color: Theme.textMuted },
+                text: ['Best', 'Worst']
+            },
+            series: [{
+                type: 'heatmap',
+                data: data.map(function(d) { return [d[0], d[1], d[3]]; }),
+                label: {
+                    show: true, fontSize: 9, color: Theme.textPrimary,
+                    formatter: function(p) {
+                        // Show raw value, not normalized
+                        var raw = data.find(function(d) { return d[0] === p.value[0] && d[1] === p.value[1]; });
+                        if (raw) {
+                            var v = raw[2];
+                            return v > 500 ? Math.round(v) : v.toFixed(1);
+                        }
+                        return '';
+                    }
+                },
+                emphasis: { itemStyle: { borderColor: Theme.textWhite, borderWidth: 1 } }
+            }]
+        }, true);
+    }
+};

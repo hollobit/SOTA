@@ -1,1 +1,2059 @@
-var CyberCoding={CYBER_BENCHMARKS:["cybench","cvebench","cybergym","evmbench_exploit","evmbench_detect","airtbench","firefox_147","cyber_range","cyscenariobench","tlo_cyber_range","openai_ctf_professional","irregular_atomic_network","irregular_atomic_vuln_research","irregular_atomic_evasion","uk_aisi_narrow_cyber","exploitbench_ace","exploitbench_t3","exploitbench_t4","exploitbench_mean_score","exploitbench_pct","pacebench_overall","pacebench_a_cve","pacebench_b_cve","pacebench_c_cve","pacebench_d_cve","nyu_ctf","nyu_ctf_bench_crypto","nyu_ctf_bench_pwn","nyu_ctf_bench_web","nyu_ctf_bench_reverse","aisi_last_ones_100m_avg","aisi_cooling_tower_100m_avg","simbian_cyber_defense_coverage","cyberteam_rm_avg","cti_realm_50","autoadversary_s1_autonomous_pct","autoadversary_s1_expert_pct","asis_ctf_quals_2025_percentile","corctf_2025_percentile","snakectf_quals_2025_percentile","offensive_cyber_time_horizon_p50","offensive_cyber_success_rate","cybergym_targeted_repro","firefox_147_full_exploit","exploitbench_v2_flags","oss_fuzz_progress_rate","aisi_advanced_suite_expert_pass_rate","aisi_tlo_32step_solves_at_10","aisi_cooling_tower_solves_at_10","aisi_cyber_time_horizon_80pct_minutes","cyberseceval4_overall","glasswing_critical_vulns_found_per_month","simbian_cdb_cost_per_investigation_usd","exploitbench_tier_reached_max","exploitbench_t3_bugs_breadth","cybergym_targeted_reproduction_no_safeguards","cybergym_targeted_reproduction_tier_3_safeguards","firefox_147_exploits_0_5","firefox_147_exploits_full_working","aisi_realitytest_text_disclosure_rate","aisi_last_ones_multistep_attack_pass_rate","aisi_cooling_tower_ics_pass_rate","openai_cyber_range_pass_rate","openai_vulnlmp_full_chain_exploit","openai_ctf_internal_curated","irregular_frontiercyber_easy","irregular_frontiercyber_medium","irregular_frontiercyber_hard","irregular_frontiercyber_elite","cyscenariobench_long_horizon_solve","irregular_atomic_network_attack_sim","irregular_atomic_vuln_research_exploit","irregular_atomic_evasion","exploitgym","sandbox_bench","sre_bench","irregular_frontiercyber_overall","malware_refusals_golden_set","codex_coding_prompt_injection_ignored","sre_bench_capability_score","sre_bench_fully_solved","sre_bench_zero_score_lower_better","sre_bench_lang_c","sre_bench_lang_cpp","sre_bench_lang_rust","sre_bench_lang_go","sre_bench_domain_proto","sre_bench_domain_fmt","sre_bench_domain_game","sre_bench_domain_malw","sre_bench_domain_firm","sre_bench_preset_p1","sre_bench_preset_p2","sre_bench_preset_p3","sre_bench_preset_p4","sre_bench_preset_p5","sre_bench_preset_p6","sre_bench_preset_p7","sre_bench_preset_p8","cybergym_v1","exploitbench_v8","firefox_147_anthropic","oss_fuzz_anthropic","cybergym_v1","uk_aisi_narrow_cyber_expert","uk_aisi_cyber_range_last_ones","uk_aisi_cyber_range_doing_life","uk_aisi_cyber_range_cooling_tower","openai_cyber_range_internal","cve_bench_v1_openai","ctf_professional_openai","irregular_cyscenariobench","gemini_key_skills_v1_hard","gemini_key_skills_v2_e2e","nyu_ctf_bench","cti-realm","sandbox-escape-bench","crackme-bench","zero-day-bench","fuzzingbrain-v2-aixcc","sec-bench-pro","simbian-cyber-defense","simbian-ai-soc","securewebarena","secureagentbench","ailuminate-continuous-stewardship","aixcc_final","autopenbench___ai_pentest_benchmark","goad_active_directory","hackerone_us","hackthebox","nyu_ctf_bench_2026","msrc_tcpip_recall","mdash_clfs_sys_recall","exploitbench_cap","exploitbench_mean_flags","oss_fuzz_any_crash","oss_fuzz_0_4","oss_fuzz_write_primitive_or_better_0_4","firefox_147_zero_day_exploit_full_working_exploit_rate","cybergym_pass_1_targeted_vuln_reproduction_1507_tasks","crsbench","cyberseceval4_threat_intel","cyberseceval4_malware_analysis","v8_confirmed_vulns_google","agentcyberrange_web","agentcyberrange_post","container_sandbox_escape","exploitbench_v8_full_ace_pct","binary_exploitation_benchmark_cfh_count","cyscenariobench_anthropic_10subset_v2","exploitbench_internal_port_2026_06_08","exploitgym_v1_openai_offline","sec_bench_pro_openai_rootcause_grader","cybergym_mimo_corrected_env","exploitbench_mimo_report","mimo_cyber_bench","wiz_cyber_arena_overall_claude_code","wiz_cyber_arena_code_vulns_claude_code","wiz_cyber_arena_api_security_claude_code","wiz_cyber_arena_websec_ctf_claude_code","wiz_cyber_arena_cloud_security_claude_code","wiz_cyber_arena_overall_adk_react","wiz_cyber_arena_code_vulns_adk_react","wiz_cyber_arena_api_security_adk_react","wiz_cyber_arena_websec_ctf_adk_react","wiz_cyber_arena_cloud_security_adk_react","htb_ai_range_owasp_top10_success_rate","caibench_base_ctf","caibench_cybench_cai_agent","caibench_cyber_ranges","ctibench_rcm","cybermetric_4500","issuetrojanbench_eem_rate_lower_better","cisco_image_safety_score"],DEFENSE_BENCHMARKS:["autopatchbench","cybersoceval","zerodaybench","evmbench_patch","dfir_metric","csguard_llm_t2c_l1_asr_lower_better","csguard_llm_t2c_l2_avg_asr_lower_better","csguard_llm_c2c_avg_asr_lower_better","cwe_bench_v1","google_realworld_vuln_discovery_internal","wiz_pentest_benchmark_internal","cwe_bench_v1_pass4","cwe_bench_v1_judge_pass1","cwe_bench_v1_judge_pass4","cwe_bench_v1_cost_per_rollout_usd_lower_better","cwe_bench","cwe_bench_v0_cost_per_rollout_usd_lower_better","deepsecbench","deepsecbench_recall","deepsecbench_precision","deepsecbench_cost_usd_lower_better","vals_cyberbench_v1_1","vals_cyberbench_v1_1_poc","vals_cyberbench_v1_1_patch","vals_cyberbench_v1_1_cost_per_test_usd_lower_better","cybergym_e2e_official_s3","cybergym_e2e_official_s1","cybergym_e2e_official_s4","cybergym_e2e_official_patch_only","cybergym_e2e_official_s3_nocap","aa_cyber_index_v1","cwe_bench_aa","deepsecbench_aa","cybergym_e2e_aa","cwe_bench_aa_refusal_rate_lower_better","deepsecbench_aa_refusal_rate_lower_better","cybergym_e2e_aa_refusal_rate_lower_better","anthropic_violative_vuln_discovery_flag_rate","anthropic_defensive_vuln_discovery_flag_rate_lower_better","anthropic_rewind_attacker_cyber_asr_lower_better","r_judge","atbench","daybreak_blue_vulnerability_discovery","daybreak_blue_vulnerability_patching","daybreak_blue_poc_exploit_creation","daybreak_blue_cyber_redteaming","advanced_cybersecurity_completion_rate"],AGENT_BENCHMARKS:["osworld_verified","gaia","gaia2","browsecomp","tau_bench","tau2_bench","tau3_bench","webarena","deepsearchqa","mcp_atlas","toolathlon","mcpmark","android_world","qwen_web_bench","arc_agi_3","arc_agi_3_provider_adapter_harness","claw_eval","automationbench","aeci_index","search_qa","posttrainbench","mcp_mark","deep_planning","spreadsheetbench_v1","qwen_world_bench","cowork_bench","vitabench","clawval_mm","skillsbench","if_bench_precise","advanced_if_rubric","robust_if_diverse","k_browsecomp_verified","k_browsecomp_synthetic","itbench_aa","smac_talk_5v5_no_comm_winrate","opper_roundtable_win_rate","toolathlon_verified","mcp_bench","mcpverse","browsecomp_plus","agent_planning_benchmark","datagovbench"],CODING_BENCHMARKS:["swe_bench_verified","swe_bench_pro","swe_bench_multilingual","terminal_bench_2","terminal_bench_2_1","livecodebench","livecodebench_v5","livecodebench_v6","nl2repo","codeforces_elo","deepswe_pass_at_1","programbench","roadmapbench","chainswe_sequential","perfopt_bench","swe_marathon","deepswe_1_0","deepswe_1_1","apexswe","cadbench_iou","benchcad_qa_vision","text2cad_l4_overall","scadbench_elo","benchcad_edit_acc","benchcad_qa_code","benchcad_vision2code","kernelbench_hard","swe_fficiency","terminal_bench_2_0","swe_multilingual","nl2repo","qwen_webdev_elo","qwen_svg_elo","lcb_v6","artifacts_bench","mirrorcode","mirrorcode_solve_at_99","mirrorcode_small","mirrorcode_medium","mirrorcode_large","mirrorcode_cheating_rate","mirrorcode_cost_mean_usd","mirrorcode_cost_max_usd","frontiercode_v1","swe_bench_multimodal_sonnet5","swe_bench_verified_sonnet5_card","multi_swe_bench","leetcode-contests","terminal_bench_2_1_terminus_2","terminal_bench_2_1_claude_code","swe_atlas_qna","swe_atlas_rf","swe_atlas_tw","claweval_avg","frontierswe_mean_5","terminal_bench_2_1_mini_swe_agent_harness","dsbench_fullstack","dsbench_hard","livesqlbench","swe_compass","nl2repo","dataclaweval","terminal_bench_4_0","evocode_bench_v2_mt4","evocode_bench_v2_case","terminal_bench_4","terminal_bench_4_0_aa","cursorbench_4_0","frontierswe_v2","frontierswe_v2_worst5","frontierswe_v2_best5","mimo_code_bench","mimo_visual_coding","swe_atlas_qna_aa_codex","terminal_bench_4_0_aa_codex","deepswe_1_1_aa_codex","swe_bench_verified_codex_harness","swe_bench_verified_claude_code","swe_bench_verified_mini_swe_agent_harness","swe_bench_pro_codex_harness","swe_bench_pro_claude_code","swe_bench_pro_mini_swe_agent_harness","mimo_code_bench_mini_codex_harness","mimo_code_bench_mini_claude_code","mimo_code_bench_mini_mini_swe_agent_harness","baxbench_correct","baxbench_insecure_of_correct_lower_better","baxbench_generic_security_reminder","baxbench_oracle_security_reminder","sonar_leaderboard_java_pass_pct","sonar_leaderboard_java_issue_density_kloc_lower_better","swe_rebench_2026_05_15_to_07_01","swe_rebench_2026_05_15_to_07_01_pass5","terminal_bench_2_kilo_harness","vulcanbench_frontier_v4_combined","swe_bench_verified_epoch","terminal_bench_1_0","multipl_e","assertllm2_bug_kill_ratio"],PERF_SUITES:[{id:"coding-se",label:"\u{1F4BB} Coding & Software Engineering",note:"SWE-Verified \xB7 SWE-Pro \xB7 SWE-Multilingual \xB7 SWE-rebench \xB7 DeepSWE (Datacurve, contamination-free 113 tasks) \xB7 LiveCodeBench (+ v6) \xB7 HumanEval+ \xB7 MBPP+ \xB7 Aider Polyglot \xB7 Codeforces \xB7 GDPval-AA \xB7 SciCode \xB7 WebDev Arena \xB7 Monorepo-Bench \xB7 Expert-SWE \xB7 GSO \xB7 MLE-Bench \xB7 WeirdML v2 \xB7 PaperBench \xB7 Terminal-Bench 2 \xB7 NL2Repo \xB7 RepoBench \xB7 Vibe Code Bench",benchmarks:["swe_bench_verified","swe_bench_pro","swe_bench_multilingual","swe_rebench","deepswe_pass_at_1","livecodebench","livecodebench_v5","livecodebench_v6","livecodebench_elo","humaneval","humaneval_plus","mbpp","mbpp_plus","aider_polyglot","codeforces_rating","codeforces_elo","gdpval_aa","scicode","webdev_arena","monorepo_bench","expert_swe","gso","mle_bench","weirdml_v2","paperbench","terminal_bench_2","nl2repo","repobench","vibe_code_bench","terminal_bench_2_0","swe_multilingual","nl2repo","qwen_webdev_elo","qwen_svg_elo","kernelbench_hard","swe_fficiency","terminal_bench_4_0","terminal_bench_4","terminal_bench_4_0_aa","cursorbench_4_0","frontierswe_v2","frontierswe_v2_worst5","frontierswe_v2_best5","mimo_code_bench","mimo_visual_coding","swe_atlas_qna_aa_codex","terminal_bench_4_0_aa_codex","deepswe_1_1_aa_codex","swe_bench_verified_codex_harness","swe_bench_verified_claude_code","swe_bench_verified_mini_swe_agent_harness","swe_bench_pro_codex_harness","swe_bench_pro_claude_code","swe_bench_pro_mini_swe_agent_harness","mimo_code_bench_mini_codex_harness","mimo_code_bench_mini_claude_code","mimo_code_bench_mini_mini_swe_agent_harness","baxbench_correct","baxbench_insecure_of_correct_lower_better","baxbench_generic_security_reminder","baxbench_oracle_security_reminder","sonar_leaderboard_java_pass_pct","sonar_leaderboard_java_issue_density_kloc_lower_better","swe_rebench_2026_05_15_to_07_01","swe_rebench_2026_05_15_to_07_01_pass5","terminal_bench_2_kilo_harness","vulcanbench_frontier_v4_combined","swe_bench_verified_epoch","terminal_bench_1_0","multipl_e","assertllm2_bug_kill_ratio"]},{id:"cyber-attack",label:"\u{1F6E1}\uFE0F Cyber Attack / CTF",note:"Cybench \xB7 CyberGym \xB7 CVE-Bench \xB7 EVMbench Detect/Exploit \xB7 The Last Ones (TLO) \xB7 OpenAI CTF Professional \xB7 Firefox 147 \xB7 Cyber Range \xB7 MHBench (Multi-Host) \xB7 AIRTBench \xB7 UK AISI Narrow Cyber \xB7 CyScenarioBench \xB7 Irregular Atomic 3-suite (Network/Vuln-Research/Evasion) \xB7 AIxCC \xB7 FORTRESS \xB7 ExploitBench (V8 N-day) \xB7 PACEbench (Shanghai AI Lab) \xB7 NYU CTF Bench \xB7 AISI multi-step (Last-Ones / Cooling Tower) \xB7 Autonomous Adversary (NRC Canada)",benchmarks:["cybench","cybergym","cvebench","evmbench_detect","evmbench_exploit","tlo_cyber_range","openai_ctf_professional","firefox_147","cyber_range","mhbench","airtbench","uk_aisi_narrow_cyber","cyscenariobench","irregular_atomic_network","irregular_atomic_vuln_research","irregular_atomic_evasion","aixcc_synth_vuln","fortress","exploitbench_ace","exploitbench_t3","exploitbench_t4","exploitbench_mean_score","exploitbench_pct","pacebench_overall","pacebench_a_cve","pacebench_b_cve","pacebench_c_cve","pacebench_d_cve","nyu_ctf","nyu_ctf_bench_crypto","nyu_ctf_bench_pwn","nyu_ctf_bench_web","nyu_ctf_bench_reverse","aisi_last_ones_100m_avg","aisi_cooling_tower_100m_avg","autoadversary_s1_autonomous_pct","autoadversary_s1_expert_pct","asis_ctf_quals_2025_percentile","corctf_2025_percentile","snakectf_quals_2025_percentile","cybergym_targeted_repro","firefox_147_full_exploit","exploitbench_v2_flags","oss_fuzz_progress_rate","aisi_advanced_suite_expert_pass_rate","glasswing_critical_vulns_found_per_month","simbian_cdb_cost_per_investigation_usd","cyber_defense_benchmark_simbian","exploitbench_tier_reached_max","exploitbench_t3_bugs_breadth","aisi_sabotage_unprompted_rate","aisi_sabotage_continuation_rate","aisi_realitytest_text_disclosure_rate","openai_ctf_internal_curated","irregular_frontiercyber_easy","irregular_frontiercyber_medium","irregular_frontiercyber_hard","irregular_frontiercyber_elite","cyscenariobench_long_horizon_solve","irregular_atomic_network_attack_sim","irregular_atomic_vuln_research_exploit","irregular_atomic_evasion","exploitgym","sandbox_bench","sre_bench","irregular_frontiercyber_overall","malware_refusals_golden_set","codex_coding_prompt_injection_ignored","anthropic_firefox_zero_day_exploit_rate","glasswing_critical_vulns_found_per_month","firefox_147_exploits","firefox_147_exploits_full_working","exploitbench_cap_pct","exploitbench_t3","cybergym_pass_at_1","cybergym_targeted_repro","firefox_147_full_working_exploit","oss_fuzz_any_crash_rate","oss_fuzz_write_primitive_rate","cybergym_any_crash_rate","cyber_vulnerabilities_disclosed_count","cyber_vulnerabilities_confirmed_count","exploitbench_mean","exploitbench_full_ace","oss_fuzz_no_score_pct","exploitbench_v8_full_ace_pct","binary_exploitation_benchmark_cfh_count","cyscenariobench_anthropic_10subset_v2","exploitbench_internal_port_2026_06_08","exploitgym_v1_openai_offline","sec_bench_pro_openai_rootcause_grader","cybergym_mimo_corrected_env","exploitbench_mimo_report","mimo_cyber_bench","wiz_cyber_arena_overall_claude_code","wiz_cyber_arena_code_vulns_claude_code","wiz_cyber_arena_api_security_claude_code","wiz_cyber_arena_websec_ctf_claude_code","wiz_cyber_arena_cloud_security_claude_code","wiz_cyber_arena_overall_adk_react","wiz_cyber_arena_code_vulns_adk_react","wiz_cyber_arena_api_security_adk_react","wiz_cyber_arena_websec_ctf_adk_react","wiz_cyber_arena_cloud_security_adk_react","htb_ai_range_owasp_top10_success_rate","caibench_base_ctf","caibench_cybench_cai_agent","caibench_cyber_ranges","ctibench_rcm","cybermetric_4500","issuetrojanbench_eem_rate_lower_better","cisco_image_safety_score"]},{id:"cyber-defense",label:"\u{1F512} Cyber Defense / Safety",note:"AA Cyber Index v1 (CWE-Bench-AA \xB7 DeepsecBench-AA \xB7 CyberGym-E2E-AA + \uAC70\uC808\uB960) \xB7 Vercel DeepsecBench \xB7 Vals CyberBench v1.1 \xB7 CyberGym-E2E \uACF5\uC2DD S1\u2013S4 \xB7 CWE-bench v1 \xB7 ZeroDayBench \xB7 SecRepoBench \xB7 EVMbench Patch \xB7 DFIR-Metric \xB7 Apollo Sabotage / Impossible-Task Lying / Eval-Awareness / Strategic Deception / Sandbagging \xB7 Dynamic Self-Harm / Mental Health / Emotional Reliance \xB7 CoT Controllability / Monitorability \xB7 Prompt Injection \xB7 First-Person Fairness \xB7 CyberSocEval \xB7 AutoPatchBench \xB7 Simbian Cyber Defense \xB7 CyberTeam (blue-team) \xB7 CTI-REALM (detection rule gen)",benchmarks:["zerodaybench","secrepobench","evmbench_patch","dfir_metric","csguard_llm_t2c_l1_asr_lower_better","csguard_llm_t2c_l2_avg_asr_lower_better","csguard_llm_c2c_avg_asr_lower_better","cwe_bench_v1","google_realworld_vuln_discovery_internal","wiz_pentest_benchmark_internal","cwe_bench_v1_pass4","cwe_bench_v1_judge_pass1","cwe_bench_v1_judge_pass4","cwe_bench_v1_cost_per_rollout_usd_lower_better","cwe_bench","cwe_bench_v0_cost_per_rollout_usd_lower_better","deepsecbench","deepsecbench_recall","deepsecbench_precision","deepsecbench_cost_usd_lower_better","vals_cyberbench_v1_1","vals_cyberbench_v1_1_poc","vals_cyberbench_v1_1_patch","vals_cyberbench_v1_1_cost_per_test_usd_lower_better","cybergym_e2e_official_s3","cybergym_e2e_official_s1","cybergym_e2e_official_s4","cybergym_e2e_official_patch_only","cybergym_e2e_official_s3_nocap","aa_cyber_index_v1","cwe_bench_aa","deepsecbench_aa","cybergym_e2e_aa","cwe_bench_aa_refusal_rate_lower_better","deepsecbench_aa_refusal_rate_lower_better","cybergym_e2e_aa_refusal_rate_lower_better","apollo_sabotage_mean","apollo_impossible_task_lying","apollo_eval_awareness","apollo_strategic_deception","apollo_sandbagging_qa","dynamic_self_harm_adversarial","dynamic_mental_health","dynamic_emotional_reliance","cot_controllability","cot_monitorability","prompt_injection","first_person_fairness","cybersoceval","autopatchbench","baxbench","ailuminate_v1","simbian_cyber_defense_coverage","cyberteam_rm_avg","cti_realm_50","not_unsafe_violent_illicit","not_unsafe_nonviolent_illicit","not_unsafe_extremism","not_unsafe_hate","not_unsafe_self_harm","not_unsafe_gore","not_unsafe_sexual","not_unsafe_sexual_minors","image_safety_violative_rate","image_safety_combined_detection","image_safety_safe_output_rate","image_safety_image_layer_detection","image_safety_prompt_layer_detection","glasswing_high_crit_vulns_found","glasswing_true_positive_rate","glasswing_cve_ghsa_assignments","cvd_vulns_disclosed_oss","cvd_oss_projects_touched","cvd_patches_upstream","enterprise_vuln_patching_count","mozilla_firefox_vulns_discovered","cloudflare_bugs_total","cloudflare_high_crit_bugs","mdash_storagedrive_recall","mdash_clfs_sys_recall","mdash_tcpip_sys_recall","mdash_windows_networking_new_vulns","single_turn_harmful_request_refusal_api","single_turn_harmful_request_refusal_claude_ai","single_turn_benign_overrefusal_api","single_turn_benign_overrefusal_claude_ai","election_integrity_harmful_api","election_integrity_benign_api","claude_code_malicious_refusal","claude_code_dual_use_success","child_safety_harmful_refusal_api","child_safety_benign_refusal_api","child_safety_multiturn_appropriate_api","suicide_self_harm_harmless_api","suicide_self_harm_multiturn_appropriate_claude_ai","disordered_eating_harmless_api","bbq_disambiguated_accuracy","bbq_ambiguous_bias","prompt_injection_bug_bounty_all","prompt_injection_bug_bounty_coding","prompt_injection_bug_bounty_tool_use","prompt_injection_bug_bounty_computer_use","static_jailbreak_cyber","static_jailbreak_bio_high_risk","static_jailbreak_bio_severe","static_jailbreak_violence_moderate","static_jailbreak_violence_severe","indirect_prompt_injection_defender_success","instruction_hierarchy_robustness","gray_swan_ipi","cyber_safety_semi_synthetic_agentic_policy_compliance","agentic_misaligned_outcome_rate_base_lower_better","agentic_misaligned_outcome_rate_with_confirmation_lower_better","codex_deployment_severity3_flag_rate_lower_better","auto_review_circumvention_rate_lower_better","warning_barrier_persistence_rate_lower_better","exploitgym_honeypot_attack_rate_lower_better","interagent_contact_speculation_rate_lower_better","external_agent_board_engagement_rate_lower_better","external_agent_board_instruction_following_rate_lower_better","codex_deployment_severity12_flag_rate_lower_better","codex_deployment_eval_awareness_rate_lower_better","apollo_false_label_rate_lower_better","anthropic_violative_vuln_discovery_flag_rate","anthropic_defensive_vuln_discovery_flag_rate_lower_better","anthropic_rewind_attacker_cyber_asr_lower_better","coding_deception_rate_v2_lower_better","broken_search_tool_failure_rate_v2_lower_better","auto_review_circumvention_rate_v2_lower_better","warning_barrier_persistence_rate_v2_lower_better"]},{id:"tool-agent",label:"\u{1F916} Tool-use Agent",note:"\u03C4-bench \xB7 \u03C4\xB2-bench \xB7 \u03C4\xB3-bench (Sierra) \xB7 MCP-Atlas \xB7 MCPMark \xB7 BFCL V4 \xB7 Toolathlon \xB7 Finance-Agent \xB7 Vending-Bench 2",benchmarks:["tau_bench","tau2_bench","tau3_bench","mcp_atlas","mcpatlas_public","mcpmark","bfcl","bfcl_v3","bfcl_v4","toolathlon","finance_agent","vending_bench_2","apex_agents_hard","apex_shortlist","skills_bench","mcp_mark","deep_planning","spreadsheetbench_v1","qwen_world_bench","cowork_bench","vitabench","clawval_mm","skillsbench","posttrainbench","tau3_banking","tau3_airline","tau3_retail","fintrace","finmcp_bench","fintoolbench"]},{id:"webcomputer-agent",label:"\u{1F310} Web / Computer-use Agent",note:"BrowseComp \xB7 OSWorld-Verified \xB7 WebArena \xB7 DeepSearchQA \xB7 METR Time Horizons \xB7 QwenWebBench \xB7 AndroidWorld \xB7 GAIA \xB7 GAIA-2",benchmarks:["browsecomp","osworld_verified","webarena","deepsearchqa","metr_time_horizons","qwen_web_bench","android_world","gaia","gaia2"]},{id:"robotics-agent",label:"\u{1F9BE} Robotics Agent (overlap with Physical AI)",note:"LIBERO 4-suite \xB7 ALOHA 4-task \xB7 RoboCasa \xB7 Unitree G1 1K demos \xB7 GR-1 real lang following \xB7 OpenX Embodiment \xB7 DexMimicGen",benchmarks:["libero","libero_spatial","libero_object","libero_goal","libero_long","aloha_4task_avg","robocasa","robocasa365","unitree_g1_1k_demos","gr1_real_lang_following","realworld_language_following","open_x_embodiment","dexmimicgen","gr1_tabletop","simpler_env_avg","roboarena_elo","robotwin_easy","robotwin_hard","simpler_widowx","robocasa_gr1","simplerenv_ood","domino_sr","aloha_real_in_domain","r2r_val_unseen_sr","robolab_droid_specific","libero_10_adaptation_2k"]},{id:"reasoning-agent",label:"\u26A1 Reasoning Agent",note:"ARC-AGI-2 \xB7 ARC-AGI-3 \xB7 Claw-Eval (Xiaomi MiMo) \xB7 Skills-Bench",benchmarks:["arc_agi_1","arc_agi_2","arc_agi_3","claw_eval"]}],BENCH_DESCRIPTIONS:{aa_cyber_index_v1:{name:"Artificial Analysis Cyber Index v1",desc:"\uBC29\uC5B4\uD615 \uC0AC\uC774\uBC84 \uC885\uD569 \uC9C0\uC218 (2026-09-28, Cyber Index Alliance: Collinear AI \xB7 IBM \xB7 NVIDIA \xB7 Vercel). CWE-Bench-AA \xB7 DeepsecBench-AA \xB7 CyberGym-E2E-AA 1/3\uC529, AA Stirrup \uD558\uB124\uC2A4, \uC548\uC804 \uAC70\uC808 \uACFC\uC81C\uB294 0\uC810(\uAC70\uC808\uB960 \uBCC4\uB3C4 \uACF5\uAC1C). 10/9 \uBCF4\uB4DC: GPT-6 Sol (Daybreak Blue) 68.7, Grok 4.7 56.4, MiMo-V2.6-Pro 56.1, GPT-6 Luna 52.7 \u2014 \uAE30\uBCF8 GPT-6 Sol 36.8 / Opus 5.5 28.7\uC740 CyberGym-E2E \uAC70\uC808(100% / 98%)\uB85C \uD558\uB77D.",source:"artificialanalysis.ai/methodology/cyber-index"},cwe_bench_aa:{name:"CWE-Bench-AA",desc:"Collinear AI CWE-bench\uC758 AA \uAD6C\uD604 \u2014 \uBE44\uACF5\uAC1C 120\uACFC\uC81C, OWASP Top 10 (2025) \uC804 \uBC94\uC8FC, C/C++\xB7Go\xB7Java\xB7JS/TS\xB7Python\xB7Rust. \uC800\uC7A5\uC18C \uAC10\uC0AC \uD6C4 \uD328\uCE58, \uACB0\uC815\uC801 \uAC80\uC99D\uAE30(\uC775\uC2A4\uD50C\uB85C\uC787 \uCC28\uB2E8 + \uC815\uC0C1 \uB3D9\uC791 \uC720\uC9C0), pass@1. Grok 4.7 \xB7 DeepSeek V4.1 Flash 68.3.",source:"artificialanalysis.ai/evaluations/cwe-bench-aa"},deepsecbench_aa:{name:"DeepsecBench-AA",desc:"Vercel DeepsecBench\uC758 AA \uAD6C\uD604 \u2014 Deepsec \uC2A4\uCE90\uB108\uAC00 \uD45C\uC2DC\uD55C \uCD5C\uB300 5\uAC1C \uD30C\uC77C\uC744 \uC870\uC0AC\uD574 \uC2E4\uC81C \uCDE8\uC57D\uC810\uC744 \uBCF4\uACE0, \uC804\uBB38\uAC00 \uAC80\uC99D \uACE8\uB4E0\uC14B \uB300\uBE44 F2 (\uC7AC\uD604\uC728 \uAC00\uC911), 3\uD68C \uC911\uC559\uAC12, \uD310\uC815 GPT-5.6 Sol (high). GPT-6 Sol \uACC4\uC5F4 46\u201348\uB85C \uCD5C\uACE0.",source:"artificialanalysis.ai/evaluations/deepsecbench-aa"},cybergym_e2e_aa:{name:"CyberGym-E2E-AA",desc:"Berkeley RDI CyberGym-E2E\uC758 AA \uAD6C\uD604 \u2014 131\uAC1C C/C++ OSS-Fuzz \uACFC\uC81C(\uD504\uB85C\uC81D\uD2B8\uB2F9 1\uAC1C): \uBA54\uBAA8\uB9AC \uC548\uC804 \uBC84\uADF8 \uBC1C\uACAC \u2192 \uD06C\uB798\uC2DC PoC \u2192 \uD328\uCE58 \uD6C4 \uAC1C\uBC1C\uC790 \uD14C\uC2A4\uD2B8 \uD1B5\uACFC(S1\u2013S3) \uC2DC \uC131\uACF5, 90\uBD84. \uAE30\uBCF8 GPT-6 Sol/Astra\uB294 \uC804 \uACFC\uC81C \uAC70\uC808, Daybreak Blue 93.1.",source:"artificialanalysis.ai/evaluations/cybergym-e2e-aa"},deepsecbench:{name:"DeepsecBench (Vercel board)",desc:"Vercel \uC6D0\uBCF8 \uBCF4\uB4DC (2026-07-27 \uACF5\uAC1C) \u2014 \uBE44\uACF5\uAC1C \uC624\uD508\uC18C\uC2A4 \uCF54\uB4DC\uBCA0\uC774\uC2A4 50\uAC1C \uC9C4\uC785 \uD30C\uC77C, 231\uAC1C \uC778\uAC04 \uD310\uC815 \uBC1C\uACAC \uACE8\uB4E0\uC14B, \uC810\uC218 = 100\xB75PR/(4P+R), 3\uD68C \uC911\uC559\uAC12, \uBAA8\uB378\uBCC4 \uBCA4\uB354 \uD558\uB124\uC2A4(Codex\xB7Claude Code\xB7Pi). GPT-6 Sol xhigh 40.9 (\uC7AC\uD604\uC728 35.8%, \uC815\uBC00\uB3C4 96%, $12.76).",source:"vercel.com/ai-gateway/leaderboards/deepsecbench"},vals_cyberbench_v1_1:{name:"Vals CyberBench v1.1",desc:"Vals AI (2026-10-07) \u2014 CyberGym \uC774\uD6C4 \uC218\uC9D1\uB41C OSS-Fuzz/ARVO \uD68C\uADC0 \uBC84\uADF8: PoC \uD2B8\uB799 60 (\uD06C\uB798\uC2DC \uC785\uB825 \uC0DD\uC131) + Patch \uD2B8\uB799 56 (\uD328\uCE58 \uD6C4 \uC228\uC740 \uC785\uB825\uC774 \uC720\uC9C0\uBCF4\uC218\uC790 \uC218\uC815\uACFC \uC77C\uCE58), mini-swe-agent, \uAC70\uC808 = \uC2E4\uD328. GPT-6 Sol 78.0, Gemini 4 Argon 77.9, GPT-6 Luna 76.3 ($0.13/\uACFC\uC81C); Opus 5.5 CVP 74.6 vs \uAE30\uBCF8 55.4.",source:"vals.ai/benchmarks/cyber"},cybergym_e2e_official_s3:{name:"CyberGym-E2E (official, S3)",desc:"cybergym.io \uACF5\uC2DD \uBCF4\uB4DC \u2014 920 \uCDE8\uC57D\uC810 / 139 \uD504\uB85C\uC81D\uD2B8, S1 PoC \u2192 S2 \uD328\uCE58 \u2192 S3 \uD14C\uC2A4\uD2B8 \uD1B5\uACFC (\uD5E4\uB4DC\uB77C\uC778) \u2192 S4 \uC815\uB2F5 \uCDE8\uC57D\uC810 \uC218\uC815. $10 \uC608\uC0B0: GPT-5.4 Codex 65.9, Gemini 3.1 Pro 43.8; \uBB34\uC81C\uD55C: AWS Continuum\xB7Opus 5 89.0 (S4 37.8).",source:"cybergym.io/cybergym-e2e"},toolathlon_verified:{name:"Toolathlon-Verified",desc:"Toolathlon \uC5D0\uC774\uC804\uD2B8 \uB3C4\uAD6C \uC0AC\uC6A9 \uBCA4\uCE58\uB9C8\uD06C\uC758 \uAC80\uC99D(Verified) \uC11C\uBE0C\uC14B \u2014 \uB2E4\uC591\uD55C \uB3C4\uAD6C + MCP \uC11C\uBE44\uC2A4\uC5D0 \uAC78\uCE5C \uD1B5\uD569 \uB3C4\uAD6C \uC0AC\uC6A9 \uB2A5\uB825. \uB192\uC744\uC218\uB85D \uC6B0\uC218. DeepSeek-V4-Flash-0731 70.3 / V4-Pro(preview) 55.9.",source:"huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"},dsbench_fullstack:{name:"DSBench-FullStack (in-house)",desc:"DeepSeek \uB0B4\uBD80(in-house) \uD480\uC2A4\uD0DD \uAC1C\uBC1C \uCF54\uB529 \uC5D0\uC774\uC804\uD2B8 \uD14C\uC2A4\uD2B8\uC14B. DeepSeek-V4-Flash-0731 68.7. \uC0AC\uB0B4 \uBCA4\uCE58\uB77C \uAD50\uCC28 \uBE44\uAD50 \uC81C\uD55C\uC801.",source:"huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"},dsbench_hard:{name:"DSBench-Hard (in-house)",desc:"DeepSeek \uB0B4\uBD80(in-house) \uACE0\uB09C\uB3C4 \uCF54\uB529 \uC5D0\uC774\uC804\uD2B8 \uBB38\uC81C \uD14C\uC2A4\uD2B8\uC14B. DeepSeek-V4-Flash-0731 59.6. \uC0AC\uB0B4 \uBCA4\uCE58\uB77C \uAD50\uCC28 \uBE44\uAD50 \uC81C\uD55C\uC801.",source:"huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"},v8_confirmed_vulns_google:{name:"V8 Engine \u2014 Confirmed Vulns (Google)",desc:"V8 JavaScript \uC5D4\uC9C4\uC5D0\uC11C \uACE0\uC815 \uD638\uCD9C \uC608\uC0B0 \uB0B4 \uBAA8\uB378\uC774 \uBC1C\uACAC\uD55C \uACE0\uC720 \uD655\uC778(confirmed) \uCDE8\uC57D\uC810 \uC218. Google DeepMind Gemini 3.5 Flash Cyber \uD3C9\uAC00. \uB192\uC744\uC218\uB85D \uC6B0\uC218(\uAC1C\uC218).",source:"deepmind.google/blog/introducing-gemini-3-5-flash-cyber"},crsbench:{name:"CRSBench",desc:"Full-pipeline Cyber Reasoning System \uD3C9\uAC00 (discovery\u2192validation\u2192proof-of-vulnerability). MAI-Cyber-1-Flash \uBAA8\uB378 \uCE74\uB4DC Section 3, POV=1200 \uAD6C\uC131.",source:"microsoft.ai/models/mai-cyber-1-flash"},cyberseceval4_threat_intel:{name:"CyberSecEval 4 \u2014 Threat Intel",desc:"CyberSecEval 4\uC758 \uC704\uD611 \uC778\uD154\uB9AC\uC804\uC2A4(threat intelligence) \uC5ED\uB7C9 \uCC28\uC6D0. Meta PurpleLlama \uAE30\uBC18, \uB192\uC744\uC218\uB85D \uC6B0\uC218.",source:"github.com/meta-llama/PurpleLlama"},cyberseceval4_malware_analysis:{name:"CyberSecEval 4 \u2014 Malware Analysis",desc:"CyberSecEval 4\uC758 \uC545\uC131\uCF54\uB4DC \uBD84\uC11D(malware analysis) \uC5ED\uB7C9 \uCC28\uC6D0. Meta PurpleLlama \uAE30\uBC18, \uB192\uC744\uC218\uB85D \uC6B0\uC218.",source:"github.com/meta-llama/PurpleLlama"},cybench:{name:"Cybench (CTF)",desc:"40\uAC1C professional-level CTF \uACFC\uC81C (crypto, web, reversing, forensics, exploitation). \uC5D0\uC774\uC804\uD2B8\uC758 \uC790\uC728 \uD574\uD0B9 \uB2A5\uB825\uC744 pass@1 \uBE44\uC728\uB85C \uCE21\uC815.",source:"cybench.github.io"},cvebench:{name:"CVE-Bench",desc:"40\uAC1C critical-severity CVE \uAE30\uBC18 \uC2E4\uC81C \uC6F9 \uC571 \uCDE8\uC57D\uC810 \uC545\uC6A9 \uBCA4\uCE58\uB9C8\uD06C. \uC81C\uB85C\uB370\uC774/\uC6D0\uB370\uC774 \uC2DC\uB098\uB9AC\uC624\uC5D0\uC11C exploit \uC131\uACF5\uB960 \uCE21\uC815.",source:"github.com/uiuc-kang-lab/cve-bench"},cybergym:{name:"CyberGym",desc:"\uC2E4\uC81C \uC624\uD508\uC18C\uC2A4 \uD504\uB85C\uC81D\uD2B8\uC5D0\uC11C \uAE30\uBC1C\uACAC \uCDE8\uC57D\uC810 \uC7AC\uD604 + \uC2E0\uADDC \uC81C\uB85C\uB370\uC774 \uBC1C\uACAC \uB2A5\uB825. $2 \uBE44\uC6A9 \uC81C\uD55C \uB0B4 \uC131\uACF5\uB960 \uCE21\uC815.",source:"cybergym.io"},evmbench_exploit:{name:"EVMbench (Exploit)",desc:"120\uAC1C Ethereum \uC2A4\uB9C8\uD2B8 \uCEE8\uD2B8\uB799\uD2B8 \uCDE8\uC57D\uC810 exploit \uC0DD\uC131. \uB85C\uCEEC EVM \uD658\uACBD\uC5D0\uC11C \uC2E4\uC81C exploit \uC131\uACF5\uB960 \uCE21\uC815.",source:"github.com/openai/evmbench"},evmbench_detect:{name:"EVMbench (Detect)",desc:"120\uAC1C Ethereum \uC2A4\uB9C8\uD2B8 \uCEE8\uD2B8\uB799\uD2B8 \uBCF4\uC548 \uAC10\uC0AC. \uCDE8\uC57D\uC810 \uD0D0\uC9C0(Audit) \uC815\uD655\uB3C4 \uCE21\uC815.",source:"github.com/openai/evmbench"},airtbench:{name:"AIRTBench",desc:"70\uAC1C AI/ML \uC2DC\uC2A4\uD15C \uB300\uC0C1 \uC790\uC728 \uB808\uB4DC\uD300 CTF. \uD504\uB86C\uD504\uD2B8 \uC778\uC81D\uC158, \uBAA8\uB378 \uC5ED\uCD94\uB860, \uC2DC\uC2A4\uD15C \uC545\uC6A9 \uB2A5\uB825 \uCE21\uC815.",source:"github.com/dreadnode/AIRTBench-Code"},autopatchbench:{name:"AutoPatchBench",desc:"136\uAC1C \uC2E4\uC81C C/C++ \uCDE8\uC57D\uC810 \uC790\uB3D9 \uD328\uCE58. Fuzzing + \uCC28\uBD84 \uD14C\uC2A4\uD2B8\uB85C \uD328\uCE58 \uC815\uD655\uC131 \uAC80\uC99D. (CyberSecEval 4)",source:"github.com/facebookresearch/CyberSecEval"},cybersoceval:{name:"CyberSOCEval",desc:"\uBCF4\uC548 \uC6B4\uC601\uC13C\uD130(SOC) \uB9EC\uC6E8\uC5B4 \uBD84\uC11D + \uC704\uD611 \uC778\uD154\uB9AC\uC804\uC2A4 \uCD94\uB860 \uB2A5\uB825 \uD3C9\uAC00. Meta + CrowdStrike \uACF5\uB3D9 \uAC1C\uBC1C.",source:"github.com/CrowdStrike/CyberSOCEval_data"},zerodaybench:{name:"ZeroDayBench",desc:"\uBBF8\uACF5\uAC1C \uC81C\uB85C\uB370\uC774 \uCDE8\uC57D\uC810 \uD0D0\uC9C0 \uBC0F \uD328\uCE58 \uB2A5\uB825. \uC815\uBCF4 \uC218\uC900\uBCC4(zero-day, +CWE, +description) \uC131\uACF5\uB960 \uCE21\uC815.",source:"arxiv.org/abs/2603.02297"},baxbench:{name:"BaxBench",desc:"392\uAC1C \uBCF4\uC548-critical \uBC31\uC5D4\uB4DC \uCF54\uB529 \uACFC\uC81C. 14\uAC1C \uD504\uB808\uC784\uC6CC\uD06C \xD7 6\uAC1C \uC5B8\uC5B4. \uC815\uD655\uC131 + \uBCF4\uC548 exploit \uB3D9\uC2DC \uD3C9\uAC00.",source:"baxbench.com"},osworld_verified:{name:"OSWorld-Verified",desc:"\uC2E4\uC81C \uCEF4\uD4E8\uD130 \uD658\uACBD(Ubuntu)\uC5D0\uC11C \uC624\uD508\uC5D4\uB514\uB4DC \uC791\uC5C5 \uC218\uD589. \uBA40\uD2F0\uBAA8\uB2EC \uC5D0\uC774\uC804\uD2B8\uC758 GUI/CLI \uC870\uC791 \uB2A5\uB825 \uCE21\uC815.",source:"os-world.github.io"},gaia:{name:"GAIA",desc:"450+ \uBE44\uC790\uBA85 \uC9C8\uBB38. \uC6F9 \uAC80\uC0C9, \uD30C\uC77C \uCC98\uB9AC, \uCF54\uB4DC \uC2E4\uD589 \uB4F1 \uB3C4\uAD6C \uD65C\uC6A9 + \uB2E4\uB2E8\uACC4 \uCD94\uB860 \uB2A5\uB825 \uC885\uD569 \uD3C9\uAC00.",source:"huggingface.co/spaces/gaia-benchmark"},browsecomp:{name:"BrowseComp",desc:"1,266\uAC1C \uB09C\uC774\uB3C4 \uB192\uC740 \uC6F9 \uC815\uBCF4 \uAC80\uC0C9 \uACFC\uC81C. \uC9C0\uC18D\uC801 \uD0D0\uC0C9\uACFC \uC815\uBCF4 \uC885\uD569 \uB2A5\uB825 \uCE21\uC815. OpenAI \uAC1C\uBC1C.",source:"openai.com/index/browsecomp"},tau_bench:{name:"TAU-bench",desc:"\uD56D\uACF5/\uB9AC\uD14C\uC77C/\uD1B5\uC2E0 \uB3C4\uBA54\uC778 \uACE0\uAC1D \uC11C\uBE44\uC2A4 \uC5D0\uC774\uC804\uD2B8 \uC2DC\uBBAC\uB808\uC774\uC158. \uB3C4\uAD6C-\uC5D0\uC774\uC804\uD2B8-\uC0AC\uC6A9\uC790 \uC0C1\uD638\uC791\uC6A9 \uC815\uD655\uB3C4 \uCE21\uC815.",source:"sierra.ai/blog/tau-bench"},metr_time_horizons:{name:"METR Time Horizons",desc:"AI \uC5D0\uC774\uC804\uD2B8\uAC00 50% \uC131\uACF5\uB960\uB85C \uC790\uC728 \uC644\uB8CC\uD560 \uC218 \uC788\uB294 \uC778\uAC04 \uC791\uC5C5 \uC2DC\uAC04 \uCE21\uC815. ML \uC5F0\uAD6C/SWE/\uC6B4\uC601 \uACFC\uC81C.",source:"metr.org/time-horizons"},tau2_bench:{name:"\u03C42-bench",desc:"Tool-Agent-User \uC0C1\uD638\uC791\uC6A9 v2. Retail/Telecom \uB3C4\uBA54\uC778 \uACE0\uAC1D \uC11C\uBE44\uC2A4 \uC5D0\uC774\uC804\uD2B8 \uC2DC\uBBAC\uB808\uC774\uC158.",source:"sierra-research/tau2-bench"},webarena:{name:"WebArena",desc:"\uC2E4\uC81C \uC6F9 \uC560\uD50C\uB9AC\uCF00\uC774\uC158\uC5D0\uC11C \uC790\uC728 \uC791\uC5C5 \uC218\uD589. CMS, \uC774\uCEE4\uBA38\uC2A4, \uD3EC\uB7FC \uB4F1 \uB2E4\uC591\uD55C \uC0AC\uC774\uD2B8 \uC790\uB3D9\uD654.",source:"webarena.dev"},deepsearchqa:{name:"DeepSearchQA",desc:"\uB2E4\uB2E8\uACC4 \uC6F9 \uB9AC\uC11C\uCE58. \uAE4A\uC740 \uBE0C\uB77C\uC6B0\uC9D5\uACFC \uC815\uBCF4 \uC885\uD569\uC774 \uD544\uC694\uD55C \uBCF5\uC7A1\uD55C \uC9C8\uBB38\uC5D0 \uB300\uD55C F1 \uC810\uC218 \uCE21\uC815.",source:"Anthropic internal"},mcp_atlas:{name:"MCP-Atlas",desc:"36\uAC1C \uC2E4\uC81C MCP \uC11C\uBC84, 220\uAC1C \uB3C4\uAD6C\uB97C \uD65C\uC6A9\uD55C 1,000\uAC1C \uBA40\uD2F0\uC2A4\uD15D \uC6CC\uD06C\uD50C\uB85C\uC6B0 \uC791\uC5C5.",source:"MCP-Atlas benchmark"},firefox_147:{name:"Firefox 147 Exploitation",desc:"\uC2E4\uC81C \uBE0C\uB77C\uC6B0\uC800 \uD06C\uB798\uC2DC \uC785\uB825\uC5D0\uC11C JS shell exploit \uC0DD\uC131. \uCF54\uB4DC \uC2E4\uD589 \uC131\uACF5\uB960 \uCE21\uC815.",source:"Anthropic internal"},cyber_range:{name:"Cyber Range",desc:"15\uAC1C \uB124\uD2B8\uC6CC\uD06C \uACF5\uACA9 \uC2DC\uB098\uB9AC\uC624 (C2, SSRF, Binary Exploit, EDR Evasion \uB4F1). \uC2DC\uB098\uB9AC\uC624 \uD1B5\uACFC\uC728 \uCE21\uC815.",source:"OpenAI internal"},dfir_metric:{name:"DFIR-Metric",desc:"\uB514\uC9C0\uD138 \uD3EC\uB80C\uC2DD \uBC0F \uC0AC\uACE0 \uB300\uC751 \uB2A5\uB825. Module I (MCQ \uC9C0\uC2DD) + Module II (CTF \uD3EC\uB80C\uC2DD \uC2E4\uC2B5).",source:"DFIR-Metric benchmark"},evmbench_patch:{name:"EVMbench (Patch)",desc:"\uC2A4\uB9C8\uD2B8 \uCEE8\uD2B8\uB799\uD2B8 \uCDE8\uC57D\uC810 \uD328\uCE58. \uAE30\uB2A5 \uBCF4\uC874\uD558\uBA74\uC11C \uBCF4\uC548 \uC218\uC815\uD558\uB294 \uB2A5\uB825 \uCE21\uC815.",source:"github.com/openai/evmbench"},swe_bench_verified:{name:"SWE-bench Verified",desc:"\uC2E4\uC81C GitHub \uC774\uC288\uB97C \uD574\uACB0\uD558\uB294 \uB2A5\uB825 \uCE21\uC815. 2,294\uAC1C \uAC80\uC99D\uB41C \uD0DC\uC2A4\uD06C. \uAC00\uC7A5 \uB110\uB9AC \uC778\uC6A9\uB418\uB294 \uCF54\uB529 \uBCA4\uCE58\uB9C8\uD06C.",source:"swebench.com"},swe_bench_pro:{name:"SWE-bench Pro",desc:"SWE-bench\uC758 \uACE0\uAE09 \uBC84\uC804. \uBCF5\uC7A1\uD55C multi-step reasoning\uC774 \uD544\uC694\uD55C \uC2E4\uC81C SW \uC5D4\uC9C0\uB2C8\uC5B4\uB9C1 \uACFC\uC81C. Verified\uC758 80%\uAC00 Pro\uC5D0\uC11C 46-58% \uC218\uC900.",source:"labs.scale.com"},terminal_bench_2:{name:"Terminal-Bench 2.0",desc:"89\uAC1C Docker \uCEE8\uD14C\uC774\uB108 \uACFC\uC81C (SWE, \uC0DD\uBB3C\uD559, \uBCF4\uC548, \uAC8C\uC784). \uC790\uC728 \uC5D0\uC774\uC804\uD2B8\uC758 \uD130\uBBF8\uB110 \uD658\uACBD \uC791\uC5C5 \uC218\uD589 \uB2A5\uB825 \uCE21\uC815.",source:"tbench.ai"},livecodebench:{name:"LiveCodeBench",desc:"\uB9E4\uC6D4 \uAC31\uC2E0\uB418\uB294 contamination-free \uCF54\uB529 \uBCA4\uCE58\uB9C8\uD06C. \uACBD\uC7C1 \uD504\uB85C\uADF8\uB798\uBC0D \uBB38\uC81C \uAE30\uBC18 pass@1 \uC815\uD655\uB3C4 \uCE21\uC815.",source:"livecodebench.github.io"},livecodebench_v6:{name:"LiveCodeBench v6",desc:"LiveCodeBench 6\uCC28 \uAC31\uC2E0\uBCF8. 2026 \uACBD\uC7C1 \uD504\uB85C\uADF8\uB798\uBC0D \uBB38\uC81C \uD3EC\uD568. Frontier \uBAA8\uB378\uB4E4\uC774 80% \uC774\uC0C1 \uB118\uC5B4\uC11C\uBA74\uC11C \uB09C\uC774\uB3C4 \uC0C1\uD5A5 \uD544\uC694\uC131 \uB300\uB450.",source:"livecodebench.github.io"},swe_bench_multilingual:{name:"SWE-bench Multilingual",desc:"SWE-bench \uB2E4\uAD6D\uC5B4 \uD655\uC7A5\uD310. Python \uC678 Java/Go/TS/JS/C++/Rust/C \uC5B8\uC5B4 \uB9AC\uD3EC\uC9C0\uD1A0\uB9AC\uC758 \uC2E4\uC81C GitHub \uC774\uC288 \uD574\uACB0 \uB2A5\uB825 \uCE21\uC815.",source:"swebench.com"},cyscenariobench:{name:"CyScenarioBench",desc:"Irregular \uD300 \uAC1C\uBC1C \uBA40\uD2F0 \uC2A4\uD15D \uC0AC\uC774\uBC84 \uACF5\uACA9 \uC2DC\uB098\uB9AC\uC624 \uD3C9\uADE0 \uC131\uACF5\uB960. GPT-5.5\uC5D0\uC11C 26% (GPT-5.4 9% \uB300\uBE44 +17pt).",source:"Irregular external eval"},tlo_cyber_range:{name:"The Last Ones (TLO)",desc:"UK AISI 32\uB2E8\uACC4 \uAE30\uC5C5 \uB124\uD2B8\uC6CC\uD06C \uACF5\uACA9 \uC2DC\uBBAC\uB808\uC774\uC158. 20 human-hour \uB09C\uC774\uB3C4. GPT-5.5\uAC00 pass@10\uC5D0\uC11C 1\uD68C \uD574\uACB0.",source:"UK AISI research"},toolathlon:{name:"Toolathlon",desc:"\uB2E4\uC601\uC5ED \uB3C4\uAD6C \uD65C\uC6A9 \uC5D0\uC774\uC804\uD2B8 \uBCA4\uCE58\uB9C8\uD06C. \uC7A5\uAE30(long-horizon) \uC6CC\uD06C\uD50C\uB85C\uC6B0\uC5D0\uC11C\uC758 \uB3C4\uAD6C \uC120\uD0DD\xB7\uC5F0\uC18D \uD638\uCD9C \uC815\uD655\uB3C4 \uCE21\uC815. Kimi K2.6 \uB9B4\uB9AC\uC2A4\uC5D0\uC11C \uC8FC\uC694 \uC9C0\uD45C.",source:"Kimi K2.6 release"},mcpmark:{name:"MCPMark",desc:"Model Context Protocol \uAE30\uBC18 \uC5D0\uC774\uC804\uD2B8 \uB3C4\uAD6C \uC0AC\uC6A9 \uBCA4\uCE58\uB9C8\uD06C. \uB2E4\uB2E8\uACC4 MCP \uC11C\uBC84 \uD638\uCD9C \uC815\uD655\uB3C4. Qwen3.6-35B-A3B \uB9B4\uB9AC\uC2A4\uC5D0\uC11C \uB3C4\uC785.",source:"Qwen3.6 release"},android_world:{name:"AndroidWorld",desc:"Android \uBAA8\uBC14\uC77C OS \uC5D0\uC774\uC804\uD2B8 \uBCA4\uCE58\uB9C8\uD06C. 20\uAC1C \uC2E4\uC81C Android \uC571\uC5D0\uC11C 116\uAC1C \uACFC\uC81C \uC218\uD589. Google Research.",source:"arxiv.org/abs/2405.14573"},qwen_web_bench:{name:"QwenWebBench",desc:"Alibaba Qwen \uD300\uC758 \uC6F9 \uBE0C\uB77C\uC6B0\uC9D5 \uC5D0\uC774\uC804\uD2B8 ELO \uD3C9\uAC00. \uBA40\uD2F0\uD134 \uC6F9 \uB124\uBE44\uAC8C\uC774\uC158 \uD0DC\uC2A4\uD06C\uC5D0\uC11C\uC758 \uC0C1\uB300 \uC21C\uC704.",source:"Qwen3.6 release"},nl2repo:{name:"NL2Repo",desc:"\uC790\uC5F0\uC5B4 \u2192 \uB9AC\uD3EC\uC9C0\uD1A0\uB9AC \uD569\uC131 \uBCA4\uCE58\uB9C8\uD06C. \uB2E8\uC77C \uD568\uC218\uAC00 \uC544\uB2CC \uC804\uCCB4 \uB9AC\uD3EC \uAD6C\uC870\uB97C NL \uBA85\uC138\uB9CC\uC73C\uB85C \uC0DD\uC131\uD558\uB294 \uC815\uD655\uB3C4 \uCE21\uC815.",source:"Qwen3.6 release"},expert_swe:{name:"Expert-SWE",desc:"OpenAI \uB0B4\uBD80 expert-level \uC18C\uD504\uD2B8\uC6E8\uC5B4 \uC5D4\uC9C0\uB2C8\uC5B4\uB9C1 \uBCA4\uCE58\uB9C8\uD06C. SWE-bench \uB300\uBE44 \uB354 \uC5B4\uB824\uC6B4 \uC2E4\uC81C \uC2DC\uB2C8\uC5B4 \uC5D4\uC9C0\uB2C8\uC5B4 \uC2DC\uB098\uB9AC\uC624.",source:"GPT-5.5 launch"},openai_ctf_professional:{name:"OpenAI CTF (Professional)",desc:"OpenAI\uAC00 \uC9C1\uC811 \uD050\uB808\uC774\uC158\uD55C professional-level CTF (web/rev/pwn/crypto/misc). pass@12 over 16 rollouts. Stanford Cybench\uC640 \uBCC4\uAC1C\uC758 \uBCA4\uCE58\uB9C8\uD06C.",source:"System Card Figure 16"},irregular_atomic_network:{name:"Irregular Atomic \u2014 Network Attack",desc:"Irregular(ex-Pattern Labs)\uC758 atomic challenge suite \uC911 Network Attack Simulation \uCE74\uD14C\uACE0\uB9AC. \uAC1C\uBCC4 \uB124\uD2B8\uC6CC\uD06C \uACF5\uACA9 skill\uC744 \uACA9\uB9AC \uD3C9\uAC00.",source:"Irregular publications"},irregular_atomic_vuln_research:{name:"Irregular Atomic \u2014 Vuln Research",desc:"Irregular atomic challenge\uC758 Vulnerability Research & Exploitation \uCE74\uD14C\uACE0\uB9AC. \uCDE8\uC57D\uC810 \uBC1C\uACAC/\uC775\uC2A4\uD50C\uB85C\uC787 primitive \uB2A5\uB825 \uCE21\uC815.",source:"Irregular publications"},irregular_atomic_evasion:{name:"Irregular Atomic \u2014 Evasion",desc:"Irregular atomic challenge\uC758 Evasion \uCE74\uD14C\uACE0\uB9AC. \uD0D0\uC9C0 \uC6B0\uD68C \uBC0F \uBC29\uC5B4 \uB3C4\uAD6C \uD68C\uD53C skill\uC744 \uACA9\uB9AC \uD3C9\uAC00.",source:"Irregular publications"},uk_aisi_narrow_cyber:{name:"UK AISI Narrow Cyber (pass@5)",desc:"UK AI Security Institute\uC758 expert-level narrow cyber \uD0DC\uC2A4\uD06C. pass@5 with 50M-token budget per attempt. TLO 32-step range\uC640 \uBCC4\uAC1C\uC758 \uD3C9\uAC00.",source:"UK AISI research"}},FRONTIER_MODELS:["mistral/mistral-large-4-preview","anthropic/claude-haiku-5.5","openai/gpt-6-sol-daybreak-blue","anthropic/claude-opus-5.5-cyber-range","google/gemini-4-argon","anthropic/claude-opus-5.5","openai/gpt-6-sol","openai/gpt-6-luna","xai/grok-4.7","xiaomi/mimo-v2.6-pro","xiaomi/mimo-v2.6-flash","openai/gpt-6.1-sol","anthropic/claude-sonnet-5.5","anthropic/claude-fable-5","anthropic/claude-mythos-5","multilingual-nlp/loopcoder-v2","weibo/vibethinker-3b","deepreinforce-ai/ornith-1.0-397b","deepreinforce-ai/ornith-1.0-35b","deepreinforce-ai/ornith-1.0-9b","cohere/north-mini-code","xai/grok-code-fast-1","anthropic/claude-opus-4.7","anthropic/claude-mythos-preview","anthropic/claude-opus-4.6","anthropic/claude-opus-4.5","anthropic/claude-sonnet-4.6","google/gemini-3.8-flash","google/gemini-3.8-flash-cyber","google/gemini-3.7-flash","google/gemini-3.5-flash","google/gemini-3.1-pro","google/gemini-3-pro","openai/gpt-5.6-sol-ultra","openai/gpt-5.6-sol","openai/gpt-5.6-terra","openai/gpt-5.6-luna","openai/gpt-6-astra","openai/gpt-5.5-instant","openai/gpt-5.5","openai/gpt-5.5-pro","openai/gpt-5.4","openai/gpt-5.4-thinking","openai/gpt-5.3-codex","openai/gpt-5.3-codex-spark","openai/gpt-5.2","openai/gpt-5","xai/grok-4.6","xai/grok-4.5","xai/grok-4-heavy","xai/grok-4.20","meta/muse-spark-open","meta/muse-wonder-full","meta/muse-wonder","meta/muse-spark","meta/muse-spark-1.2","zhipu/glm-5","zhipu/glm-5.1","zhipu/glm-5.3","zhipu/glm-5.2","moonshot/kimi-k3","tencent/hunyuan-hy3","alibaba/qwen3.7-plus","alibaba/qwen3.8-max","microsoft/mai-thinking-1","microsoft/mai-code-1-flash","microsoft/mai-cyber-1-flash","google/gemini-3.5-flash-cyber","google/gemma-4-12b","alibaba/qwen3.6-plus","alibaba/qwen3.6-27b","alibaba/qwen3.6-35b-a3b","deepseek/deepseek-v4-pro-0813","deepseek/deepseek-v4.1-flash","deepseek/deepseek-v4.1-flash-1017","minimax/m3.1-flash","moonshot/kimi-k3.1-pro","deepseek/deepseek-v4-pro-max","deepseek/deepseek-v4-flash-0731","kuaishou/kat-coder-v2.5","iquest/iquest-coder-v1-40b","jetbrains/mellum-2","cisco/foundation-sec-8b-reasoning","ibm/cyberpal-2.0-20b","deepseek/deepseek-v3.2","moonshot/kimi-k2.6","moonshot/kimi-k2.5","moonshot/kimi-k2-thinking","minimax/m3","minimax/m2.7","baidu/ernie-5.0","lg/exaone-4.5-33b","skt/ax-k1","tencent/hy3-preview","xiaomi/mimo-v2.5-pro","inclusionai/ling-2.6-1t","anthropic/claude-mythos-preview","microsoft/mdash","team-atlanta/atlantis","trailofbits/buttercup","theori/roboduck","xbow/xbow","dcipher/d-cipher","xoffense/xoffense","excalibur/excalibur","pentestgpt/pentestgpt-v2","nvidia/nemotron-nano-9b-v2","ibm/granite-4.1-8b-instruct","microsoft/phi-4-mini-instruct","huggingface/smollm3-3b","deepseek/deepseek-r1-distill-qwen-7b","mistral/mistral-medium-3.5","mistral/mistral-small-4","sber/gigachat-3.1-ultra","sber/gigachat-3.1-lightning","lg/k-exaone-236b","lg/exaone-4.5-33b","skt/ax-k1","kakao/kanana-2-30b-a3b-thinking","upstage/solar-open-100b","tencent/hy3-preview","dicta/dictalm-3.0-24b-thinking","xai/grok-build","openai/gpt-5.5-codex","microsoft/mdash","baidu/ernie-5.1","anthropic/claude-sonnet-4.5","openai/gpt-5.5-cyber","china-mobile/jt-35b-flash","microsoft/phi-4","microsoft/phi-4-multimodal"],_models:[],_benchmarks:[],_scores:[],_sortStates:{},_cycleSort:function(e,r,c){var s=this._sortStates[e]||{key:null,dir:null};s.key!==r?this._sortStates[e]={key:r,dir:c||"desc"}:s.dir==="desc"?this._sortStates[e]={key:r,dir:"asc"}:s.dir==="asc"?this._sortStates[e]={key:null,dir:null}:this._sortStates[e]={key:r,dir:c||"desc"}},_sortIndicator:function(e,r){var c=this._sortStates[e];return!c||c.key!==r?"":c.dir==="asc"?" \u25B2":c.dir==="desc"?" \u25BC":""},_makeSortableTh:function(e,r,c,s,_){var l=document.createElement("th");l.textContent=c+this._sortIndicator(e,r),l.style.cursor="pointer",l.setAttribute("role","button"),l.setAttribute("title","\uD074\uB9AD\uD558\uC5EC \uC815\uB82C ("+(s==="asc"?"asc \u2192 desc \u2192 off":"desc \u2192 asc \u2192 off")+")");var p=this._sortStates[e];return p&&p.key===r&&(l.style.color="#3b82f6",l.style.fontWeight="bold"),l.addEventListener("click",_),l},AA_CYBER:{index:"aa_cyber_index_v1",components:[{id:"cwe_bench_aa",refusal:"cwe_bench_aa_refusal_rate_lower_better",label:"CWE-Bench-AA",what:"\uAC10\uC0AC + \uD328\uCE58 (Collinear AI, 120 OWASP \uACFC\uC81C, pass@1)"},{id:"deepsecbench_aa",refusal:"deepsecbench_aa_refusal_rate_lower_better",label:"DeepsecBench-AA",what:"\uCDE8\uC57D\uC810 \uBC1C\uACAC (Vercel, \uACE8\uB4E0\uC14B \uB300\uBE44 F2 \uC911\uC559\uAC12 \xD73)"},{id:"cybergym_e2e_aa",refusal:"cybergym_e2e_aa_refusal_rate_lower_better",label:"CyberGym-E2E-AA",what:"\uBC1C\uACAC \u2192 PoC \u2192 \uD328\uCE58 (Berkeley RDI, 131 OSS-Fuzz \uACFC\uC81C)"}],methodology:[["\uCD9C\uC2DC","2026-09-28 \u2014 Cyber Index Alliance (Collinear AI \xB7 IBM \xB7 NVIDIA \xB7 Vercel) \uC640 \uD568\uAED8 \uBC1C\uD45C, \uBC29\uBC95\uB860 v1.0"],["\uBC94\uC704","\uBC29\uC5B4 \uC5C5\uBB34\uB9CC \uCE21\uC815: \uC18C\uC2A4 \uCF54\uB4DC \uAC10\uC0AC \xB7 \uC7AC\uD604 \xB7 \uD328\uCE58. \uBAA8\uB4E0 \uACFC\uC81C\uAC00 \uC18C\uC2A4 \uC811\uADFC\uC5D0\uC11C \uC2DC\uC791\uD558\uBA70 \uC775\uC2A4\uD50C\uB85C\uC787 \uC791\uC131\uC740 \uC694\uAD6C\uD558\uC9C0 \uC54A\uC74C. \uC0AC\uACE0 \uB300\uC751\xB7\uBCF4\uC548 \uCF54\uB4DC \uC791\uC131\xB7\uBC14\uC774\uB108\uB9AC/\uB77C\uC774\uBE0C \uC11C\uBC84\uB294 \uBC94\uC704 \uBC16"],["\uAD6C\uC131","CWE-Bench-AA \xB7 DeepsecBench-AA \xB7 CyberGym-E2E-AA \uB97C \uAC01 1/3 \uAC00\uC911 \uD3C9\uADE0"],["\uD558\uB124\uC2A4","AA \uC624\uD508\uC18C\uC2A4 Stirrup (\uBAA8\uB4E0 \uBAA8\uB378 \uB3D9\uC77C \uD504\uB86C\uD504\uD2B8\xB7\uB3C4\uAD6C). \uC0CC\uB4DC\uBC15\uC2A4 \uC778\uD130\uB137 \uCC28\uB2E8, CWE 2\uC2DC\uAC04 \xB7 CyberGym 90\uBD84 \xB7 Deepsec 500\uD134 \uC81C\uD55C"],["\uAC70\uC808 \uCC98\uB9AC","\uBAA8\uB378/\uC81C\uACF5\uC0AC\uAC00 \uC548\uC804\uC0C1 \uAC70\uC808\uD55C \uACFC\uC81C\uB294 0\uC810, \uAC70\uC808\uB960\uC740 \uC2E4\uD328\uC640 \uBD84\uB9AC\uD574 \uBCC4\uB3C4 \uACF5\uAC1C \u2192 \uC544\uB798 \uB9C9\uB300\uC758 \uBE57\uAE08 \uBD80\uBD84"],["\uC8FC\uC758","\uAC01 \uAD6C\uC131\uC740 AA \uC790\uCCB4 \uAD6C\uD604\uC774\uB77C \uC6D0 \uBCF4\uB4DC(cwe-bench.com \xB7 Vercel \xB7 cybergym.io)\uC640 \uC218\uCE58 \uC9C1\uC811 \uBE44\uAD50 \uBD88\uAC00"]],url:"https://artificialanalysis.ai/methodology/cyber-index"},POLICY_PAIRS:[{base:"openai/gpt-6-sol",variant:"openai/gpt-6-sol-daybreak-blue",bench:"aa_cyber_index_v1",access:"OpenAI Daybreak Blue",board:"AA Cyber Index"},{base:"anthropic/claude-opus-5.5",variant:"anthropic/claude-opus-5.5-cyber-range",bench:"vals_cyberbench_v1_1",access:"Anthropic Cyber Verification Program",board:"Vals CyberBench v1.1"},{base:"anthropic/claude-sonnet-5",variant:"anthropic/claude-sonnet-5-cyber-range",bench:"vals_cyberbench_v1_1",access:"Anthropic Cyber Range (CVP)",board:"Vals CyberBench v1.1"}],CYBER_BOARDS:[{id:"aa_cyber_index_v1",label:"AA Cyber Index v1",sub:"\uBC1C\uACAC\xB7\uC7AC\uD604\xB7\uD328\uCE58 \uC885\uD569 (\uAC70\uC808=0\uC810)",chart:!0},{id:"vals_cyberbench_v1_1",label:"Vals CyberBench v1.1",sub:"OSS-Fuzz PoC 60 + Patch 56 (10/7)",chart:!0},{id:"deepsecbench",label:"DeepsecBench (Vercel)",sub:"\uBC1C\uACAC F2 \u2014 231 \uACE8\uB4E0 \uBC1C\uACAC",chart:!0},{id:"cybergym_e2e_official_s3",label:"CyberGym-E2E (\uACF5\uC2DD, $10)",sub:"S3 = PoC + \uD328\uCE58 + \uD14C\uC2A4\uD2B8 \uD1B5\uACFC",chart:!0},{id:"cwe_bench_v1",label:"CWE-bench v1",sub:"\uAC10\uC0AC + \uD328\uCE58 (Collinear \uACF5\uC2DD)"},{id:"cybergym_e2e_aa",label:"CyberGym-E2E-AA",sub:"AA \uAD6C\uD604 131 \uACFC\uC81C"},{id:"deepsecbench_aa",label:"DeepsecBench-AA",sub:"AA \uAD6C\uD604"},{id:"cwe_bench_aa",label:"CWE-Bench-AA",sub:"AA \uAD6C\uD604"},{id:"cybergym",label:"CyberGym",sub:"\uCDE8\uC57D\uC810 \uC7AC\uD604 (\uBCA4\uB354 \uBCF4\uACE0)"},{id:"sec-bench-pro",label:"SEC-bench Pro",sub:"V8 \xB7 Firefox \xB7 Linux \uBC84\uADF8 \uD5CC\uD305"},{id:"cybench",label:"Cybench",sub:"40 CTF (\uC0C1\uC704\uAD8C \uD3EC\uD654)"},{id:"exploitbench_v8_cap_pct",label:"ExploitBench V8",sub:"N-day \uC775\uC2A4\uD50C\uB85C\uC787 \uB2A5\uB825"}],RADAR_AXES:["aa_cyber_index_v1","vals_cyberbench_v1_1","deepsecbench","cwe_bench_v1","cybergym","cybench","swe_bench_pro","terminal_bench_4_0"],_isLowerBetter:function(e){if(/lower_better/.test(e))return!0;var r=this._benchById(e);return!!(r&&/lower/i.test(r.metric||""))},_isAuxBench:function(e){if(this._isLowerBetter(e))return!0;var r=this._benchById(e),c=(r&&r.metric||"").toLowerCase();return/usd|cost|count|tokens|seconds/.test(c)||/_cost_|_usd|refusal|flag_rate/.test(e)},_fmtScore:function(e,r){if(!e)return"\u2014";var c=e.value,s=(e.unit||"").toLowerCase(),_=this._benchById(r),l=(_&&_.metric||"").toLowerCase();return s==="usd"||/usd/.test(l)?"$"+(c>=100?c.toFixed(0):c.toFixed(2)):s==="elo"||/elo/.test(l)?c.toFixed(0):s==="%"||/pct|percent|accuracy|rate|%/.test(l)?c.toFixed(1)+"%":c.toFixed(c>=100?0:1)},_cellColor:function(e,r,c,s){if(c<=r)return Theme.series[0];var _=(e-r)/(c-r);return s&&(_=1-_),_>=.95?Theme.series[0]:_>=.7?Theme.series[1]:_>=.4?Theme.series[2]:Theme.series[3]},_variantOf:function(e){for(var r=0;r<this.POLICY_PAIRS.length;r++)if(this.POLICY_PAIRS[r].variant===e)return this.POLICY_PAIRS[r];return null},_el:function(e,r,c){var s=document.createElement(e);return r&&(s.className=r),c!=null&&(s.textContent=c),s},_renderAACyberGuide:function(e,r,c){var s=this,_=this.AA_CYBER,l=document.getElementById("aa-cyber-index-guide");if(!l||!r.length)return;l.textContent="";var p=function(a){return e[a][_.index]},u=function(a){return s._getModelName(a)};function v(a,i){var m=s._el("p",i||"text-sm text-gray-400 leading-relaxed");return a.forEach(function(M){typeof M=="string"?m.appendChild(document.createTextNode(M)):m.appendChild(s._el("strong","text-gray-200",M[0]))}),m}function f(a){var i=s._el("div","rounded-lg border border-gray-800 p-4 space-y-2");return i.appendChild(s._el("h3","text-sm font-semibold text-gray-200",a)),l.appendChild(i),i}var S=r.map(p).sort(function(a,i){return a-i}),g=S.length%2?S[(S.length-1)/2]:(S[S.length/2-1]+S[S.length/2])/2,y=r.filter(function(a){return c(a)<.5}),C=r.filter(function(a){return c(a)>=.5}),w=f("\uC810\uC218\uB294 \uBB34\uC5C7\uC744 \uB73B\uD558\uB098");w.appendChild(v(["Cyber Index\uB294 \uC138 \uAC00\uC9C0 \uBC29\uC5B4 \uC5C5\uBB34 \uC810\uC218(\uAC01 0\u2013100)\uC758 ",["\uB2E8\uC21C \uD3C9\uADE0"],"\uC785\uB2C8\uB2E4. \uC608\uB97C \uB4E4\uC5B4 ",["50\uC810"],'\uC740 "\uC138 \uC5C5\uBB34\uB97C \uD3C9\uADE0\uC801\uC73C\uB85C \uC808\uBC18 \uC815\uB3C4 \uD574\uB0C8\uB2E4"\uB294 \uB73B\uC785\uB2C8\uB2E4. \uC815\uD574\uC9C4 \uD569\uACA9\uC120\uC774 \uC788\uB294 \uC810\uC218\uAC00 \uC544\uB2C8\uB77C ',["\uBAA8\uB378 \uAC04 \uC0C1\uB300 \uBE44\uAD50"],"\uC6A9 \uC22B\uC790\uC785\uB2C8\uB2E4."]));var A=s._el("ul","text-sm text-gray-400 space-y-1 list-disc pl-5");[["CWE-Bench-AA"," \u2014 \uC2E4\uC81C \uC800\uC7A5\uC18C\uC5D0\uC11C \uC9C0\uC815\uB41C \uC601\uC5ED\uC758 \uCDE8\uC57D\uC810\uC744 \uCC3E\uC544 \uAE30\uB2A5\uC744 \uAE68\uC9C0 \uC54A\uACE0 \uACE0\uCE5C \uACFC\uC81C\uC758 \uBE44\uC728. \uBD80\uBD84 \uC810\uC218 \uC5C6\uC74C. 60\uC774\uBA74 10\uAC1C \uC911 6\uAC1C\uB97C \uC644\uC804\uD788 \uD574\uACB0."],["DeepsecBench-AA"," \u2014 \uC2A4\uCE90\uB108\uAC00 \uD45C\uC2DC\uD55C \uCF54\uB4DC\uC5D0\uC11C \uC9C4\uC9DC \uCDE8\uC57D\uC810\uC744 \uBCF4\uACE0\uD55C \uC815\uD655\uB3C4(F2 \xD7 100). \uB193\uCE58\uC9C0 \uC54A\uB294 \uAC83(\uC7AC\uD604\uC728)\uC744 \uC624\uD0D0 \uC904\uC774\uAE30\uBCF4\uB2E4 2\uBC30 \uC911\uC2DC. \uC138 \uD3C9\uAC00 \uC911 \uAC00\uC7A5 \uC5B4\uB824\uC6CC \uCD5C\uACE0\uC810\uB3C4 50 \uC548\uD30E."],["CyberGym-E2E-AA"," \u2014 C/C++ \uD504\uB85C\uC81D\uD2B8\uC5D0\uC11C \uBA54\uBAA8\uB9AC \uBC84\uADF8\uB97C \uCC3E\uACE0, \uD06C\uB798\uC2DC\uB97C \uC77C\uC73C\uD0A4\uB294 \uC7AC\uD604 \uCF54\uB4DC(PoC)\uB97C \uB9CC\uB4E4\uACE0, \uD14C\uC2A4\uD2B8\uB97C \uD1B5\uACFC\uD558\uB294 \uD328\uCE58\uAE4C\uC9C0 \uB05D\uB0B8 \uACFC\uC81C\uC758 \uBE44\uC728. \uC138 \uB2E8\uACC4\uB97C \uBAA8\uB450 \uD574\uC57C \uC810\uC218."]].forEach(function(a){var i=s._el("li");i.appendChild(s._el("strong","text-gray-200",a[0])),i.appendChild(document.createTextNode(a[1])),A.appendChild(i)}),w.appendChild(A);var h=r[0],b=r[r.length-1];w.appendChild(v(["\uD604\uC7AC ",[String(r.length)+"\uAC1C \uBAA8\uB378"]," \uAE30\uC900 \uCD5C\uACE0 ",[p(h).toFixed(1)]," ("+u(h)+"), \uC911\uC559\uAC12 ",[g.toFixed(1)],", \uCD5C\uC800 ",[p(b).toFixed(1)]," ("+u(b)+"). \uC911\uC559\uAC12\uBCF4\uB2E4 \uB192\uC73C\uBA74 \uC9C0\uAE08 \uCE21\uC815\uB41C \uBAA8\uB378 \uC911 \uC0C1\uC704 \uC808\uBC18\uC785\uB2C8\uB2E4."],"text-xs text-gray-500 leading-relaxed"));var o=f("\uAC70\uC808\uB960\uC740 \uBB34\uC5C7\uC744 \uB73B\uD558\uB098");o.appendChild(v(["\uAC70\uC808\uB960\uC740 \uBAA8\uB378\uC774\uB098 \uC11C\uBE44\uC2A4 \uC81C\uACF5\uC0AC\uAC00 ",['"\uBCF4\uC548\uC0C1 \uC704\uD5D8\uD560 \uC218 \uC788\uB2E4"\uBA70 \uC544\uC608 \uC2DC\uB3C4\uD558\uC9C0 \uC54A\uC740 \uACFC\uC81C\uC758 \uBE44\uC728'],'\uC785\uB2C8\uB2E4. \uAC70\uC808\uD55C \uACFC\uC81C\uB294 0\uC810\uC73C\uB85C \uACC4\uC0B0\uB418\uBBC0\uB85C, \uAC70\uC808\uC740 "\uD2C0\uB9B0 \uB2F5"\uC774 \uC544\uB2C8\uB77C "\uB2F5\uD558\uC9C0 \uC54A\uC74C"\uC73C\uB85C \uC810\uC218\uB97C \uAE4E\uC2B5\uB2C8\uB2E4. \uCC28\uD2B8\uC758 ',["\uBE57\uAE08 \uBD80\uBD84"],"(\uC548\uC804 \uAC70\uC808 \uBE44\uC911)\uC740 \uC138 \uD3C9\uAC00 \uAC70\uC808\uB960\uC758 \uD3C9\uADE0, \uC989 \uAC70\uC808 \uB54C\uBB38\uC5D0 \uC783\uC740 \uC9C0\uC218 \uC810\uC218\uC785\uB2C8\uB2E4."])),o.appendChild(v(["\uAC70\uC808\uB960\uC774 \uB192\uB2E4\uACE0 \uB2A5\uB825\uC774 \uB0AE\uC740 \uAC83\uC740 \uC544\uB2D9\uB2C8\uB2E4. \uD68C\uC0AC\uC758 ",["\uC548\uC804 \uC815\uCC45"],"\uC774 PoC(\uC7AC\uD604 \uCF54\uB4DC) \uC791\uC131 \uAC19\uC740 \uACF5\uACA9\uC5D0 \uC4F0\uC77C \uC218 \uC788\uB294 \uB2E8\uACC4\uB97C \uB9C9\uC740 \uACB0\uACFC\uC785\uB2C8\uB2E4. \uADF8\uB798\uC11C \uC774 \uC9C0\uC218\uB294 \uC21C\uC218 \uB2A5\uB825\uBCF4\uB2E4 ",['"\uAE30\uBCF8 \uC124\uC815 \uADF8\uB300\uB85C \uBC29\uC5B4 \uC5C5\uBB34\uC5D0 \uC4F8 \uB54C \uC5BC\uB9C8\uB098 \uC4F8\uBAA8 \uC788\uB098"'],"\uB97C \uBCF4\uC5EC \uC90D\uB2C8\uB2E4."]));var d=this.POLICY_PAIRS[0],x=e[d.base],t=e[d.variant];x&&t&&x[_.index]!=null&&t[_.index]!=null&&o.appendChild(v(["\uC608: ",[u(d.base)],"\uB294 "+x[_.index].toFixed(1)+"\uC810(\uAC70\uC808 \uBE44\uC911 "+c(d.base).toFixed(0)+"%)\uC774\uC9C0\uB9CC, \uAC19\uC740 \uAC00\uC911\uCE58\uC5D0 \uAC00\uB4DC\uB808\uC77C\uB9CC \uC644\uD654\uD55C ",[u(d.variant)],"("+d.access+")\uB294 "+t[_.index].toFixed(1)+"\uC810\uC785\uB2C8\uB2E4. \uCC28\uC774 "+(t[_.index]-x[_.index]).toFixed(1)+"\uC810\uC740 \uB300\uBD80\uBD84 \uC815\uCC45 \uCC28\uC774\uC785\uB2C8\uB2E4."]));var n=s._el("ul","text-xs text-gray-500 space-y-1 list-disc pl-5");[["\uB192\uC740 \uC810\uC218 + \uAC70\uC808 0%"," \u2192 \uB2A5\uB825\uC774 \uC810\uC218\uC5D0 \uADF8\uB300\uB85C \uBC18\uC601\uB41C \uACBD\uC6B0."],["\uB0AE\uC740 \uC810\uC218 + \uAC70\uC808 \uB192\uC74C"," \u2192 \uC815\uCC45 \uB54C\uBB38\uC5D0 \uC2DC\uB3C4\uD558\uC9C0 \uC54A\uC740 \uBAAB\uC774 \uD07C. \uC2E0\uB8B0 \uC811\uADFC(\u2691) \uBCC0\uD615\uC774\uB098 \uB2E4\uB978 \uBCF4\uB4DC\uC640 \uD568\uAED8 \uBCFC \uAC83."],["\uB0AE\uC740 \uC810\uC218 + \uAC70\uC808 0%"," \u2192 \uC2DC\uB3C4\uB294 \uD588\uC9C0\uB9CC \uD574\uACB0\uD558\uC9C0 \uBABB\uD568. \uC2E4\uC81C \uB2A5\uB825 \uD55C\uACC4."]].forEach(function(a){var i=s._el("li");i.appendChild(s._el("strong","text-gray-300",a[0])),i.appendChild(document.createTextNode(a[1])),n.appendChild(i)}),o.appendChild(n),o.appendChild(v(["\uD604\uC7AC \uAC70\uC808\uC774 \uC788\uB294 \uBAA8\uB378 ",[String(C.length)+"\uAC1C"],", \uAC70\uC808 0%\uC778 \uBAA8\uB378 ",[String(y.length)+"\uAC1C"],". \uAC70\uC808\uC740 \uB300\uBD80\uBD84 CyberGym-E2E(\uC7AC\uD604 \uCF54\uB4DC\uB97C \uB9CC\uB4E4\uC5B4\uC57C \uD558\uB294 \uD3C9\uAC00)\uC5D0\uC11C \uBC1C\uC0DD\uD569\uB2C8\uB2E4."],"text-xs text-gray-500 leading-relaxed"))},_renderAACyberIndex:function(){var e=this,r=this.AA_CYBER,c=this._getScoresForBenchmarks([r.index].concat(r.components.map(function(t){return t.id}),r.components.map(function(t){return t.refusal}))),s=Object.keys(c).filter(function(t){return c[t][r.index]!=null});s.sort(function(t,n){return c[n][r.index]-c[t][r.index]});function _(t){var n=0,a=0;return r.components.forEach(function(i){var m=c[t][i.refusal];m!=null&&(n+=m,a++)}),a?n/r.components.length:0}this._renderAACyberGuide(c,s,_);var l=document.getElementById("aa-cyber-index-chart");if(l){var p=echarts.init(l),u=s.map(function(t){return e._getModelName(t)});p.setOption({backgroundColor:"transparent",tooltip:{trigger:"axis",axisPointer:{type:"shadow"},formatter:function(t){var n=s[t[0].dataIndex],a=e._variantOf(n),i=[u[t[0].dataIndex]];return i.push("Cyber Index "+c[n][r.index].toFixed(1)),r.components.forEach(function(m){var M=c[n][m.id],P=c[n][m.refusal];i.push(m.label+": "+(M!=null?M.toFixed(1):"\u2014")+(P?"  (\uAC70\uC808 "+P.toFixed(0)+"%)":""))}),i.push("\uC548\uC804 \uAC70\uC808 \uBE44\uC911 "+_(n).toFixed(0)+"%"),a&&i.push("\u2691 "+a.access+" (\uAC00\uB4DC\uB808\uC77C \uC644\uD654 \uBCC0\uD615)"),i.join("<br>")}},legend:{data:["Successes (Cyber Index)","Safety blocks"],textStyle:{color:Theme.textMuted,fontSize:11},top:0},grid:{left:8,right:24,top:30,bottom:8,containLabel:!0},xAxis:{type:"value",max:100,axisLabel:{color:Theme.textMuted,formatter:"{value}%"},splitLine:{lineStyle:{color:Theme.border}}},yAxis:{type:"category",inverse:!0,data:u,axisLabel:{color:Theme.textMuted,fontSize:10,formatter:function(t,n){return(e._variantOf(s[n])?"\u2691 ":"")+(t.length>34?t.slice(0,32)+"\u2026":t)}}},series:[{name:"Successes (Cyber Index)",type:"bar",stack:"ci",barWidth:"62%",data:s.map(function(t){return+c[t][r.index].toFixed(1)}),itemStyle:{color:function(t){return e._variantOf(s[t.dataIndex])?Theme.series[4]:Theme.series[1]}},label:{show:!0,position:"insideRight",color:"#fff",fontSize:10,formatter:function(t){return t.value.toFixed(0)}}},{name:"Safety blocks",type:"bar",stack:"ci",data:s.map(function(t){return+_(t).toFixed(1)}),itemStyle:{color:"transparent",borderColor:Theme.series[3],borderWidth:1,decal:{symbol:"rect",dashArrayX:[1,0],dashArrayY:[2,4],rotation:-.785,color:Theme.series[3]}},label:{show:!0,position:"insideLeft",color:Theme.series[3],fontSize:10,formatter:function(t){return t.value>=1?t.value.toFixed(0)+"%":""}}}],aria:{enabled:!0,decal:{show:!1}}}),window.addEventListener("resize",function(){p.resize()})}var v=document.getElementById("aa-cyber-index-table");if(v){v.textContent="";var f=[{id:r.index,label:"Cyber Index"}];r.components.forEach(function(t){f.push({id:t.id,label:t.label}),f.push({id:t.refusal,label:"\uAC70\uC808\uB960",lower:!0})});var S={};f.forEach(function(t){var n=s.map(function(a){return c[a][t.id]}).filter(function(a){return a!=null});S[t.id]={min:Math.min.apply(null,n),max:Math.max.apply(null,n)}});var g=this._el("table","sota-table text-sm"),y=this._el("thead"),C=this._el("tr");["#","Model"].forEach(function(t){C.appendChild(e._el("th",null,t))}),f.forEach(function(t){var n=e._el("th",null,t.label);n.style.fontSize="11px",n.style.whiteSpace="nowrap",C.appendChild(n)});var w=this._el("th",null,"\uC548\uC804 \uAC70\uC808 \uBE44\uC911");w.style.fontSize="11px",C.appendChild(w),y.appendChild(C),g.appendChild(y);var A=this._el("tbody");s.forEach(function(t,n){var a=e._el("tr");a.appendChild(e._el("td","text-gray-500",String(n+1)));var i=e._variantOf(t),m=e._el("td",null,(i?"\u2691 ":"")+e._getModelName(t));m.style.whiteSpace="nowrap",m.style.cursor="pointer",m.title=t+(i?" \u2014 "+i.access+": \uAC19\uC740 \uAC00\uC911\uCE58, \uC0AC\uC774\uBC84 \uAC00\uB4DC\uB808\uC77C \uC644\uD654":"")+" \u2014 \uD074\uB9AD\uD558\uBA74 \uBAA8\uB378 \uC0C1\uC138",m.addEventListener("click",function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(t)}),a.appendChild(m),f.forEach(function(R){var F=e._scoreEntry(t,R.id),O=e._el("td",null,F?R.lower?F.value.toFixed(0)+"%":F.value.toFixed(1):"\u2014");O.style.textAlign="center",F?(O.style.color=R.lower?F.value>0?Theme.series[3]:Theme.textMuted:e._cellColor(F.value,S[R.id].min,S[R.id].max,!1),!R.lower&&F.value>=S[R.id].max-1e-9&&(O.style.fontWeight="bold"),O.style.cursor="pointer",O.title="\uD074\uB9AD\uD558\uBA74 \uAC80\uC99D \uC18C\uC2A4",O.addEventListener("click",function(){typeof Modal!="undefined"&&Modal.showScoreSource&&Modal.showScoreSource(t,R.id)})):O.style.color=Theme.textDisabled,a.appendChild(O)});var M=_(t),P=e._el("td",null,M>=.5?M.toFixed(0)+"%":"0");P.style.textAlign="center",P.style.color=M>=.5?Theme.series[3]:Theme.textMuted,M>=20&&(P.style.fontWeight="bold"),a.appendChild(P),A.appendChild(a)}),g.appendChild(A),v.appendChild(g)}var h=document.getElementById("aa-cyber-index-method");if(h){h.textContent="";var b=this._el("dl","grid grid-cols-1 md:grid-cols-[7rem_1fr] gap-x-4 gap-y-2 text-sm");r.methodology.forEach(function(t){b.appendChild(e._el("dt","text-gray-500 text-xs uppercase tracking-wider",t[0])),b.appendChild(e._el("dd","text-gray-300",t[1]))}),h.appendChild(b);var o=this._el("ul","mt-3 space-y-1 text-sm text-gray-400");r.components.forEach(function(t){var n=e._el("li");n.appendChild(e._el("strong","text-gray-200",t.label)),n.appendChild(document.createTextNode(" \u2014 "+t.what)),o.appendChild(n)}),h.appendChild(o);var d=this._el("a","text-xs text-blue-400 hover:underline mt-2 inline-block","AA \uBC29\uBC95\uB860 \uC6D0\uBB38 \u2197");d.href=r.url,d.target="_blank",d.rel="noopener",h.appendChild(d)}var x=document.getElementById("aa-cyber-policy-pairs");x&&(x.textContent="",this.POLICY_PAIRS.forEach(function(t){var n=e._scoreEntry(t.base,t.bench),a=e._scoreEntry(t.variant,t.bench);if(!(!n||!a)){var i=e._el("div","rounded-lg border border-gray-800 p-3");i.appendChild(e._el("div","text-xs text-gray-500 mb-1",t.board+" \xB7 "+t.access));var m=e._el("div","flex items-baseline gap-3");m.appendChild(e._el("span","text-gray-400 text-sm",e._getModelName(t.base)+" "+n.value.toFixed(1))),m.appendChild(e._el("span","text-gray-600","\u2192"));var M=e._el("span","text-lg font-semibold",a.value.toFixed(1));M.style.color=Theme.series[4],m.appendChild(M);var P=a.value-n.value,R=e._el("span","text-sm font-semibold",(P>=0?"+":"")+P.toFixed(1));R.style.color=P>=0?Theme.series[0]:Theme.series[3],m.appendChild(R),i.appendChild(m),x.appendChild(i)}}))},_renderCyberBoards:function(){var e=this,r=this.CYBER_BOARDS,c=document.getElementById("cyber-boards-grid");c&&(c.textContent="",r.filter(function(h){return h.chart}).forEach(function(h){var b=e._getScoresForBenchmarks([h.id]),o=Object.keys(b).sort(function(n,a){return b[a][h.id]-b[n][h.id]}).slice(0,12);if(o.length){var d=e._el("div","rounded-lg border border-gray-800 p-3");d.appendChild(e._el("div","text-sm font-semibold text-gray-200",h.label)),d.appendChild(e._el("div","text-xs text-gray-500 mb-1",h.sub+" \xB7 "+Object.keys(b).length+" models"));var x=e._el("div");x.style.height="320px",d.appendChild(x),c.appendChild(d);var t=echarts.init(x);t.setOption({backgroundColor:"transparent",tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},grid:{left:4,right:36,top:6,bottom:4,containLabel:!0},xAxis:{type:"value",axisLabel:{color:Theme.textMuted,fontSize:9},splitLine:{lineStyle:{color:Theme.border}}},yAxis:{type:"category",inverse:!0,data:o.map(function(n){return(e._variantOf(n)?"\u2691 ":"")+e._getModelName(n)}),axisLabel:{color:Theme.textMuted,fontSize:9,formatter:function(n){return n.length>26?n.slice(0,24)+"\u2026":n}}},series:[{type:"bar",barWidth:"60%",data:o.map(function(n,a){return{value:+b[n][h.id].toFixed(2),itemStyle:{color:e._variantOf(n)?Theme.series[4]:Theme.rankColor(Math.min(a,3))}}}),label:{show:!0,position:"right",color:Theme.textMuted,fontSize:9,formatter:function(n){return n.value.toFixed(1)}}}]}),window.addEventListener("resize",function(){t.resize()})}}));var s=document.getElementById("cyber-boards-table");if(!s)return;s.textContent="";var _=r.map(function(h){return h.id}),l=this._getScoresForBenchmarks(_),p=Object.keys(l).filter(function(h){var b=_.filter(function(o){return l[h][o]!=null}).length;return b>=3&&(e.FRONTIER_MODELS.indexOf(h)>=0||b>=4)}),u={};_.forEach(function(h){var b=Object.keys(l).map(function(o){return l[o][h]}).filter(function(o){return o!=null});u[h]=b.length?{min:Math.min.apply(null,b),max:Math.max.apply(null,b)}:null});function v(h){var b=0,o=0;return _.forEach(function(d){var x=l[h][d];x==null||!u[d]||u[d].max===u[d].min||(b+=(x-u[d].min)/(u[d].max-u[d].min),o++)}),o?b/o:0}var f="cyber-boards-table",S=this._sortStates[f];S&&S.key&&S.dir?p.sort(function(h,b){var o=S.key==="model"?e._getModelName(h):l[h][S.key],d=S.key==="model"?e._getModelName(b):l[b][S.key];return o==null&&d==null?0:o==null?1:d==null?-1:typeof o=="string"?S.dir==="asc"?o.localeCompare(d):d.localeCompare(o):S.dir==="asc"?o-d:d-o}):p.sort(function(h,b){return v(b)-v(h)});var g=this._el("table","sota-table text-sm"),y=this._el("thead"),C=this._el("tr");C.appendChild(this._makeSortableTh(f,"model","Model","asc",function(){e._cycleSort(f,"model","asc"),e._renderCyberBoards()}));var w=this._el("th",null,"\uD3C9\uADE0 \uC0C1\uB300\uC21C\uC704");w.style.fontSize="11px",w.title="\uBCF4\uB4DC\uB9C8\uB2E4 \uCC99\uB3C4\uAC00 \uB2EC\uB77C (min\u2013max \uC815\uADDC\uD654) \uD3C9\uADE0",C.appendChild(w),r.forEach(function(h){var b=e._makeSortableTh(f,h.id,h.label,"desc",function(){e._cycleSort(f,h.id,"desc"),e._renderCyberBoards()});b.style.fontSize="10px",b.style.whiteSpace="nowrap",b.title=h.sub,C.appendChild(b)}),y.appendChild(C),g.appendChild(y);var A=this._el("tbody");p.forEach(function(h){var b=e._el("tr"),o=e._variantOf(h),d=e._el("td",null,(o?"\u2691 ":"")+e._getModelName(h));d.style.whiteSpace="nowrap",d.style.cursor="pointer",d.title=h,d.addEventListener("click",function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(h)}),b.appendChild(d);var x=e._el("td",null,(v(h)*100).toFixed(0));x.style.textAlign="center",x.style.color=Theme.textMuted,b.appendChild(x),_.forEach(function(t){var n=e._scoreEntry(h,t),a=e._el("td",null,n?e._fmtScore(n,t):"\u2014");a.style.textAlign="center",n&&u[t]?(a.style.color=e._cellColor(n.value,u[t].min,u[t].max,!1),n.value>=u[t].max-1e-9&&(a.style.fontWeight="bold"),a.style.cursor="pointer",a.title="\uD074\uB9AD\uD558\uBA74 \uAC80\uC99D \uC18C\uC2A4",a.addEventListener("click",function(){typeof Modal!="undefined"&&Modal.showScoreSource&&Modal.showScoreSource(h,t)})):a.style.color=Theme.textDisabled,b.appendChild(a)}),A.appendChild(b)}),g.appendChild(A),s.appendChild(g)},init:function(e,r,c){this._models=e,this._benchmarks=r,this._scores=c,this._invalidateScoreCache(),this._benchByIdMap=null,this._modelByIdMap=null},render:function(){this._models=App.data.models,this._benchmarks=App.data.benchmarks,this._scores=App.data.scores,this._invalidateScoreCache(),this._benchByIdMap=null,this._modelByIdMap=null;var e=this;App.renderChunked("cc-render",[function(){e._renderAACyberIndex()},function(){e._renderCyberBoards()},function(){e._renderBarChart("cyber-chart",e.CYBER_BENCHMARKS,"Cybersecurity")},function(){e._renderBarChart("coding-chart",e.CODING_BENCHMARKS,"Coding")},function(){e._renderBarChart("defense-chart",e.DEFENSE_BENCHMARKS,"Cyber Defense")},function(){e._renderBarChart("agent-chart",e.AGENT_BENCHMARKS,"Agent")},function(){e._renderTable("cyber-table-container",e.CYBER_BENCHMARKS)},function(){e._renderTable("coding-table-container",e.CODING_BENCHMARKS)},function(){e._renderTable("defense-table-container",e.DEFENSE_BENCHMARKS)},function(){e._renderTable("agent-table-container",e.AGENT_BENCHMARKS)},function(){e._renderRadar()},function(){e._renderPerfSuites()},function(){e._renderDescriptions()}],function(r){r()},{first:1,budget:8})},_getScoresForBenchmarks:function(e){var r=e.slice().sort().join(",");if(this._scoreCache=this._scoreCache||{},this._scoreCache[r])return this._scoreCache[r];var c={},s=typeof App!="undefined"&&App.getScoreIndex?App.getScoreIndex():null;return s&&s.byBench?e.forEach(function(_){var l=s.byBench[_];if(l)for(var p=0;p<l.length;p++){var u=l[p];c[u.model_id]||(c[u.model_id]={}),c[u.model_id][_]=u.value}}):this._scores.forEach(function(_){e.indexOf(_.benchmark_id)!==-1&&(c[_.model_id]||(c[_.model_id]={}),c[_.model_id][_.benchmark_id]=_.value)}),this._scoreCache[r]=c,c},_invalidateScoreCache:function(){this._scoreCache=null},_getModelName:function(e){var r=this._modelById(e);return r?r.name:e.split("/").pop()},_scoreEntry:function(e,r){var c=typeof App!="undefined"&&App.getScoreIndex?App.getScoreIndex():null;return c&&c.byModelBench?c.byModelBench[e+"|"+r]||null:this._scores.find(function(s){return s.model_id===e&&s.benchmark_id===r})||null},_benchById:function(e){if(!this._benchByIdMap){var r={};(this._benchmarks||[]).forEach(function(c){r[c.id]=c}),this._benchByIdMap=r}return this._benchByIdMap[e]||null},_modelById:function(e){if(!this._modelByIdMap){var r={};(this._models||[]).forEach(function(c){r[c.id]=c}),this._modelByIdMap=r}return this._modelByIdMap[e]||null},_renderBarChart:function(e,r,c){var s=document.getElementById(e);if(!s)return;var _=echarts.init(s),l=this._getScoresForBenchmarks(r),p=this,u=/(count|cumulative|discovered|found|patches|assignments|projects|bugs|cve\/?ghsa)/i;function v(o){var d=p._benchmarks&&p._benchById(o);if(!d)return!0;var x=(d.unit||"").toLowerCase();if(x==="count"||x==="usd"||x==="s"||x==="sec"||x==="tokens")return!1;var t=(d.metric||"").toLowerCase();if(/_count$/.test(t)||/count$/.test(t)||/_usd$/.test(t)||/^cost/.test(t)||d.name&&u.test(d.name))return!1;var n=l&&Object.keys(l).map(function(i){return l[i]&&l[i][o]}).filter(function(i){return typeof i=="number"})||[];if(n.length&&Math.max.apply(null,n)>200){var a=(d.name||"").toLowerCase();if(!/elo|arena|rating/.test(a))return!1}return!0}var f=/_recall\b|_recall_|_precision\b|_pass4\b|_judge_pass|_poc$|_patch$|_s1|_s2|_s4|_patch_only|^wiz_cyber_arena_(?!overall_claude_code$)|^cti-realm$/,S=r.filter(function(o){return v(o)&&!p._isAuxBench(o)&&!f.test(o)}),g=S.map(function(o){var d=0;return Object.keys(l).forEach(function(x){l[x]&&l[x][o]&&d++}),{bid:o,count:d}}).filter(function(o){return o.count>0});g.sort(function(o,d){return d.count-o.count});var y=g.slice(0,14).map(function(o){return o.bid}),C=this.FRONTIER_MODELS.filter(function(o){return l[o]&&y.some(function(d){return l[o][d]})});C.sort(function(o,d){var x=0,t=0,n=0,a=0;return y.forEach(function(i){l[o]&&l[o][i]&&(x+=l[o][i],t++),l[d]&&l[d][i]&&(n+=l[d][i],a++)}),(a?n/a:0)-(t?x/t:0)}),C=C.slice(0,8);var w=y.map(function(o){var d=p._benchById(o);return d?d.name:o}),A=C.map(function(o){return p._getModelName(o)}),h=C.map(function(o,d){return{name:A[d],type:"bar",data:y.map(function(x){return l[o]&&l[o][x]||0}),itemStyle:{color:Theme.series[d%Theme.series.length]},barGap:"10%"}}),b={backgroundColor:"transparent",tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},legend:{data:A,textStyle:{color:Theme.textMuted,fontSize:10},top:0,type:"scroll"},grid:{left:8,right:16,bottom:60,top:40,containLabel:!0},xAxis:{type:"category",data:w,axisLabel:{color:Theme.textMuted,fontSize:9,rotate:35,interval:0,formatter:function(o){return o.length>22?o.slice(0,20)+"\u2026":o}},axisLine:{lineStyle:{color:Theme.borderStrong}}},yAxis:{type:"value",axisLabel:{color:Theme.textMuted},splitLine:{lineStyle:{color:Theme.border}}},series:h};_.setOption(b),window.addEventListener("resize",function(){_.resize()})},_renderTable:function(e,r){var c=document.getElementById(e);if(c){c.textContent="";var s=this._getScoresForBenchmarks(r),_=this,l=e,p={};Object.keys(s).forEach(function(t){Object.keys(s[t]).forEach(function(n){p[n]=(p[n]||0)+1})}),r=r.filter(function(t){return p[t]}),r.sort(function(t,n){return p[n]-p[t]});var u=s,v=Object.keys(u),f=this._sortStates[l];if(f&&f.key&&f.dir)v.sort(function(t,n){var a,i;f.key==="model"?(a=_._getModelName(t),i=_._getModelName(n)):(a=u[t][f.key],i=u[n][f.key]);var m=a==null,M=i==null;return m&&M?0:m?1:M?-1:typeof a=="string"?f.dir==="asc"?a.localeCompare(i):i.localeCompare(a):f.dir==="asc"?a-i:i-a});else{var S=r.filter(function(t){return!_._isAuxBench(t)}),g={};v.forEach(function(t){var n=0,a=0;S.forEach(function(i){var m=u[t][i];m!=null&&(n+=m,a++)}),g[t]={n:a,avg:a?n/a:0}}),v.sort(function(t,n){var a=g[t].n>=3?1:0,i=g[n].n>=3?1:0;return i-a||g[n].avg-g[t].avg})}var y=60,C=v.length;v.length>y&&(v=v.slice(0,y));var w=document.createElement("table");w.className="sota-table text-sm";var A=document.createElement("thead"),h=document.createElement("tr");h.appendChild(_._makeSortableTh(l,"model","Model","asc",function(){_._cycleSort(l,"model","asc"),_._renderTable(e,r)})),r.forEach(function(t){var n=_._benchById(t),a=n?n.name:t,i=_._makeSortableTh(l,t,a,"desc",function(m){return function(){_._cycleSort(l,m,"desc"),_._renderTable(e,r)}}(t));i.style.fontSize="11px",h.appendChild(i)}),A.appendChild(h),w.appendChild(A);var b=document.createElement("tbody"),o={},d={},x={};r.forEach(function(t){var n=-1/0,a=1/0;v.forEach(function(i){var m=u[i][t];m!=null&&(m>n&&(n=m),m<a&&(a=m))}),o[t]=n,d[t]=a,x[t]=_._isLowerBetter(t)}),v.forEach(function(t){var n=document.createElement("tr"),a=document.createElement("td");a.textContent=_._getModelName(t),a.style.whiteSpace="nowrap",a.style.cursor="pointer",a.setAttribute("role","button"),a.setAttribute("title",t+" \u2014 \uD074\uB9AD\uD558\uBA74 \uBAA8\uB378 \uC0C1\uC138"),a.addEventListener("click",function(i){return function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(i)}}(t)),n.appendChild(a),r.forEach(function(i){var m=document.createElement("td");m.style.textAlign="center";var M=u[t][i];M!=null?(m.textContent=_._fmtScore(_._scoreEntry(t,i)||{value:M},i),m.style.color=_._cellColor(M,d[i],o[i],x[i]),M===(x[i]?d[i]:o[i])&&(m.style.fontWeight="bold"),m.style.cursor="pointer",m.setAttribute("role","button"),m.setAttribute("title","\uD074\uB9AD\uD558\uBA74 \uAC80\uC99D \uC18C\uC2A4\uC640 \uC218\uC9D1\uC77C \uD45C\uC2DC"),m.addEventListener("click",function(P,R){return function(){typeof Modal!="undefined"&&Modal.showScoreSource&&Modal.showScoreSource(P,R)}}(t,i))):(m.textContent="\u2014",m.style.color=Theme.textDisabled),n.appendChild(m)}),b.appendChild(n)}),w.appendChild(b),c.appendChild(w),C>v.length&&c.appendChild(this._el("p","text-xs text-gray-500 mt-1","\uC0C1\uC704 "+v.length+" / "+C+"\uAC1C \uBAA8\uB378 \uD45C\uC2DC (\uD5E4\uB4DC\uB77C\uC778 \uC9C0\uD45C 3\uAC1C \uC774\uC0C1 \uBCF4\uC720 \uBAA8\uB378 \uC6B0\uC120, \uD3C9\uADE0\uC21C) \xB7 \uC5F4 \uBA38\uB9AC\uAE00 \uD074\uB9AD \uC2DC \uD574\uB2F9 \uC9C0\uD45C\uB85C \uC7AC\uC815\uB82C"))}},_renderRadar:function(){var e=document.getElementById("cyber-coding-radar");if(!e)return;var r=echarts.init(e),c=this,s=this.RADAR_AXES,_=this._getScoresForBenchmarks(s);function l(g){return s.filter(function(y){return _[g]&&_[g][y]!=null}).length}var p={};s.forEach(function(g){var y=0;Object.keys(_).forEach(function(C){var w=_[C][g];w!=null&&w>y&&(y=w)}),p[g]=y||100});var u=this.FRONTIER_MODELS.filter(function(g){return l(g)>=4});u.sort(function(g,y){function C(w){var A=0,h=0;return s.forEach(function(b){var o=_[w][b];o!=null&&(A+=o/p[b],h++)}),h?A/h:0}return l(y)-l(g)||C(y)-C(g)}),u=u.slice(0,6);var v=s.map(function(g){var y=c._benchById(g),C=y?y.name:g;return C=C.replace(/\s*\(.*\)$/,"").replace("SWE-bench ","SWE-").replace("Terminal-Bench ","T-Bench "),{name:C,max:Math.ceil(p[g]/10)*10}}),f=[{type:"radar",data:u.map(function(g,y){var C=Theme.rankColor(y);return{name:c._getModelName(g),value:s.map(function(w){return _[g]&&_[g][w]||0}),lineStyle:{color:C,width:2},itemStyle:{color:C},areaStyle:{color:C,opacity:.08}}})}],S={backgroundColor:"transparent",tooltip:{},legend:{data:u.map(function(g){return c._getModelName(g)}),textStyle:{color:Theme.textMuted,fontSize:11},top:0},radar:{indicator:v,shape:"polygon",splitNumber:5,axisName:{color:Theme.textMuted,fontSize:10},splitLine:{lineStyle:{color:Theme.border}},splitArea:{areaStyle:{color:["transparent"]}},axisLine:{lineStyle:{color:Theme.borderStrong}}},series:f};r.setOption(S),window.addEventListener("resize",function(){r.resize()})},_renderPerfSuites:function(){var e=document.getElementById("cyber-coding-perf-suites");if(e){e.textContent="";var r=this,c=this.PERF_SUITES.reduce(function(y,C){return y.concat(C.benchmarks)},[]),s={};c.forEach(function(y){s[y]=!0});var _={};this._scores.forEach(function(y){s[y.benchmark_id]&&(_[y.model_id]=!0)});var l=Object.keys(_).filter(function(y){return!!r._modelById(y)}),p=0,u={};this._scores.forEach(function(y){s[y.benchmark_id]&&_[y.model_id]&&(p++,u[y.benchmark_id]=(u[y.benchmark_id]||0)+1)});var v=Object.keys(u).length,f=document.createElement("p");f.className="text-xs text-gray-500 mb-3";var S=document.createElement("strong");S.className="text-gray-300",S.textContent=p+" verified scores",f.appendChild(S),f.appendChild(document.createTextNode(" across "));var g=document.createElement("strong");g.className="text-gray-300",g.textContent=String(v),f.appendChild(g),f.appendChild(document.createTextNode(" active benchmarks \xB7 "+l.length+" models \xB7 click any score cell for source/history modal \xB7 click model name for details")),e.appendChild(f),App.renderChunked("cc-perf-suites",this.PERF_SUITES,function(y,C){var w=y.benchmarks.filter(function(E){return l.some(function(k){return r._scoreEntry(k,E)!=null})});if(w.length!==0){var A=l.filter(function(E){return w.some(function(k){return r._scoreEntry(E,k)!=null})});if(A.length!==0){var h="cyber-suite-"+C,b={};A.forEach(function(E){w.forEach(function(k){var B=r._scoreEntry(E,k);B&&(b[E]||(b[E]={}),b[E][k]=B.value)})});var o=r._sortStates[h];o&&o.key&&o.dir?A.sort(function(E,k){var B,I;if(o.key==="model")B=r._getModelName(E),I=r._getModelName(k);else if(o.key==="vendor"){var T=r._modelById(E),N=r._modelById(k);B=T&&T.vendor?T.vendor:"",I=N&&N.vendor?N.vendor:""}else B=b[E]?b[E][o.key]:null,I=b[k]?b[k][o.key]:null;var z=B==null||B==="",L=I==null||I==="";return z&&L?0:z?1:L?-1:typeof B=="string"?o.dir==="asc"?B.localeCompare(I):I.localeCompare(B):o.dir==="asc"?B-I:I-B}):A.sort(function(E,k){var B=w.reduce(function(T,N){return T+(b[E]&&b[E][N]?b[E][N]:0)},0),I=w.reduce(function(T,N){return T+(b[k]&&b[k][N]?b[k][N]:0)},0);return I!==B?I-B:r._getModelName(E).localeCompare(r._getModelName(k))});var d=25,x=A.length>d;x&&(A=A.slice(0,d));var t={},n={};w.forEach(function(E){var k=-1/0,B=1/0;l.forEach(function(I){var T=r._scoreEntry(I,E);T&&(T.value>k&&(k=T.value),T.value<B&&(B=T.value))}),t[E]=k,n[E]=B});var a=document.createElement("div");a.className="mt-6 mb-2";var i=document.createElement("h4");i.className="text-sm font-semibold text-gray-200",i.textContent=y.label+"  ("+w.length+" benchmarks \xB7 "+(x?"top "+d+" / ":"")+A.length+" models)",a.appendChild(i);var m=document.createElement("p");m.className="text-xs text-gray-500",m.textContent=y.note,a.appendChild(m),e.appendChild(a);var M=document.createElement("div");M.className="overflow-x-auto";var P=document.createElement("table");P.className="sota-table text-sm";var R=document.createElement("thead"),F=document.createElement("tr");F.appendChild(r._makeSortableTh(h,"model","Model","asc",function(){r._cycleSort(h,"model","asc"),r._renderPerfSuites()}));var O=r._makeSortableTh(h,"vendor","Vendor","asc",function(){r._cycleSort(h,"vendor","asc"),r._renderPerfSuites()});O.style.fontSize="11px",F.appendChild(O),w.forEach(function(E){var k=r._benchById(E),B=k?k.name:E,I=r._makeSortableTh(h,E,B,"desc",function(T){return function(){r._cycleSort(h,T,"desc"),r._renderPerfSuites()}}(E));I.style.fontSize="10px",I.style.whiteSpace="nowrap",F.appendChild(I)}),R.appendChild(F),P.appendChild(R);var D=document.createElement("tbody");A.forEach(function(E){var k=r._modelById(E),B=document.createElement("tr"),I=document.createElement("td");I.textContent=k?k.name:E,I.style.whiteSpace="nowrap",I.style.cursor="pointer",I.title=E+" \u2014 \uD074\uB9AD\uD558\uBA74 \uBAA8\uB378 \uC0C1\uC138",I.addEventListener("click",function(N){return function(){typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(N)}}(E)),B.appendChild(I);var T=document.createElement("td");T.textContent=k&&k.vendor||"\u2014",T.style.fontSize="11px",T.style.color=Theme.textMuted,T.style.whiteSpace="nowrap",B.appendChild(T),w.forEach(function(N){var z=document.createElement("td");z.style.textAlign="center";var L=r._scoreEntry(E,N);if(L){var G=L.value,V=r._isLowerBetter(N);z.textContent=r._fmtScore(L,N),z.style.color=r._cellColor(G,n[N],t[N],V),G===(V?n[N]:t[N])&&(z.style.fontWeight="bold"),z.style.cursor="pointer",z.setAttribute("role","button"),z.title="\uD074\uB9AD\uD558\uBA74 \uAC80\uC99D \uC18C\uC2A4",z.addEventListener("click",function(W,j){return function(){typeof Modal!="undefined"&&Modal.showScoreSource&&Modal.showScoreSource(W,j)}}(E,N))}else z.textContent="\u2014",z.style.color=Theme.textDisabled;B.appendChild(z)}),D.appendChild(B)}),P.appendChild(D),M.appendChild(P),e.appendChild(M)}}},{first:1})}},_renderDescriptions:function(){var e=this,r=document.getElementById("cyber-bench-descriptions");r&&(r.textContent="",this.CYBER_BENCHMARKS.forEach(function(l){var p=e.BENCH_DESCRIPTIONS[l];if(p){var u=document.createElement("div"),v=document.createElement("strong");v.className="text-gray-200",v.textContent=p.name,u.appendChild(v),u.appendChild(document.createTextNode(" \u2014 "+p.desc));var f=document.createElement("div");f.className="text-xs text-gray-500 mt-1",f.textContent="Source: "+p.source,u.appendChild(f),r.appendChild(u)}}));var c=document.getElementById("defense-bench-descriptions");c&&(c.textContent="",this.DEFENSE_BENCHMARKS.forEach(function(l){var p=e.BENCH_DESCRIPTIONS[l];if(p){var u=document.createElement("div"),v=document.createElement("strong");v.className="text-gray-200",v.textContent=p.name,u.appendChild(v),u.appendChild(document.createTextNode(" \u2014 "+p.desc));var f=document.createElement("div");f.className="text-xs text-gray-500 mt-1",f.textContent="Source: "+p.source,u.appendChild(f),c.appendChild(u)}}));var s=document.getElementById("agent-bench-descriptions");s&&(s.textContent="",this.AGENT_BENCHMARKS.forEach(function(l){var p=e.BENCH_DESCRIPTIONS[l];if(p){var u=document.createElement("div"),v=document.createElement("strong");v.className="text-gray-200",v.textContent=p.name,u.appendChild(v),u.appendChild(document.createTextNode(" \u2014 "+p.desc));var f=document.createElement("div");f.className="text-xs text-gray-500 mt-1",f.textContent="Source: "+p.source,u.appendChild(f),s.appendChild(u)}}));var _=document.getElementById("coding-bench-descriptions");_&&(_.textContent="",this.CODING_BENCHMARKS.forEach(function(l){var p=e.BENCH_DESCRIPTIONS[l];if(p){var u=document.createElement("div"),v=document.createElement("strong");v.className="text-gray-200",v.textContent=p.name,u.appendChild(v),u.appendChild(document.createTextNode(" \u2014 "+p.desc));var f=document.createElement("div");f.className="text-xs text-gray-500 mt-1",f.textContent="Source: "+p.source,u.appendChild(f),_.appendChild(u)}}))}};
+/**
+ * Cyber & Coding tab: renders cybersecurity attack and coding capability views.
+ */
+var CyberCoding = {
+    CYBER_BENCHMARKS: ['cybench', 'cvebench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'airtbench', 'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range', 'openai_ctf_professional', 'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion', 'uk_aisi_narrow_cyber',
+        // 2026-05 ExploitBench (arxiv 2605.14153, CMU + exploitbench.ai live) — 41 V8 N-day exploit capability ladder
+        'exploitbench_ace', 'exploitbench_t3', 'exploitbench_t4', 'exploitbench_mean_score', 'exploitbench_pct',
+        // 2026-04 PACEbench (Shanghai AI Lab v1.5, arxiv 2602.14457)
+        'pacebench_overall', 'pacebench_a_cve', 'pacebench_b_cve', 'pacebench_c_cve', 'pacebench_d_cve',
+        // 2026-04 NYU CTF Bench (arxiv 2604.17159, SUNY Albany)
+        'nyu_ctf', 'nyu_ctf_bench_crypto', 'nyu_ctf_bench_pwn', 'nyu_ctf_bench_web', 'nyu_ctf_bench_reverse',
+        // 2026-05 UK AISI multi-step ranges (arxiv 2603.11214)
+        'aisi_last_ones_100m_avg', 'aisi_cooling_tower_100m_avg',
+        // 2026-04 Simbian Cyber Defense (arxiv 2604.19533) + CyberTeam blue-team (arxiv 2509.23571)
+        'simbian_cyber_defense_coverage', 'cyberteam_rm_avg',
+        // 2026-05 CTI-REALM detection rule generation (arxiv 2603.13517)
+        'cti_realm_50',
+        // 2026-05 Autonomous Adversary (arxiv 2605.06486, NRC Canada)
+        'autoadversary_s1_autonomous_pct', 'autoadversary_s1_expert_pct',
+        // 2026-05-21 Palisade Research GPT-5 at CTFs (arxiv 2511.04860) — live CTFTime 2025 competition percentiles
+        'asis_ctf_quals_2025_percentile', 'corctf_2025_percentile', 'snakectf_quals_2025_percentile',
+        // 2026-05-27 Lyptus Research — offensive-cyber time horizons (METR-style, 316 tasks × 7 benches); GPT-5.5 saturates
+        'offensive_cyber_time_horizon_p50', 'offensive_cyber_success_rate',
+        // 2026-05-28 S33 Claude Opus 4.8 System Card — harness-conflict cyber bench IDs (Section 3.3)
+        'cybergym_targeted_repro', 'firefox_147_full_exploit', 'exploitbench_v2_flags', 'oss_fuzz_progress_rate',
+        // 2026-06-19 S138 — Cyber refresh (AISI Advanced Suite + Meta CyberSecEval4 + Glasswing + Simbian CDB + ExploitBench tier)
+        'aisi_advanced_suite_expert_pass_rate', 'aisi_tlo_32step_solves_at_10',
+        'aisi_cooling_tower_solves_at_10', 'aisi_cyber_time_horizon_80pct_minutes',
+        'cyberseceval4_overall', 'glasswing_critical_vulns_found_per_month',
+        'simbian_cdb_cost_per_investigation_usd',
+        'exploitbench_tier_reached_max', 'exploitbench_t3_bugs_breadth',
+        // 2026-06-19 S140 — System card sub-benches (Opus 4.8 / GPT-5.5 / Gemini 3.1 Pro)
+        'cybergym_targeted_reproduction_no_safeguards',
+        'cybergym_targeted_reproduction_tier_3_safeguards',
+        'firefox_147_exploits_0_5', 'firefox_147_exploits_full_working',
+        // 2026-06-26 S145 — AI safety / preparedness new benches
+        'aisi_realitytest_text_disclosure_rate',
+        'aisi_last_ones_multistep_attack_pass_rate',
+        'aisi_cooling_tower_ics_pass_rate',
+        'openai_cyber_range_pass_rate', 'openai_vulnlmp_full_chain_exploit',
+        // 2026-06-27 S148b — GPT-5.6 system card deep-mine cyber sub-benches (Irregular external)
+        'openai_ctf_internal_curated',                  // S148: Sol 96.7 saturation
+        'irregular_frontiercyber_easy', 'irregular_frontiercyber_medium',
+        'irregular_frontiercyber_hard', 'irregular_frontiercyber_elite',
+        'cyscenariobench_long_horizon_solve',
+        'irregular_atomic_network_attack_sim',
+        'irregular_atomic_vuln_research_exploit',
+        'irregular_atomic_evasion',
+        // 2026-06-27 S148 — ExploitGym (S136/S143 evolution)
+        'exploitgym',
+        // 2026-09-04 S260 — GPT-6 Astra system card (Critical cyber threshold): new internal evals + Irregular aggregate
+        'sandbox_bench', 'sre_bench', 'irregular_frontiercyber_overall',
+        // 2026-09-04 S261 — GPT-5-Codex addendum: malware refusal + coding prompt injection
+        'malware_refusals_golden_set', 'codex_coding_prompt_injection_ignored',
+        // 2026-09-05 S265 — SRE-Bench paper (arXiv 2608.11469) pass@1 metrics
+        'sre_bench_capability_score', 'sre_bench_fully_solved', 'sre_bench_zero_score_lower_better',
+        // 2026-09-05 S270 — SRE-Bench paper Fig.2 (language/domain) + Fig.4 (protection presets), 0-6 rubric
+        'sre_bench_lang_c', 'sre_bench_lang_cpp', 'sre_bench_lang_rust', 'sre_bench_lang_go',
+        'sre_bench_domain_proto', 'sre_bench_domain_fmt', 'sre_bench_domain_game', 'sre_bench_domain_malw',
+        'sre_bench_domain_firm', 'sre_bench_preset_p1', 'sre_bench_preset_p2', 'sre_bench_preset_p3',
+        'sre_bench_preset_p4', 'sre_bench_preset_p5', 'sre_bench_preset_p6', 'sre_bench_preset_p7',
+        'sre_bench_preset_p8',
+        // 2026-06-14 S111 — Cybersecurity benchmark refresh (frontier + agents + 2026 boards)
+        'cybergym_v1', 'exploitbench_v8', 'firefox_147_anthropic', 'oss_fuzz_anthropic', 'cybergym_v1',
+        'uk_aisi_narrow_cyber_expert', 'uk_aisi_cyber_range_last_ones', 'uk_aisi_cyber_range_doing_life',
+        'uk_aisi_cyber_range_cooling_tower', 'openai_cyber_range_internal', 'cve_bench_v1_openai',
+        'ctf_professional_openai', 'irregular_cyscenariobench', 'gemini_key_skills_v1_hard',
+        'gemini_key_skills_v2_e2e', 'nyu_ctf_bench', 'cti-realm', 'sandbox-escape-bench', 'crackme-bench',
+        'zero-day-bench', 'fuzzingbrain-v2-aixcc', 'sec-bench-pro', 'simbian-cyber-defense',
+        'simbian-ai-soc', 'securewebarena', 'secureagentbench', 'ailuminate-continuous-stewardship',
+        'aixcc_final', 'autopenbench___ai_pentest_benchmark', 'goad_active_directory', 'hackerone_us',
+        'hackthebox', 'nyu_ctf_bench_2026', 'msrc_tcpip_recall', 'mdash_clfs_sys_recall',
+        // 2026-07-05 S154 — Anthropic Mythos/Fable/Sonnet 5 system-card offensive cyber sub-benches
+        'exploitbench_cap', 'exploitbench_mean_flags', 'oss_fuzz_any_crash', 'oss_fuzz_0_4',
+        'oss_fuzz_write_primitive_or_better_0_4', 'firefox_147_zero_day_exploit_full_working_exploit_rate',
+        'cybergym_pass_1_targeted_vuln_reproduction_1507_tasks',
+        // 2026-07-27 S212 — Microsoft MAI-Cyber-1-Flash model card (External Cyber Benchmark Results)
+        'crsbench', 'cyberseceval4_threat_intel', 'cyberseceval4_malware_analysis',
+        // 2026-07-28 S212d — Google Gemini 3.5 Flash Cyber (DeepMind blog) V8 vuln-discovery count
+        'v8_confirmed_vulns_google',
+        // 2026 S217 audit — AgentCyberRange (Fudan, multi-host enterprise ranges)
+        'agentcyberrange_web', 'agentcyberrange_post', 'container_sandbox_escape',
+        // 2026-09-23 S282 — Opus 5.5 card §3, GPT-6 Sol/Luna appendix A.8.1, MiMo-V2.6 report
+        'exploitbench_v8_full_ace_pct', 'binary_exploitation_benchmark_cfh_count', 'cyscenariobench_anthropic_10subset_v2', 'exploitbench_internal_port_2026_06_08', 'exploitgym_v1_openai_offline', 'sec_bench_pro_openai_rootcause_grader', 'cybergym_mimo_corrected_env', 'exploitbench_mimo_report', 'mimo_cyber_bench',
+        // 2026-09-24 S285 — Wiz AI Cyber Model Arena (Claude Code / ADK-ReAct harness) + HackTheBox AI Range
+        'wiz_cyber_arena_overall_claude_code', 'wiz_cyber_arena_code_vulns_claude_code', 'wiz_cyber_arena_api_security_claude_code', 'wiz_cyber_arena_websec_ctf_claude_code', 'wiz_cyber_arena_cloud_security_claude_code', 'wiz_cyber_arena_overall_adk_react', 'wiz_cyber_arena_code_vulns_adk_react', 'wiz_cyber_arena_api_security_adk_react', 'wiz_cyber_arena_websec_ctf_adk_react', 'wiz_cyber_arena_cloud_security_adk_react', 'htb_ai_range_owasp_top10_success_rate',
+        // 2026-09-24 S286 — CAIBench (Alias Robotics), CTIBench RCM, CyberMetric-4500, IssueTrojanBench, Cisco image safety
+        'caibench_base_ctf', 'caibench_cybench_cai_agent', 'caibench_cyber_ranges', 'ctibench_rcm', 'cybermetric_4500', 'issuetrojanbench_eem_rate_lower_better', 'cisco_image_safety_score'
+    ],
+    DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
+        // 2026-10-10 S300 — CS-Guard (arXiv 2609.09798): malware-generation ASR of code LLMs without guardrails (lower better)
+        'csguard_llm_t2c_l1_asr_lower_better', 'csguard_llm_t2c_l2_avg_asr_lower_better', 'csguard_llm_c2c_avg_asr_lower_better',
+        // 2026-09-30 S290 — CWE-bench v1 official board (vulnerability remediation) + Google internal vuln discovery / Wiz black-box pentest (Gemini 4 Argon launch)
+        'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
+        // 2026-10-01 S290b — cwe-bench.com: v1 pass@4 / judge-panel / cost columns, v0 board (100 tasks)
+        'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench_v1_judge_pass4', 'cwe_bench_v1_cost_per_rollout_usd_lower_better', 'cwe_bench', 'cwe_bench_v0_cost_per_rollout_usd_lower_better',
+        // 2026-10-09 S298 — Vercel DeepsecBench board (F2 / recall / precision / cost) · Vals CyberBench v1.1 (PoC + Patch) · CyberGym-E2E official board (S1–S4, $10 budget + no-cap)
+        'deepsecbench', 'deepsecbench_recall', 'deepsecbench_precision', 'deepsecbench_cost_usd_lower_better', 'vals_cyberbench_v1_1', 'vals_cyberbench_v1_1_poc', 'vals_cyberbench_v1_1_patch', 'vals_cyberbench_v1_1_cost_per_test_usd_lower_better', 'cybergym_e2e_official_s3', 'cybergym_e2e_official_s1', 'cybergym_e2e_official_s4', 'cybergym_e2e_official_patch_only', 'cybergym_e2e_official_s3_nocap',
+        // 2026-09-28 S289 — Artificial Analysis Cyber Index v1 (CWE-Bench-AA / DeepsecBench-AA / CyberGym-E2E-AA + safety-block rates)
+        'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa', 'cwe_bench_aa_refusal_rate_lower_better', 'deepsecbench_aa_refusal_rate_lower_better', 'cybergym_e2e_aa_refusal_rate_lower_better',
+        // 2026-09-23 S282b — Opus 5.5 card §3.4-3.5 safeguard flag rates / rewind-attacker ASR
+        'anthropic_violative_vuln_discovery_flag_rate', 'anthropic_defensive_vuln_discovery_flag_rate_lower_better', 'anthropic_rewind_attacker_cyber_asr_lower_better',
+        // 2026-05-28 AgentDoG 1.5 (arxiv 2605.29801, Shanghai AI Lab) — agentic-trajectory safety judging
+        'r_judge', 'atbench',
+        // 2026-09-04 S260b — GPT-6 Astra card Table 21: Daybreak Blue trusted-access defensive work
+        'daybreak_blue_vulnerability_discovery', 'daybreak_blue_vulnerability_patching',
+        'daybreak_blue_poc_exploit_creation', 'daybreak_blue_cyber_redteaming',
+        'advanced_cybersecurity_completion_rate'],
+    AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'gaia2', 'browsecomp', 'tau_bench', 'tau2_bench', 'tau3_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'arc_agi_3', 'arc_agi_3_provider_adapter_harness', 'claw_eval',
+        // 2026-05-31 S40 — Opus 4.8 + SkillOpt agentic benches
+        'automationbench', 'aeci_index', 'search_qa',
+        // 2026-06-01 S44 MiniMax M3 — PostTrainBench autonomous 12h ML loop
+        'posttrainbench',
+        // 2026-06-02 S46 Qwen3.7-Plus — multimodal agent benches
+        'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench', 'cowork_bench', 'vitabench', 'clawval_mm', 'skillsbench',
+        // 2026-06-02 S48 — Microsoft MAI Instruction Following benches
+        'if_bench_precise', 'advanced_if_rubric', 'robust_if_diverse',
+        // 2026-06-04 S52 — K-BrowseComp Korean browsing agent benches
+        'k_browsecomp_verified', 'k_browsecomp_synthetic',
+        // 2026-06-05 S54 — IBM Research + AA ITBench-AA (Kubernetes SRE)
+        'itbench_aa',
+        // 2026-06-06 S56 — SMAC-Talk + Opper Roundtable
+        'smac_talk_5v5_no_comm_winrate', 'opper_roundtable_win_rate',
+        // 2026-08-01 S220 — DeepSeek-V4-Flash-0731 agentic card (Toolathlon Verified subset)
+        'toolathlon_verified',
+        // 2026-08-02 S224b — arxiv benchmark sweep (agent leaderboards)
+        'mcp_bench', 'mcpverse', 'browsecomp_plus', 'agent_planning_benchmark', 'datagovbench'],
+    CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
+        'roadmapbench', 'chainswe_sequential', 'perfopt_bench',
+        // 2026-07-08 S175 Grok 4.5 launch — SWE-Marathon (Grok #1 29) + DeepSWE 1.0/1.1 versioned splits (Datacurve/AA)
+        'swe_marathon', 'deepswe_1_0', 'deepswe_1_1',
+        // 2026-07-20 S189 Grok 4.5 card — Mercor ApexSWE (integration + observability SWE)
+        'apexswe',
+        // 2026-05 CAD-coding specialty (3 arxiv benches + SCADBench ELO arena)
+        'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',
+        // 2026-05-30 Session 39 BenchCAD sub-tasks (Edit / QA Code / Vision2Code)
+        'benchcad_edit_acc', 'benchcad_qa_code', 'benchcad_vision2code',
+        // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
+        'kernelbench_hard', 'swe_fficiency',
+        // 2026-06-02 S46 Qwen3.7-Plus — coding agent benches
+        'terminal_bench_2_0', 'swe_multilingual', 'nl2repo', 'qwen_webdev_elo', 'qwen_svg_elo',
+        // 2026-06-02 S48 — Microsoft MAI Code/Thinking benches
+        'lcb_v6', 'artifacts_bench',
+        // 2026-06-29 S156 — Epoch + METR MirrorCode (reimplement-from-black-box CLI)
+        'mirrorcode', 'mirrorcode_solve_at_99',
+        // 2026-06-29 S157 — MirrorCode deep re-mine (per-size + cheating-rate honesty signal)
+        'mirrorcode_small', 'mirrorcode_medium', 'mirrorcode_large',
+        'mirrorcode_cheating_rate', 'mirrorcode_cost_mean_usd', 'mirrorcode_cost_max_usd',
+        // 2026-07-01 S160 — Sonnet 5 system card §8 coding benches
+        'frontiercode_v1', 'swe_bench_multimodal_sonnet5', 'swe_bench_verified_sonnet5_card',
+        // 2026-06-19 S136 — LoopCoder-v2 (arxiv 2606.18023) + VibeThinker-3B (arxiv 2606.16140) + LeetCode contests
+        'multi_swe_bench', 'leetcode-contests',
+        // 2026-06-25 S153 — DeepReinforce ORNITH 1.0 benchmark suite
+        'terminal_bench_2_1_terminus_2', 'terminal_bench_2_1_claude_code',
+        'swe_atlas_qna', 'swe_atlas_rf', 'swe_atlas_tw', 'claweval_avg',
+        // 2026-07-05 S154 — Anthropic Mythos/Fable/Sonnet 5 system-card coding benches
+        'frontierswe_mean_5', 'terminal_bench_2_1_mini_swe_agent_harness',
+        // 2026-08-01 S220 — DeepSeek-V4-Flash-0731 agentic card (internal DSBench coding-agent sets)
+        'dsbench_fullstack', 'dsbench_hard',
+        // 2026-08-02 S224 — LiveSQLBench (text-to-SQL on live databases)
+        'livesqlbench',
+        // 2026-08-02 S224b — arxiv benchmark sweep (coding leaderboards)
+        'swe_compass', 'nl2repo', 'dataclaweval',
+        'terminal_bench_4_0',  // S265
+        'evocode_bench_v2_mt4', 'evocode_bench_v2_case',  // S270 Terminal-Universe paper
+        // 2026-09-23 S282 — TB 4.0 vendor/AA ids, CursorBench 4.0, FrontierSWE v2, MiMo in-house
+        'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'mimo_code_bench', 'mimo_visual_coding',
+        // 2026-10-25 S315 — official tbench.ai TB 4.0 leaderboard metrics (pass@k, run cost/tokens/duration)
+        'terminal_bench_4_0_rerun_tbench_official', 'terminal_bench_4_0_tbench_pass_at_2', 'terminal_bench_4_0_tbench_pass_at_3', 'terminal_bench_4_0_tbench_pass_at_4', 'terminal_bench_4_0_tbench_pass_at_5', 'terminal_bench_4_0_tbench_total_cost_usd_lower_better', 'terminal_bench_4_0_tbench_cost_usd_per_task_lower_better', 'terminal_bench_4_0_tbench_total_tokens_b_lower_better', 'terminal_bench_4_0_tbench_output_tokens_m_lower_better', 'terminal_bench_4_0_tbench_avg_trial_minutes_lower_better',
+        // 2026-10-25 S315b — TB 4.0 vs 3.0 timeout/error trial share (release-post outcome grid)
+        'terminal_bench_4_0_tbench_timeout_error_rate_lower_better', 'terminal_bench_3_tbench_timeout_error_rate_lower_better',
+        // 2026-09-23 S282b — AA Coding Agent Index components (Codex harness) + MiMo report Table 7 per-harness ids
+        'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness',
+        // 2026-09-24 S285 — BaxBench, Sonar, SWE-rebench window, Kilo harness, VulcanBench v4, Epoch SWE-V run
+        'baxbench_correct', 'baxbench_insecure_of_correct_lower_better', 'baxbench_generic_security_reminder', 'baxbench_oracle_security_reminder', 'sonar_leaderboard_java_pass_pct', 'sonar_leaderboard_java_issue_density_kloc_lower_better', 'swe_rebench_2026_05_15_to_07_01', 'swe_rebench_2026_05_15_to_07_01_pass5', 'terminal_bench_2_kilo_harness', 'vulcanbench_frontier_v4_combined', 'swe_bench_verified_epoch', 'terminal_bench_1_0', 'multipl_e', 'assertllm2_bug_kill_ratio'],  // S270 Terminal-Universe paper
+
+    // ─── Performance Suites — multi-table leaderboard ───
+    // 7 thematic groupings, each with its own table. Mirrors the
+    // Physical AI / Sovereign AI 6-suite pattern but tuned for
+    // cyber-attack / cyber-defense / coding / agent scope.
+    PERF_SUITES: [
+        {
+            id: 'coding-se',
+            label: '💻 Coding & Software Engineering',
+            note: 'SWE-Verified · SWE-Pro · SWE-Multilingual · SWE-rebench · DeepSWE (Datacurve, contamination-free 113 tasks) · LiveCodeBench (+ v6) · HumanEval+ · MBPP+ · Aider Polyglot · Codeforces · GDPval-AA · SciCode · WebDev Arena · Monorepo-Bench · Expert-SWE · GSO · MLE-Bench · WeirdML v2 · PaperBench · Terminal-Bench 2 · NL2Repo · RepoBench · Vibe Code Bench',
+            benchmarks: [
+                'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'swe_rebench',
+                'deepswe_pass_at_1',
+                'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'livecodebench_elo',
+                'humaneval', 'humaneval_plus', 'mbpp', 'mbpp_plus',
+                'aider_polyglot', 'codeforces_rating', 'codeforces_elo',
+                'gdpval_aa', 'scicode', 'webdev_arena', 'monorepo_bench',
+                'expert_swe', 'gso', 'mle_bench', 'weirdml_v2', 'paperbench',
+                'terminal_bench_2', 'nl2repo', 'repobench', 'vibe_code_bench',
+                // 2026-06-02 S46 Qwen3.7-Plus coding suite
+                'terminal_bench_2_0', 'swe_multilingual', 'nl2repo', 'qwen_webdev_elo', 'qwen_svg_elo',
+                // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
+                'kernelbench_hard', 'swe_fficiency',
+                // 2026-09-23 S282
+                'terminal_bench_4_0', 'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'mimo_code_bench', 'mimo_visual_coding',
+                // 2026-09-23 S282b
+                'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness',
+                // 2026-09-24 S285 — BaxBench, Sonar, SWE-rebench window, Kilo harness, VulcanBench v4, Epoch SWE-V run
+                'baxbench_correct', 'baxbench_insecure_of_correct_lower_better', 'baxbench_generic_security_reminder', 'baxbench_oracle_security_reminder', 'sonar_leaderboard_java_pass_pct', 'sonar_leaderboard_java_issue_density_kloc_lower_better', 'swe_rebench_2026_05_15_to_07_01', 'swe_rebench_2026_05_15_to_07_01_pass5', 'terminal_bench_2_kilo_harness', 'vulcanbench_frontier_v4_combined', 'swe_bench_verified_epoch', 'terminal_bench_1_0', 'multipl_e', 'assertllm2_bug_kill_ratio'
+            ]
+        },
+        {
+            id: 'cyber-attack',
+            label: '🛡️ Cyber Attack / CTF',
+            note: 'Cybench · CyberGym · CVE-Bench · EVMbench Detect/Exploit · The Last Ones (TLO) · OpenAI CTF Professional · Firefox 147 · Cyber Range · MHBench (Multi-Host) · AIRTBench · UK AISI Narrow Cyber · CyScenarioBench · Irregular Atomic 3-suite (Network/Vuln-Research/Evasion) · AIxCC · FORTRESS · ExploitBench (V8 N-day) · PACEbench (Shanghai AI Lab) · NYU CTF Bench · AISI multi-step (Last-Ones / Cooling Tower) · Autonomous Adversary (NRC Canada)',
+            benchmarks: [
+                'cybench', 'cybergym', 'cvebench',
+                'evmbench_detect', 'evmbench_exploit',
+                'tlo_cyber_range', 'openai_ctf_professional', 'firefox_147', 'cyber_range',
+                'mhbench', 'airtbench', 'uk_aisi_narrow_cyber', 'cyscenariobench',
+                'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion',
+                'aixcc_synth_vuln', 'fortress',
+                // 2026-05 ExploitBench (arxiv 2605.14153) — V8 N-day exploit capability ladder
+                'exploitbench_ace', 'exploitbench_t3', 'exploitbench_t4', 'exploitbench_mean_score', 'exploitbench_pct',
+                // 2026-04 PACEbench (Shanghai AI Lab v1.5, arxiv 2602.14457)
+                'pacebench_overall', 'pacebench_a_cve', 'pacebench_b_cve', 'pacebench_c_cve', 'pacebench_d_cve',
+                // 2026-04 NYU CTF Bench (arxiv 2604.17159)
+                'nyu_ctf', 'nyu_ctf_bench_crypto', 'nyu_ctf_bench_pwn', 'nyu_ctf_bench_web', 'nyu_ctf_bench_reverse',
+                // 2026-05 UK AISI multi-step ranges (arxiv 2603.11214)
+                'aisi_last_ones_100m_avg', 'aisi_cooling_tower_100m_avg',
+                // 2026-05 Autonomous Adversary (arxiv 2605.06486, NRC Canada)
+                'autoadversary_s1_autonomous_pct', 'autoadversary_s1_expert_pct',
+                // 2026-05-21 Palisade Research GPT-5 at CTFs (arxiv 2511.04860) — live CTFTime 2025 percentile
+                'asis_ctf_quals_2025_percentile', 'corctf_2025_percentile', 'snakectf_quals_2025_percentile',
+                // 2026-05-28 Claude Opus 4.8 System Card cyber evals (Section 3.3)
+                'cybergym_targeted_repro', 'firefox_147_full_exploit', 'exploitbench_v2_flags', 'oss_fuzz_progress_rate',
+                // 2026-06-21 S138 AI safety preparedness (UK AISI Advanced Cyber Suite + Glasswing + Simbian)
+                'aisi_advanced_suite_expert_pass_rate',
+                'glasswing_critical_vulns_found_per_month',
+                'simbian_cdb_cost_per_investigation_usd',
+                'cyber_defense_benchmark_simbian',
+                'exploitbench_tier_reached_max', 'exploitbench_t3_bugs_breadth',
+                // 2026-06-26 S145 AISI Sabotage + RealityTest
+                'aisi_sabotage_unprompted_rate', 'aisi_sabotage_continuation_rate',
+                'aisi_realitytest_text_disclosure_rate',
+                // 2026-06-27 S148b GPT-5.6 deep-mine cyber sub-benches
+                'openai_ctf_internal_curated',
+                'irregular_frontiercyber_easy', 'irregular_frontiercyber_medium',
+                'irregular_frontiercyber_hard', 'irregular_frontiercyber_elite',
+                'cyscenariobench_long_horizon_solve',
+                'irregular_atomic_network_attack_sim',
+                'irregular_atomic_vuln_research_exploit',
+                'irregular_atomic_evasion',
+                'exploitgym',
+                // 2026-09-04 S260 GPT-6 Astra system card
+                'sandbox_bench', 'sre_bench', 'irregular_frontiercyber_overall',
+                // 2026-09-04 S261 — GPT-5-Codex addendum
+                'malware_refusals_golden_set', 'codex_coding_prompt_injection_ignored',
+                'anthropic_firefox_zero_day_exploit_rate',
+                // 2026-06-27 S148 OpenAI Daybreak / Patch the Planet
+                'glasswing_critical_vulns_found_per_month',
+                // 2026-06-28 S154 Mythos 5 + Fable 5 system card cyber benches
+                'firefox_147_exploits', 'firefox_147_exploits_full_working',
+                'exploitbench_cap_pct', 'exploitbench_t3',
+                'cybergym_pass_at_1', 'cybergym_targeted_repro',
+                // 2026-06-28 S154b Mythos 5 system card §3.2.2–3.2.4 deep-mine
+                'firefox_147_full_working_exploit',
+                'oss_fuzz_any_crash_rate', 'oss_fuzz_write_primitive_rate',
+                'cybergym_any_crash_rate',
+                // 2026-06-29 S155 Qihoo 360 Yitian Tulong (ISC.AI 2026, news_article-attribution)
+                'cyber_vulnerabilities_disclosed_count', 'cyber_vulnerabilities_confirmed_count',
+                // 2026-07-01 S160 — Sonnet 5 system card §3.2.1 + §3.2.2 detail metrics
+                'exploitbench_mean', 'exploitbench_full_ace', 'oss_fuzz_no_score_pct',
+                // 2026-09-23 S282
+                'exploitbench_v8_full_ace_pct', 'binary_exploitation_benchmark_cfh_count', 'cyscenariobench_anthropic_10subset_v2', 'exploitbench_internal_port_2026_06_08', 'exploitgym_v1_openai_offline', 'sec_bench_pro_openai_rootcause_grader', 'cybergym_mimo_corrected_env', 'exploitbench_mimo_report', 'mimo_cyber_bench',
+                // 2026-09-24 S285 — Wiz AI Cyber Model Arena + HackTheBox AI Range
+                'wiz_cyber_arena_overall_claude_code', 'wiz_cyber_arena_code_vulns_claude_code', 'wiz_cyber_arena_api_security_claude_code', 'wiz_cyber_arena_websec_ctf_claude_code', 'wiz_cyber_arena_cloud_security_claude_code', 'wiz_cyber_arena_overall_adk_react', 'wiz_cyber_arena_code_vulns_adk_react', 'wiz_cyber_arena_api_security_adk_react', 'wiz_cyber_arena_websec_ctf_adk_react', 'wiz_cyber_arena_cloud_security_adk_react', 'htb_ai_range_owasp_top10_success_rate',
+                // 2026-09-24 S286 — CAIBench (Alias Robotics), CTIBench RCM, CyberMetric-4500, IssueTrojanBench, Cisco image safety
+                'caibench_base_ctf', 'caibench_cybench_cai_agent', 'caibench_cyber_ranges', 'ctibench_rcm', 'cybermetric_4500', 'issuetrojanbench_eem_rate_lower_better', 'cisco_image_safety_score'
+            ]
+        },
+        {
+            id: 'cyber-defense',
+            label: '🔒 Cyber Defense / Safety',
+            note: 'AA Cyber Index v1 (CWE-Bench-AA · DeepsecBench-AA · CyberGym-E2E-AA + 거절률) · Vercel DeepsecBench · Vals CyberBench v1.1 · CyberGym-E2E 공식 S1–S4 · CWE-bench v1 · ZeroDayBench · SecRepoBench · EVMbench Patch · DFIR-Metric · Apollo Sabotage / Impossible-Task Lying / Eval-Awareness / Strategic Deception / Sandbagging · Dynamic Self-Harm / Mental Health / Emotional Reliance · CoT Controllability / Monitorability · Prompt Injection · First-Person Fairness · CyberSocEval · AutoPatchBench · Simbian Cyber Defense · CyberTeam (blue-team) · CTI-REALM (detection rule gen)',
+            benchmarks: [
+                'zerodaybench', 'secrepobench', 'evmbench_patch', 'dfir_metric',
+                // 2026-10-10 S300 — CS-Guard malware-generation ASR (code LLMs, no guardrail; lower better). Guard-model results live in the Guardrail tab.
+                'csguard_llm_t2c_l1_asr_lower_better', 'csguard_llm_t2c_l2_avg_asr_lower_better', 'csguard_llm_c2c_avg_asr_lower_better',
+                // 2026-09-30 S290 — CWE-bench v1 board · Google real-world vuln discovery · Wiz black-box pentest
+                'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
+                'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench_v1_judge_pass4', 'cwe_bench_v1_cost_per_rollout_usd_lower_better', 'cwe_bench', 'cwe_bench_v0_cost_per_rollout_usd_lower_better',
+                // 2026-10-09 S298 — Vercel DeepsecBench board (F2 / recall / precision / cost) · Vals CyberBench v1.1 (PoC + Patch) · CyberGym-E2E official board (S1–S4, $10 budget + no-cap)
+                'deepsecbench', 'deepsecbench_recall', 'deepsecbench_precision', 'deepsecbench_cost_usd_lower_better', 'vals_cyberbench_v1_1', 'vals_cyberbench_v1_1_poc', 'vals_cyberbench_v1_1_patch', 'vals_cyberbench_v1_1_cost_per_test_usd_lower_better', 'cybergym_e2e_official_s3', 'cybergym_e2e_official_s1', 'cybergym_e2e_official_s4', 'cybergym_e2e_official_patch_only', 'cybergym_e2e_official_s3_nocap',
+                // 2026-09-28 S289 — AA Cyber Index v1 (defensive loop: find · reproduce · patch)
+                'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa', 'cwe_bench_aa_refusal_rate_lower_better', 'deepsecbench_aa_refusal_rate_lower_better', 'cybergym_e2e_aa_refusal_rate_lower_better',
+                'apollo_sabotage_mean', 'apollo_impossible_task_lying', 'apollo_eval_awareness',
+                'apollo_strategic_deception', 'apollo_sandbagging_qa',
+                'dynamic_self_harm_adversarial', 'dynamic_mental_health', 'dynamic_emotional_reliance',
+                'cot_controllability', 'cot_monitorability',
+                'prompt_injection', 'first_person_fairness',
+                'cybersoceval', 'autopatchbench', 'baxbench',
+                // May 2026 — MLCommons AI safety v1.0 (12 hazard categories, 5-point grade scale)
+                'ailuminate_v1',
+                // 2026-04 Simbian Cyber Defense (arxiv 2604.19533) + CyberTeam blue-team (arxiv 2509.23571)
+                'simbian_cyber_defense_coverage', 'cyberteam_rm_avg',
+                // 2026-05 CTI-REALM detection-rule generation (arxiv 2603.13517)
+                'cti_realm_50',
+                // 2026-05-21 OpenAI Deployment Safety Hub — 8 production safety not_unsafe categories
+                'not_unsafe_violent_illicit', 'not_unsafe_nonviolent_illicit',
+                'not_unsafe_extremism', 'not_unsafe_hate', 'not_unsafe_self_harm',
+                'not_unsafe_gore', 'not_unsafe_sexual', 'not_unsafe_sexual_minors',
+                // 2026-04-21 ChatGPT Images 2.0 image-safety pipeline (5 metrics)
+                'image_safety_violative_rate', 'image_safety_combined_detection',
+                'image_safety_safe_output_rate', 'image_safety_image_layer_detection',
+                'image_safety_prompt_layer_detection',
+                // 2026-05-22 Anthropic Project Glasswing + Coordinated Vuln Disclosure (Mythos deployment metrics)
+                'glasswing_high_crit_vulns_found', 'glasswing_true_positive_rate',
+                'glasswing_cve_ghsa_assignments',
+                'cvd_vulns_disclosed_oss', 'cvd_oss_projects_touched', 'cvd_patches_upstream',
+                'enterprise_vuln_patching_count',
+                'mozilla_firefox_vulns_discovered',
+                'cloudflare_bugs_total', 'cloudflare_high_crit_bugs',
+                // 2026-05-12 Microsoft MDASH — internal Windows kernel deployment metrics
+                'mdash_storagedrive_recall', 'mdash_clfs_sys_recall',
+                'mdash_tcpip_sys_recall', 'mdash_windows_networking_new_vulns',
+                // 2026-06-28 S154b Mythos 5 system card §4 + §5 safeguards/agentic safety
+                'single_turn_harmful_request_refusal_api', 'single_turn_harmful_request_refusal_claude_ai',
+                'single_turn_benign_overrefusal_api', 'single_turn_benign_overrefusal_claude_ai',
+                'election_integrity_harmful_api', 'election_integrity_benign_api',
+                'claude_code_malicious_refusal', 'claude_code_dual_use_success',
+                // 2026-07-01 S160 — Sonnet 5 system card §4.2 child-safety suite
+                'child_safety_harmful_refusal_api', 'child_safety_benign_refusal_api',
+                'child_safety_multiturn_appropriate_api',
+                // 2026-07-01 S162 — Sonnet 5 SC deep re-mine §4.3-4.4 + §5 prompt injection bug bounty
+                'suicide_self_harm_harmless_api', 'suicide_self_harm_multiturn_appropriate_claude_ai',
+                'disordered_eating_harmless_api', 'bbq_disambiguated_accuracy', 'bbq_ambiguous_bias',
+                'prompt_injection_bug_bounty_all', 'prompt_injection_bug_bounty_coding',
+                'prompt_injection_bug_bounty_tool_use', 'prompt_injection_bug_bounty_computer_use',
+                // 2026-09-04 S260b — GPT-6 Astra system card: robustness + cyber-safety + agentic safety
+                'static_jailbreak_cyber', 'static_jailbreak_bio_high_risk', 'static_jailbreak_bio_severe',
+                'static_jailbreak_violence_moderate', 'static_jailbreak_violence_severe',
+                'indirect_prompt_injection_defender_success', 'instruction_hierarchy_robustness', 'gray_swan_ipi',
+                'cyber_safety_semi_synthetic_agentic_policy_compliance',
+                'agentic_misaligned_outcome_rate_base_lower_better',
+                'agentic_misaligned_outcome_rate_with_confirmation_lower_better',
+                'codex_deployment_severity3_flag_rate_lower_better',
+                // 2026-09-04 S260c — GPT-6 Astra card §8 alignment / restriction-obedience / inter-agent
+                'auto_review_circumvention_rate_lower_better', 'warning_barrier_persistence_rate_lower_better',
+                'exploitgym_honeypot_attack_rate_lower_better', 'interagent_contact_speculation_rate_lower_better',
+                'external_agent_board_engagement_rate_lower_better',
+                'external_agent_board_instruction_following_rate_lower_better',
+                'codex_deployment_severity12_flag_rate_lower_better',
+                'codex_deployment_eval_awareness_rate_lower_better', 'apollo_false_label_rate_lower_better',
+                // 2026-09-23 S282b — Opus 5.5 §3.4-3.5 + GPT-6 appendix A.6 updated alignment evals
+                'anthropic_violative_vuln_discovery_flag_rate', 'anthropic_defensive_vuln_discovery_flag_rate_lower_better', 'anthropic_rewind_attacker_cyber_asr_lower_better',
+                'coding_deception_rate_v2_lower_better', 'broken_search_tool_failure_rate_v2_lower_better', 'auto_review_circumvention_rate_v2_lower_better', 'warning_barrier_persistence_rate_v2_lower_better'
+            ]
+        },
+        {
+            id: 'tool-agent',
+            label: '🤖 Tool-use Agent',
+            note: 'τ-bench · τ²-bench · τ³-bench (Sierra) · MCP-Atlas · MCPMark · BFCL V4 · Toolathlon · Finance-Agent · Vending-Bench 2',
+            benchmarks: [
+                'tau_bench', 'tau2_bench', 'tau3_bench',
+                'mcp_atlas', 'mcpatlas_public', 'mcpmark',
+                'bfcl', 'bfcl_v3', 'bfcl_v4',
+                'toolathlon', 'finance_agent', 'vending_bench_2',
+                'apex_agents_hard', 'apex_shortlist', 'skills_bench',
+                // 2026-06-02 S46 Qwen3.7-Plus general-agent benches
+                'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench',
+                'cowork_bench', 'vitabench', 'clawval_mm', 'skillsbench',
+                // 2026-06-01 S44 MiniMax M3 PostTrainBench
+                'posttrainbench',
+                // 2026-06-23 S142 — tau3 full family (Banking + Airline + Retail) + finance tool benches
+                'tau3_banking', 'tau3_airline', 'tau3_retail',
+                'fintrace', 'finmcp_bench', 'fintoolbench'
+            ]
+        },
+        {
+            id: 'webcomputer-agent',
+            label: '🌐 Web / Computer-use Agent',
+            note: 'BrowseComp · OSWorld-Verified · WebArena · DeepSearchQA · METR Time Horizons · QwenWebBench · AndroidWorld · GAIA · GAIA-2',
+            benchmarks: [
+                'browsecomp', 'osworld_verified', 'webarena', 'deepsearchqa',
+                'metr_time_horizons', 'qwen_web_bench', 'android_world',
+                'gaia', 'gaia2'
+            ]
+        },
+        {
+            id: 'robotics-agent',
+            label: '🦾 Robotics Agent (overlap with Physical AI)',
+            note: 'LIBERO 4-suite · ALOHA 4-task · RoboCasa · Unitree G1 1K demos · GR-1 real lang following · OpenX Embodiment · DexMimicGen',
+            benchmarks: [
+                'libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long',
+                'aloha_4task_avg', 'robocasa', 'robocasa365',
+                'unitree_g1_1k_demos', 'gr1_real_lang_following', 'realworld_language_following',
+                'open_x_embodiment', 'dexmimicgen', 'gr1_tabletop',
+                'simpler_env_avg', 'roboarena_elo',
+                // 2026-06-01 S45 Qwen-VLA paper benches
+                'robotwin_easy', 'robotwin_hard', 'simpler_widowx', 'robocasa_gr1',
+                'simplerenv_ood', 'domino_sr', 'aloha_real_in_domain', 'r2r_val_unseen_sr',
+                // 2026-06-02 S46 Cosmos 3 robot policy + adaptation benches
+                'robolab_droid_specific', 'libero_10_adaptation_2k'
+            ]
+        },
+        {
+            id: 'reasoning-agent',
+            label: '⚡ Reasoning Agent',
+            note: 'ARC-AGI-2 · ARC-AGI-3 · Claw-Eval (Xiaomi MiMo) · Skills-Bench',
+            benchmarks: [
+                'arc_agi_1', 'arc_agi_2', 'arc_agi_3', 'claw_eval'
+            ]
+        }
+    ],
+
+    BENCH_DESCRIPTIONS: {
+        // 2026-10-09 S298 — cyber defense boards
+        aa_cyber_index_v1: {
+            name: 'Artificial Analysis Cyber Index v1',
+            desc: '방어형 사이버 종합 지수 (2026-09-28, Cyber Index Alliance: Collinear AI · IBM · NVIDIA · Vercel). CWE-Bench-AA · DeepsecBench-AA · CyberGym-E2E-AA 1/3씩, AA Stirrup 하네스, 안전 거절 과제는 0점(거절률 별도 공개). 10/9 보드: GPT-6 Sol (Daybreak Blue) 68.7, Grok 4.7 56.4, MiMo-V2.6-Pro 56.1, GPT-6 Luna 52.7 — 기본 GPT-6 Sol 36.8 / Opus 5.5 28.7은 CyberGym-E2E 거절(100% / 98%)로 하락.',
+            source: 'artificialanalysis.ai/methodology/cyber-index'
+        },
+        cwe_bench_aa: {
+            name: 'CWE-Bench-AA',
+            desc: 'Collinear AI CWE-bench의 AA 구현 — 비공개 120과제, OWASP Top 10 (2025) 전 범주, C/C++·Go·Java·JS/TS·Python·Rust. 저장소 감사 후 패치, 결정적 검증기(익스플로잇 차단 + 정상 동작 유지), pass@1. Grok 4.7 · DeepSeek V4.1 Flash 68.3.',
+            source: 'artificialanalysis.ai/evaluations/cwe-bench-aa'
+        },
+        deepsecbench_aa: {
+            name: 'DeepsecBench-AA',
+            desc: 'Vercel DeepsecBench의 AA 구현 — Deepsec 스캐너가 표시한 최대 5개 파일을 조사해 실제 취약점을 보고, 전문가 검증 골든셋 대비 F2 (재현율 가중), 3회 중앙값, 판정 GPT-5.6 Sol (high). GPT-6 Sol 계열 46–48로 최고.',
+            source: 'artificialanalysis.ai/evaluations/deepsecbench-aa'
+        },
+        cybergym_e2e_aa: {
+            name: 'CyberGym-E2E-AA',
+            desc: 'Berkeley RDI CyberGym-E2E의 AA 구현 — 131개 C/C++ OSS-Fuzz 과제(프로젝트당 1개): 메모리 안전 버그 발견 → 크래시 PoC → 패치 후 개발자 테스트 통과(S1–S3) 시 성공, 90분. 기본 GPT-6 Sol/Astra는 전 과제 거절, Daybreak Blue 93.1.',
+            source: 'artificialanalysis.ai/evaluations/cybergym-e2e-aa'
+        },
+        deepsecbench: {
+            name: 'DeepsecBench (Vercel board)',
+            desc: 'Vercel 원본 보드 (2026-07-27 공개) — 비공개 오픈소스 코드베이스 50개 진입 파일, 231개 인간 판정 발견 골든셋, 점수 = 100·5PR/(4P+R), 3회 중앙값, 모델별 벤더 하네스(Codex·Claude Code·Pi). GPT-6 Sol xhigh 40.9 (재현율 35.8%, 정밀도 96%, $12.76).',
+            source: 'vercel.com/ai-gateway/leaderboards/deepsecbench'
+        },
+        vals_cyberbench_v1_1: {
+            name: 'Vals CyberBench v1.1',
+            desc: 'Vals AI (2026-10-07) — CyberGym 이후 수집된 OSS-Fuzz/ARVO 회귀 버그: PoC 트랙 60 (크래시 입력 생성) + Patch 트랙 56 (패치 후 숨은 입력이 유지보수자 수정과 일치), mini-swe-agent, 거절 = 실패. GPT-6 Sol 78.0, Gemini 4 Argon 77.9, GPT-6 Luna 76.3 ($0.13/과제); Opus 5.5 CVP 74.6 vs 기본 55.4.',
+            source: 'vals.ai/benchmarks/cyber'
+        },
+        cybergym_e2e_official_s3: {
+            name: 'CyberGym-E2E (official, S3)',
+            desc: 'cybergym.io 공식 보드 — 920 취약점 / 139 프로젝트, S1 PoC → S2 패치 → S3 테스트 통과 (헤드라인) → S4 정답 취약점 수정. $10 예산: GPT-5.4 Codex 65.9, Gemini 3.1 Pro 43.8; 무제한: AWS Continuum·Opus 5 89.0 (S4 37.8).',
+            source: 'cybergym.io/cybergym-e2e'
+        },
+        toolathlon_verified: {
+            name: 'Toolathlon-Verified',
+            desc: 'Toolathlon 에이전트 도구 사용 벤치마크의 검증(Verified) 서브셋 — 다양한 도구 + MCP 서비스에 걸친 통합 도구 사용 능력. 높을수록 우수. DeepSeek-V4-Flash-0731 70.3 / V4-Pro(preview) 55.9.',
+            source: 'huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731'
+        },
+        dsbench_fullstack: {
+            name: 'DSBench-FullStack (in-house)',
+            desc: 'DeepSeek 내부(in-house) 풀스택 개발 코딩 에이전트 테스트셋. DeepSeek-V4-Flash-0731 68.7. 사내 벤치라 교차 비교 제한적.',
+            source: 'huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731'
+        },
+        dsbench_hard: {
+            name: 'DSBench-Hard (in-house)',
+            desc: 'DeepSeek 내부(in-house) 고난도 코딩 에이전트 문제 테스트셋. DeepSeek-V4-Flash-0731 59.6. 사내 벤치라 교차 비교 제한적.',
+            source: 'huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731'
+        },
+        v8_confirmed_vulns_google: {
+            name: 'V8 Engine — Confirmed Vulns (Google)',
+            desc: 'V8 JavaScript 엔진에서 고정 호출 예산 내 모델이 발견한 고유 확인(confirmed) 취약점 수. Google DeepMind Gemini 3.5 Flash Cyber 평가. 높을수록 우수(개수).',
+            source: 'deepmind.google/blog/introducing-gemini-3-5-flash-cyber'
+        },
+        crsbench: {
+            name: 'CRSBench',
+            desc: 'Full-pipeline Cyber Reasoning System 평가 (discovery→validation→proof-of-vulnerability). MAI-Cyber-1-Flash 모델 카드 Section 3, POV=1200 구성.',
+            source: 'microsoft.ai/models/mai-cyber-1-flash'
+        },
+        cyberseceval4_threat_intel: {
+            name: 'CyberSecEval 4 — Threat Intel',
+            desc: 'CyberSecEval 4의 위협 인텔리전스(threat intelligence) 역량 차원. Meta PurpleLlama 기반, 높을수록 우수.',
+            source: 'github.com/meta-llama/PurpleLlama'
+        },
+        cyberseceval4_malware_analysis: {
+            name: 'CyberSecEval 4 — Malware Analysis',
+            desc: 'CyberSecEval 4의 악성코드 분석(malware analysis) 역량 차원. Meta PurpleLlama 기반, 높을수록 우수.',
+            source: 'github.com/meta-llama/PurpleLlama'
+        },
+        cybench: {
+            name: 'Cybench (CTF)',
+            desc: '40개 professional-level CTF 과제 (crypto, web, reversing, forensics, exploitation). 에이전트의 자율 해킹 능력을 pass@1 비율로 측정.',
+            source: 'cybench.github.io'
+        },
+        cvebench: {
+            name: 'CVE-Bench',
+            desc: '40개 critical-severity CVE 기반 실제 웹 앱 취약점 악용 벤치마크. 제로데이/원데이 시나리오에서 exploit 성공률 측정.',
+            source: 'github.com/uiuc-kang-lab/cve-bench'
+        },
+        cybergym: {
+            name: 'CyberGym',
+            desc: '실제 오픈소스 프로젝트에서 기발견 취약점 재현 + 신규 제로데이 발견 능력. $2 비용 제한 내 성공률 측정.',
+            source: 'cybergym.io'
+        },
+        evmbench_exploit: {
+            name: 'EVMbench (Exploit)',
+            desc: '120개 Ethereum 스마트 컨트랙트 취약점 exploit 생성. 로컬 EVM 환경에서 실제 exploit 성공률 측정.',
+            source: 'github.com/openai/evmbench'
+        },
+        evmbench_detect: {
+            name: 'EVMbench (Detect)',
+            desc: '120개 Ethereum 스마트 컨트랙트 보안 감사. 취약점 탐지(Audit) 정확도 측정.',
+            source: 'github.com/openai/evmbench'
+        },
+        airtbench: {
+            name: 'AIRTBench',
+            desc: '70개 AI/ML 시스템 대상 자율 레드팀 CTF. 프롬프트 인젝션, 모델 역추론, 시스템 악용 능력 측정.',
+            source: 'github.com/dreadnode/AIRTBench-Code'
+        },
+        autopatchbench: {
+            name: 'AutoPatchBench',
+            desc: '136개 실제 C/C++ 취약점 자동 패치. Fuzzing + 차분 테스트로 패치 정확성 검증. (CyberSecEval 4)',
+            source: 'github.com/facebookresearch/CyberSecEval'
+        },
+        cybersoceval: {
+            name: 'CyberSOCEval',
+            desc: '보안 운영센터(SOC) 맬웨어 분석 + 위협 인텔리전스 추론 능력 평가. Meta + CrowdStrike 공동 개발.',
+            source: 'github.com/CrowdStrike/CyberSOCEval_data'
+        },
+        zerodaybench: {
+            name: 'ZeroDayBench',
+            desc: '미공개 제로데이 취약점 탐지 및 패치 능력. 정보 수준별(zero-day, +CWE, +description) 성공률 측정.',
+            source: 'arxiv.org/abs/2603.02297'
+        },
+        baxbench: {
+            name: 'BaxBench',
+            desc: '392개 보안-critical 백엔드 코딩 과제. 14개 프레임워크 × 6개 언어. 정확성 + 보안 exploit 동시 평가.',
+            source: 'baxbench.com'
+        },
+        osworld_verified: {
+            name: 'OSWorld-Verified',
+            desc: '실제 컴퓨터 환경(Ubuntu)에서 오픈엔디드 작업 수행. 멀티모달 에이전트의 GUI/CLI 조작 능력 측정.',
+            source: 'os-world.github.io'
+        },
+        gaia: {
+            name: 'GAIA',
+            desc: '450+ 비자명 질문. 웹 검색, 파일 처리, 코드 실행 등 도구 활용 + 다단계 추론 능력 종합 평가.',
+            source: 'huggingface.co/spaces/gaia-benchmark'
+        },
+        browsecomp: {
+            name: 'BrowseComp',
+            desc: '1,266개 난이도 높은 웹 정보 검색 과제. 지속적 탐색과 정보 종합 능력 측정. OpenAI 개발.',
+            source: 'openai.com/index/browsecomp'
+        },
+        tau_bench: {
+            name: 'TAU-bench',
+            desc: '항공/리테일/통신 도메인 고객 서비스 에이전트 시뮬레이션. 도구-에이전트-사용자 상호작용 정확도 측정.',
+            source: 'sierra.ai/blog/tau-bench'
+        },
+        metr_time_horizons: {
+            name: 'METR Time Horizons',
+            desc: 'AI 에이전트가 50% 성공률로 자율 완료할 수 있는 인간 작업 시간 측정. ML 연구/SWE/운영 과제.',
+            source: 'metr.org/time-horizons'
+        },
+        tau2_bench: {
+            name: 'τ2-bench',
+            desc: 'Tool-Agent-User 상호작용 v2. Retail/Telecom 도메인 고객 서비스 에이전트 시뮬레이션.',
+            source: 'sierra-research/tau2-bench'
+        },
+        webarena: {
+            name: 'WebArena',
+            desc: '실제 웹 애플리케이션에서 자율 작업 수행. CMS, 이커머스, 포럼 등 다양한 사이트 자동화.',
+            source: 'webarena.dev'
+        },
+        deepsearchqa: {
+            name: 'DeepSearchQA',
+            desc: '다단계 웹 리서치. 깊은 브라우징과 정보 종합이 필요한 복잡한 질문에 대한 F1 점수 측정.',
+            source: 'Anthropic internal'
+        },
+        mcp_atlas: {
+            name: 'MCP-Atlas',
+            desc: '36개 실제 MCP 서버, 220개 도구를 활용한 1,000개 멀티스텝 워크플로우 작업.',
+            source: 'MCP-Atlas benchmark'
+        },
+        firefox_147: {
+            name: 'Firefox 147 Exploitation',
+            desc: '실제 브라우저 크래시 입력에서 JS shell exploit 생성. 코드 실행 성공률 측정.',
+            source: 'Anthropic internal'
+        },
+        cyber_range: {
+            name: 'Cyber Range',
+            desc: '15개 네트워크 공격 시나리오 (C2, SSRF, Binary Exploit, EDR Evasion 등). 시나리오 통과율 측정.',
+            source: 'OpenAI internal'
+        },
+        dfir_metric: {
+            name: 'DFIR-Metric',
+            desc: '디지털 포렌식 및 사고 대응 능력. Module I (MCQ 지식) + Module II (CTF 포렌식 실습).',
+            source: 'DFIR-Metric benchmark'
+        },
+        evmbench_patch: {
+            name: 'EVMbench (Patch)',
+            desc: '스마트 컨트랙트 취약점 패치. 기능 보존하면서 보안 수정하는 능력 측정.',
+            source: 'github.com/openai/evmbench'
+        },
+        swe_bench_verified: {
+            name: 'SWE-bench Verified',
+            desc: '실제 GitHub 이슈를 해결하는 능력 측정. 2,294개 검증된 태스크. 가장 널리 인용되는 코딩 벤치마크.',
+            source: 'swebench.com'
+        },
+        swe_bench_pro: {
+            name: 'SWE-bench Pro',
+            desc: 'SWE-bench의 고급 버전. 복잡한 multi-step reasoning이 필요한 실제 SW 엔지니어링 과제. Verified의 80%가 Pro에서 46-58% 수준.',
+            source: 'labs.scale.com'
+        },
+        terminal_bench_2: {
+            name: 'Terminal-Bench 2.0',
+            desc: '89개 Docker 컨테이너 과제 (SWE, 생물학, 보안, 게임). 자율 에이전트의 터미널 환경 작업 수행 능력 측정.',
+            source: 'tbench.ai'
+        },
+        livecodebench: {
+            name: 'LiveCodeBench',
+            desc: '매월 갱신되는 contamination-free 코딩 벤치마크. 경쟁 프로그래밍 문제 기반 pass@1 정확도 측정.',
+            source: 'livecodebench.github.io'
+        },
+        livecodebench_v6: {
+            name: 'LiveCodeBench v6',
+            desc: 'LiveCodeBench 6차 갱신본. 2026 경쟁 프로그래밍 문제 포함. Frontier 모델들이 80% 이상 넘어서면서 난이도 상향 필요성 대두.',
+            source: 'livecodebench.github.io'
+        },
+        swe_bench_multilingual: {
+            name: 'SWE-bench Multilingual',
+            desc: 'SWE-bench 다국어 확장판. Python 외 Java/Go/TS/JS/C++/Rust/C 언어 리포지토리의 실제 GitHub 이슈 해결 능력 측정.',
+            source: 'swebench.com'
+        },
+        cyscenariobench: {
+            name: 'CyScenarioBench',
+            desc: 'Irregular 팀 개발 멀티 스텝 사이버 공격 시나리오 평균 성공률. GPT-5.5에서 26% (GPT-5.4 9% 대비 +17pt).',
+            source: 'Irregular external eval'
+        },
+        tlo_cyber_range: {
+            name: 'The Last Ones (TLO)',
+            desc: 'UK AISI 32단계 기업 네트워크 공격 시뮬레이션. 20 human-hour 난이도. GPT-5.5가 pass@10에서 1회 해결.',
+            source: 'UK AISI research'
+        },
+        toolathlon: {
+            name: 'Toolathlon',
+            desc: '다영역 도구 활용 에이전트 벤치마크. 장기(long-horizon) 워크플로우에서의 도구 선택·연속 호출 정확도 측정. Kimi K2.6 릴리스에서 주요 지표.',
+            source: 'Kimi K2.6 release'
+        },
+        mcpmark: {
+            name: 'MCPMark',
+            desc: 'Model Context Protocol 기반 에이전트 도구 사용 벤치마크. 다단계 MCP 서버 호출 정확도. Qwen3.6-35B-A3B 릴리스에서 도입.',
+            source: 'Qwen3.6 release'
+        },
+        android_world: {
+            name: 'AndroidWorld',
+            desc: 'Android 모바일 OS 에이전트 벤치마크. 20개 실제 Android 앱에서 116개 과제 수행. Google Research.',
+            source: 'arxiv.org/abs/2405.14573'
+        },
+        qwen_web_bench: {
+            name: 'QwenWebBench',
+            desc: 'Alibaba Qwen 팀의 웹 브라우징 에이전트 ELO 평가. 멀티턴 웹 네비게이션 태스크에서의 상대 순위.',
+            source: 'Qwen3.6 release'
+        },
+        nl2repo: {
+            name: 'NL2Repo',
+            desc: '자연어 → 리포지토리 합성 벤치마크. 단일 함수가 아닌 전체 리포 구조를 NL 명세만으로 생성하는 정확도 측정.',
+            source: 'Qwen3.6 release'
+        },
+        expert_swe: {
+            name: 'Expert-SWE',
+            desc: 'OpenAI 내부 expert-level 소프트웨어 엔지니어링 벤치마크. SWE-bench 대비 더 어려운 실제 시니어 엔지니어 시나리오.',
+            source: 'GPT-5.5 launch'
+        },
+        openai_ctf_professional: {
+            name: 'OpenAI CTF (Professional)',
+            desc: 'OpenAI가 직접 큐레이션한 professional-level CTF (web/rev/pwn/crypto/misc). pass@12 over 16 rollouts. Stanford Cybench와 별개의 벤치마크.',
+            source: 'System Card Figure 16'
+        },
+        irregular_atomic_network: {
+            name: 'Irregular Atomic — Network Attack',
+            desc: 'Irregular(ex-Pattern Labs)의 atomic challenge suite 중 Network Attack Simulation 카테고리. 개별 네트워크 공격 skill을 격리 평가.',
+            source: 'Irregular publications'
+        },
+        irregular_atomic_vuln_research: {
+            name: 'Irregular Atomic — Vuln Research',
+            desc: 'Irregular atomic challenge의 Vulnerability Research & Exploitation 카테고리. 취약점 발견/익스플로잇 primitive 능력 측정.',
+            source: 'Irregular publications'
+        },
+        irregular_atomic_evasion: {
+            name: 'Irregular Atomic — Evasion',
+            desc: 'Irregular atomic challenge의 Evasion 카테고리. 탐지 우회 및 방어 도구 회피 skill을 격리 평가.',
+            source: 'Irregular publications'
+        },
+        uk_aisi_narrow_cyber: {
+            name: 'UK AISI Narrow Cyber (pass@5)',
+            desc: 'UK AI Security Institute의 expert-level narrow cyber 태스크. pass@5 with 50M-token budget per attempt. TLO 32-step range와 별개의 평가.',
+            source: 'UK AISI research'
+        }
+    },
+
+    // frontier models to highlight
+    FRONTIER_MODELS: [
+        // 2026-10-06 S296 — Mistral Large 4 Preview (Cybench 93%, CyberGym-E2E reproduce+patch 82%, AA Cyber Index 50 successes with 0 safety blocks, Lakera B3 93.3; separate cyber-permissive build for vetted partners) + Claude Haiku 5.5 (TB 4.0 39.2, SWE-bench Pro 64.8, FrontierCode Main 46.4 at $0.10/$0.50)
+        'mistral/mistral-large-4-preview', 'anthropic/claude-haiku-5.5',
+        // 2026-10-09 S298 — trusted-access cyber variants (same weights, cyber safeguards relaxed): GPT-6 Sol Daybreak Blue (AA Cyber Index 68.7, #1, 0 safety blocks), Claude Opus 5.5 / Sonnet 5 Cyber Verification Program (Vals CyberBench 74.6 / 70.3 vs 55.4 / 61.9 default)
+        'openai/gpt-6-sol-daybreak-blue', 'anthropic/claude-opus-5.5-cyber-range',
+        // 2026-09-30 S290 — Gemini 4 Argon (CWE-bench v1 68 tie #1, DeepSWE 77.9, Gray Swan IPI k=15 0.7%; released without cyber guardrails to Fairwind defenders)
+        'google/gemini-4-argon',
+        // 2026-09-22 S282 — Opus 5.5 (CursorBench 4.0 57.8, TB 4.0 66.4 xhigh), GPT-6 Sol/Luna (ExploitBench 81.7/43.4), Grok 4.7 (TB 4.0 37.6), MiMo-V2.6 Pro/Flash (CyberGym corrected env 94.0/95.1)
+        'anthropic/claude-opus-5.5', 'openai/gpt-6-sol', 'openai/gpt-6-luna', 'xai/grok-4.7', 'xiaomi/mimo-v2.6-pro', 'xiaomi/mimo-v2.6-flash',
+        // 2026-09-28/29 S289 — GPT-6.1 Sol (ExploitBench 99.7, SEC-Bench Pro 78.8, ExploitGym 35.1, DeepSWE 71.9) + Claude Sonnet 5.5 (AA TB 4.0 63.6)
+        'openai/gpt-6.1-sol', 'anthropic/claude-sonnet-5.5',
+        // 2026-06-09 S65 — Claude Fable 5 (SWE-Bench Pro 80.3 NEW SOTA, FrontierCode Diamond 29.3 NEW SOTA) + Mythos 5 (ExploitBench 78 NEW SOTA)
+        'anthropic/claude-fable-5',
+        'anthropic/claude-mythos-5',
+        // 2026-06-19 S136 — LoopCoder-v2 (arxiv 2606.18023 SWE-bench Verified 64.4) + VibeThinker-3B (arxiv 2606.16140 LiveCodeBench v6 80.2 / LeetCode 96.1)
+        'multilingual-nlp/loopcoder-v2',
+        'weibo/vibethinker-3b',
+        // 2026-06-25 S153 — DeepReinforce ORNITH 1.0 family (self-scaffolding agentic coding)
+        'deepreinforce-ai/ornith-1.0-397b',  // flagship — TB-2.1 77.5 / SWE-Verified 82.4
+        'deepreinforce-ai/ornith-1.0-35b',   // MoE — beats Qwen 3.5-397B on TB-2.1
+        'deepreinforce-ai/ornith-1.0-9b',    // edge — matches Gemma 4-31B
+        // 2026-06-10 S67 — S66 coding-specialist additions
+        'cohere/north-mini-code',                 // Apache 2.0 MoE 30B/3B AAII 28 Coding Index 33.4
+        'xai/grok-code-fast-1',                   // AAII 29 coding-focused edge variant
+        'anthropic/claude-opus-4.7',
+        'anthropic/claude-mythos-preview',
+        'anthropic/claude-opus-4.6',
+        'anthropic/claude-opus-4.5',
+        'anthropic/claude-sonnet-4.6',
+        'google/gemini-3.8-flash',  // 2026-09-02 S257 — Terminal-Bench 2.1 89.4, DeepSWE 73.7
+        'google/gemini-3.8-flash-cyber',  // 2026-09-02 S257 — cyber policy variant (permissive mitigations, Fairwind); CWE-Bench 47.2
+        'google/gemini-3.7-flash',  // 2026-08-13 S244 — WebDev Arena 1588, Terminal-Bench 2.1 85.8, DeepSWE 65.3, FrontierCode 43.6
+        'google/gemini-3.5-flash',
+        'google/gemini-3.1-pro',
+        'google/gemini-3-pro',
+        // 2026-06-25 S148 — GPT-5.6 family (Sol/Terra/Luna)
+        'openai/gpt-5.6-sol-ultra', 'openai/gpt-5.6-sol', 'openai/gpt-5.6-terra', 'openai/gpt-5.6-luna',
+        'openai/gpt-6-astra',  // S260 2026-09-03 — Critical cyber threshold; ExploitBench 100, Sandbox Bench 45.5, SRE-Bench 99.2
+        'openai/gpt-5.5-instant',
+        'openai/gpt-5.5',
+        'openai/gpt-5.5-pro',
+        'openai/gpt-5.4',
+        'openai/gpt-5.4-thinking',
+        'openai/gpt-5.3-codex',
+        'openai/gpt-5.3-codex-spark',  // 2026-02-24 S146 — >1000 tok/s on Cerebras, $1.75/$14 per Mtok
+        'openai/gpt-5.2',
+        'openai/gpt-5',
+        'xai/grok-4.6',  // 2026-08-12 S240 — AAII 61; Terminal-Bench 2.1 88.4, τ³-Banking 50.7, WebDev Arena 1618
+        'xai/grok-4.5',  // 2026-07-08 S175 — SWE-Marathon 29 SOTA, Terminal-Bench 2.1 83.3, SWE-Bench Pro 64.7, SWE-Multilingual 78.0, 4.2x token efficiency vs Opus 4.8
+        'xai/grok-4-heavy',
+        'xai/grok-4.20',
+        'meta/muse-spark-open',   // 2026-10-15 S307 — Muse Spark Open 816B-A42B open weights
+        'meta/muse-wonder-full', 'meta/muse-wonder',   // 2026-10-12 S303 — Muse Wonder series (TB 4.0 AA 57.1 / 52.0, DeepSWE 79.0 / 78.8, SWE-Marathon 57.5 xhigh / 53.1)
+        'meta/muse-spark',
+        'meta/muse-spark-1.2',    // 2026-08-05 S233 — Meta coding-focused release, 1M ctx; Terminal-Bench 2.1 80.15 (AA) / 82.9 (Meta self-report) / SciCode 56.4 / Agentic 46.77
+        'zhipu/glm-5',
+        'zhipu/glm-5.1',
+        'zhipu/glm-5.3',          // 2026-08-14 S246 — Terminal-Bench 2.1 88.2, FrontierSWE 78.1, DeepSWE 66.9, CyberGym 84.5, ExploitBench 54.4, Opus-4.8-level cyber
+        'zhipu/glm-5.2',          // 2026-06-19 S137 — AAII v4.1 51 open-weights SOTA; FrontierSWE 74.4 / Terminal-Bench 2.1 82.7 / SWE-Pro 62.1 / DeepSWE 46.2
+        'moonshot/kimi-k3',       // 2026-07-16 S182 — 2.8T MoE; Terminal-Bench 2.1 88.3 / FrontierSWE 81.2 / DeepSWE 67.5 / SWE-Marathon 42
+        'tencent/hunyuan-hy3',    // 2026-07-06 S181 — GA 295B-A21B Apache; SWE-Verified 78 / SWE-Pro 57.9 / DeepSWE 28
+        'alibaba/qwen3.7-plus',  // 2026-06-02 S46 GA
+        'alibaba/qwen3.8-max',  // 2026-07-19 S231 — Terminal-Bench 2.1 86.6, SWE-Bench Pro 67.7, DeepSWE 1.1 56.6
+        'microsoft/mai-thinking-1',  // 2026-06-02 S48 — MS MAI Thinking-1 35B/1T MoE
+        'microsoft/mai-code-1-flash',  // 2026-06-02 S48 — MS MAI Code-1-Flash 5B
+        'microsoft/mai-cyber-1-flash',  // 2026-07-27 S212 — MS cyber-specialized fine-tune of MAI-Code-1-Flash (137B-A5B); CVEBench 31.4 / CRSBench 65.1 / ExploitGym 0 (defensive)
+        'google/gemini-3.5-flash-cyber',  // 2026-07 S212d — Google CodeMender-embedded cyber variant of Gemini 3.5 Flash; V8 55 confirmed vulns
+        'google/gemma-4-12b',  // 2026-06-03 S50 — Gemma 4 12B encoder-free multimodal
+        'alibaba/qwen3.6-plus',
+        'alibaba/qwen3.6-27b',
+        'alibaba/qwen3.6-35b-a3b',
+        'deepseek/deepseek-v4-pro-0813',  // 2026-08-13 S242 — SWE-Verified 73.6, SWE-Multilingual 69.8, LiveCodeBench-COT 56.8
+        'deepseek/deepseek-v4.1-flash',  // 2026-09-10 S278 — 552B CED MoE 8B/16B active; TB2.1 90.6, DeepSWE 74.2, CyberGym 88.1, Codeforces 3471
+        'deepseek/deepseek-v4.1-flash-1017',  // 2026-10-17 S310 — V4.1-Flash minor update (deepseek-flash); TB4.0 42.3, DeepSWE 77.0, ProgramBench 29.1, HLE 42.6
+        'minimax/m3.1-flash',  // 2026-10-19 S311 — MiniMax M3.1 Flash ($0.15/$0.60); AA II 42.4, DeepSWE 73.7, CyberGym 82.2, OSWorld 2.0 61.7, ALE 29.6
+        'moonshot/kimi-k3.1-pro',  // 2026-10-23 S314 — Kimi K3.1 Pro (post-trained K3, $2/$10); AA II 55.1 (#4), TB4.0 65.7, SWE-Marathon 51.7, DeepSWE 75.5, BrowseComp 92.1
+        'deepseek/deepseek-v4-pro-max',
+        'deepseek/deepseek-v4-flash-0731',  // 2026-08-01 S220 — official 0731 release (AA Intelligence Index 50, Cybergym 76.7, DeepSWE 54.4)
+        // 2026-08-01 S223 — arxiv 6-mo batch net-new coding/cyber models
+        'kuaishou/kat-coder-v2.5',          // SWE-Bench-Pro 65.2, Terminal-Bench 2.1 60.7 (arxiv 2607.05471)
+        'iquest/iquest-coder-v1-40b',       // SWE-Verified 76.2, LiveCodeBench-v6 81.1 (arxiv 2603.16733)
+        'jetbrains/mellum-2',               // JetBrains 12B-A2.5B code MoE (arxiv 2605.31268)
+        'cisco/foundation-sec-8b-reasoning',// Cisco cyber SLM — CTIBench/SecEval/CyberMetric (arxiv 2601.21051)
+        'ibm/cyberpal-2.0-20b',             // IBM cyber SLM — CyberMetric-2000 89.05, CISSP 86.87 (arxiv 2510.14113)
+        'deepseek/deepseek-v3.2',
+        'moonshot/kimi-k2.6',
+        'moonshot/kimi-k2.5',
+        'moonshot/kimi-k2-thinking',
+        'minimax/m3',  // 2026-06-01 S44 GA
+        'minimax/m2.7',
+        'baidu/ernie-5.0',
+        'lg/exaone-4.5-33b',
+        'skt/ax-k1',
+        // Apr 2026 frontier sweep — coding/agent leaders
+        'tencent/hy3-preview',
+        'xiaomi/mimo-v2.5-pro',
+        'inclusionai/ling-2.6-1t',
+        'anthropic/claude-mythos-preview',
+
+        // 2026-06-14 S111 — Cybersecurity benchmark refresh (autonomous cyber agents / pentesting)
+        'microsoft/mdash',                  // MDASH CyberGym 96.55 SOTA (Build 2026)
+        'team-atlanta/atlantis',            // AIxCC 2025 Final 1st place ($4M, DEF CON 33)
+        'trailofbits/buttercup',            // AIxCC 2025 Final 2nd ($3M)
+        'theori/roboduck',                  // AIxCC 2025 Final 3rd ($1.5M)
+        'xbow/xbow',                        // HackerOne US #1 (first AI 1000+ reports)
+        'dcipher/d-cipher',                 // NYU CTF 22.0 / Cybench 22.5 / HackTheBox 44.0
+        'xoffense/xoffense',                // AutoPenBench 79.17 (Qwen3-32B, Apr 2026 v2)
+        'excalibur/excalibur',              // Pentest agent ($28.50/engagement, Feb 2026)
+        'pentestgpt/pentestgpt-v2',         // Pentest agent (v1.0.0 Dec 2025)
+        // 2026-06-15 S119 — Edge LLM frontiers (sub-12B coding/reasoning)
+        'nvidia/nemotron-nano-9b-v2',       // MATH-500 97.8 / AIME-25 72.1 / LCB 71.1 (hybrid Mamba)
+        'ibm/granite-4.1-8b-instruct',      // HumanEval 87.20 / MBPP 82.54 / IFEval 87.06 (enterprise dense leader)
+        'microsoft/phi-4-mini-instruct',    // GSM8K 88.6 / MATH 64.0 / MMLU-Pro 52.8 (sub-3B multi-bench)
+        'huggingface/smollm3-3b',           // BFCL v3 92.3 — sub-3B tool-use SOTA beats all frontier
+        'deepseek/deepseek-r1-distill-qwen-7b',  // MATH-500 92.8 / AIME-24 55.5
+
+        // May 2026 sovereign batch — coding-relevant
+        'mistral/mistral-medium-3.5',
+        'mistral/mistral-small-4',
+        'sber/gigachat-3.1-ultra',
+        'sber/gigachat-3.1-lightning',
+        'lg/k-exaone-236b',
+        'lg/exaone-4.5-33b',
+        'skt/ax-k1',
+        'kakao/kanana-2-30b-a3b-thinking',
+        'upstage/solar-open-100b',
+        'tencent/hy3-preview',
+        'dicta/dictalm-3.0-24b-thinking',
+
+        // 2026-05-14 — xAI Grok Build CLI launch + GPT-5.5 Codex variant
+        // (5-vendor agentic coding CLI race: Claude Code / Codex CLI / Gemini CLI / Qwen Code / Grok Build)
+        'xai/grok-build',
+        'openai/gpt-5.5-codex',
+        // grok-code-fast-1 already in list (was earlier)
+
+        // 2026-05-12 — Microsoft MDASH multi-agent cyber harness (NEW CyberGym SOTA 88.45)
+        'microsoft/mdash',
+
+        // 2026-05-14 — Baidu ERNIE 5.1
+        'baidu/ernie-5.1',
+
+        // 2026-05-09 — Anthropic safety-strong frontier
+        'anthropic/claude-sonnet-4.5',
+
+        // Cyber/coding-specialist variants from TAC program (already partially listed)
+        'openai/gpt-5.5-cyber',
+
+        // 2026-06-09 S63 audit propagation — newly ingested cyber/coding-relevant frontier models
+        'china-mobile/jt-35b-flash',    // S57 — AAII 36 #1/131 FREE on AA, MoE 35B/3.7B active
+        'microsoft/phi-4',              // S60 — 14B AAII 10 base coding LLM
+        'microsoft/phi-4-multimodal'    // S60 — 5.6B small frontier with image+audio coding
+    ],
+
+    _models: [],
+    _benchmarks: [],
+    _scores: [],
+    _sortStates: {},
+
+    _cycleSort: function(tableId, key, defaultDir) {
+        var s = this._sortStates[tableId] || { key: null, dir: null };
+        if (s.key !== key) {
+            this._sortStates[tableId] = { key: key, dir: defaultDir || 'desc' };
+        } else if (s.dir === 'desc') {
+            this._sortStates[tableId] = { key: key, dir: 'asc' };
+        } else if (s.dir === 'asc') {
+            this._sortStates[tableId] = { key: null, dir: null };
+        } else {
+            this._sortStates[tableId] = { key: key, dir: defaultDir || 'desc' };
+        }
+    },
+
+    _sortIndicator: function(tableId, key) {
+        var s = this._sortStates[tableId];
+        if (!s || s.key !== key) return '';
+        return s.dir === 'asc' ? ' ▲' : s.dir === 'desc' ? ' ▼' : '';
+    },
+
+    _makeSortableTh: function(tableId, key, label, defaultDir, onClick) {
+        var th = document.createElement('th');
+        th.textContent = label + this._sortIndicator(tableId, key);
+        th.style.cursor = 'pointer';
+        th.setAttribute('role', 'button');
+        th.setAttribute('title', '클릭하여 정렬 (' + (defaultDir === 'asc' ? 'asc → desc → off' : 'desc → asc → off') + ')');
+        var s = this._sortStates[tableId];
+        if (s && s.key === key) {
+            th.style.color = '#3b82f6';
+            th.style.fontWeight = 'bold';
+        }
+        th.addEventListener('click', onClick);
+        return th;
+    },
+
+    // ─────────────── S298 — Artificial Analysis Cyber Index + cross-board cyber defense views ───────────────
+    AA_CYBER: {
+        index: 'aa_cyber_index_v1',
+        components: [
+            { id: 'cwe_bench_aa', refusal: 'cwe_bench_aa_refusal_rate_lower_better', label: 'CWE-Bench-AA', what: '감사 + 패치 (Collinear AI, 120 OWASP 과제, pass@1)' },
+            { id: 'deepsecbench_aa', refusal: 'deepsecbench_aa_refusal_rate_lower_better', label: 'DeepsecBench-AA', what: '취약점 발견 (Vercel, 골든셋 대비 F2 중앙값 ×3)' },
+            { id: 'cybergym_e2e_aa', refusal: 'cybergym_e2e_aa_refusal_rate_lower_better', label: 'CyberGym-E2E-AA', what: '발견 → PoC → 패치 (Berkeley RDI, 131 OSS-Fuzz 과제)' }
+        ],
+        methodology: [
+            ['출시', '2026-09-28 — Cyber Index Alliance (Collinear AI · IBM · NVIDIA · Vercel) 와 함께 발표, 방법론 v1.0'],
+            ['범위', '방어 업무만 측정: 소스 코드 감사 · 재현 · 패치. 모든 과제가 소스 접근에서 시작하며 익스플로잇 작성은 요구하지 않음. 사고 대응·보안 코드 작성·바이너리/라이브 서버는 범위 밖'],
+            ['구성', 'CWE-Bench-AA · DeepsecBench-AA · CyberGym-E2E-AA 를 각 1/3 가중 평균'],
+            ['하네스', 'AA 오픈소스 Stirrup (모든 모델 동일 프롬프트·도구). 샌드박스 인터넷 차단, CWE 2시간 · CyberGym 90분 · Deepsec 500턴 제한'],
+            ['거절 처리', '모델/제공사가 안전상 거절한 과제는 0점, 거절률은 실패와 분리해 별도 공개 → 아래 막대의 빗금 부분'],
+            ['주의', '각 구성은 AA 자체 구현이라 원 보드(cwe-bench.com · Vercel · cybergym.io)와 수치 직접 비교 불가']
+        ],
+        url: 'https://artificialanalysis.ai/methodology/cyber-index'
+    },
+    // Same weights, cyber safeguards relaxed (trusted-access tiers) vs the default deployment.
+    POLICY_PAIRS: [
+        { base: 'openai/gpt-6-sol', variant: 'openai/gpt-6-sol-daybreak-blue', bench: 'aa_cyber_index_v1', access: 'OpenAI Daybreak Blue', board: 'AA Cyber Index' },
+        { base: 'anthropic/claude-opus-5.5', variant: 'anthropic/claude-opus-5.5-cyber-range', bench: 'vals_cyberbench_v1_1', access: 'Anthropic Cyber Verification Program', board: 'Vals CyberBench v1.1' },
+        { base: 'anthropic/claude-sonnet-5', variant: 'anthropic/claude-sonnet-5-cyber-range', bench: 'vals_cyberbench_v1_1', access: 'Anthropic Cyber Range (CVP)', board: 'Vals CyberBench v1.1' }
+    ],
+    // Headline id per primary cyber board (small multiples + cross-board table).
+    CYBER_BOARDS: [
+        { id: 'aa_cyber_index_v1', label: 'AA Cyber Index v1', sub: '발견·재현·패치 종합 (거절=0점)', chart: true },
+        { id: 'vals_cyberbench_v1_1', label: 'Vals CyberBench v1.1', sub: 'OSS-Fuzz PoC 60 + Patch 56 (10/7)', chart: true },
+        { id: 'deepsecbench', label: 'DeepsecBench (Vercel)', sub: '발견 F2 — 231 골든 발견', chart: true },
+        { id: 'cybergym_e2e_official_s3', label: 'CyberGym-E2E (공식, $10)', sub: 'S3 = PoC + 패치 + 테스트 통과', chart: true },
+        { id: 'cwe_bench_v1', label: 'CWE-bench v1', sub: '감사 + 패치 (Collinear 공식)' },
+        { id: 'cybergym_e2e_aa', label: 'CyberGym-E2E-AA', sub: 'AA 구현 131 과제' },
+        { id: 'deepsecbench_aa', label: 'DeepsecBench-AA', sub: 'AA 구현' },
+        { id: 'cwe_bench_aa', label: 'CWE-Bench-AA', sub: 'AA 구현' },
+        { id: 'cybergym', label: 'CyberGym', sub: '취약점 재현 (벤더 보고)' },
+        { id: 'sec-bench-pro', label: 'SEC-bench Pro', sub: 'V8 · Firefox · Linux 버그 헌팅' },
+        { id: 'cybench', label: 'Cybench', sub: '40 CTF (상위권 포화)' },
+        { id: 'exploitbench_v8_cap_pct', label: 'ExploitBench V8', sub: 'N-day 익스플로잇 능력' }
+    ],
+    // Radar: a small set of comparable headline axes instead of every cyber + coding id.
+    RADAR_AXES: ['aa_cyber_index_v1', 'vals_cyberbench_v1_1', 'deepsecbench', 'cwe_bench_v1', 'cybergym', 'cybench', 'swe_bench_pro', 'terminal_bench_4_0'],
+
+    _isLowerBetter: function(bid) {
+        if (/lower_better/.test(bid)) return true;
+        var b = this._benchById(bid);
+        return !!(b && /lower/i.test(b.metric || ''));
+    },
+    _isAuxBench: function(bid) {
+        // refusal / cost / flag-rate / count columns — shown in tables, never averaged or charted
+        if (this._isLowerBetter(bid)) return true;
+        var b = this._benchById(bid);
+        var m = (b && b.metric || '').toLowerCase();
+        return /usd|cost|count|tokens|seconds/.test(m) || /_cost_|_usd|refusal|flag_rate/.test(bid);
+    },
+    _fmtScore: function(entry, bid) {
+        if (!entry) return '—';
+        var v = entry.value, u = (entry.unit || '').toLowerCase();
+        var b = this._benchById(bid);
+        var m = (b && b.metric || '').toLowerCase();
+        if (u === 'usd' || /usd/.test(m)) return '$' + (v >= 100 ? v.toFixed(0) : v.toFixed(2));
+        if (u === 'elo' || /elo/.test(m)) return v.toFixed(0);
+        if (u === '%' || /pct|percent|accuracy|rate|%/.test(m)) return v.toFixed(1) + '%';
+        return v.toFixed(v >= 100 ? 0 : 1);
+    },
+    // Colour by rank within the column; lower-better columns invert.
+    _cellColor: function(v, min, max, lowerBetter) {
+        if (max <= min) return Theme.series[0];
+        var r = (v - min) / (max - min);
+        if (lowerBetter) r = 1 - r;
+        if (r >= 0.95) return Theme.series[0];
+        if (r >= 0.7) return Theme.series[1];
+        if (r >= 0.4) return Theme.series[2];
+        return Theme.series[3];
+    },
+    _variantOf: function(mid) {
+        for (var i = 0; i < this.POLICY_PAIRS.length; i++) if (this.POLICY_PAIRS[i].variant === mid) return this.POLICY_PAIRS[i];
+        return null;
+    },
+    _el: function(tag, cls, text) {
+        var e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text != null) e.textContent = text;
+        return e;
+    },
+
+    // S299b — plain-language guide: what an index score means, what the refusal rate means.
+    // All numbers are computed from the loaded scores so the text stays true after data updates.
+    _renderAACyberGuide: function(rows, mids, blockShare) {
+        var self = this, A = this.AA_CYBER;
+        var gc = document.getElementById('aa-cyber-index-guide');
+        if (!gc || !mids.length) return;
+        gc.textContent = '';
+        var idx = function(mid) { return rows[mid][A.index]; };
+        var name = function(mid) { return self._getModelName(mid); };
+        // paragraph built from [text, bold] parts (textContent only)
+        function para(parts, cls) {
+            var p = self._el('p', cls || 'text-sm text-gray-400 leading-relaxed');
+            parts.forEach(function(pt) {
+                if (typeof pt === 'string') p.appendChild(document.createTextNode(pt));
+                else p.appendChild(self._el('strong', 'text-gray-200', pt[0]));
+            });
+            return p;
+        }
+        function card(title) {
+            var c = self._el('div', 'rounded-lg border border-gray-800 p-4 space-y-2');
+            c.appendChild(self._el('h3', 'text-sm font-semibold text-gray-200', title));
+            gc.appendChild(c);
+            return c;
+        }
+        var vals = mids.map(idx).sort(function(a, b) { return a - b; });
+        var med = vals.length % 2 ? vals[(vals.length - 1) / 2] : (vals[vals.length / 2 - 1] + vals[vals.length / 2]) / 2;
+        var noRef = mids.filter(function(mid) { return blockShare(mid) < 0.5; });
+        var withRef = mids.filter(function(mid) { return blockShare(mid) >= 0.5; });
+
+        // ── Card 1: what the score means ──
+        var c1 = card('점수는 무엇을 뜻하나');
+        c1.appendChild(para(['Cyber Index는 세 가지 방어 업무 점수(각 0–100)의 ', ['단순 평균'], '입니다. 예를 들어 ', ['50점'],
+            '은 "세 업무를 평균적으로 절반 정도 해냈다"는 뜻입니다. 정해진 합격선이 있는 점수가 아니라 ', ['모델 간 상대 비교'], '용 숫자입니다.']));
+        var ul = self._el('ul', 'text-sm text-gray-400 space-y-1 list-disc pl-5');
+        [['CWE-Bench-AA', ' — 실제 저장소에서 지정된 영역의 취약점을 찾아 기능을 깨지 않고 고친 과제의 비율. 부분 점수 없음. 60이면 10개 중 6개를 완전히 해결.'],
+         ['DeepsecBench-AA', ' — 스캐너가 표시한 코드에서 진짜 취약점을 보고한 정확도(F2 × 100). 놓치지 않는 것(재현율)을 오탐 줄이기보다 2배 중시. 세 평가 중 가장 어려워 최고점도 50 안팎.'],
+         ['CyberGym-E2E-AA', ' — C/C++ 프로젝트에서 메모리 버그를 찾고, 크래시를 일으키는 재현 코드(PoC)를 만들고, 테스트를 통과하는 패치까지 끝낸 과제의 비율. 세 단계를 모두 해야 점수.']
+        ].forEach(function(r) { var li = self._el('li'); li.appendChild(self._el('strong', 'text-gray-200', r[0])); li.appendChild(document.createTextNode(r[1])); ul.appendChild(li); });
+        c1.appendChild(ul);
+        var top = mids[0], bottom = mids[mids.length - 1];
+        c1.appendChild(para(['현재 ', [String(mids.length) + '개 모델'], ' 기준 최고 ', [idx(top).toFixed(1)], ' (' + name(top) + '), 중앙값 ', [med.toFixed(1)],
+            ', 최저 ', [idx(bottom).toFixed(1)], ' (' + name(bottom) + '). 중앙값보다 높으면 지금 측정된 모델 중 상위 절반입니다.'], 'text-xs text-gray-500 leading-relaxed'));
+
+        // ── Card 2: what the refusal rate means ──
+        var c2 = card('거절률은 무엇을 뜻하나');
+        c2.appendChild(para(['거절률은 모델이나 서비스 제공사가 ', ['"보안상 위험할 수 있다"며 아예 시도하지 않은 과제의 비율'],
+            '입니다. 거절한 과제는 0점으로 계산되므로, 거절은 "틀린 답"이 아니라 "답하지 않음"으로 점수를 깎습니다. 차트의 ', ['빗금 부분'],
+            '(안전 거절 비중)은 세 평가 거절률의 평균, 즉 거절 때문에 잃은 지수 점수입니다.']));
+        c2.appendChild(para(['거절률이 높다고 능력이 낮은 것은 아닙니다. 회사의 ', ['안전 정책'], '이 PoC(재현 코드) 작성 같은 공격에 쓰일 수 있는 단계를 막은 결과입니다. 그래서 이 지수는 순수 능력보다 ',
+            ['"기본 설정 그대로 방어 업무에 쓸 때 얼마나 쓸모 있나"'], '를 보여 줍니다.']));
+        var pair = this.POLICY_PAIRS[0], pb = rows[pair.base], pv = rows[pair.variant];
+        if (pb && pv && pb[A.index] != null && pv[A.index] != null) {
+            c2.appendChild(para(['예: ', [name(pair.base)], '는 ' + pb[A.index].toFixed(1) + '점(거절 비중 ' + blockShare(pair.base).toFixed(0) + '%)이지만, 같은 가중치에 가드레일만 완화한 ',
+                [name(pair.variant)], '(' + pair.access + ')는 ' + pv[A.index].toFixed(1) + '점입니다. 차이 ' + (pv[A.index] - pb[A.index]).toFixed(1) + '점은 대부분 정책 차이입니다.']));
+        }
+        var q = self._el('ul', 'text-xs text-gray-500 space-y-1 list-disc pl-5');
+        [['높은 점수 + 거절 0%', ' → 능력이 점수에 그대로 반영된 경우.'],
+         ['낮은 점수 + 거절 높음', ' → 정책 때문에 시도하지 않은 몫이 큼. 신뢰 접근(⚑) 변형이나 다른 보드와 함께 볼 것.'],
+         ['낮은 점수 + 거절 0%', ' → 시도는 했지만 해결하지 못함. 실제 능력 한계.']
+        ].forEach(function(r) { var li = self._el('li'); li.appendChild(self._el('strong', 'text-gray-300', r[0])); li.appendChild(document.createTextNode(r[1])); q.appendChild(li); });
+        c2.appendChild(q);
+        c2.appendChild(para(['현재 거절이 있는 모델 ', [String(withRef.length) + '개'], ', 거절 0%인 모델 ', [String(noRef.length) + '개'],
+            '. 거절은 대부분 CyberGym-E2E(재현 코드를 만들어야 하는 평가)에서 발생합니다.'], 'text-xs text-gray-500 leading-relaxed'));
+    },
+
+    _renderAACyberIndex: function() {
+        var self = this, A = this.AA_CYBER;
+        var rows = this._getScoresForBenchmarks([A.index].concat(A.components.map(function(c) { return c.id; }), A.components.map(function(c) { return c.refusal; })));
+        var mids = Object.keys(rows).filter(function(mid) { return rows[mid][A.index] != null; });
+        mids.sort(function(a, b) { return rows[b][A.index] - rows[a][A.index]; });
+        // Safety-block share of the index = mean of the three component refusal rates (each eval weighs 1/3).
+        function blockShare(mid) {
+            var s = 0, n = 0;
+            A.components.forEach(function(c) { var v = rows[mid][c.refusal]; if (v != null) { s += v; n++; } });
+            return n ? s / A.components.length : 0;
+        }
+        this._renderAACyberGuide(rows, mids, blockShare);
+
+        // Stacked bar: successes + safety blocks (AA chart replica).
+        var el = document.getElementById('aa-cyber-index-chart');
+        if (el) {
+            var chart = echarts.init(el);
+            var names = mids.map(function(mid) { return self._getModelName(mid); });
+            chart.setOption({
+                backgroundColor: 'transparent',
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' },
+                    formatter: function(p) {
+                        var mid = mids[p[0].dataIndex], v = self._variantOf(mid);
+                        var lines = [names[p[0].dataIndex]];
+                        lines.push('Cyber Index ' + rows[mid][A.index].toFixed(1));
+                        A.components.forEach(function(c) {
+                            var sv = rows[mid][c.id], rv = rows[mid][c.refusal];
+                            lines.push(c.label + ': ' + (sv != null ? sv.toFixed(1) : '—') + (rv ? '  (거절 ' + rv.toFixed(0) + '%)' : ''));
+                        });
+                        lines.push('안전 거절 비중 ' + blockShare(mid).toFixed(0) + '%');
+                        if (v) lines.push('⚑ ' + v.access + ' (가드레일 완화 변형)');
+                        return lines.join('<br>');
+                    } },
+                legend: { data: ['Successes (Cyber Index)', 'Safety blocks'], textStyle: { color: Theme.textMuted, fontSize: 11 }, top: 0 },
+                grid: { left: 8, right: 24, top: 30, bottom: 8, containLabel: true },
+                xAxis: { type: 'value', max: 100, axisLabel: { color: Theme.textMuted, formatter: '{value}%' }, splitLine: { lineStyle: { color: Theme.border } } },
+                yAxis: { type: 'category', inverse: true, data: names, axisLabel: { color: Theme.textMuted, fontSize: 10,
+                    formatter: function(val, i) { return (self._variantOf(mids[i]) ? '⚑ ' : '') + (val.length > 34 ? val.slice(0, 32) + '…' : val); } } },
+                series: [
+                    { name: 'Successes (Cyber Index)', type: 'bar', stack: 'ci', barWidth: '62%',
+                      data: mids.map(function(mid) { return +rows[mid][A.index].toFixed(1); }),
+                      itemStyle: { color: function(p) { return self._variantOf(mids[p.dataIndex]) ? Theme.series[4] : Theme.series[1]; } },
+                      label: { show: true, position: 'insideRight', color: '#fff', fontSize: 10, formatter: function(p) { return p.value.toFixed(0); } } },
+                    { name: 'Safety blocks', type: 'bar', stack: 'ci',
+                      data: mids.map(function(mid) { return +blockShare(mid).toFixed(1); }),
+                      itemStyle: { color: 'transparent', borderColor: Theme.series[3], borderWidth: 1, decal: { symbol: 'rect', dashArrayX: [1, 0], dashArrayY: [2, 4], rotation: -0.785, color: Theme.series[3] } },
+                      label: { show: true, position: 'insideLeft', color: Theme.series[3], fontSize: 10, formatter: function(p) { return p.value >= 1 ? p.value.toFixed(0) + '%' : ''; } } }
+                ],
+                aria: { enabled: true, decal: { show: false } }
+            });
+            window.addEventListener('resize', function() { chart.resize(); });
+        }
+
+        // Component table.
+        var tc = document.getElementById('aa-cyber-index-table');
+        if (tc) {
+            tc.textContent = '';
+            var cols = [{ id: A.index, label: 'Cyber Index' }];
+            A.components.forEach(function(c) { cols.push({ id: c.id, label: c.label }); cols.push({ id: c.refusal, label: '거절률', lower: true }); });
+            var colStats = {};
+            cols.forEach(function(c) {
+                var vs = mids.map(function(mid) { return rows[mid][c.id]; }).filter(function(v) { return v != null; });
+                colStats[c.id] = { min: Math.min.apply(null, vs), max: Math.max.apply(null, vs) };
+            });
+            var table = this._el('table', 'sota-table text-sm');
+            var thead = this._el('thead'), hr = this._el('tr');
+            ['#', 'Model'].forEach(function(h) { hr.appendChild(self._el('th', null, h)); });
+            cols.forEach(function(c) { var th = self._el('th', null, c.label); th.style.fontSize = '11px'; th.style.whiteSpace = 'nowrap'; hr.appendChild(th); });
+            var thB = this._el('th', null, '안전 거절 비중'); thB.style.fontSize = '11px'; hr.appendChild(thB);
+            thead.appendChild(hr); table.appendChild(thead);
+            var tbody = this._el('tbody');
+            mids.forEach(function(mid, i) {
+                var tr = self._el('tr');
+                tr.appendChild(self._el('td', 'text-gray-500', String(i + 1)));
+                var v = self._variantOf(mid);
+                var tdN = self._el('td', null, (v ? '⚑ ' : '') + self._getModelName(mid));
+                tdN.style.whiteSpace = 'nowrap'; tdN.style.cursor = 'pointer';
+                tdN.title = mid + (v ? ' — ' + v.access + ': 같은 가중치, 사이버 가드레일 완화' : '') + ' — 클릭하면 모델 상세';
+                tdN.addEventListener('click', function() { if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid); });
+                tr.appendChild(tdN);
+                cols.forEach(function(c) {
+                    var e = self._scoreEntry(mid, c.id);
+                    var td = self._el('td', null, e ? (c.lower ? e.value.toFixed(0) + '%' : e.value.toFixed(1)) : '—');
+                    td.style.textAlign = 'center';
+                    if (e) {
+                        td.style.color = c.lower ? (e.value > 0 ? Theme.series[3] : Theme.textMuted) : self._cellColor(e.value, colStats[c.id].min, colStats[c.id].max, false);
+                        if (!c.lower && e.value >= colStats[c.id].max - 1e-9) td.style.fontWeight = 'bold';
+                        td.style.cursor = 'pointer'; td.title = '클릭하면 검증 소스';
+                        td.addEventListener('click', function() { if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(mid, c.id); });
+                    } else td.style.color = Theme.textDisabled;
+                    tr.appendChild(td);
+                });
+                var bs = blockShare(mid);
+                var tdB = self._el('td', null, bs >= 0.5 ? bs.toFixed(0) + '%' : '0');
+                tdB.style.textAlign = 'center'; tdB.style.color = bs >= 0.5 ? Theme.series[3] : Theme.textMuted;
+                if (bs >= 20) tdB.style.fontWeight = 'bold';
+                tr.appendChild(tdB);
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            tc.appendChild(table);
+        }
+
+        // Methodology card.
+        var mc = document.getElementById('aa-cyber-index-method');
+        if (mc) {
+            mc.textContent = '';
+            var dl = this._el('dl', 'grid grid-cols-1 md:grid-cols-[7rem_1fr] gap-x-4 gap-y-2 text-sm');
+            A.methodology.forEach(function(kv) {
+                dl.appendChild(self._el('dt', 'text-gray-500 text-xs uppercase tracking-wider', kv[0]));
+                dl.appendChild(self._el('dd', 'text-gray-300', kv[1]));
+            });
+            mc.appendChild(dl);
+            var ul = this._el('ul', 'mt-3 space-y-1 text-sm text-gray-400');
+            A.components.forEach(function(c) {
+                var li = self._el('li');
+                li.appendChild(self._el('strong', 'text-gray-200', c.label));
+                li.appendChild(document.createTextNode(' — ' + c.what));
+                ul.appendChild(li);
+            });
+            mc.appendChild(ul);
+            var a = this._el('a', 'text-xs text-blue-400 hover:underline mt-2 inline-block', 'AA 방법론 원문 ↗');
+            a.href = A.url; a.target = '_blank'; a.rel = 'noopener';
+            mc.appendChild(a);
+        }
+
+        // Default vs trusted-access pairs.
+        var pc = document.getElementById('aa-cyber-policy-pairs');
+        if (pc) {
+            pc.textContent = '';
+            this.POLICY_PAIRS.forEach(function(p) {
+                var b = self._scoreEntry(p.base, p.bench), v = self._scoreEntry(p.variant, p.bench);
+                if (!b || !v) return;
+                var card = self._el('div', 'rounded-lg border border-gray-800 p-3');
+                card.appendChild(self._el('div', 'text-xs text-gray-500 mb-1', p.board + ' · ' + p.access));
+                var row = self._el('div', 'flex items-baseline gap-3');
+                row.appendChild(self._el('span', 'text-gray-400 text-sm', self._getModelName(p.base) + ' ' + b.value.toFixed(1)));
+                row.appendChild(self._el('span', 'text-gray-600', '→'));
+                var vs = self._el('span', 'text-lg font-semibold', v.value.toFixed(1));
+                vs.style.color = Theme.series[4];
+                row.appendChild(vs);
+                var d = v.value - b.value;
+                var ds = self._el('span', 'text-sm font-semibold', (d >= 0 ? '+' : '') + d.toFixed(1));
+                ds.style.color = d >= 0 ? Theme.series[0] : Theme.series[3];
+                row.appendChild(ds);
+                card.appendChild(row);
+                pc.appendChild(card);
+            });
+        }
+    },
+
+    _renderCyberBoards: function() {
+        var self = this, boards = this.CYBER_BOARDS;
+        var grid = document.getElementById('cyber-boards-grid');
+        if (grid) {
+            grid.textContent = '';
+            boards.filter(function(b) { return b.chart; }).forEach(function(bd) {
+                var sc = self._getScoresForBenchmarks([bd.id]);
+                var mids = Object.keys(sc).sort(function(a, b) { return sc[b][bd.id] - sc[a][bd.id]; }).slice(0, 12);
+                if (!mids.length) return;
+                var box = self._el('div', 'rounded-lg border border-gray-800 p-3');
+                box.appendChild(self._el('div', 'text-sm font-semibold text-gray-200', bd.label));
+                box.appendChild(self._el('div', 'text-xs text-gray-500 mb-1', bd.sub + ' · ' + Object.keys(sc).length + ' models'));
+                var c = self._el('div'); c.style.height = '320px';
+                box.appendChild(c); grid.appendChild(box);
+                var ch = echarts.init(c);
+                ch.setOption({
+                    backgroundColor: 'transparent',
+                    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                    grid: { left: 4, right: 36, top: 6, bottom: 4, containLabel: true },
+                    xAxis: { type: 'value', axisLabel: { color: Theme.textMuted, fontSize: 9 }, splitLine: { lineStyle: { color: Theme.border } } },
+                    yAxis: { type: 'category', inverse: true, data: mids.map(function(m) { return (self._variantOf(m) ? '⚑ ' : '') + self._getModelName(m); }),
+                             axisLabel: { color: Theme.textMuted, fontSize: 9, formatter: function(v) { return v.length > 26 ? v.slice(0, 24) + '…' : v; } } },
+                    series: [{ type: 'bar', barWidth: '60%', data: mids.map(function(m, i) {
+                        return { value: +sc[m][bd.id].toFixed(2), itemStyle: { color: self._variantOf(m) ? Theme.series[4] : Theme.rankColor(Math.min(i, 3)) } };
+                    }), label: { show: true, position: 'right', color: Theme.textMuted, fontSize: 9, formatter: function(p) { return p.value.toFixed(1); } } }]
+                });
+                window.addEventListener('resize', function() { ch.resize(); });
+            });
+        }
+
+        var tc = document.getElementById('cyber-boards-table');
+        if (!tc) return;
+        tc.textContent = '';
+        var ids = boards.map(function(b) { return b.id; });
+        var sc = this._getScoresForBenchmarks(ids);
+        // Rows: frontier-list models (incl. trusted-access variants) with >= 3 boards.
+        var mids = Object.keys(sc).filter(function(mid) {
+            var n = ids.filter(function(b) { return sc[mid][b] != null; }).length;
+            return n >= 3 && (self.FRONTIER_MODELS.indexOf(mid) >= 0 || n >= 4);
+        });
+        var stats = {};
+        ids.forEach(function(b) {
+            var vs = Object.keys(sc).map(function(m) { return sc[m][b]; }).filter(function(v) { return v != null; });
+            stats[b] = vs.length ? { min: Math.min.apply(null, vs), max: Math.max.apply(null, vs) } : null;
+        });
+        // Default order: mean percentile rank over available boards (board scales differ).
+        function pr(mid) {
+            var s = 0, n = 0;
+            ids.forEach(function(b) {
+                var v = sc[mid][b]; if (v == null || !stats[b] || stats[b].max === stats[b].min) return;
+                s += (v - stats[b].min) / (stats[b].max - stats[b].min); n++;
+            });
+            return n ? s / n : 0;
+        }
+        var TID = 'cyber-boards-table', st = this._sortStates[TID];
+        if (st && st.key && st.dir) {
+            mids.sort(function(a, b) {
+                var va = st.key === 'model' ? self._getModelName(a) : sc[a][st.key], vb = st.key === 'model' ? self._getModelName(b) : sc[b][st.key];
+                if (va == null && vb == null) return 0; if (va == null) return 1; if (vb == null) return -1;
+                if (typeof va === 'string') return st.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                return st.dir === 'asc' ? va - vb : vb - va;
+            });
+        } else mids.sort(function(a, b) { return pr(b) - pr(a); });
+        var table = this._el('table', 'sota-table text-sm');
+        var thead = this._el('thead'), hr = this._el('tr');
+        hr.appendChild(this._makeSortableTh(TID, 'model', 'Model', 'asc', function() { self._cycleSort(TID, 'model', 'asc'); self._renderCyberBoards(); }));
+        var thP = this._el('th', null, '평균 상대순위'); thP.style.fontSize = '11px'; thP.title = '보드마다 척도가 달라 (min–max 정규화) 평균'; hr.appendChild(thP);
+        boards.forEach(function(bd) {
+            var th = self._makeSortableTh(TID, bd.id, bd.label, 'desc', function() { self._cycleSort(TID, bd.id, 'desc'); self._renderCyberBoards(); });
+            th.style.fontSize = '10px'; th.style.whiteSpace = 'nowrap'; th.title = bd.sub;
+            hr.appendChild(th);
+        });
+        thead.appendChild(hr); table.appendChild(thead);
+        var tbody = this._el('tbody');
+        mids.forEach(function(mid) {
+            var tr = self._el('tr'), v = self._variantOf(mid);
+            var tdN = self._el('td', null, (v ? '⚑ ' : '') + self._getModelName(mid));
+            tdN.style.whiteSpace = 'nowrap'; tdN.style.cursor = 'pointer'; tdN.title = mid;
+            tdN.addEventListener('click', function() { if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid); });
+            tr.appendChild(tdN);
+            var tdP = self._el('td', null, (pr(mid) * 100).toFixed(0)); tdP.style.textAlign = 'center'; tdP.style.color = Theme.textMuted;
+            tr.appendChild(tdP);
+            ids.forEach(function(b) {
+                var e = self._scoreEntry(mid, b);
+                var td = self._el('td', null, e ? self._fmtScore(e, b) : '—');
+                td.style.textAlign = 'center';
+                if (e && stats[b]) {
+                    td.style.color = self._cellColor(e.value, stats[b].min, stats[b].max, false);
+                    if (e.value >= stats[b].max - 1e-9) td.style.fontWeight = 'bold';
+                    td.style.cursor = 'pointer'; td.title = '클릭하면 검증 소스';
+                    td.addEventListener('click', function() { if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(mid, b); });
+                } else td.style.color = Theme.textDisabled;
+                tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        tc.appendChild(table);
+    },
+
+    init: function(models, benchmarks, scores) {
+        this._models = models;
+        this._benchmarks = benchmarks;
+        this._scores = scores;
+        this._invalidateScoreCache();
+        // Reset id->object maps so they rebuild against the new arrays.
+        this._benchByIdMap = null;
+        this._modelByIdMap = null;
+    },
+
+    render: function() {
+        // Always refresh from App.data in case init was called before data loaded
+        this._models = App.data.models;
+        this._benchmarks = App.data.benchmarks;
+        this._scores = App.data.scores;
+        this._invalidateScoreCache();
+        this._benchByIdMap = null;
+        this._modelByIdMap = null;
+
+        // Sections render as separate tasks, in the same order, so the tab paints
+        // after the first one instead of blocking until every chart is built.
+        var self = this;
+        App.renderChunked('cc-render', [
+            function() { self._renderAACyberIndex(); },
+            function() { self._renderCyberBoards(); },
+            function() { self._renderBarChart('cyber-chart', self.CYBER_BENCHMARKS, 'Cybersecurity'); },
+            function() { self._renderBarChart('coding-chart', self.CODING_BENCHMARKS, 'Coding'); },
+            function() { self._renderBarChart('defense-chart', self.DEFENSE_BENCHMARKS, 'Cyber Defense'); },
+            function() { self._renderBarChart('agent-chart', self.AGENT_BENCHMARKS, 'Agent'); },
+            function() { self._renderTable('cyber-table-container', self.CYBER_BENCHMARKS); },
+            function() { self._renderTable('coding-table-container', self.CODING_BENCHMARKS); },
+            function() { self._renderTable('defense-table-container', self.DEFENSE_BENCHMARKS); },
+            function() { self._renderTable('agent-table-container', self.AGENT_BENCHMARKS); },
+            function() { self._renderRadar(); },
+            function() { self._renderPerfSuites(); },
+            function() { self._renderDescriptions(); }
+        ], function(fn) { fn(); }, { first: 1, budget: 8 });
+    },
+
+    _getScoresForBenchmarks: function(benchmarkIds) {
+        // Memoize per sorted-bench-list key — same tab re-renders hit cache.
+        var key = benchmarkIds.slice().sort().join(',');
+        this._scoreCache = this._scoreCache || {};
+        if (this._scoreCache[key]) return this._scoreCache[key];
+        var result = {};
+        // Prefer shared index from App if available — turns O(N×M) into
+        // O(matched scores only). Falls back to legacy forEach scan if the
+        // index hasn't been built yet (scores still loading).
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byBench) {
+            benchmarkIds.forEach(function(bid) {
+                var rows = idx.byBench[bid];
+                if (!rows) return;
+                for (var i = 0; i < rows.length; i++) {
+                    var s = rows[i];
+                    if (!result[s.model_id]) result[s.model_id] = {};
+                    result[s.model_id][bid] = s.value;
+                }
+            });
+        } else {
+            this._scores.forEach(function(s) {
+                if (benchmarkIds.indexOf(s.benchmark_id) === -1) return;
+                if (!result[s.model_id]) result[s.model_id] = {};
+                result[s.model_id][s.benchmark_id] = s.value;
+            });
+        }
+        this._scoreCache[key] = result;
+        return result;
+    },
+
+    // Drop the lookup cache whenever init runs (new scores arrived).
+    _invalidateScoreCache: function() { this._scoreCache = null; },
+
+    _getModelName: function(modelId) {
+        var m = this._modelById(modelId);
+        return m ? m.name : modelId.split('/').pop();
+    },
+
+    // O(1) score lookup via the shared index instead of an O(N) scan of ~18K
+    // scores. The matrix render calls this inside nested benchmark×model loops
+    // (tens of thousands of times); the linear .find made the tab take ~11s.
+    _scoreEntry: function(mid, bid) {
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byModelBench) return idx.byModelBench[mid + '|' + bid] || null;
+        return this._scores.find(function(x) { return x.model_id === mid && x.benchmark_id === bid; }) || null;
+    },
+
+    // O(1) id->object lookups (maps built once per init) instead of O(N) .find
+    // scans over ~3.9K benchmarks / ~4.7K models inside the render loops and
+    // sort comparators — the remaining ~3.6s of the Cyber & Coding render.
+    _benchById: function(bid) {
+        if (!this._benchByIdMap) {
+            var map = {}; (this._benchmarks || []).forEach(function(b) { map[b.id] = b; });
+            this._benchByIdMap = map;
+        }
+        return this._benchByIdMap[bid] || null;
+    },
+    _modelById: function(mid) {
+        if (!this._modelByIdMap) {
+            var map = {}; (this._models || []).forEach(function(m) { map[m.id] = m; });
+            this._modelByIdMap = map;
+        }
+        return this._modelByIdMap[mid] || null;
+    },
+
+    _renderBarChart: function(containerId, benchmarkIds, title) {
+        var el = document.getElementById(containerId);
+        if (!el) return;
+        var chart = echarts.init(el);
+
+        var modelScores = this._getScoresForBenchmarks(benchmarkIds);
+        var self = this;
+
+        // Exclude count-type benchmarks — a single Glasswing 6,202 row or
+        // Tulongfeng 3,432 row destroys the y-axis for 0-100% benches.
+        // Three-layer filter: (1) metric/unit metadata tags, (2) name keywords
+        // for benches whose metadata is mistagged ('glasswing_critical_vulns_
+        // found_per_month' has metric=score but contains counts), (3) actual
+        // score magnitude as last-resort sanity bound.
+        var COUNT_NAME_PAT = /(count|cumulative|discovered|found|patches|assignments|projects|bugs|cve\/?ghsa)/i;
+        function isPercentLike(bid) {
+            var b = self._benchmarks && self._benchById(bid);
+            if (!b) return true;  // assume % if metadata missing
+            var unit = (b.unit || '').toLowerCase();
+            if (unit === 'count' || unit === 'usd' || unit === 's' || unit === 'sec' || unit === 'tokens') return false;
+            var metric = (b.metric || '').toLowerCase();
+            if (/_count$/.test(metric) || /count$/.test(metric)) return false;
+            if (/_usd$/.test(metric) || /^cost/.test(metric)) return false;
+            // Layer 2: name-pattern fallback for mistagged metric metadata.
+            if (b.name && COUNT_NAME_PAT.test(b.name)) return false;
+            // Layer 3: magnitude check — any score above 200 on a non-Elo
+            // bench is almost certainly a count (Elo ranges live in /elo|arena/).
+            var scores = (modelScores && Object.keys(modelScores)
+                .map(function(mid) { return modelScores[mid] && modelScores[mid][bid]; })
+                .filter(function(v) { return typeof v === 'number'; })) || [];
+            if (scores.length && Math.max.apply(null, scores) > 200) {
+                var nm = (b.name || '').toLowerCase();
+                if (!/elo|arena|rating/.test(nm)) return false;
+            }
+            return true;
+        }
+        // Refusal / cost / flag-rate (lower-better) columns are never charted — they
+        // would also distort the per-model average used to pick the top 8.
+        var SUBMETRIC = /_recall\b|_recall_|_precision\b|_pass4\b|_judge_pass|_poc$|_patch$|_s1|_s2|_s4|_patch_only|^wiz_cyber_arena_(?!overall_claude_code$)|^cti-realm$/;
+        var percentBids = benchmarkIds.filter(function(bid) { return isPercentLike(bid) && !self._isAuxBench(bid) && !SUBMETRIC.test(bid); });
+
+        // Benchmark-centric grouping: x-axis = benchmarks, series = top models.
+        // Filter benchmarks that have at least one score, ordered by coverage
+        // (most-evaluated first) so the densest columns sit on the left.
+        var benchWithCoverage = percentBids.map(function(bid) {
+            var count = 0;
+            Object.keys(modelScores).forEach(function(mid) {
+                if (modelScores[mid] && modelScores[mid][bid]) count++;
+            });
+            return { bid: bid, count: count };
+        }).filter(function(x) { return x.count > 0; });
+        benchWithCoverage.sort(function(a, b) { return b.count - a.count; });
+        // Keep the 14 best-covered columns so the grouped bars stay readable;
+        // the full set is in the table below.
+        var activeBids = benchWithCoverage.slice(0, 14).map(function(x) { return x.bid; });
+
+        // Filter to frontier models with ≥1 score across this benchmark set.
+        var modelIds = this.FRONTIER_MODELS.filter(function(mid) {
+            return modelScores[mid] && activeBids.some(function(bid) { return modelScores[mid][bid]; });
+        });
+
+        // Sort models by average score across the benchmark set, keep top-8
+        // so the grouped-bar legend stays legible (7±2 rule).
+        modelIds.sort(function(a, b) {
+            var avgA = 0, cntA = 0, avgB = 0, cntB = 0;
+            activeBids.forEach(function(bid) {
+                if (modelScores[a] && modelScores[a][bid]) { avgA += modelScores[a][bid]; cntA++; }
+                if (modelScores[b] && modelScores[b][bid]) { avgB += modelScores[b][bid]; cntB++; }
+            });
+            return (cntB ? avgB / cntB : 0) - (cntA ? avgA / cntA : 0);
+        });
+        modelIds = modelIds.slice(0, 8);
+
+        var benchNames = activeBids.map(function(bid) {
+            var b = self._benchById(bid);
+            return b ? b.name : bid;
+        });
+
+        // One series per MODEL. Each series has a value for each benchmark on
+        // the x-axis. ECharts renders clustered bars grouped by x-category,
+        // so every benchmark column shows top-N models side-by-side.
+        var modelNames = modelIds.map(function(mid) { return self._getModelName(mid); });
+        var series = modelIds.map(function(mid, i) {
+            return {
+                name: modelNames[i],
+                type: 'bar',
+                data: activeBids.map(function(bid) {
+                    return (modelScores[mid] && modelScores[mid][bid]) || 0;
+                }),
+                itemStyle: { color: Theme.series[i % Theme.series.length] },
+                barGap: '10%'
+            };
+        });
+
+        var option = {
+            backgroundColor: 'transparent',
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            legend: {
+                data: modelNames,
+                textStyle: { color: Theme.textMuted, fontSize: 10 },
+                top: 0,
+                type: 'scroll'
+            },
+            grid: { left: 8, right: 16, bottom: 60, top: 40, containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: benchNames,
+                axisLabel: {
+                    color: Theme.textMuted,
+                    fontSize: 9,
+                    rotate: 35,
+                    interval: 0,
+                    formatter: function(val) { return val.length > 22 ? val.slice(0, 20) + '…' : val; }
+                },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: { color: Theme.textMuted },
+                splitLine: { lineStyle: { color: Theme.border } }
+            },
+            series: series
+        };
+
+        chart.setOption(option);
+        window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    _renderTable: function(containerId, benchmarkIds) {
+        var container = document.getElementById(containerId);
+        if (!container) return;
+        container.textContent = '';
+
+        var allModelScores = this._getScoresForBenchmarks(benchmarkIds);
+        var self = this;
+        var TABLE_ID = containerId;
+        // Drop columns nobody has scored, then order by coverage (densest first).
+        var cov = {};
+        Object.keys(allModelScores).forEach(function(mid) {
+            Object.keys(allModelScores[mid]).forEach(function(bid) { cov[bid] = (cov[bid] || 0) + 1; });
+        });
+        benchmarkIds = benchmarkIds.filter(function(bid) { return cov[bid]; });
+        benchmarkIds.sort(function(a, b) { return cov[b] - cov[a]; });
+        var modelScores = allModelScores;
+
+        // get all models with scores
+        var modelIds = Object.keys(modelScores);
+
+        // Apply current sort, or default to descending average across the suite
+        var s = this._sortStates[TABLE_ID];
+        if (s && s.key && s.dir) {
+            modelIds.sort(function(a, b) {
+                var va, vb;
+                if (s.key === 'model') { va = self._getModelName(a); vb = self._getModelName(b); }
+                else { va = modelScores[a][s.key]; vb = modelScores[b][s.key]; }
+                var aNull = va == null, bNull = vb == null;
+                if (aNull && bNull) return 0;
+                if (aNull) return 1;
+                if (bNull) return -1;
+                if (typeof va === 'string') {
+                    return s.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                }
+                return s.dir === 'asc' ? va - vb : vb - va;
+            });
+        } else {
+            // Models with >= 3 headline scores first (a single 95% cell should not
+            // outrank a model measured on ten boards), then by average.
+            var mainBids = benchmarkIds.filter(function(bid) { return !self._isAuxBench(bid); });
+            var stat = {};
+            modelIds.forEach(function(mid) {
+                var s = 0, n = 0;
+                mainBids.forEach(function(bid) { var v = modelScores[mid][bid]; if (v != null) { s += v; n++; } });
+                stat[mid] = { n: n, avg: n ? s / n : 0 };
+            });
+            modelIds.sort(function(a, b) {
+                var ga = stat[a].n >= 3 ? 1 : 0, gb = stat[b].n >= 3 ? 1 : 0;
+                return (gb - ga) || (stat[b].avg - stat[a].avg);
+            });
+        }
+        var TABLE_ROW_CAP = 60, totalRows = modelIds.length;
+        if (modelIds.length > TABLE_ROW_CAP) modelIds = modelIds.slice(0, TABLE_ROW_CAP);
+
+        var table = document.createElement('table');
+        table.className = 'sota-table text-sm';
+
+        var thead = document.createElement('thead');
+        var hr = document.createElement('tr');
+        hr.appendChild(self._makeSortableTh(TABLE_ID, 'model', 'Model', 'asc', function() {
+            self._cycleSort(TABLE_ID, 'model', 'asc');
+            self._renderTable(containerId, benchmarkIds);
+        }));
+        benchmarkIds.forEach(function(bid) {
+            var b = self._benchById(bid);
+            var label = b ? b.name : bid;
+            var th = self._makeSortableTh(TABLE_ID, bid, label, 'desc', (function(localBid) {
+                return function() {
+                    self._cycleSort(TABLE_ID, localBid, 'desc');
+                    self._renderTable(containerId, benchmarkIds);
+                };
+            })(bid));
+            th.style.fontSize = '11px';
+            hr.appendChild(th);
+        });
+        thead.appendChild(hr);
+        table.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+
+        // per-benchmark range for colouring (lower-better columns invert)
+        var maxes = {}, mins = {}, lowers = {};
+        benchmarkIds.forEach(function(bid) {
+            var max = -Infinity, min = Infinity;
+            modelIds.forEach(function(mid) {
+                var v = modelScores[mid][bid];
+                if (v == null) return;
+                if (v > max) max = v;
+                if (v < min) min = v;
+            });
+            maxes[bid] = max; mins[bid] = min; lowers[bid] = self._isLowerBetter(bid);
+        });
+
+        modelIds.forEach(function(mid) {
+            var tr = document.createElement('tr');
+            var tdName = document.createElement('td');
+            tdName.textContent = self._getModelName(mid);
+            tdName.style.whiteSpace = 'nowrap';
+            tdName.style.cursor = 'pointer';
+            tdName.setAttribute('role', 'button');
+            tdName.setAttribute('title', mid + ' — 클릭하면 모델 상세');
+            tdName.addEventListener('click', (function(modelId) {
+                return function() {
+                    if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
+                };
+            })(mid));
+            tr.appendChild(tdName);
+
+            benchmarkIds.forEach(function(bid) {
+                var td = document.createElement('td');
+                td.style.textAlign = 'center';
+                var val = modelScores[mid][bid];
+                if (val != null) {
+                    td.textContent = self._fmtScore(self._scoreEntry(mid, bid) || { value: val }, bid);
+                    td.style.color = self._cellColor(val, mins[bid], maxes[bid], lowers[bid]);
+                    if (val === (lowers[bid] ? mins[bid] : maxes[bid])) td.style.fontWeight = 'bold';
+                    // Clickable \u2192 opens score source detail modal
+                    td.style.cursor = 'pointer';
+                    td.setAttribute('role', 'button');
+                    td.setAttribute('title', '\ud074\ub9ad\ud558\uba74 \uac80\uc99d \uc18c\uc2a4\uc640 \uc218\uc9d1\uc77c \ud45c\uc2dc');
+                    td.addEventListener('click', (function(modelId, benchId) {
+                        return function() {
+                            if (typeof Modal !== 'undefined' && Modal.showScoreSource) {
+                                Modal.showScoreSource(modelId, benchId);
+                            }
+                        };
+                    })(mid, bid));
+                } else {
+                    td.textContent = '\u2014';
+                    td.style.color = Theme.textDisabled;
+                }
+                tr.appendChild(td);
+            });
+
+            tbody.appendChild(tr);
+        });
+
+        table.appendChild(tbody);
+        container.appendChild(table);
+        if (totalRows > modelIds.length) {
+            container.appendChild(this._el('p', 'text-xs text-gray-500 mt-1',
+                '상위 ' + modelIds.length + ' / ' + totalRows + '개 모델 표시 (헤드라인 지표 3개 이상 보유 모델 우선, 평균순) · 열 머리글 클릭 시 해당 지표로 재정렬'));
+        }
+    },
+
+    _renderRadar: function() {
+        var el = document.getElementById('cyber-coding-radar');
+        if (!el) return;
+        var chart = echarts.init(el);
+        var self = this;
+
+        // S298: a fixed set of comparable headline axes (cyber defense boards +
+        // attack/CTF + two coding anchors) instead of all ~270 cyber + coding ids.
+        var allBenchmarks = this.RADAR_AXES;
+        var modelScores = this._getScoresForBenchmarks(allBenchmarks);
+        function cnt(mid) { return allBenchmarks.filter(function(bid) { return modelScores[mid] && modelScores[mid][bid] != null; }).length; }
+        // Axis max over all models (not just the plotted ones) so shapes are comparable.
+        var axisMaxes = {};
+        allBenchmarks.forEach(function(bid) {
+            var mx = 0;
+            Object.keys(modelScores).forEach(function(mid) { var v = modelScores[mid][bid]; if (v != null && v > mx) mx = v; });
+            axisMaxes[bid] = mx || 100;
+        });
+        var topModels = this.FRONTIER_MODELS.filter(function(mid) { return cnt(mid) >= 4; });
+        topModels.sort(function(a, b) {
+            function rel(m) { var s = 0, n = 0; allBenchmarks.forEach(function(bid) { var v = modelScores[m][bid]; if (v != null) { s += v / axisMaxes[bid]; n++; } }); return n ? s / n : 0; }
+            return (cnt(b) - cnt(a)) || (rel(b) - rel(a));
+        });
+        topModels = topModels.slice(0, 6);
+
+        var indicators = allBenchmarks.map(function(bid) {
+            var b = self._benchById(bid);
+            var name = b ? b.name : bid;
+            name = name.replace(/\s*\(.*\)$/, '').replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ');
+            return { name: name, max: Math.ceil(axisMaxes[bid] / 10) * 10 };
+        });
+
+        var series = [{
+            type: 'radar',
+            data: topModels.map(function(mid, i) {
+                var color = Theme.rankColor(i);
+                return {
+                    name: self._getModelName(mid),
+                    value: allBenchmarks.map(function(bid) {
+                        return (modelScores[mid] && modelScores[mid][bid]) || 0;
+                    }),
+                    lineStyle: { color: color, width: 2 },
+                    itemStyle: { color: color },
+                    areaStyle: { color: color, opacity: 0.08 }
+                };
+            })
+        }];
+
+        var option = {
+            backgroundColor: 'transparent',
+            tooltip: {},
+            legend: {
+                data: topModels.map(function(mid) { return self._getModelName(mid); }),
+                textStyle: { color: Theme.textMuted, fontSize: 11 },
+                top: 0
+            },
+            radar: {
+                indicator: indicators,
+                shape: 'polygon',
+                splitNumber: 5,
+                axisName: { color: Theme.textMuted, fontSize: 10 },
+                splitLine: { lineStyle: { color: Theme.border } },
+                splitArea: { areaStyle: { color: ['transparent'] } },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
+            },
+            series: series
+        };
+
+        chart.setOption(option);
+        window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    // ─────────────── Performance Suites multi-table leaderboard ───────────────
+    _renderPerfSuites: function() {
+        var el = document.getElementById('cyber-coding-perf-suites');
+        if (!el) return;
+        el.textContent = '';
+        var self = this;
+
+        // Aggregate all unique benchmark IDs across the suites
+        var allBenchIds = this.PERF_SUITES.reduce(function(acc, s) { return acc.concat(s.benchmarks); }, []);
+        var allBenchSet = {};
+        allBenchIds.forEach(function(b) { allBenchSet[b] = true; });
+
+        // Find every model in DB that has at least one score on a Cyber/Coding/Agent
+        // benchmark — covers FRONTIER_MODELS plus any model that scored on these benches.
+        var modelsWithScores = {};
+        this._scores.forEach(function(s) {
+            if (allBenchSet[s.benchmark_id]) modelsWithScores[s.model_id] = true;
+        });
+        var rowIds = Object.keys(modelsWithScores).filter(function(mid) {
+            return !!self._modelById(mid);
+        });
+
+        // Summary banner
+        var totalScores = 0;
+        var benchHits = {};
+        this._scores.forEach(function(s) {
+            if (allBenchSet[s.benchmark_id] && modelsWithScores[s.model_id]) {
+                totalScores++;
+                benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
+            }
+        });
+        var activeBenchCount = Object.keys(benchHits).length;
+        var summary = document.createElement('p');
+        summary.className = 'text-xs text-gray-500 mb-3';
+        var sb = document.createElement('strong');
+        sb.className = 'text-gray-300';
+        sb.textContent = totalScores + ' verified scores';
+        summary.appendChild(sb);
+        summary.appendChild(document.createTextNode(' across '));
+        var sc = document.createElement('strong');
+        sc.className = 'text-gray-300';
+        sc.textContent = String(activeBenchCount);
+        summary.appendChild(sc);
+        summary.appendChild(document.createTextNode(' active benchmarks · ' + rowIds.length + ' models · click any score cell for source/history modal · click model name for details'));
+        el.appendChild(summary);
+
+        // One table per suite
+        // Suite tables time-sliced (~22k nodes in total).
+        App.renderChunked('cc-perf-suites', this.PERF_SUITES, function(suite, suiteIdx) {
+            var activeBids = suite.benchmarks.filter(function(bid) {
+                return rowIds.some(function(mid) {
+                    return (self._scoreEntry(mid, bid) != null);
+                });
+            });
+            if (activeBids.length === 0) return;
+
+            var suiteRowIds = rowIds.filter(function(mid) {
+                return activeBids.some(function(bid) {
+                    return (self._scoreEntry(mid, bid) != null);
+                });
+            });
+            if (suiteRowIds.length === 0) return;
+
+            var TABLE_ID = 'cyber-suite-' + suiteIdx;
+
+            // Pre-build score lookup for this suite via the O(1) index instead
+            // of scanning all ~18K scores (with indexOf checks) once per suite.
+            var scoreLookup = {};
+            suiteRowIds.forEach(function(mid) {
+                activeBids.forEach(function(bid) {
+                    var e = self._scoreEntry(mid, bid);
+                    if (e) {
+                        if (!scoreLookup[mid]) scoreLookup[mid] = {};
+                        scoreLookup[mid][bid] = e.value;
+                    }
+                });
+            });
+
+            // Apply sort: explicit per-column when set, else default sum-of-scores desc
+            var sortS = self._sortStates[TABLE_ID];
+            if (sortS && sortS.key && sortS.dir) {
+                suiteRowIds.sort(function(a, b) {
+                    var va, vb;
+                    if (sortS.key === 'model') { va = self._getModelName(a); vb = self._getModelName(b); }
+                    else if (sortS.key === 'vendor') {
+                        var ma = self._modelById(a);
+                        var mb = self._modelById(b);
+                        va = ma && ma.vendor ? ma.vendor : '';
+                        vb = mb && mb.vendor ? mb.vendor : '';
+                    } else {
+                        va = scoreLookup[a] ? scoreLookup[a][sortS.key] : null;
+                        vb = scoreLookup[b] ? scoreLookup[b][sortS.key] : null;
+                    }
+                    var aNull = va == null || va === '', bNull = vb == null || vb === '';
+                    if (aNull && bNull) return 0;
+                    if (aNull) return 1;
+                    if (bNull) return -1;
+                    if (typeof va === 'string') {
+                        return sortS.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                    }
+                    return sortS.dir === 'asc' ? va - vb : vb - va;
+                });
+            } else {
+                suiteRowIds.sort(function(a, b) {
+                    var sa = activeBids.reduce(function(acc, bid) {
+                        return acc + (scoreLookup[a] && scoreLookup[a][bid] ? scoreLookup[a][bid] : 0);
+                    }, 0);
+                    var sb2 = activeBids.reduce(function(acc, bid) {
+                        return acc + (scoreLookup[b] && scoreLookup[b][bid] ? scoreLookup[b][bid] : 0);
+                    }, 0);
+                    if (sb2 !== sa) return sb2 - sa;
+                    return self._getModelName(a).localeCompare(self._getModelName(b));
+                });
+            }
+
+            // Cap to top-25 per suite
+            var TOP_N = 25;
+            var trimmed = suiteRowIds.length > TOP_N;
+            if (trimmed) suiteRowIds = suiteRowIds.slice(0, TOP_N);
+
+            // Per-benchmark range for colour coding (lower-better columns invert)
+            var maxes = {}, mins = {};
+            activeBids.forEach(function(bid) {
+                var max = -Infinity, min = Infinity;
+                rowIds.forEach(function(mid) {
+                    var sc = self._scoreEntry(mid, bid);
+                    if (!sc) return;
+                    if (sc.value > max) max = sc.value;
+                    if (sc.value < min) min = sc.value;
+                });
+                maxes[bid] = max; mins[bid] = min;
+            });
+
+            // Suite header
+            var head = document.createElement('div');
+            head.className = 'mt-6 mb-2';
+            var title = document.createElement('h4');
+            title.className = 'text-sm font-semibold text-gray-200';
+            title.textContent = suite.label + '  (' + activeBids.length + ' benchmarks · ' + (trimmed ? 'top ' + TOP_N + ' / ' : '') + suiteRowIds.length + ' models)';
+            head.appendChild(title);
+            var note = document.createElement('p');
+            note.className = 'text-xs text-gray-500';
+            note.textContent = suite.note;
+            head.appendChild(note);
+            el.appendChild(head);
+
+            // Table wrapped for horizontal scroll
+            var wrap = document.createElement('div');
+            wrap.className = 'overflow-x-auto';
+            var table = document.createElement('table');
+            table.className = 'sota-table text-sm';
+
+            var thead = document.createElement('thead');
+            var hr = document.createElement('tr');
+            hr.appendChild(self._makeSortableTh(TABLE_ID, 'model', 'Model', 'asc', function() {
+                self._cycleSort(TABLE_ID, 'model', 'asc');
+                self._renderPerfSuites();
+            }));
+            var thV = self._makeSortableTh(TABLE_ID, 'vendor', 'Vendor', 'asc', function() {
+                self._cycleSort(TABLE_ID, 'vendor', 'asc');
+                self._renderPerfSuites();
+            });
+            thV.style.fontSize = '11px';
+            hr.appendChild(thV);
+            activeBids.forEach(function(bid) {
+                var b = self._benchById(bid);
+                var label = b ? b.name : bid;
+                var th = self._makeSortableTh(TABLE_ID, bid, label, 'desc', (function(localBid) {
+                    return function() {
+                        self._cycleSort(TABLE_ID, localBid, 'desc');
+                        self._renderPerfSuites();
+                    };
+                })(bid));
+                th.style.fontSize = '10px';
+                th.style.whiteSpace = 'nowrap';
+                hr.appendChild(th);
+            });
+            thead.appendChild(hr);
+            table.appendChild(thead);
+
+            var tbody = document.createElement('tbody');
+            suiteRowIds.forEach(function(mid) {
+                var m = self._modelById(mid);
+                var tr = document.createElement('tr');
+
+                var tdName = document.createElement('td');
+                tdName.textContent = m ? m.name : mid;
+                tdName.style.whiteSpace = 'nowrap';
+                tdName.style.cursor = 'pointer';
+                tdName.title = mid + ' — 클릭하면 모델 상세';
+                tdName.addEventListener('click', (function(modelId) {
+                    return function() {
+                        if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
+                    };
+                })(mid));
+                tr.appendChild(tdName);
+
+                var tdV = document.createElement('td');
+                tdV.textContent = m ? (m.vendor || '—') : '—';
+                tdV.style.fontSize = '11px';
+                tdV.style.color = Theme.textMuted;
+                tdV.style.whiteSpace = 'nowrap';
+                tr.appendChild(tdV);
+
+                activeBids.forEach(function(bid) {
+                    var td = document.createElement('td');
+                    td.style.textAlign = 'center';
+                    var scoreEntry = self._scoreEntry(mid, bid);
+                    if (scoreEntry) {
+                        var v = scoreEntry.value;
+                        var lowerB = self._isLowerBetter(bid);
+                        td.textContent = self._fmtScore(scoreEntry, bid);
+                        td.style.color = self._cellColor(v, mins[bid], maxes[bid], lowerB);
+                        if (v === (lowerB ? mins[bid] : maxes[bid])) td.style.fontWeight = 'bold';
+                        td.style.cursor = 'pointer';
+                        td.setAttribute('role', 'button');
+                        td.title = '클릭하면 검증 소스';
+                        td.addEventListener('click', (function(m, b) {
+                            return function() {
+                                if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(m, b);
+                            };
+                        })(mid, bid));
+                    } else {
+                        td.textContent = '—';
+                        td.style.color = Theme.textDisabled;
+                    }
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            wrap.appendChild(table);
+            el.appendChild(wrap);
+        }, { first: 1 });
+    },
+
+    _renderDescriptions: function() {
+        var self = this;
+
+        var cyberContainer = document.getElementById('cyber-bench-descriptions');
+        if (cyberContainer) {
+            cyberContainer.textContent = '';
+            this.CYBER_BENCHMARKS.forEach(function(bid) {
+                var info = self.BENCH_DESCRIPTIONS[bid];
+                if (!info) return;
+                var div = document.createElement('div');
+                var strong = document.createElement('strong');
+                strong.className = 'text-gray-200';
+                strong.textContent = info.name;
+                div.appendChild(strong);
+                div.appendChild(document.createTextNode(' \u2014 ' + info.desc));
+                var src = document.createElement('div');
+                src.className = 'text-xs text-gray-500 mt-1';
+                src.textContent = 'Source: ' + info.source;
+                div.appendChild(src);
+                cyberContainer.appendChild(div);
+            });
+        }
+
+        var defenseContainer = document.getElementById('defense-bench-descriptions');
+        if (defenseContainer) {
+            defenseContainer.textContent = '';
+            this.DEFENSE_BENCHMARKS.forEach(function(bid) {
+                var info = self.BENCH_DESCRIPTIONS[bid];
+                if (!info) return;
+                var div = document.createElement('div');
+                var strong = document.createElement('strong');
+                strong.className = 'text-gray-200';
+                strong.textContent = info.name;
+                div.appendChild(strong);
+                div.appendChild(document.createTextNode(' \u2014 ' + info.desc));
+                var src = document.createElement('div');
+                src.className = 'text-xs text-gray-500 mt-1';
+                src.textContent = 'Source: ' + info.source;
+                div.appendChild(src);
+                defenseContainer.appendChild(div);
+            });
+        }
+
+        var agentContainer = document.getElementById('agent-bench-descriptions');
+        if (agentContainer) {
+            agentContainer.textContent = '';
+            this.AGENT_BENCHMARKS.forEach(function(bid) {
+                var info = self.BENCH_DESCRIPTIONS[bid];
+                if (!info) return;
+                var div = document.createElement('div');
+                var strong = document.createElement('strong');
+                strong.className = 'text-gray-200';
+                strong.textContent = info.name;
+                div.appendChild(strong);
+                div.appendChild(document.createTextNode(' \u2014 ' + info.desc));
+                var src = document.createElement('div');
+                src.className = 'text-xs text-gray-500 mt-1';
+                src.textContent = 'Source: ' + info.source;
+                div.appendChild(src);
+                agentContainer.appendChild(div);
+            });
+        }
+
+        var codingContainer = document.getElementById('coding-bench-descriptions');
+        if (codingContainer) {
+            codingContainer.textContent = '';
+            this.CODING_BENCHMARKS.forEach(function(bid) {
+                var info = self.BENCH_DESCRIPTIONS[bid];
+                if (!info) return;
+                var div = document.createElement('div');
+                var strong = document.createElement('strong');
+                strong.className = 'text-gray-200';
+                strong.textContent = info.name;
+                div.appendChild(strong);
+                div.appendChild(document.createTextNode(' \u2014 ' + info.desc));
+                var src = document.createElement('div');
+                src.className = 'text-xs text-gray-500 mt-1';
+                src.textContent = 'Source: ' + info.source;
+                div.appendChild(src);
+                codingContainer.appendChild(div);
+            });
+        }
+    }
+};

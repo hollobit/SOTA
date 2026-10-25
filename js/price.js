@@ -1,1 +1,578 @@
-window.Price=function(){"use strict";var p={input:"input_price_per_mtok_lower_better",output:"output_price_per_mtok_lower_better",blended:"blended_price_per_mtok_lower_better",cached:"cached_input_price_per_mtok_lower_better"},z=[["aa_intelligence_index_v4_3","AA Intelligence Index v4.3","\uC885\uD569"],["aa_intelligence_index","AA Intelligence Index (AAII)","\uC885\uD569"],["aa_intelligence_index_v4_2","AA Intelligence Index v4.2","\uC885\uD569"],["epoch_capabilities_index","Epoch Capabilities Index (ECI)","\uC885\uD569"],["llm_stats_index","LLM-Stats Index","\uC885\uD569"],["gpqa_diamond","GPQA Diamond","\uCD94\uB860"],["mmlu_pro","MMLU-Pro","\uCD94\uB860"],["aime_2025","AIME 2025","\uCD94\uB860"],["aime_2026","AIME 2026","\uCD94\uB860"],["hle","Humanity's Last Exam","\uCD94\uB860"],["frontiermath","FrontierMath","\uCD94\uB860"],["livebench","LiveBench","\uCD94\uB860"],["critpt","CritPt","\uCD94\uB860"],["simplebench","SimpleBench","\uCD94\uB860"],["swe_bench_verified","SWE-bench Verified","\uCF54\uB529"],["swe_bench_pro","SWE-bench Pro","\uCF54\uB529"],["livecodebench","LiveCodeBench","\uCF54\uB529"],["terminal_bench_2_1","Terminal-Bench 2.1","\uCF54\uB529"],["aider_polyglot","Aider Polyglot","\uCF54\uB529"],["deepswe_1_1","DeepSWE 1.1","\uCF54\uB529"],["terminal_bench_4_0_aa","Terminal-Bench 4.0 (AA)","\uCF54\uB529"],["gaia","GAIA","\uC5D0\uC774\uC804\uD2B8"],["osworld_verified","OSWorld-Verified","\uC5D0\uC774\uC804\uD2B8"],["browsecomp","BrowseComp","\uC5D0\uC774\uC804\uD2B8"],["tau2_telecom","\u03C4\xB2-Bench Telecom","\uC5D0\uC774\uC804\uD2B8"],["aa_cyber_index_v1","AA Cyber Index v1","\uC0AC\uC774\uBC84"],["cybench","Cybench (CTF)","\uC0AC\uC774\uBC84"],["nyu_ctf","NYU CTF Bench","\uC0AC\uC774\uBC84"],["cybergym_success_rate","CyberGym Success Rate","\uC0AC\uC774\uBC84"],["cvebench","CVE-Bench","\uC0AC\uC774\uBC84"],["strongreject","StrongREJECT","\uC548\uC804"],["airtbench","AIRTBench","\uC548\uC804"],["r_judge","R-Judge","\uC548\uC804"],["arc_agi_2","ARC-AGI-2","AGI"],["arc_agi_3","ARC-AGI-3","AGI"],["agieval","AGIEval","AGI"],["scicode","SciCode","\uACFC\uD559"],["arena_agent_net_improvement","Agent Arena (arena.ai)","\uC544\uB808\uB098"],["arena_ai_text_elo","Text Arena (arena.ai Elo)","\uC544\uB808\uB098"],["arena_webdev_elo","Code Arena (WebDev Elo)","\uC544\uB808\uB098"]],pe={openai:"#10a37f",anthropic:"#d97757",google:"#4285f4","google-deepmind":"#4285f4",xai:"#111827",meta:"#0866ff",deepseek:"#4d6bfe",alibaba:"#ff6a00",moonshot:"#6d28d9",zhipu:"#2563eb",mistral:"#fa5010",bytedance:"#325ab4",microsoft:"#00a4ef",nvidia:"#76b900",amazon:"#ff9900",cohere:"#39594d",minimax:"#e11d48",baidu:"#2932e1"},M='system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',fe={google:"diamond","google-deepmind":"diamond",nvidia:"diamond",minimax:"triangle",meta:"roundRect",mistral:"rect",amazon:"pin",alibaba:"triangle",zhipu:"rect",bytedance:"roundRect"};function se(n){return fe[n]||"circle"}var d={},_={},L={"price-metric":"p_metric","price-basis":"p_basis","price-period":"p_period","price-vendor":"p_vendor","price-country":"p_country","price-logscale":"p_log","price-connect":"p_conn","price-labels":"p_lbl","price-flags":"p_flag","price-hitrate":"p_hit","price-pareto":"p_pareto"},ee=!1,b=null,A="output",k="desc",te=[];function S(n){return String(n==null?"":n).replace(/[&<>"]/g,function(r){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[r]})}function C(n,r){return typeof Timeline!="undefined"&&Timeline._getCountry&&Timeline._getCountry(n,r)||""}function re(n,r){return typeof Timeline!="undefined"&&Timeline._getCountry&&Timeline._flagFromCountry&&Timeline._flagFromCountry(Timeline._getCountry(n,r))||""}function O(n){var r={};return(n||[]).forEach(function(a){var i=a.benchmark_id||a.benchmark,c=a.model_id||a.model,u=a.value!==void 0&&a.value!==null?a.value:a.score;!i||!c||u===void 0||u===null||((r[i]||(r[i]={}))[c]=+u)}),r}function T(n,r){return r&&r.vendor?String(r.vendor).toLowerCase():(n.indexOf("/")!==-1?n.split("/")[0]:"other").toLowerCase()}function R(n){return pe[n]||"#9ca3af"}function ne(n){var r=n.indexOf("/")!==-1?n.split("/")[0]:"",a=n.indexOf("/")!==-1?n.split("/").slice(1).join("/"):n,i=a.split(/[-_.]/).filter(function(c){return c&&!/^\d/.test(c)&&!/^v\d/.test(c)});return r+"/"+i.join("-")}function D(n,r,a){var i=d[p.input]&&d[p.input][n],c=d[p.output]&&d[p.output][n],u=d[p.cached]&&d[p.cached][n];if(r==="input")return i!=null?i:null;if(r==="output")return c!=null?c:null;if(r==="cached")return u!=null?u:null;if(r==="effective"){if(i==null)return null;var s=(a==null?0:a)/100,e=u!=null?u:i;return s*e+(1-s)*i}var l=d[p.blended]&&d[p.blended][n];return l!=null?l:i!=null&&c!=null?(i+3*c)/4:null}function $(n){var r=n&&(n.release_date||n.released_at);return r||null}function P(){try{var n=new URLSearchParams(window.location.search);Object.keys(L).forEach(function(a){var i=document.getElementById(a);if(i){var c=i.type==="checkbox"?i.checked?"1":"":i.value,u=L[a];c===""||c==="all"?n.delete(u):n.set(u,c)}});var r=n.toString();history.replaceState(null,"",window.location.pathname+(r?"?"+r:"")+window.location.hash)}catch(a){}}function ve(){try{var n=new URLSearchParams(window.location.search);Object.keys(L).forEach(function(u){var s=document.getElementById(u);if(s){var e=n.get(L[u]);e!==null&&(s.type==="checkbox"?s.checked=e==="1"||e==="true":s.value=e)}});var r=document.getElementById("price-period-label"),a=document.getElementById("price-period");r&&a&&(r.textContent=a.value);var i=document.getElementById("price-hit-label"),c=document.getElementById("price-hitrate");i&&c&&(i.textContent=c.value)}catch(u){}}function me(n){_={},(n||[]).forEach(function(e){_[e.id]=e}),d=O(App&&App.data?App.data.scores:[]);var r={};[p.input,p.output].forEach(function(e){var l=d[e]||{};Object.keys(l).forEach(function(v){r[v]=1})});var a=document.getElementById("price-metric");a&&!a.options.length&&z.forEach(function(e){var l=0,v=d[e[0]]||{};if(Object.keys(r).forEach(function(g){v[g]!=null&&l++}),l>=5){var m=document.createElement("option");m.value=e[0],m.textContent=e[1]+" ("+(e[2]||"")+") \xB7 "+l,a.appendChild(m)}});var i=document.getElementById("price-vendor");if(i&&i.options.length<=1){var c={};Object.keys(r).forEach(function(e){c[T(e,_[e])]=1}),Object.keys(c).sort().forEach(function(e){var l=document.createElement("option");l.value=e,l.textContent=e,i.appendChild(l)})}var u=document.getElementById("price-country");if(u&&u.options.length<=1){var s={};Object.keys(r).forEach(function(e){var l=C(e,_[e]);l&&(s[l]=1)}),Object.keys(s).sort().forEach(function(e){var l=document.createElement("option");l.value=e,l.textContent=e,u.appendChild(l)})}ve()}function he(){if(!ee){ee=!0,["price-metric","price-basis","price-vendor","price-country","price-logscale","price-connect","price-labels","price-flags","price-pareto"].forEach(function(a){var i=document.getElementById(a);i&&i.addEventListener("change",function(){P(),j()})});var n=document.getElementById("price-period");n&&n.addEventListener("input",function(){var a=document.getElementById("price-period-label");a&&(a.textContent=n.value),P(),j()});var r=document.getElementById("price-hitrate");r&&r.addEventListener("input",function(){var a=document.getElementById("price-hit-label");a&&(a.textContent=r.value),P(),j()}),window.addEventListener("resize",function(){b&&b.resize()})}}function E(n,r){var a=document.getElementById(n);return a?a.value:r}function B(n){var r=document.getElementById(n);return!!(r&&r.checked)}function j(){var n=document.getElementById("price-chart");if(!n||typeof echarts=="undefined")return;he(),d[p.output]||(d=O(App&&App.data?App.data.scores:[]));var r=E("price-metric","aa_intelligence_index_v4_3"),a=E("price-basis","output"),i=parseInt(E("price-period","12"),10)||12,c=E("price-vendor","all"),u=E("price-country","all"),s=B("price-logscale"),e=B("price-connect"),l=B("price-labels"),v=B("price-flags"),m=B("price-pareto"),g=parseInt(E("price-hitrate","0"),10)||0,I=z.filter(function(t){return t[0]===r})[0]||[r,r,""],G=I[1]+(I[2]?" ("+I[2]+")":""),be={input:"Input $/1M",output:"Output $/1M",blended:"Blended $/1M",cached:"Cached input $/1M",effective:"\uC720\uD6A8 \uC785\uB825\uB2E8\uAC00 $/1M (hit "+g+"%)"},N=be[a]||"Output $/1M",U=new Date,_e=new Date(U.getFullYear(),U.getMonth()-i,U.getDate()),le=_e.toISOString().slice(0,10),ge=d[p.input]||{},w=[],F={},V=0,W=0;Object.keys(ge).forEach(function(t){var o=_[t];if(o){var f=T(t,o);if(!(c!=="all"&&f!==c)&&!(u!=="all"&&C(t,o)!==u)){var h=D(t,a,g);if(!(h==null||h<=0)){var y=d[r]&&d[r][t];if(y==null){V++;return}var x=$(o);if(x&&x<le){W++;return}var Z=o.name||t,ue={value:[h,y],modelId:t,name:Z,vendor:f,rel:x||"",flag:re(t,o),symbol:se(f),itemStyle:{color:R(f)}};w.push(ue);var de=ne(t);(F[de]||(F[de]=[])).push(ue)}}}});function xe(t){var o=t.data||{},f=[];return v&&o.flag&&f.push(o.flag),l&&o.name&&f.push(o.name),f.join(" ")}var H=[];if(m&&w.length){var Ee=w.slice().sort(function(t,o){return t.value[0]-o.value[0]||o.value[1]-t.value[1]}),oe=-1/0;Ee.forEach(function(t){t.value[1]>oe&&(H.push(t),oe=t.value[1],t._frontier=!0)}),w.forEach(function(t){t._frontier||(t.itemStyle={color:R(t.vendor),opacity:.25})})}var q=[{type:"scatter",symbolSize:12,data:w,z:3,label:{show:l||v,position:"right",formatter:xe,fontFamily:M,fontSize:11,color:"#cbd5e1"},emphasis:{focus:"series",label:{show:!0,formatter:function(t){return(t.data.flag?t.data.flag+" ":"")+t.data.name},position:"top",fontFamily:M}},labelLayout:{hideOverlap:!(l||v)}}];if(e){var J=[];Object.keys(F).forEach(function(t){var o=F[t].filter(function(h){return h.rel});if(!(o.length<2)){o.sort(function(h,y){return h.rel<y.rel?-1:h.rel>y.rel?1:0});for(var f=0;f<o.length-1;f++)J.push({coords:[o[f].value,o[f+1].value],lineStyle:{color:R(o[0].vendor)}})}}),J.length&&q.push({type:"lines",coordinateSystem:"cartesian2d",z:1,silent:!0,symbol:["none","arrow"],symbolSize:7,lineStyle:{width:1,opacity:.4,curveness:0},data:J})}m&&H.length>=2&&q.push({type:"line",z:2,silent:!0,symbol:"none",smooth:!1,lineStyle:{width:2,color:"#fbbf24",opacity:.9,type:"dashed"},data:H.map(function(t){return t.value})});var Ie={backgroundColor:"transparent",textStyle:{fontFamily:M},grid:{left:60,right:l||v?150:30,top:20,bottom:60},tooltip:{trigger:"item",textStyle:{fontFamily:M},formatter:function(t){if(!t.data||!t.data.modelId)return"";var o=t.data;return"<strong>"+o.name+"</strong><br/>"+N+": $"+o.value[0].toFixed(2)+"<br/>"+G+": "+o.value[1]+"<br/>"+(o.rel?"\uCD9C\uC2DC: "+o.rel+"<br/>":"")+'<span style="color:#888">\uD074\uB9AD \uC2DC \uC0C1\uC138\uC815\uBCF4</span>'}},xAxis:{type:s?"log":"value",name:N+(s?" (log)":""),nameLocation:"middle",nameGap:34,nameTextStyle:{color:"#9ca3af"},axisLabel:{color:"#9ca3af",formatter:function(t){return"$"+t}},splitLine:{lineStyle:{color:"rgba(255,255,255,0.06)"}}},yAxis:{type:"value",name:G,nameLocation:"middle",nameGap:42,nameTextStyle:{color:"#9ca3af"},scale:!0,axisLabel:{color:"#9ca3af"},splitLine:{lineStyle:{color:"rgba(255,255,255,0.06)"}}},series:q};b||(b=echarts.init(n)),b.setOption(Ie,!0),b.resize(),b.off("click"),b.on("click",function(t){var o=t&&t.data&&t.data.modelId;o&&typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(o)});var ie=document.getElementById("price-note");ie&&(ie.textContent=w.length+"\uAC1C \uBAA8\uB378 \uD45C\uC2DC (\uCD5C\uADFC "+i+"\uAC1C\uC6D4 \xB7 "+N+" vs "+G+"). \uAC00\uACA9 \uCD9C\uCC98: OpenRouter \xB7 Artificial Analysis \xB7 llm-stats. "+(W?W+"\uAC1C\uB294 \uAE30\uAC04 \uBC16, ":"")+(V?V+"\uAC1C\uB294 \uC120\uD0DD \uC9C0\uD45C \uC810\uC218 \uC5C6\uC74C.":""));var K=d[p.input]||{},Y=d[p.output]||{},Q={};Object.keys(K).forEach(function(t){Q[t]=1}),Object.keys(Y).forEach(function(t){Q[t]=1});var ce=d[p.cached]||{},X=[];Object.keys(Q).forEach(function(t){var o=_[t];if(o){var f=T(t,o);if(!(c!=="all"&&f!==c)&&!(u!=="all"&&C(t,o)!==u)){var h=$(o);if(!(h&&h<le)){var y=K[t]!=null?K[t]:null,x=ce[t]!=null?ce[t]:null,Z=y!=null&&y>0&&x!=null?Math.round((1-x/y)*100):null;X.push({id:t,name:o.name||t,vendor:o.vendor||f,country:C(t,o),input:y,output:Y[t]!=null?Y[t]:null,blended:D(t,"blended"),cached:x,discount:Z,rel:h||""})}}}}),te=X,ae(X)}function ae(n){var r=document.getElementById("price-table-wrap");if(r){var a=[{key:"name",label:"\uBAA8\uB378",num:!1},{key:"vendor",label:"\uC81C\uC870\uC0AC",num:!1},{key:"country",label:"\uAD6D\uAC00",num:!1},{key:"input",label:"Input $/1M",num:!0},{key:"output",label:"Output $/1M",num:!0},{key:"blended",label:"Blended $/1M",num:!0},{key:"cached",label:"Cached in $/1M",num:!0},{key:"discount",label:"\uCE90\uC2DC \uD560\uC778\uC728 %",num:!0},{key:"rel",label:"\uCD9C\uC2DC\uC77C",num:!1}],i=k==="asc"?1:-1;n.sort(function(e,l){var v=e[A],m=l[A],g=v==null||v==="",I=m==null||m==="";return g&&I?0:g?1:I?-1:typeof v=="number"&&typeof m=="number"?(v-m)*i:String(v).localeCompare(String(m))*i});var c='<table class="w-full text-sm border-collapse"><thead><tr class="text-gray-400 border-b border-gray-700">';a.forEach(function(e){var l=A===e.key?k==="asc"?" \u25B2":" \u25BC":"";c+='<th data-key="'+e.key+'" class="px-3 py-2 '+(e.num?"text-right":"text-left")+' cursor-pointer select-none hover:text-gray-200 whitespace-nowrap">'+e.label+l+"</th>"}),c+="</tr></thead><tbody>";var u=function(e){return e==null?"\u2014":"$"+(+e).toFixed(e<.1?4:2)},s=function(e){return e==null?"\u2014":e+"%"};n.forEach(function(e){c+='<tr class="border-b border-gray-800 hover:bg-gray-800/40"><td class="px-3 py-1.5 text-left"><button data-model="'+S(e.id)+'" class="price-tbl-model text-blue-400 hover:text-blue-300">'+S(e.name)+'</button></td><td class="px-3 py-1.5 text-left text-gray-300 whitespace-nowrap">'+S(e.vendor)+'</td><td class="px-3 py-1.5 text-left text-gray-300 whitespace-nowrap">'+S(e.country)+'</td><td class="px-3 py-1.5 text-right tabular-nums">'+u(e.input)+'</td><td class="px-3 py-1.5 text-right tabular-nums">'+u(e.output)+'</td><td class="px-3 py-1.5 text-right tabular-nums">'+u(e.blended)+'</td><td class="px-3 py-1.5 text-right tabular-nums text-gray-300">'+u(e.cached)+'</td><td class="px-3 py-1.5 text-right tabular-nums text-emerald-400">'+s(e.discount)+'</td><td class="px-3 py-1.5 text-left text-gray-400 whitespace-nowrap">'+S(e.rel||"\u2014")+"</td></tr>"}),c+="</tbody></table>",r.innerHTML=c,r.querySelectorAll("th[data-key]").forEach(function(e){e.addEventListener("click",function(){var l=e.getAttribute("data-key");A===l?k=k==="asc"?"desc":"asc":(A=l,k=l==="input"||l==="output"||l==="blended"||l==="cached"||l==="discount"?"desc":"asc"),ae(te)})}),r.querySelectorAll(".price-tbl-model").forEach(function(e){e.addEventListener("click",function(){var l=e.getAttribute("data-model");l&&typeof Modal!="undefined"&&Modal.showModel&&Modal.showModel(l)})})}}var ye={metrics:z,priceIds:p,vendor:T,vendorColor:R,country:C,flag:re,family:ne,relDate:$,price:function(n,r,a){return d[p.output]||(d=O(App&&App.data?App.data.scores:[])),D(n,r,a)},scoreIdx:function(){return d[p.output]||(d=O(App&&App.data?App.data.scores:[])),d},modelsById:function(){return _}};return{init:me,render:j,api:ye}}();
+/* Price tab — model token-price vs performance scatter.
+ *
+ * X = token price (input / output / blended $ per 1M, log or linear).
+ * Y = a selectable performance metric.
+ * Each point is a model version, positioned by (price, performance) and
+ * colored by vendor; same-family versions are connected in release-date
+ * order so you can read the price/performance trajectory across updates.
+ * A period slider filters to models released within the last N months.
+ *
+ * Pricing is collected from multiple leaderboards (OpenRouter, Artificial
+ * Analysis, llm-stats) and stored as scores on the *_price_per_mtok_lower_better
+ * benchmarks, so this tab is fully data-driven from App.data.scores.
+ */
+window.Price = (function () {
+    'use strict';
+
+    var PRICE_IDS = {
+        input:   'input_price_per_mtok_lower_better',
+        output:  'output_price_per_mtok_lower_better',
+        blended: 'blended_price_per_mtok_lower_better',
+        cached:  'cached_input_price_per_mtok_lower_better'
+    };
+
+    // Candidate Y-axis metrics [id, label, 분류명(category)]. Only those with
+    // real coverage among priced models are shown (computed in init()); the
+    // dropdown/axis show the category in parentheses after the name.
+    var METRICS = [
+        // 종합 (composite) — first entry is the dropdown default
+        ['aa_intelligence_index_v4_3', 'AA Intelligence Index v4.3', '종합'],
+        ['aa_intelligence_index',    'AA Intelligence Index (AAII)', '종합'],
+        ['aa_intelligence_index_v4_2', 'AA Intelligence Index v4.2', '종합'],
+        ['epoch_capabilities_index', 'Epoch Capabilities Index (ECI)', '종합'],
+        ['llm_stats_index',          'LLM-Stats Index', '종합'],
+        // 추론 (reasoning)
+        ['gpqa_diamond',             'GPQA Diamond', '추론'],
+        ['mmlu_pro',                 'MMLU-Pro', '추론'],
+        ['aime_2025',                'AIME 2025', '추론'],
+        ['aime_2026',                'AIME 2026', '추론'],
+        ['hle',                      "Humanity's Last Exam", '추론'],
+        ['frontiermath',             'FrontierMath', '추론'],
+        ['livebench',                'LiveBench', '추론'],
+        ['critpt',                   'CritPt', '추론'],
+        ['simplebench',              'SimpleBench', '추론'],
+        // 코딩 (coding)
+        ['swe_bench_verified',       'SWE-bench Verified', '코딩'],
+        ['swe_bench_pro',            'SWE-bench Pro', '코딩'],
+        ['livecodebench',            'LiveCodeBench', '코딩'],
+        ['terminal_bench_2_1',       'Terminal-Bench 2.1', '코딩'],
+        ['aider_polyglot',           'Aider Polyglot', '코딩'],
+        ['deepswe_1_1',              'DeepSWE 1.1', '코딩'],
+        ['terminal_bench_4_0_aa',    'Terminal-Bench 4.0 (AA)', '코딩'],
+        // 에이전트 (agent)
+        ['gaia',                     'GAIA', '에이전트'],
+        ['osworld_verified',         'OSWorld-Verified', '에이전트'],
+        ['browsecomp',               'BrowseComp', '에이전트'],
+        ['tau2_telecom',             'τ²-Bench Telecom', '에이전트'],
+        // 사이버 (cyber)
+        ['aa_cyber_index_v1',        'AA Cyber Index v1', '사이버'],
+        ['cybench',                  'Cybench (CTF)', '사이버'],
+        ['nyu_ctf',                  'NYU CTF Bench', '사이버'],
+        ['cybergym_success_rate',    'CyberGym Success Rate', '사이버'],
+        ['cvebench',                 'CVE-Bench', '사이버'],
+        // 안전 (safety) — note: ASR-style metrics are lower=safer
+        ['strongreject',             'StrongREJECT', '안전'],
+        ['airtbench',                'AIRTBench', '안전'],
+        ['r_judge',                  'R-Judge', '안전'],
+        // AGI
+        ['arc_agi_2',                'ARC-AGI-2', 'AGI'],
+        ['arc_agi_3',                'ARC-AGI-3', 'AGI'],
+        ['agieval',                  'AGIEval', 'AGI'],
+        // 과학 (AI4S)
+        ['scicode',                  'SciCode', '과학'],
+        // 아레나 (human-preference / Elo)
+        ['arena_agent_net_improvement', 'Agent Arena (arena.ai)', '아레나'],
+        ['arena_ai_text_elo',           'Text Arena (arena.ai Elo)', '아레나'],
+        ['arena_webdev_elo',            'Code Arena (WebDev Elo)', '아레나']
+    ];
+
+    var VENDOR_COLORS = {
+        openai: '#10a37f', anthropic: '#d97757', google: '#4285f4', 'google-deepmind': '#4285f4',
+        xai: '#111827', meta: '#0866ff', deepseek: '#4d6bfe', alibaba: '#ff6a00', moonshot: '#6d28d9',
+        zhipu: '#2563eb', mistral: '#fa5010', bytedance: '#325ab4', microsoft: '#00a4ef',
+        nvidia: '#76b900', amazon: '#ff9900', cohere: '#39594d', minimax: '#e11d48', baidu: '#2932e1'
+    };
+
+    // Plain system UI font for chart text (axes / labels / tooltip).
+    var NORMAL_FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+
+    // Per-vendor marker shape (secondary channel to color) — mirrors the AA
+    // reference chart (Google/NVIDIA diamonds, MiniMax triangles, etc.).
+    var VENDOR_SHAPES = {
+        google: 'diamond', 'google-deepmind': 'diamond', nvidia: 'diamond',
+        minimax: 'triangle', meta: 'roundRect', mistral: 'rect', amazon: 'pin',
+        alibaba: 'triangle', zhipu: 'rect', bytedance: 'roundRect'
+    };
+    function _vendorShape(v) { return VENDOR_SHAPES[v] || 'circle'; }
+
+    var _scoreIdx = {};   // benchmark_id -> { model_id: value }
+    var _modelsById = {};
+    var _urlKeys = {
+        'price-metric': 'p_metric', 'price-basis': 'p_basis', 'price-period': 'p_period',
+        'price-vendor': 'p_vendor', 'price-country': 'p_country', 'price-logscale': 'p_log', 'price-connect': 'p_conn',
+        'price-labels': 'p_lbl', 'price-flags': 'p_flag', 'price-hitrate': 'p_hit',
+        'price-pareto': 'p_pareto'
+    };
+    var _wired = false, _chart = null;
+    var _sortKey = 'output', _sortDir = 'desc';   // price-table sort state
+    var _lastRows = [];
+
+    function _esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+        });
+    }
+
+    // Country (with flag) via Timeline's authoritative VENDOR_TO_COUNTRY map
+    // (loaded as a price-tab dependency); graceful fallback if unavailable.
+    function _country(id, model) {
+        // _getCountry returns flag-prefixed strings like "🇺🇸 USA".
+        if (typeof Timeline !== 'undefined' && Timeline._getCountry) {
+            return Timeline._getCountry(id, model) || '';
+        }
+        return '';
+    }
+    // Just the flag emoji for a model (via Timeline's country map).
+    function _flag(id, model) {
+        if (typeof Timeline !== 'undefined' && Timeline._getCountry && Timeline._flagFromCountry) {
+            return Timeline._flagFromCountry(Timeline._getCountry(id, model)) || '';
+        }
+        return '';
+    }
+
+    function _idx(scores) {
+        var idx = {};
+        (scores || []).forEach(function (s) {
+            var b = s.benchmark_id || s.benchmark, m = s.model_id || s.model;
+            var v = (s.value !== undefined && s.value !== null) ? s.value : s.score;
+            if (!b || !m || v === undefined || v === null) return;
+            (idx[b] || (idx[b] = {}))[m] = +v;
+        });
+        return idx;
+    }
+
+    function _vendor(id, model) {
+        if (model && model.vendor) return String(model.vendor).toLowerCase();
+        return (id.indexOf('/') !== -1 ? id.split('/')[0] : 'other').toLowerCase();
+    }
+    function _vendorColor(v) { return VENDOR_COLORS[v] || '#9ca3af'; }
+
+    // Family key for trajectory grouping: vendor + base name with version-like
+    // tokens removed, so claude-opus-4.7/4.8/5 collapse to one family.
+    function _family(id) {
+        var v = id.indexOf('/') !== -1 ? id.split('/')[0] : '';
+        var base = id.indexOf('/') !== -1 ? id.split('/').slice(1).join('/') : id;
+        var toks = base.split(/[-_.]/).filter(function (t) {
+            return t && !/^\d/.test(t) && !/^v\d/.test(t);
+        });
+        return v + '/' + toks.join('-');
+    }
+
+    function _price(id, basis, hitRate) {
+        var inp = _scoreIdx[PRICE_IDS.input] && _scoreIdx[PRICE_IDS.input][id];
+        var out = _scoreIdx[PRICE_IDS.output] && _scoreIdx[PRICE_IDS.output][id];
+        var cch = _scoreIdx[PRICE_IDS.cached] && _scoreIdx[PRICE_IDS.cached][id];
+        if (basis === 'input')  return (inp != null) ? inp : null;
+        if (basis === 'output') return (out != null) ? out : null;
+        if (basis === 'cached') return (cch != null) ? cch : null;
+        if (basis === 'effective') {
+            // effective input = hit*cacheRead + (1-hit)*input (article's math)
+            if (inp == null) return null;
+            var h = (hitRate == null ? 0 : hitRate) / 100;
+            var cache = (cch != null) ? cch : inp;   // no cache price → no discount
+            return h * cache + (1 - h) * inp;
+        }
+        // blended: prefer a leaderboard-reported blended, else usage-weighted 1:3
+        var bl = _scoreIdx[PRICE_IDS.blended] && _scoreIdx[PRICE_IDS.blended][id];
+        if (bl != null) return bl;
+        if (inp != null && out != null) return (inp + 3 * out) / 4;
+        return null;
+    }
+
+    function _relDate(model) {
+        var d = model && (model.release_date || model.released_at);
+        return d || null;
+    }
+
+    // ---- URL state ---------------------------------------------------------
+    function _syncUrl() {
+        try {
+            var params = new URLSearchParams(window.location.search);
+            Object.keys(_urlKeys).forEach(function (elId) {
+                var el = document.getElementById(elId);
+                if (!el) return;
+                var val = (el.type === 'checkbox') ? (el.checked ? '1' : '') : el.value;
+                var key = _urlKeys[elId];
+                if (val === '' || val === 'all') params.delete(key); else params.set(key, val);
+            });
+            var qs = params.toString();
+            history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : '') + window.location.hash);
+        } catch (e) {}
+    }
+    function _applyUrl() {
+        try {
+            var params = new URLSearchParams(window.location.search);
+            Object.keys(_urlKeys).forEach(function (elId) {
+                var el = document.getElementById(elId);
+                if (!el) return;
+                var val = params.get(_urlKeys[elId]);
+                if (val === null) return;
+                if (el.type === 'checkbox') el.checked = (val === '1' || val === 'true');
+                else el.value = val;
+            });
+            var pl = document.getElementById('price-period-label'), pr = document.getElementById('price-period');
+            if (pl && pr) pl.textContent = pr.value;
+            var hl = document.getElementById('price-hit-label'), hr = document.getElementById('price-hitrate');
+            if (hl && hr) hl.textContent = hr.value;
+        } catch (e) {}
+    }
+
+    function init(models) {
+        _modelsById = {};
+        (models || []).forEach(function (m) { _modelsById[m.id] = m; });
+        _scoreIdx = _idx(App && App.data ? App.data.scores : []);
+
+        // Populate metric dropdown with metrics that have coverage among priced.
+        var priced = {};
+        [PRICE_IDS.input, PRICE_IDS.output].forEach(function (pid) {
+            var m = _scoreIdx[pid] || {}; Object.keys(m).forEach(function (id) { priced[id] = 1; });
+        });
+        var sel = document.getElementById('price-metric');
+        if (sel && !sel.options.length) {
+            METRICS.forEach(function (pair) {
+                var cov = 0, mp = _scoreIdx[pair[0]] || {};
+                Object.keys(priced).forEach(function (id) { if (mp[id] != null) cov++; });
+                if (cov >= 5) {
+                    var o = document.createElement('option');
+                    o.value = pair[0];
+                    o.textContent = pair[1] + ' (' + (pair[2] || '') + ') · ' + cov;
+                    sel.appendChild(o);
+                }
+            });
+        }
+        // Populate vendor filter from priced models.
+        var vsel = document.getElementById('price-vendor');
+        if (vsel && vsel.options.length <= 1) {
+            var vs = {};
+            Object.keys(priced).forEach(function (id) { vs[_vendor(id, _modelsById[id])] = 1; });
+            Object.keys(vs).sort().forEach(function (v) {
+                var o = document.createElement('option'); o.value = v; o.textContent = v; vsel.appendChild(o);
+            });
+        }
+        // Populate country filter (via Timeline's country map).
+        var csel = document.getElementById('price-country');
+        if (csel && csel.options.length <= 1) {
+            var cs = {};
+            Object.keys(priced).forEach(function (id) { var cc = _country(id, _modelsById[id]); if (cc) cs[cc] = 1; });
+            Object.keys(cs).sort().forEach(function (cc) {
+                var o = document.createElement('option'); o.value = cc; o.textContent = cc; csel.appendChild(o);
+            });
+        }
+        _applyUrl();
+    }
+
+    function _wire() {
+        if (_wired) return; _wired = true;
+        ['price-metric', 'price-basis', 'price-vendor', 'price-country', 'price-logscale', 'price-connect', 'price-labels', 'price-flags', 'price-pareto'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('change', function () { _syncUrl(); render(); });
+        });
+        var pr = document.getElementById('price-period');
+        if (pr) pr.addEventListener('input', function () {
+            var pl = document.getElementById('price-period-label'); if (pl) pl.textContent = pr.value;
+            _syncUrl(); render();
+        });
+        var hr = document.getElementById('price-hitrate');
+        if (hr) hr.addEventListener('input', function () {
+            var hl = document.getElementById('price-hit-label'); if (hl) hl.textContent = hr.value;
+            _syncUrl(); render();
+        });
+        window.addEventListener('resize', function () { if (_chart) _chart.resize(); });
+    }
+
+    function _val(id, dflt) { var el = document.getElementById(id); return el ? el.value : dflt; }
+    function _chk(id) { var el = document.getElementById(id); return !!(el && el.checked); }
+
+    function render() {
+        var el = document.getElementById('price-chart');
+        if (!el || typeof echarts === 'undefined') return;
+        _wire();
+        if (!_scoreIdx[PRICE_IDS.output]) _scoreIdx = _idx(App && App.data ? App.data.scores : []);
+
+        var metric = _val('price-metric', 'aa_intelligence_index_v4_3');
+        var basis  = _val('price-basis', 'output');
+        var months = parseInt(_val('price-period', '12'), 10) || 12;
+        var vendorF = _val('price-vendor', 'all');
+        var countryF = _val('price-country', 'all');
+        var useLog = _chk('price-logscale');
+        var connect = _chk('price-connect');
+        var showLabels = _chk('price-labels');
+        var showFlags = _chk('price-flags');
+        var showPareto = _chk('price-pareto');
+        var hitRate = parseInt(_val('price-hitrate', '0'), 10) || 0;
+
+        var mDef = METRICS.filter(function (m) { return m[0] === metric; })[0] || [metric, metric, ''];
+        var metricLabel = mDef[1] + (mDef[2] ? ' (' + mDef[2] + ')' : '');
+        var BASIS_LABELS = {
+            input: 'Input $/1M', output: 'Output $/1M', blended: 'Blended $/1M',
+            cached: 'Cached input $/1M', effective: '유효 입력단가 $/1M (hit ' + hitRate + '%)'
+        };
+        var basisLabel = BASIS_LABELS[basis] || 'Output $/1M';
+
+        // period cutoff
+        var now = new Date();
+        var cutoff = new Date(now.getFullYear(), now.getMonth() - months, now.getDate());
+        var cutoffStr = cutoff.toISOString().slice(0, 10);
+
+        // Build points
+        var priceMap = _scoreIdx[PRICE_IDS.input] || {};
+        var pts = [], families = {}, skippedNoPerf = 0, skippedOld = 0;
+        Object.keys(priceMap).forEach(function (id) {
+            var model = _modelsById[id]; if (!model) return;
+            var ven = _vendor(id, model);
+            if (vendorF !== 'all' && ven !== vendorF) return;
+            if (countryF !== 'all' && _country(id, model) !== countryF) return;
+            var price = _price(id, basis, hitRate); if (price == null || price <= 0) return;
+            var perf = _scoreIdx[metric] && _scoreIdx[metric][id];
+            if (perf == null) { skippedNoPerf++; return; }
+            var rel = _relDate(model);
+            if (rel && rel < cutoffStr) { skippedOld++; return; }
+            var name = model.name || id;
+            var p = {
+                value: [price, perf], modelId: id, name: name, vendor: ven, rel: rel || '',
+                flag: _flag(id, model), symbol: _vendorShape(ven), itemStyle: { color: _vendorColor(ven) }
+            };
+            pts.push(p);
+            var fk = _family(id);
+            (families[fk] || (families[fk] = [])).push(p);
+        });
+
+        // Point label per the 모델명/국기 toggles: flag + full name (either alone).
+        function _ptLabel(pp) {
+            var d = pp.data || {}, parts = [];
+            if (showFlags && d.flag) parts.push(d.flag);
+            if (showLabels && d.name) parts.push(d.name);
+            return parts.join(' ');
+        }
+        // Pareto frontier (斬殺線): a point is non-dominated if no other point is
+        // both cheaper-or-equal AND better-or-equal. Walk points by price asc,
+        // keep those beating the running best perf. Dominated points are dimmed.
+        var frontierPts = [];
+        if (showPareto && pts.length) {
+            var sortedP = pts.slice().sort(function (a, b) {
+                return a.value[0] - b.value[0] || b.value[1] - a.value[1];
+            });
+            var maxPerf = -Infinity;
+            sortedP.forEach(function (p) {
+                if (p.value[1] > maxPerf) { frontierPts.push(p); maxPerf = p.value[1]; p._frontier = true; }
+            });
+            pts.forEach(function (p) {
+                if (!p._frontier) p.itemStyle = { color: _vendorColor(p.vendor), opacity: 0.25 };
+            });
+        }
+
+        var series = [{
+            type: 'scatter', symbolSize: 12, data: pts, z: 3,
+            label: {
+                show: showLabels || showFlags, position: 'right', formatter: _ptLabel,
+                fontFamily: NORMAL_FONT, fontSize: 11, color: '#cbd5e1'
+            },
+            emphasis: { focus: 'series', label: {
+                show: true, formatter: function (pp) { return (pp.data.flag ? pp.data.flag + ' ' : '') + pp.data.name; },
+                position: 'top', fontFamily: NORMAL_FONT
+            } },
+            // When labels/flags are explicitly on, show ALL of them (no overlap
+            // culling); only hide-on-overlap for the hover-only emphasis labels.
+            labelLayout: { hideOverlap: !(showLabels || showFlags) }
+        }];
+
+        // Trajectory lines per family (>=2 points), sorted by release date, with
+        // an arrow on each segment pointing old -> new (direction of updates).
+        if (connect) {
+            var segs = [];
+            Object.keys(families).forEach(function (fk) {
+                var arr = families[fk].filter(function (p) { return p.rel; });
+                if (arr.length < 2) return;
+                arr.sort(function (a, b) { return a.rel < b.rel ? -1 : a.rel > b.rel ? 1 : 0; });
+                for (var i = 0; i < arr.length - 1; i++) {
+                    segs.push({
+                        coords: [arr[i].value, arr[i + 1].value],
+                        lineStyle: { color: _vendorColor(arr[0].vendor) }
+                    });
+                }
+            });
+            if (segs.length) {
+                series.push({
+                    type: 'lines', coordinateSystem: 'cartesian2d', z: 1, silent: true,
+                    symbol: ['none', 'arrow'], symbolSize: 7,
+                    lineStyle: { width: 1, opacity: 0.4, curveness: 0 },
+                    data: segs
+                });
+            }
+        }
+
+        // Efficient-frontier line (amber dashed) through the non-dominated points.
+        if (showPareto && frontierPts.length >= 2) {
+            series.push({
+                type: 'line', z: 2, silent: true, symbol: 'none', smooth: false,
+                lineStyle: { width: 2, color: '#fbbf24', opacity: 0.9, type: 'dashed' },
+                data: frontierPts.map(function (p) { return p.value; })
+            });
+        }
+
+        var option = {
+            backgroundColor: 'transparent',
+            textStyle: { fontFamily: NORMAL_FONT },
+            // Extra right room when labels are on so right-edge (priciest) point
+            // labels aren't clipped.
+            grid: { left: 60, right: (showLabels || showFlags) ? 150 : 30, top: 20, bottom: 60 },
+            tooltip: {
+                trigger: 'item',
+                textStyle: { fontFamily: NORMAL_FONT },
+                formatter: function (pp) {
+                    if (!pp.data || !pp.data.modelId) return '';
+                    var d = pp.data;
+                    return '<strong>' + d.name + '</strong><br/>' +
+                        basisLabel + ': $' + d.value[0].toFixed(2) + '<br/>' +
+                        metricLabel + ': ' + d.value[1] + '<br/>' +
+                        (d.rel ? '출시: ' + d.rel + '<br/>' : '') +
+                        '<span style="color:#888">클릭 시 상세정보</span>';
+                }
+            },
+            xAxis: {
+                type: useLog ? 'log' : 'value', name: basisLabel + (useLog ? ' (log)' : ''),
+                nameLocation: 'middle', nameGap: 34, nameTextStyle: { color: '#9ca3af' },
+                axisLabel: { color: '#9ca3af', formatter: function (v) { return '$' + v; } },
+                splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } }
+            },
+            yAxis: {
+                type: 'value', name: metricLabel, nameLocation: 'middle', nameGap: 42,
+                nameTextStyle: { color: '#9ca3af' }, scale: true,
+                axisLabel: { color: '#9ca3af' },
+                splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } }
+            },
+            series: series
+        };
+
+        if (!_chart) _chart = echarts.init(el);
+        _chart.setOption(option, true);
+        _chart.resize();
+        _chart.off('click');
+        _chart.on('click', function (params) {
+            var id = params && params.data && params.data.modelId;
+            if (id && typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(id);
+        });
+
+        var note = document.getElementById('price-note');
+        if (note) {
+            note.textContent = pts.length + '개 모델 표시 (최근 ' + months + '개월 · ' + basisLabel +
+                ' vs ' + metricLabel + '). 가격 출처: OpenRouter · Artificial Analysis · llm-stats. ' +
+                (skippedOld ? skippedOld + '개는 기간 밖, ' : '') +
+                (skippedNoPerf ? skippedNoPerf + '개는 선택 지표 점수 없음.' : '');
+        }
+
+        // ---- per-model price table (input/output/blended + release/vendor/country) ----
+        var inMap = _scoreIdx[PRICE_IDS.input] || {}, outMap = _scoreIdx[PRICE_IDS.output] || {};
+        var tableIds = {};
+        Object.keys(inMap).forEach(function (id) { tableIds[id] = 1; });
+        Object.keys(outMap).forEach(function (id) { tableIds[id] = 1; });
+        var cchMap = _scoreIdx[PRICE_IDS.cached] || {};
+        var rows = [];
+        Object.keys(tableIds).forEach(function (id) {
+            var model = _modelsById[id]; if (!model) return;
+            var ven = _vendor(id, model);
+            if (vendorF !== 'all' && ven !== vendorF) return;
+            if (countryF !== 'all' && _country(id, model) !== countryF) return;
+            var rel = _relDate(model);
+            if (rel && rel < cutoffStr) return;
+            var inp = (inMap[id] != null ? inMap[id] : null);
+            var cch = (cchMap[id] != null ? cchMap[id] : null);
+            var disc = (inp != null && inp > 0 && cch != null) ? Math.round((1 - cch / inp) * 100) : null;
+            rows.push({
+                id: id, name: model.name || id, vendor: model.vendor || ven,
+                country: _country(id, model),
+                input: inp,
+                output: (outMap[id] != null ? outMap[id] : null),
+                blended: _price(id, 'blended'),
+                cached: cch, discount: disc,
+                rel: rel || ''
+            });
+        });
+        _lastRows = rows;
+        _renderTable(rows);
+    }
+
+    function _renderTable(rows) {
+        var wrap = document.getElementById('price-table-wrap');
+        if (!wrap) return;
+        var cols = [
+            { key: 'name',    label: '모델',        num: false },
+            { key: 'vendor',  label: '제조사',      num: false },
+            { key: 'country', label: '국가',        num: false },
+            { key: 'input',   label: 'Input $/1M',  num: true },
+            { key: 'output',  label: 'Output $/1M', num: true },
+            { key: 'blended', label: 'Blended $/1M',num: true },
+            { key: 'cached',  label: 'Cached in $/1M', num: true },
+            { key: 'discount',label: '캐시 할인율 %',  num: true },
+            { key: 'rel',     label: '출시일',      num: false }
+        ];
+        var dir = _sortDir === 'asc' ? 1 : -1;
+        rows.sort(function (a, b) {   // null-safe: blanks/nulls always last
+            var av = a[_sortKey], bv = b[_sortKey];
+            var an = (av == null || av === ''), bn = (bv == null || bv === '');
+            if (an && bn) return 0;
+            if (an) return 1;
+            if (bn) return -1;
+            if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * dir;
+            return String(av).localeCompare(String(bv)) * dir;
+        });
+        var h = '<table class="w-full text-sm border-collapse"><thead><tr class="text-gray-400 border-b border-gray-700">';
+        cols.forEach(function (c) {
+            var arrow = _sortKey === c.key ? (_sortDir === 'asc' ? ' ▲' : ' ▼') : '';
+            h += '<th data-key="' + c.key + '" class="px-3 py-2 ' + (c.num ? 'text-right' : 'text-left') +
+                ' cursor-pointer select-none hover:text-gray-200 whitespace-nowrap">' + c.label + arrow + '</th>';
+        });
+        h += '</tr></thead><tbody>';
+        var fmt = function (v) { return v == null ? '—' : '$' + (+v).toFixed(v < 0.1 ? 4 : 2); };
+        var pct = function (v) { return v == null ? '—' : v + '%'; };
+        rows.forEach(function (r) {
+            h += '<tr class="border-b border-gray-800 hover:bg-gray-800/40">' +
+                '<td class="px-3 py-1.5 text-left"><button data-model="' + _esc(r.id) + '" class="price-tbl-model text-blue-400 hover:text-blue-300">' + _esc(r.name) + '</button></td>' +
+                '<td class="px-3 py-1.5 text-left text-gray-300 whitespace-nowrap">' + _esc(r.vendor) + '</td>' +
+                '<td class="px-3 py-1.5 text-left text-gray-300 whitespace-nowrap">' + _esc(r.country) + '</td>' +
+                '<td class="px-3 py-1.5 text-right tabular-nums">' + fmt(r.input) + '</td>' +
+                '<td class="px-3 py-1.5 text-right tabular-nums">' + fmt(r.output) + '</td>' +
+                '<td class="px-3 py-1.5 text-right tabular-nums">' + fmt(r.blended) + '</td>' +
+                '<td class="px-3 py-1.5 text-right tabular-nums text-gray-300">' + fmt(r.cached) + '</td>' +
+                '<td class="px-3 py-1.5 text-right tabular-nums text-emerald-400">' + pct(r.discount) + '</td>' +
+                '<td class="px-3 py-1.5 text-left text-gray-400 whitespace-nowrap">' + _esc(r.rel || '—') + '</td>' +
+                '</tr>';
+        });
+        h += '</tbody></table>';
+        wrap.innerHTML = h;
+
+        wrap.querySelectorAll('th[data-key]').forEach(function (th) {
+            th.addEventListener('click', function () {
+                var k = th.getAttribute('data-key');
+                if (_sortKey === k) _sortDir = (_sortDir === 'asc' ? 'desc' : 'asc');
+                else { _sortKey = k; _sortDir = (k === 'input' || k === 'output' || k === 'blended' || k === 'cached' || k === 'discount') ? 'desc' : 'asc'; }
+                _renderTable(_lastRows);   // re-sort table only (chart unchanged)
+            });
+        });
+        wrap.querySelectorAll('.price-tbl-model').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var id = btn.getAttribute('data-model');
+                if (id && typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(id);
+            });
+        });
+    }
+
+    // Read-only helpers shared with the 3D explorer (price3d.js) so both views
+    // price, colour and date models identically.
+    var api = {
+        metrics: METRICS, priceIds: PRICE_IDS,
+        vendor: _vendor, vendorColor: _vendorColor, country: _country, flag: _flag,
+        family: _family, relDate: _relDate,
+        price: function (id, basis, hitRate) {
+            if (!_scoreIdx[PRICE_IDS.output]) _scoreIdx = _idx(App && App.data ? App.data.scores : []);
+            return _price(id, basis, hitRate);
+        },
+        scoreIdx: function () {
+            if (!_scoreIdx[PRICE_IDS.output]) _scoreIdx = _idx(App && App.data ? App.data.scores : []);
+            return _scoreIdx;
+        },
+        modelsById: function () { return _modelsById; }
+    };
+
+    return { init: init, render: render, api: api };
+})();
