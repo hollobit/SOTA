@@ -1,0 +1,2660 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-25",
+  "session": "S315",
+  "sources": [
+   "https://www.tbench.ai/news/terminal-bench-4-0",
+   "https://www.tbench.ai/?view=pareto",
+   "https://www.tbench.ai/blog/terminal-bench-4-0/rollout-charts.html"
+  ],
+  "note": "Terminal-Bench 4.0 release post and official leaderboard (35 rows, Next.js RSC payload of the Pareto view): missing accuracy cells, official-vs-vendor differences in a rerun channel, pass@2/pass@5, total cost, tokens, trial duration, cost per task; Grok 4.6 TB3.0 from the blog's trial grid."
+ },
+ "models": [],
+ "benchmarks": [
+  {
+   "id": "terminal_bench_4_0",
+   "name": "Terminal-Bench 4.0 (resolution rate)",
+   "category": "code-agent",
+   "metric": "resolution_rate",
+   "description": "Terminal-Bench v4.0.0 (Stanford / Harbor / Laude Institute, Aug 2026): 66 tasks. Starts from the 74 tasks of v3.0, removes 8 (2 saturated, 2 refusals, 2 with public solutions, 2 with unresolved quality/platform issues) and fixes 19 (instructions, environments, verifiers). Task resources (time/CPU/memory) are recalibrated, with a flat 8-hour agent timeout. Terminal-Bench is now a continuous, semantically versioned benchmark: a major version means re-run. The official leaderboard runs 5 trials per task (330 trials) and reports resolution rate with a 95% CI. Run with `harbor run -d terminal-bench/terminal-bench@4.0.0`. Separate id from terminal_bench_2_1 because the task set differs (2.x had 89 tasks)."
+  },
+  {
+   "id": "terminal_bench_4_0_rerun_tbench_official",
+   "name": "Terminal-Bench 4.0 — official tbench.ai leaderboard (where it differs from the stored vendor value)",
+   "category": "code-agent",
+   "metric": "resolution_rate",
+   "description": "Official tbench.ai Terminal-Bench 4.0 leaderboard resolution rate (5 trials × 66 tasks, vendor agent harness). Holds rows that differ from the vendor-reported value stored on terminal_bench_4_0; all other official rows are on terminal_bench_4_0."
+  },
+  {
+   "id": "terminal_bench_4_0_tbench_pass_at_2",
+   "name": "Terminal-Bench 4.0 — pass@2 (official leaderboard)",
+   "category": "code-agent",
+   "metric": "pass_at_k",
+   "description": "pass@2 over the 5 trials per task from the official tbench.ai Terminal-Bench 4.0 leaderboard row metrics (stored as a percentage)."
+  },
+  {
+   "id": "terminal_bench_4_0_tbench_pass_at_5",
+   "name": "Terminal-Bench 4.0 — pass@5 (official leaderboard)",
+   "category": "code-agent",
+   "metric": "pass_at_k",
+   "description": "pass@5 (task solved in at least one of 5 trials) from the official tbench.ai Terminal-Bench 4.0 leaderboard row metrics (stored as a percentage)."
+  },
+  {
+   "id": "terminal_bench_4_0_tbench_pass_at_3",
+   "name": "Terminal-Bench 4.0 — pass@3 (official leaderboard)",
+   "category": "code-agent",
+   "metric": "pass_at_k",
+   "description": "pass@3 over the 5 trials per task from the official tbench.ai Terminal-Bench 4.0 leaderboard row metrics (stored as a percentage)."
+  },
+  {
+   "id": "terminal_bench_4_0_tbench_pass_at_4",
+   "name": "Terminal-Bench 4.0 — pass@4 (official leaderboard)",
+   "category": "code-agent",
+   "metric": "pass_at_k",
+   "description": "pass@4 over the 5 trials per task from the official tbench.ai Terminal-Bench 4.0 leaderboard row metrics (stored as a percentage)."
+  },
+  {
+   "id": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "name": "Terminal-Bench 4.0 — total leaderboard-run cost (USD)",
+   "category": "coding",
+   "metric": "usd_lower_better",
+   "description": "Total USD cost of the 330-trial official tbench.ai Terminal-Bench 4.0 leaderboard run (the 'Cost' column, also the x-axis of the Pareto view)."
+  },
+  {
+   "id": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "name": "Terminal-Bench 4.0 — total tokens of the leaderboard run (billions)",
+   "category": "efficiency",
+   "metric": "tokens_b_lower_better",
+   "description": "Total tokens (input incl. cached + output) used in the 330-trial official tbench.ai Terminal-Bench 4.0 leaderboard run, in billions."
+  },
+  {
+   "id": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "name": "Terminal-Bench 4.0 — output tokens of the leaderboard run (millions)",
+   "category": "efficiency",
+   "metric": "tokens_m_lower_better",
+   "description": "Output tokens used in the 330-trial official tbench.ai Terminal-Bench 4.0 leaderboard run, in millions."
+  },
+  {
+   "id": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "name": "Terminal-Bench 4.0 — average trial duration (minutes)",
+   "category": "efficiency",
+   "metric": "minutes_lower_better",
+   "description": "Average wall-clock duration of one trial (agent run on one task) in the official tbench.ai Terminal-Bench 4.0 leaderboard run."
+  },
+  {
+   "id": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "name": "Terminal-Bench 4.0 — average cost per task (tbench.ai)",
+   "category": "coding",
+   "metric": "usd_lower_better",
+   "description": "Average USD cost per Terminal-Bench 4.0 trial: official tbench.ai leaderboard total cost / 330 trials. The same values are plotted in the Kimi K3.1 Pro blog score-vs-cost chart, where the DeepSeek point comes from Artificial Analysis."
+  },
+  {
+   "id": "terminal_bench_4_0_tbench_timeout_error_rate_lower_better",
+   "name": "Terminal-Bench 4.0 — share of trials ending in agent timeout or error (tbench.ai)",
+   "category": "code-agent",
+   "metric": "percent_lower_better",
+   "description": "Share of the 66×5 Terminal-Bench 4.0 leaderboard trials that ended in an agent timeout or an error (refusal, API error, output-token-exceeded, non-zero exit) rather than pass/fail. Counted from the per-trial outcome grid in the Terminal-Bench 4.0 release post ('Trials by task and outcome: Terminal-Bench 4.0 vs 3.0'). Measures harness/infra noise; lower is better."
+  },
+  {
+   "id": "terminal_bench_3_tbench_timeout_error_rate_lower_better",
+   "name": "Terminal-Bench 3.0 — share of trials ending in agent timeout or error (tbench.ai)",
+   "category": "code-agent",
+   "metric": "percent_lower_better",
+   "description": "Share of the 74×5 Terminal-Bench 3.0 leaderboard trials that ended in an agent timeout or an error (refusal, API error, output-token-exceeded, non-zero exit) rather than pass/fail. Counted from the per-trial outcome grid in the Terminal-Bench 4.0 release post ('Trials by task and outcome: Terminal-Bench 4.0 vs 3.0'). Measures harness/infra noise; lower is better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0_rerun_tbench_official",
+   "score": 64.85,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 1): Opus 5.5 (max) with Claude Code, 330 trials; 64.85% ± 3.11. terminal_bench_4_0 keeps the vendor-reported 66.4."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 73.18,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 1): Opus 5.5 (max) with Claude Code, 330 trials; metrics.pass_at_2 = 0.7318."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 76.52,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 1): Opus 5.5 (max) with Claude Code, 330 trials; metrics.pass_at_3 = 0.7652."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 77.88,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 1): Opus 5.5 (max) with Claude Code, 330 trials; metrics.pass_at_4 = 0.7788."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 78.79,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 1): Opus 5.5 (max) with Claude Code, 330 trials; metrics.pass_at_5 = 0.7879."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 4718.65,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 1): Opus 5.5 (max) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 8.034,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 1): Opus 5.5 (max) with Claude Code, 330 trials; metrics.total_tokens = 8034082467."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 88.81,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 1): Opus 5.5 (max) with Claude Code, 330 trials; metrics.output_tokens = 88814607."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 79.84,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 1): Opus 5.5 (max) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 4790.4."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_0_rerun_tbench_official",
+   "score": 61.82,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 2): Sonnet 5.5 (max) with Claude Code, 330 trials; 61.82% ± 2.94. terminal_bench_4_0 keeps the vendor-reported 70.6."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 69.24,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 2): Sonnet 5.5 (max) with Claude Code, 330 trials; metrics.pass_at_2 = 0.6924."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 73.64,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 2): Sonnet 5.5 (max) with Claude Code, 330 trials; metrics.pass_at_3 = 0.7364."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 76.06,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 2): Sonnet 5.5 (max) with Claude Code, 330 trials; metrics.pass_at_4 = 0.7606."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 77.27,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 2): Sonnet 5.5 (max) with Claude Code, 330 trials; metrics.pass_at_5 = 0.7727."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 7333.64,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 2): Sonnet 5.5 (max) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 19.413,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 2): Sonnet 5.5 (max) with Claude Code, 330 trials; metrics.total_tokens = 19413047384."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 186.58,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 2): Sonnet 5.5 (max) with Claude Code, 330 trials; metrics.output_tokens = 186577885."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 123.86,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 2): Sonnet 5.5 (max) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 7431.6."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 64.85,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6 Astra (max) with Codex, 330 trials; metrics.pass_at_2 = 0.6485."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 67.88,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6 Astra (max) with Codex, 330 trials; metrics.pass_at_3 = 0.6788."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 69.7,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6 Astra (max) with Codex, 330 trials; metrics.pass_at_4 = 0.697."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 71.21,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6 Astra (max) with Codex, 330 trials; metrics.pass_at_5 = 0.7121."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 3267.18,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6 Astra (max) with Codex, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 1.53,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6 Astra (max) with Codex, 330 trials; metrics.total_tokens = 1529778322."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 23.99,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6 Astra (max) with Codex, 330 trials; metrics.output_tokens = 23988992."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 46.61,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6 Astra (max) with Codex, 330 trials; metrics.avg_trial_duration_sec = 2796.3."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 66.52,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6.1 Sol (max) with Codex, 330 trials; metrics.pass_at_2 = 0.6652."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 70.15,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6.1 Sol (max) with Codex, 330 trials; metrics.pass_at_3 = 0.7015."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 72.42,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6.1 Sol (max) with Codex, 330 trials; metrics.pass_at_4 = 0.7242."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 74.24,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6.1 Sol (max) with Codex, 330 trials; metrics.pass_at_5 = 0.7424."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 634.24,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6.1 Sol (max) with Codex, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 1.92,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6.1 Sol (max) with Codex, 330 trials; total_cost_usd 634.24 / 330 costed trials."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 1.46,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6.1 Sol (max) with Codex, 330 trials; metrics.total_tokens = 1459936514."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 31.31,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6.1 Sol (max) with Codex, 330 trials; metrics.output_tokens = 31314516."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 52.95,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 3): GPT-6.1 Sol (max) with Codex, 330 trials; metrics.avg_trial_duration_sec = 3176.7."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 70.0,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (max) with Claude Code, 330 trials; metrics.pass_at_2 = 0.7."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 74.7,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (max) with Claude Code, 330 trials; metrics.pass_at_3 = 0.747."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 77.27,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (max) with Claude Code, 330 trials; metrics.pass_at_4 = 0.7727."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 78.79,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (max) with Claude Code, 330 trials; metrics.pass_at_5 = 0.7879."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 6243.5,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (max) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 2.746,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (max) with Claude Code, 330 trials; metrics.total_tokens = 2746221560."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 63.12,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (max) with Claude Code, 330 trials; metrics.output_tokens = 63121568."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 64.89,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (max) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 3893.5."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 64.24,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (xhigh) with Codex, 330 trials; metrics.pass_at_2 = 0.6424."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 66.97,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (xhigh) with Codex, 330 trials; metrics.pass_at_3 = 0.6697."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 68.48,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (xhigh) with Codex, 330 trials; metrics.pass_at_4 = 0.6848."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 69.7,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (xhigh) with Codex, 330 trials; metrics.pass_at_5 = 0.697."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 2350.51,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (xhigh) with Codex, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 1.202,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (xhigh) with Codex, 330 trials; metrics.total_tokens = 1201907334."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 14.95,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (xhigh) with Codex, 330 trials; metrics.output_tokens = 14950287."
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 36.81,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (xhigh) with Codex, 330 trials; metrics.avg_trial_duration_sec = 2208.5."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 65.45,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (high) with Codex, 330 trials; metrics.pass_at_2 = 0.6545."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 68.64,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (high) with Codex, 330 trials; metrics.pass_at_3 = 0.6864."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 70.3,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (high) with Codex, 330 trials; metrics.pass_at_4 = 0.703."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 71.21,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (high) with Codex, 330 trials; metrics.pass_at_5 = 0.7121."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 2269.42,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (high) with Codex, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 1.208,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (high) with Codex, 330 trials; metrics.total_tokens = 1208224034."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 13.7,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (high) with Codex, 330 trials; metrics.output_tokens = 13703943."
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 35.23,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): GPT-6 Astra (high) with Codex, 330 trials; metrics.avg_trial_duration_sec = 2113.7."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 67.58,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (xhigh) with Claude Code, 330 trials; metrics.pass_at_2 = 0.6758."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 71.52,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (xhigh) with Claude Code, 330 trials; metrics.pass_at_3 = 0.7152."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 73.94,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (xhigh) with Claude Code, 330 trials; metrics.pass_at_4 = 0.7394."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 75.76,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (xhigh) with Claude Code, 330 trials; metrics.pass_at_5 = 0.7576."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 4872.04,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (xhigh) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 2.343,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (xhigh) with Claude Code, 330 trials; metrics.total_tokens = 2343414000."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 50.43,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (xhigh) with Claude Code, 330 trials; metrics.output_tokens = 50426931."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 53.37,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 5): Fable 5.1 (xhigh) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 3202.1."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 64.7,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 9): Fable 5.1 (high) with Claude Code, 330 trials; metrics.pass_at_2 = 0.647."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 69.7,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 9): Fable 5.1 (high) with Claude Code, 330 trials; metrics.pass_at_3 = 0.697."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 73.03,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 9): Fable 5.1 (high) with Claude Code, 330 trials; metrics.pass_at_4 = 0.7303."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 75.76,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 9): Fable 5.1 (high) with Claude Code, 330 trials; metrics.pass_at_5 = 0.7576."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-high",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 3985.38,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 9): Fable 5.1 (high) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-high",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 2.234,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 9): Fable 5.1 (high) with Claude Code, 330 trials; metrics.total_tokens = 2233621484."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-high",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 37.43,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 9): Fable 5.1 (high) with Claude Code, 330 trials; metrics.output_tokens = 37429044."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-high",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 50.29,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 9): Fable 5.1 (high) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 3017.7."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 60.3,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 10): GPT-6 Astra (medium) with Codex, 330 trials; metrics.pass_at_2 = 0.603."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 63.18,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 10): GPT-6 Astra (medium) with Codex, 330 trials; metrics.pass_at_3 = 0.6318."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 65.15,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 10): GPT-6 Astra (medium) with Codex, 330 trials; metrics.pass_at_4 = 0.6515."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 66.67,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 10): GPT-6 Astra (medium) with Codex, 330 trials; metrics.pass_at_5 = 0.6667."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 1914.8,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 10): GPT-6 Astra (medium) with Codex, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 1.052,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 10): GPT-6 Astra (medium) with Codex, 330 trials; metrics.total_tokens = 1051885207."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 10.77,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 10): GPT-6 Astra (medium) with Codex, 330 trials; metrics.output_tokens = 10770605."
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 31.43,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 10): GPT-6 Astra (medium) with Codex, 330 trials; metrics.avg_trial_duration_sec = 1885.9."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 63.79,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Fable 5.1 (medium) with Claude Code, 330 trials; metrics.pass_at_2 = 0.6379."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 67.88,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Fable 5.1 (medium) with Claude Code, 330 trials; metrics.pass_at_3 = 0.6788."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 70.0,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Fable 5.1 (medium) with Claude Code, 330 trials; metrics.pass_at_4 = 0.7."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 71.21,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Fable 5.1 (medium) with Claude Code, 330 trials; metrics.pass_at_5 = 0.7121."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-medium",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 2832.9,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Fable 5.1 (medium) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-medium",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 1.62,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Fable 5.1 (medium) with Claude Code, 330 trials; metrics.total_tokens = 1620460859."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-medium",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 25.99,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Fable 5.1 (medium) with Claude Code, 330 trials; metrics.output_tokens = 25991800."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-medium",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 42.14,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Fable 5.1 (medium) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 2528.3."
+  },
+  {
+   "model": "anthropic/claude-opus-5-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 62.58,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Opus 5 (xhigh) with Claude Code, 330 trials; metrics.pass_at_2 = 0.6258."
+  },
+  {
+   "model": "anthropic/claude-opus-5-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 66.21,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Opus 5 (xhigh) with Claude Code, 330 trials; metrics.pass_at_3 = 0.6621."
+  },
+  {
+   "model": "anthropic/claude-opus-5-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 68.48,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Opus 5 (xhigh) with Claude Code, 330 trials; metrics.pass_at_4 = 0.6848."
+  },
+  {
+   "model": "anthropic/claude-opus-5-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 69.7,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Opus 5 (xhigh) with Claude Code, 330 trials; metrics.pass_at_5 = 0.697."
+  },
+  {
+   "model": "anthropic/claude-opus-5-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 6086.22,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Opus 5 (xhigh) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-opus-5-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 18.44,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Opus 5 (xhigh) with Claude Code, 330 trials; total_cost_usd 6086.22 / 330 costed trials."
+  },
+  {
+   "model": "anthropic/claude-opus-5-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 6.897,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Opus 5 (xhigh) with Claude Code, 330 trials; metrics.total_tokens = 6897141993."
+  },
+  {
+   "model": "anthropic/claude-opus-5-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 59.16,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Opus 5 (xhigh) with Claude Code, 330 trials; metrics.output_tokens = 59162574."
+  },
+  {
+   "model": "anthropic/claude-opus-5-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 75.24,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 11): Opus 5 (xhigh) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 4514.7."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 61.67,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 13): Opus 5 (max) with Claude Code, 330 trials; metrics.pass_at_2 = 0.6167."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 65.76,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 13): Opus 5 (max) with Claude Code, 330 trials; metrics.pass_at_3 = 0.6576."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 68.18,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 13): Opus 5 (max) with Claude Code, 330 trials; metrics.pass_at_4 = 0.6818."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 69.7,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 13): Opus 5 (max) with Claude Code, 330 trials; metrics.pass_at_5 = 0.697."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 5969.11,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 13): Opus 5 (max) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 18.09,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 13): Opus 5 (max) with Claude Code, 330 trials; total_cost_usd 5969.11 / 330 costed trials."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 6.527,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 13): Opus 5 (max) with Claude Code, 330 trials; metrics.total_tokens = 6527147637."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 66.01,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 13): Opus 5 (max) with Claude Code, 330 trials; metrics.output_tokens = 66012156."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 79.88,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 13): Opus 5 (max) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 4792.8."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 57.12,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 14): GPT-6 Astra (low) with Codex, 330 trials; metrics.pass_at_2 = 0.5712."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 60.15,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 14): GPT-6 Astra (low) with Codex, 330 trials; metrics.pass_at_3 = 0.6015."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 62.12,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 14): GPT-6 Astra (low) with Codex, 330 trials; metrics.pass_at_4 = 0.6212."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 63.64,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 14): GPT-6 Astra (low) with Codex, 330 trials; metrics.pass_at_5 = 0.6364."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 1557.3,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 14): GPT-6 Astra (low) with Codex, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 0.89,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 14): GPT-6 Astra (low) with Codex, 330 trials; metrics.total_tokens = 889780710."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 7.99,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 14): GPT-6 Astra (low) with Codex, 330 trials; metrics.output_tokens = 7988337."
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 28.06,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 14): GPT-6 Astra (low) with Codex, 330 trials; metrics.avg_trial_duration_sec = 1683.7."
+  },
+  {
+   "model": "anthropic/claude-opus-5-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 62.27,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 15): Opus 5 (high) with Claude Code, 330 trials; metrics.pass_at_2 = 0.6227."
+  },
+  {
+   "model": "anthropic/claude-opus-5-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 68.03,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 15): Opus 5 (high) with Claude Code, 330 trials; metrics.pass_at_3 = 0.6803."
+  },
+  {
+   "model": "anthropic/claude-opus-5-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 71.82,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 15): Opus 5 (high) with Claude Code, 330 trials; metrics.pass_at_4 = 0.7182."
+  },
+  {
+   "model": "anthropic/claude-opus-5-high",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 74.24,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 15): Opus 5 (high) with Claude Code, 330 trials; metrics.pass_at_5 = 0.7424."
+  },
+  {
+   "model": "anthropic/claude-opus-5-high",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 4662.27,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 15): Opus 5 (high) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-opus-5-high",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 14.13,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 15): Opus 5 (high) with Claude Code, 330 trials; total_cost_usd 4662.27 / 330 costed trials."
+  },
+  {
+   "model": "anthropic/claude-opus-5-high",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 5.482,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 15): Opus 5 (high) with Claude Code, 330 trials; metrics.total_tokens = 5482033334."
+  },
+  {
+   "model": "anthropic/claude-opus-5-high",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 47.6,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 15): Opus 5 (high) with Claude Code, 330 trials; metrics.output_tokens = 47599774."
+  },
+  {
+   "model": "anthropic/claude-opus-5-high",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 63.7,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 15): Opus 5 (high) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 3822.2."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 58.33,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 16): GPT-6 Sol (max) with Codex, 330 trials; metrics.pass_at_2 = 0.5833."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 62.42,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 16): GPT-6 Sol (max) with Codex, 330 trials; metrics.pass_at_3 = 0.6242."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 64.85,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 16): GPT-6 Sol (max) with Codex, 330 trials; metrics.pass_at_4 = 0.6485."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 66.67,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 16): GPT-6 Sol (max) with Codex, 330 trials; metrics.pass_at_5 = 0.6667."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 1451.32,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 16): GPT-6 Sol (max) with Codex, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 4.4,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 16): GPT-6 Sol (max) with Codex, 330 trials; total_cost_usd 1451.32 / 330 costed trials."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 4.978,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 16): GPT-6 Sol (max) with Codex, 330 trials; metrics.total_tokens = 4977940044."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 30.57,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 16): GPT-6 Sol (max) with Codex, 330 trials; metrics.output_tokens = 30571836."
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 44.37,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 16): GPT-6 Sol (max) with Codex, 330 trials; metrics.avg_trial_duration_sec = 2662.2."
+  },
+  {
+   "model": "anthropic/claude-opus-5-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 57.42,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 17): Opus 5 (medium) with Claude Code, 330 trials; metrics.pass_at_2 = 0.5742."
+  },
+  {
+   "model": "anthropic/claude-opus-5-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 63.79,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 17): Opus 5 (medium) with Claude Code, 330 trials; metrics.pass_at_3 = 0.6379."
+  },
+  {
+   "model": "anthropic/claude-opus-5-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 67.27,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 17): Opus 5 (medium) with Claude Code, 330 trials; metrics.pass_at_4 = 0.6727."
+  },
+  {
+   "model": "anthropic/claude-opus-5-medium",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 69.7,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 17): Opus 5 (medium) with Claude Code, 330 trials; metrics.pass_at_5 = 0.697."
+  },
+  {
+   "model": "anthropic/claude-opus-5-medium",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 3191.59,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 17): Opus 5 (medium) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-opus-5-medium",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 9.67,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 17): Opus 5 (medium) with Claude Code, 330 trials; total_cost_usd 3191.59 / 330 costed trials."
+  },
+  {
+   "model": "anthropic/claude-opus-5-medium",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 3.668,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 17): Opus 5 (medium) with Claude Code, 330 trials; metrics.total_tokens = 3668060107."
+  },
+  {
+   "model": "anthropic/claude-opus-5-medium",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 33.48,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 17): Opus 5 (medium) with Claude Code, 330 trials; metrics.output_tokens = 33478510."
+  },
+  {
+   "model": "anthropic/claude-opus-5-medium",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 54.88,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 17): Opus 5 (medium) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 3292.9."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 57.27,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 18): Fable 5 (max) with Claude Code, 330 trials; metrics.pass_at_2 = 0.5727."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 63.18,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 18): Fable 5 (max) with Claude Code, 330 trials; metrics.pass_at_3 = 0.6318."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 66.36,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 18): Fable 5 (max) with Claude Code, 330 trials; metrics.pass_at_4 = 0.6636."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 68.18,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 18): Fable 5 (max) with Claude Code, 330 trials; metrics.pass_at_5 = 0.6818."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 7265.01,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 18): Fable 5 (max) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 22.02,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 18): Fable 5 (max) with Claude Code, 330 trials; total_cost_usd 7265.01 / 330 costed trials."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 3.785,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 18): Fable 5 (max) with Claude Code, 330 trials; metrics.total_tokens = 3785220369."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 58.62,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 18): Fable 5 (max) with Claude Code, 330 trials; metrics.output_tokens = 58619905."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 70.05,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 18): Fable 5 (max) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 4202.8."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 54.55,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 19): Fable 5.1 (low) with Claude Code, 330 trials; metrics.pass_at_2 = 0.5455."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 60.0,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 19): Fable 5.1 (low) with Claude Code, 330 trials; metrics.pass_at_3 = 0.6."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 63.03,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 19): Fable 5.1 (low) with Claude Code, 330 trials; metrics.pass_at_4 = 0.6303."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 65.15,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 19): Fable 5.1 (low) with Claude Code, 330 trials; metrics.pass_at_5 = 0.6515."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-low",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 2358.72,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 19): Fable 5.1 (low) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-low",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 1.334,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 19): Fable 5.1 (low) with Claude Code, 330 trials; metrics.total_tokens = 1334012516."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-low",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 19.94,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 19): Fable 5.1 (low) with Claude Code, 330 trials; metrics.output_tokens = 19935011."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1-low",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 38.18,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 19): Fable 5.1 (low) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 2290.8."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 50.76,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 20): GLM-5.3 (max) with Claude Code, 330 trials; metrics.pass_at_2 = 0.5076."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 54.7,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 20): GLM-5.3 (max) with Claude Code, 330 trials; metrics.pass_at_3 = 0.547."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 56.67,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 20): GLM-5.3 (max) with Claude Code, 330 trials; metrics.pass_at_4 = 0.5667."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 57.58,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 20): GLM-5.3 (max) with Claude Code, 330 trials; metrics.pass_at_5 = 0.5758."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 2727.63,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 20): GLM-5.3 (max) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 8.677,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 20): GLM-5.3 (max) with Claude Code, 330 trials; metrics.total_tokens = 8677039373."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 68.66,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 20): GLM-5.3 (max) with Claude Code, 330 trials; metrics.output_tokens = 68660047."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 97.18,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 20): GLM-5.3 (max) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 5831."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 48.33,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 21): Grok 4.7 (xhigh) with Grok Build, 330 trials; metrics.pass_at_2 = 0.4833."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 53.94,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 21): Grok 4.7 (xhigh) with Grok Build, 330 trials; metrics.pass_at_3 = 0.5394."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 57.58,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 21): Grok 4.7 (xhigh) with Grok Build, 330 trials; metrics.pass_at_4 = 0.5758."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 60.61,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 21): Grok 4.7 (xhigh) with Grok Build, 330 trials; metrics.pass_at_5 = 0.6061."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 3683.29,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 21): Grok 4.7 (xhigh) with Grok Build, 330 trials; metrics.total_cost_usd. Cost covers only 324/330 trials (leaderboard: '$$3,683.29 (partial: 324/330 trials)')."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 11.37,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 21): Grok 4.7 (xhigh) with Grok Build, 330 trials; total_cost_usd 3683.287146 / 324 costed trials. Cost covers only 324/330 trials (leaderboard: '$$3,683.29 (partial: 324/330 trials)')."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 5.486,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 21): Grok 4.7 (xhigh) with Grok Build, 330 trials; metrics.total_tokens = 5485862389."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 22.98,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 21): Grok 4.7 (xhigh) with Grok Build, 330 trials; metrics.output_tokens = 22977067."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 95.02,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 21): Grok 4.7 (xhigh) with Grok Build, 330 trials; metrics.avg_trial_duration_sec = 5700.9."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 49.55,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 22): GPT-5.6 Sol (max) with Codex, 330 trials; metrics.pass_at_2 = 0.4955."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 55.0,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 22): GPT-5.6 Sol (max) with Codex, 330 trials; metrics.pass_at_3 = 0.55."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 58.18,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 22): GPT-5.6 Sol (max) with Codex, 330 trials; metrics.pass_at_4 = 0.5818."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 60.61,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 22): GPT-5.6 Sol (max) with Codex, 330 trials; metrics.pass_at_5 = 0.6061."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 2541.7,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 22): GPT-5.6 Sol (max) with Codex, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 7.7,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 22): GPT-5.6 Sol (max) with Codex, 330 trials; total_cost_usd 2541.7 / 330 costed trials."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 4.41,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 22): GPT-5.6 Sol (max) with Codex, 330 trials; metrics.total_tokens = 4409948969."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 23.45,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 22): GPT-5.6 Sol (max) with Codex, 330 trials; metrics.output_tokens = 23451415."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 39.81,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 22): GPT-5.6 Sol (max) with Codex, 330 trials; metrics.avg_trial_duration_sec = 2388.4."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 46.52,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 23): GLM-5.3-Flash (none) with Claude Code, 330 trials; metrics.pass_at_2 = 0.4652."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 51.36,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 23): GLM-5.3-Flash (none) with Claude Code, 330 trials; metrics.pass_at_3 = 0.5136."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 54.24,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 23): GLM-5.3-Flash (none) with Claude Code, 330 trials; metrics.pass_at_4 = 0.5424."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 56.06,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 23): GLM-5.3-Flash (none) with Claude Code, 330 trials; metrics.pass_at_5 = 0.5606."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 118.74,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 23): GLM-5.3-Flash (none) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 0.36,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 23): GLM-5.3-Flash (none) with Claude Code, 330 trials; total_cost_usd 118.73752448 / 330 costed trials."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 2.917,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 23): GLM-5.3-Flash (none) with Claude Code, 330 trials; metrics.total_tokens = 2916503275."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 44.55,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 23): GLM-5.3-Flash (none) with Claude Code, 330 trials; metrics.output_tokens = 44554633."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 103.5,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 23): GLM-5.3-Flash (none) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 6209.8."
+  },
+  {
+   "model": "anthropic/claude-opus-5-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 48.18,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 24): Opus 5 (low) with Claude Code, 330 trials; metrics.pass_at_2 = 0.4818."
+  },
+  {
+   "model": "anthropic/claude-opus-5-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 54.7,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 24): Opus 5 (low) with Claude Code, 330 trials; metrics.pass_at_3 = 0.547."
+  },
+  {
+   "model": "anthropic/claude-opus-5-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 58.79,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 24): Opus 5 (low) with Claude Code, 330 trials; metrics.pass_at_4 = 0.5879."
+  },
+  {
+   "model": "anthropic/claude-opus-5-low",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 62.12,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 24): Opus 5 (low) with Claude Code, 330 trials; metrics.pass_at_5 = 0.6212."
+  },
+  {
+   "model": "anthropic/claude-opus-5-low",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 2393.88,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 24): Opus 5 (low) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-opus-5-low",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 7.25,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 24): Opus 5 (low) with Claude Code, 330 trials; total_cost_usd 2393.88 / 330 costed trials."
+  },
+  {
+   "model": "anthropic/claude-opus-5-low",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 2.721,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 24): Opus 5 (low) with Claude Code, 330 trials; metrics.total_tokens = 2721178403."
+  },
+  {
+   "model": "anthropic/claude-opus-5-low",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 23.84,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 24): Opus 5 (low) with Claude Code, 330 trials; metrics.output_tokens = 23835411."
+  },
+  {
+   "model": "anthropic/claude-opus-5-low",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 49.12,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 24): Opus 5 (low) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 2947.3."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 39.24,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 25): Qwen3.8-Max-0902 (max) with Claude Code, 330 trials; metrics.pass_at_2 = 0.3924."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 45.91,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 25): Qwen3.8-Max-0902 (max) with Claude Code, 330 trials; metrics.pass_at_3 = 0.4591."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 50.0,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 25): Qwen3.8-Max-0902 (max) with Claude Code, 330 trials; metrics.pass_at_4 = 0.5."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 53.03,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 25): Qwen3.8-Max-0902 (max) with Claude Code, 330 trials; metrics.pass_at_5 = 0.5303."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 4635.67,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 25): Qwen3.8-Max-0902 (max) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 14.05,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 25): Qwen3.8-Max-0902 (max) with Claude Code, 330 trials; total_cost_usd 4635.67 / 330 costed trials."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 2.958,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 25): Qwen3.8-Max-0902 (max) with Claude Code, 330 trials; metrics.total_tokens = 2957967711."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 83.39,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 25): Qwen3.8-Max-0902 (max) with Claude Code, 330 trials; metrics.output_tokens = 83393525."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 165.88,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 25): Qwen3.8-Max-0902 (max) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 9953."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 34.55,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 26): Opus 4.8 (max) with Claude Code, 330 trials; metrics.pass_at_2 = 0.3455."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 40.45,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 26): Opus 4.8 (max) with Claude Code, 330 trials; metrics.pass_at_3 = 0.4045."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 44.24,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 26): Opus 4.8 (max) with Claude Code, 330 trials; metrics.pass_at_4 = 0.4424."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 46.97,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 26): Opus 4.8 (max) with Claude Code, 330 trials; metrics.pass_at_5 = 0.4697."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 6481.26,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 26): Opus 4.8 (max) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 19.64,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 26): Opus 4.8 (max) with Claude Code, 330 trials; total_cost_usd 6481.26 / 330 costed trials."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 6.416,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 26): Opus 4.8 (max) with Claude Code, 330 trials; metrics.total_tokens = 6415823126."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 88.81,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 26): Opus 4.8 (max) with Claude Code, 330 trials; metrics.output_tokens = 88813309."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 86.05,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 26): Opus 4.8 (max) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 5163."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 30.61,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 27): GPT-5.6 Terra (max) with Codex, 330 trials; metrics.pass_at_2 = 0.3061."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 36.36,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 27): GPT-5.6 Terra (max) with Codex, 330 trials; metrics.pass_at_3 = 0.3636."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 40.61,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 27): GPT-5.6 Terra (max) with Codex, 330 trials; metrics.pass_at_4 = 0.4061."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 43.94,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 27): GPT-5.6 Terra (max) with Codex, 330 trials; metrics.pass_at_5 = 0.4394."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 1733.52,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 27): GPT-5.6 Terra (max) with Codex, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 5.25,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 27): GPT-5.6 Terra (max) with Codex, 330 trials; total_cost_usd 1733.52 / 330 costed trials."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 5.684,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 27): GPT-5.6 Terra (max) with Codex, 330 trials; metrics.total_tokens = 5683805798."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 33.22,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 27): GPT-5.6 Terra (max) with Codex, 330 trials; metrics.output_tokens = 33224833."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 41.91,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 27): GPT-5.6 Terra (max) with Codex, 330 trials; metrics.avg_trial_duration_sec = 2514.6."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 28.48,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 28): Grok 4.6 (high) with Grok Build, 330 trials; metrics.pass_at_2 = 0.2848."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 33.03,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 28): Grok 4.6 (high) with Grok Build, 330 trials; metrics.pass_at_3 = 0.3303."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 36.36,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 28): Grok 4.6 (high) with Grok Build, 330 trials; metrics.pass_at_4 = 0.3636."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 39.39,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 28): Grok 4.6 (high) with Grok Build, 330 trials; metrics.pass_at_5 = 0.3939."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 3591.58,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 28): Grok 4.6 (high) with Grok Build, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 10.88,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 28): Grok 4.6 (high) with Grok Build, 330 trials; total_cost_usd 3591.58 / 330 costed trials."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 4.002,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 28): Grok 4.6 (high) with Grok Build, 330 trials; metrics.total_tokens = 4001923428."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 32.62,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 28): Grok 4.6 (high) with Grok Build, 330 trials; metrics.output_tokens = 32618221."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 39.19,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 28): Grok 4.6 (high) with Grok Build, 330 trials; metrics.avg_trial_duration_sec = 2351.5."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 28.79,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 29): Gemini 3.8 Flash (high) with mini-SWE-agent, 330 trials; metrics.pass_at_2 = 0.2879."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 35.3,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 29): Gemini 3.8 Flash (high) with mini-SWE-agent, 330 trials; metrics.pass_at_3 = 0.353."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 40.0,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 29): Gemini 3.8 Flash (high) with mini-SWE-agent, 330 trials; metrics.pass_at_4 = 0.4."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 43.94,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 29): Gemini 3.8 Flash (high) with mini-SWE-agent, 330 trials; metrics.pass_at_5 = 0.4394."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 1828.77,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 29): Gemini 3.8 Flash (high) with mini-SWE-agent, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 5.54,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 29): Gemini 3.8 Flash (high) with mini-SWE-agent, 330 trials; total_cost_usd 1828.77 / 330 costed trials."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 17.19,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 29): Gemini 3.8 Flash (high) with mini-SWE-agent, 330 trials; metrics.total_tokens = 17189729495."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 68.06,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 29): Gemini 3.8 Flash (high) with mini-SWE-agent, 330 trials; metrics.output_tokens = 68056484."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 33.25,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 29): Gemini 3.8 Flash (high) with mini-SWE-agent, 330 trials; metrics.avg_trial_duration_sec = 1995.1."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 24.24,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 30): GPT-5.6 Luna (max) with Codex, 330 trials; metrics.pass_at_2 = 0.2424."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 28.48,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 30): GPT-5.6 Luna (max) with Codex, 330 trials; metrics.pass_at_3 = 0.2848."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 31.21,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 30): GPT-5.6 Luna (max) with Codex, 330 trials; metrics.pass_at_4 = 0.3121."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 33.33,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 30): GPT-5.6 Luna (max) with Codex, 330 trials; metrics.pass_at_5 = 0.3333."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 346.67,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 30): GPT-5.6 Luna (max) with Codex, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 1.05,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 30): GPT-5.6 Luna (max) with Codex, 330 trials; total_cost_usd 346.67 / 330 costed trials."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 11.557,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 30): GPT-5.6 Luna (max) with Codex, 330 trials; metrics.total_tokens = 11557463640."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 61.28,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 30): GPT-5.6 Luna (max) with Codex, 330 trials; metrics.output_tokens = 61282672."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 68.14,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 30): GPT-5.6 Luna (max) with Codex, 330 trials; metrics.avg_trial_duration_sec = 4088.3."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 22.73,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 31): GPT-6 Luna (max) with Codex, 330 trials; metrics.pass_at_2 = 0.2273."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 26.21,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 31): GPT-6 Luna (max) with Codex, 330 trials; metrics.pass_at_3 = 0.2621."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 28.48,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 31): GPT-6 Luna (max) with Codex, 330 trials; metrics.pass_at_4 = 0.2848."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 30.3,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 31): GPT-6 Luna (max) with Codex, 330 trials; metrics.pass_at_5 = 0.303."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 72.14,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 31): GPT-6 Luna (max) with Codex, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 0.22,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 31): GPT-6 Luna (max) with Codex, 330 trials; total_cost_usd 72.14 / 330 costed trials."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 3.909,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 31): GPT-6 Luna (max) with Codex, 330 trials; metrics.total_tokens = 3909124893."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 45.49,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 31): GPT-6 Luna (max) with Codex, 330 trials; metrics.output_tokens = 45490894."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 38.07,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 31): GPT-6 Luna (max) with Codex, 330 trials; metrics.avg_trial_duration_sec = 2284.1."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 21.97,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 32): Muse Spark 1.3 (xhigh) with Muse Code, 330 trials; metrics.pass_at_2 = 0.2197."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 26.52,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 32): Muse Spark 1.3 (xhigh) with Muse Code, 330 trials; metrics.pass_at_3 = 0.2652."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 30.0,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 32): Muse Spark 1.3 (xhigh) with Muse Code, 330 trials; metrics.pass_at_4 = 0.3."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 33.33,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 32): Muse Spark 1.3 (xhigh) with Muse Code, 330 trials; metrics.pass_at_5 = 0.3333."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 9.011,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 32): Muse Spark 1.3 (xhigh) with Muse Code, 330 trials; metrics.total_tokens = 9010923518."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 87.49,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 32): Muse Spark 1.3 (xhigh) with Muse Code, 330 trials; metrics.output_tokens = 87486990."
+  },
+  {
+   "model": "meta/muse-spark-1.3-xhigh",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 72.36,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 32): Muse Spark 1.3 (xhigh) with Muse Code, 330 trials; metrics.avg_trial_duration_sec = 4341.7."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 18.33,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Grok 4.5 (high) with Grok Build, 330 trials; metrics.pass_at_2 = 0.1833."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 22.27,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Grok 4.5 (high) with Grok Build, 330 trials; metrics.pass_at_3 = 0.2227."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 25.15,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Grok 4.5 (high) with Grok Build, 330 trials; metrics.pass_at_4 = 0.2515."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 27.27,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Grok 4.5 (high) with Grok Build, 330 trials; metrics.pass_at_5 = 0.2727."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 2094.11,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Grok 4.5 (high) with Grok Build, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 6.35,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Grok 4.5 (high) with Grok Build, 330 trials; total_cost_usd 2094.11 / 330 costed trials."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 3.403,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Grok 4.5 (high) with Grok Build, 330 trials; metrics.total_tokens = 3402536479."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 32.39,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Grok 4.5 (high) with Grok Build, 330 trials; metrics.output_tokens = 32389328."
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 52.7,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Grok 4.5 (high) with Grok Build, 330 trials; metrics.avg_trial_duration_sec = 3162.1."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 20.45,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Sonnet 5 (max) with Claude Code, 330 trials; metrics.pass_at_2 = 0.2045."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 26.21,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Sonnet 5 (max) with Claude Code, 330 trials; metrics.pass_at_3 = 0.2621."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 30.91,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Sonnet 5 (max) with Claude Code, 330 trials; metrics.pass_at_4 = 0.3091."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 34.85,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Sonnet 5 (max) with Claude Code, 330 trials; metrics.pass_at_5 = 0.3485."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 9603.86,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Sonnet 5 (max) with Claude Code, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 29.1,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Sonnet 5 (max) with Claude Code, 330 trials; total_cost_usd 9603.86 / 330 costed trials."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 21.562,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Sonnet 5 (max) with Claude Code, 330 trials; metrics.total_tokens = 21562180742."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 116.6,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Sonnet 5 (max) with Claude Code, 330 trials; metrics.output_tokens = 116598866."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 108.51,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 33): Sonnet 5 (max) with Claude Code, 330 trials; metrics.avg_trial_duration_sec = 6510.3."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_2",
+   "score": 16.36,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 35): Gemini 3.7 Flash (high) with mini-SWE-agent, 330 trials; metrics.pass_at_2 = 0.1636."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_3",
+   "score": 20.0,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 35): Gemini 3.7 Flash (high) with mini-SWE-agent, 330 trials; metrics.pass_at_3 = 0.2."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_4",
+   "score": 23.03,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 35): Gemini 3.7 Flash (high) with mini-SWE-agent, 330 trials; metrics.pass_at_4 = 0.2303."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "terminal_bench_4_0_tbench_pass_at_5",
+   "score": 25.76,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 35): Gemini 3.7 Flash (high) with mini-SWE-agent, 330 trials; metrics.pass_at_5 = 0.2576."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "terminal_bench_4_0_tbench_total_cost_usd_lower_better",
+   "score": 1261.87,
+   "unit": "USD",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 35): Gemini 3.7 Flash (high) with mini-SWE-agent, 330 trials; metrics.total_cost_usd."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "terminal_bench_4_0_tbench_cost_usd_per_task_lower_better",
+   "score": 3.82,
+   "unit": "USD/task",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 35): Gemini 3.7 Flash (high) with mini-SWE-agent, 330 trials; total_cost_usd 1261.87 / 330 costed trials."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "terminal_bench_4_0_tbench_total_tokens_b_lower_better",
+   "score": 11.137,
+   "unit": "B tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 35): Gemini 3.7 Flash (high) with mini-SWE-agent, 330 trials; metrics.total_tokens = 11137189802."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "terminal_bench_4_0_tbench_output_tokens_m_lower_better",
+   "score": 52.13,
+   "unit": "M tokens",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 35): Gemini 3.7 Flash (high) with mini-SWE-agent, 330 trials; metrics.output_tokens = 52134001."
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "terminal_bench_4_0_tbench_avg_trial_minutes_lower_better",
+   "score": 28.15,
+   "unit": "min",
+   "_source": "https://www.tbench.ai/?view=pareto",
+   "_note": "tbench.ai Terminal-Bench 4.0 official leaderboard (rank 35): Gemini 3.7 Flash (high) with mini-SWE-agent, 330 trials; metrics.avg_trial_duration_sec = 1688.9."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_3",
+   "score": 26.49,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, 'Trials by task and outcome: Terminal-Bench 4.0 vs 3.0' chart (embedded per-trial data, rollout-charts.html WAFFLE3): Grok 4.6 / Grok Build passed 98 of 370 TB3.0 trials (74 tasks × 5); 24 timeouts, 0 errors. Counted from the chart's per-trial outcomes; the same counting reproduces the TB3.0 launch-blog values stored for the 6 other models taken from tbench.ai to within 0.3 pt."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_4_0_tbench_timeout_error_rate_lower_better",
+   "score": 5.15,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE4): Fable 5 / Claude Code, TB4.0: 0 timeouts + 17 errors of 330 trials (pass 147, fail 166). Error types listed for this grid: AgentTimeoutError, AgentSafetyRefusalError, UnknownApiError, NonZeroAgentExitCodeError, OutputTokenExceededError, AlreadyExistsError, VerifierTimeoutError, ConnectionRefusedError."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_4_0_tbench_timeout_error_rate_lower_better",
+   "score": 2.42,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE4): GLM-5.3 / Claude Code, TB4.0: 0 timeouts + 8 errors of 330 trials (pass 138, fail 184). Error types listed for this grid: AgentTimeoutError, AgentSafetyRefusalError, UnknownApiError, NonZeroAgentExitCodeError, OutputTokenExceededError, AlreadyExistsError, VerifierTimeoutError, ConnectionRefusedError."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_4_0_tbench_timeout_error_rate_lower_better",
+   "score": 1.52,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE4): GPT-5.6 Sol / Codex, TB4.0: 4 timeouts + 1 errors of 330 trials (pass 123, fail 202). Error types listed for this grid: AgentTimeoutError, AgentSafetyRefusalError, UnknownApiError, NonZeroAgentExitCodeError, OutputTokenExceededError, AlreadyExistsError, VerifierTimeoutError, ConnectionRefusedError."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_4_0_tbench_timeout_error_rate_lower_better",
+   "score": 2.42,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE4): GPT-5.6 Terra / Codex, TB4.0: 7 timeouts + 1 errors of 330 trials (pass 71, fail 251). Error types listed for this grid: AgentTimeoutError, AgentSafetyRefusalError, UnknownApiError, NonZeroAgentExitCodeError, OutputTokenExceededError, AlreadyExistsError, VerifierTimeoutError, ConnectionRefusedError."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_4_0_tbench_timeout_error_rate_lower_better",
+   "score": 0.3,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE4): Grok 4.6 / Grok Build, TB4.0: 0 timeouts + 1 errors of 330 trials (pass 67, fail 262). Error types listed for this grid: AgentTimeoutError, AgentSafetyRefusalError, UnknownApiError, NonZeroAgentExitCodeError, OutputTokenExceededError, AlreadyExistsError, VerifierTimeoutError, ConnectionRefusedError."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_4_0_tbench_timeout_error_rate_lower_better",
+   "score": 1.52,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE4): Opus 4.8 / Claude Code, TB4.0: 0 timeouts + 5 errors of 330 trials (pass 78, fail 247). Error types listed for this grid: AgentTimeoutError, AgentSafetyRefusalError, UnknownApiError, NonZeroAgentExitCodeError, OutputTokenExceededError, AlreadyExistsError, VerifierTimeoutError, ConnectionRefusedError."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_4_0_tbench_timeout_error_rate_lower_better",
+   "score": 4.55,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE4): GPT-5.6 Luna / Codex, TB4.0: 15 timeouts + 0 errors of 330 trials (pass 57, fail 258). Error types listed for this grid: AgentTimeoutError, AgentSafetyRefusalError, UnknownApiError, NonZeroAgentExitCodeError, OutputTokenExceededError, AlreadyExistsError, VerifierTimeoutError, ConnectionRefusedError."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_4_0_tbench_timeout_error_rate_lower_better",
+   "score": 11.21,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE4): Sonnet 5 / Claude Code, TB4.0: 1 timeouts + 36 errors of 330 trials (pass 41, fail 252). Error types listed for this grid: AgentTimeoutError, AgentSafetyRefusalError, UnknownApiError, NonZeroAgentExitCodeError, OutputTokenExceededError, AlreadyExistsError, VerifierTimeoutError, ConnectionRefusedError."
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "terminal_bench_3_tbench_timeout_error_rate_lower_better",
+   "score": 9.19,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE3): Fable 5 / Claude Code, TB3.0: 16 timeouts + 18 errors of 370 trials (pass 126, fail 210). Error types listed for this grid: NonZeroAgentExitCodeError, AgentTimeoutError, AgentSafetyRefusalError, NetworkConnectionError, UnknownApiError, ApiConnectionClosedError, OutputTokenExceededError, AgentSetupTimeoutError, RewardFileNotFoundError, VerifierTimeoutError."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "terminal_bench_3_tbench_timeout_error_rate_lower_better",
+   "score": 2.97,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE3): GLM-5.3 / Claude Code, TB3.0: 9 timeouts + 2 errors of 370 trials (pass 120, fail 239). Error types listed for this grid: NonZeroAgentExitCodeError, AgentTimeoutError, AgentSafetyRefusalError, NetworkConnectionError, UnknownApiError, ApiConnectionClosedError, OutputTokenExceededError, AgentSetupTimeoutError, RewardFileNotFoundError, VerifierTimeoutError."
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "terminal_bench_3_tbench_timeout_error_rate_lower_better",
+   "score": 7.3,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE3): GPT-5.6 Luna / Codex, TB3.0: 23 timeouts + 4 errors of 370 trials (pass 53, fail 290). Error types listed for this grid: NonZeroAgentExitCodeError, AgentTimeoutError, AgentSafetyRefusalError, NetworkConnectionError, UnknownApiError, ApiConnectionClosedError, OutputTokenExceededError, AgentSetupTimeoutError, RewardFileNotFoundError, VerifierTimeoutError."
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "terminal_bench_3_tbench_timeout_error_rate_lower_better",
+   "score": 6.22,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE3): GPT-5.6 Sol / Codex, TB3.0: 11 timeouts + 12 errors of 370 trials (pass 128, fail 219). Error types listed for this grid: NonZeroAgentExitCodeError, AgentTimeoutError, AgentSafetyRefusalError, NetworkConnectionError, UnknownApiError, ApiConnectionClosedError, OutputTokenExceededError, AgentSetupTimeoutError, RewardFileNotFoundError, VerifierTimeoutError."
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "terminal_bench_3_tbench_timeout_error_rate_lower_better",
+   "score": 2.97,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE3): GPT-5.6 Terra / Codex, TB3.0: 8 timeouts + 3 errors of 370 trials (pass 77, fail 282). Error types listed for this grid: NonZeroAgentExitCodeError, AgentTimeoutError, AgentSafetyRefusalError, NetworkConnectionError, UnknownApiError, ApiConnectionClosedError, OutputTokenExceededError, AgentSetupTimeoutError, RewardFileNotFoundError, VerifierTimeoutError."
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "terminal_bench_3_tbench_timeout_error_rate_lower_better",
+   "score": 6.49,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE3): Grok 4.6 / Grok Build, TB3.0: 24 timeouts + 0 errors of 370 trials (pass 98, fail 248). Error types listed for this grid: NonZeroAgentExitCodeError, AgentTimeoutError, AgentSafetyRefusalError, NetworkConnectionError, UnknownApiError, ApiConnectionClosedError, OutputTokenExceededError, AgentSetupTimeoutError, RewardFileNotFoundError, VerifierTimeoutError."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "terminal_bench_3_tbench_timeout_error_rate_lower_better",
+   "score": 7.57,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE3): Opus 4.8 / Claude Code, TB3.0: 23 timeouts + 5 errors of 370 trials (pass 78, fail 264). Error types listed for this grid: NonZeroAgentExitCodeError, AgentTimeoutError, AgentSafetyRefusalError, NetworkConnectionError, UnknownApiError, ApiConnectionClosedError, OutputTokenExceededError, AgentSetupTimeoutError, RewardFileNotFoundError, VerifierTimeoutError."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "terminal_bench_3_tbench_timeout_error_rate_lower_better",
+   "score": 16.49,
+   "unit": "%",
+   "_source": "https://www.tbench.ai/news/terminal-bench-4-0",
+   "_note": "Terminal-Bench 4.0 release post, trial outcome grid (rollout-charts.html WAFFLE3): Sonnet 5 / Claude Code, TB3.0: 33 timeouts + 28 errors of 370 trials (pass 54, fail 255). Error types listed for this grid: NonZeroAgentExitCodeError, AgentTimeoutError, AgentSafetyRefusalError, NetworkConnectionError, UnknownApiError, ApiConnectionClosedError, OutputTokenExceededError, AgentSetupTimeoutError, RewardFileNotFoundError, VerifierTimeoutError."
+  }
+ ]
+}

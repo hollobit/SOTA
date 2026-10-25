@@ -165,6 +165,10 @@ var CyberCoding = {
         'evocode_bench_v2_mt4', 'evocode_bench_v2_case',  // S270 Terminal-Universe paper
         // 2026-09-23 S282 — TB 4.0 vendor/AA ids, CursorBench 4.0, FrontierSWE v2, MiMo in-house
         'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'mimo_code_bench', 'mimo_visual_coding',
+        // 2026-10-25 S315 — official tbench.ai TB 4.0 leaderboard metrics (pass@k, run cost/tokens/duration)
+        'terminal_bench_4_0_rerun_tbench_official', 'terminal_bench_4_0_tbench_pass_at_2', 'terminal_bench_4_0_tbench_pass_at_3', 'terminal_bench_4_0_tbench_pass_at_4', 'terminal_bench_4_0_tbench_pass_at_5', 'terminal_bench_4_0_tbench_total_cost_usd_lower_better', 'terminal_bench_4_0_tbench_cost_usd_per_task_lower_better', 'terminal_bench_4_0_tbench_total_tokens_b_lower_better', 'terminal_bench_4_0_tbench_output_tokens_m_lower_better', 'terminal_bench_4_0_tbench_avg_trial_minutes_lower_better',
+        // 2026-10-25 S315b — TB 4.0 vs 3.0 timeout/error trial share (release-post outcome grid)
+        'terminal_bench_4_0_tbench_timeout_error_rate_lower_better', 'terminal_bench_3_tbench_timeout_error_rate_lower_better',
         // 2026-09-23 S282b — AA Coding Agent Index components (Codex harness) + MiMo report Table 7 per-harness ids
         'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness',
         // 2026-09-24 S285 — BaxBench, Sonar, SWE-rebench window, Kilo harness, VulcanBench v4, Epoch SWE-V run
