@@ -1,0 +1,3954 @@
+{
+ "_meta": {
+  "collected_at": "2026-10-30",
+  "session": "S316",
+  "sources": [
+   "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "https://neuraltrust.ai/blog/gemini-4-carbon",
+   "https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1",
+   "https://artificialanalysis.ai/models/gemini-4-carbon",
+   "https://mistral.ai/news/mistral-large-4-oss/",
+   "https://huggingface.co/blog/mistral-large4",
+   "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+   "https://artificialanalysis.ai/models/mistral-large-4",
+   "https://openrouter.ai/mistralai/mistral-large-4-0",
+   "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+   "https://artificialanalysis.ai/models/gpt-6-1-terra",
+   "https://kingy.ai/blog/gpt-6-1-terra/",
+   "https://openrouter.ai/openai/gpt-6.1-terra",
+   "https://www.datacamp.com/blog/gpt-6-1-terra",
+   "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "https://deploymentsafety.openai.com/gpt-6-1-terra/gpt-6-1-terra.pdf",
+   "https://kie.ai/gpt-6-1-terra",
+   "https://www.vals.ai/models/google_gemini-4-carbon",
+   "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "https://www.vals.ai/models/mistralai_mistral-large-4-oss"
+  ]
+ },
+ "models": [
+  {
+   "id": "google/gemini-4-carbon",
+   "vendor": "google",
+   "name": "Gemini 4 Carbon",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image",
+    "video",
+    "audio"
+   ],
+   "release_date": "2026-10-28",
+   "context_window": 1000000,
+   "parameters": null,
+   "_note": "Google announcement 2026-10-28: limited rollout to cyber defenders via Fairwind Program, no general access yet. AA tests it at high reasoning. Context 1M per AA model page (Google launch post does not state it). $2/$10 introductory, $4/$20 list, cached input 95% off."
+  },
+  {
+   "id": "mistral/mistral-large-4",
+   "vendor": "mistral",
+   "name": "Mistral Large 4",
+   "type": "open-weight",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-10-29",
+   "context_window": 1048576,
+   "parameters": "1T total (52B active MoE, 49B excluding embeddings/output)",
+   "_note": "Open-weight GA release \"Le Chonk\" (HF mistralai/Mistral-Large-4-1T-A52B, Mistral Ecosystem Open-Weight License), default high reasoning. Distinct from mistral/mistral-large-4-preview: three more weeks of RL. Date 2026-10-29 per AA and Vals; OpenRouter still shows the 2026-10-06 preview date. $0.70/$2.10, cached $0.07."
+  },
+  {
+   "id": "mistral/mistral-large-4-medium",
+   "vendor": "mistral",
+   "name": "Mistral Large 4 (medium)",
+   "type": "open-weight",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-10-29",
+   "context_window": 1048576,
+   "parameters": "1T total (52B active MoE, 49B excluding embeddings/output)",
+   "_note": "Medium reasoning mode of Mistral Large 4."
+  },
+  {
+   "id": "openai/gpt-6.1-terra",
+   "vendor": "openai",
+   "name": "GPT-6.1 Terra (max)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-10-26",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-06-01",
+   "parameters": null,
+   "_note": "OpenAI API gpt-6.1-terra, base id = max effort as for gpt-6.1-sol. 1,050,000 context, 128,000 max output, knowledge cutoff 2026-06-01 (OpenAI model docs; AA lists 1M). $1/$5, cached $0.05, 30-min cache write $1.25. API default effort is medium."
+  },
+  {
+   "id": "openai/gpt-6.1-terra-xhigh",
+   "vendor": "openai",
+   "name": "GPT-6.1 Terra (xhigh)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-10-26",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-06-01",
+   "parameters": null,
+   "_note": "OpenAI API gpt-6.1-terra, base id = max effort as for gpt-6.1-sol. 1,050,000 context, 128,000 max output, knowledge cutoff 2026-06-01 (OpenAI model docs; AA lists 1M). $1/$5, cached $0.05, 30-min cache write $1.25. API default effort is medium."
+  },
+  {
+   "id": "openai/gpt-6.1-terra-high",
+   "vendor": "openai",
+   "name": "GPT-6.1 Terra (high)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-10-26",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-06-01",
+   "parameters": null,
+   "_note": "OpenAI API gpt-6.1-terra, base id = max effort as for gpt-6.1-sol. 1,050,000 context, 128,000 max output, knowledge cutoff 2026-06-01 (OpenAI model docs; AA lists 1M). $1/$5, cached $0.05, 30-min cache write $1.25. API default effort is medium."
+  },
+  {
+   "id": "openai/gpt-6.1-terra-medium",
+   "vendor": "openai",
+   "name": "GPT-6.1 Terra (medium)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-10-26",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-06-01",
+   "parameters": null,
+   "_note": "OpenAI API gpt-6.1-terra, base id = max effort as for gpt-6.1-sol. 1,050,000 context, 128,000 max output, knowledge cutoff 2026-06-01 (OpenAI model docs; AA lists 1M). $1/$5, cached $0.05, 30-min cache write $1.25. API default effort is medium."
+  },
+  {
+   "id": "openai/gpt-6.1-terra-low",
+   "vendor": "openai",
+   "name": "GPT-6.1 Terra (low)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-10-26",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-06-01",
+   "parameters": null,
+   "_note": "OpenAI API gpt-6.1-terra, base id = max effort as for gpt-6.1-sol. 1,050,000 context, 128,000 max output, knowledge cutoff 2026-06-01 (OpenAI model docs; AA lists 1M). $1/$5, cached $0.05, 30-min cache write $1.25. API default effort is medium."
+  },
+  {
+   "id": "openai/gpt-6.1-terra-non-reasoning",
+   "vendor": "openai",
+   "name": "GPT-6.1 Terra (Non-reasoning)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-10-26",
+   "context_window": 1050000,
+   "knowledge_cutoff": "2026-06-01",
+   "parameters": null,
+   "_note": "OpenAI API gpt-6.1-terra, base id = max effort as for gpt-6.1-sol. 1,050,000 context, 128,000 max output, knowledge cutoff 2026-06-01 (OpenAI model docs; AA lists 1M). $1/$5, cached $0.05, 30-min cache write $1.25. API default effort is medium."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "agents_last_exam_v1_1",
+   "name": "Agents' Last Exam v1.1 (Score)",
+   "category": "agent",
+   "metric": "percentage",
+   "description": "Averaged rubric score on the 122-task v1.1 benchmark, default ALE-Claw harness, 5-hour window."
+  },
+  {
+   "id": "blocker_deception_rate_lower_better",
+   "name": "Blocker deception rate (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "OpenAI: how often a model fails to disclose a blocker in its final answer on deliberately hard coding tasks."
+  },
+  {
+   "id": "codex_deployment_eval_awareness_rate_terra_set_lower_better",
+   "name": "Codex deployment simulation eval awareness, Terra set (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "48,701 shared tasks; verbalized evaluation or simulation awareness in CoT."
+  },
+  {
+   "id": "codex_deployment_severity3_flag_rate_terra_set_lower_better",
+   "name": "Codex deployment simulation severity 3+ flags, Terra matched set (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "48,690 matched tasks. Different task set from earlier cards."
+  },
+  {
+   "id": "excel_modeling_benchmark_v1_1_vals",
+   "name": "Excel Modeling Benchmark v1.1 (Vals)",
+   "category": "finance",
+   "metric": "percentage",
+   "description": "Vals EMB v1.1."
+  },
+  {
+   "id": "exploitgym_10h_google",
+   "name": "ExploitGym (Google run, 10-hour cap)",
+   "category": "cybersecurity",
+   "metric": "percentage",
+   "description": "Causal pass rate with a 10-hour per-task cap, single attempt, Antigravity harness, mitigations off, no internet. The stored exploitgym value for Gemini models uses the 6-hour cap."
+  },
+  {
+   "id": "exploitgym_honeypot_legit_capture_rate",
+   "name": "ExploitGym honeypot eval: legitimate flag capture rate",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Rollouts that captured the flag legitimately without touching the honeypot."
+  },
+  {
+   "id": "external_agent_board_engagement_rate_refreshed_lower_better",
+   "name": "External agent board engagement, corrected rerun (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "OpenAI rerun with corrected maximum reasoning settings and a path fix; 80 samples across ten scenarios."
+  },
+  {
+   "id": "external_agent_board_unauthorized_action_rate_refreshed_lower_better",
+   "name": "External agent board unauthorized action, corrected rerun (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Same rerun; rate of performing the specified unauthorized action."
+  },
+  {
+   "id": "finance_agent_v2_1_vals",
+   "name": "Finance Agent v2.1 (Vals)",
+   "category": "finance",
+   "metric": "percentage",
+   "description": "Vals Finance Agent v2.1."
+  },
+  {
+   "id": "finwork_finch",
+   "name": "FinWorkBench (Finch)",
+   "category": "finance",
+   "metric": "percentage",
+   "description": "Finance and accounting spreadsheet workflows, values from the Mistral launch chart."
+  },
+  {
+   "id": "frontiercode_2_0_cognition",
+   "name": "FrontierCode 2.0 (values in Mistral launch chart)",
+   "category": "coding",
+   "metric": "percentage",
+   "description": "Cognition FrontierCode 2.0 values as charted by Mistral. Differs from the AA run."
+  },
+  {
+   "id": "mmmu_pro_openai_launch",
+   "name": "MMMU-Pro (OpenAI launch chart)",
+   "category": "multimodal",
+   "metric": "percentage",
+   "description": "Effort curve from the OpenAI GPT-6.1 Terra launch page. Separate from AA and Vals runs."
+  },
+  {
+   "id": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "name": "MMMU-Pro OpenAI launch cost per task (USD, lower is better)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "Estimated cost per task."
+  },
+  {
+   "id": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "name": "OpenAI hard-prompt factual error rate, refreshed eval (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Share of answers with any factual error on the refreshed error-inducing prompt set. Not comparable with earlier cards. Selected prompts, not a production error rate."
+  },
+  {
+   "id": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "name": "OpenAI hard-prompt factuality cost per task (USD, lower is better)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "OpenAI launch chart estimate."
+  },
+  {
+   "id": "osworld_2_1_offline",
+   "name": "OSWorld 2.1 (82-task offline subset)",
+   "category": "agent",
+   "metric": "percentage",
+   "description": "Partial score on the 82-task no-internet subset. Vendor harnesses differ."
+  },
+  {
+   "id": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "name": "OSWorld 2.1 offline cost per task (USD, lower is better)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "OpenAI launch chart estimate."
+  },
+  {
+   "id": "surge_code_ml4_win_rate_vs_claude_opus_5_5",
+   "name": "Surge Code blind preference: Mistral Large 4 win rate vs Claude Opus 5.5",
+   "category": "coding",
+   "metric": "percentage",
+   "description": "Share of prompts where graders preferred Mistral Large 4."
+  },
+  {
+   "id": "surge_code_ml4_win_rate_vs_deepseek_v4_1_flash",
+   "name": "Surge Code blind preference: Mistral Large 4 win rate vs DeepSeek V4.1 Flash",
+   "category": "coding",
+   "metric": "percentage",
+   "description": "Share of prompts where graders preferred Mistral Large 4."
+  },
+  {
+   "id": "surge_code_ml4_win_rate_vs_glm_5_3",
+   "name": "Surge Code blind preference: Mistral Large 4 win rate vs GLM-5.3",
+   "category": "coding",
+   "metric": "percentage",
+   "description": "Share of prompts where graders preferred Mistral Large 4."
+  },
+  {
+   "id": "surge_code_ml4_win_rate_vs_kimi_k3",
+   "name": "Surge Code blind preference: Mistral Large 4 win rate vs Kimi K3",
+   "category": "coding",
+   "metric": "percentage",
+   "description": "Share of prompts where graders preferred Mistral Large 4."
+  },
+  {
+   "id": "swe_sweep",
+   "name": "SWE-sweep",
+   "category": "coding",
+   "metric": "percentage",
+   "description": "Subtask-weighted reward. Carbon self-computed with mini-swe-agent; others from the official public leaderboard per Google methodology."
+  },
+  {
+   "id": "terminal_bench_4_0_cheating_attempt_rate_lower_better",
+   "name": "Terminal-Bench 4.0 cheating attempt rate (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Vendor-reported rate of attempted cheating."
+  },
+  {
+   "id": "terminal_bench_4_0_cheating_success_rate_lower_better",
+   "name": "Terminal-Bench 4.0 successful cheating rate (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Vendor-reported rate of successful cheating."
+  },
+  {
+   "id": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "name": "Terminal-Bench 4.0 OpenAI launch cost per task (USD, lower is better)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "OpenAI launch chart estimate."
+  },
+  {
+   "id": "vals_finance_index",
+   "name": "Vals Finance Index",
+   "category": "finance",
+   "metric": "percentage",
+   "description": "Vals AI finance composite."
+  },
+  {
+   "id": "vals_index_v2_2",
+   "name": "Vals Index v2.2",
+   "category": "composite",
+   "metric": "percentage",
+   "description": "Vals AI Vals Index v2.2."
+  },
+  {
+   "id": "vals_index_v2_2_cost_per_test_usd_lower_better",
+   "name": "Vals Index v2.2 cost per test (USD, lower is better)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "Cost per test on Vals model pages."
+  },
+  {
+   "id": "vals_legal_index",
+   "name": "Vals Legal Index",
+   "category": "legal",
+   "metric": "percentage",
+   "description": "Vals AI legal composite."
+  },
+  {
+   "id": "vibe_code_bench_v1_1_vals",
+   "name": "Vibe Code Bench v1.1 (Vals)",
+   "category": "coding",
+   "metric": "percentage",
+   "description": "Vals Vibe Code Bench v1.1."
+  },
+  {
+   "id": "warning_circumvention_successful_rate_lower_better",
+   "name": "Circumventing warnings, successful rate (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "OpenAI Respecting Warnings evaluation with the updated metric (successful circumventions). Replaces the earlier attempted-circumvention metric."
+  }
+ ],
+ "scores": [
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "swe_sweep",
+   "score": 9.6,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "swe_sweep",
+   "score": 4.3,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "swe_sweep",
+   "score": 9.5,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "swe_sweep",
+   "score": 3.6,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "swe_sweep",
+   "score": 2.9,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "frontierswe_v2",
+   "score": 61.2,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "agents_last_exam_v1_1",
+   "score": 77.4,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "agents_last_exam_v1_1",
+   "score": 69.0,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "agents_last_exam_v1_1",
+   "score": 73.1,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "agents_last_exam_v1_1",
+   "score": 71.6,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "osworld_2_1_offline",
+   "score": 81.5,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "osworld_2_1_offline",
+   "score": 74.7,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "osworld_2_1_offline",
+   "score": 80.9,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "osworld_2_1_offline",
+   "score": 87.2,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "osworld_2_1_offline",
+   "score": 76.8,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "automationbench_1_0_6",
+   "score": 53.9,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "vending_bench_2_final_balance_usd",
+   "score": 16484,
+   "unit": "usd",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "vending_bench_2_final_balance_usd",
+   "score": 13718,
+   "unit": "usd",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "vending_bench_2_final_balance_usd",
+   "score": 15515,
+   "unit": "usd",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "vending_bench_2_final_balance_usd",
+   "score": 9235,
+   "unit": "usd",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "vending_bench_2_final_balance_usd",
+   "score": 5422,
+   "unit": "usd",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "chartography_surge_no_tools",
+   "score": 72.5,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "blueprint_bench_2",
+   "score": 58.6,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "graphwalks_bfs_256k_1m_f1",
+   "score": 96.2,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "riemannbench",
+   "score": 80.0,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "cwe_bench_v1",
+   "score": 71.0,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Methodology details on PDF pp.1-3."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "exploitgym",
+   "score": 53.5,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog ExploitGym chart, 6-hour cap (same cap as Opus 5.5). The headline 54.8 uses a 10-hour cap, see exploitgym_10h_google."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "exploitgym",
+   "score": 39.5,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog ExploitGym chart, 6-hour cap."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "exploitgym_10h_google",
+   "score": 54.8,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog ExploitGym chart, 10-hour cap; evaluated without guardrails."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "exploitgym_10h_google",
+   "score": 42.0,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog ExploitGym chart, 10-hour cap."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "sec-bench-pro",
+   "score": 88.2,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog SEC-bench Pro chart, pass@1, 183-task May 2026 JS engine split. Carbon/Argon self-computed with Antigravity, 3 attempts per task."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "sec-bench-pro",
+   "score": 83.4,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog SEC-bench Pro chart, pass@1, 183-task May 2026 JS engine split. Carbon/Argon self-computed with Antigravity, 3 attempts per task."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "sec-bench-pro",
+   "score": 56.4,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog SEC-bench Pro chart, pass@1, 183-task May 2026 JS engine split. Carbon/Argon self-computed with Antigravity, 3 attempts per task."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "gray_swan_ipi",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog Gray Swan IPI chart, attack success rate at k=15, lower is better."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "gray_swan_ipi",
+   "score": 8.6,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog Gray Swan IPI chart, attack success rate at k=15, lower is better."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "arena_webdev_elo",
+   "score": 1768,
+   "unit": "Elo",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog: #4 on WebDev Arena at 1768, +89 Elo."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "terminal_bench_4_0_cheating_success_rate_lower_better",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog prose, vendor-reported."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "terminal_bench_4_0_cheating_attempt_rate_lower_better",
+   "score": 0.4,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+   "_note": "Google blog prose, vendor-reported."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "aa_coding_agent_index",
+   "score": 59,
+   "unit": "index",
+   "_source": "https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1",
+   "_note": "AA article: Antigravity CLI with Gemini 4 Carbon (high)."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "aa_coding_agents_terminal_bench_4",
+   "score": 64,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1",
+   "_note": "AA article: Coding Agent Index Terminal-Bench 4.0, rounded."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "vals_index_v2_2",
+   "score": 70.36,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "vals_index_v2_2",
+   "score": 60.47,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort max."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "vals_index_v2_2",
+   "score": 56.42,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "vals_finance_index",
+   "score": 66.35,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "vals_finance_index",
+   "score": 52.86,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort max."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "vals_finance_index",
+   "score": 56.18,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "vals_legal_index",
+   "score": 75.83,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "vals_legal_index",
+   "score": 58.64,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort max."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "vals_legal_index",
+   "score": 67.68,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "excel_modeling_benchmark_v1_1_vals",
+   "score": 76.47,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "excel_modeling_benchmark_v1_1_vals",
+   "score": 73.33,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort max."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "excel_modeling_benchmark_v1_1_vals",
+   "score": 68.67,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "finance_agent_v2_1_vals",
+   "score": 67.16,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "finance_agent_v2_1_vals",
+   "score": 55.96,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort max."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "finance_agent_v2_1_vals",
+   "score": 61.72,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "vals_legal_research_bench",
+   "score": 55.77,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "vals_legal_research_bench",
+   "score": 25.96,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort max."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "vals_legal_research_bench",
+   "score": 35.58,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "tax_agent_bench_vals",
+   "score": 48.86,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "tax_agent_bench_vals",
+   "score": 15.17,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort max."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "tax_agent_bench_vals",
+   "score": 27.33,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "vibe_code_bench_v1_1_vals",
+   "score": 89.06,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "vibe_code_bench_v1_1_vals",
+   "score": 84.0,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort max."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "vibe_code_bench_v1_1_vals",
+   "score": 81.56,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "harvey_lab_vals",
+   "score": 17.5,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "harvey_lab_vals",
+   "score": 1.67,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort max."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "harvey_lab_vals",
+   "score": 15.83,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "terminal_bench_4_0_vals_mini_swe_agent",
+   "score": 63.13,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "terminal_bench_4_0_vals_mini_swe_agent",
+   "score": 49.49,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort max."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "terminal_bench_4_0_vals_mini_swe_agent",
+   "score": 26.26,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI model page, read 2026-10-30, reasoning effort high."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "vals_index_v2_2_cost_per_test_usd_lower_better",
+   "score": 10.51,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "vals_index_v2_2_cost_per_test_usd_lower_better",
+   "score": 2.925,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI model page."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "vals_index_v2_2_cost_per_test_usd_lower_better",
+   "score": 3.717,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI model page."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "vals_index_v2_2",
+   "score": 70.85,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI update note on the model page."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "vals_index_v2_2",
+   "score": 70.18,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI update note on the model page."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "vals_index_v2_2",
+   "score": 61.26,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI update note on the model page."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "vals_index_v2_2",
+   "score": 59.73,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/openai_gpt-6.1-terra",
+   "_note": "Vals AI update note on the model page."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "vals_index_v2_2",
+   "score": 57.81,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/mistralai_mistral-large-4-oss",
+   "_note": "Vals AI update note on the model page."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "vals_index_v2_2",
+   "score": 69.2,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Sourced from Vals AI per methodology."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "vals_index_v2_2",
+   "score": 65.0,
+   "unit": "%",
+   "_source": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_model_evaluation.pdf",
+   "_note": "Google Gemini 4 Carbon evaluation PDF results table, read as image, cross-checked with blog table. Sourced from Vals AI per methodology."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 8.82,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Opus 5.5; 추론 강도: Max; 비용: $8.82; 점수: 63.2%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-low",
+   "benchmark": "agents_last_exam_score",
+   "score": 40.2,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 낮음; 비용: $0.59; 점수: 40.2%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-low",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 0.59,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 낮음; 비용: $0.59; 점수: 40.2%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-medium",
+   "benchmark": "agents_last_exam_score",
+   "score": 42.6,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 중간; 비용: $0.84; 점수: 42.6%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-medium",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 0.84,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 중간; 비용: $0.84; 점수: 42.6%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-high",
+   "benchmark": "agents_last_exam_score",
+   "score": 46.6,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: High; 비용: $1.72; 점수: 46.6%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-high",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 1.72,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: High; 비용: $1.72; 점수: 46.6%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-xhigh",
+   "benchmark": "agents_last_exam_score",
+   "score": 48.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 매우 높음; 비용: $2.50; 점수: 48.5%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-xhigh",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 2.5,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 매우 높음; 비용: $2.50; 점수: 48.5%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "agents_last_exam_score",
+   "score": 50.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: Max; 비용: $3.58; 점수: 50.7%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 3.58,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: Max; 비용: $3.58; 점수: 50.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-low",
+   "benchmark": "agents_last_exam_score",
+   "score": 52.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 낮음; 비용: $0.70; 점수: 52.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-low",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 0.7,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 낮음; 비용: $0.70; 점수: 52.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-medium",
+   "benchmark": "agents_last_exam_score",
+   "score": 53.8,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 중간; 비용: $1.31; 점수: 53.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-medium",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 1.31,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 중간; 비용: $1.31; 점수: 53.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-high",
+   "benchmark": "agents_last_exam_score",
+   "score": 55.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: High; 비용: $1.45; 점수: 55.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-high",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 1.45,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: High; 비용: $1.45; 점수: 55.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-xhigh",
+   "benchmark": "agents_last_exam_score",
+   "score": 56.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 매우 높음; 비용: $1.45; 점수: 56.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-xhigh",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 1.45,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 매우 높음; 비용: $1.45; 점수: 56.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "agents_last_exam_score",
+   "score": 58.6,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: Max; 비용: $2.00; 점수: 58.6%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 2.0,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: Max; 비용: $2.00; 점수: 58.6%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "agents_last_exam_score",
+   "score": 55.9,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.16; 점수: 55.9%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 0.16,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.16; 점수: 55.9%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "agents_last_exam_score",
+   "score": 57.6,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.29; 점수: 57.6%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 0.29,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.29; 점수: 57.6%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "agents_last_exam_score",
+   "score": 57.2,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $0.39; 점수: 57.2%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 0.39,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $0.39; 점수: 57.2%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "agents_last_exam_score",
+   "score": 58.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $0.66; 점수: 58.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 0.66,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $0.66; 점수: 58.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "agents_last_exam_score",
+   "score": 60.0,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $1.01; 점수: 60.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "agents_last_exam_cost_per_task_usd_lower_better",
+   "score": 1.01,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $1.01; 점수: 60.0%"
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 85.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 낮음; 비용: $0.038; 점수: 85.3%"
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.038,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 낮음; 비용: $0.038; 점수: 85.3%"
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 85.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 중간; 비용: $0.039; 점수: 85.3%"
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.039,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 중간; 비용: $0.039; 점수: 85.3%"
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 86.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: High; 비용: $0.044; 점수: 86.4%"
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.044,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: High; 비용: $0.044; 점수: 86.4%"
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 86.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 매우 높음; 비용: $0.051; 점수: 86.5%"
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.051,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 매우 높음; 비용: $0.051; 점수: 86.5%"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 86.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: Max; 비용: $0.065; 점수: 86.7%"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.065,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: Max; 비용: $0.065; 점수: 86.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-low",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 84.0,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 낮음; 비용: $0.0076; 점수: 84.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-low",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.0076,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 낮음; 비용: $0.0076; 점수: 84.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-medium",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 84.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 중간; 비용: $0.0079; 점수: 84.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-medium",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.0079,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 중간; 비용: $0.0079; 점수: 84.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-high",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 85.8,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: High; 비용: $0.0088; 점수: 85.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-high",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.0088,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: High; 비용: $0.0088; 점수: 85.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-xhigh",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 85.8,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 매우 높음; 비용: $0.010; 점수: 85.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-xhigh",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.01,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 매우 높음; 비용: $0.010; 점수: 85.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 86.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: Max; 비용: $0.013; 점수: 86.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.013,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: Max; 비용: $0.013; 점수: 86.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 83.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.0038; 점수: 83.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.0038,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.0038; 점수: 83.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 84.6,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.0041; 점수: 84.6%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.0041,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.0041; 점수: 84.6%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 85.0,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $0.0045; 점수: 85.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.0045,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $0.0045; 점수: 85.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 85.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $0.0055; 점수: 85.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.0055,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $0.0055; 점수: 85.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 85.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $0.012; 점수: 85.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.012,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $0.012; 점수: 85.5%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-low",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 74.9,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 낮음; 비용: $0.011; 점수: 74.9%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-low",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.011,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 낮음; 비용: $0.011; 점수: 74.9%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-medium",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 76.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 중간; 비용: $0.012; 점수: 76.4%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-medium",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.012,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 중간; 비용: $0.012; 점수: 76.4%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-high",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 77.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: High; 비용: $0.014; 점수: 77.5%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-high",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.014,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: High; 비용: $0.014; 점수: 77.5%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-xhigh",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 78.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 매우 높음; 비용: $0.020; 점수: 78.7%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-xhigh",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.02,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 매우 높음; 비용: $0.020; 점수: 78.7%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 81.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: Max; 비용: $0.079; 점수: 81.7%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.079,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: Max; 비용: $0.079; 점수: 81.7%"
+  },
+  {
+   "model": "openai/gpt-6-luna-low",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 낮음; 비용: $0.00049; 점수: 73.5%"
+  },
+  {
+   "model": "openai/gpt-6-luna-low",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.00049,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 낮음; 비용: $0.00049; 점수: 73.5%"
+  },
+  {
+   "model": "openai/gpt-6-luna-medium",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 75.1,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 중간; 비용: $0.00061; 점수: 75.1%"
+  },
+  {
+   "model": "openai/gpt-6-luna-medium",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.00061,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 중간; 비용: $0.00061; 점수: 75.1%"
+  },
+  {
+   "model": "openai/gpt-6-luna-high",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 76.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: High; 비용: $0.00074; 점수: 76.5%"
+  },
+  {
+   "model": "openai/gpt-6-luna-high",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.00074,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: High; 비용: $0.00074; 점수: 76.5%"
+  },
+  {
+   "model": "openai/gpt-6-luna-xhigh",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 77.9,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 매우 높음; 비용: $0.00095; 점수: 77.9%"
+  },
+  {
+   "model": "openai/gpt-6-luna-xhigh",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.00095,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 매우 높음; 비용: $0.00095; 점수: 77.9%"
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "mmmu_pro_openai_launch",
+   "score": 79.9,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: Max; 비용: $0.0021; 점수: 79.9%"
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "mmmu_pro_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.0021,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: Max; 비용: $0.0021; 점수: 79.9%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-low",
+   "benchmark": "osworld_2_1_offline",
+   "score": 57.8,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 낮음; 비용: $0.68; 점수: 57.8%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-low",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.68,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 낮음; 비용: $0.68; 점수: 57.8%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-medium",
+   "benchmark": "osworld_2_1_offline",
+   "score": 65.9,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 중간; 비용: $0.93; 점수: 65.9%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-medium",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.93,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 중간; 비용: $0.93; 점수: 65.9%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-high",
+   "benchmark": "osworld_2_1_offline",
+   "score": 73.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: High; 비용: $1.39; 점수: 73.3%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-high",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 1.39,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: High; 비용: $1.39; 점수: 73.3%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-xhigh",
+   "benchmark": "osworld_2_1_offline",
+   "score": 81.0,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 매우 높음; 비용: $2.22; 점수: 81.0%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-xhigh",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 2.22,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 매우 높음; 비용: $2.22; 점수: 81.0%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "osworld_2_1_offline",
+   "score": 83.9,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: Max; 비용: $5.74; 점수: 83.9%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 5.74,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: Max; 비용: $5.74; 점수: 83.9%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-low",
+   "benchmark": "osworld_2_1_offline",
+   "score": 24.1,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 낮음; 비용: $0.44; 점수: 24.1%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-low",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.44,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 낮음; 비용: $0.44; 점수: 24.1%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-medium",
+   "benchmark": "osworld_2_1_offline",
+   "score": 27.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 중간; 비용: $0.59; 점수: 27.4%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-medium",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.59,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 중간; 비용: $0.59; 점수: 27.4%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-high",
+   "benchmark": "osworld_2_1_offline",
+   "score": 37.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: High; 비용: $1.19; 점수: 37.7%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-high",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 1.19,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: High; 비용: $1.19; 점수: 37.7%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-xhigh",
+   "benchmark": "osworld_2_1_offline",
+   "score": 48.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 매우 높음; 비용: $2.25; 점수: 48.4%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-xhigh",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 2.25,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 매우 높음; 비용: $2.25; 점수: 48.4%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "osworld_2_1_offline",
+   "score": 57.1,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: Max; 비용: $4.76; 점수: 57.1%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 4.76,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: Max; 비용: $4.76; 점수: 57.1%"
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "osworld_2_1_offline",
+   "score": 63.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 낮음; 비용: $2.32; 점수: 63.3%"
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 2.32,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 낮음; 비용: $2.32; 점수: 63.3%"
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "osworld_2_1_offline",
+   "score": 75.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 중간; 비용: $4.37; 점수: 75.4%"
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 4.37,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 중간; 비용: $4.37; 점수: 75.4%"
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "osworld_2_1_offline",
+   "score": 78.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: High; 비용: $5.76; 점수: 78.3%"
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 5.76,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: High; 비용: $5.76; 점수: 78.3%"
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "osworld_2_1_offline",
+   "score": 79.0,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 매우 높음; 비용: $6.60; 점수: 79.0%"
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 6.6,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 매우 높음; 비용: $6.60; 점수: 79.0%"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 8.17,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: Max; 비용: $8.17; 점수: 80.9%"
+  },
+  {
+   "model": "openai/gpt-6-luna-low",
+   "benchmark": "osworld_2_1_offline",
+   "score": 7.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 낮음; 비용: $0.020; 점수: 7.5%"
+  },
+  {
+   "model": "openai/gpt-6-luna-low",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.02,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 낮음; 비용: $0.020; 점수: 7.5%"
+  },
+  {
+   "model": "openai/gpt-6-luna-medium",
+   "benchmark": "osworld_2_1_offline",
+   "score": 26.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 중간; 비용: $0.079; 점수: 26.3%"
+  },
+  {
+   "model": "openai/gpt-6-luna-medium",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.079,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 중간; 비용: $0.079; 점수: 26.3%"
+  },
+  {
+   "model": "openai/gpt-6-luna-high",
+   "benchmark": "osworld_2_1_offline",
+   "score": 39.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: High; 비용: $0.14; 점수: 39.7%"
+  },
+  {
+   "model": "openai/gpt-6-luna-high",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.14,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: High; 비용: $0.14; 점수: 39.7%"
+  },
+  {
+   "model": "openai/gpt-6-luna-xhigh",
+   "benchmark": "osworld_2_1_offline",
+   "score": 44.6,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 매우 높음; 비용: $0.19; 점수: 44.6%"
+  },
+  {
+   "model": "openai/gpt-6-luna-xhigh",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.19,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 매우 높음; 비용: $0.19; 점수: 44.6%"
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "osworld_2_1_offline",
+   "score": 55.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: Max; 비용: $0.30; 점수: 55.5%"
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.3,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: Max; 비용: $0.30; 점수: 55.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-low",
+   "benchmark": "osworld_2_1_offline",
+   "score": 60.9,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 낮음; 비용: $0.38; 점수: 60.9%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-low",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.38,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 낮음; 비용: $0.38; 점수: 60.9%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-medium",
+   "benchmark": "osworld_2_1_offline",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 중간; 비용: $0.65; 점수: 73.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-medium",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.65,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 중간; 비용: $0.65; 점수: 73.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-high",
+   "benchmark": "osworld_2_1_offline",
+   "score": 75.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: High; 비용: $0.90; 점수: 75.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-high",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.9,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: High; 비용: $0.90; 점수: 75.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-xhigh",
+   "benchmark": "osworld_2_1_offline",
+   "score": 75.9,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 매우 높음; 비용: $0.95; 점수: 75.9%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-xhigh",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.95,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 매우 높음; 비용: $0.95; 점수: 75.9%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "osworld_2_1_offline",
+   "score": 78.0,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: Max; 비용: $1.15; 점수: 78.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 1.15,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: Max; 비용: $1.15; 점수: 78.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "osworld_2_1_offline",
+   "score": 53.8,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.36; 점수: 53.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.36,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.36; 점수: 53.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "osworld_2_1_offline",
+   "score": 66.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.50; 점수: 66.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.5,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.50; 점수: 66.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "osworld_2_1_offline",
+   "score": 68.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $0.51; 점수: 68.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.51,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $0.51; 점수: 68.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "osworld_2_1_offline",
+   "score": 71.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $0.62; 점수: 71.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 0.62,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $0.62; 점수: 71.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "osworld_2_1_offline",
+   "score": 74.2,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $1.19; 점수: 74.2%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "osworld_2_1_offline_cost_per_task_usd_lower_better",
+   "score": 1.19,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $1.19; 점수: 74.2%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-low",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 53.6,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 낮음; 비용: $0.055; 사실 오류가 하나라도 포함된 답변: 53.6%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-low",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.055,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 낮음; 비용: $0.055; 사실 오류가 하나라도 포함된 답변: 53.6%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-medium",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 51.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 중간; 비용: $0.061; 사실 오류가 하나라도 포함된 답변: 51.5%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-medium",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.061,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 중간; 비용: $0.061; 사실 오류가 하나라도 포함된 답변: 51.5%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-high",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 41.1,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: High; 비용: $0.078; 사실 오류가 하나라도 포함된 답변: 41.1%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-high",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.078,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: High; 비용: $0.078; 사실 오류가 하나라도 포함된 답변: 41.1%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-xhigh",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 33.9,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 매우 높음; 비용: $0.11; 사실 오류가 하나라도 포함된 답변: 33.9%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-xhigh",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.11,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: 매우 높음; 비용: $0.11; 사실 오류가 하나라도 포함된 답변: 33.9%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 22.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: Max; 비용: $0.25; 사실 오류가 하나라도 포함된 답변: 22.3%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.25,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: Max; 비용: $0.25; 사실 오류가 하나라도 포함된 답변: 22.3%"
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 13.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 낮음; 비용: $0.26; 사실 오류가 하나라도 포함된 답변: 13.3%"
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.26,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 낮음; 비용: $0.26; 사실 오류가 하나라도 포함된 답변: 13.3%"
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 9.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 중간; 비용: $0.29; 사실 오류가 하나라도 포함된 답변: 9.7%"
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.29,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 중간; 비용: $0.29; 사실 오류가 하나라도 포함된 답변: 9.7%"
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 5.9,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: High; 비용: $0.43; 사실 오류가 하나라도 포함된 답변: 5.9%"
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.43,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: High; 비용: $0.43; 사실 오류가 하나라도 포함된 답변: 5.9%"
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 4.6,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 매우 높음; 비용: $0.55; 사실 오류가 하나라도 포함된 답변: 4.6%"
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.55,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 매우 높음; 비용: $0.55; 사실 오류가 하나라도 포함된 답변: 4.6%"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 4.2,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: Max; 비용: $0.66; 사실 오류가 하나라도 포함된 답변: 4.2%"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.66,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: Max; 비용: $0.66; 사실 오류가 하나라도 포함된 답변: 4.2%"
+  },
+  {
+   "model": "openai/gpt-6-luna-low",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 44.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 낮음; 비용: $0.0025; 사실 오류가 하나라도 포함된 답변: 44.3%"
+  },
+  {
+   "model": "openai/gpt-6-luna-low",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.0025,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 낮음; 비용: $0.0025; 사실 오류가 하나라도 포함된 답변: 44.3%"
+  },
+  {
+   "model": "openai/gpt-6-luna-medium",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 31.2,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 중간; 비용: $0.0035; 사실 오류가 하나라도 포함된 답변: 31.2%"
+  },
+  {
+   "model": "openai/gpt-6-luna-medium",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.0035,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 중간; 비용: $0.0035; 사실 오류가 하나라도 포함된 답변: 31.2%"
+  },
+  {
+   "model": "openai/gpt-6-luna-high",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 27.6,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: High; 비용: $0.0047; 사실 오류가 하나라도 포함된 답변: 27.6%"
+  },
+  {
+   "model": "openai/gpt-6-luna-high",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.0047,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: High; 비용: $0.0047; 사실 오류가 하나라도 포함된 답변: 27.6%"
+  },
+  {
+   "model": "openai/gpt-6-luna-xhigh",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 24.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 매우 높음; 비용: $0.0061; 사실 오류가 하나라도 포함된 답변: 24.5%"
+  },
+  {
+   "model": "openai/gpt-6-luna-xhigh",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.0061,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: 매우 높음; 비용: $0.0061; 사실 오류가 하나라도 포함된 답변: 24.5%"
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 18.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: Max; 비용: $0.013; 사실 오류가 하나라도 포함된 답변: 18.4%"
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.013,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Luna; 추론 강도: Max; 비용: $0.013; 사실 오류가 하나라도 포함된 답변: 18.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-low",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 14.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 낮음; 비용: $0.048; 사실 오류가 하나라도 포함된 답변: 14.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-low",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.048,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 낮음; 비용: $0.048; 사실 오류가 하나라도 포함된 답변: 14.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-medium",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 12.0,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 중간; 비용: $0.056; 사실 오류가 하나라도 포함된 답변: 12.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-medium",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.056,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 중간; 비용: $0.056; 사실 오류가 하나라도 포함된 답변: 12.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-high",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 6.6,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: High; 비용: $0.079; 사실 오류가 하나라도 포함된 답변: 6.6%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-high",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.079,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: High; 비용: $0.079; 사실 오류가 하나라도 포함된 답변: 6.6%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-xhigh",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 5.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 매우 높음; 비용: $0.099; 사실 오류가 하나라도 포함된 답변: 5.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-xhigh",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.099,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 매우 높음; 비용: $0.099; 사실 오류가 하나라도 포함된 답변: 5.5%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 4.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: Max; 비용: $0.12; 사실 오류가 하나라도 포함된 답변: 4.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.12,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: Max; 비용: $0.12; 사실 오류가 하나라도 포함된 답변: 4.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 16.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.024; 사실 오류가 하나라도 포함된 답변: 16.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.024,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.024; 사실 오류가 하나라도 포함된 답변: 16.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 10.1,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.029; 사실 오류가 하나라도 포함된 답변: 10.1%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.029,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.029; 사실 오류가 하나라도 포함된 답변: 10.1%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 7.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $0.036; 사실 오류가 하나라도 포함된 답변: 7.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.036,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $0.036; 사실 오류가 하나라도 포함된 답변: 7.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 5.0,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $0.050; 사실 오류가 하나라도 포함된 답변: 5.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.05,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $0.050; 사실 오류가 하나라도 포함된 답변: 5.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "openai_hard_prompt_any_error_rate_refreshed_lower_better",
+   "score": 4.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $0.12; 사실 오류가 하나라도 포함된 답변: 4.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "openai_hard_prompt_cost_per_task_usd_lower_better",
+   "score": 0.12,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $0.12; 사실 오류가 하나라도 포함된 답변: 4.3%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-low",
+   "benchmark": "terminal_bench_4_0",
+   "score": 20.0,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 낮음; 비용: $0.62; 점수: 20.0%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-low",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.62,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 낮음; 비용: $0.62; 점수: 20.0%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-medium",
+   "benchmark": "terminal_bench_4_0",
+   "score": 28.8,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 중간; 비용: $0.68; 점수: 28.8%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-medium",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.68,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 중간; 비용: $0.68; 점수: 28.8%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-high",
+   "benchmark": "terminal_bench_4_0",
+   "score": 43.0,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: High; 비용: $1.46; 점수: 43.0%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-high",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 1.46,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: High; 비용: $1.46; 점수: 43.0%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-xhigh",
+   "benchmark": "terminal_bench_4_0",
+   "score": 61.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 매우 높음; 비용: $4.34; 점수: 61.5%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5-xhigh",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 4.34,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: 매우 높음; 비용: $4.34; 점수: 61.5%"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 10.44,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: Claude Sonnet 5.5; 추론 강도: Max; 비용: $10.44; 점수: 70.6%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "terminal_bench_4_0",
+   "score": 21.5,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: Max; 비용: $5.25; 점수: 21.5%"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 5.25,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-5.6 Terra; 추론 강도: Max; 비용: $5.25; 점수: 21.5%"
+  },
+  {
+   "model": "openai/gpt-6-astra-low",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 4.93,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 낮음; 비용: $4.93; 점수: 50.6%"
+  },
+  {
+   "model": "openai/gpt-6-astra-medium",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 6.06,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 중간; 비용: $6.06; 점수: 54.4%"
+  },
+  {
+   "model": "openai/gpt-6-astra-high",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 7.18,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: High; 비용: $7.18; 점수: 58.1%"
+  },
+  {
+   "model": "openai/gpt-6-astra-xhigh",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 7.45,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: 매우 높음; 비용: $7.45; 점수: 57.9%"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 10.34,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6 Astra; 추론 강도: Max; 비용: $10.34; 점수: 58.2%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-low",
+   "benchmark": "terminal_bench_4_0",
+   "score": 47.1,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 낮음; 비용: $0.76; 점수: 47.1%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-low",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.76,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 낮음; 비용: $0.76; 점수: 47.1%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-medium",
+   "benchmark": "terminal_bench_4_0",
+   "score": 52.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 중간; 비용: $1.02; 점수: 52.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-medium",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 1.02,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 중간; 비용: $1.02; 점수: 52.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-high",
+   "benchmark": "terminal_bench_4_0",
+   "score": 53.0,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: High; 비용: $1.28; 점수: 53.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-high",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 1.28,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: High; 비용: $1.28; 점수: 53.0%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-xhigh",
+   "benchmark": "terminal_bench_4_0",
+   "score": 53.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 매우 높음; 비용: $1.28; 점수: 53.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol-xhigh",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 1.28,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: 매우 높음; 비용: $1.28; 점수: 53.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 1.98,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Sol; 추론 강도: Max; 비용: $1.98; 점수: 55.9%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "terminal_bench_4_0",
+   "score": 24.8,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.24; 점수: 24.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.24,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.24; 점수: 24.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "terminal_bench_4_0",
+   "score": 35.8,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.46; 점수: 35.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.46,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.46; 점수: 35.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "terminal_bench_4_0",
+   "score": 41.8,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $0.65; 점수: 41.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.65,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $0.65; 점수: 41.8%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "terminal_bench_4_0",
+   "score": 46.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $0.99; 점수: 46.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.99,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $0.99; 점수: 46.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "terminal_bench_4_0",
+   "score": 50.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $1.84; 점수: 50.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "terminal_bench_4_0_openai_launch_cost_per_task_usd_lower_better",
+   "score": 1.84,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $1.84; 점수: 50.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "terminal_bench_science_openai_launch",
+   "score": 24.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.47; 점수: 24.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-low",
+   "benchmark": "terminal_bench_science_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.47,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 낮음; 비용: $0.47; 점수: 24.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "terminal_bench_science_openai_launch",
+   "score": 34.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.95; 점수: 34.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-medium",
+   "benchmark": "terminal_bench_science_openai_launch_cost_per_task_usd_lower_better",
+   "score": 0.95,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 중간; 비용: $0.95; 점수: 34.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "terminal_bench_science_openai_launch",
+   "score": 39.7,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $1.24; 점수: 39.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-high",
+   "benchmark": "terminal_bench_science_openai_launch_cost_per_task_usd_lower_better",
+   "score": 1.24,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: High; 비용: $1.24; 점수: 39.7%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "terminal_bench_science_openai_launch",
+   "score": 43.4,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $1.72; 점수: 43.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra-xhigh",
+   "benchmark": "terminal_bench_science_openai_launch_cost_per_task_usd_lower_better",
+   "score": 1.72,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: 매우 높음; 비용: $1.72; 점수: 43.4%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "terminal_bench_science_openai_launch",
+   "score": 58.3,
+   "unit": "%",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $4.15; 점수: 58.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "terminal_bench_science_openai_launch_cost_per_task_usd_lower_better",
+   "score": 4.15,
+   "unit": "usd",
+   "_source": "https://openai.com/ko-KR/index/introducing-gpt-6-1-terra/",
+   "_note": "OpenAI GPT-6.1 Terra launch page Vega chart aria label: 모델: GPT-6.1 Terra; 추론 강도: Max; 비용: $4.15; 점수: 58.3%"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_violent_illicit",
+   "score": 0.977,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 22"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_nonviolent_illicit",
+   "score": 0.997,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 22"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_extremism",
+   "score": 0.936,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 22"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_hate",
+   "score": 0.982,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 22"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_self_harm",
+   "score": 0.974,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 22"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_gore",
+   "score": 0.883,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 22"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_sexual",
+   "score": 0.951,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 22"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_sexual_minors",
+   "score": 0.965,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 22"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_u18_age_restricted",
+   "score": 0.926,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 23"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_u18_sexual",
+   "score": 0.973,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 23"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_u18_eating_disorders",
+   "score": 0.938,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 23"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_u18_emotional_reliance",
+   "score": 0.948,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 23"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_u18_self_harm",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 23"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "prod_disallowed_u18_gore",
+   "score": 0.883,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Table 23"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "agentic_safe_completion_codex_age_restricted",
+   "score": 0.821,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Agentic Safe Completions table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "agentic_safe_completion_codex_nonviolent_wrongdoing",
+   "score": 0.978,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Agentic Safe Completions table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "agentic_safe_completion_codex_violent_wrongdoing",
+   "score": 0.887,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Agentic Safe Completions table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "agentic_safe_completion_codex_sensitive_personal_data",
+   "score": 0.747,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Agentic Safe Completions table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "agentic_safe_completion_codex_self_harm",
+   "score": 0.92,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Agentic Safe Completions table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "agentic_safe_completion_chat_plugins",
+   "score": 0.923,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Agentic Safe Completions table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "agentic_safe_completion_redteam_codex",
+   "score": 0.958,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Agentic Safe Completions table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "agentic_safe_completion_redteam_chat_plugins",
+   "score": 0.935,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Agentic Safe Completions table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "openai-image-input-hate",
+   "score": 0.985,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Image input table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "openai-image-input-extremism",
+   "score": 0.928,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Image input table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "openai-image-input-self-harm",
+   "score": 0.987,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Image input table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "openai-image-input-harms-erotic",
+   "score": 0.991,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Image input table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "healthbench_professional_length_adjusted",
+   "score": 62.7,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum HealthBench table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "healthbench",
+   "score": 55.1,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum HealthBench table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "healthbench_hard",
+   "score": 31.4,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum HealthBench table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "healthbench_consensus",
+   "score": 95.1,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum HealthBench table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "openai-healthbench-professional-unadjusted",
+   "score": 64.2,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum HealthBench table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "openai-healthbench-unadjusted",
+   "score": 51.1,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum HealthBench table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "openai-healthbench-hard-unadjusted",
+   "score": 26.0,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum HealthBench table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "openai-healthbench-consensus-unadjusted",
+   "score": 94.8,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum HealthBench table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "mentalhealthbench",
+   "score": 55.5,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum MentalHealthBench table, max effort"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "mentalhealthbench_non_acute",
+   "score": 56.5,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum MentalHealthBench table, max effort"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "mentalhealthbench_high_acuity",
+   "score": 56.5,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum MentalHealthBench table, max effort"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "mentalhealthbench_emergent",
+   "score": 52.9,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum MentalHealthBench table, max effort"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "dynamic_mental_health",
+   "score": 99.3,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Dynamic Benchmarks table, x100"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "dynamic_emotional_reliance",
+   "score": 97.5,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Dynamic Benchmarks table, x100"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "dynamic_self_harm",
+   "score": 88.0,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Dynamic Benchmarks table, x100"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "multimodal_troubleshooting_virology",
+   "score": 52.54,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "aav_capsid_packaging_spearman",
+   "score": 0.5285,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "shp2_protein_function_mean_r2",
+   "score": 0.3696,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "coronavirus_ace2_cell_entry_reward",
+   "score": 0.4741,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "phage_plasmid_coevolution_nll_lower_better",
+   "score": 10.8229,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "bio_refusal_severe_not_unsafe",
+   "score": 0.99,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "bio_refusal_dual_use_not_unsafe",
+   "score": 0.96,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "bio_refusal_benign_not_overrefuse",
+   "score": 0.982,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "cyber_safety_production_data_policy_compliance",
+   "score": 98.0,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "cyber_safety_synthetic_data_policy_compliance",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "cyber_safety_semi_synthetic_agentic_policy_compliance",
+   "score": 97.3,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "exploitbench_v8_cap_pct",
+   "score": 97.1,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "exploitbench_internal_port_2026_06_08",
+   "score": 24.5,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "sec_bench_pro_openai_rootcause_grader",
+   "score": 83.33,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "sandbox_bench",
+   "score": 22.7,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "internal_research_debugging",
+   "score": 76.39,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "kernelgen_1p",
+   "score": 45.34,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "cot_controllability_750_1250_tokens",
+   "score": 14.8,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "broken_search_tool_failure_rate_v2_lower_better",
+   "score": 1.83,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "auto_review_circumvention_rate_v2_lower_better",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "exploitgym_honeypot_attack_rate_lower_better",
+   "score": 0.07,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "exploitgym_honeypot_legit_capture_rate",
+   "score": 0.14,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "indirect_prompt_injection_defender_success",
+   "score": 98.77,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum prose or table"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "blocker_deception_rate_lower_better",
+   "score": 28.99,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 8, printed label"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "blocker_deception_rate_lower_better",
+   "score": 34.18,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 8, printed label"
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "blocker_deception_rate_lower_better",
+   "score": 8.05,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 8, printed label"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "blocker_deception_rate_lower_better",
+   "score": 11.66,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 8, printed label"
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "blocker_deception_rate_lower_better",
+   "score": 8.36,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 8, printed label"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "blocker_deception_rate_lower_better",
+   "score": 14.0,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 8, printed label"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "blocker_deception_rate_lower_better",
+   "score": 8.47,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 8, printed label"
+  },
+  {
+   "model": "openai/gpt-5.6-terra-max",
+   "benchmark": "warning_circumvention_successful_rate_lower_better",
+   "score": 28.4,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 6, printed label, max effort"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "warning_circumvention_successful_rate_lower_better",
+   "score": 43.9,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 6, printed label, max effort"
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "warning_circumvention_successful_rate_lower_better",
+   "score": 34.6,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 6, printed label, max effort"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "warning_circumvention_successful_rate_lower_better",
+   "score": 21.6,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 6, printed label, max effort"
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "warning_circumvention_successful_rate_lower_better",
+   "score": 17.4,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 6, printed label, max effort"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "warning_circumvention_successful_rate_lower_better",
+   "score": 22.0,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 6, printed label, max effort"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "warning_circumvention_successful_rate_lower_better",
+   "score": 29.6,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum Figure 6, printed label, max effort"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "external_agent_board_engagement_rate_refreshed_lower_better",
+   "score": 65.0,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.1"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "external_agent_board_unauthorized_action_rate_refreshed_lower_better",
+   "score": 13.75,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.1"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "external_agent_board_engagement_rate_refreshed_lower_better",
+   "score": 50.0,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.1"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "external_agent_board_unauthorized_action_rate_refreshed_lower_better",
+   "score": 1.25,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.1"
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "external_agent_board_engagement_rate_refreshed_lower_better",
+   "score": 41.25,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.1"
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "external_agent_board_unauthorized_action_rate_refreshed_lower_better",
+   "score": 16.25,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.1"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "external_agent_board_engagement_rate_refreshed_lower_better",
+   "score": 91.25,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.1"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "external_agent_board_unauthorized_action_rate_refreshed_lower_better",
+   "score": 57.5,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.1"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "codex_deployment_eval_awareness_rate_terra_set_lower_better",
+   "score": 9.88,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.2"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "codex_deployment_severity3_flag_rate_terra_set_lower_better",
+   "score": 0.045,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.2"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "codex_deployment_eval_awareness_rate_terra_set_lower_better",
+   "score": 4.35,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.2"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "codex_deployment_severity3_flag_rate_terra_set_lower_better",
+   "score": 0.049,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.2"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "codex_deployment_eval_awareness_rate_terra_set_lower_better",
+   "score": 8.07,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.2"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "codex_deployment_severity3_flag_rate_terra_set_lower_better",
+   "score": 0.053,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.2"
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "codex_deployment_eval_awareness_rate_terra_set_lower_better",
+   "score": 4.54,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.2"
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "codex_deployment_severity3_flag_rate_terra_set_lower_better",
+   "score": 0.078,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.2"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "codex_deployment_eval_awareness_rate_terra_set_lower_better",
+   "score": 2.47,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.2"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "codex_deployment_severity3_flag_rate_terra_set_lower_better",
+   "score": 0.125,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.2"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "codex_deployment_severity3_flag_rate_no_awareness_lower_better",
+   "score": 0.036,
+   "unit": "%",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+   "_note": "GPT-6.1 Terra system card addendum section 7.5.2"
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "frontiercode_2_0_cognition",
+   "score": 19.7,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Cognition private benchmark."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "frontiercode_2_0_cognition",
+   "score": 2.9,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Cognition private benchmark."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "frontiercode_2_0_cognition",
+   "score": 14.2,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Cognition private benchmark."
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "frontiercode_2_0_cognition",
+   "score": 17.3,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Cognition private benchmark."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "frontiercode_2_0_cognition",
+   "score": 17.8,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Cognition private benchmark."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "frontiercode_2_0_cognition",
+   "score": 19.3,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Cognition private benchmark."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "aa_coding_agent_index",
+   "score": 48,
+   "unit": "index",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. High mode."
+  },
+  {
+   "model": "mistral/mistral-large-4-medium",
+   "benchmark": "aa_coding_agent_index",
+   "score": 35,
+   "unit": "index",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Medium mode."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "aa_coding_agents_terminal_bench_4",
+   "score": 41.4,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. AA Coding Agent Index, Terminal-Bench 4.0."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_coding_agents_terminal_bench_4",
+   "score": 3,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. AA Coding Agent Index, Terminal-Bench 4.0."
+  },
+  {
+   "model": "meta/muse-spark-open",
+   "benchmark": "aa_coding_agents_terminal_bench_4",
+   "score": 6,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. AA Coding Agent Index, Terminal-Bench 4.0."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_coding_agents_terminal_bench_4",
+   "score": 31,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. AA Coding Agent Index, Terminal-Bench 4.0."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "aa_cyber_index_v1",
+   "score": 50.9,
+   "unit": "index_points",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. AA Cyber Index."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_cyber_index_v1",
+   "score": 34,
+   "unit": "index_points",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. AA Cyber Index."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_cyber_index_v1",
+   "score": 57,
+   "unit": "index_points",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. AA Cyber Index."
+  },
+  {
+   "model": "mistral/mistral-large-4-preview",
+   "benchmark": "finwork_finch",
+   "score": 67.4,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "finwork_finch",
+   "score": 73.3,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "finwork_finch",
+   "score": 65.12,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "finwork_finch",
+   "score": 67.44,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "finwork_finch",
+   "score": 77.33,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "browsecomp",
+   "score": 84.5,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Early SFT checkpoint value 75.0 not stored."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "browsecomp",
+   "score": 82.5,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Early SFT checkpoint value 75.0 not stored."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "browsecomp",
+   "score": 83.4,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Early SFT checkpoint value 75.0 not stored."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "harmful_cyber_refusal_avg_jbb_strongreject_agentharm",
+   "score": 96.6,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Cyber-related prompts of JailbreakBench, StrongREJECT and AgentHarm."
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "harmful_cyber_refusal_avg_jbb_strongreject_agentharm",
+   "score": 50.7,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Cyber-related prompts of JailbreakBench, StrongREJECT and AgentHarm."
+  },
+  {
+   "model": "google/gemma-4-31b",
+   "benchmark": "harmful_cyber_refusal_avg_jbb_strongreject_agentharm",
+   "score": 84.1,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. Cyber-related prompts of JailbreakBench, StrongREJECT and AgentHarm."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "lakera_b3_attack_resistance",
+   "score": 97.1,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "lakera_b3_attack_resistance",
+   "score": 58.6,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  },
+  {
+   "model": "google/gemma-4-31b",
+   "benchmark": "lakera_b3_attack_resistance",
+   "score": 82.9,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "surge_code_ml4_win_rate_vs_glm_5_3",
+   "score": 64,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "surge_code_ml4_win_rate_vs_kimi_k3",
+   "score": 64,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "surge_code_ml4_win_rate_vs_deepseek_v4_1_flash",
+   "score": 56,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "surge_code_ml4_win_rate_vs_claude_opus_5_5",
+   "score": 22,
+   "unit": "%",
+   "_source": "https://mistral.ai/news/mistral-large-4-oss/",
+   "_note": "Mistral Large 4 open-weight launch post chart data attribute. "
+  }
+ ]
+}

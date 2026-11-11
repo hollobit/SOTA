@@ -228,7 +228,7 @@ var PhysicalAI = {
                 'libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long',
                 'libero_plus', 'calvin_abcd_avg_length', 'navsim_v1_pdms', 'navsim_v2_epdms', 'embodiedworldbench',
                 // 2026-10-02 S292 — six-month sweep of manipulation suites (2604–2610), headline ids
-                'robodojo_sim_avg_sr', 'robodojo_real_avg_sr', 'libero_vpro_overall', 'libero_occ_avg', 'libero_max_dynamic_sr',
+                'robodojo_sim_avg_sr', 'robodojo_sim_anthropic_internal_avg_sr', 'robodojo_real_avg_sr', 'libero_vpro_overall', 'libero_occ_avg', 'libero_max_dynamic_sr',
                 'safevla_bench_libero_sr', 'vla_replica_id_avg', 'vla_replica_ood_avg', 'ebench_overall_sr', 'atom_bench_franka_instruction_sr',
                 'robochallenge_table30_v1_sr', 'memobench_k5_avg_sr', 'bicoord_multi_task_sr', 'x2real_all_ood_sr', 'duobench_sim_overall',
                 'duobench_real_overall', 'cohub_2humanoid_avg', 'robosemanticbench_tsr_avg', 'umi_bench_t9_overall_score', 'conflictvla_delta_sr',

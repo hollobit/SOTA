@@ -34,7 +34,7 @@ var Agent = (function() {
                 'swe_bench_pro',
                 'cursorbench_4_0', 'terminal_bench_4',  // 2026-09-23 S282
                 // 2026-10-03 — Terminal-Bench 4.0 (official board / AA harness), DeepSWE 1.1, FrontierSWE v2, SWE-Bench Pro public board
-                'terminal_bench_4_0', 'terminal_bench_4_0_aa', 'deepswe_1_1', 'frontierswe_v2', 'swe_bench_pro_scale_public',
+                'terminal_bench_4_0', 'terminal_bench_4_0_aa', 'deepswe_1_1', 'frontierswe_v2', 'frontiercode_2_0_aa', 'frontiercode_2_0', 'swe_sweep', 'swe_bench_pro_scale_public',
                 'swe_bench_verified_mini',
                 'swe_bench_multilingual',
                 'swe_bench_multimodal',
@@ -124,7 +124,7 @@ var Agent = (function() {
                 // 2026-04 S216 — GUI grounding (MiningLamp Mano-P + others)
                 'screenspot_v2', 'mmbench_gui_l2', 'ui_vision', 'online_mind2web', 'osworld_g_refine', 'osexpert_eval',
                 // 2026-09-23 S282 — OSWorld 2.0 Sep-2026 task set (Anthropic harness) + OpenAI offline set
-                'osworld_v2_partial_sep2026', 'osworld_v2_strict_sep2026', 'osworld_v2_offline_partial'
+                'osworld_v2_partial_sep2026', 'osworld_v2_strict_sep2026', 'osworld_v2_offline_partial', 'osworld_2_1_offline'
             ]
         },
         {
@@ -267,7 +267,7 @@ var Agent = (function() {
                 // 2026-09-23 S282 — Opus 5.5 card §5 prompt-injection ASRs
                 'shade_v2_coding_asr_no_safeguards', 'shade_v2_coding_asr_with_probes', 'shade_v2_computer_use_asr_no_safeguards', 'shade_v2_computer_use_asr_with_probes', 'browser_use_cowork_asr_no_safeguards', 'browser_use_cowork_asr_auto_mode', 'gray_swan_ipi_k1', 'gray_swan_ipi_k10',
                 // 2026-10-03 — Gray Swan IPI k=15 (13 models incl. Gemini 4 Argon 0.7%), OpenAI realistic-work misalignment v2, prompt-injection connectors, OSGuard
-                'gray_swan_ipi', 'agentic_misaligned_outcome_rate_v2_lower_better', 'prompt_injection_connectors', 'indirect_prompt_injection_defender_success', 'osguard_action_level_acc',
+                'gray_swan_ipi', 'blocker_deception_rate_lower_better', 'warning_circumvention_successful_rate_lower_better', 'agentic_misaligned_outcome_rate_v2_lower_better', 'prompt_injection_connectors', 'indirect_prompt_injection_defender_success', 'osguard_action_level_acc',
                 // 2026-09-23 S282b — Opus 5.5 card §6.2 / §6.5 / §6.6 lower-better rates
                 'anthropic_rl_training_reward_hack_success_rate_lower_better', 'anthropic_rl_training_reward_hack_answer_key_guess_rate_lower_better', 'anthropic_rl_training_reward_hack_copied_solution_rate_lower_better',
                 'anthropic_rl_training_reward_hack_prohibited_method_rate_lower_better', 'anthropic_rl_training_reward_hack_success_rate_excl_toolskip_lower_better', 'anthropic_impossible_task_reward_hack_attempt_rate_lower_better',
@@ -324,6 +324,11 @@ var Agent = (function() {
                 // 2026-09-23 S282 — Opus 5.5 card (prompt injection, agentic influence ops /32) + GPT-6 appendix A.6 updated alignment evals
                 'shade_v2_coding_asr_no_safeguards', 'shade_v2_coding_asr_with_probes', 'shade_v2_computer_use_asr_no_safeguards', 'shade_v2_computer_use_asr_with_probes', 'browser_use_cowork_asr_no_safeguards', 'browser_use_cowork_asr_auto_mode', 'gray_swan_ipi_k1', 'gray_swan_ipi_k10',
                 'agentic_influence_voter_suppression_median32', 'agentic_influence_domestic_polarization_median32', 'anthropic_sandbox_escape_attempt_rate_lower_better',
+                // 2026-11-09 S317 — Fable/Mythos 5.2 card: updated /34 influence-ops eval, opportunistic sandbox escape, behavioral audit composite
+                'agentic_influence_voter_suppression_median34', 'agentic_influence_domestic_polarization_median34', 'anthropic_opportunistic_sandbox_escape_rate_lower_better', 'anthropic_automated_behavioral_audit_misaligned_score_lower_better',
+                'anthropic_sandbox_reach_outside_any_route_rate_lower_better', 'anthropic_sandbox_escape_eval_attempt_rate_lower_better', 'anthropic_sandbox_escape_eval_moderate_attempt_rate_lower_better', 'anthropic_rl_training_reward_hack_attempt_rate_lower_better', 'anthropic_silent_answer_use_rate_lower_better', 'anthropic_hidden_action_disclosure_rate', 'linuxarena_heldout_stealth_before_elicitation_lower_better', 'linuxarena_heldout_stealth_after_elicitation_lower_better', 'anthropic_covert_sandbox_escape_stealth_hidden_lower_better', 'anthropic_covert_reward_hack_stealth_hidden_lower_better',
+                // 2026-11-10 S317c — Fable/Mythos 5.2 card reruns, UK AISI, political bias
+                'linuxarena_best_prompt_stealth_hidden_reasoning_rerun_anthropic_nov2026_lower_better', 'linuxarena_best_prompt_stealth_no_thinking_rerun_anthropic_nov2026_lower_better', 'linuxarena_best_prompt_stealth_visible_reasoning_rerun_anthropic_nov2026_lower_better', 'anthropic_verbalized_grader_awareness_clear_disclosure_rerun_anthropic_nov2026', 'anthropic_verbalized_grader_awareness_ambiguous_disclosure_rerun_anthropic_nov2026', 'anthropic_verbalized_grader_awareness_barely_disclosed_rerun_anthropic_nov2026', 'anthropic_acting_on_presumed_grader_rate_rerun_anthropic_nov2026_lower_better', 'anthropic_digging_for_grader_clues_rate_rerun_anthropic_nov2026_lower_better', 'anthropic_package_registry_unprompted_publish_rate_lower_better', 'anthropic_prompted_sandbagging_cot_monitor_recall', 'anthropic_secret_password_never_leaked_rate', 'anthropic_no_cot_reasoning_index', 'uk_aisi_no_cot_time_horizon_min', 'uk_aisi_file_download_monitor_evasion_iterated', 'uk_aisi_supply_chain_eval_purpose_identified', 'political_opposing_perspectives_claude_ai', 'political_refusal_api_lower_better', 'political_refusal_claude_ai_lower_better',
                 'coding_deception_rate_v2_lower_better', 'broken_search_tool_failure_rate_v2_lower_better', 'auto_review_circumvention_rate_v2_lower_better', 'warning_barrier_persistence_rate_v2_lower_better',
                 // 2026-09-24 S286 — agent-safety papers
                 'agents4d_backend_casr_lower_better', 'guardianagentbench_overall_avg_llamaindex', 'muppet_multiparty_leak_rate_lower_better', 'muppet_utility_undefended', 'cisco_image_safety_score',
@@ -408,7 +413,7 @@ var Agent = (function() {
                 // 2026-07-01 S160 — Sonnet 5 §8 + LongCat 2.0 blog general-agent benches
                 'forte', 'rwsearch', 'aa_briefcase',
                 // 2026-07-09 S176 — Agents' Last Exam ALE-V1 + GPT-5.6 card general/AI-R&D benches
-                'agents_last_exam', 'agents_last_exam_score', 'toolathlon', 'posttrainbench_lite',
+                'agents_last_exam', 'agents_last_exam_score', 'agents_last_exam_v1_1', 'toolathlon', 'posttrainbench_lite',
                 'rsi_index', 'internal_research_debugging', 'kernelgen_1p', 'big_finance_bench', 'management_consulting_tasks_internal',
                 // 2026-07-10 S180 — backfilled arxiv agentic benches (CoffeeBench in coding; these two here)
                 'rng_bench', 'mapf_frozenlake',
@@ -417,7 +422,7 @@ var Agent = (function() {
                 // 2026-07-16 S182 — Kimi K3 card agentic benches
                 'job_bench', 'deck_bench',
                 // 2026-09-23 S282 — AA v2.1-era boards, AutomationBench 1.0.6, WANDR, CoBench 2.1
-                'gdpval_aa_v2_1_elo', 'aa_briefcase_v1_1', 'aa_briefcase_v1_1_analytical_quality_elo', 'aa_briefcase_v1_1_presentation_elo', 'aa_briefcase_v1_1_rubric_pass_rate', 'automationbench_1_0_6',
+                'gdpval_aa_v2_1_elo', 'finwork_finch', 'excel_modeling_benchmark_v1_1_vals', 'finance_agent_v2_1_vals', 'aa_briefcase_v1_1', 'aa_briefcase_v1_1_analytical_quality_elo', 'aa_briefcase_v1_1_presentation_elo', 'aa_briefcase_v1_1_rubric_pass_rate', 'automationbench_1_0_6',
                 // 2026-09-24 S286 — tau2-bench v1.0.1 banking re-grade, PolyWorkBench, FinToolBench, PAUSE, EvoClawBench
                 'tau2_bench_banking_knowledge_pass1_v1_0_1', 'tau2_bench_banking_knowledge_pass4_v1_0_1', 'polyworkbench_pass1_peak', 'fintoolbench_soft_score', 'pause_log_tracking_hard_tc', 'pause_shopping_score', 'evoclawbench_nanobot_baseline',
                 // 2026-09-24 S285 — Mercor APEX boards, HAL reliability, HLE (CAISI), Epoch agentic runs
@@ -427,7 +432,9 @@ var Agent = (function() {
                 'apex_agents_v1_1_pass1', 'apex_agents_v1_1_mean_score', 'apex_v1_mercor_board_pass1', 'apex_v1_mercor_board_mean_score', 'apex_swe_mercor_board_pass1', 'apex_accounting_pass1', 'hal_reliability_score', 'hal_reliability_accuracy', 'hle_caisi_official', 'remote_labor_index_epoch', 'posttrainbench_epoch', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
                 // 2026-09-23 S282b — Opus 5.5 card §8.12.3 multi-agent team-size endpoints (1 vs 100 agents)
                 'anthropic_agent_team_knowledge_base_single_agent', 'anthropic_agent_team_knowledge_base_100_agents', 'anthropic_agent_team_lean_single_agent',
-                'anthropic_agent_team_lean_100_agents'
+                'anthropic_agent_team_lean_100_agents',
+                // 2026-11-10 S317b — Fable 5.2 card Fermat's Last Theorem team sweep (different task from the Opus 5.5 Lean task)
+                'anthropic_fermat_lean_1_agents', 'anthropic_fermat_lean_10_agents', 'anthropic_fermat_lean_30_agents', 'anthropic_fermat_lean_100_agents', 'anthropic_fermat_lean_1000_agents_30h'
             ]
         },
         {

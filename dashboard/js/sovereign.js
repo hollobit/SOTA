@@ -73,6 +73,7 @@ var Sovereign = {
             note: '프랑스 sovereign frontier — Mistral 풀라인업 (Mistral 7B·Mixtral·Nemo·Saba·Codestral·Mathstral·Pixtral·Magistral·Devstral·Ministral·Voxtral) + PleIAs · Lucie · CroissantLLM · HuggingFace SmolLM',
             models: [
                 // Mistral — flagship & frontier
+                'mistral/mistral-large-4',  // 2026-10-29 S316 — open-weight GA (HF Mistral-Large-4-1T-A52B); Vals Index 56.42, AAII v5 26.0
                 'mistral/mistral-large-4-preview',  // 2026-10-06 S296 — 1T / 52B-active MoE trained on 3,800 Grace Blackwell GPUs in Mistral's EU datacenters; AAII 38.4, Vals Index 48.05, Cybench 93
                 'mistral/mistral-large-3', 'mistral/mistral-medium-3.5', 'mistral/mistral-medium-3.5-eagle', 'mistral/mistral-medium-3.1', 'mistral/mistral-medium-3',
                 'cohere-alephalpha/command-pharia-1',  // 2026-04-24 S145 — Cohere+Aleph Alpha merger; Command-Pharia 1 Q4 2026 EU sovereign
@@ -745,7 +746,7 @@ var Sovereign = {
         'freedomintelligence/huatuogpt-ii': '2024-05',
 
         // France — Mistral flagship + reasoning
-        'mistral/mistral-large-4-preview': '2026-10', 'mistral/mistral-large-3': '2025-12', 'mistral/mistral-large-2': '2024-07', 'mistral/mistral-large-1': '2024-02',
+        'mistral/mistral-large-4': '2026-10', 'mistral/mistral-large-4-preview': '2026-10', 'mistral/mistral-large-3': '2025-12', 'mistral/mistral-large-2': '2024-07', 'mistral/mistral-large-1': '2024-02',
         'mistral/mistral-medium-3.5': '2026-05', 'mistral/mistral-medium-3.1': '2025-09', 'mistral/mistral-medium-3': '2025-05',
         'mistral/mistral-small-4': '2026-02', 'mistral/mistral-small-3.2': '2025-07', 'mistral/mistral-small-3.1': '2025-03', 'mistral/mistral-small-3': '2025-01', 'mistral/mistral-small-2': '2024-09', 'mistral/mistral-small-1': '2023-09',
         'mistral/magistral-medium-1.2': '2025-09', 'mistral/magistral-small-1.2': '2025-09',

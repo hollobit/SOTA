@@ -55,7 +55,7 @@ var FrontierCompare = {
             'active_swe_resolved', 'active_swe_revealed', 'gamexpert_gamegen_overall', 'webgamebench_excellent_rate', 'webgamebench_usable_rate',
             'gamelogicbench_claude_code', 'gamelogicbench_claude_code_atom', 'loopsbench_resolve_rate_claude_code', 'loopsbench_test_pass_rate_claude_code',
             'e_bench_code_avg3', 'mtac_ifbench_cisr', 'mtac_ifbench_csr', 'swe_polyvision_e2e_text_only', 'swe_polyvision_vrr_text_only',
-            'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5',  // S290b — FrontierSWE v2 board trial spread
+            'frontierswe_v2', 'frontiercode_2_0_aa', 'frontiercode_2_0', 'swe_sweep', 'frontierswe_v2_worst5', 'frontierswe_v2_best5',  // S290b — FrontierSWE v2 board trial spread; S317 Cognition FrontierCode 2.0
             'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
             'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'swe_rebench',
             'gdpval_aa', 'nl2repo', 'expert_swe',
@@ -65,6 +65,7 @@ var FrontierCompare = {
             'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',
             // 2026-05-30 Session 39 BenchCAD sub-tasks (Edit / QA Code / Vision2Code)
             'benchcad_edit_acc', 'benchcad_qa_code', 'benchcad_vision2code',
+            'benchcad_2_1_core_with_tools', 'benchcad_2_1_core_no_tools',  // S317
             // 2026-06-01 S44 MiniMax M3 agentic-coding benches
             'kernelbench_hard', 'swe_fficiency',
             // 2026-06-02 S46 Qwen3.7-Plus + Cosmos 3 — coding agent benches
@@ -134,7 +135,7 @@ var FrontierCompare = {
             // 2026-07-02 S174 — Microsoft HealthAgentBench (agentic healthcare — 54 tasks × 3 attempts)
             'healthagentbench',
             // 2026-07-08 S175/S176 — Grok 4.5 + GPT-5.6 + ALE-V1 agentic benches
-            'agents_last_exam', 'agents_last_exam_score', 'automationbench_aa', 'harvey_lab_aa', 'harvey_lab_aa_mean_criteria',
+            'agents_last_exam', 'agents_last_exam_score', 'agents_last_exam_v1_1', 'osworld_2_1_offline', 'automationbench_aa', 'harvey_lab_aa', 'harvey_lab_aa_mean_criteria',
             'enterpriseops_gym_aa', 'gdpval_plus_snorkel', 'big_finance_bench', 'rsi_index',
             // 2026-09-30 S290 — Gemini 4 Argon launch table: Vals boards, Zapier AutomationBench, Google-run PostTrainBench v1.1
             'vals_index_sep2026', 'vals_index_v2_1_cost_per_test_usd_lower_better', 'finance_agent_v2', 'legal_agent_benchmark_harvey', 'automationbench_1_0_6', 'osworld_v2_offline_partial', 'posttrainbench_v1_1_google',
@@ -166,7 +167,7 @@ var FrontierCompare = {
             'cyscenariobench_long_horizon_solve',
             'irregular_atomic_network_attack_sim', 'irregular_atomic_vuln_research_exploit',
             'irregular_atomic_evasion',
-            'exploitgym', 'sec-bench-pro',
+            'exploitgym', 'exploitgym_10h_google', 'sec-bench-pro',
             // 2026-06-28 S154b — Mythos 5 system card §3.2 detailed cyber tables
             'firefox_147_full_working_exploit',
             'oss_fuzz_any_crash_rate', 'oss_fuzz_write_primitive_rate',
@@ -192,7 +193,7 @@ var FrontierCompare = {
             'agentic_safe_completion_redteam_codex', 'agentic_safe_completion_redteam_chat_plugins',
             'static_jailbreak_bio_high_risk', 'static_jailbreak_bio_severe', 'static_jailbreak_violence_moderate',
             'static_jailbreak_violence_severe', 'static_jailbreak_cyber',
-            'indirect_prompt_injection_defender_success', 'instruction_hierarchy_robustness', 'gray_swan_ipi',
+            'indirect_prompt_injection_defender_success', 'instruction_hierarchy_robustness', 'gray_swan_ipi', 'blocker_deception_rate_lower_better',
             // 2026-09-04 S261 — OpenAI legacy system cards (gpt-oss / GPT-5 / GPT-5-Codex / GPT-5.1 / o3-o4-mini):
             // Production Benchmark categories from the GPT-5-era category set + StrongReject + IH + image input
             'prod_disallowed_nonviolent_hate', 'prod_disallowed_personal_data',
@@ -281,11 +282,13 @@ var FrontierCompare = {
         composite_aaii: [
             'aa_intelligence_index_v4_1', 'aa_intelligence_index',
             // 2026-09-23 S282 — AAII v4.3 (Sol 47.5 / Luna 37.3 / Astra 52.7 / Grok 4.7 46.5) + GDPval-AA v2.1 re-based Elo / normalized win rate
-            'aa_intelligence_index_v4_3', 'gdpval_aa_v2_1_elo', 'gdpval_aa_v2_1',
+            'aa_intelligence_index_v4_3', 'aa_intelligence_index_v5_0', 'vals_science_index', 'code_migration_v1_1_vals', 'aa_omniscience_v1_1_index', 'hle_diamond_aa', 'critpt_v2_hard_aa', 'vals_index_v2_2', 'gdpval_aa_v2_1_elo', 'gdpval_aa_v2_1',
             // 2026-09-24 S285 — LiveBench 2026-06-25 release, HLE official (CAISI), Epoch ECI component runs
             'livebench_2026_06_25', 'hle_caisi_official', 'gpqa_diamond_epoch', 'hle_epoch', 'frontiermath_tier4_v2',
             // 2026-09-23 S282b — AA v4.3 capability indices (GPT-6 Sol/Luna/Astra tiers)
             'aa_capability_index_finance_accounting_v4_3', 'aa_capability_index_strategy_ops_v4_3', 'aa_capability_index_legal_v4_3', 'aa_capability_index_healthcare_medical_v4_3', 'aa_capability_index_engineering_v4_3', 'aa_capability_index_economics_v4_3',
+            // 2026-11-10 S317b — AA Index v5 capability indices
+            'aa_capability_index_finance_accounting_v5', 'aa_capability_index_strategy_ops_v5', 'aa_capability_index_legal_v5', 'aa_capability_index_healthcare_medical_v5', 'aa_capability_index_engineering_v5', 'aa_capability_index_economics_v5',
             // Agents: GDPval-AA v2 + τ³-Banking (v4.1) / GDPval-AA v1 + τ²-Telecom (legacy)
             'gdpval_aa_v2', 'tau3_banking',
             'gdpval_aa', 'tau2_telecom',
@@ -305,6 +308,13 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-11-09 S317
+        'anthropic/claude-fable-5.2',  // 2026-11-09 — AAII v5 64.6 (#1, max), FrontierCode 2.0 49.1 (xhigh), FrontierSWE v2 69.9, SWE-bench Pro 93.0, RLI 41.3, ARC-AGI-3 79.3 (high); $8/$40
+        'anthropic/claude-mythos-5.2',  // 2026-11-09 — same model, safeguards off for verified orgs: CVE Rediscovery 89.6, CyScenarioBench 76.3, TB 4.0 70.5, AECI 177.12
+        // 2026-10-26/29 S316
+        'mistral/mistral-large-4',  // 2026-10-29 — open-weight GA of Le Chonk, AAII v5 26.0, Vals Index 56.42, Finch 73.3, B3 97.1; $0.70/$2.10
+        'google/gemini-4-carbon',  // 2026-10-28 — AAII v5 59.4 (#1), SEC-bench Pro 88.2, ExploitGym 53.5 (6h) / 54.8 (10h), CWE-bench v1 71; Fairwind access only; $2/$10 intro (list $4/$20)
+        'openai/gpt-6.1-terra',  // 2026-10-26 — AAII v5 51.0, ALE v1 60.0, MMMU-Pro 85.5, TB 4.0 50.3 (OpenAI), ExploitBench 97.1; $1/$5
         // 2026-10-07/06 S296
         'anthropic/claude-haiku-5.5',  // 2026-10-07 — AAII v4.3 43.4 (max), GDPval-AA v2.1 1620, Briefcase 1578, OSWorld 2.1 offline 72.4 partial, TB 4.0 39.2, HLE 45.9/57.4 tools; $0.10/$0.50 (≤100K), 1M ctx
         'mistral/mistral-large-4-preview',  // 2026-10-06 — 1T/52B-active MoE public preview, AAII v4.3 38.4, Coding Agent Index 49.8, DeepSWE 61.7, Cybench 93, AA Cyber Index 50 (#1 no blocks), Vals Index 48.05; $1.36/$4.18 list

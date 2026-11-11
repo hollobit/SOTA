@@ -1,5 +1,21 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-11-10 (Session 317c): Fable 5.2 card prose pass, Vals AI results
+
+Added 26 benchmarks and 133 scores with no existing score changed. Details are in Plans.md.
+
+## 2026-11-10 (Session 317b): Fable 5.2 card figure gap pass, AA v5 capability indices
+
+Added 42 benchmarks and 594 scores; corrected one S317 value (FrontierCode 2.0 max 45.7). Details are in Plans.md.
+
+## 2026-11-10 (Session 317): Claude Fable 5.2 / Mythos 5.2, Gemini 4 Carbon model card, AA list refresh
+
+Added 13 models, 28 benchmarks and 662 scores with no existing score changed. Details are in Plans.md.
+
+## 2026-10-30 (Session 316): Gemini 4 Carbon, GPT-6.1 Terra, Mistral Large 4 open weights, AA Index v5
+
+Added 9 models, 42 benchmarks and 1,466 scores with no existing score changed. Details are in Plans.md.
+
 ## 2026-05-27 (Session 25): Anthropic Glasswing initial update + CVD dashboard ingest
 
 ### 65. Glasswing program metrics + CVD pipeline + Cybersecurity Skills audit

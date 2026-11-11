@@ -642,6 +642,7 @@ var MedicalAI = {
             note: 'OpenAI HealthBench Professional/Base + 4 slices (Care Consult / Writing / Research / Red-teaming Difficult) · Polaris clinical safety · CARE-QA · Almanac RAG factuality. Asa-W1 (NexgeneAI) holds HealthBench Pro overall SOTA 80.2 (+21.2 over ChatGPT-for-Clinicians 59.0).',
             benchmarks: [
                 'healthbench_professional', 'healthbench', 'polaris_safety', 'care_qa',
+                'healthbench_aa', 'healthbench_aa_length_adjusted', 'healthbench_professional_aa', 'healthbench_professional_aa_length_adjusted',  // S317 AA-run HealthBench (Fable 5.2 card §8.16)
                 // 2026-05-22 Asa-W1 publication introduced 4 HealthBench Pro use-case + slice IDs
                 'healthbench_professional_consult', 'healthbench_professional_writing',
                 'healthbench_professional_research', 'healthbench_professional_redteaming',

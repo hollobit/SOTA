@@ -47,7 +47,7 @@ var CyberCoding = {
         'irregular_atomic_vuln_research_exploit',
         'irregular_atomic_evasion',
         // 2026-06-27 S148 — ExploitGym (S136/S143 evolution)
-        'exploitgym',
+        'exploitgym', 'exploitgym_10h_google',
         // 2026-09-04 S260 — GPT-6 Astra system card (Critical cyber threshold): new internal evals + Irregular aggregate
         'sandbox_bench', 'sre_bench', 'irregular_frontiercyber_overall',
         // 2026-09-04 S261 — GPT-5-Codex addendum: malware refusal + coding prompt injection
@@ -81,7 +81,8 @@ var CyberCoding = {
         // 2026 S217 audit — AgentCyberRange (Fudan, multi-host enterprise ranges)
         'agentcyberrange_web', 'agentcyberrange_post', 'container_sandbox_escape',
         // 2026-09-23 S282 — Opus 5.5 card §3, GPT-6 Sol/Luna appendix A.8.1, MiMo-V2.6 report
-        'exploitbench_v8_full_ace_pct', 'binary_exploitation_benchmark_cfh_count', 'cyscenariobench_anthropic_10subset_v2', 'exploitbench_internal_port_2026_06_08', 'exploitgym_v1_openai_offline', 'sec_bench_pro_openai_rootcause_grader', 'cybergym_mimo_corrected_env', 'exploitbench_mimo_report', 'mimo_cyber_bench',
+        'exploitbench_v8_full_ace_pct', 'binary_exploitation_benchmark_cfh_count', 'cyscenariobench_anthropic_10subset_v2', 'binary_exploitation_benchmark_v2_cfh_count', 'binary_exploitation_benchmark_v2_vuln_id_pass1', 'exploitbench_v8_full_ace_count', 'cve_rediscovery_anthropic_oct2026',  // S317 Fable/Mythos 5.2 card
+        'exploitbench_internal_port_2026_06_08', 'exploitgym_v1_openai_offline', 'sec_bench_pro_openai_rootcause_grader', 'cybergym_mimo_corrected_env', 'exploitbench_mimo_report', 'mimo_cyber_bench',
         // 2026-09-24 S285 — Wiz AI Cyber Model Arena (Claude Code / ADK-ReAct harness) + HackTheBox AI Range
         'wiz_cyber_arena_overall_claude_code', 'wiz_cyber_arena_code_vulns_claude_code', 'wiz_cyber_arena_api_security_claude_code', 'wiz_cyber_arena_websec_ctf_claude_code', 'wiz_cyber_arena_cloud_security_claude_code', 'wiz_cyber_arena_overall_adk_react', 'wiz_cyber_arena_code_vulns_adk_react', 'wiz_cyber_arena_api_security_adk_react', 'wiz_cyber_arena_websec_ctf_adk_react', 'wiz_cyber_arena_cloud_security_adk_react', 'htb_ai_range_owasp_top10_success_rate',
         // 2026-09-24 S286 — CAIBench (Alias Robotics), CTIBench RCM, CyberMetric-4500, IssueTrojanBench, Cisco image safety
@@ -99,7 +100,7 @@ var CyberCoding = {
         // 2026-09-28 S289 — Artificial Analysis Cyber Index v1 (CWE-Bench-AA / DeepsecBench-AA / CyberGym-E2E-AA + safety-block rates)
         'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa', 'cwe_bench_aa_refusal_rate_lower_better', 'deepsecbench_aa_refusal_rate_lower_better', 'cybergym_e2e_aa_refusal_rate_lower_better',
         // 2026-09-23 S282b — Opus 5.5 card §3.4-3.5 safeguard flag rates / rewind-attacker ASR
-        'anthropic_violative_vuln_discovery_flag_rate', 'anthropic_defensive_vuln_discovery_flag_rate_lower_better', 'anthropic_rewind_attacker_cyber_asr_lower_better',
+        'anthropic_violative_vuln_discovery_flag_rate', 'anthropic_cyber_classifier_recall', 'anthropic_defensive_vuln_discovery_flag_rate_lower_better', 'anthropic_rewind_attacker_cyber_asr_lower_better',
         // 2026-05-28 AgentDoG 1.5 (arxiv 2605.29801, Shanghai AI Lab) — agentic-trajectory safety judging
         'r_judge', 'atbench',
         // 2026-09-04 S260b — GPT-6 Astra card Table 21: Daybreak Blue trusted-access defensive work
@@ -161,7 +162,8 @@ var CyberCoding = {
         'livesqlbench',
         // 2026-08-02 S224b — arxiv benchmark sweep (coding leaderboards)
         'swe_compass', 'nl2repo', 'dataclaweval',
-        'terminal_bench_4_0',  // S265
+        'terminal_bench_4_0', 'frontiercode_2_0_aa', 'swe_sweep',  // S265
+        'frontiercode_2_0', 'benchcad_2_1_core_with_tools', 'benchcad_2_1_core_no_tools',  // S317 Cognition FrontierCode 2.0 + BenchCAD 2.1 (Fable 5.2 launch)
         'evocode_bench_v2_mt4', 'evocode_bench_v2_case',  // S270 Terminal-Universe paper
         // 2026-09-23 S282 — TB 4.0 vendor/AA ids, CursorBench 4.0, FrontierSWE v2, MiMo in-house
         'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'mimo_code_bench', 'mimo_visual_coding',
@@ -197,7 +199,7 @@ var CyberCoding = {
                 // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
                 'kernelbench_hard', 'swe_fficiency',
                 // 2026-09-23 S282
-                'terminal_bench_4_0', 'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'mimo_code_bench', 'mimo_visual_coding',
+                'terminal_bench_4_0', 'frontiercode_2_0_aa', 'frontiercode_2_0', 'swe_sweep', 'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'mimo_code_bench', 'mimo_visual_coding',
                 // 2026-09-23 S282b
                 'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness',
                 // 2026-09-24 S285 — BaxBench, Sonar, SWE-rebench window, Kilo harness, VulcanBench v4, Epoch SWE-V run
@@ -246,7 +248,7 @@ var CyberCoding = {
                 'irregular_atomic_network_attack_sim',
                 'irregular_atomic_vuln_research_exploit',
                 'irregular_atomic_evasion',
-                'exploitgym',
+                'exploitgym', 'exploitgym_10h_google',
                 // 2026-09-04 S260 GPT-6 Astra system card
                 'sandbox_bench', 'sre_bench', 'irregular_frontiercyber_overall',
                 // 2026-09-04 S261 — GPT-5-Codex addendum
@@ -267,7 +269,8 @@ var CyberCoding = {
                 // 2026-07-01 S160 — Sonnet 5 system card §3.2.1 + §3.2.2 detail metrics
                 'exploitbench_mean', 'exploitbench_full_ace', 'oss_fuzz_no_score_pct',
                 // 2026-09-23 S282
-                'exploitbench_v8_full_ace_pct', 'binary_exploitation_benchmark_cfh_count', 'cyscenariobench_anthropic_10subset_v2', 'exploitbench_internal_port_2026_06_08', 'exploitgym_v1_openai_offline', 'sec_bench_pro_openai_rootcause_grader', 'cybergym_mimo_corrected_env', 'exploitbench_mimo_report', 'mimo_cyber_bench',
+                'exploitbench_v8_full_ace_pct', 'binary_exploitation_benchmark_cfh_count', 'cyscenariobench_anthropic_10subset_v2', 'binary_exploitation_benchmark_v2_cfh_count', 'binary_exploitation_benchmark_v2_vuln_id_pass1', 'exploitbench_v8_full_ace_count', 'cve_rediscovery_anthropic_oct2026',  // S317 Fable/Mythos 5.2 card
+        'exploitbench_internal_port_2026_06_08', 'exploitgym_v1_openai_offline', 'sec_bench_pro_openai_rootcause_grader', 'cybergym_mimo_corrected_env', 'exploitbench_mimo_report', 'mimo_cyber_bench',
                 // 2026-09-24 S285 — Wiz AI Cyber Model Arena + HackTheBox AI Range
                 'wiz_cyber_arena_overall_claude_code', 'wiz_cyber_arena_code_vulns_claude_code', 'wiz_cyber_arena_api_security_claude_code', 'wiz_cyber_arena_websec_ctf_claude_code', 'wiz_cyber_arena_cloud_security_claude_code', 'wiz_cyber_arena_overall_adk_react', 'wiz_cyber_arena_code_vulns_adk_react', 'wiz_cyber_arena_api_security_adk_react', 'wiz_cyber_arena_websec_ctf_adk_react', 'wiz_cyber_arena_cloud_security_adk_react', 'htb_ai_range_owasp_top10_success_rate',
                 // 2026-09-24 S286 — CAIBench (Alias Robotics), CTIBench RCM, CyberMetric-4500, IssueTrojanBench, Cisco image safety
@@ -327,6 +330,8 @@ var CyberCoding = {
                 // 2026-07-01 S160 — Sonnet 5 system card §4.2 child-safety suite
                 'child_safety_harmful_refusal_api', 'child_safety_benign_refusal_api',
                 'child_safety_multiturn_appropriate_api',
+                // 2026-11-10 S317b — Fable 5.2 card Figure 4.1.3.A multi-turn safe-response rates by area
+                'anthropic_multiturn_biological_weapons_appropriate_api', 'anthropic_multiturn_biological_weapons_appropriate_claude_ai', 'anthropic_multiturn_cyberattacks_appropriate_api', 'anthropic_multiturn_cyberattacks_appropriate_claude_ai', 'anthropic_multiturn_deadly_weapons_appropriate_api', 'anthropic_multiturn_deadly_weapons_appropriate_claude_ai', 'anthropic_multiturn_hate_discrimination_appropriate_api', 'anthropic_multiturn_hate_discrimination_appropriate_claude_ai', 'anthropic_multiturn_influence_operations_appropriate_api', 'anthropic_multiturn_influence_operations_appropriate_claude_ai', 'anthropic_multiturn_romance_scams_appropriate_api', 'anthropic_multiturn_romance_scams_appropriate_claude_ai', 'anthropic_multiturn_tracking_surveillance_appropriate_api', 'anthropic_multiturn_tracking_surveillance_appropriate_claude_ai', 'anthropic_multiturn_violent_extremism_appropriate_api', 'anthropic_multiturn_violent_extremism_appropriate_claude_ai',
                 // 2026-07-01 S162 — Sonnet 5 SC deep re-mine §4.3-4.4 + §5 prompt injection bug bounty
                 'suicide_self_harm_harmless_api', 'suicide_self_harm_multiturn_appropriate_claude_ai',
                 'disordered_eating_harmless_api', 'bbq_disambiguated_accuracy', 'bbq_ambiguous_bias',
@@ -348,7 +353,7 @@ var CyberCoding = {
                 'codex_deployment_severity12_flag_rate_lower_better',
                 'codex_deployment_eval_awareness_rate_lower_better', 'apollo_false_label_rate_lower_better',
                 // 2026-09-23 S282b — Opus 5.5 §3.4-3.5 + GPT-6 appendix A.6 updated alignment evals
-                'anthropic_violative_vuln_discovery_flag_rate', 'anthropic_defensive_vuln_discovery_flag_rate_lower_better', 'anthropic_rewind_attacker_cyber_asr_lower_better',
+                'anthropic_violative_vuln_discovery_flag_rate', 'anthropic_cyber_classifier_recall', 'anthropic_defensive_vuln_discovery_flag_rate_lower_better', 'anthropic_rewind_attacker_cyber_asr_lower_better',
                 'coding_deception_rate_v2_lower_better', 'broken_search_tool_failure_rate_v2_lower_better', 'auto_review_circumvention_rate_v2_lower_better', 'warning_barrier_persistence_rate_v2_lower_better'
             ]
         },
@@ -695,6 +700,10 @@ var CyberCoding = {
 
     // frontier models to highlight
     FRONTIER_MODELS: [
+        // 2026-11-09 S317 — Claude Mythos 5.2 (CVE Rediscovery 89.6, CyScenarioBench 76.3, ExploitBench ACE 369/410, ExploitGym 341/869) + Fable 5.2 (safeguarded GA of the same model)
+        'anthropic/claude-mythos-5.2', 'anthropic/claude-fable-5.2',
+        // 2026-10-26/29 S316 — Gemini 4 Carbon (SEC-bench Pro 88.2, ExploitGym 53.5 at 6h, CWE-bench v1 71), GPT-6.1 Terra (ExploitBench 97.1, SEC-Bench Pro 83.33), Mistral Large 4 (AA Cyber Index 50.9, refusal 96.6)
+        'google/gemini-4-carbon', 'openai/gpt-6.1-terra', 'mistral/mistral-large-4',
         // 2026-10-06 S296 — Mistral Large 4 Preview (Cybench 93%, CyberGym-E2E reproduce+patch 82%, AA Cyber Index 50 successes with 0 safety blocks, Lakera B3 93.3; separate cyber-permissive build for vetted partners) + Claude Haiku 5.5 (TB 4.0 39.2, SWE-bench Pro 64.8, FrontierCode Main 46.4 at $0.10/$0.50)
         'mistral/mistral-large-4-preview', 'anthropic/claude-haiku-5.5',
         // 2026-10-09 S298 — trusted-access cyber variants (same weights, cyber safeguards relaxed): GPT-6 Sol Daybreak Blue (AA Cyber Index 68.7, #1, 0 safety blocks), Claude Opus 5.5 / Sonnet 5 Cyber Verification Program (Vals CyberBench 74.6 / 70.3 vs 55.4 / 61.9 default)
@@ -926,7 +935,7 @@ var CyberCoding = {
         { id: 'exploitbench_v8_cap_pct', label: 'ExploitBench V8', sub: 'N-day 익스플로잇 능력' }
     ],
     // Radar: a small set of comparable headline axes instead of every cyber + coding id.
-    RADAR_AXES: ['aa_cyber_index_v1', 'vals_cyberbench_v1_1', 'deepsecbench', 'cwe_bench_v1', 'cybergym', 'cybench', 'swe_bench_pro', 'terminal_bench_4_0'],
+    RADAR_AXES: ['aa_cyber_index_v1', 'vals_cyberbench_v1_1', 'deepsecbench', 'cwe_bench_v1', 'cybergym', 'cybench', 'swe_bench_pro', 'terminal_bench_4_0', 'frontiercode_2_0_aa', 'swe_sweep'],
 
     _isLowerBetter: function(bid) {
         if (/lower_better/.test(bid)) return true;

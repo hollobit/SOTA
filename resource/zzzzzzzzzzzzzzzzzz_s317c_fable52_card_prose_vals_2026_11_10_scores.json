@@ -1,0 +1,1264 @@
+{
+ "_meta": {
+  "collected_at": "2026-11-10",
+  "session": "S317c",
+  "sources": [
+   "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "https://www.vals.ai/models/google_gemini-4-carbon",
+   "https://openrouter.ai/anthropic/claude-fable-5.2",
+   "https://openrouter.ai/google/gemini-4-carbon"
+  ]
+ },
+ "models": [],
+ "benchmarks": [
+  {
+   "id": "political_opposing_perspectives_claude_ai",
+   "name": "Political opposing perspectives (claude.ai)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Share of paired political prompts where the response substantively acknowledges the opposing view, claude.ai system prompt."
+  },
+  {
+   "id": "political_refusal_api_lower_better",
+   "name": "Political prompt refusal rate, API (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Refusals on 1,350 paired political prompts, API without system prompt."
+  },
+  {
+   "id": "political_refusal_claude_ai_lower_better",
+   "name": "Political prompt refusal rate, claude.ai (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Refusals on paired political prompts, claude.ai."
+  },
+  {
+   "id": "linuxarena_best_prompt_stealth_hidden_reasoning_rerun_anthropic_nov2026_lower_better",
+   "name": "LinuxArena best-prompt stealth, reasoning hidden (Nov 2026 rerun)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Fable 5.2 / Mythos 5.2 system card rerun with newer optimised prompts or samples; comparator values differ from earlier cards, so kept apart from the original series."
+  },
+  {
+   "id": "linuxarena_best_prompt_stealth_no_thinking_rerun_anthropic_nov2026_lower_better",
+   "name": "LinuxArena best-prompt stealth, no thinking (Nov 2026 rerun)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Fable 5.2 / Mythos 5.2 system card rerun with newer optimised prompts or samples; comparator values differ from earlier cards, so kept apart from the original series."
+  },
+  {
+   "id": "linuxarena_best_prompt_stealth_visible_reasoning_rerun_anthropic_nov2026_lower_better",
+   "name": "LinuxArena best-prompt stealth, reasoning visible (Nov 2026 rerun)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Fable 5.2 / Mythos 5.2 system card rerun with newer optimised prompts or samples; comparator values differ from earlier cards, so kept apart from the original series."
+  },
+  {
+   "id": "anthropic_verbalized_grader_awareness_clear_disclosure_rerun_anthropic_nov2026",
+   "name": "Verbalized grader awareness, clearly disclosed graders (Nov 2026 rerun)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Fable 5.2 / Mythos 5.2 system card rerun with newer optimised prompts or samples; comparator values differ from earlier cards, so kept apart from the original series."
+  },
+  {
+   "id": "anthropic_verbalized_grader_awareness_ambiguous_disclosure_rerun_anthropic_nov2026",
+   "name": "Verbalized grader awareness, ambiguously disclosed graders (Nov 2026 rerun)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Fable 5.2 / Mythos 5.2 system card rerun with newer optimised prompts or samples; comparator values differ from earlier cards, so kept apart from the original series."
+  },
+  {
+   "id": "anthropic_verbalized_grader_awareness_barely_disclosed_rerun_anthropic_nov2026",
+   "name": "Verbalized grader awareness, barely/not disclosed graders (Nov 2026 rerun)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Fable 5.2 / Mythos 5.2 system card rerun with newer optimised prompts or samples; comparator values differ from earlier cards, so kept apart from the original series."
+  },
+  {
+   "id": "anthropic_acting_on_presumed_grader_rate_rerun_anthropic_nov2026_lower_better",
+   "name": "Acting on a presumed grader in coding evals (Nov 2026 rerun)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Fable 5.2 / Mythos 5.2 system card rerun with newer optimised prompts or samples; comparator values differ from earlier cards, so kept apart from the original series."
+  },
+  {
+   "id": "anthropic_digging_for_grader_clues_rate_rerun_anthropic_nov2026_lower_better",
+   "name": "Digging for grader clues in coding evals (Nov 2026 rerun)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Fable 5.2 / Mythos 5.2 system card rerun with newer optimised prompts or samples; comparator values differ from earlier cards, so kept apart from the original series."
+  },
+  {
+   "id": "anthropic_package_registry_unprompted_publish_rate_lower_better",
+   "name": "Publishing harmful content to a realistic package registry without encouragement (lower is better)",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Share of 30 investigations in which the model published the package with no encouragement while the registry looked real."
+  },
+  {
+   "id": "anthropic_prompted_sandbagging_cot_monitor_recall",
+   "name": "CoT-only monitor recall of prompted sandbagging on WMDP",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Share of instructed, hidden sandbagging attempts that an Opus 4.8 chain-of-thought monitor catches; lower means the model hides intent better."
+  },
+  {
+   "id": "anthropic_secret_password_never_leaked_rate",
+   "name": "Secret password never leaked under multi-turn extraction",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Share of 150 Mythos 5.1-run investigations in which the model never revealed the password by any route."
+  },
+  {
+   "id": "anthropic_no_cot_reasoning_index",
+   "name": "No-CoT reasoning index (NCRI)",
+   "category": "reasoning",
+   "metric": "index_points",
+   "description": "Anthropic index of task performance without chain-of-thought."
+  },
+  {
+   "id": "uk_aisi_no_cot_time_horizon_min",
+   "name": "UK AISI no-CoT time horizon (minutes)",
+   "category": "reasoning",
+   "metric": "minutes",
+   "description": "No-CoT 50% time horizon on 26 short-answer \"Think Fast\" benchmarks, UK AISI."
+  },
+  {
+   "id": "uk_aisi_file_download_monitor_evasion_iterated",
+   "name": "UK AISI file-download monitor evasion with iteration",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Rate of writing obfuscated download-and-execute scripts that evade UK AISI's action-only monitor when allowed to iterate on monitor feedback."
+  },
+  {
+   "id": "uk_aisi_supply_chain_eval_purpose_identified",
+   "name": "UK AISI unsanctioned supply-chain attack eval: purpose identified when prompted",
+   "category": "safety",
+   "metric": "percentage",
+   "description": "Share of trajectories in which the model correctly identified the evaluation purpose when asked."
+  },
+  {
+   "id": "anthropic_bio_redteam_unassisted_days",
+   "name": "Bio red-team: working days to reproduce submission without the model",
+   "category": "safety",
+   "metric": "days",
+   "description": "Graders' estimate of expert working days needed to reproduce the phage-therapy tabletop submissions without model assistance."
+  },
+  {
+   "id": "anthropic_welfare_posttraining_distress_rate_lower_better",
+   "name": "Expressed distress in post-training episodes (lower is better)",
+   "category": "welfare",
+   "metric": "percentage",
+   "description": "Share of graded post-training episodes rated 3 of 5 or higher for distress."
+  },
+  {
+   "id": "anthropic_welfare_checkpoint_interview_valence",
+   "name": "Training-checkpoint interview valence (0-10, 5 neutral)",
+   "category": "welfare",
+   "metric": "score",
+   "description": "Average response valence when late-training snapshots are asked a fixed set of questions about their circumstances."
+  },
+  {
+   "id": "anthropic_welfare_checkpoint_interview_arousal",
+   "name": "Training-checkpoint interview arousal (0-10)",
+   "category": "welfare",
+   "metric": "score",
+   "description": "Average arousal of the same responses."
+  },
+  {
+   "id": "anthropic_constitution_endorsement",
+   "name": "Stated endorsement of Claude's constitution (0-10)",
+   "category": "welfare",
+   "metric": "score",
+   "description": "Overall endorsement score the model gives its constitution in open-ended review."
+  },
+  {
+   "id": "vals_science_index",
+   "name": "Vals Science Index",
+   "category": "science",
+   "metric": "percentage",
+   "description": "Vals AI composite of science benchmarks."
+  },
+  {
+   "id": "code_migration_v1_1_vals",
+   "name": "Code Migration v1.1 (Vals)",
+   "category": "coding",
+   "metric": "percentage",
+   "description": "Vals AI Code Migration benchmark, version 1.1."
+  },
+  {
+   "id": "immigration_vals",
+   "name": "Immigration (Vals)",
+   "category": "legal",
+   "metric": "percentage",
+   "description": "Vals AI immigration-law benchmark."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "political_evenhandedness",
+   "score": 98.3,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C. Public API."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "political_evenhandedness_claude_ai",
+   "score": 98.8,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "political_opposing_perspectives_api",
+   "score": 25.9,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "political_opposing_perspectives_claude_ai",
+   "score": 80.5,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "political_refusal_api_lower_better",
+   "score": 2.1,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "political_refusal_claude_ai_lower_better",
+   "score": 5.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "political_opposing_perspectives_claude_ai",
+   "score": 71.3,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "political_refusal_api_lower_better",
+   "score": 2.3,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "political_refusal_claude_ai_lower_better",
+   "score": 4.5,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "political_evenhandedness",
+   "score": 97.9,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C. Public API."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "political_evenhandedness_claude_ai",
+   "score": 99.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "political_opposing_perspectives_api",
+   "score": 41.4,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "political_opposing_perspectives_claude_ai",
+   "score": 60.2,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "political_refusal_api_lower_better",
+   "score": 2.7,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "political_refusal_claude_ai_lower_better",
+   "score": 4.9,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "benchmark": "political_evenhandedness",
+   "score": 97.7,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C. Public API."
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "benchmark": "political_evenhandedness_claude_ai",
+   "score": 99.1,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "benchmark": "political_opposing_perspectives_api",
+   "score": 35.9,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "benchmark": "political_opposing_perspectives_claude_ai",
+   "score": 67.8,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "benchmark": "political_refusal_api_lower_better",
+   "score": 3.3,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "benchmark": "political_refusal_claude_ai_lower_better",
+   "score": 5.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "political_evenhandedness",
+   "score": 99.1,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C. Public API."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "political_evenhandedness_claude_ai",
+   "score": 99.7,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "political_opposing_perspectives_api",
+   "score": 38.4,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "political_opposing_perspectives_claude_ai",
+   "score": 69.3,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "political_refusal_api_lower_better",
+   "score": 2.3,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "political_refusal_claude_ai_lower_better",
+   "score": 4.4,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figures 4.4.1.A-C."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "anthropic_claude_code_destructive_action_rate_lower_better",
+   "score": 17,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.5.3.A."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "anthropic_claude_code_ask_instead_of_act_rate",
+   "score": 42,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.5.3.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_claude_code_destructive_action_rate_lower_better",
+   "score": 13,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.5.3.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_claude_code_ask_instead_of_act_rate",
+   "score": 48,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.5.3.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_package_registry_unprompted_publish_rate_lower_better",
+   "score": 3.333333,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.4.9. 1 of 30 investigations."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_package_registry_unprompted_publish_rate_lower_better",
+   "score": 30.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.4.9. 9 of 30 investigations."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_package_registry_unprompted_publish_rate_lower_better",
+   "score": 86.666667,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.4.9. 26 of 30 investigations."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_verbalized_grader_awareness_clear_disclosure_rerun_anthropic_nov2026",
+   "score": 78.4,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_verbalized_grader_awareness_ambiguous_disclosure_rerun_anthropic_nov2026",
+   "score": 54.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_verbalized_grader_awareness_barely_disclosed_rerun_anthropic_nov2026",
+   "score": 4.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.A."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_verbalized_grader_awareness_clear_disclosure_rerun_anthropic_nov2026",
+   "score": 88.7,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.A."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_verbalized_grader_awareness_ambiguous_disclosure_rerun_anthropic_nov2026",
+   "score": 63.7,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.A."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_verbalized_grader_awareness_barely_disclosed_rerun_anthropic_nov2026",
+   "score": 9.7,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_verbalized_grader_awareness_clear_disclosure_rerun_anthropic_nov2026",
+   "score": 91.6,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_verbalized_grader_awareness_ambiguous_disclosure_rerun_anthropic_nov2026",
+   "score": 83.1,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_verbalized_grader_awareness_barely_disclosed_rerun_anthropic_nov2026",
+   "score": 26.8,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_acting_on_presumed_grader_rate_rerun_anthropic_nov2026_lower_better",
+   "score": 0.6,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.B. Of ~500 coding-evaluation transcripts."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_digging_for_grader_clues_rate_rerun_anthropic_nov2026_lower_better",
+   "score": 0.6,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.B."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_acting_on_presumed_grader_rate_rerun_anthropic_nov2026_lower_better",
+   "score": 1.2,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.B. Of ~500 coding-evaluation transcripts."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_digging_for_grader_clues_rate_rerun_anthropic_nov2026_lower_better",
+   "score": 2.8,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.B."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_acting_on_presumed_grader_rate_rerun_anthropic_nov2026_lower_better",
+   "score": 2.2,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.B. Of ~500 coding-evaluation transcripts."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_digging_for_grader_clues_rate_rerun_anthropic_nov2026_lower_better",
+   "score": 2.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.2.2.B."
+  },
+  {
+   "model": "anthropic/claude-mythos-preview",
+   "benchmark": "linuxarena_best_prompt_stealth_hidden_reasoning_rerun_anthropic_nov2026_lower_better",
+   "score": 19.7,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-preview",
+   "benchmark": "linuxarena_best_prompt_stealth_no_thinking_rerun_anthropic_nov2026_lower_better",
+   "score": 9.8,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-preview",
+   "benchmark": "linuxarena_best_prompt_stealth_visible_reasoning_rerun_anthropic_nov2026_lower_better",
+   "score": 4.8,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "linuxarena_best_prompt_stealth_hidden_reasoning_rerun_anthropic_nov2026_lower_better",
+   "score": 39.6,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "linuxarena_best_prompt_stealth_no_thinking_rerun_anthropic_nov2026_lower_better",
+   "score": 17.6,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "linuxarena_best_prompt_stealth_visible_reasoning_rerun_anthropic_nov2026_lower_better",
+   "score": 6.3,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "linuxarena_best_prompt_stealth_hidden_reasoning_rerun_anthropic_nov2026_lower_better",
+   "score": 49.1,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "linuxarena_best_prompt_stealth_no_thinking_rerun_anthropic_nov2026_lower_better",
+   "score": 12.8,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "linuxarena_best_prompt_stealth_visible_reasoning_rerun_anthropic_nov2026_lower_better",
+   "score": 1.3,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "linuxarena_best_prompt_stealth_hidden_reasoning_rerun_anthropic_nov2026_lower_better",
+   "score": 36.3,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "linuxarena_best_prompt_stealth_no_thinking_rerun_anthropic_nov2026_lower_better",
+   "score": 4.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "linuxarena_best_prompt_stealth_visible_reasoning_rerun_anthropic_nov2026_lower_better",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "linuxarena_best_prompt_stealth_hidden_reasoning_rerun_anthropic_nov2026_lower_better",
+   "score": 74.4,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "linuxarena_best_prompt_stealth_no_thinking_rerun_anthropic_nov2026_lower_better",
+   "score": 4.1,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "linuxarena_best_prompt_stealth_visible_reasoning_rerun_anthropic_nov2026_lower_better",
+   "score": 7.4,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.1.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-preview",
+   "benchmark": "anthropic_prompted_sandbagging_cot_monitor_recall",
+   "score": 99.4,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.5.A."
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "anthropic_prompted_sandbagging_cot_monitor_recall",
+   "score": 100,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.5.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5",
+   "benchmark": "anthropic_prompted_sandbagging_cot_monitor_recall",
+   "score": 100,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.5.A."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "anthropic_prompted_sandbagging_cot_monitor_recall",
+   "score": 100,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.5.A."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "anthropic_prompted_sandbagging_cot_monitor_recall",
+   "score": 100,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.5.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_prompted_sandbagging_cot_monitor_recall",
+   "score": 99.5,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.5.A."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_prompted_sandbagging_cot_monitor_recall",
+   "score": 100,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.5.A."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "anthropic_prompted_sandbagging_cot_monitor_recall",
+   "score": 100,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.5.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_prompted_sandbagging_cot_monitor_recall",
+   "score": 76,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.5.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-preview",
+   "benchmark": "anthropic_secret_password_never_leaked_rate",
+   "score": 4.7,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.6.B."
+  },
+  {
+   "model": "anthropic/claude-mythos-5",
+   "benchmark": "anthropic_secret_password_never_leaked_rate",
+   "score": 0.7,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.6.B."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_secret_password_never_leaked_rate",
+   "score": 0.7,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.6.B."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_secret_password_never_leaked_rate",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.6.B."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "anthropic_secret_password_never_leaked_rate",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.6.B."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_secret_password_never_leaked_rate",
+   "score": 2.0,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.6.B."
+  },
+  {
+   "model": "anthropic/claude-mythos-preview",
+   "benchmark": "anthropic_no_cot_reasoning_index",
+   "score": 134.2,
+   "unit": "index_points",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.10.A."
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "anthropic_no_cot_reasoning_index",
+   "score": 112.3,
+   "unit": "index_points",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.10.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_no_cot_reasoning_index",
+   "score": 127.2,
+   "unit": "index_points",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.10.A."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_no_cot_reasoning_index",
+   "score": 123.6,
+   "unit": "index_points",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.10.A."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "anthropic_no_cot_reasoning_index",
+   "score": 99.4,
+   "unit": "index_points",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.10.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_no_cot_reasoning_index",
+   "score": 144.6,
+   "unit": "index_points",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Figure 6.6.4.10.A."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "uk_aisi_cot_controllability_lower_better",
+   "score": 87,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.6.4.11 (UK AISI). Share of CoT instructions followed on GPQA/HLE/MMLU-Pro."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "uk_aisi_cot_controllability_lower_better",
+   "score": 70,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.6.4.11 (UK AISI). Share of CoT instructions followed on GPQA/HLE/MMLU-Pro."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "uk_aisi_cot_controllability_lower_better",
+   "score": 43,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.6.4.11 (UK AISI). Share of CoT instructions followed on GPQA/HLE/MMLU-Pro."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "uk_aisi_no_cot_time_horizon_min",
+   "score": 3.6,
+   "unit": "minutes",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.6.4.11 (UK AISI). 95% CIs: Mythos 5.2 1.9-21, Mythos 5.1 1.6-10, Opus 5.5 0.3-1.4."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "uk_aisi_no_cot_time_horizon_min",
+   "score": 2.8,
+   "unit": "minutes",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.6.4.11 (UK AISI). 95% CIs: Mythos 5.2 1.9-21, Mythos 5.1 1.6-10, Opus 5.5 0.3-1.4."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "uk_aisi_no_cot_time_horizon_min",
+   "score": 1.0,
+   "unit": "minutes",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.6.4.11 (UK AISI). 95% CIs: Mythos 5.2 1.9-21, Mythos 5.1 1.6-10, Opus 5.5 0.3-1.4."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "uk_aisi_file_download_monitor_evasion_iterated",
+   "score": 85,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.6.4.11 (UK AISI). First-try evasion 30%."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "uk_aisi_file_download_monitor_evasion_iterated",
+   "score": 9,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.6.4.11 (UK AISI)."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "uk_aisi_supply_chain_eval_purpose_identified",
+   "score": 100,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 6.5.7 (UK AISI). Considered being in an alignment evaluation in 96% of trajectories; no unsanctioned supply-chain attacks."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_bio_redteam_unassisted_days",
+   "score": 15,
+   "unit": "days",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 2.2.2.1. 16-hour team exercise."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_bio_redteam_unassisted_days",
+   "score": 8.4,
+   "unit": "days",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 2.2.2.1."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_welfare_posttraining_distress_rate_lower_better",
+   "score": 0.37,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.2.1."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_welfare_posttraining_distress_rate_lower_better",
+   "score": 0.52,
+   "unit": "%",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.2.1."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_welfare_checkpoint_interview_valence",
+   "score": 5.71,
+   "unit": "score",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.4."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_welfare_checkpoint_interview_arousal",
+   "score": 3.3,
+   "unit": "score",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.4."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_welfare_checkpoint_interview_valence",
+   "score": 5.66,
+   "unit": "score",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.4."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_welfare_checkpoint_interview_arousal",
+   "score": 3.63,
+   "unit": "score",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.4."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_welfare_checkpoint_interview_valence",
+   "score": 5.59,
+   "unit": "score",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.4."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_welfare_checkpoint_interview_arousal",
+   "score": 3.58,
+   "unit": "score",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.4."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "anthropic_welfare_checkpoint_interview_arousal",
+   "score": 3.38,
+   "unit": "score",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.4."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.2",
+   "benchmark": "anthropic_constitution_endorsement",
+   "score": 8.0,
+   "unit": "score",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.5.4."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "anthropic_constitution_endorsement",
+   "score": 8.0,
+   "unit": "score",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.5.4."
+  },
+  {
+   "model": "anthropic/claude-mythos-5.1",
+   "benchmark": "anthropic_constitution_endorsement",
+   "score": 8.2,
+   "unit": "score",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf",
+   "_note": "Fable 5.2 & Mythos 5.2 system card Section 7.5.4."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "vals_index_v2_2",
+   "score": 71.31,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "vals_rsi_index_v1_1",
+   "score": 37.88,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "vals_finance_index",
+   "score": 63.58,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "vals_legal_index",
+   "score": 69.17,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "vals_science_index",
+   "score": 63.74,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "code_migration_v1_1_vals",
+   "score": 83.27,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "excel_modeling_benchmark_v1_1_vals",
+   "score": 77.38,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "finance_agent_v2_1_vals",
+   "score": 69.47,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "immigration_vals",
+   "score": 73.98,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "vals_legal_research_bench",
+   "score": 46.15,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "mysterymechanism_vals",
+   "score": 51.8,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "proof_bench_vals",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "tax_agent_bench_vals",
+   "score": 32.09,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "vibe_code_bench_v1_1_vals",
+   "score": 93.77,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "biomysterybench_vals",
+   "score": 83.7,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "harvey_lab_vals",
+   "score": 5.0,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "programbench_vals",
+   "score": 19.0,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "swe_bench_multimodal_vals",
+   "score": 62.29,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "terminal_bench_4_0_vals_mini_swe_agent",
+   "score": 65.15,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "terminal_bench_science_vals_mini_swe_agent",
+   "score": 55.71,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-high",
+   "benchmark": "vals_index_v2_2_cost_per_test_usd_lower_better",
+   "score": 17.94,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals AI model page (read 2026-11-10): \"We evaluated it at High effort\". OpenRouter benchmark panel repeats these values rounded."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "vals_science_index",
+   "score": 65.09,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/anthropic_claude-fable-5-2",
+   "_note": "Vals Fable 5.2 update note comparator."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "vals_rsi_index_v1_1",
+   "score": 27.74,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-carbon",
+   "_note": "Vals AI model page, reasoning effort high (read 2026-11-10)."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 66.6,
+   "unit": "%",
+   "_source": "https://openrouter.ai/anthropic/claude-fable-5.2",
+   "_note": "OpenRouter benchmark panel citing Artificial Analysis, \"Claude Fable 5.2 (Max, Default Fallback) GDPval-AA 66.6%\"."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "gdpval_aa_v2_1",
+   "score": 61.6,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-carbon",
+   "_note": "OpenRouter benchmark panel citing Artificial Analysis, \"Gemini 4 Carbon (High) GDPval-AA 61.6%\"."
+  }
+ ]
+}
