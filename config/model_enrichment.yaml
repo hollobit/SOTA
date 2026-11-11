@@ -226,6 +226,31 @@ models:
       commercial: false
     cutoffs:
       knowledge_cutoff: 2026-01
+  anthropic/claude-mythos-5.2:
+    api_providers:
+    - anthropic_api
+    _sources:
+    - https://www.anthropic.com/claude-fable-and-mythos-5-2
+    - https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf
+    lineage:
+      base_model_id: anthropic/claude-fable-5.2
+      training_method: same model as Claude Fable 5.2 with more permissive cyber and
+        biology safeguards (no Fable safety-classifier fallback)
+    links:
+      homepage: https://www.anthropic.com
+      system_card: https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf
+      blog: https://www.anthropic.com/claude-fable-and-mythos-5-2
+    description: Released 2026-11-09 alongside Claude Fable 5.2. Direct access limited
+      to vetted individuals and organizations through the Cyber and Life Sciences
+      Verification Programs; also powers Claude Security. $8/$40 per M tokens, fast
+      mode $16/$80 (Verification Program orgs only).
+    vendor_meta:
+      logo_url: https://cdn.anthropic.com/anthropic-logomark.svg
+    license_terms:
+      name: Anthropic Usage Policy (Verification Programs)
+      commercial: true
+    cutoffs:
+      knowledge_cutoff: 2026-06
   anthropic/claude-opus-4.6:
     architecture:
       type: dense

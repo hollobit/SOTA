@@ -1,5 +1,9 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-11-11 (Session 317d): Gemini 4 Carbon release date, Mythos 5.2 metadata
+
+Moved Gemini 4 Carbon's release date to 2026-11-10, when the model card was published, and added Mythos 5.2 pricing, knowledge cutoff, access route and lineage. Added 2 scores. Details are in Plans.md.
+
 ## 2026-11-10 (Session 317c): Fable 5.2 card prose pass, Vals AI results
 
 Added 26 benchmarks and 133 scores with no existing score changed. Details are in Plans.md.

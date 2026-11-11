@@ -3,6 +3,10 @@
 ## Current Status: Session 292b — sweep follow-ups: April–May gap, leftover papers, official boards (2026-10-03)
 **3,677 models · 6,204 benchmarks · 46,885 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-11-11 Session 317d — Gemini 4 Carbon release date, Mythos 5.2 metadata
+- Gemini 4 Carbon (base, medium, low) `release_date` 2026-10-28 → 2026-11-10. The DeepMind model card says "Published 10 November 2026", and the Google developers blog, Antigravity post and OpenRouter release are all dated 11-10. The 10-28 announcement was a Fairwind-only rollout to cyber defenders. Knowledge cutoff 2026-03 from the model card.
+- Claude Mythos 5.2: input/output price $8/$40 from the launch post (`resource/zzzzzzzzzzzzzzzzzz_s317d_mythos52_metadata_2026_11_11_scores.json`, 2 rows); knowledge cutoff 2026-06 from system card section 1.1.1, also set on Fable 5.2 and its four effort variants; `config/model_enrichment.yaml` entry with access route, links and lineage (same model as Fable 5.2). Context window left empty because no primary source states it for Mythos 5.2. DB 4,821 / 14,249 / 110,468.
+
 ### 2026-11-10 Session 317c — third gap pass: card prose, remaining figures, Vals AI
 - `resource/zzzzzzzzzzzzzzzzzz_s317c_fable52_card_prose_vals_2026_11_10_scores.json` (133 rows, 26 new benchmarks); 0 overwrites. DB 4,821 / 14,249 / 110,466.
 - Prose sweep: every sentence in Sections 2-7 with a model name and a number (613 sentences) was read; UK AISI (CoT controllability 87/70/43, no-CoT horizon 3.6/2.8/1.0 min, file-download evasion 85 vs 9), package registry 1/9/26 of 30, bio red-team 15 vs 8.4 days, welfare (distress, checkpoint valence/arousal, constitution endorsement).

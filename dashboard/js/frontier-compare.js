@@ -313,7 +313,7 @@ var FrontierCompare = {
         'anthropic/claude-mythos-5.2',  // 2026-11-09 — same model, safeguards off for verified orgs: CVE Rediscovery 89.6, CyScenarioBench 76.3, TB 4.0 70.5, AECI 177.12
         // 2026-10-26/29 S316
         'mistral/mistral-large-4',  // 2026-10-29 — open-weight GA of Le Chonk, AAII v5 26.0, Vals Index 56.42, Finch 73.3, B3 97.1; $0.70/$2.10
-        'google/gemini-4-carbon',  // 2026-10-28 — AAII v5 59.4 (#1), SEC-bench Pro 88.2, ExploitGym 53.5 (6h) / 54.8 (10h), CWE-bench v1 71; Fairwind access only; $2/$10 intro (list $4/$20)
+        'google/gemini-4-carbon',  // 2026-11-10 public (model card; 10-28 Fairwind-only preview) — AAII v5 59.4 (#1), SEC-bench Pro 88.2, ExploitGym 53.5 (6h) / 54.8 (10h), CWE-bench v1 71; developer/API GA 11-10; $2/$10 intro (list $4/$20)
         'openai/gpt-6.1-terra',  // 2026-10-26 — AAII v5 51.0, ALE v1 60.0, MMMU-Pro 85.5, TB 4.0 50.3 (OpenAI), ExploitBench 97.1; $1/$5
         // 2026-10-07/06 S296
         'anthropic/claude-haiku-5.5',  // 2026-10-07 — AAII v4.3 43.4 (max), GDPval-AA v2.1 1620, Briefcase 1578, OSWorld 2.1 offline 72.4 partial, TB 4.0 39.2, HLE 45.9/57.4 tools; $0.10/$0.50 (≤100K), 1M ctx
