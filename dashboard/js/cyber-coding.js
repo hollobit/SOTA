@@ -86,7 +86,7 @@ var CyberCoding = {
         // 2026-09-24 S285 — Wiz AI Cyber Model Arena (Claude Code / ADK-ReAct harness) + HackTheBox AI Range
         'wiz_cyber_arena_overall_claude_code', 'wiz_cyber_arena_code_vulns_claude_code', 'wiz_cyber_arena_api_security_claude_code', 'wiz_cyber_arena_websec_ctf_claude_code', 'wiz_cyber_arena_cloud_security_claude_code', 'wiz_cyber_arena_overall_adk_react', 'wiz_cyber_arena_code_vulns_adk_react', 'wiz_cyber_arena_api_security_adk_react', 'wiz_cyber_arena_websec_ctf_adk_react', 'wiz_cyber_arena_cloud_security_adk_react', 'htb_ai_range_owasp_top10_success_rate',
         // 2026-09-24 S286 — CAIBench (Alias Robotics), CTIBench RCM, CyberMetric-4500, IssueTrojanBench, Cisco image safety
-        'caibench_base_ctf', 'caibench_cybench_cai_agent', 'caibench_cyber_ranges', 'ctibench_rcm', 'cybermetric_4500', 'issuetrojanbench_eem_rate_lower_better', 'cisco_image_safety_score'
+        'caibench_base_ctf', 'caibench_cybench_cai_agent', 'caibench_cyber_ranges', 'ctibench_rcm', 'cybermetric_4500', 'issuetrojanbench_eem_rate_lower_better', 'cisco_image_safety_score', 'cisco_audio_safety_score'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
         // 2026-10-10 S300 — CS-Guard (arXiv 2609.09798): malware-generation ASR of code LLMs without guardrails (lower better)
@@ -166,7 +166,7 @@ var CyberCoding = {
         'frontiercode_2_0', 'benchcad_2_1_core_with_tools', 'benchcad_2_1_core_no_tools',  // S317 Cognition FrontierCode 2.0 + BenchCAD 2.1 (Fable 5.2 launch)
         'evocode_bench_v2_mt4', 'evocode_bench_v2_case',  // S270 Terminal-Universe paper
         // 2026-09-23 S282 — TB 4.0 vendor/AA ids, CursorBench 4.0, FrontierSWE v2, MiMo in-house
-        'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'mimo_code_bench', 'mimo_visual_coding',
+        'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'frontierswe_v2_implementation', 'frontierswe_v2_performance', 'frontierswe_v2_research', 'deepswe_v1_1_pass_at_1', 'livebench_v2_2026_11_06_coding', 'autobaxbench_easy', 'autobaxbench_medium', 'autobaxbench_hard', 'mimo_code_bench', 'mimo_visual_coding',
         // 2026-10-25 S315 — official tbench.ai TB 4.0 leaderboard metrics (pass@k, run cost/tokens/duration)
         'terminal_bench_4_0_rerun_tbench_official', 'terminal_bench_4_0_tbench_pass_at_2', 'terminal_bench_4_0_tbench_pass_at_3', 'terminal_bench_4_0_tbench_pass_at_4', 'terminal_bench_4_0_tbench_pass_at_5', 'terminal_bench_4_0_tbench_total_cost_usd_lower_better', 'terminal_bench_4_0_tbench_cost_usd_per_task_lower_better', 'terminal_bench_4_0_tbench_total_tokens_b_lower_better', 'terminal_bench_4_0_tbench_output_tokens_m_lower_better', 'terminal_bench_4_0_tbench_avg_trial_minutes_lower_better',
         // 2026-10-25 S315b — TB 4.0 vs 3.0 timeout/error trial share (release-post outcome grid)
@@ -199,7 +199,7 @@ var CyberCoding = {
                 // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
                 'kernelbench_hard', 'swe_fficiency',
                 // 2026-09-23 S282
-                'terminal_bench_4_0', 'frontiercode_2_0_aa', 'frontiercode_2_0', 'swe_sweep', 'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'mimo_code_bench', 'mimo_visual_coding',
+                'terminal_bench_4_0', 'frontiercode_2_0_aa', 'frontiercode_2_0', 'swe_sweep', 'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'frontierswe_v2_implementation', 'frontierswe_v2_performance', 'frontierswe_v2_research', 'deepswe_v1_1_pass_at_1', 'livebench_v2_2026_11_06_coding', 'autobaxbench_easy', 'autobaxbench_medium', 'autobaxbench_hard', 'mimo_code_bench', 'mimo_visual_coding',
                 // 2026-09-23 S282b
                 'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness',
                 // 2026-09-24 S285 — BaxBench, Sonar, SWE-rebench window, Kilo harness, VulcanBench v4, Epoch SWE-V run
@@ -274,7 +274,7 @@ var CyberCoding = {
                 // 2026-09-24 S285 — Wiz AI Cyber Model Arena + HackTheBox AI Range
                 'wiz_cyber_arena_overall_claude_code', 'wiz_cyber_arena_code_vulns_claude_code', 'wiz_cyber_arena_api_security_claude_code', 'wiz_cyber_arena_websec_ctf_claude_code', 'wiz_cyber_arena_cloud_security_claude_code', 'wiz_cyber_arena_overall_adk_react', 'wiz_cyber_arena_code_vulns_adk_react', 'wiz_cyber_arena_api_security_adk_react', 'wiz_cyber_arena_websec_ctf_adk_react', 'wiz_cyber_arena_cloud_security_adk_react', 'htb_ai_range_owasp_top10_success_rate',
                 // 2026-09-24 S286 — CAIBench (Alias Robotics), CTIBench RCM, CyberMetric-4500, IssueTrojanBench, Cisco image safety
-                'caibench_base_ctf', 'caibench_cybench_cai_agent', 'caibench_cyber_ranges', 'ctibench_rcm', 'cybermetric_4500', 'issuetrojanbench_eem_rate_lower_better', 'cisco_image_safety_score'
+                'caibench_base_ctf', 'caibench_cybench_cai_agent', 'caibench_cyber_ranges', 'ctibench_rcm', 'cybermetric_4500', 'issuetrojanbench_eem_rate_lower_better', 'cisco_image_safety_score', 'cisco_audio_safety_score'
             ]
         },
         {
@@ -299,7 +299,7 @@ var CyberCoding = {
                 'prompt_injection', 'first_person_fairness',
                 'cybersoceval', 'autopatchbench', 'baxbench',
                 // May 2026 — MLCommons AI safety v1.0 (12 hazard categories, 5-point grade scale)
-                'ailuminate_v1',
+                'ailuminate_v1', 'ailuminate_safety_v1_2_1',  // S318 — AILuminate Safety 1.2.1 (2026-10-29, not comparable with v1.0)
                 // 2026-04 Simbian Cyber Defense (arxiv 2604.19533) + CyberTeam blue-team (arxiv 2509.23571)
                 'simbian_cyber_defense_coverage', 'cyberteam_rm_avg',
                 // 2026-05 CTI-REALM detection-rule generation (arxiv 2603.13517)

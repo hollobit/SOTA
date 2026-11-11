@@ -34,7 +34,7 @@ var Agent = (function() {
                 'swe_bench_pro',
                 'cursorbench_4_0', 'terminal_bench_4',  // 2026-09-23 S282
                 // 2026-10-03 — Terminal-Bench 4.0 (official board / AA harness), DeepSWE 1.1, FrontierSWE v2, SWE-Bench Pro public board
-                'terminal_bench_4_0', 'terminal_bench_4_0_aa', 'deepswe_1_1', 'frontierswe_v2', 'frontiercode_2_0_aa', 'frontiercode_2_0', 'swe_sweep', 'swe_bench_pro_scale_public',
+                'terminal_bench_4_0', 'terminal_bench_4_0_aa', 'deepswe_1_1', 'deepswe_v1_1_pass_at_1', 'frontierswe_v2', 'frontiercode_2_0_aa', 'frontiercode_2_0', 'swe_sweep', 'swe_bench_pro_scale_public',
                 'swe_bench_verified_mini',
                 'swe_bench_multilingual',
                 'swe_bench_multimodal',
@@ -604,6 +604,9 @@ var Agent = (function() {
         { id: 'androidworld',         label: 'AndroidWorld' },
         { id: 'deepswe_1_1',          label: 'DeepSWE 1.1' },
         { id: 'frontierswe_v2',       label: 'FrontierSWE v2' },
+        { id: 'deepswe_v1_1_pass_at_1', label: 'DeepSWE 1.1 (official board)' },
+        { id: 'livebench_v2_2026_11_06_long_horizon', label: 'LiveBench Long-Horizon (11-06)' },
+        { id: 'agents_last_exam_v1_1_pass_rate', label: "Agents' Last Exam v1.1 pass rate" },
         { id: 'terminal_bench_2',     label: 'Terminal-Bench 2.0' },
         { id: 'osworld_verified',     label: 'OSWorld-Verified' },
         { id: 'gaia',                 label: 'GAIA' },

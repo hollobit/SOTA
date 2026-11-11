@@ -1,5 +1,9 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-11-11 (Session 318): Gap sweep over registered leaderboards and dataset sources
+
+Re-read 57 registered leaderboards for models released since the last refresh and back-filled 74 benchmark descriptions. Added 45 models, 60 benchmarks and 2,273 scores; fixed two π0 RoboLab values and removed two unsourced Vibe-Bench rows. Details are in Plans.md.
+
 ## 2026-11-11 (Session 317d): Gemini 4 Carbon release date, Mythos 5.2 metadata
 
 Moved Gemini 4 Carbon's release date to 2026-11-10, when the model card was published, and added Mythos 5.2 pricing, knowledge cutoff, access route and lineage. Added 2 scores. Details are in Plans.md.

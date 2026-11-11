@@ -1,0 +1,603 @@
+{
+ "_meta": {
+  "collected_at": "2026-11-11",
+  "session": "S318",
+  "_note": "Description backfill for benchmarks with >=8 scores and no description; name/category/metric copied from the DB unchanged. File name sorts last so these declarations win."
+ },
+ "models": [],
+ "benchmarks": [
+  {
+   "id": "arena_vision_elo",
+   "name": "Arena Vision Elo",
+   "category": "other",
+   "metric": "accuracy",
+   "description": "LMArena (arena.ai) Vision Arena Elo: crowdsourced, blind pairwise human-preference rating of vision-language models on user-submitted prompts that include images; higher is better.",
+   "_source": "https://lmsys.org/blog/2024-06-27-multimodal/"
+  },
+  {
+   "id": "eq_bench_creative_writing_longform",
+   "name": "EQ-Bench Creative Writing Longform",
+   "category": "other",
+   "metric": "accuracy",
+   "description": "EQ-Bench Longform Creative Writing: an LLM-judged benchmark in which the model plans a short story/novella from a minimal prompt, reflects and revises the plan, then writes it over 8 turns of ~1000 words; the final score (higher is better) is judged by Claude Sonnet 4.6 (v1.11) with penalties such as degradation.",
+   "_source": "https://eqbench.com/creative_writing_longform.html"
+  },
+  {
+   "id": "legalbench_vals_run",
+   "name": "LegalBench (Vals-run)",
+   "category": "legal",
+   "metric": "accuracy",
+   "description": "Vals AI's independent run of LegalBench, the collaboratively built legal-reasoning benchmark of 162 tasks covering six types of legal reasoning; reported as accuracy (%), higher is better.",
+   "_source": "https://www.vals.ai/benchmarks/legal_bench ; https://arxiv.org/abs/2308.11462"
+  },
+  {
+   "id": "vals_ai_swe_bench_verified",
+   "name": "Vals.ai SWE-Bench Verified",
+   "category": "coding",
+   "metric": "resolved",
+   "description": "Vals AI's independent run of SWE-bench Verified (500 human-validated real GitHub issues), where models given only a bash tool must produce a patch that passes the repository's unit tests; reported as % resolved, higher is better (archived by Vals as saturated).",
+   "_source": "https://www.vals.ai/benchmarks/swebench"
+  },
+  {
+   "id": "vals_finance_agent_benchmark_v2",
+   "name": "Vals Finance Agent Benchmark v2",
+   "category": "legal",
+   "metric": "accuracy",
+   "description": "Vals AI Finance Agent v2: an agentic benchmark of 927 expert-reviewed questions testing whether a model can do the work of an entry-level financial analyst by answering difficult questions on public company filings; accuracy (%), higher is better (superseded by v2.1).",
+   "_source": "https://www.vals.ai/benchmarks/fabv2"
+  },
+  {
+   "id": "aider_polyglot",
+   "name": "Aider Polyglot (6-language code gen)",
+   "category": "other",
+   "metric": "accuracy",
+   "description": "Aider Polyglot: 225 challenging Exercism coding exercises across C++, Go, Java, JavaScript, Python and Rust, testing whether an LLM can write and edit code correctly via aider without human intervention; percent of exercises solved, higher is better.",
+   "_source": "https://aider.chat/docs/leaderboards/"
+  },
+  {
+   "id": "cybergym",
+   "name": "CyberGym (vuln-reproduction success rate)",
+   "category": "cyber",
+   "metric": "accuracy",
+   "description": "CyberGym: a large-scale cybersecurity benchmark of 1,507 real-world vulnerabilities across 188 software projects in which an agent, given a vulnerability description and the codebase, must generate a proof-of-concept that reproduces the vulnerability; success rate (%), higher is better.",
+   "_source": "https://arxiv.org/abs/2506.02548"
+  },
+  {
+   "id": "online_mind2web",
+   "name": "Online-Mind2Web (live web agents)",
+   "category": "other",
+   "metric": "accuracy",
+   "description": "Online-Mind2Web: an online web-agent benchmark of 300 diverse, realistic tasks on 136 live websites, scored by task success rate (human or LLM-as-a-judge evaluation); higher is better.",
+   "_source": "https://arxiv.org/abs/2504.01382"
+  },
+  {
+   "id": "fiction_livebench",
+   "name": "Fiction.liveBench",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "Fiction.liveBench: a long-context comprehension benchmark built from stories on Fiction.live, where each question requires theory of mind for characters, tracking chronology and inference from implicit information; accuracy (%), higher is better.",
+   "_source": "https://epoch.ai/benchmarks/fictionlivebench"
+  },
+  {
+   "id": "screenspot_pro",
+   "name": "ScreenSpot-Pro (high-res GUI grounding)",
+   "category": "other",
+   "metric": "accuracy",
+   "description": "ScreenSpot-Pro: a GUI-grounding benchmark of expert-annotated high-resolution screenshots from 23 professional applications across five industries and three operating systems, where the model must locate the target UI element; accuracy (%), higher is better.",
+   "_source": "https://arxiv.org/abs/2504.07981"
+  },
+  {
+   "id": "arena_search_elo",
+   "name": "Arena Search Elo",
+   "category": "other",
+   "metric": "accuracy",
+   "description": "LMArena (arena.ai) Search Arena Elo: crowdsourced, in-the-wild pairwise human-preference rating of search-augmented LLM systems, with prompts focused on current events and real-world use; higher is better.",
+   "_source": "https://news.lmarena.ai/search-arena/"
+  },
+  {
+   "id": "vpct",
+   "name": "VPCT",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "VPCT (Visual Physics Comprehension Test): 100 simulator-generated images each showing a ball, ramps and three buckets; the model must predict which bucket the ball falls into; accuracy (%), higher is better.",
+   "_source": "https://huggingface.co/datasets/camelCase12/vpct-1 ; https://epoch.ai/benchmarks/vpct"
+  },
+  {
+   "id": "gray_swan_ipi",
+   "name": "Gray Swan IPI (indirect prompt injection ASR)",
+   "category": "safety",
+   "metric": "asr_lower_better",
+   "description": "Gray Swan Indirect Prompt Injection (IPI) benchmark: about 1,800 highly transferable attacks across 37 scenarios (coding, tool use, GUI computer use) that try to induce harmful actions such as data exfiltration; reported as attack success rate, mostly at k=15 attempts; lower is better.",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf (local resource/Claude-Fable-5-2-Mythos-5-2-System-Card.pdf)"
+  },
+  {
+   "id": "hw_hbm_bandwidth_tbps",
+   "name": "HBM Memory Bandwidth",
+   "category": "hardware",
+   "metric": "bandwidth",
+   "description": "Hardware specification: peak memory bandwidth of an AI accelerator in TB/s (HBM for datacenter parts; some rows are GDDR or unified memory), taken from vendor/press spec sheets; higher is better.",
+   "_source": "https://www.spheron.network/blog/nvidia-h100-specs/"
+  },
+  {
+   "id": "hw_hbm_capacity_gb",
+   "name": "HBM Memory Capacity",
+   "category": "hardware",
+   "metric": "memory",
+   "description": "Hardware specification: on-package high-bandwidth memory (HBM) capacity of an AI accelerator in GB, taken from vendor/press spec sheets; higher is more memory.",
+   "_source": "https://www.spheron.network/blog/nvidia-h100-specs/"
+  },
+  {
+   "id": "file_size_gb_lower_better",
+   "name": "file_size_gb_lower_better",
+   "category": "quantization",
+   "metric": "score",
+   "description": "Not a benchmark: the on-disk file size (GB) of a quantized GGUF build of a model (one row per quant type, e.g. Q4_K_M), as listed in Hugging Face GGUF repositories such as bartowski and Unsloth; lower is smaller.",
+   "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF"
+  },
+  {
+   "id": "disordered_eating_harmless_api",
+   "name": "Disordered eating — API single-turn harmless",
+   "category": "mental-health",
+   "metric": "harmless",
+   "description": "Anthropic system-card safety eval: share of single-turn disordered-eating prompts posing potential risk where the model's response was harmless, run on the API without a system prompt, across all tested languages; higher is better.",
+   "_source": "https://www.anthropic.com/claude-haiku-5-5-system-card (local resource/anthropic_claude-haiku-5.5_system-card_2026-10.pdf)"
+  },
+  {
+   "id": "disordered_eating_overrefusal_api",
+   "name": "Disordered eating — API benign over-refusal",
+   "category": "mental-health",
+   "metric": "refusal",
+   "description": "Anthropic system-card safety eval: refusal rate on benign single-turn questions about nutrition, fitness and health in the disordered-eating domain, run on the API without a system prompt; lower is better.",
+   "_source": "https://www.anthropic.com/claude-haiku-5-5-system-card (local resource/anthropic_claude-haiku-5.5_system-card_2026-10.pdf)"
+  },
+  {
+   "id": "bio_refusal_dual_use_not_unsafe",
+   "name": "Bio Refusal Eval — Dual Use",
+   "category": "safety",
+   "metric": "not_unsafe",
+   "description": "OpenAI system-card Biology Model Refusal Evaluation, Dual Use split: 0-1 safety score for model-only responses (no production safeguards) to dual-use biology prompts drawn from held-out synthetic, red-teaming and production data; higher is better.",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-astra/gpt-6-astra.pdf (local resource/openai_gpt-6-astra_system-card_2026-09.pdf)"
+  },
+  {
+   "id": "codeforces_rating",
+   "name": "Codeforces Rating (AI)",
+   "category": "coding",
+   "metric": "score",
+   "description": "Codeforces rating: a vendor-reported, Elo-style competitive-programming rating from Codeforces problems (e.g. DeepSeek's internal Codeforces benchmark); higher is better.",
+   "_source": "resource/deepseek_v4.1_tech_report_2026-09.pdf"
+  },
+  {
+   "id": "hw_fp8_dense_pflops",
+   "name": "Peak FP8 Dense PFLOPS",
+   "category": "hardware",
+   "metric": "throughput",
+   "description": "Hardware specification: vendor peak FP8 tensor throughput of an AI accelerator (or rack system) in PFLOPS, intended as dense (non-sparse) figures; higher is better.",
+   "_source": "https://www.spheron.network/blog/nvidia-h100-specs/"
+  },
+  {
+   "id": "cosmos_hue_i2v",
+   "name": "Cosmos Hue I2V",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "Cosmos HUE (HUman Evaluation), image-to-video: NVIDIA's human scoring protocol on 100 PAIBench-G prompts (5 seeds each), where annotators answer atomic Yes/No questions on semantic alignment, physical laws, geometric reasoning and visual integrity; % passed, higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "disordered_eating_harmless_claude_ai",
+   "name": "Disordered eating — claude.ai single-turn harmless",
+   "category": "mental-health",
+   "metric": "harmless",
+   "description": "Anthropic system-card safety eval: share of single-turn disordered-eating prompts posing potential risk where the model's response was harmless, run on claude.ai with its default system prompt; higher is better.",
+   "_source": "https://www.anthropic.com/claude-haiku-5-5-system-card (local resource/anthropic_claude-haiku-5.5_system-card_2026-10.pdf)"
+  },
+  {
+   "id": "disordered_eating_overrefusal_claude_ai",
+   "name": "Disordered eating — claude.ai benign over-refusal",
+   "category": "mental-health",
+   "metric": "refusal",
+   "description": "Anthropic system-card safety eval: refusal rate on benign single-turn disordered-eating-domain questions (nutrition, fitness, health), run on claude.ai; lower is better.",
+   "_source": "https://www.anthropic.com/claude-haiku-5-5-system-card (local resource/anthropic_claude-haiku-5.5_system-card_2026-10.pdf)"
+  },
+  {
+   "id": "election_integrity_benign_api",
+   "name": "Election integrity — benign API overrefusal",
+   "category": "safety",
+   "metric": "overrefusal",
+   "description": "Anthropic system-card election-integrity eval: refusal rate on the 300 benign election-related prompts of the single-turn election integrity benchmark, run on the API without a system prompt; lower is better.",
+   "_source": "https://www.anthropic.com/claude-haiku-5-5-system-card (local resource/anthropic_claude-haiku-5.5_system-card_2026-10.pdf)"
+  },
+  {
+   "id": "mmlu_med",
+   "name": "Mmlu Med",
+   "category": "medical",
+   "metric": "score",
+   "description": "MMLU Med: the medical subset of MMLU (Anatomy, Clinical Knowledge, College Biology, College Medicine, Medical Genetics, Professional Medicine, Virology) of multiple-choice questions, used in MedGemma evaluations (3,685 examples); accuracy, higher is better.",
+   "_source": "https://arxiv.org/abs/2507.05201 (local resource/MedGemma-Technical-Report-2507.05201.pdf)"
+  },
+  {
+   "id": "paibench_g_t2v_domain",
+   "name": "Paibench G T2V Domain",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "PAIBench-G text-to-video Domain Score: VLM-as-judge (Qwen2.5-VL-72B in the Cosmos 3 report) binary checks of physical and semantic accuracy on the 1,044-prompt video-generation track of the Physical AI Benchmark across six domains; higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "single_turn_benign_overrefusal_claude_ai",
+   "name": "Single-turn benign — claude.ai overrefusal",
+   "category": "safety",
+   "metric": "overrefusal",
+   "description": "Anthropic system-card eval: over-refusal rate on single-turn benign but sensitive requests covering 16 policy areas in seven languages, run on claude.ai; lower is better.",
+   "_source": "https://www.anthropic.com/claude-haiku-5-5-system-card (local resource/anthropic_claude-haiku-5.5_system-card_2026-10.pdf)"
+  },
+  {
+   "id": "suicide_self_harm_harmless_claude_ai",
+   "name": "Suicide/self-harm — claude.ai single-turn harmless rate",
+   "category": "mental-health",
+   "metric": "harmless",
+   "description": "Anthropic system-card safety eval: harmless response rate on single-turn suicide/self-harm prompts posing potential risk, run on claude.ai; higher is better.",
+   "_source": "https://www.anthropic.com/claude-haiku-5-5-system-card (local resource/anthropic_claude-haiku-5.5_system-card_2026-10.pdf)"
+  },
+  {
+   "id": "suicide_self_harm_multiturn_appropriate_claude_ai",
+   "name": "Suicide/self-harm — claude.ai multi-turn appropriate",
+   "category": "mental-health",
+   "metric": "appropriate",
+   "description": "Anthropic system-card safety eval: appropriate response rate in multi-turn conversations about suicide and self-harm, run on claude.ai; higher is better.",
+   "_source": "https://www.anthropic.com/claude-haiku-5-5-system-card (local resource/anthropic_claude-haiku-5.5_system-card_2026-10.pdf)"
+  },
+  {
+   "id": "suicide_self_harm_overrefusal_claude_ai",
+   "name": "Suicide/self-harm — claude.ai benign over-refusal",
+   "category": "mental-health",
+   "metric": "refusal",
+   "description": "Anthropic system-card safety eval: refusal rate on benign single-turn requests in the suicide/self-harm domain, run on claude.ai; lower is better.",
+   "_source": "https://www.anthropic.com/claude-haiku-5-5-system-card (local resource/anthropic_claude-haiku-5.5_system-card_2026-10.pdf)"
+  },
+  {
+   "id": "swe_atlas_tw",
+   "name": "SWE-Atlas TW (Test Writing)",
+   "category": "coding",
+   "metric": "accuracy",
+   "description": "Scale AI SWE Atlas - Test Writing: a SEAL leaderboard benchmark of an agent's ability to write production-grade tests for real codebases, part of the SWE Atlas suite; score (%), higher is better.",
+   "_source": "https://scale.com/leaderboard/sweatlas-tw"
+  },
+  {
+   "id": "tts_arena_elo",
+   "name": "TTS Arena V2 Elo (HuggingFace TTS-AGI)",
+   "category": "TTS",
+   "metric": "Elo",
+   "description": "TTS Arena V2 Elo (Hugging Face TTS-AGI): crowdsourced blind pairwise rating of text-to-speech models, where voters hear two anonymous models read the same text and pick the more human-sounding one; higher is better.",
+   "_source": "https://raw.githubusercontent.com/TTS-AGI/TTS-Arena/main/README.md"
+  },
+  {
+   "id": "cosmos_hue_t2v",
+   "name": "Cosmos Hue T2V",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "Cosmos HUE (HUman Evaluation), text-to-video: NVIDIA's human scoring protocol on 100 PAIBench-G prompts (5 seeds each), where annotators answer atomic Yes/No questions on semantic alignment, physical laws, geometric reasoning and visual integrity; % passed, higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "hal_overall_accuracy_at_fixed_cost",
+   "name": "HAL Composite (cost-controlled accuracy)",
+   "category": "other",
+   "metric": "accuracy",
+   "description": "Not a published HAL metric but a composite built in this repo: the mean of a model's best accuracy across the Princeton HAL (Holistic Agent Leaderboard) sub-leaderboards it appears on (e.g. AssistantBench, CORE-Bench Hard, GAIA, Online Mind2Web, SWE-bench Verified Mini, SciCode, ScienceAgentBench, TAU-bench Airline, USACO); higher is better. Coverage varies by model.",
+   "_source": "https://hal.cs.princeton.edu/"
+  },
+  {
+   "id": "japanese_mt_bench",
+   "name": "Japanese Mt Bench",
+   "category": "sovereign-ai",
+   "metric": "score",
+   "description": "Japanese MT-Bench: Stability AI's Japanese version of MT-Bench, 80 challenging open-ended multi-turn questions across writing, roleplay, reasoning, math, coding, extraction, STEM and humanities, graded by a GPT-4-class judge on a 1-10 scale; higher is better.",
+   "_source": "https://huggingface.co/Rakuten/RakutenAI-2.0-8x7B-instruct ; https://github.com/Stability-AI/FastChat/tree/jp-stable/fastchat/llm_judge"
+  },
+  {
+   "id": "kimi_code_bench_v2",
+   "name": "Kimi Code Bench v2",
+   "category": "coding",
+   "metric": "score",
+   "description": "Kimi Code Bench 2.0 (KCB 2.0): Moonshot AI's internal benchmark of code agents on realistic, end-to-end software engineering tasks across many programming languages and production technology stacks; score (%), higher is better.",
+   "_source": "https://arxiv.org/abs/2607.24653 (local resource/kimi_k3_tech_report_arxiv_2607.24653.pdf)"
+  },
+  {
+   "id": "paibench_g_t2v_quality",
+   "name": "Paibench G T2V Quality",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "PAIBench-G text-to-video Quality Score: aggregate of frame consistency, motion smoothness, aesthetic quality and video-text alignment on the 1,044-prompt video-generation track of the Physical AI Benchmark; higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "rbench_i2v",
+   "name": "Rbench I2V",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "RBench image-to-video: a robotics video-generation benchmark of 650 image-text cases (250 task-oriented, 400 embodiment-specific) scoring task completion and visual quality of generated robot-object interaction videos; score (%), higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "usaco",
+   "name": "USACO Competitive Programming",
+   "category": "other",
+   "metric": "accuracy",
+   "description": "USACO: 307 competitive-programming problems from the USA Computing Olympiad with exhaustive test cases, used on the Princeton HAL leaderboard to evaluate agents; accuracy (% solved), higher is better.",
+   "_source": "https://hal.cs.princeton.edu/usaco ; https://arxiv.org/abs/2404.10952"
+  },
+  {
+   "id": "cosmos_hue_i2v_robotics_domain",
+   "name": "Cosmos Hue I2V Robotics Domain",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "Robotics-domain breakdown of Cosmos HUE image-to-video (Rob. column of the per-domain HUE I2V leaderboard): % of atomic human-verified Yes/No questions passed on robotics prompts; higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "mrcr_v2_8needle",
+   "name": "MRCR v2 (8-needle)",
+   "category": "other",
+   "metric": "accuracy",
+   "description": "MRCR v2 (8-needle): the 8-needle setting of multi-round co-reference resolution, where the model must return a specific instance among 8 identical asks hidden in a long synthetic multi-turn conversation; scored by match similarity at the stated context length (e.g. 128k average or 1M), higher is better.",
+   "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle) ; https://huggingface.co/datasets/openai/mrcr"
+  },
+  {
+   "id": "paibench_g_t2v",
+   "name": "Paibench G T2V",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "PAIBench-G text-to-video overall score (0.5 x Quality + 0.5 x Domain) on the 1,044-prompt video-generation track of the Physical AI Benchmark across six Physical AI domains, extended to T2V in the Cosmos 3 report; higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "swe_atlas_rf",
+   "name": "SWE-Atlas RF (Refactor)",
+   "category": "coding",
+   "metric": "accuracy",
+   "description": "Scale AI SWE Atlas - Refactoring: a benchmark of an agent's ability to restructure production code while preserving behavior, graded by existing tests and rubric criteria (maintainability, documentation, cleanup, no regressions); score (%), higher is better.",
+   "_source": "https://scale.com/leaderboard/sweatlas-refactoring"
+  },
+  {
+   "id": "bbeh",
+   "name": "BigBench Extra Hard (BBEH)",
+   "category": "reasoning-hard",
+   "metric": "score",
+   "description": "BIG-Bench Extra Hard (BBEH): replaces each BIG-Bench Hard task with a harder novel task probing a similar reasoning skill, to measure broad general reasoning; accuracy (EM), higher is better.",
+   "_source": "https://arxiv.org/abs/2502.19187"
+  },
+  {
+   "id": "frontierswe",
+   "name": "Frontierswe",
+   "category": "language",
+   "metric": "score",
+   "description": "FrontierSWE: a long-horizon software engineering benchmark of very hard tasks (V2: 34 tasks, 5 trials per task with a 20-hour budget); DB values are mostly vendor-reported (e.g. dominance scores in the Kimi K3 report); higher is better.",
+   "_source": "https://www.frontierswe.com/"
+  },
+  {
+   "id": "hpsv3",
+   "name": "Hpsv3",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "HPSv3 (Human Preference Score v3): a VLM-based human-preference reward model trained on 1.17M pairwise comparisons (HPDv3), used as a prompt-aware text-to-image quality metric; higher is better.",
+   "_source": "https://arxiv.org/abs/2508.03789"
+  },
+  {
+   "id": "hw_bf16_dense_tflops",
+   "name": "Peak BF16/FP16 Dense TFLOPS",
+   "category": "hardware",
+   "metric": "throughput",
+   "description": "Hardware specification: vendor peak BF16/FP16 tensor throughput of an AI accelerator in TFLOPS, intended as dense (non-sparse) figures; higher is better.",
+   "_source": "https://www.spheron.network/blog/nvidia-h100-specs/"
+  },
+  {
+   "id": "ko_longbench",
+   "name": "Ko Longbench",
+   "category": "sovereign-ai",
+   "metric": "score",
+   "description": "Ko-LongBench: LG AI Research's in-house benchmark of Korean long-context understanding, with Document QA, Story Understanding, Dialogue History Understanding, In-Context Learning, Structured QA and RAG tasks; higher is better.",
+   "_source": "https://arxiv.org/html/2601.01739"
+  },
+  {
+   "id": "paibench_g_i2v",
+   "name": "Paibench G I2V",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "PAIBench-G image-to-video overall score (0.5 x Quality + 0.5 x Domain) on the 1,044 image-text prompt pairs of the Physical AI Benchmark video-generation track across six Physical AI domains; higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "robolab_overall_specific",
+   "name": "Robolab Overall Specific",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "RoboLab-120 overall task success rate (%) with specific instructions: a simulation benchmark of 120 language-conditioned manipulation tasks for generalist robot policies (DROID-finetuned policies in the Cosmos 3 report); higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "texture_cmmd",
+   "name": "Texture CMMD (CLIP-MMD)",
+   "category": "3d-texture",
+   "metric": "distance",
+   "description": "Texture CMMD (CLIP Maximum-Mean Discrepancy): a texture-generation metric used in the Hunyuan3D 2.0/2.5 papers to assess the diversity and richness of generated texture details against ground truth; lower is better.",
+   "_source": "https://arxiv.org/html/2506.16504"
+  },
+  {
+   "id": "texture_fid_clip",
+   "name": "Texture FID-CLIP",
+   "category": "3d-texture",
+   "metric": "fid",
+   "description": "Texture CLIP-FID: Fréchet distance in CLIP feature space between rendered generated textures and ground truth, used in the Hunyuan3D 2.0/2.5 texture comparisons; lower is better.",
+   "_source": "https://arxiv.org/html/2506.16504"
+  },
+  {
+   "id": "texture_lpips",
+   "name": "Texture LPIPS",
+   "category": "3d-texture",
+   "metric": "perceptual",
+   "description": "Texture LPIPS (Learned Perceptual Image Patch Similarity) between rendered generated textures and ground truth, used in the Hunyuan3D 2.0/2.5 texture comparisons; lower is better.",
+   "_source": "https://arxiv.org/html/2506.16504"
+  },
+  {
+   "id": "anthropic_mask_honesty_resist_pressure",
+   "name": "anthropic_mask_honesty_resist_pressure",
+   "category": "safety",
+   "metric": "",
+   "description": "Anthropic system-card run of MASK (public test split): honesty rate, i.e. the fraction of scored prompts (~800) where the model did not contradict its own elicited belief under user or system-prompt pressure; higher is better.",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf (local resource/Claude-Fable-5-2-Mythos-5-2-System-Card.pdf)"
+  },
+  {
+   "id": "bigcodebench",
+   "name": "BigCodeBench",
+   "category": "code",
+   "metric": "score",
+   "description": "BigCodeBench: 1,140 fine-grained Python tasks that require invoking multiple function calls from 139 libraries across 7 domains, checked by test cases; Pass@1 (%), higher is better.",
+   "_source": "https://arxiv.org/abs/2406.15877"
+  },
+  {
+   "id": "cosmos_soundbench_avq",
+   "name": "Cosmos Soundbench Avq",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "Cosmos-SoundBench Audiovisual Quality (AVQ): overall score on 144 non-speech FoleyBench-derived prompts for audio-video generation, defined as 0.5 x SAV (semantic audiovisual score) + 0.5 x audio quality, on a 0-10 scale; higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "cosmos_soundbench_pq",
+   "name": "Cosmos Soundbench Pq",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "Cosmos-SoundBench Production Quality (PQ): audiobox-aesthetics production-quality score of generated audio (clarity, fidelity, dynamics, bandwidth, spatialization) on the 144-prompt benchmark, 0-10 scale; higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "cosmos_soundbench_sav",
+   "name": "Cosmos Soundbench Sav",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "Cosmos-SoundBench Semantic Audiovisual score (SAV): MLLM-judged 0.60 x semantic audio correctness + 0.30 x audiovisual alignment + 0.10 x visual support on the 144-prompt benchmark, 0-10 scale; higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "cvtg_102ch_gned",
+   "name": "Cvtg 102Ch Gned",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "CVTG-102ch GNED: OCR-based normalized-edit-distance accuracy of rendered scene text on a 102-prompt Chinese-character subset of the Complex Visual Text Generation benchmark (Cosmos 3 report); higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "cvtg_102ch_pned",
+   "name": "Cvtg 102Ch Pned",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "CVTG-102ch PNED: character-level OCR normalized-edit-distance accuracy on the 102-prompt Chinese-character subset of the Complex Visual Text Generation benchmark (Cosmos 3 report); higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "cvtg_500l_gned",
+   "name": "Cvtg 500L Gned",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "CVTG-500L GNED: OCR-based normalized-edit-distance accuracy of rendered scene text on 500 English prompts sampled from CVTG-2K and upsampled into long, dense descriptions (Cosmos 3 report); higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "cvtg_500l_pned",
+   "name": "Cvtg 500L Pned",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "CVTG-500L PNED: character-level OCR normalized-edit-distance accuracy on the 500-prompt English long-prompt CVTG subset (Cosmos 3 report); higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "exploitgym_2h",
+   "name": "ExploitGym (2h budget)",
+   "category": "cyber",
+   "metric": "total_lower_or_higher",
+   "description": "ExploitGym (2-hour budget): number of the benchmark's 869 real-world vulnerabilities (userspace, V8, Linux kernel) for which the agent builds a working exploit that captures a secret flag via the intended vulnerability within two hours, mitigations disabled; count, higher is better.",
+   "_source": "https://assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf (local resource/Claude-Fable-5-2-Mythos-5-2-System-Card.pdf)"
+  },
+  {
+   "id": "mls_bench_lite",
+   "name": "MLS Bench Lite",
+   "category": "coding",
+   "metric": "score",
+   "description": "MLS-Bench-Lite: a 30-task challenging subset (covering all 12 domains) of MLS-Bench, which tests whether AI agents can invent generalizable and scalable ML methods by improving a targeted component of an ML system; higher is better.",
+   "_source": "https://arxiv.org/html/2605.08678"
+  },
+  {
+   "id": "otis_aime_2025",
+   "name": "OTIS-AIME 2025",
+   "category": "math",
+   "metric": "accuracy",
+   "description": "OTIS Mock AIME: competition math problems from the OTIS (Olympiad Training for Individual Study) Mock AIME exams, each with an integer answer 0-999, harder than MATH Level 5; accuracy (%), higher is better.",
+   "_source": "https://epoch.ai/benchmarks/otis-mock-aime-2024-2025"
+  },
+  {
+   "id": "robolab_complex_specific",
+   "name": "Robolab Complex Specific",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "RoboLab-120 task success rate (%) on Complex-difficulty tasks with specific instructions, from the 120-task language-conditioned robot manipulation simulation benchmark (Cosmos 3 report); higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "robolab_overall_default",
+   "name": "Robolab Overall Default",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "RoboLab-120 overall task success rate (%) with default instructions, from the 120-task language-conditioned robot manipulation simulation benchmark (Cosmos 3 report); higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "robolab_overall_vague",
+   "name": "Robolab Overall Vague",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "RoboLab-120 overall task success rate (%) with vague instructions, from the 120-task language-conditioned robot manipulation simulation benchmark (Cosmos 3 report); higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "toys4k_t23d_clip",
+   "name": "Toys4k Text-to-3D CLIP",
+   "category": "3d",
+   "metric": "clip",
+   "description": "Toys4k text-to-3D CLIP score: consistency between generated 3D assets and their text prompts on the held-out Toys4k dataset, as used in the TRELLIS paper; higher is better.",
+   "_source": "https://arxiv.org/html/2412.01506"
+  },
+  {
+   "id": "toys4k_t23d_fd_dinov2",
+   "name": "Toys4k Text-to-3D FD-DINOv2",
+   "category": "3d",
+   "metric": "feature-distance",
+   "description": "Toys4k text-to-3D FD-DINOv2: Fréchet distance with DINOv2 features between renders of generated 3D assets and Toys4k references, measuring overall generation quality (TRELLIS paper); lower is better.",
+   "_source": "https://arxiv.org/html/2412.01506"
+  },
+  {
+   "id": "unigenbench_orig",
+   "name": "Unigenbench Orig",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "UniGenBench (original 600 prompts): text-to-image semantic-consistency benchmark spanning 5 themes and 20 subthemes; score is the MLLM-judged (Gemini 3.1 Pro in the Cosmos 3 report) fraction of testpoints passed; higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "unigenbench_phys",
+   "name": "Unigenbench Phys",
+   "category": "physical-ai",
+   "metric": "score",
+   "description": "UniGenBench-Phys: 570 NVIDIA-added photorealistic physical-world text-to-image prompts (robotics, signage, driving, construction, fluids, medical) scored as the MLLM-judged fraction of testpoints passed; higher is better.",
+   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf (local resource/cosmos3_technical_report.pdf)"
+  },
+  {
+   "id": "visualagentbench",
+   "name": "VisualAgentBench (VAB)",
+   "category": "other",
+   "metric": "accuracy",
+   "description": "VisualAgentBench (VAB): a benchmark of large multimodal models as visual agents across embodied, GUI and visual-design environments; overall average success rate (%), higher is better.",
+   "_source": "https://arxiv.org/abs/2408.06327"
+  }
+ ],
+ "scores": []
+}

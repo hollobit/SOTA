@@ -103,6 +103,8 @@
     'mathvista':                 'math',
     'mathvista_mini':            'math',
     'putnambench':               'math',
+    'putnambench_rocq_solved':   'math',
+    'putnambench_isabelle_solved': 'math',
     'cmath':                     'math',
     't_math':                    'math',
     'wemath':                    'math',

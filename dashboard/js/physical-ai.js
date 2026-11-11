@@ -273,7 +273,7 @@ var PhysicalAI = {
                 'robowm_bench_robot_pick_object', 'robowm_bench_human_pick_object',  // S292b RoboWM-Bench
                 'pai_bench_text2world_post', 'pai_bench_image2world_overall',  // 2026-05 NVIDIA Cosmos Predict 2.5 paper
                 'fvd_av_multiview',  // 2026-05 Cosmos Predict 2.5 FVD
-                'worldscore_static', 'worldscore_dynamic', 'worldscore_3d_consistency',
+                'worldscore_static', 'worldscore_dynamic', 'worldscore_3d_consistency', 'worldscore_camera_control', 'worldscore_object_control', 'worldscore_content_alignment', 'worldscore_photometric_consistency', 'worldscore_style_consistency', 'worldscore_subjective_quality', 'worldscore_motion_accuracy', 'worldscore_motion_magnitude', 'worldscore_motion_smoothness',
                 'ewmbench', 'worldmodelbench_avg',
                 'humanoid_sampling_psnr', 'humanoid_compression_top500_ce',
                 'world_model_fps', 'world_model_consistency', 'world_model_visual_memory',
@@ -1028,7 +1028,7 @@ var PhysicalAI = {
             { name: 'World Model Coherence', benches: [
                 'world_model_consistency', 'world_model_fps', 'world_model_visual_memory',
                 'pai_bench_text2world', 'pai_bench_image2world',
-                'worldscore_static', 'worldscore_dynamic', 'worldscore_3d_consistency',
+                'worldscore_static', 'worldscore_dynamic', 'worldscore_3d_consistency', 'worldscore_camera_control', 'worldscore_object_control', 'worldscore_content_alignment', 'worldscore_photometric_consistency', 'worldscore_style_consistency', 'worldscore_subjective_quality', 'worldscore_motion_accuracy', 'worldscore_motion_magnitude', 'worldscore_motion_smoothness',
                 'ewmbench', 'worldmodelbench_avg',
                 'humanoid_sampling_psnr', 'robot_manip_psnr',
                 // 2026-10-04 S294b — What-If World is the only 2026 physics-in-video suite stored as a percentage; Apple-π / Principia / AV-Phys / iWorld (0–1)

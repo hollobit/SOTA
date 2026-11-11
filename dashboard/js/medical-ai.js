@@ -821,7 +821,7 @@ var MedicalAI = {
         {
             label: '📝 Radiology Report Generation (ReXrank)',
             note: 'ReXrank 8-metric eval — RadGraph-F1 · BERTScore · RadCliQ (lower=better) · GREEN · FineRadScore · ReXGradient holdout · CheXpert F1 (14 finding)',
-            benchmarks: ['rexrank_radgraph_f1', 'rexrank_bertscore', 'rexrank_radcliq', 'rexrank_green', 'rexrank_finerad', 'rexgrad_acc', 'chexpert_f1']
+            benchmarks: ['rexrank_radgraph_f1', 'rexrank_bertscore', 'rexrank_radcliq', 'rexrank_green', 'rexrank_finerad', 'rexrank_rexvqa_overall_acc', 'rexrank_mimic_cxr_findings_crimson', 'rexrank_chexpert_plus_findings_crimson', 'rexgrad_acc', 'chexpert_f1']
         },
         {
             label: '📝 CXR RRG — MIMIC-CXR (CXRMate-2 paper)',

@@ -88,7 +88,7 @@ var FrontierCompare = {
             'hmmt_feb_2026', 'amo_bench_olympiad', 'frontier_math_t1_3',
             // 2026-06-04 S50 — Gemma 4 12B BBEH
             'bbeh',
-            'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024',
+            'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'putnambench_rocq_solved', 'putnambench_isabelle_solved', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024',
             // 2026-06-19 S140 — 2026 official olympiad results + new sub-benches
             'usamo_2026', 'putnam_2025', 'ipho_2025_theory', 'matharena_apex_2025',
             'arxivmath_mar_apr_2026',
@@ -285,6 +285,8 @@ var FrontierCompare = {
             'aa_intelligence_index_v4_3', 'aa_intelligence_index_v5_0', 'vals_science_index', 'code_migration_v1_1_vals', 'aa_omniscience_v1_1_index', 'hle_diamond_aa', 'critpt_v2_hard_aa', 'vals_index_v2_2', 'gdpval_aa_v2_1_elo', 'gdpval_aa_v2_1',
             // 2026-09-24 S285 — LiveBench 2026-06-25 release, HLE official (CAISI), Epoch ECI component runs
             'livebench_2026_06_25', 'hle_caisi_official', 'gpqa_diamond_epoch', 'hle_epoch', 'frontiermath_tier4_v2',
+            // 2026-11-11 S318 — leaderboard gap sweep: LiveBench 2026-11-06, CAIS HLE-Diamond, AA CritPt v2, Epoch GPQA v2 rescale, ALE v1.1 pass rate, DeepSWE v1.1 official board
+            'livebench_v2_2026_11_06', 'hle_diamond_cais', 'critpt_v2_aa', 'gpqa_diamond_epoch_v2', 'agents_last_exam_v1_1_pass_rate', 'deepswe_v1_1_pass_at_1',
             // 2026-09-23 S282b — AA v4.3 capability indices (GPT-6 Sol/Luna/Astra tiers)
             'aa_capability_index_finance_accounting_v4_3', 'aa_capability_index_strategy_ops_v4_3', 'aa_capability_index_legal_v4_3', 'aa_capability_index_healthcare_medical_v4_3', 'aa_capability_index_engineering_v4_3', 'aa_capability_index_economics_v4_3',
             // 2026-11-10 S317b — AA Index v5 capability indices
