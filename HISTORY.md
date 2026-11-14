@@ -1,5 +1,17 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-11-13 (Session 320b): Gemini 4 Hydrogen gap pass
+
+Read the AA fields the first pass missed (speed, briefcase, cost to run the index), two blog safety numbers and OpenRouter's arena fidelity scores. 5 benchmarks, 59 scores. Details are in Plans.md.
+
+## 2026-11-13 (Session 320): Gemini 4 Hydrogen, Google models on OpenRouter
+
+Added Gemini 4 Hydrogen (xhigh/high/low) from its card, AA and Vals; Gemini Decision 1 and Gemini Omni 1.2 Flash; Vals and Design Arena records for Carbon/Argon; and the MKA benchmark. 5 models, 22 benchmarks, 169 scores. Details are in Plans.md.
+
+## 2026-11-11 (Session 319): MiniMax H3 Image, Remote Labor Index
+
+Added MiniMax H3 Image and its Highspeed mode (prices, launch latency chart), fixed MiniMax H3 metadata, and added the RLI paper's Elo and dollars-earned tables plus two missing automation rates. 2 models, 11 benchmarks, 44 scores. Details are in Plans.md.
+
 ## 2026-11-11 (Session 318): Gap sweep over registered leaderboards and dataset sources
 
 Re-read 57 registered leaderboards for models released since the last refresh and back-filled 74 benchmark descriptions. Added 45 models, 60 benchmarks and 2,273 scores; fixed two π0 RoboLab values and removed two unsourced Vibe-Bench rows. Details are in Plans.md.

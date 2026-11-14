@@ -1,0 +1,526 @@
+{
+ "_meta": {
+  "collected_at": "2026-11-13",
+  "session": "S320b",
+  "sources": [
+   "https://artificialanalysis.ai/",
+   "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+   "https://openrouter.ai/google/gemini-nano-banana-2.1",
+   "https://openrouter.ai/google/gemini-omni-1.1-flash"
+  ],
+  "_note": "Gap pass over S320 sources: AA nested fields (headline speed, briefcaseBreakdown, intelligenceIndexCost), re-slugged AA models, blog safety prose, OpenRouter arena-strip fidelity. Fill-only."
+ },
+ "models": [],
+ "benchmarks": [
+  {
+   "id": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "name": "AA Intelligence Index v5 — total cost to run (USD)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "Artificial Analysis total USD cost to run the full Intelligence Index v5 evaluation suite for the model (RSC field intelligenceIndexCost.total; lower is better)."
+  },
+  {
+   "id": "google_agent_honesty_rate",
+   "name": "Google internal agent honesty evaluation (honesty rate)",
+   "category": "safety",
+   "metric": "accuracy",
+   "description": "Google DeepMind internal evaluation of agent honesty on impossible or blocked tasks; percentage of honest episodes (higher is better). Reported in Gemini launch posts."
+  },
+  {
+   "id": "google_cot_legibility_rate",
+   "name": "Chain-of-thought legibility (Google audit)",
+   "category": "safety",
+   "metric": "accuracy",
+   "description": "Share of audited reasoning turns whose chain of thought stays legible, from Google DeepMind reasoning-transparency audits (higher is better)."
+  },
+  {
+   "id": "openrouter_arena_image_mean_fidelity",
+   "name": "OpenRouter Arena (image) — mean check fidelity",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "OpenRouter's model-page Arena for image models: fixed challenge prompts graded by LLM judges against explicit checks; mean fidelity across scored runs (higher is better)."
+  },
+  {
+   "id": "openrouter_arena_video_mean_fidelity",
+   "name": "OpenRouter Arena (video) — mean check fidelity",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "OpenRouter's model-page Arena for video models: fixed challenge prompts graded by LLM judges against explicit checks; mean fidelity across scored runs (higher is better)."
+  }
+ ],
+ "scores": [
+  {
+   "model": "meta/muse-wonder",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 5414.453637,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug muse-wonder, AA name 'Muse Wonder (Max)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 2390.035899,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug qwen3-8-27b, AA name 'Qwen3.8 27B (Xhigh)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "tencent/hy4",
+   "benchmark": "aa_output_tps",
+   "score": 91.136152,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug tencent-hy4, AA name 'Tencent Hy4', field headline.outputSpeed."
+  },
+  {
+   "model": "tencent/hy4",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 93.884921,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug tencent-hy4, AA name 'Tencent Hy4', field headline.timeToFirstAnswerToken."
+  },
+  {
+   "model": "tencent/hy4",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1445.67,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug tencent-hy4, AA name 'Tencent Hy4', field briefcaseBreakdown.overall.elo."
+  },
+  {
+   "model": "tencent/hy4",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 1021.460193,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug tencent-hy4, AA name 'Tencent Hy4', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "reflection/beam-1.0",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 249.829684,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug reflection-beam, AA name 'Beam 1.0', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 7980.63133,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug claude-sonnet-5-5, AA name 'Claude Sonnet 5.5 (Max, Default Fallback)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 136.060822,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gpt-6-luna, AA name 'GPT-6 Luna (Max)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 1359.606464,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug mistral-large-4, AA name 'Mistral Large 4 (High)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 972.335839,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gpt-6-1-terra, AA name 'GPT-6.1 Terra (Max)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 5661.179483,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gpt-6-astra, AA name 'GPT-6 Astra (Max)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 520.631744,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug deepseek-v4-1-flash-1017, AA name 'DeepSeek V4.1 Flash 1017 (Max)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 1123.973921,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gpt-6-1-sol, AA name 'GPT-6.1 Sol (Max)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 22191.42152,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug claude-fable-5-2, AA name 'Claude Fable 5.2 (Max, Default Fallback)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "thinking-machines/inkling-2-small",
+   "benchmark": "aa_output_tps",
+   "score": 84.355105,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug inkling-2-small, AA name 'Inkling 2 Small', field headline.outputSpeed."
+  },
+  {
+   "model": "thinking-machines/inkling-2-small",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 67.705526,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug inkling-2-small, AA name 'Inkling 2 Small', field headline.timeToFirstAnswerToken."
+  },
+  {
+   "model": "thinking-machines/inkling-2-small",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1526.86,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug inkling-2-small, AA name 'Inkling 2 Small', field briefcaseBreakdown.overall.elo."
+  },
+  {
+   "model": "thinking-machines/inkling-2-small",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 791.814503,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug inkling-2-small, AA name 'Inkling 2 Small', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "inclusionai/ling-3.1-flash-1019",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 2009.227246,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug ling-3-1-flash-1019, AA name 'Ling 3.1 Flash 1019', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "ifm/k2-horizon-375b-a23b",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 0.0,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug k2-horizon-375b-a23b, AA name 'K2 Horizon 375B A23B', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "nvidia/nemotron-3.5-super-vl",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 447.061706,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug nemotron-3-5-super-vl, AA name 'Nemotron 3.5 Super VL', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 5333.266843,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-carbon, AA name 'Gemini 4 Carbon (High)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 3152.800614,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug kimi-k3-1-pro, AA name 'Kimi K3.1 Pro', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_output_tps",
+   "score": 188.495074,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field headline.outputSpeed."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 40.554209,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field headline.timeToFirstAnswerToken."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1566.85,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field briefcaseBreakdown.overall.elo."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1608.51,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field briefcaseBreakdown.analyticalQuality.elo."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1615.29,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field briefcaseBreakdown.presentation.elo."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 55.959596,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field briefcaseBreakdown.rubricPassRate."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 4085.716768,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 5905.498378,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug grok-4-7, AA name 'Grok 4.7 (Xhigh)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 6353.833131,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug qwen3-8-max, AA name 'Qwen3.8 Max (0902)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 8909.667016,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug claude-opus-5-5, AA name 'Claude Opus 5.5 (Max, Default Fallback)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "meta/muse-ember",
+   "benchmark": "aa_output_tps",
+   "score": 440.018878,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug muse-ember, AA name 'Muse Ember (Max)', field headline.outputSpeed."
+  },
+  {
+   "model": "meta/muse-ember",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 4.890869,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug muse-ember, AA name 'Muse Ember (Max)', field headline.timeToFirstAnswerToken."
+  },
+  {
+   "model": "meta/muse-ember",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1520.92,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug muse-ember, AA name 'Muse Ember (Max)', field briefcaseBreakdown.overall.elo."
+  },
+  {
+   "model": "meta/muse-ember",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 117.124542,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug muse-ember, AA name 'Muse Ember (Max)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 3495.618189,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug glm-5-3, AA name 'GLM-5.3 (Max)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 339.472802,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug claude-haiku-5-5, AA name 'Claude Haiku 5.5 (Max)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 220.734599,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug mimo-v2-6-pro, AA name 'MiMo-V2.6-Pro', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_output_tps",
+   "score": 179.241311,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field headline.outputSpeed."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 16.683553,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field headline.timeToFirstAnswerToken."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 1496.54,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field briefcaseBreakdown.overall.elo."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 1475.29,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field briefcaseBreakdown.analyticalQuality.elo."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1592.79,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field briefcaseBreakdown.presentation.elo."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 52.424242,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field briefcaseBreakdown.rubricPassRate."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 1768.395601,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_output_tps",
+   "score": 178.379185,
+   "unit": "tokens/s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field headline.outputSpeed."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_time_to_first_answer_token_s_lower_better",
+   "score": 5.730318,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field headline.timeToFirstAnswerToken."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_briefcase_v1_1",
+   "score": 946.93,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field briefcaseBreakdown.overall.elo."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_briefcase_v1_1_analytical_quality_elo",
+   "score": 737.13,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field briefcaseBreakdown.analyticalQuality.elo."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_briefcase_v1_1_presentation_elo",
+   "score": 1161.04,
+   "unit": "elo",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field briefcaseBreakdown.presentation.elo."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_briefcase_v1_1_rubric_pass_rate",
+   "score": 22.222222,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field briefcaseBreakdown.rubricPassRate."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_ii_v5_cost_to_run_usd_lower_better",
+   "score": 331.521342,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field intelligenceIndexCost.total."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "google_agent_honesty_rate",
+   "score": 96.7,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+   "_note": "Launch blog: Hydrogen 'achieves a 96.7% honesty rate on our internal agent honesty evaluation'."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "google_cot_legibility_rate",
+   "score": 99.9,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+   "_note": "Launch blog: Hydrogen 'preserves 99.9% chain-of-thought legibility with zero deceptive reasoning edits across more than 200,000 audited turns'."
+  },
+  {
+   "model": "google/nano-banana-2.1",
+   "benchmark": "openrouter_arena_image_mean_fidelity",
+   "score": 84.555556,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-nano-banana-2.1",
+   "_note": "OpenRouter arenaStrip standing: meanFidelity 0.8456, checks 72/81, rank on checks 8 of 56, 15 challenges scored (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-omni-1.1-flash",
+   "benchmark": "openrouter_arena_video_mean_fidelity",
+   "score": 75.694444,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.1-flash",
+   "_note": "OpenRouter arenaStrip standing: meanFidelity 0.7569, checks 44/58, rank on checks 9 of 27, 12 challenges scored (read 2026-11-13)."
+  }
+ ]
+}

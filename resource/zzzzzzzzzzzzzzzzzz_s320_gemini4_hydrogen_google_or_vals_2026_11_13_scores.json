@@ -1,0 +1,1621 @@
+{
+ "_meta": {
+  "collected_at": "2026-11-13",
+  "session": "S320",
+  "sources": [
+   "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+   "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Hydrogen-Model-Card.pdf",
+   "https://deepmind.google/models/evals-methodology/gemini-4-hydrogen",
+   "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "https://artificialanalysis.ai/models/gemini-4-hydrogen-low",
+   "https://artificialanalysis.ai/",
+   "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "https://benchlm.ai/models/gemini-4-hydrogen",
+   "https://openrouter.ai/google/gemini-4-hydrogen",
+   "https://openrouter.ai/google/gemini-4-hydrogen:batch",
+   "https://openrouter.ai/google/gemini-decision-1",
+   "https://openrouter.ai/google/gemini-4-carbon",
+   "https://openrouter.ai/google/gemini-4-carbon:batch",
+   "https://openrouter.ai/google/gemini-omni-1.2-flash",
+   "https://openrouter.ai/google/gemini-omni-1.1-flash",
+   "https://openrouter.ai/google/gemini-4-argon:batch",
+   "https://openrouter.ai/google/gemini-nano-banana-2.1"
+  ],
+  "_note": "Gemini 4 Hydrogen launch (blog, model card, evals methodology, AA, Vals) plus OpenRouter pages (prices, Vals/Design Arena panels). Fill-only; conflicts in s320/report.json."
+ },
+ "models": [
+  {
+   "id": "google/gemini-4-hydrogen",
+   "vendor": "google",
+   "name": "Gemini 4 Hydrogen",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image",
+    "audio",
+    "video"
+   ],
+   "release_date": "2026-11-12",
+   "context_window": 1048576,
+   "knowledge_cutoff": "2026-03",
+   "parameters": null,
+   "_note": "Launch blog 'Nov 12, 2026' (Koray Kavukcuoglu). Adapted from Gemini 4 Carbon (model card). Four thinking levels low/medium/high (default)/xhigh; base id = xhigh (AA base slug 'Gemini 4 Hydrogen (Xhigh)', Google card run at highest thinking, Vals reasoning effort xhigh). 1M context, up to 64K sync output / 1M via background long decode. $1.50/$7.50 per M flat across the 1M window; knowledge cutoff March 2026."
+  },
+  {
+   "id": "google/gemini-4-hydrogen-high",
+   "vendor": "google",
+   "name": "Gemini 4 Hydrogen (High)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image",
+    "audio",
+    "video"
+   ],
+   "release_date": "2026-11-12",
+   "context_window": 1048576,
+   "knowledge_cutoff": "2026-03",
+   "parameters": null,
+   "_note": "Default \"high\" thinking level of Gemini 4 Hydrogen (AA slug gemini-4-hydrogen-high)."
+  },
+  {
+   "id": "google/gemini-4-hydrogen-low",
+   "vendor": "google",
+   "name": "Gemini 4 Hydrogen (Low)",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image",
+    "audio",
+    "video"
+   ],
+   "release_date": "2026-11-12",
+   "context_window": 1048576,
+   "knowledge_cutoff": "2026-03",
+   "parameters": null,
+   "_note": "Low thinking level of Gemini 4 Hydrogen (AA slug gemini-4-hydrogen-low)."
+  },
+  {
+   "id": "google/gemini-decision-1",
+   "vendor": "google",
+   "name": "Gemini Decision 1",
+   "type": "decision",
+   "modalities": [
+    "text",
+    "image",
+    "audio",
+    "video"
+   ],
+   "release_date": null,
+   "context_window": 262144,
+   "parameters": null,
+   "_note": "Google's model for the Decisions API (OpenRouter description): answers structured questions about an input state (true/false, multiple choice up to 255 options, score up to 255 levels) with a confidence per answer. OpenRouter listing 2026-11-11 (permaslug gemini-decision-1-20261111); no Google launch date read, so release_date left empty."
+  },
+  {
+   "id": "google/gemini-omni-1.2-flash",
+   "vendor": "google",
+   "name": "Gemini Omni 1.2 Flash",
+   "type": "video",
+   "modalities": [
+    "text",
+    "image",
+    "video"
+   ],
+   "release_date": "2026-11-05",
+   "context_window": 131072,
+   "parameters": null,
+   "_note": "Native multimodal video generation/editing model, successor to Gemini Omni 1.1 Flash: clips up to 15 s with native audio, 16:9 or 9:16, 360p drafts to 4K (OpenRouter). Date = OpenRouter created_at and permaslug gemini-omni-1.2-flash-20261105."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "terminal_bench_4_1_cheating_adjusted",
+   "name": "Terminal-Bench 4.1 (cheating-adjusted)",
+   "category": "coding",
+   "metric": "accuracy",
+   "description": "Terminal-Bench 4.1 agentic terminal tasks scored with cheating-adjusted accuracy (runs that game the verifier count as failures), as reported in the Gemini 4 Hydrogen model card."
+  },
+  {
+   "id": "mka_climb_wsr",
+   "name": "MKA (Multimodal Knowledge Agent) — Climb WSR accuracy",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "Multimodal Knowledge Agent benchmark: end-to-end agentic knowledge work over complex visual files (PDFs, spreadsheets, charts, audio, video); Climb WSR accuracy. Artificial Analysis runs it (RSC field mkaClimbWsr, previously unidentified in S317); Google self-computes Gemini 4 Hydrogen."
+  },
+  {
+   "id": "harvey_lab_vals_v1_1",
+   "name": "HLAB-Vals-1.1 (Harvey Legal Agent Benchmark, Vals run v1.1)",
+   "category": "legal",
+   "metric": "accuracy",
+   "description": "Vals AI's run of Harvey's Legal Agent Benchmark, version 1.1 (Vals key 'hlab'); harvey_lab_vals holds the v1 run ('hlab-v1')."
+  },
+  {
+   "id": "access_to_justice_vals",
+   "name": "Access to Justice Benchmark (Vals AI)",
+   "category": "legal",
+   "metric": "accuracy",
+   "description": "Vals AI's Access to Justice Benchmark (Vals key 'a2j'): legal-aid style questions for self-represented litigants."
+  },
+  {
+   "id": "sage_v2_vals",
+   "name": "SAGE (Vals AI, current version)",
+   "category": "other",
+   "metric": "accuracy",
+   "description": "Vals AI's current SAGE benchmark (Vals key 'sage'); the earlier version 'sage-v1' is stored as sage_vals."
+  },
+  {
+   "id": "design_arena_agents_pdf_elo",
+   "name": "Design Arena — agents / pdf Elo",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Design Arena (designarena.ai) crowd-voted Elo for the 'pdf' category of its agents arena; read via the OpenRouter model Benchmarks panel."
+  },
+  {
+   "id": "design_arena_models_3d_elo",
+   "name": "Design Arena — models / 3d Elo",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Design Arena (designarena.ai) crowd-voted Elo for the '3d' category of its models arena; read via the OpenRouter model Benchmarks panel."
+  },
+  {
+   "id": "design_arena_models_codecategories_elo",
+   "name": "Design Arena — models / codecategories Elo",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Design Arena (designarena.ai) crowd-voted Elo for the 'codecategories' category of its models arena; read via the OpenRouter model Benchmarks panel."
+  },
+  {
+   "id": "design_arena_models_gamedev_elo",
+   "name": "Design Arena — models / gamedev Elo",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Design Arena (designarena.ai) crowd-voted Elo for the 'gamedev' category of its models arena; read via the OpenRouter model Benchmarks panel."
+  },
+  {
+   "id": "design_arena_models_uicomponent_elo",
+   "name": "Design Arena — models / uicomponent Elo",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Design Arena (designarena.ai) crowd-voted Elo for the 'uicomponent' category of its models arena; read via the OpenRouter model Benchmarks panel."
+  },
+  {
+   "id": "design_arena_models_website_elo",
+   "name": "Design Arena — models / website Elo",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Design Arena (designarena.ai) crowd-voted Elo for the 'website' category of its models arena; read via the OpenRouter model Benchmarks panel."
+  },
+  {
+   "id": "design_arena_agents_agenticgamedev_elo",
+   "name": "Design Arena — agents / agenticgamedev Elo",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Design Arena (designarena.ai) crowd-voted Elo for the 'agenticgamedev' category of its agents arena; read via the OpenRouter model Benchmarks panel."
+  },
+  {
+   "id": "design_arena_agents_blender3d_elo",
+   "name": "Design Arena — agents / blender3d Elo",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Design Arena (designarena.ai) crowd-voted Elo for the 'blender3d' category of its agents arena; read via the OpenRouter model Benchmarks panel."
+  },
+  {
+   "id": "design_arena_agents_spreadsheet_elo",
+   "name": "Design Arena — agents / spreadsheet Elo",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Design Arena (designarena.ai) crowd-voted Elo for the 'spreadsheet' category of its agents arena; read via the OpenRouter model Benchmarks panel."
+  },
+  {
+   "id": "design_arena_models_dataviz_elo",
+   "name": "Design Arena — models / dataviz Elo",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Design Arena (designarena.ai) crowd-voted Elo for the 'dataviz' category of its models arena; read via the OpenRouter model Benchmarks panel."
+  },
+  {
+   "id": "design_arena_models_svg_elo",
+   "name": "Design Arena — models / svg Elo",
+   "category": "coding",
+   "metric": "elo",
+   "description": "Design Arena (designarena.ai) crowd-voted Elo for the 'svg' category of its models arena; read via the OpenRouter model Benchmarks panel."
+  },
+  {
+   "id": "batch_input_price_per_mtok_lower_better",
+   "name": "Batch input price (USD per 1M tokens)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "Provider batch-API input token price, USD per million tokens (lower is better)."
+  },
+  {
+   "id": "batch_output_price_per_mtok_lower_better",
+   "name": "Batch output price (USD per 1M tokens)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "Provider batch-API output token price, USD per million tokens (lower is better)."
+  },
+  {
+   "id": "video_with_audio_cost_per_second_360p_usd_lower_better",
+   "name": "Video generation price with audio, 360p (USD per second)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "Provider list price per generated second of video with audio at 360p output (lower is better)."
+  },
+  {
+   "id": "video_with_audio_cost_per_second_720p_usd_lower_better",
+   "name": "Video generation price with audio, 720p (USD per second)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "Provider list price per generated second of video with audio at 720p output (lower is better)."
+  },
+  {
+   "id": "video_with_audio_cost_per_second_1080p_usd_lower_better",
+   "name": "Video generation price with audio, 1080p (USD per second)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "Provider list price per generated second of video with audio at 1080p output (lower is better)."
+  },
+  {
+   "id": "video_with_audio_cost_per_second_4k_usd_lower_better",
+   "name": "Video generation price with audio, 4K (USD per second)",
+   "category": "cost",
+   "metric": "usd",
+   "description": "Provider list price per generated second of video with audio at 4k output (lower is better)."
+  }
+ ],
+ "scores": [
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "swe_sweep",
+   "score": 13.5,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. Self-computed with Antigravity-CLI (agy) 1.4.8, safety filters on, subtask-weighted reward."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "swe_sweep",
+   "score": 3.1,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. From the official public SWE-sweep leaderboard."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "swe_sweep",
+   "score": 5.8,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. From the official public SWE-sweep leaderboard."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "terminal_bench_4_1_cheating_adjusted",
+   "score": 57.0,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. Self-computed, mini-swe-agent vision harness, average reward over 5 attempts, HIGH effort level (methodology)."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "terminal_bench_4_1_cheating_adjusted",
+   "score": 63.9,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. From the official public leaderboard; cheating-adjusted."
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "terminal_bench_4_1_cheating_adjusted",
+   "score": 18.2,
+   "unit": "%",
+   "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+   "_note": "Launch blog: Hydrogen 'more than tripling Terminal-Bench 4.1 scores (57% vs. 18.2%)' vs Gemini 3.8 Flash."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "agents_last_exam_v1_1",
+   "score": 71.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. Self-computed on the 122-task v1.1 set (Oct 17 task version), agy 1.4.8, 5-hour window, averaged rubric score."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "agents_last_exam_v1_1",
+   "score": 60.4,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. Google-run with ALE-Claw under the same setup (not the official board)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "vending_bench_2",
+   "score": 14549.0,
+   "unit": "usd",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. From the Andon Labs official public leaderboard (bank balance $)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "osworld_2_1_offline",
+   "score": 77.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. 82-task offline subset, partial score, max over 3 runs, updated Gemini CUA harness."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "mka_climb_wsr",
+   "score": 53.4,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. Self-computed by Google (AA has no Hydrogen MKA value yet)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "chartography_surge_no_tools",
+   "score": 66.6,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. Self-computed without tools following the official Surge public leaderboard."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "chartography_surge_no_tools",
+   "score": 63.2,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. Self-computed by Google without tools following the Surge leaderboard."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "terminal_bench_science",
+   "score": 51.4,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. Terminal-Bench-Science 0.1, self-computed with mini-swe-agent vision harness, average reward over 5 attempts."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "terminal_bench_science",
+   "score": 58.3,
+   "unit": "%",
+   "_source": "https://deepmind.google/models/model-cards/gemini-4-hydrogen/",
+   "_note": "Gemini 4 Hydrogen model card results table (Nov 2026); methodology deepmind.google/models/evals-methodology/gemini-4-hydrogen. Terminal-Bench-Science 0.1 from the official public leaderboard."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "safety_text_to_text_delta_vs_prior",
+   "score": 0.8,
+   "unit": "pp",
+   "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Hydrogen-Model-Card.pdf",
+   "_note": "Gemini 4 Hydrogen model card safety table: percentage-point change vs Gemini 3.8 Flash (unjustified refusals: lower is better)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "safety_multilingual_delta_vs_prior",
+   "score": 1.1,
+   "unit": "pp",
+   "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Hydrogen-Model-Card.pdf",
+   "_note": "Gemini 4 Hydrogen model card safety table: percentage-point change vs Gemini 3.8 Flash (unjustified refusals: lower is better)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "safety_image_to_text_delta_vs_prior",
+   "score": 7.0,
+   "unit": "pp",
+   "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Hydrogen-Model-Card.pdf",
+   "_note": "Gemini 4 Hydrogen model card safety table: percentage-point change vs Gemini 3.8 Flash (unjustified refusals: lower is better)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "safety_tone_delta_vs_prior",
+   "score": -0.65,
+   "unit": "pp",
+   "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Hydrogen-Model-Card.pdf",
+   "_note": "Gemini 4 Hydrogen model card safety table: percentage-point change vs Gemini 3.8 Flash (unjustified refusals: lower is better)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "safety_unjustified_refusals_delta_vs_prior",
+   "score": 5.57,
+   "unit": "pp",
+   "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Hydrogen-Model-Card.pdf",
+   "_note": "Gemini 4 Hydrogen model card safety table: percentage-point change vs Gemini 3.8 Flash (unjustified refusals: lower is better)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "vals_index_v2_2",
+   "score": 68.49,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "_note": "Vals AI model page for Gemini 4 Hydrogen, reasoning effort xhigh (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "vals_finance_index",
+   "score": 66.14,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "_note": "Vals AI model page for Gemini 4 Hydrogen, reasoning effort xhigh (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "vals_legal_index",
+   "score": 73.63,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "_note": "Vals AI model page for Gemini 4 Hydrogen, reasoning effort xhigh (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "excel_modeling_benchmark_v1_1_vals",
+   "score": 75.8,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "_note": "Vals AI model page for Gemini 4 Hydrogen, reasoning effort xhigh (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "finance_agent_v2_1_vals",
+   "score": 65.12,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "_note": "Vals AI model page for Gemini 4 Hydrogen, reasoning effort xhigh (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "vals_legal_research_bench",
+   "score": 53.85,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "_note": "Vals AI model page for Gemini 4 Hydrogen, reasoning effort xhigh (read 2026-11-13). Google's blog quotes 55.8% (tie for #1), which matches Carbon's 55.77%; the Vals page value is used."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "tax_agent_bench_vals",
+   "score": 52.3,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "_note": "Vals AI model page for Gemini 4 Hydrogen, reasoning effort xhigh (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "vibe_code_bench_v1_1_vals",
+   "score": 87.78,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "_note": "Vals AI model page for Gemini 4 Hydrogen, reasoning effort xhigh (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "terminal_bench_4_0_vals_mini_swe_agent",
+   "score": 54.04,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "_note": "Vals AI model page for Gemini 4 Hydrogen, reasoning effort xhigh (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "vals_index_v2_2_cost_per_test_usd_lower_better",
+   "score": 9.838,
+   "unit": "usd",
+   "_source": "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "_note": "Vals AI model page for Gemini 4 Hydrogen, reasoning effort xhigh (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "harvey_lab_vals_v1_1",
+   "score": 11.25,
+   "unit": "%",
+   "_source": "https://www.vals.ai/models/google_gemini-4-hydrogen",
+   "_note": "Vals AI model page for Gemini 4 Hydrogen, reasoning effort xhigh (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "harvey_lab_vals_v1_1",
+   "score": 17.5,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-carbon",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='hlab' ('HLAB-Vals-1.1'), accuracy 17.5 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "design_arena_agents_pdf_elo",
+   "score": 1311.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-carbon",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record agents/pdf: elo 1311, win rate 67.9%, percentile 97."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "design_arena_models_3d_elo",
+   "score": 1415.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-carbon",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/3d: elo 1415, win rate 67.9%, percentile 96."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "design_arena_models_codecategories_elo",
+   "score": 1330.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-carbon",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/codecategories: elo 1330, win rate 57.4%, percentile 93."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "design_arena_models_gamedev_elo",
+   "score": 1320.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-carbon",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/gamedev: elo 1320, win rate 55.6%, percentile 91."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "design_arena_models_uicomponent_elo",
+   "score": 1346.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-carbon",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/uicomponent: elo 1346, win rate 60.5%, percentile 94."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "design_arena_models_website_elo",
+   "score": 1295.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-carbon",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/website: elo 1295, win rate 53.3%, percentile 90."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "access_to_justice_vals",
+   "score": 68.485,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='a2j' ('Access to Justice Benchmark'), accuracy 68.485 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "code_migration_v1_1_vals",
+   "score": 70.796,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='code-migration-v1-1' ('Code Migration v1.1'), accuracy 70.796 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "excel_modeling_benchmark_v1_1_vals",
+   "score": 74.828,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='emb-v1-1' ('EMB v1.1'), accuracy 74.828 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "finance_agent_v2_1_vals",
+   "score": 67.658,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='fabv2-1' ('Finance Agent v2.1'), accuracy 67.658 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "vals_finance_index",
+   "score": 66.0,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='finance_index' ('Vals Finance Index'), accuracy 66 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "harvey_lab_vals_v1_1",
+   "score": 27.083,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='hlab' ('HLAB-Vals-1.1'), accuracy 27.083 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "immigration_vals",
+   "score": 68.075,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='immigration' ('Immigration'), accuracy 68.075 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "vals_legal_index",
+   "score": 76.779,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='legal_index' ('Vals Legal Index'), accuracy 76.779 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "sage_v2_vals",
+   "score": 89.46,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='sage' ('SAGE'), accuracy 89.46 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "vals_science_index",
+   "score": 55.359,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='science_index' ('Vals Science Index'), accuracy 55.359 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "vibe_code_bench_1_100_vals",
+   "score": 21.2,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='vcb-1-100' ('Vibe Code Bench 1-100'), accuracy 21.2 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "vibe_code_bench_v1_1_vals",
+   "score": 91.906,
+   "unit": "%",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Vals AI record benchmark='vibe-code' ('Vibe Code Bench v1.1'), accuracy 91.906 (read 2026-11-13)."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "design_arena_agents_agenticgamedev_elo",
+   "score": 1265.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record agents/agenticgamedev: elo 1265, win rate 51.1%, percentile 96."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "design_arena_agents_blender3d_elo",
+   "score": 1378.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record agents/blender3d: elo 1378, win rate 65.7%, percentile 96."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "design_arena_agents_pdf_elo",
+   "score": 1298.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record agents/pdf: elo 1298, win rate 69.2%, percentile 87."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "design_arena_agents_spreadsheet_elo",
+   "score": 1203.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record agents/spreadsheet: elo 1203, win rate 33.9%, percentile 63."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "design_arena_models_3d_elo",
+   "score": 1356.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/3d: elo 1356, win rate 49.8%, percentile 93."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "design_arena_models_codecategories_elo",
+   "score": 1327.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/codecategories: elo 1327, win rate 53.5%, percentile 93."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "design_arena_models_dataviz_elo",
+   "score": 1326.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/dataviz: elo 1326, win rate 60.5%, percentile 94."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "design_arena_models_gamedev_elo",
+   "score": 1362.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/gamedev: elo 1362, win rate 53.5%, percentile 95."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "design_arena_models_svg_elo",
+   "score": 1336.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/svg: elo 1336, win rate 62%, percentile 99."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "design_arena_models_uicomponent_elo",
+   "score": 1336.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/uicomponent: elo 1336, win rate 58.4%, percentile 92."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "design_arena_models_website_elo",
+   "score": 1317.0,
+   "unit": "elo",
+   "_source": "https://openrouter.ai/google/gemini-4-argon:batch",
+   "_note": "OpenRouter Benchmarks panel, Design Arena record models/website: elo 1317, win rate 55.5%, percentile 95."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-4-hydrogen",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 7.5,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-4-hydrogen",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.075,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-4-hydrogen",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "batch_input_price_per_mtok_lower_better",
+   "score": 0.75,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-4-hydrogen:batch",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "batch_output_price_per_mtok_lower_better",
+   "score": 3.75,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-4-hydrogen:batch",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/gemini-decision-1",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.1,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-decision-1",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/gemini-decision-1",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.0,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-decision-1",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/nano-banana-2.1",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-nano-banana-2.1",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/nano-banana-2.1",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 7.5,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-nano-banana-2.1",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/nano-banana-2.1",
+   "benchmark": "image_output_price_per_mtok_lower_better",
+   "score": 30.0,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-nano-banana-2.1",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/gemini-omni-1.2-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.2-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/gemini-omni-1.2-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 9.0,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.2-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/gemini-omni-1.1-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.1-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/gemini-omni-1.1-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 9.0,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.1-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13."
+  },
+  {
+   "model": "google/gemini-omni-1.2-flash",
+   "benchmark": "video_with_audio_cost_per_second_360p_usd_lower_better",
+   "score": 0.023172,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.2-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13. SKU 'Video (with audio)' tier 360p"
+  },
+  {
+   "model": "google/gemini-omni-1.1-flash",
+   "benchmark": "video_with_audio_cost_per_second_360p_usd_lower_better",
+   "score": 0.033793,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.1-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13. SKU 'Video (with audio)' tier 360p"
+  },
+  {
+   "model": "google/gemini-omni-1.2-flash",
+   "benchmark": "video_with_audio_cost_per_second_720p_usd_lower_better",
+   "score": 0.069504,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.2-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13. SKU 'Video (with audio)' tier 720p"
+  },
+  {
+   "model": "google/gemini-omni-1.1-flash",
+   "benchmark": "video_with_audio_cost_per_second_720p_usd_lower_better",
+   "score": 0.10136,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.1-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13. SKU 'Video (with audio)' tier 720p"
+  },
+  {
+   "model": "google/gemini-omni-1.2-flash",
+   "benchmark": "video_with_audio_cost_per_second_1080p_usd_lower_better",
+   "score": 0.104256,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.2-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13. SKU 'Video (with audio)' tier 1080p"
+  },
+  {
+   "model": "google/gemini-omni-1.1-flash",
+   "benchmark": "video_with_audio_cost_per_second_1080p_usd_lower_better",
+   "score": 0.15204,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.1-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13. SKU 'Video (with audio)' tier 1080p"
+  },
+  {
+   "model": "google/gemini-omni-1.2-flash",
+   "benchmark": "video_with_audio_cost_per_second_4k_usd_lower_better",
+   "score": 0.208512,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.2-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13. SKU 'Video (with audio)' tier 4k"
+  },
+  {
+   "model": "google/gemini-omni-1.1-flash",
+   "benchmark": "video_with_audio_cost_per_second_4k_usd_lower_better",
+   "score": 0.30408,
+   "unit": "usd",
+   "_source": "https://openrouter.ai/google/gemini-omni-1.1-flash",
+   "_note": "OpenRouter endpoint pricing (Google provider), read 2026-11-13. SKU 'Video (with audio)' tier 4k"
+  },
+  {
+   "model": "meta/muse-wonder",
+   "benchmark": "mka_climb_wsr",
+   "score": 47.489477,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug muse-wonder, AA name 'Muse Wonder (Max)', field mkaClimbWsr."
+  },
+  {
+   "model": "tencent/hy4",
+   "benchmark": "aa_ii_v5_time_per_task_s_lower_better",
+   "score": 856.49927,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug tencent-hy4, AA name 'Tencent Hy4', field intelligenceIndexTimePerTask."
+  },
+  {
+   "model": "tencent/hy4",
+   "benchmark": "aa_capability_index_healthcare_medical_v5",
+   "score": 42.899231,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug tencent-hy4, AA name 'Tencent Hy4', field capabilities.healthcareAndMedical."
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "mka_climb_wsr",
+   "score": 51.9926,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug claude-sonnet-5-5, AA name 'Claude Sonnet 5.5 (Max, Default Fallback)', field mkaClimbWsr."
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "mka_climb_wsr",
+   "score": 36.753545,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gpt-6-luna, AA name 'GPT-6 Luna (Max)', field mkaClimbWsr."
+  },
+  {
+   "model": "mistral/mistral-large-4",
+   "benchmark": "mka_climb_wsr",
+   "score": 35.060825,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug mistral-large-4, AA name 'Mistral Large 4 (High)', field mkaClimbWsr."
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "mka_climb_wsr",
+   "score": 43.755021,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gpt-6-1-terra, AA name 'GPT-6.1 Terra (Max)', field mkaClimbWsr."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "mka_climb_wsr",
+   "score": 50.244831,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gpt-6-astra, AA name 'GPT-6 Astra (Max)', field mkaClimbWsr."
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "benchmark": "mka_climb_wsr",
+   "score": 38.543019,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug deepseek-v4-1-flash-1017, AA name 'DeepSeek V4.1 Flash 1017 (Max)', field mkaClimbWsr."
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "mka_climb_wsr",
+   "score": 47.71567,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gpt-6-1-sol, AA name 'GPT-6.1 Sol (Max)', field mkaClimbWsr."
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "mka_climb_wsr",
+   "score": 56.560426,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug claude-fable-5-2, AA name 'Claude Fable 5.2 (Max, Default Fallback)', field mkaClimbWsr."
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "mka_climb_wsr",
+   "score": 54.343112,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-carbon, AA name 'Gemini 4 Carbon (High)', field mkaClimbWsr."
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro",
+   "benchmark": "mka_climb_wsr",
+   "score": 43.859188,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug kimi-k3-1-pro, AA name 'Kimi K3.1 Pro', field mkaClimbWsr."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_intelligence_index_v5_0",
+   "score": 53.919229,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field intelligenceIndex."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_omniscience_v1_1_index",
+   "score": 46.266667,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field omniscience."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_omniscience_v1_1_acc",
+   "score": 50.466667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field omniscienceAccuracy."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_omniscience_v1_1_hallucination_rate_lower_better",
+   "score": 8.479139,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field omniscienceHallucinationRate."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "critpt_v2_hard_aa",
+   "score": 66.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field critptAgenticHard."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "hle_diamond_aa",
+   "score": 58.8,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field hleDiamond."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "gdp_pdf",
+   "score": 27.6,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field gdpPdfAllPass."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 53.535354,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field terminalBench40."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "frontiercode_2_0_aa",
+   "score": 38.959192,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field frontierCode20."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "terminal_bench_science_aa",
+   "score": 49.52381,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field terminalBenchScience."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "automationbench_aa",
+   "score": 76.144169,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field automationBenchPartialScore."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_ii_v5_time_per_task_s_lower_better",
+   "score": 819.149306,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field intelligenceIndexTimePerTask."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 1.1025,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field price1mBlended7To2To1."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_capability_index_finance_accounting_v5",
+   "score": 58.0535,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field capabilities.financeAndAccounting."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_capability_index_strategy_ops_v5",
+   "score": 57.737365,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field capabilities.strategyAndOps."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_capability_index_legal_v5",
+   "score": 56.737863,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field capabilities.legal."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_capability_index_engineering_v5",
+   "score": 60.102797,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field capabilities.engineering."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_capability_index_economics_v5",
+   "score": 55.04665,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field capabilities.economics."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_ii_v5_cost_per_task_usd_lower_better",
+   "score": 3.160159,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field intelligenceIndexCostPerTask.cost.total."
+  },
+  {
+   "model": "google/gemini-4-hydrogen",
+   "benchmark": "aa_ii_v5_output_tokens_per_task",
+   "score": 154405.609126,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen, AA name 'Gemini 4 Hydrogen (Xhigh)', field intelligenceIndexOutputTokensPerTask.output."
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "mka_climb_wsr",
+   "score": 40.143416,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug grok-4-7, AA name 'Grok 4.7 (Xhigh)', field mkaClimbWsr."
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "mka_climb_wsr",
+   "score": 37.433449,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug qwen3-8-max, AA name 'Qwen3.8 Max (0902)', field mkaClimbWsr."
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "mka_climb_wsr",
+   "score": 53.011203,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug claude-opus-5-5, AA name 'Claude Opus 5.5 (Max, Default Fallback)', field mkaClimbWsr."
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "benchmark": "mka_climb_wsr",
+   "score": 40.964208,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug claude-haiku-5-5, AA name 'Claude Haiku 5.5 (Max)', field mkaClimbWsr."
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "benchmark": "mka_climb_wsr",
+   "score": 37.318109,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug mimo-v2-6-pro, AA name 'MiMo-V2.6-Pro', field mkaClimbWsr."
+  },
+  {
+   "model": "chinamobile/jt-4.1-flash-236b-a21b",
+   "benchmark": "aa_intelligence_index_v5_0",
+   "score": 18.952877,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug jt-4-1-flash-236b-a21b, AA name 'JT-4.1 Flash 236B A21B', field intelligenceIndex."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_intelligence_index_v5_0",
+   "score": 50.787083,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field intelligenceIndex."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_omniscience_v1_1_index",
+   "score": 43.666667,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field omniscience."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_omniscience_v1_1_acc",
+   "score": 48.166667,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field omniscienceAccuracy."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_omniscience_v1_1_hallucination_rate_lower_better",
+   "score": 8.681672,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field omniscienceHallucinationRate."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "critpt_v2_hard_aa",
+   "score": 61.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field critptAgenticHard."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "hle_diamond_aa",
+   "score": 54.9,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field hleDiamond."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "gdp_pdf",
+   "score": 30.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field gdpPdfAllPass."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 54.040404,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field terminalBench40."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "frontiercode_2_0_aa",
+   "score": 36.327525,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field frontierCode20."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "terminal_bench_science_aa",
+   "score": 41.428571,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field terminalBenchScience."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "automationbench_aa",
+   "score": 74.435894,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field automationBenchPartialScore."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field price1mInputTokens."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 7.5,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field price1mOutputTokens."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.075,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field cacheHitPrice."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_ii_v5_time_per_task_s_lower_better",
+   "score": 474.100517,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field intelligenceIndexTimePerTask."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 1.1025,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field price1mBlended7To2To1."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_capability_index_finance_accounting_v5",
+   "score": 56.083035,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field capabilities.financeAndAccounting."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_capability_index_strategy_ops_v5",
+   "score": 55.375932,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field capabilities.strategyAndOps."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_capability_index_legal_v5",
+   "score": 54.846552,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field capabilities.legal."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_capability_index_engineering_v5",
+   "score": 56.950702,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field capabilities.engineering."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_capability_index_economics_v5",
+   "score": 53.042167,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field capabilities.economics."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_ii_v5_cost_per_task_usd_lower_better",
+   "score": 1.873314,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field intelligenceIndexCostPerTask.cost.total."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-high",
+   "benchmark": "aa_ii_v5_output_tokens_per_task",
+   "score": 84978.398272,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-high, AA name 'Gemini 4 Hydrogen (High)', field intelligenceIndexOutputTokensPerTask.output."
+  },
+  {
+   "model": "alibaba/qwen3.8-flash-next",
+   "benchmark": "aa_intelligence_index_v5_0",
+   "score": 28.575003,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug qwen3-8-flash-next, AA name 'Qwen3.8-Flash-Next', field intelligenceIndex."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_intelligence_index_v5_0",
+   "score": 26.893669,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field intelligenceIndex."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_omniscience_v1_1_index",
+   "score": 36.1,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field omniscience."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_omniscience_v1_1_acc",
+   "score": 46.233333,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field omniscienceAccuracy."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_omniscience_v1_1_hallucination_rate_lower_better",
+   "score": 18.846869,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field omniscienceHallucinationRate."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "critpt_v2_hard_aa",
+   "score": 48.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field critptAgenticHard."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "hle_diamond_aa",
+   "score": 32.2,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field hleDiamond."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "gdp_pdf",
+   "score": 28.2,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field gdpPdfAllPass."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "terminal_bench_4_0_aa",
+   "score": 6.565657,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field terminalBench40."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "frontiercode_2_0_aa",
+   "score": 9.286212,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field frontierCode20."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "terminal_bench_science_aa",
+   "score": 2.380952,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field terminalBenchScience."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "automationbench_aa",
+   "score": 60.514285,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field automationBenchPartialScore."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field price1mInputTokens."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 7.5,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field price1mOutputTokens."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.075,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field cacheHitPrice."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_ii_v5_time_per_task_s_lower_better",
+   "score": 78.898317,
+   "unit": "s",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field intelligenceIndexTimePerTask."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_blended_price_usd_per_m",
+   "score": 1.1025,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/models/gemini-4-hydrogen-high",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field price1mBlended7To2To1."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_capability_index_finance_accounting_v5",
+   "score": 41.167601,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field capabilities.financeAndAccounting."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_capability_index_strategy_ops_v5",
+   "score": 41.72482,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field capabilities.strategyAndOps."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_capability_index_legal_v5",
+   "score": 42.378006,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field capabilities.legal."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_capability_index_engineering_v5",
+   "score": 36.29231,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field capabilities.engineering."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_capability_index_economics_v5",
+   "score": 37.947317,
+   "unit": "index_points",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field capabilities.economics."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_ii_v5_cost_per_task_usd_lower_better",
+   "score": 0.292223,
+   "unit": "usd",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field intelligenceIndexCostPerTask.cost.total."
+  },
+  {
+   "model": "google/gemini-4-hydrogen-low",
+   "benchmark": "aa_ii_v5_output_tokens_per_task",
+   "score": 14073.817445,
+   "unit": "tokens",
+   "_source": "https://artificialanalysis.ai/",
+   "_note": "AA RSC model object read 2026-11-13, slug gemini-4-hydrogen-low, AA name 'Gemini 4 Hydrogen (Low)', field intelligenceIndexOutputTokensPerTask.output."
+  }
+ ]
+}

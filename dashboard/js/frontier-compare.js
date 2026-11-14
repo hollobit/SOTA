@@ -244,6 +244,8 @@ var FrontierCompare = {
             'videommmu_test', 'tvbench', 'lvbench',
             // 2026-09-30 S290 — Chartography (Surge board, no tools) from the Gemini 4 Argon table
             'chartography_surge_no_tools',
+            // 2026-11-12 S320 — Gemini 4 Hydrogen card: MKA (AA mkaClimbWsr), Terminal-Bench 4.1 cheating-adjusted
+            'mka_climb_wsr', 'terminal_bench_4_1_cheating_adjusted',
             // 2026-10-02 S291 — Blueprint-Bench 2 (Andon Labs spatial reasoning: apartment photos → 2D floor plan)
             'blueprint_bench_2',
             // 2026-10-02 S292 — spatial / physics reasoning suites with frontier VLM coverage
@@ -310,6 +312,8 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-11-12 S320
+        'google/gemini-4-hydrogen',  // 2026-11-12 — efficient Gemini 4 (adapted from Carbon); base = xhigh: AAII v5 53.9 (high 50.8), HLE-Diamond 58.8, ALE v1.1 71.6, SWE-sweep 13.5, MKA 53.4, Vals Index 68.49, Tax Agent 52.3 (#1); $1.50/$7.50
         // 2026-11-09 S317
         'anthropic/claude-fable-5.2',  // 2026-11-09 — AAII v5 64.6 (#1, max), FrontierCode 2.0 49.1 (xhigh), FrontierSWE v2 69.9, SWE-bench Pro 93.0, RLI 41.3, ARC-AGI-3 79.3 (high); $8/$40
         'anthropic/claude-mythos-5.2',  // 2026-11-09 — same model, safeguards off for verified orgs: CVE Rediscovery 89.6, CyScenarioBench 76.3, TB 4.0 70.5, AECI 177.12

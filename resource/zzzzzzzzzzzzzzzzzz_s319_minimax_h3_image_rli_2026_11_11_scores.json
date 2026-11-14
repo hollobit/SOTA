@@ -1,0 +1,478 @@
+{
+ "_meta": {
+  "collected_at": "2026-11-11",
+  "session": "S319",
+  "sources": [
+   "https://huggingface.co/MiniMaxAI/MiniMax-H3-Image",
+   "https://platform.minimax.io/docs/guides/image-generation",
+   "https://platform.minimax.io/docs/pricing/overview",
+   "https://platform.minimax.io/docs/release-notes/models",
+   "https://www.minimax.io/blog/minimax-h3-image",
+   "https://www.remotelabor.ai/",
+   "https://dashboard.safe.ai/api/rli",
+   "https://labs.scale.com/leaderboard/rli",
+   "https://arxiv.org/abs/2510.26787"
+  ],
+  "_note": "MiniMax H3 Image launch (model card has no benchmark table; blog latency chart + official pricing) and Remote Labor Index site/paper (Elo and dollars-earned tables; CAIS/Scale boards for missing automation rates). Fill-only."
+ },
+ "models": [
+  {
+   "id": "minimax/h3-image",
+   "vendor": "minimax",
+   "name": "MiniMax H3 Image",
+   "type": "image",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-11-10",
+   "parameters": "33.1B",
+   "_note": "Open-weight text-to-image + image-editing model from the MiniMax H3 family (API model MiniMax-H3-Image, Standard mode). Release per MiniMax release notes 'Nov. 10, 2026' (launch blog dated 2026-11-11; HF repo created 2026-11-03). 33.1B dense single-stream DiT (50 layers), H3 architecture without audio layers, MiniMax-H3 (Qwen3-VL) text encoder unchanged; 6-step distilled, no CFG; ~16 MP output (4096x4096 up to 6272x2688); up to 16 reference images. MiniMax-H3-Image Community License. Optional prompt expander MiniMax-H3-Image-PE (NVFP4)."
+  },
+  {
+   "id": "minimax/h3-image-highspeed",
+   "vendor": "minimax",
+   "name": "MiniMax H3 Image Highspeed",
+   "type": "image",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "release_date": "2026-11-10",
+   "_note": "API-only Highspeed serving mode of MiniMax H3 Image (model name MiniMax-H3-Image-Highspeed): same model, higher price per token, lower latency (blog: Standard 1.5-2x, Highspeed 3-4x as fast as mainstream alternatives)."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "minimax_h3_image_latency_p50_t2i_1k_s_lower_better",
+   "name": "MiniMax H3-Image launch latency chart — P50 seconds, text-to-image, 1K (1024x1024)",
+   "category": "image",
+   "metric": "seconds",
+   "description": "Median (P50) end-to-end generation latency in seconds for text-to-image at 1024x1024 output, from the MiniMax H3-Image launch blog chart \"Model Latency Comparison Across Resolutions\" (lower is better). Vendor-measured: H3 uses MiniMax's second-round P50 results; other models keep MiniMax's original comparison data. Each reference image is 1K."
+  },
+  {
+   "id": "minimax_h3_image_latency_p50_t2i_2k_s_lower_better",
+   "name": "MiniMax H3-Image launch latency chart — P50 seconds, text-to-image, 2K (2048x2048)",
+   "category": "image",
+   "metric": "seconds",
+   "description": "Median (P50) end-to-end generation latency in seconds for text-to-image at 2048x2048 output, from the MiniMax H3-Image launch blog chart \"Model Latency Comparison Across Resolutions\" (lower is better). Vendor-measured: H3 uses MiniMax's second-round P50 results; other models keep MiniMax's original comparison data. Each reference image is 1K."
+  },
+  {
+   "id": "minimax_h3_image_latency_p50_t2i_4k_s_lower_better",
+   "name": "MiniMax H3-Image launch latency chart — P50 seconds, text-to-image, 4K (4096x4096 (16 MP))",
+   "category": "image",
+   "metric": "seconds",
+   "description": "Median (P50) end-to-end generation latency in seconds for text-to-image at 4096x4096 (16 MP) output, from the MiniMax H3-Image launch blog chart \"Model Latency Comparison Across Resolutions\" (lower is better). Vendor-measured: H3 uses MiniMax's second-round P50 results; other models keep MiniMax's original comparison data. Each reference image is 1K."
+  },
+  {
+   "id": "minimax_h3_image_latency_p50_edit_1ref_1k_s_lower_better",
+   "name": "MiniMax H3-Image launch latency chart — P50 seconds, image editing, 1 input image, 1K (1024x1024)",
+   "category": "image",
+   "metric": "seconds",
+   "description": "Median (P50) end-to-end generation latency in seconds for image editing, 1 input image at 1024x1024 output, from the MiniMax H3-Image launch blog chart \"Model Latency Comparison Across Resolutions\" (lower is better). Vendor-measured: H3 uses MiniMax's second-round P50 results; other models keep MiniMax's original comparison data. Each reference image is 1K."
+  },
+  {
+   "id": "minimax_h3_image_latency_p50_edit_1ref_2k_s_lower_better",
+   "name": "MiniMax H3-Image launch latency chart — P50 seconds, image editing, 1 input image, 2K (2048x2048)",
+   "category": "image",
+   "metric": "seconds",
+   "description": "Median (P50) end-to-end generation latency in seconds for image editing, 1 input image at 2048x2048 output, from the MiniMax H3-Image launch blog chart \"Model Latency Comparison Across Resolutions\" (lower is better). Vendor-measured: H3 uses MiniMax's second-round P50 results; other models keep MiniMax's original comparison data. Each reference image is 1K."
+  },
+  {
+   "id": "minimax_h3_image_latency_p50_edit_1ref_4k_s_lower_better",
+   "name": "MiniMax H3-Image launch latency chart — P50 seconds, image editing, 1 input image, 4K (4096x4096 (16 MP))",
+   "category": "image",
+   "metric": "seconds",
+   "description": "Median (P50) end-to-end generation latency in seconds for image editing, 1 input image at 4096x4096 (16 MP) output, from the MiniMax H3-Image launch blog chart \"Model Latency Comparison Across Resolutions\" (lower is better). Vendor-measured: H3 uses MiniMax's second-round P50 results; other models keep MiniMax's original comparison data. Each reference image is 1K."
+  },
+  {
+   "id": "minimax_h3_image_latency_p50_edit_3ref_1k_s_lower_better",
+   "name": "MiniMax H3-Image launch latency chart — P50 seconds, image editing, 3 input images, 1K (1024x1024)",
+   "category": "image",
+   "metric": "seconds",
+   "description": "Median (P50) end-to-end generation latency in seconds for image editing, 3 input images at 1024x1024 output, from the MiniMax H3-Image launch blog chart \"Model Latency Comparison Across Resolutions\" (lower is better). Vendor-measured: H3 uses MiniMax's second-round P50 results; other models keep MiniMax's original comparison data. Each reference image is 1K."
+  },
+  {
+   "id": "minimax_h3_image_latency_p50_edit_3ref_2k_s_lower_better",
+   "name": "MiniMax H3-Image launch latency chart — P50 seconds, image editing, 3 input images, 2K (2048x2048)",
+   "category": "image",
+   "metric": "seconds",
+   "description": "Median (P50) end-to-end generation latency in seconds for image editing, 3 input images at 2048x2048 output, from the MiniMax H3-Image launch blog chart \"Model Latency Comparison Across Resolutions\" (lower is better). Vendor-measured: H3 uses MiniMax's second-round P50 results; other models keep MiniMax's original comparison data. Each reference image is 1K."
+  },
+  {
+   "id": "minimax_h3_image_latency_p50_edit_3ref_4k_s_lower_better",
+   "name": "MiniMax H3-Image launch latency chart — P50 seconds, image editing, 3 input images, 4K (4096x4096 (16 MP))",
+   "category": "image",
+   "metric": "seconds",
+   "description": "Median (P50) end-to-end generation latency in seconds for image editing, 3 input images at 4096x4096 (16 MP) output, from the MiniMax H3-Image launch blog chart \"Model Latency Comparison Across Resolutions\" (lower is better). Vendor-measured: H3 uses MiniMax's second-round P50 results; other models keep MiniMax's original comparison data. Each reference image is 1K."
+  },
+  {
+   "id": "remote_labor_index_elo_v1",
+   "name": "Remote Labor Index — Elo (paper v1, human baseline = 1000)",
+   "category": "agent",
+   "metric": "elo",
+   "description": "Remote Labor Index pairwise Elo from the RLI paper (arXiv 2510.26787v1, Table 3): AI deliverables compared pairwise on project completion and overall quality across the 230-project private set; scores canonicalized so the human baseline is 1,000 (higher is better)."
+  },
+  {
+   "id": "remote_labor_index_dollars_earned_v1_usd",
+   "name": "Remote Labor Index — dollars earned (paper v1, of $143,991)",
+   "category": "agent",
+   "metric": "usd",
+   "description": "Remote Labor Index economic metric from the RLI paper (arXiv 2510.26787v1, Table 4): sum of the human deliverable cost over projects the agent completed at an acceptable level, out of a maximum of $143,991 (higher is better)."
+  }
+ ],
+ "scores": [
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2.3,
+   "unit": "usd",
+   "_source": "https://platform.minimax.io/docs/pricing/overview",
+   "_note": "MiniMax pricing overview, Image Generation table, MiniMax-H3-Image Standard: input text $2.30 / input image $1.50 / output image $3.80 per M tokens. Launch offer to 2026-11-17 16:00 UTC: 50% off requests with >=16.6 MP output (not reflected)."
+  },
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "image_input_price_per_mtok_lower_better",
+   "score": 1.5,
+   "unit": "usd",
+   "_source": "https://platform.minimax.io/docs/pricing/overview",
+   "_note": "MiniMax pricing overview, Image Generation table, MiniMax-H3-Image Standard: input text $2.30 / input image $1.50 / output image $3.80 per M tokens. Launch offer to 2026-11-17 16:00 UTC: 50% off requests with >=16.6 MP output (not reflected)."
+  },
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "image_output_price_per_mtok_lower_better",
+   "score": 3.8,
+   "unit": "usd",
+   "_source": "https://platform.minimax.io/docs/pricing/overview",
+   "_note": "MiniMax pricing overview, Image Generation table, MiniMax-H3-Image Standard: input text $2.30 / input image $1.50 / output image $3.80 per M tokens. Launch offer to 2026-11-17 16:00 UTC: 50% off requests with >=16.6 MP output (not reflected)."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 2.3,
+   "unit": "usd",
+   "_source": "https://platform.minimax.io/docs/pricing/overview",
+   "_note": "MiniMax pricing overview, Image Generation table, MiniMax-H3-Image-Highspeed Highspeed: input text $2.30 / input image $3.00 / output image $7.60 per M tokens. Launch offer to 2026-11-17 16:00 UTC: 50% off requests with >=16.6 MP output (not reflected)."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "image_input_price_per_mtok_lower_better",
+   "score": 3.0,
+   "unit": "usd",
+   "_source": "https://platform.minimax.io/docs/pricing/overview",
+   "_note": "MiniMax pricing overview, Image Generation table, MiniMax-H3-Image-Highspeed Highspeed: input text $2.30 / input image $3.00 / output image $7.60 per M tokens. Launch offer to 2026-11-17 16:00 UTC: 50% off requests with >=16.6 MP output (not reflected)."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "image_output_price_per_mtok_lower_better",
+   "score": 7.6,
+   "unit": "usd",
+   "_source": "https://platform.minimax.io/docs/pricing/overview",
+   "_note": "MiniMax pricing overview, Image Generation table, MiniMax-H3-Image-Highspeed Highspeed: input text $2.30 / input image $3.00 / output image $7.60 per M tokens. Launch offer to 2026-11-17 16:00 UTC: 50% off requests with >=16.6 MP output (not reflected)."
+  },
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "minimax_h3_image_latency_p50_t2i_1k_s_lower_better",
+   "score": 10.6,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel text-to-image 1K. H3-Image Standard."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "minimax_h3_image_latency_p50_t2i_1k_s_lower_better",
+   "score": 7.7,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel text-to-image 1K. H3-Image Highspeed."
+  },
+  {
+   "model": "bytedance/seedream-5.0-pro",
+   "benchmark": "minimax_h3_image_latency_p50_t2i_1k_s_lower_better",
+   "score": 34.4,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel text-to-image 1K. Board label 'Seedream 5 Pro'; measured by MiniMax."
+  },
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "minimax_h3_image_latency_p50_t2i_2k_s_lower_better",
+   "score": 10.5,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel text-to-image 2K. H3-Image Standard."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "minimax_h3_image_latency_p50_t2i_2k_s_lower_better",
+   "score": 7.6,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel text-to-image 2K. H3-Image Highspeed."
+  },
+  {
+   "model": "bytedance/seedream-5.0-pro",
+   "benchmark": "minimax_h3_image_latency_p50_t2i_2k_s_lower_better",
+   "score": 54.2,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel text-to-image 2K. Board label 'Seedream 5 Pro'; measured by MiniMax."
+  },
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "minimax_h3_image_latency_p50_t2i_4k_s_lower_better",
+   "score": 16.0,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel text-to-image 4K. H3-Image Standard."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "minimax_h3_image_latency_p50_t2i_4k_s_lower_better",
+   "score": 10.3,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel text-to-image 4K. H3-Image Highspeed."
+  },
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "minimax_h3_image_latency_p50_edit_1ref_1k_s_lower_better",
+   "score": 14.2,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 1 input image 1K. H3-Image Standard."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "minimax_h3_image_latency_p50_edit_1ref_1k_s_lower_better",
+   "score": 10.0,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 1 input image 1K. H3-Image Highspeed."
+  },
+  {
+   "model": "bytedance/seedream-5.0-pro",
+   "benchmark": "minimax_h3_image_latency_p50_edit_1ref_1k_s_lower_better",
+   "score": 34.6,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 1 input image 1K. Board label 'Seedream 5 Pro'; measured by MiniMax."
+  },
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "minimax_h3_image_latency_p50_edit_1ref_2k_s_lower_better",
+   "score": 13.7,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 1 input image 2K. H3-Image Standard."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "minimax_h3_image_latency_p50_edit_1ref_2k_s_lower_better",
+   "score": 10.0,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 1 input image 2K. H3-Image Highspeed."
+  },
+  {
+   "model": "bytedance/seedream-5.0-pro",
+   "benchmark": "minimax_h3_image_latency_p50_edit_1ref_2k_s_lower_better",
+   "score": 62.3,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 1 input image 2K. Board label 'Seedream 5 Pro'; measured by MiniMax."
+  },
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "minimax_h3_image_latency_p50_edit_1ref_4k_s_lower_better",
+   "score": 18.2,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 1 input image 4K. H3-Image Standard."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "minimax_h3_image_latency_p50_edit_1ref_4k_s_lower_better",
+   "score": 12.5,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 1 input image 4K. H3-Image Highspeed."
+  },
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "minimax_h3_image_latency_p50_edit_3ref_1k_s_lower_better",
+   "score": 17.3,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 3 input images 1K. H3-Image Standard."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "minimax_h3_image_latency_p50_edit_3ref_1k_s_lower_better",
+   "score": 12.0,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 3 input images 1K. H3-Image Highspeed."
+  },
+  {
+   "model": "bytedance/seedream-5.0-pro",
+   "benchmark": "minimax_h3_image_latency_p50_edit_3ref_1k_s_lower_better",
+   "score": 39.0,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 3 input images 1K. Board label 'Seedream 5 Pro'; measured by MiniMax."
+  },
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "minimax_h3_image_latency_p50_edit_3ref_2k_s_lower_better",
+   "score": 15.8,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 3 input images 2K. H3-Image Standard."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "minimax_h3_image_latency_p50_edit_3ref_2k_s_lower_better",
+   "score": 11.2,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 3 input images 2K. H3-Image Highspeed."
+  },
+  {
+   "model": "bytedance/seedream-5.0-pro",
+   "benchmark": "minimax_h3_image_latency_p50_edit_3ref_2k_s_lower_better",
+   "score": 55.3,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 3 input images 2K. Board label 'Seedream 5 Pro'; measured by MiniMax."
+  },
+  {
+   "model": "minimax/h3-image",
+   "benchmark": "minimax_h3_image_latency_p50_edit_3ref_4k_s_lower_better",
+   "score": 21.4,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 3 input images 4K. H3-Image Standard."
+  },
+  {
+   "model": "minimax/h3-image-highspeed",
+   "benchmark": "minimax_h3_image_latency_p50_edit_3ref_4k_s_lower_better",
+   "score": 14.4,
+   "unit": "s",
+   "_source": "https://www.minimax.io/blog/minimax-h3-image",
+   "_note": "Read from printed bar label in the MiniMax H3-Image launch chart (https://file.cdn.minimax.io/public/h3-image-latency-en-179432-chart-84447a58.png), panel image editing, 3 input images 4K. H3-Image Highspeed."
+  },
+  {
+   "model": "manus-ai/manus",
+   "benchmark": "remote_labor_index_elo_v1",
+   "score": 509.9,
+   "unit": "elo",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 3 (Elo column), board label 'Manus'."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "remote_labor_index_elo_v1",
+   "score": 468.2,
+   "unit": "elo",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 3 (Elo column), board label 'Grok 4'."
+  },
+  {
+   "model": "openai/chatgpt-agent",
+   "benchmark": "remote_labor_index_elo_v1",
+   "score": 454.3,
+   "unit": "elo",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 3 (Elo column), board label 'ChatGPT Agent'."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "remote_labor_index_elo_v1",
+   "score": 441.7,
+   "unit": "elo",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 3 (Elo column), board label 'Sonnet 4.5'."
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "remote_labor_index_elo_v1",
+   "score": 436.7,
+   "unit": "elo",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 3 (Elo column), board label 'GPT-5 (CLI)'. CLI scaffold; GPT-5 (CUA) = 431.6."
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "remote_labor_index_elo_v1",
+   "score": 411.8,
+   "unit": "elo",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 3 (Elo column), board label 'Gemini 2.5 Pro'."
+  },
+  {
+   "model": "manus-ai/manus",
+   "benchmark": "remote_labor_index_dollars_earned_v1_usd",
+   "score": 1720,
+   "unit": "usd",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 4, 'Manus' $1,720/$143,991."
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "remote_labor_index_dollars_earned_v1_usd",
+   "score": 1280,
+   "unit": "usd",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 4, 'Sonnet 4.5' $1,280/$143,991."
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "remote_labor_index_dollars_earned_v1_usd",
+   "score": 1180,
+   "unit": "usd",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 4, 'GPT-5 (CLI)' $1,180/$143,991. CLI scaffold; GPT-5 (CUA) = $858."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "remote_labor_index_dollars_earned_v1_usd",
+   "score": 858,
+   "unit": "usd",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 4, 'Grok 4' $858/$143,991."
+  },
+  {
+   "model": "openai/chatgpt-agent",
+   "benchmark": "remote_labor_index_dollars_earned_v1_usd",
+   "score": 520,
+   "unit": "usd",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 4, 'ChatGPT agent' $520/$143,991."
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "remote_labor_index_dollars_earned_v1_usd",
+   "score": 210,
+   "unit": "usd",
+   "_source": "https://arxiv.org/abs/2510.26787",
+   "_note": "RLI paper v1 Table 4, 'Gemini 2.5 Pro' $210/$143,991."
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "remote_labor_index",
+   "score": 2.08,
+   "unit": "%",
+   "_source": "https://dashboard.safe.ai/api/rli",
+   "_note": "CAIS AI Dashboard RLI API {'name':'Grok 4','provider':'xai','rate':2.08} (remotelabor.ai leaderboard source); paper v1 Table 1 Grok 4 2.1%. Not listed on the Scale board."
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "remote_labor_index",
+   "score": 17.08,
+   "unit": "%",
+   "_source": "https://labs.scale.com/leaderboard/rli",
+   "_note": "Scale Labs RLI leaderboard entry 'Gemini Argon 4' rank 5, score 17.08 (createdAt 2026-10-22)."
+  }
+ ]
+}

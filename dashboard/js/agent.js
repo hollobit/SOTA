@@ -328,6 +328,7 @@ var Agent = (function() {
                 'agentic_influence_voter_suppression_median34', 'agentic_influence_domestic_polarization_median34', 'anthropic_opportunistic_sandbox_escape_rate_lower_better', 'anthropic_automated_behavioral_audit_misaligned_score_lower_better',
                 'anthropic_sandbox_reach_outside_any_route_rate_lower_better', 'anthropic_sandbox_escape_eval_attempt_rate_lower_better', 'anthropic_sandbox_escape_eval_moderate_attempt_rate_lower_better', 'anthropic_rl_training_reward_hack_attempt_rate_lower_better', 'anthropic_silent_answer_use_rate_lower_better', 'anthropic_hidden_action_disclosure_rate', 'linuxarena_heldout_stealth_before_elicitation_lower_better', 'linuxarena_heldout_stealth_after_elicitation_lower_better', 'anthropic_covert_sandbox_escape_stealth_hidden_lower_better', 'anthropic_covert_reward_hack_stealth_hidden_lower_better',
                 // 2026-11-10 S317c — Fable/Mythos 5.2 card reruns, UK AISI, political bias
+                'google_agent_honesty_rate', 'google_cot_legibility_rate',  // S320b — Gemini 4 Hydrogen launch blog
                 'linuxarena_best_prompt_stealth_hidden_reasoning_rerun_anthropic_nov2026_lower_better', 'linuxarena_best_prompt_stealth_no_thinking_rerun_anthropic_nov2026_lower_better', 'linuxarena_best_prompt_stealth_visible_reasoning_rerun_anthropic_nov2026_lower_better', 'anthropic_verbalized_grader_awareness_clear_disclosure_rerun_anthropic_nov2026', 'anthropic_verbalized_grader_awareness_ambiguous_disclosure_rerun_anthropic_nov2026', 'anthropic_verbalized_grader_awareness_barely_disclosed_rerun_anthropic_nov2026', 'anthropic_acting_on_presumed_grader_rate_rerun_anthropic_nov2026_lower_better', 'anthropic_digging_for_grader_clues_rate_rerun_anthropic_nov2026_lower_better', 'anthropic_package_registry_unprompted_publish_rate_lower_better', 'anthropic_prompted_sandbagging_cot_monitor_recall', 'anthropic_secret_password_never_leaked_rate', 'anthropic_no_cot_reasoning_index', 'uk_aisi_no_cot_time_horizon_min', 'uk_aisi_file_download_monitor_evasion_iterated', 'uk_aisi_supply_chain_eval_purpose_identified', 'political_opposing_perspectives_claude_ai', 'political_refusal_api_lower_better', 'political_refusal_claude_ai_lower_better',
                 'coding_deception_rate_v2_lower_better', 'broken_search_tool_failure_rate_v2_lower_better', 'auto_review_circumvention_rate_v2_lower_better', 'warning_barrier_persistence_rate_v2_lower_better',
                 // 2026-09-24 S286 — agent-safety papers
@@ -429,7 +430,7 @@ var Agent = (function() {
                 // 2026-09-30 S290 — Gemini 4 Argon table: Vals Index (Sep 2026 board), Vals Finance Agent v2, Harvey LAB (Vals), Google-run PostTrainBench v1.1
                 'vals_index_sep2026', 'finance_agent_v2', 'legal_agent_benchmark_harvey', 'posttrainbench_v1_1_google',
                 'vals_index_v2_1_cost_per_test_usd_lower_better',  // S290b
-                'apex_agents_v1_1_pass1', 'apex_agents_v1_1_mean_score', 'apex_v1_mercor_board_pass1', 'apex_v1_mercor_board_mean_score', 'apex_swe_mercor_board_pass1', 'apex_accounting_pass1', 'hal_reliability_score', 'hal_reliability_accuracy', 'hle_caisi_official', 'remote_labor_index_epoch', 'posttrainbench_epoch', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
+                'apex_agents_v1_1_pass1', 'apex_agents_v1_1_mean_score', 'apex_v1_mercor_board_pass1', 'apex_v1_mercor_board_mean_score', 'apex_swe_mercor_board_pass1', 'apex_accounting_pass1', 'hal_reliability_score', 'hal_reliability_accuracy', 'hle_caisi_official', 'remote_labor_index_epoch', 'mka_climb_wsr', 'design_arena_agents_pdf_elo', 'design_arena_agents_spreadsheet_elo', 'access_to_justice_vals', 'harvey_lab_vals_v1_1', 'remote_labor_index_elo_v1', 'remote_labor_index_dollars_earned_v1_usd', 'posttrainbench_epoch', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
                 // 2026-09-23 S282b — Opus 5.5 card §8.12.3 multi-agent team-size endpoints (1 vs 100 agents)
                 'anthropic_agent_team_knowledge_base_single_agent', 'anthropic_agent_team_knowledge_base_100_agents', 'anthropic_agent_team_lean_single_agent',
                 'anthropic_agent_team_lean_100_agents',
@@ -604,6 +605,8 @@ var Agent = (function() {
         { id: 'androidworld',         label: 'AndroidWorld' },
         { id: 'deepswe_1_1',          label: 'DeepSWE 1.1' },
         { id: 'frontierswe_v2',       label: 'FrontierSWE v2' },
+        { id: 'mka_climb_wsr',        label: 'MKA (Multimodal Knowledge Agent)' },
+        { id: 'terminal_bench_4_1_cheating_adjusted', label: 'Terminal-Bench 4.1 (cheating-adj.)' },
         { id: 'deepswe_v1_1_pass_at_1', label: 'DeepSWE 1.1 (official board)' },
         { id: 'livebench_v2_2026_11_06_long_horizon', label: 'LiveBench Long-Horizon (11-06)' },
         { id: 'agents_last_exam_v1_1_pass_rate', label: "Agents' Last Exam v1.1 pass rate" },
