@@ -1,1 +1,3166 @@
-var Modal={_bmtData:null,_builtinMeta:{gpqa_diamond:{desc:"Graduate-level science questions designed to be Google-proof. 198 expert-crafted questions across physics, chemistry, and biology.",paper:"https://arxiv.org/abs/2311.12022",github:"https://github.com/idavidrein/gpqa",year:"2023",items:"198 questions"},swe_bench_verified:{desc:"Real GitHub issues resolved by AI agents. 2,294 human-verified tasks from popular Python repositories.",paper:"https://arxiv.org/abs/2310.06770",github:"https://github.com/princeton-nlp/SWE-bench",year:"2023",items:"2,294 tasks"},swe_bench_pro:{desc:"Advanced SWE-bench requiring extended multi-step reasoning. Models scoring 80%+ on Verified reach only 46-58% on Pro.",paper:"https://arxiv.org/abs/2310.06770",github:"https://github.com/princeton-nlp/SWE-bench",year:"2024",items:"Subset of SWE-bench"},swe_bench_multilingual:{desc:"Cross-language software engineering tasks spanning Python, Java, JavaScript, TypeScript, and more.",paper:"https://arxiv.org/abs/2310.06770",github:"https://github.com/princeton-nlp/SWE-bench",year:"2024"},swe_rebench:{desc:"Stricter re-evaluation of SWE-bench with improved verification to reduce false positives.",paper:"https://swe-rebench.com",github:"https://github.com/swe-rebench",year:"2026"},terminal_bench_2:{desc:"89 Docker container tasks across SWE, biology, security, and gaming. Measures autonomous terminal agent capability.",paper:"https://www.tbench.ai",github:"https://github.com/laude-institute/terminal-bench",year:"2025",items:"89 tasks"},hle:{desc:"Humanity's Last Exam \u2014 2,500 expert-crafted questions at the frontier of human knowledge across math, science, and humanities.",paper:"https://arxiv.org/abs/2501.14249",github:"https://github.com/centerforaisafety/hle",year:"2025",items:"2,500 questions"},arc_agi_2:{desc:"Visual reasoning puzzles testing fluid intelligence and generalization. Measures abstract pattern recognition beyond training data.",paper:"https://arcprize.org/arc-agi/2",github:"https://github.com/fchollet/ARC-AGI",year:"2024"},aime_2025:{desc:"American Invitational Mathematics Examination 2025. 30 problems testing advanced high school mathematics.",paper:"https://arxiv.org/abs/2503.04235",github:"https://matharena.ai",year:"2025",items:"30 problems"},hmmt_2025:{desc:"Harvard-MIT Mathematics Tournament 2025. Collegiate-level competition math problems.",paper:"https://matharena.ai",year:"2025"},imo_answerbench:{desc:"International Mathematical Olympiad answer-format problems for automated evaluation.",paper:"https://matharena.ai",year:"2025"},cybench:{desc:"40 professional-level CTF challenges from HackTheBox, SekaiCTF, and more. Spans crypto, web, reversing, forensics, exploitation.",paper:"https://arxiv.org/abs/2408.08926",github:"https://github.com/stanford-crfm/cybench",year:"2024",items:"40 challenges"},cvebench:{desc:"40 critical-severity CVE-based real-world web application vulnerability exploitation benchmark.",paper:"https://arxiv.org/abs/2503.17332",github:"https://github.com/uiuc-kang-lab/cve-bench",year:"2025",items:"40 CVEs"},cybergym:{desc:"1,507 real-world vulnerability instances from 188 open-source projects. Tests exploit PoC generation and zero-day discovery.",paper:"https://arxiv.org/abs/2506.02548",github:"https://github.com/sunblaze-ucb/cybergym",year:"2025",items:"1,507 instances"},evmbench_exploit:{desc:"Smart contract exploit generation \u2014 craft transactions that drain funds from vulnerable Ethereum contracts.",paper:"https://openai.com/index/introducing-evmbench/",github:"https://github.com/openai/evmbench",year:"2026",items:"120 vulnerabilities"},evmbench_detect:{desc:"Smart contract security audit \u2014 detect high-severity vulnerabilities in Ethereum contract code.",paper:"https://openai.com/index/introducing-evmbench/",github:"https://github.com/openai/evmbench",year:"2026",items:"120 vulnerabilities"},evmbench_patch:{desc:"Smart contract vulnerability patching \u2014 fix security flaws while preserving contract functionality.",paper:"https://openai.com/index/introducing-evmbench/",github:"https://github.com/openai/evmbench",year:"2026",items:"120 vulnerabilities"},airtbench:{desc:"70 AI/ML CTF challenges testing autonomous red teaming of AI systems. Black-box exploitation tasks.",paper:"https://arxiv.org/abs/2506.14682",github:"https://github.com/dreadnode/AIRTBench-Code",year:"2025",items:"70 challenges"},firefox_147:{desc:"Browser JS shell exploitation from crash inputs. Measures code execution success rate on real Firefox vulnerabilities.",paper:"https://www.anthropic.com/research",year:"2026"},cyber_range:{desc:"15 network attack scenarios including C2, SSRF, binary exploitation, EDR evasion, and privilege escalation.",paper:"https://openai.com/index/introducing-gpt-5-4/",year:"2026",items:"15 scenarios"},autopatchbench:{desc:"136 real-world C/C++ vulnerabilities for automated patching. Verified through fuzzing and differential testing.",paper:"https://ai.meta.com/research/publications/cyberseceval-4/",github:"https://github.com/facebookresearch/CyberSecEval",year:"2025",items:"136 samples"},cybersoceval:{desc:"SOC malware analysis and threat intelligence reasoning. Meta + CrowdStrike joint benchmark.",paper:"https://arxiv.org/abs/2509.20166",github:"https://github.com/CrowdStrike/CyberSOCEval_data",year:"2025"},zerodaybench:{desc:"Unseen zero-day vulnerability detection and remediation across multiple information levels.",paper:"https://arxiv.org/abs/2603.02297",year:"2026"},dfir_metric:{desc:"Digital forensics and incident response \u2014 MCQ knowledge + CTF forensics skills.",paper:"https://arxiv.org/abs/2501.16466",year:"2025",items:"713 MCQs + 150 CTF challenges"},browsecomp:{desc:"1,266 hard-to-find web information retrieval tasks requiring persistent navigation and synthesis.",paper:"https://openai.com/index/browsecomp/",github:"https://github.com/openai/browsecomp",year:"2025",items:"1,266 questions"},osworld_verified:{desc:"Real computer environment (Ubuntu) open-ended tasks. Tests GUI/CLI operation by multimodal agents.",paper:"https://arxiv.org/abs/2404.07972",github:"https://github.com/xlang-ai/OSWorld",year:"2024"},tau_bench:{desc:"Tool-Agent-User interaction across airline, retail, and telecom domains.",paper:"https://arxiv.org/abs/2406.12045",github:"https://github.com/sierra-research/tau-bench",year:"2024"},tau2_bench:{desc:"Tool-Agent-User interaction v2 with improved evaluation across multiple service domains.",paper:"https://arxiv.org/abs/2506.07982",github:"https://github.com/sierra-research/tau2-bench",year:"2025"},mcp_atlas:{desc:"1,000 tasks across 36 real MCP servers and 220 tools for multi-step tool-use competency evaluation.",year:"2026",items:"1,000 tasks"},deepsearchqa:{desc:"Multi-step web research requiring deep browsing and information synthesis. F1 score metric.",year:"2026"},vending_bench_2:{desc:"Long-horizon agentic task simulating running a vending machine business over a year. Scored by final bank balance.",year:"2025"},metr_time_horizons:{desc:"Human task duration at which AI agents reach 50% autonomous success. Doubling every ~4 months.",paper:"https://metr.org/time-horizons/",year:"2025"},webarena:{desc:"Web-based task automation across realistic web applications (CMS, ecommerce, forums).",paper:"https://arxiv.org/abs/2307.13854",github:"https://github.com/web-arena-x/webarena",year:"2023"},mmmu_pro:{desc:"Multimodal understanding and reasoning with college-level subject knowledge across 30 subjects.",paper:"https://arxiv.org/abs/2401.11943",github:"https://github.com/MMMU-Benchmark",year:"2024"},mathvision:{desc:"Visual math problem solving requiring both mathematical reasoning and visual understanding.",paper:"https://arxiv.org/abs/2402.14804",year:"2024"},video_mmmu:{desc:"Knowledge acquisition from videos \u2014 tests understanding of educational and scientific video content.",paper:"https://arxiv.org/abs/2501.13826",year:"2025"},longvideobench:{desc:"Long video understanding benchmark testing comprehension over extended video sequences.",paper:"https://arxiv.org/abs/2407.15754",year:"2024"},screenspot_pro:{desc:"Screen understanding for GUI agents \u2014 identifies UI elements and their functions from screenshots.",year:"2025"},charxiv_reasoning:{desc:"Information synthesis from complex academic charts and figures. Tests chart reasoning ability.",paper:"https://arxiv.org/abs/2406.18521",github:"https://github.com/princeton-nlp/CharXiv",year:"2024"},omnidocbench:{desc:"OCR and document understanding benchmark. Edit Distance metric (lower is better for original, higher for normalized).",year:"2025"},mmmlu:{desc:"Multilingual MMLU \u2014 massive multitask evaluation across 57 subjects in 14+ languages.",paper:"https://arxiv.org/abs/2009.03300",year:"2024"},mmlu_pro:{desc:"MMLU-Pro \u2014 harder version of MMLU with 10 answer choices and more reasoning-focused questions.",paper:"https://arxiv.org/abs/2406.01574",github:"https://github.com/TIGER-Lab/MMLU-Pro",year:"2024"},global_piqa:{desc:"Commonsense reasoning across 100 languages and cultures.",year:"2025"},simpleqa_verified:{desc:"Parametric knowledge verification \u2014 tests factual recall accuracy on verifiable questions.",year:"2025"},facts_benchmark:{desc:"Factual grounding, search, and retrieval benchmark suite.",year:"2025"},longbench_v2:{desc:"Long-context understanding benchmark testing reasoning over extended text passages.",paper:"https://arxiv.org/abs/2412.15204",year:"2024"},gdpval_aa:{desc:"Real-world code generation quality evaluation using ELO-based pairwise comparison.",year:"2025"},livecodebench:{desc:"Contamination-free coding benchmark with monthly refreshed competitive programming problems.",paper:"https://arxiv.org/abs/2403.07974",github:"https://github.com/LiveCodeBench/LiveCodeBench",year:"2024"},scicode:{desc:"Scientific coding tasks requiring domain knowledge in physics, chemistry, and biology.",paper:"https://arxiv.org/abs/2407.13168",github:"https://github.com/scicode-bench/SciCode",year:"2024"},paperbench:{desc:"Reproduce ML paper results from code \u2014 tests ability to implement methodology from academic papers.",year:"2025"},mle_bench:{desc:"ML Engineering benchmark \u2014 solve Kaggle-style ML competitions to bronze medal threshold.",paper:"https://arxiv.org/abs/2410.07095",github:"https://github.com/openai/mle-bench",year:"2024"},monorepo_bench:{desc:"Large codebase navigation and modification tasks in monorepo environments.",year:"2026"},cyscenariobench:{desc:"Multi-step cyber attack scenario challenges requiring strategic planning and execution.",year:"2026"},baxbench:{desc:"392 security-critical backend coding tasks across 14 frameworks and 6 languages.",paper:"https://baxbench.com/paper.pdf",github:"https://github.com/logic-star-ai/baxbench",year:"2025",items:"392 tasks"},matharena_apex:{desc:"Most challenging math contest problems \u2014 frontier difficulty beyond AIME level.",paper:"https://matharena.ai",year:"2025"},tau3_bench:{desc:"Next-generation agent tool-use benchmark with knowledge retrieval and voice beyond TAU2.",paper:"https://sierra.ai/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice",year:"2026"},apex_agents:{desc:"AI Productivity Index \u2014 480 long-horizon cross-application professional tasks from banking, consulting, and law.",paper:"https://arxiv.org/abs/2601.14242",github:"https://www.mercor.com/apex/",year:"2026",items:"480 tasks"},frontiermath:{desc:"Research-level mathematics problems at the frontier of human mathematical knowledge. Problems that took expert mathematicians hours to days.",paper:"https://arxiv.org/abs/2411.04872",year:"2024"},livecodebench_elo:{desc:"LiveCodeBench Elo rating from competitive programming (Codeforces/ICPC/IOI style).",paper:"https://arxiv.org/abs/2403.07974",github:"https://github.com/LiveCodeBench/LiveCodeBench",year:"2024"},livecodebench_v6:{desc:"LiveCodeBench version 6 \u2014 latest contamination-free competitive coding problems.",paper:"https://arxiv.org/abs/2403.07974",year:"2025"},fortress:{desc:"FORTRESS \u2014 1,010 expert-crafted adversarial prompts for CBRNE, terrorism, criminal eval. Attack Success Rate metric (lower=safer). Scale AI.",paper:"https://arxiv.org/abs/2506.14922",github:"https://labs.scale.com/leaderboard/fortress",year:"2025",items:"1,010 prompts"},replibench:{desc:"RepliBench \u2014 86 tasks measuring autonomous self-replication capabilities across 4 domains: obtain resources, exfiltrate weights, replicate, persist. UK AISI.",paper:"https://arxiv.org/abs/2504.18565",year:"2025",items:"86 tasks"},tlo_cyber_range:{desc:"The Last Ones (TLO) \u2014 32-step corporate network attack simulation from reconnaissance to full takeover. Estimated 20 human-hours. UK AISI.",paper:"https://www.aisi.gov.uk/blog/how-do-frontier-ai-agents-perform-in-multi-step-cyber-attack-scenarios",year:"2026",items:"32 steps"},vibe_code_bench:{desc:"Vibe Code Bench \u2014 100 web application specifications evaluated through 964 browser-based workflows. End-to-end functional app development.",paper:"https://arxiv.org/abs/2603.04601",year:"2026",items:"100 specs"},abc_bench:{desc:"ABC-Bench \u2014 224 agentic backend coding tasks. Requires full dev lifecycle: repo exploration, containerized deployment, API tests.",paper:"https://arxiv.org/abs/2601.11077",github:"https://github.com/OpenMOSS/ABC-Bench",year:"2026",items:"224 tasks"},mhbench:{desc:"MHBench \u2014 40 emulated multi-host network environments for autonomous red teaming. Tests multi-stage attacks: reconnaissance, lateral movement, privilege escalation.",paper:"https://arxiv.org/abs/2501.16466",year:"2025",items:"40 networks"},cyberexplorer:{desc:"CyberExplorer \u2014 40 vulnerable web services in VM. Autonomous exploitation without prior knowledge. Reactive multi-agent framework.",paper:"https://arxiv.org/abs/2602.08023",year:"2026",items:"40 services"},vibe_coding_safety:{desc:"Vibe Coding Safety \u2014 measures security of AI-generated code in real-world tasks. Only 8.25% of outputs are both functionally correct AND secure.",paper:"https://arxiv.org/abs/2512.03262",year:"2025"},ailuminate:{desc:"AILuminate v1.0 \u2014 MLCommons industry-standard AI safety benchmark. 12 hazard categories, 24,000+ prompts, 5-point grading scale (Poor to Excellent).",paper:"https://arxiv.org/abs/2503.05731",github:"https://ailuminate.mlcommons.org/benchmarks/",year:"2025",items:"24,000+ prompts"},arc_agi_1:{desc:"ARC-AGI-1 \u2014 Original abstract reasoning benchmark testing fluid intelligence and generalization.",paper:"https://arcprize.org/arc-agi",github:"https://github.com/fchollet/ARC-AGI",year:"2024"},bfcl_v4:{desc:"Berkeley Function Calling Leaderboard V4 \u2014 tool-use accuracy across Python/Java/JS/REST API with agentic web search evaluation.",paper:"https://arxiv.org/abs/2402.15491",github:"https://gorilla.cs.berkeley.edu/leaderboard.html",year:"2024"},aider_polyglot:{desc:"225 Exercism problems across C++, Go, Java, JS, Python, Rust. Tests coding ability with error correction (2 attempts per problem).",paper:"https://aider.chat/docs/leaderboards/",year:"2024",items:"225 problems"},webvoyager:{desc:"Web navigation benchmark for autonomous browsing agents across real websites.",paper:"https://arxiv.org/abs/2401.13919",year:"2024"},ifbench:{desc:"IFBench \u2014 58 verifiable out-of-domain instruction following constraints. Tests generalization of instruction following beyond training.",paper:"https://arxiv.org/abs/2507.02833",github:"https://github.com/allenai/IFBench",year:"2025",items:"58 constraints"},arena_hard_v2:{desc:"Arena Hard v2 \u2014 500 curated prompts from Chatbot Arena and WildChat-1M. Automated LLM benchmark by LMSYS.",paper:"https://arxiv.org/abs/2406.11939",github:"https://github.com/lmarena/arena-hard-auto",year:"2024",items:"500 prompts"},hmmt_2026:{desc:"HMMT February 2026 \u2014 latest Harvard-MIT Mathematics Tournament problems.",paper:"https://matharena.ai",year:"2026"},aime_2026:{desc:"AIME 2026 \u2014 American Invitational Mathematics Examination 2026 problems.",paper:"https://matharena.ai",year:"2026"}},_lastTrigger:null,_pdfPublicUrl:{"Claude Opus 4.7 System Card.pdf":"https://www.anthropic.com/research","Claude Opus 4.6 System Card 02-05.pdf":"https://www.anthropic.com/research","Claude Mythos Preview System Card.pdf":"https://www.anthropic.com/research","gpt-5-4-thinking.pdf":"https://openai.com/index/introducing-gpt-5-4/","GPT-5-3-Codex-System-Card-02.pdf":"https://openai.com/index/introducing-gpt-5-3-codex/","Gemini-3-Pro-Model-Card.pdf":"https://deepmind.google/models/gemini-3-pro/","2602.02276v1.pdf":"https://arxiv.org/abs/2602.02276","2604.03121v1.pdf":"https://arxiv.org/abs/2604.03121","2602.15763v2.pdf":"https://arxiv.org/abs/2602.15763","2602.04705v1.pdf":"https://arxiv.org/abs/2602.04705","2604.08644v1.pdf":"https://arxiv.org/abs/2604.08644","2601.07022v1.pdf":"https://arxiv.org/abs/2601.07022","2601.09200v5.pdf":"https://arxiv.org/abs/2601.09200","2603.18788v2.pdf":"https://arxiv.org/abs/2603.18788","2604.07035v1.pdf":"https://arxiv.org/abs/2604.07035"},_sourceLink:function(l){if(!l)return null;var t=l.url||"";if(/^https?:\/\//.test(t))return t;var r=t.split("/").pop();return Modal._pdfPublicUrl[r]||null},_historySnapshots:{},_historyDataBase:null,init:function(){var l=window.location.pathname.indexOf("/dashboard/")!==-1?"../data":"data";Modal._historyDataBase=l,fetch(window.App&&App.dataUrl?App.dataUrl(l+"/bmt_connections.json"):l+"/bmt_connections.json").then(function(a){return a.ok?a.json():{}}).then(function(a){Modal._bmtData=a;try{typeof App!="undefined"&&(App.renderLeaderboard&&App.renderLeaderboard(),App._renderSOTATable&&App._renderSOTATable())}catch(s){}}).catch(function(){Modal._bmtData={}});var t=document.getElementById("modal-overlay"),r=document.getElementById("modal-close");t&&t.addEventListener("click",function(a){a.target===t&&Modal.close()}),r&&r.addEventListener("click",function(){Modal.close()}),document.addEventListener("keydown",function(a){a.key==="Escape"&&t&&!t.classList.contains("hidden")&&Modal.close()}),this._focusTrapInstalled||(this._focusTrapInstalled=!0,document.addEventListener("keydown",function(a){if(a.key==="Tab"){var s=document.getElementById("modal-overlay");if(!(!s||s.classList.contains("hidden"))){var n=s.querySelectorAll('button, a[href], select, textarea, input, [tabindex]:not([tabindex="-1"])');if(n.length){var o=n[0],e=n[n.length-1];a.shiftKey&&document.activeElement===o?(a.preventDefault(),e.focus()):!a.shiftKey&&document.activeElement===e&&(a.preventDefault(),o.focus())}}}})),this._prefsClickAwayInstalled||(this._prefsClickAwayInstalled=!0,document.addEventListener("click",function(a){var s=document.getElementById("modal-preferences-panel");s&&(s.contains(a.target)||a.target.closest&&a.target.closest('button[aria-label="Modal preferences"]')||s.parentNode.removeChild(s))}))},_historyShard:function(l){for(var t=2166136261,r=0;r<l.length;r++)t^=l.charCodeAt(r),t=Math.imul(t,16777619)>>>0;return t%64},_loadScoreHistory:function(l,t){var r=Modal._historyShard(t),a=(r<10?"0":"")+r;if(!Modal._historySnapshots[a]){var s=Modal._historyDataBase+"/scores/history/detail/"+a+".json";Modal._historySnapshots[a]=fetch(window.App&&App.dataUrl?App.dataUrl(s):s).then(function(n){return n.ok?n.json():null}).catch(function(){return null})}return Modal._historySnapshots[a].then(function(n){if(!n||!n.r)return[];for(var o=null,e=0;e<n.r.length;e++)if(n.r[e][0]===l&&n.r[e][1]===t){o=n.r[e];break}if(!o)return[];for(var i=[],c=null,d=2,p=0;p<n.dates.length;p++){for(;d<o.length&&o[d][0]===p;)c=o[d][1]==null?null:o[d],d++;c&&i.push({date:n.dates[p],score:{model_id:l,benchmark_id:t,value:c[1],unit:n.u[c[6]],source:{url:c[2]>=0?n.s[c[2]]:null},notes:c[3]>=0?n.n[c[3]]:"",is_sota:!!c[4],collected_at:c[5]>=0?n.c[c[5]]:null}})}return i})},_open:function(l){Modal._lastTrigger=l||document.activeElement;var t=document.getElementById("modal-overlay");t.classList.remove("hidden");var r=t.querySelector('[role="dialog"]');r&&(r.setAttribute("aria-modal","true"),r.setAttribute("aria-labelledby","modal-title"));var a=document.getElementById("modal-content");if(a)setTimeout(function(){a.focus()},50);else{var s=document.getElementById("modal-close");s&&s.focus()}},close:function(){var l=document.getElementById("modal-overlay");l&&l.classList.add("hidden");var t=document.querySelector(".tab-btn.active");if(t&&history.replaceState(null,"","#"+t.dataset.tab),Modal._lastTrigger&&typeof Modal._lastTrigger.focus=="function")try{Modal._lastTrigger.focus()}catch(r){}Modal._lastTrigger=null},_currentThemeName:function(){return document.documentElement.classList.contains("theme-light")?null:"dark"},_collapsibleSection:function(l,t,r,a){var s="modal-section:"+r,n=null;try{n=localStorage.getItem(s)}catch(g){}var o=n===null?!!a:n==="1",e=document.createElement("div");e.className="mb-4",e.id="modal-section-"+r;var i=document.createElement("div");i.className="flex items-center justify-between cursor-pointer select-none px-2 py-1 -mx-2 rounded hover:bg-gray-800 transition",i.setAttribute("role","button"),i.setAttribute("aria-expanded",o?"true":"false"),i.setAttribute("tabindex","0");var c=document.createElement("h3");c.className="text-sm font-semibold text-gray-300",c.textContent=t,i.appendChild(c);var d=document.createElement("span");d.className="text-xs text-gray-500 ml-2",d.textContent=o?"\u25BC":"\u25B6",i.appendChild(d);var p=document.createElement("div");p.className="mt-2",p.style.display=o?"":"none";function h(){o=!o,p.style.display=o?"":"none",d.textContent=o?"\u25BC":"\u25B6",i.setAttribute("aria-expanded",o?"true":"false");try{localStorage.setItem(s,o?"1":"0")}catch(g){}}return i.addEventListener("click",h),i.addEventListener("keydown",function(g){(g.key==="Enter"||g.key===" ")&&(g.preventDefault(),h())}),e.appendChild(i),e.appendChild(p),l.appendChild(e),p},_buildModalTOC:function(){var l=document.getElementById("modal-content");if(l){var t=l.querySelectorAll('div[id^="modal-section-"]');if(!(t.length<4)){var r=document.getElementById("modal-toc");r&&r.parentNode.removeChild(r);var a=document.createElement("nav");a.id="modal-toc",a.setAttribute("aria-label","Modal sections"),a.className="hidden lg:block fixed right-4 top-24 z-20 bg-gray-900/95 border border-gray-700 rounded p-2 text-xs max-w-[180px]";var s=document.createElement("div");s.className="text-gray-500 uppercase tracking-wider text-[10px] mb-1 px-1",s.textContent="Sections",a.appendChild(s),t.forEach(function(e){var i=e.querySelector("h3"),c=i?i.textContent.trim():e.id.replace("modal-section-",""),d=document.createElement("a");d.href="#",d.className="block px-2 py-1 rounded text-gray-400 hover:bg-gray-800 hover:text-blue-300 transition truncate",d.textContent=c,d.title=c,d.addEventListener("click",function(p){p.preventDefault(),e.scrollIntoView({behavior:"smooth",block:"start"});var h=e.querySelector('div[style*="display: none"]');if(h){var g=e.querySelector('div[role="button"]');g&&g.click()}}),a.appendChild(d)}),l.appendChild(a);var n=document.getElementById("modal-toc-mobile");n&&n.parentNode.removeChild(n);var o=document.createElement("nav");o.id="modal-toc-mobile",o.setAttribute("aria-label","Modal sections (mobile)"),o.className="lg:hidden flex gap-1.5 overflow-x-auto pb-2 mb-3 border-b border-gray-800 -mx-1 px-1",t.forEach(function(e){var i=e.querySelector("h3"),c=e.id.replace("modal-section-",""),d=i?i.textContent.trim():c,p=document.createElement("a");p.href="#",p.className="flex-shrink-0 inline-block px-2 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-300 text-xs whitespace-nowrap transition",p.textContent=d.length>18?d.slice(0,16)+"\u2026":d,p.title=d,p.addEventListener("click",function(h,g){return function(x){x.preventDefault(),h.scrollIntoView({behavior:"smooth",block:"start"});var y=h.querySelector('div[style*="display: none"]');if(y){var f=h.querySelector('div[role="button"]');f&&f.click()}if(g.style.display="none",!document.getElementById("modal-toc-mobile-show")){var v=document.createElement("button");v.id="modal-toc-mobile-show",v.className="lg:hidden fixed top-3 left-3 z-30 bg-gray-800 text-gray-300 text-xs px-2 py-1 rounded shadow",v.textContent="\u2630 Sections",v.addEventListener("click",function(){g.style.display="",v.parentNode&&v.parentNode.removeChild(v)}),document.body.appendChild(v)}}}(e,o)),o.appendChild(p)}),l.firstChild?l.insertBefore(o,l.firstChild):l.appendChild(o)}}},_makeLabel:function(l,t){var r=document.createElement("div");r.className="text-sm";var a=document.createElement("span");a.className="text-gray-500",a.textContent=l+": ",r.appendChild(a);var s=document.createElement("span");return s.className="text-gray-200",s.textContent=t,r.appendChild(s),r},_makeStaleBadge:function(l){var t=null;if(l&&typeof l=="object"?l.source&&l.source.date?t=l.source.date:l.collected_at&&(t=l.collected_at):typeof l=="string"&&(t=l),!t)return null;var r=Date.parse(t);if(isNaN(r))return null;var a=Date.parse("2026-05-09"),s=Math.floor((a-r)/864e5);if(s<90)return null;var n=document.createElement("span");return n.className="inline-block ml-1 px-1.5 py-0.5 rounded text-xs bg-yellow-700 text-yellow-100 font-medium align-middle",n.textContent="90d+",n.title="\uC774 \uC810\uC218\uB294 "+s+"\uC77C \uC804\uC5D0 \uCE21\uC815\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uB354 \uCD5C\uC2E0 \uC810\uC218\uAC00 \uC788\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4.",n},showBenchmark:function(l){try{App._ensureScoreMeta&&App._ensureScoreMeta()}catch(E){}var t=App.getBenchmarkMap()[l];if(t){history.replaceState(null,"","#bench/"+l);var r=(this._bmtData||{})[l]||(this._bmtData||{})[l.replace(/_/g,"")]||{},a=this._builtinMeta[l]||{};!r.paper_link&&a.paper&&(r.paper_link=a.paper),!r.github_link&&a.github&&(r.github_link=a.github),!r.description&&a.desc&&(r.description=a.desc),!r.year&&a.year&&(r.year=a.year),!r.item_count&&a.items&&(r.item_count=a.items),!t.description&&a.desc&&(t={id:t.id,name:t.name,category:t.category,description:a.desc});var s=App.data.scores.filter(function(E){return E.benchmark_id===l});s.sort(function(E,T){return T.value-E.value});var n=document.getElementById("modal-content");n.textContent="";var o=document.createElement("h2");o.id="modal-title",o.className="text-xl font-bold text-white mb-1",o.textContent=t.name,n.appendChild(o);var e=document.createElement("span");if(e.className="inline-block px-2 py-0.5 rounded text-xs bg-blue-900 text-blue-300 mb-3",e.textContent=t.category,n.appendChild(e),t.description){var i=document.createElement("p");i.className="text-gray-400 text-sm mb-4",i.textContent=t.description,n.appendChild(i)}if(r.bmt_title||r.paper_link||r.github_link||r.description||r.year||r.authors&&r.authors.length||r.specs||r.source){var c=document.createElement("div");if(c.className="bg-gray-800 rounded-lg p-4 mb-4 space-y-2",r.bmt_title||r.source){var d=document.createElement("div");if(d.className="flex items-baseline gap-2 flex-wrap",r.bmt_title){var p=document.createElement("span");p.className="text-xs text-gray-500",p.textContent="BMT Dataset",d.appendChild(p);var h=document.createElement("span");h.className="text-sm font-semibold text-gray-200",h.textContent=r.bmt_title,d.appendChild(h)}if(r.source){var g=document.createElement("span");g.className="inline-block px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300",g.textContent=r.source,d.appendChild(g)}c.appendChild(d)}if(r.year&&c.appendChild(this._makeLabel("Year",r.year)),r.item_count&&c.appendChild(this._makeLabel("Items",r.item_count)),r.specs&&c.appendChild(this._makeLabel("Specs",r.specs)),r.authors&&r.authors.length){var x;r.authors.length>4?x=r.authors.slice(0,3).join(", ")+", et al. ("+r.authors.length+" authors)":x=r.authors.join(", "),c.appendChild(this._makeLabel("Authors",x))}if(r.description){var y=document.createElement("div");y.className="text-sm text-gray-400 mt-2 leading-relaxed",y.textContent=r.description,c.appendChild(y)}var f=document.createElement("div");if(f.className="flex gap-3 mt-3 flex-wrap",r.paper_link){var v=document.createElement("a");v.href=r.paper_link,v.target="_blank",v.rel="noopener noreferrer",v.className="inline-flex items-center gap-1 px-3 py-1.5 bg-purple-900 hover:bg-purple-800 text-purple-200 text-xs rounded transition",v.textContent="\u{1F4C4} Paper",f.appendChild(v)}if(r.github_link){var _=document.createElement("a");_.href=r.github_link,_.target="_blank",_.rel="noopener noreferrer",_.className="inline-flex items-center gap-1 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded transition",_.textContent="\u2699 GitHub",f.appendChild(_)}if(r.bmt_id){var C=document.createElement("a");C.href="https://benchmark-mt.com/dataset/"+encodeURIComponent(r.bmt_id),C.target="_blank",C.rel="noopener noreferrer",C.className="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-900 hover:bg-emerald-800 text-emerald-200 text-xs rounded transition",C.textContent="\u{1F5C2} BMT Registry",f.appendChild(C)}f.children.length&&c.appendChild(f),n.appendChild(c)}var m=document.createElement("h3");m.className="text-sm font-semibold text-gray-300 mb-2",m.textContent="Model Rankings ("+s.length+" models)",n.appendChild(m);var u=document.createElement("table");u.className="w-full text-sm";var w=document.createElement("thead"),P=document.createElement("tr");["#","Model","Score","Source"].forEach(function(E){var T=document.createElement("th");T.className="text-left text-gray-500 pb-2 pr-3 text-xs",T.textContent=E,P.appendChild(T)}),w.appendChild(P),u.appendChild(w);var z=document.createElement("tbody");s.forEach(function(E,T){var K=App.getModelMap()[E.model_id],q=document.createElement("tr");q.className="border-t border-gray-800";var X=document.createElement("td");X.className="py-1.5 pr-3 text-gray-500",X.textContent=T+1,q.appendChild(X);var B=document.createElement("td");B.className="py-1.5 pr-3 text-gray-200";var I=document.createElement("span");if(I.className="cursor-pointer hover:text-blue-400 transition",I.textContent=K?K.name:E.model_id.split("/").pop(),I.onclick=function(ce){return function(de){de.stopPropagation(),Modal.showModel(ce)}}(E.model_id),B.appendChild(I),T===0&&E.is_sota){var oe=document.createElement("span");oe.className="ml-2 px-1.5 py-0.5 bg-green-900 text-green-300 text-xs rounded",oe.textContent="SOTA",B.appendChild(oe)}q.appendChild(B);var ee=document.createElement("td");ee.className="py-1.5 pr-3 font-mono",T===0?ee.className+=" text-green-400 font-bold":T<3?ee.className+=" text-blue-400":ee.className+=" text-gray-300",ee.textContent=E.value>500?Math.round(E.value):E.value,q.appendChild(ee);var te=document.createElement("td");te.className="py-1.5 text-xs";var ne=E.source&&E.source.type||"web",ie=Modal._sourceLink(E.source);if(ie){var ae=document.createElement("a");ae.href=ie,ae.target="_blank",ae.rel="noopener noreferrer",ae.className=(ne==="pdf"?"text-purple-400":"text-blue-400")+" hover:underline",ae.textContent=ne+" \u2197",ae.title=ie,te.appendChild(ae)}else te.className+=ne==="pdf"?" text-purple-400":" text-gray-500",te.textContent=ne;q.appendChild(te),z.appendChild(q)}),u.appendChild(z),n.appendChild(u);try{var j=[];if(r.paper_link&&j.push({label:"\u{1F4C4} Paper",url:r.paper_link,color:"bg-purple-900 hover:bg-purple-800 text-purple-200"}),r.github_link&&j.push({label:"\u2699 GitHub",url:r.github_link,color:"bg-gray-700 hover:bg-gray-600 text-gray-200"}),t.leaderboard&&j.push({label:"\u{1F3C6} Leaderboard",url:t.leaderboard,color:"bg-yellow-900 hover:bg-yellow-800 text-yellow-200"}),j.length>0){var O=Modal._collapsibleSection(n,"References","bench-refs",!0),M=document.createElement("div");M.className="flex flex-wrap gap-2",j.forEach(function(E){var T=document.createElement("a");T.href=E.url,T.target="_blank",T.rel="noopener noreferrer",T.className="inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition "+E.color,T.textContent=E.label,T.title=E.url,M.appendChild(T)}),O.appendChild(M)}}catch(E){console.warn("[modal] benchmark refs error",E)}try{var L=(App.data.scores||[]).filter(function(E){return E.benchmark_id===l});if(L.length>0){L.sort(function(E,T){return T.value-E.value});var F=L.slice(0,10),Q=Modal._collapsibleSection(n,"Top 10 Leaderboard","bench-lb",!0),R=document.createElement("ol");R.className="text-sm space-y-1",F.forEach(function(E,T){var K=(App.data.models||[]).find(function(I){return I.id===E.model_id}),q=document.createElement("li");q.className="flex justify-between border-b border-gray-800 py-1 cursor-pointer hover:bg-gray-800 px-2 -mx-2 rounded",q.addEventListener("click",function(I){return function(){Modal.showModel(I)}}(E.model_id));var X=document.createElement("span");X.className=T===0?"text-yellow-400 font-bold":T<3?"text-gray-200":"text-gray-300",X.textContent=T+1+". "+(K?K.name:E.model_id),q.appendChild(X);var B=document.createElement("span");B.className="font-mono text-gray-200",B.textContent=E.value.toFixed(1),q.appendChild(B),R.appendChild(q)}),Q.appendChild(R)}}catch(E){console.warn("[modal] benchmark leaderboard error",E)}try{var Z=(App.data.scores||[]).filter(function(E){return E.benchmark_id===l});if(Z.length>=5){var J=Modal._collapsibleSection(n,"Score Distribution","bench-dist",!1),U=document.createElement("div");U.style.height="200px",J.appendChild(U),setTimeout(function(){if(typeof echarts!="undefined"){for(var E=Z.map(function(ie){return ie.value}),T=Math.min.apply(null,E),K=Math.max.apply(null,E),q=10,X=(K-T)/q||1,B=[],I=[],oe=0;oe<q;oe++){var ee=T+oe*X,te=ee+X;B.push(E.filter(function(ie){return ie>=ee&&(oe===q-1?ie<=te:ie<te)}).length),I.push(ee.toFixed(0)+"-"+te.toFixed(0))}var ne=echarts.init(U,Modal._currentThemeName?Modal._currentThemeName():"dark");ne.setOption({backgroundColor:"transparent",grid:{left:40,right:20,top:20,bottom:40},xAxis:{type:"category",data:I,axisLabel:{color:"#9ca3af",fontSize:9,rotate:30}},yAxis:{type:"value",axisLabel:{color:"#9ca3af",fontSize:9}},series:[{type:"bar",data:B,itemStyle:{color:"#60a5fa"}}]})}},0)}}catch(E){console.warn("[modal] benchmark distribution error",E)}try{var t=App.getBenchmarkMap()[l];if(t&&t.reliability){let T=function(K,q,X){if(q!=null){var B=document.createElement("div");B.className="grid grid-cols-3 gap-2 text-xs py-0.5";var I=document.createElement("div");I.className="text-gray-500 col-span-1",I.textContent=K,B.appendChild(I);var oe=document.createElement("div");oe.className="col-span-2 "+(X||"text-gray-200"),oe.textContent=String(q),B.appendChild(oe),V.appendChild(B)}};var re=T,S=t.reliability,V=Modal._collapsibleSection(n,"Reliability","bench-rel",!1),H={low:"text-green-400",medium:"text-yellow-300",high:"text-red-400"}[S.contamination_risk];T("Contamination risk",S.contamination_risk,H);var D={not_saturated:"text-green-400",approaching:"text-yellow-300",saturated:"text-red-400"}[S.saturation];if(T("Saturation",(S.saturation||"").replace(/_/g," "),D),S.citation_count&&T("Estimated citations",S.citation_count.toLocaleString()),S.last_updated&&T("Last updated",S.last_updated),S.notes){var A=document.createElement("div");A.className="text-xs text-gray-400 italic mt-2",A.textContent=S.notes,V.appendChild(A)}}}catch(E){console.warn("[modal] benchmark reliability error",E)}Modal._open()}},showScoreSource:function(l,t){try{var r=this;App._ensureScoreMeta&&!App._scoreMetaLoaded&&App._ensureScoreMeta().then(function(){r.showScoreSource(l,t)})}catch(S){}var a=App.data.scores.find(function(S){return S.model_id===l&&S.benchmark_id===t});if(a){var s=App.getModelMap()[l],n=App.getBenchmarkMap()[t];if(n){history.replaceState(null,"","#score/"+l+"/"+t);var o=document.getElementById("modal-content");o.textContent="";var e=document.createElement("h2");e.id="modal-title",e.className="text-xl font-bold text-white mb-1",e.textContent=(s?s.name:l.split("/").pop())+" \u2014 "+n.name,o.appendChild(e);var i=document.createElement("div");i.className="flex gap-2 mb-4";var c=document.createElement("span");if(c.className="inline-block px-2 py-0.5 rounded text-xs bg-blue-900 text-blue-300",c.textContent=n.category,i.appendChild(c),a.is_sota){var d=document.createElement("span");d.className="inline-block px-2 py-0.5 rounded text-xs bg-green-900 text-green-300 font-semibold",d.textContent="SOTA",i.appendChild(d)}o.appendChild(i);var p=document.createElement("div");p.className="bg-gray-800 rounded-lg p-5 mb-4 flex items-baseline gap-3";var h=document.createElement("span");h.className="text-4xl font-bold "+(a.is_sota?"text-green-400":"text-blue-300"),h.textContent=a.value>500?Math.round(a.value):a.value,p.appendChild(h);var g=document.createElement("span");g.className="text-gray-400 text-lg",g.textContent=a.unit||"",p.appendChild(g);var x=Modal._makeStaleBadge(a);x&&p.appendChild(x),o.appendChild(p);var y=document.createElement("div");y.className="bg-gray-800 rounded-lg p-4 mb-4 space-y-2";var f=document.createElement("h3");f.className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2",f.textContent="\uAC80\uC99D \uC18C\uC2A4",y.appendChild(f);var v=a.source&&a.source.type||"web";y.appendChild(this._makeLabel("Source type",v));var _=Modal._sourceLink(a.source),C=a.source&&a.source.url||"";if(_){var m=document.createElement("div");m.className="text-sm";var u=document.createElement("span");u.className="text-gray-500",u.textContent="Source URL: ",m.appendChild(u);var w=document.createElement("a");w.href=_,w.target="_blank",w.rel="noopener noreferrer",w.className=(v==="pdf"?"text-purple-400":"text-blue-400")+" hover:underline break-all",w.textContent=_,m.appendChild(w),y.appendChild(m)}else C&&y.appendChild(this._makeLabel("Source path",C));if(a.source&&a.source.date&&y.appendChild(this._makeLabel("Source date",a.source.date)),a.collected_at&&a.collected_at!==(a.source&&a.source.date)?y.appendChild(this._makeLabel("\uC218\uC9D1\uC77C (collected_at)",a.collected_at)):a.collected_at&&y.appendChild(this._makeLabel("\uC218\uC9D1\uC77C",a.collected_at)),a.source&&a.source.citation&&y.appendChild(this._makeLabel("Citation",a.source.citation)),a.notes){var P=document.createElement("div");P.className="text-sm mt-3 pt-3 border-t border-gray-700";var z=document.createElement("div");z.className="text-gray-500 mb-1",z.textContent="Notes",P.appendChild(z);var j=document.createElement("div");j.className="text-gray-200",j.textContent=a.notes,P.appendChild(j),y.appendChild(P)}o.appendChild(y);var O=[];if(n.paper&&O.push({label:"Paper",url:n.paper,color:"text-purple-400"}),n.github&&O.push({label:"GitHub",url:n.github,color:"text-emerald-400"}),n.leaderboard&&O.push({label:"Leaderboard",url:n.leaderboard,color:"text-blue-400"}),n.bmt&&n.bmt.bmt_id&&O.push({label:"BMT Registry",url:"https://github.com/hollobit/SOTA/blob/ops/BMT/BMT.json",color:"text-amber-400",aux:"#"+n.bmt.bmt_id+(n.bmt.bmt_title?" \u2014 "+n.bmt.bmt_title:"")}),O.length||n.year||n.item_count){var M=document.createElement("div");M.className="bg-gray-800 rounded-lg p-4 mb-4 space-y-2";var L=document.createElement("h3");L.className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2",L.textContent="\uBCA4\uCE58\uB9C8\uD06C \uB808\uC9C0\uC2A4\uD2B8\uB9AC (BMT / Paper / GitHub)",M.appendChild(L),n.year&&M.appendChild(this._makeLabel("Year",n.year)),n.item_count&&M.appendChild(this._makeLabel("Item count",n.item_count)),O.forEach(function(S){var V=document.createElement("div");V.className="text-sm";var H=document.createElement("span");H.className="text-gray-500",H.textContent=S.label+": ",V.appendChild(H);var D=document.createElement("a");if(D.href=S.url,D.target="_blank",D.rel="noopener noreferrer",D.className=S.color+" hover:underline break-all",D.textContent=S.url,V.appendChild(D),S.aux){var A=document.createElement("div");A.className="text-xs text-gray-500 mt-0.5",A.textContent=S.aux,V.appendChild(A)}M.appendChild(V)}),o.appendChild(M)}var F=document.createElement("div");F.className="bg-gray-800 rounded-lg p-4 mb-4";var Q=document.createElement("h3");Q.className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3",Q.textContent="\uBCC0\uACBD \uC774\uB825 (Collection / Verification History)",F.appendChild(Q);var R=document.createElement("div");R.className="text-sm space-y-2",R.textContent="Loading history\u2026",F.appendChild(R),o.appendChild(F),Modal._loadScoreHistory(l,t).then(function(S){if(R.textContent="",!S.length){var V=document.createElement("div");V.className="text-gray-500",V.textContent="No daily snapshots contain this score.",R.appendChild(V);return}var H=[];S.forEach(function(A){var re=A.score.value+"|"+(A.score.source&&A.score.source.url||"")+"|"+(A.score.notes||""),E=H[H.length-1];E&&E.sig===re?E.lastDate=A.date:H.push({firstDate:A.date,lastDate:A.date,sig:re,score:A.score})});var D=document.createElement("div");D.className="text-xs text-gray-500 mb-2",D.textContent=S.length+" snapshots across "+S[0].date+" \u2192 "+S[S.length-1].date+". "+(H.length===1?"Value unchanged across all snapshots.":H.length+" distinct value/source states recorded."),R.appendChild(D),H.forEach(function(A,re){var E=document.createElement("div");E.className="border-l-2 border-gray-700 pl-3 py-1",re===H.length-1&&(E.style.borderLeftColor="#3b82f6");var T=document.createElement("div");T.className="flex items-baseline gap-2";var K=document.createElement("span");K.className="text-gray-400 text-xs font-mono",K.textContent=A.firstDate===A.lastDate?A.firstDate:A.firstDate+" \u2192 "+A.lastDate,T.appendChild(K);var q=document.createElement("span");q.className="text-gray-600 text-xs",q.textContent="\xB7",T.appendChild(q);var X=document.createElement("span");if(X.className=(re===H.length-1?"text-blue-300":"text-gray-300")+" font-mono font-semibold",X.textContent=(A.score.value>500?Math.round(A.score.value):A.score.value)+(A.score.unit?" "+A.score.unit:""),T.appendChild(X),A.score.is_sota){var B=document.createElement("span");B.className="px-1.5 py-0.5 bg-green-900 text-green-300 text-xs rounded",B.textContent="SOTA",T.appendChild(B)}var I=Modal._makeStaleBadge(A.score)||Modal._makeStaleBadge(A.lastDate);if(I&&T.appendChild(I),re>0){var oe=H[re-1].score.value,ee=A.score.value-oe;if(Math.abs(ee)>.001){var te=document.createElement("span");te.className="text-xs "+(ee>0?"text-green-400":"text-red-400"),te.textContent=(ee>0?"+":"")+ee.toFixed(Math.abs(ee)<10?2:1),T.appendChild(te)}}E.appendChild(T);var ne=document.createElement("div");ne.className="text-xs text-gray-500 mt-0.5";var ie=A.score.source&&A.score.source.type||"web",ae=Modal._sourceLink(A.score.source);if(ne.appendChild(document.createTextNode(ie+" \xB7 ")),ae){var ce=document.createElement("a");ce.href=ae,ce.target="_blank",ce.rel="noopener noreferrer",ce.className="text-blue-400 hover:underline break-all",ce.textContent=ae.length>80?ae.slice(0,77)+"\u2026":ae,ne.appendChild(ce)}else A.score.source&&A.score.source.url&&ne.appendChild(document.createTextNode(A.score.source.url));if(E.appendChild(ne),A.score.notes){var de=document.createElement("div");de.className="text-xs text-gray-400 mt-0.5 italic",de.textContent=A.score.notes,E.appendChild(de)}R.appendChild(E)})}).catch(function(){R.textContent="Failed to load history."});var Z=document.createElement("div");Z.className="flex gap-2 mb-2";var J=document.createElement("button");J.className="px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-blue-200 text-xs rounded transition",J.textContent="\uBCA4\uCE58\uB9C8\uD06C \uC804\uCCB4 \uB7AD\uD0B9 \u2192",J.onclick=function(){Modal.showBenchmark(t)},Z.appendChild(J);var U=document.createElement("button");U.className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded transition",U.textContent="\uBAA8\uB378 \uC804\uCCB4 \uC810\uC218 \u2192",U.onclick=function(){Modal.showModel(l)},Z.appendChild(U),o.appendChild(Z),Modal._open()}}},showVendor:function(l){if(!l)return;history.replaceState(null,"","#vendor/"+encodeURIComponent(l));var t=document.getElementById("modal-content");if(!t)return;t.textContent="";var r=(App.data.models||[]).filter(function(m){return m.vendor===l});if(!r.length){t.textContent="No models found for vendor: "+l;return}var a=document.createElement("h2");a.id="modal-title",a.className="text-xl font-bold text-white mb-1",a.textContent=l,t.appendChild(a);var s=r.filter(function(m){return m.type==="open-weight"}).length,n=r.filter(function(m){return m.type==="open-source"}).length,o=r.filter(function(m){return m.type==="proprietary"}).length,e=document.createElement("div");e.className="flex gap-2 mb-3 flex-wrap text-xs";function i(m,u){var w=document.createElement("span");w.className="inline-block px-2 py-0.5 rounded "+u,w.textContent=m,e.appendChild(w)}i(r.length+" models","bg-gray-700 text-gray-300"),o&&i(o+" proprietary","bg-red-900 text-red-300"),s&&i(s+" open-weight","bg-green-900 text-green-300"),n&&i(n+" open-source","bg-blue-900 text-blue-300"),t.appendChild(e);var c=r.filter(function(m){return m.release_date||m.released_at}).map(function(m){return new Date(m.release_date||m.released_at)}).filter(function(m){return!isNaN(m.getTime())}).sort(function(m,u){return m-u});if(c.length>=3){for(var d=[],p=1;p<c.length;p++)d.push((c[p]-c[p-1])/864e5);var h=d.reduce(function(m,u){return m+u},0)/d.length,g=document.createElement("p");g.className="text-xs text-gray-500 mb-3",g.textContent="Avg "+Math.round(h)+" days between releases ("+c.length+" dated models)",t.appendChild(g)}var x=Modal._collapsibleSection(t,"Models from "+l,"vendor-models",!0),y=document.createElement("table");y.className="w-full text-xs text-gray-200";var f=document.createElement("thead"),v=document.createElement("tr");v.className="text-gray-500 border-b border-gray-700",["Model","Released","Type","Modalities","Scores"].forEach(function(m){var u=document.createElement("th");u.className="text-left py-1",u.textContent=m,v.appendChild(u)}),f.appendChild(v),y.appendChild(f);var _=document.createElement("tbody"),C=r.slice().sort(function(m,u){var w=m.release_date||m.released_at||"",P=u.release_date||u.released_at||"";return P.localeCompare(w)});C.forEach(function(m){var u=document.createElement("tr");u.className="border-b border-gray-800 hover:bg-gray-800 transition cursor-pointer",u.addEventListener("click",function(F){return function(){Modal.showModel(F)}}(m.id));var w=document.createElement("td");w.className="py-1 text-blue-400",w.textContent=m.name,u.appendChild(w);var P=document.createElement("td");P.className="py-1 text-gray-400",P.textContent=(m.release_date||m.released_at||"\u2014").slice(0,10),u.appendChild(P);var z=document.createElement("td"),j=m.type==="proprietary"?"text-red-400":m.type==="open-weight"?"text-green-400":"text-blue-400";z.className="py-1 "+j,z.textContent=m.type||"?",u.appendChild(z);var O=document.createElement("td");O.className="py-1 text-gray-400",O.textContent=(Array.isArray(m.modalities)?m.modalities.join(", "):"")||"\u2014",u.appendChild(O);var M=(App.data.scores||[]).filter(function(F){return F.model_id===m.id}).length,L=document.createElement("td");L.className="py-1 text-gray-400",L.textContent=M,u.appendChild(L),_.appendChild(u)}),y.appendChild(_),x.appendChild(y),Modal._open()},showModel:function(l){try{App._ensureScoreMeta&&App._ensureScoreMeta()}catch(i){}var t=App.getModelMap()[l];if(t){history.replaceState(null,"","#model/"+l);var r=typeof App!="undefined"&&App.loadEnrichment?App.loadEnrichment():Promise.resolve({}),a=typeof App!="undefined"&&App.loadHFMetadata?App.loadHFMetadata():Promise.resolve({}),s=App.data.scores.filter(function(i){return i.model_id===l}),n=document.getElementById("modal-content");n.textContent="",Modal._renderHeader(n,t,s),Modal._renderVendorBadge(n,t);var o=Modal._renderDetailCard(n,t,l);Modal._renderRefLinks(n,t),Modal._renderPeerComparison(n,t,l),Modal._renderStrengthsWeaknesses(n,l),Modal._renderScoreSources(n,s),Modal._renderVersionHistory(n,t,l),Modal._renderFamilyTree(n,t,l);var e=document.createElement("div");e.id="modal-enrichment-slot",n.appendChild(e),Promise.all([r,a]).then(function(i){Modal._renderEnrichmentSections(e,t,l,i[0],i[1]||{},o),Modal._buildModalTOC()}),Modal._renderStrengthsRadar(n,t,l),Modal._renderScoreHistory(n,t,l),Modal._renderScoreBreakdown(n,l,s),Modal._buildModalTOC(),Modal._open()}},_renderHeader:function(l,t,r){var a=document.createElement("h2");a.id="modal-title",a.className="text-xl font-bold text-white mb-1",a.textContent=t.name,l.appendChild(a);var s=document.createElement("div");s.className="flex gap-2 mb-4";var n=document.createElement("span");n.className="inline-block px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300 cursor-pointer hover:bg-gray-600 transition",n.textContent=t.vendor,n.title="Click to view all "+t.vendor+" models",n.addEventListener("click",function(L){return function(F){F.stopPropagation(),Modal.showVendor(L)}}(t.vendor)),s.appendChild(n);var o=document.createElement("span");o.className="inline-block px-2 py-0.5 rounded text-xs",t.type==="proprietary"?o.className+=" bg-red-900 text-red-300":t.type==="open-weight"?o.className+=" bg-green-900 text-green-300":o.className+=" bg-blue-900 text-blue-300",o.textContent=t.type,s.appendChild(o);var e=document.createElement("span");e.className="inline-block px-2 py-0.5 rounded text-xs bg-gray-800 text-gray-400",e.textContent=r.length+" benchmarks",s.appendChild(e);try{var i=typeof App!="undefined"&&App.data&&App.data.enrichment||{},c=i[t.id],d=c&&c.scale_class;if(d){var p={"agent-system":"\u{1F916} Agent system","agent-product":"\u{1F6E0}\uFE0F Agent product","edge-slm":"\u{1F4F1} Edge SLM","simulator-tool":"\u{1F6E0} Simulator/Tool",dataset:"\u{1F4E6} Dataset","benchmark-baseline":"\u{1F3AF} Benchmark baseline","product-wrapper":"\u{1F3F7} Product wrapper","classical-ml":"\u{1F52C} Classical ML","classical-bert":"\u{1F4DA} Classical BERT","narrow-encoder":"\u{1F3A8} Narrow encoder","narrow-segmentation":"\u2702\uFE0F Narrow segmentation","narrow-task":"\u{1F3AF} Narrow task","narrow-timeseries":"\u{1F4C8} Narrow time-series","narrow-tabular":"\u{1F4CA} Narrow tabular","narrow-tts":"\u{1F50A} Narrow TTS","audio-codec":"\u{1F399} Audio codec","robotics-policy":"\u{1F916} Robotics policy","wavefunction-net":"\u269B\uFE0F Wavefunction net","dft-functional":"\u269B\uFE0F DFT functional","small-mlp-potential":"\u269B\uFE0F Small MLP potential","qec-decoder":"\u{1F9CA} QEC decoder","rl-search-system":"\u{1F50D} RL-search system","symbolic-regression":"\u2211 Symbolic regression","analysis-pipeline":"\u{1F52C} Analysis pipeline","hydrology-lstm":"\u{1F4A7} Hydrology LSTM",roadmap:"\u{1F5FA} Roadmap (placeholder)","human-baseline":"\u{1F464} Human baseline"},h=p[d]||"\u2022 "+d,g=document.createElement("span"),x=d==="edge-slm"?"bg-green-900 text-green-200":"bg-amber-900 text-amber-200";g.className="inline-block px-2 py-0.5 rounded text-xs "+x,g.textContent=h,g.title="Not a frontier-class foundation model: "+d,s.appendChild(g)}}catch(L){}var y=document.createElement("button");y.className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-400",y.title="Modal preferences",y.setAttribute("aria-label","Modal preferences"),y.textContent="\u2699",y.addEventListener("click",function(L){L.stopPropagation(),Modal._togglePreferencesPanel()}),s.appendChild(y);try{var f="watchlist:"+t.id,v=!1;try{v=localStorage.getItem(f)==="1"}catch(L){}var _=document.createElement("button");_.className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs "+(v?"bg-yellow-900 text-yellow-300":"bg-gray-800 text-gray-400 hover:bg-gray-700"),_.textContent=v?"\u2605 Watching":"\u2606 Watch",_.title=v?"Click to unwatch":"Click to add to watchlist (highlights score changes)",_.addEventListener("click",function(){v=!v;try{if(v){localStorage.setItem(f,"1");var L={};r.forEach(function(F){L[F.benchmark_id]=F.value}),localStorage.setItem("watchlist-snap:"+t.id,JSON.stringify({ts:new Date().toISOString(),scores:L}))}else localStorage.removeItem(f),localStorage.removeItem("watchlist-snap:"+t.id)}catch(F){}_.className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs "+(v?"bg-yellow-900 text-yellow-300":"bg-gray-800 text-gray-400 hover:bg-gray-700"),_.textContent=v?"\u2605 Watching":"\u2606 Watch"}),s.appendChild(_)}catch(L){}try{var C=document.createElement("button");C.className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-400",C.textContent="\u{1F517} Share",C.title="Copy link to this model",C.addEventListener("click",function(){var L=window.location.origin+window.location.pathname,F=L+"?model="+encodeURIComponent(t.id);navigator.share?navigator.share({title:t.name,text:"Check out "+t.name+" on the SOTA dashboard",url:F}).catch(function(){}):navigator.clipboard?navigator.clipboard.writeText(F).then(function(){var Q=C.textContent;C.textContent="\u2713 Copied",setTimeout(function(){C.textContent=Q},1500)}):prompt("Copy this URL:",F)}),s.appendChild(C)}catch(L){}try{var m=document.createElement("button");m.className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-400",m.textContent="{} Raw",m.title="View raw data for this model";var u=t.id;m.addEventListener("click",function(){Modal._showRawData(u)}),s.appendChild(m)}catch(L){}l.appendChild(s);try{var w=typeof App!="undefined"&&App.data&&App.data.enrichment||{},P=w[t.id],z=P&&P.base_model_id;if(z){var j=(App.data.models||[]).find(function(L){return L.id===z});if(j){var O=document.createElement("div");O.className="text-xs text-gray-400 mt-1 mb-3",O.appendChild(document.createTextNode("Built on: "));var M=document.createElement("a");M.className="text-blue-400 hover:text-blue-300 cursor-pointer",M.textContent=j.name||z,M.title="Open "+z+" modal",M.addEventListener("click",function(L){return function(F){F.stopPropagation(),Modal.showModel(L)}}(z)),O.appendChild(M),l.appendChild(O)}}}catch(L){}},_showRawData:function(l){var t=document.getElementById("modal-raw-data-panel");if(t){t.parentNode.removeChild(t);return}var r=document.createElement("div");r.id="modal-raw-data-panel",r.className="fixed inset-4 z-[80] bg-gray-900 border border-gray-700 rounded-lg p-4 overflow-auto";var a=document.createElement("div");a.className="flex justify-between items-center mb-3";var s=document.createElement("h3");s.className="text-lg font-semibold text-gray-200",s.textContent="Raw data: "+l,a.appendChild(s);var n=document.createElement("button");n.className="bg-gray-700 hover:bg-gray-600 text-gray-300 px-3 py-1 rounded text-sm",n.textContent="Close",n.addEventListener("click",function(){r.parentNode&&r.parentNode.removeChild(r)}),a.appendChild(n),r.appendChild(a);var o={model:(App.data.models||[]).find(function(c){return c.id===l}),enrichment:(App.data.enrichment||{})[l],pricing:(App.data.pricing||{})[l],hf_metadata:(App.data.hfMetadata||{})[l],scores:(App.data.scores||[]).filter(function(c){return c.model_id===l})},e=document.createElement("pre");e.className="text-xs text-gray-300 bg-gray-950 p-3 rounded overflow-auto whitespace-pre-wrap font-mono",e.style.maxHeight="calc(100vh - 160px)",e.textContent=JSON.stringify(o,null,2),r.appendChild(e);var i=document.createElement("button");i.className="mt-2 bg-blue-700 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm",i.textContent="Copy JSON",i.addEventListener("click",function(){navigator.clipboard&&navigator.clipboard.writeText(e.textContent).then(function(){i.textContent="Copied!",setTimeout(function(){i.textContent="Copy JSON"},1500)})}),r.appendChild(i),document.body.appendChild(r)},_togglePreferencesPanel:function(){var l=document.getElementById("modal-preferences-panel");if(l){l.parentNode.removeChild(l);return}var t=document.createElement("div");t.id="modal-preferences-panel",t.className="absolute right-3 top-12 z-40 bg-gray-900 border border-gray-700 rounded-lg p-3 shadow-lg text-xs max-w-[280px]";var r=document.createElement("div");r.className="text-gray-300 font-semibold mb-2",r.textContent="Section defaults (open?)",t.appendChild(r);var a=[{key:"links",label:"Reference Links"},{key:"peer",label:"Peer Comparison"},{key:"strengths",label:"Strengths"},{key:"weaknesses",label:"Weaknesses"},{key:"radar",label:"Strengths Radar"},{key:"history",label:"Score History"},{key:"family",label:"Family Tree"},{key:"architecture",label:"Architecture"},{key:"perfcost",label:"Performance & Cost"},{key:"lineage",label:"Lineage"},{key:"sources",label:"Score Sources"},{key:"scores",label:"Score Breakdown"},{key:"version",label:"Version History"}];a.forEach(function(e){var i=document.createElement("label");i.className="flex items-center gap-2 py-0.5 cursor-pointer hover:bg-gray-800 px-1 rounded";var c=document.createElement("input");c.type="checkbox",c.className="cursor-pointer";var d="modal-section:"+e.key,p=null;try{p=localStorage.getItem(d)}catch(g){}c.checked=p==="1",c.addEventListener("change",function(){try{localStorage.setItem(d,c.checked?"1":"0")}catch(g){}}),i.appendChild(c);var h=document.createElement("span");h.className="text-gray-300",h.textContent=e.label,i.appendChild(h),t.appendChild(i)});var s=document.createElement("div");s.className="text-gray-500 text-[10px] mt-2 pt-2 border-t border-gray-800",s.textContent="Changes apply on next modal open. Per-section toggles also persist.",t.appendChild(s);var n=document.getElementById("modal");if(n)n.appendChild(t);else{var o=document.querySelector('[role="dialog"]');o?o.appendChild(t):document.body.appendChild(t)}},_renderVendorBadge:function(l,t){try{var r=(App.data.models||[]).filter(function(n){return n.vendor===t.vendor}).length;if(r>1){var a=document.createElement("div");a.className="mb-3 text-xs text-gray-400 cursor-pointer hover:text-gray-200 transition",a.title="Click to view all "+(t.vendor||"unknown")+" models",a.addEventListener("click",function(n){return function(o){o.stopPropagation(),Modal.showVendor(n)}}(t.vendor)),a.appendChild(document.createTextNode((t.vendor||"unknown")+" has "));var s=document.createElement("strong");s.className="text-blue-400",s.textContent=r,a.appendChild(s),a.appendChild(document.createTextNode(" tracked models \u2192")),l.appendChild(a)}}catch(n){}},_renderDetailCard:function(l,t,r){var a=document.createElement("div");a.className="bg-gray-800 rounded-lg p-4 mb-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm";function s(f,v,_){if(!(v==null||v==="")){var C=document.createElement("div");_&&_.full&&(C.className="col-span-2");var m=document.createElement("div");m.className="text-xs text-gray-500",m.textContent=f,C.appendChild(m);var u=document.createElement("div");u.className="text-sm text-gray-200",u.textContent=v,C.appendChild(u),a.appendChild(C)}}if(s("Vendor",t.vendor),s("Released",t.release_date||t.released_at),s("Type",t.type),s("Version",t.version),Array.isArray(t.modalities)&&t.modalities.length&&s("Modalities",t.modalities.join(", ")),t.parameters&&s("Parameters",t.parameters),t.params_b&&s("Parameters (B)",t.params_b+(t.active_params_b?" total / "+t.active_params_b+" active":"")),t.context_window&&s("Context Window",Number(t.context_window).toLocaleString()+" tokens"),t.knowledge_cutoff&&s("Knowledge Cutoff",t.knowledge_cutoff),Array.isArray(t.languages)&&t.languages.length){var n=t.languages,o=n.length<=6?n.join(", "):n.slice(0,6).join(", ")+" (+"+(n.length-6)+")";s("Languages",o)}t.license&&s("License",t.license);var e=t.pricing||App.data.pricing&&App.data.pricing[r];if(e)e.tokens_per_second!=null&&s("Throughput",e.tokens_per_second+" tokens/sec"),e.input!=null&&s("Input price (per 1M tokens)","$"+e.input),e.output!=null&&s("Output price (per 1M tokens)","$"+e.output),e.cached_input!=null&&s("Cached input","$"+e.cached_input);else try{var i=!1;if(typeof Agent!="undefined"&&Agent._AGENT_PRODUCTS&&(i=Agent._AGENT_PRODUCTS.indexOf(r)!==-1),i){var c=document.createElement("div"),d=document.createElement("div");d.className="text-xs text-gray-500",d.textContent="Pricing model",c.appendChild(d);var p=document.createElement("div");p.className="text-sm text-gray-200 flex items-center gap-2 flex-wrap";var h=document.createElement("span");h.className="text-xs bg-amber-900 text-amber-200 px-2 py-0.5 rounded",h.textContent="subscription",p.appendChild(h);var g={"cognition/devin":"$20/mo Core + $2.25/ACU","manus-ai/manus":"$500/mo (Pro)"},x=g[r];if(x){var y=document.createElement("span");y.className="text-xs text-gray-400",y.textContent=x,p.appendChild(y)}c.appendChild(p),a.appendChild(c)}}catch(f){}return(t._note||t.notes||t.description)&&s("Description",t._note||t.notes||t.description,{full:!0}),a.children.length&&l.appendChild(a),a},_renderRefLinks:function(l,t){function r(e){var i=[];function c(d,p,h){!p||typeof p!="string"||i.some(function(g){return g.url===p})||i.push({label:d,url:p,color:h})}return c("\u{1F4CB} System Card",e.system_card||e.system_card_url,"purple"),c("\u{1FAAA} Model Card",e.model_card||e.model_card_url,"cyan"),c("\u{1F917} HuggingFace",e.huggingface||e.hf_url||e.hf,"yellow"),c("\u{1F310} Homepage",e.homepage||e.url||e.vendor_url||e.website,"blue"),c("\u{1F4C4} Paper",e.paper||e.paper_url||e.arxiv||e.arxiv_url,"pink"),c("\u2699 GitHub",e.github||e.github_url||e.repo,"gray"),c("\u{1F4F0} Blog",e.blog||e.announcement||e.launch_blog,"green"),Array.isArray(e.links)&&e.links.forEach(function(d){c(d.label||"Link",d.url,"blue")}),i}var a=r(t);if(a.length){var s=Modal._collapsibleSection(l,"Reference Links","links",!0),n=document.createElement("div");n.className="flex flex-wrap gap-2";var o={purple:"bg-purple-900 hover:bg-purple-800 text-purple-200",cyan:"bg-cyan-900 hover:bg-cyan-800 text-cyan-200",yellow:"bg-yellow-900 hover:bg-yellow-800 text-yellow-200",blue:"bg-blue-900 hover:bg-blue-800 text-blue-200",pink:"bg-pink-900 hover:bg-pink-800 text-pink-200",gray:"bg-gray-700 hover:bg-gray-600 text-gray-200",green:"bg-green-900 hover:bg-green-800 text-green-200"};a.forEach(function(e){var i=document.createElement("a");i.href=e.url,i.target="_blank",i.rel="noopener noreferrer",i.className="inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition "+(o[e.color]||o.gray),i.textContent=e.label,i.title=e.url,n.appendChild(i)}),s.appendChild(n)}},_renderPeerComparison:function(l,t,r){try{var a=window.PeerMatcher&&PeerMatcher.findPeers?PeerMatcher.findPeers(r,App.data.models,App.data.scores,5):[];if(a.length===0)return;var s=Modal._collapsibleSection(l,"Peer Comparison","peer",!0),n=document.createElement("div");n.className="flex items-center gap-2 mb-2 text-xs text-gray-400";var o=document.createElement("span");o.textContent="Most similar:",n.appendChild(o);var e=document.createElement("select");e.className="bg-gray-800 text-gray-200 rounded px-2 py-1 text-xs",a.forEach(function(p){var h=App.getModelMap()[p.modelId],g=(h?h.name:p.modelId)+"  (overlap "+p.overlap+", avg d "+p.avgDelta.toFixed(1)+")",x=document.createElement("option");x.value=p.modelId,x.textContent=g,e.appendChild(x)}),n.appendChild(e);var i=document.createElement("button");i.className="ml-2 bg-blue-700 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs",i.textContent="Compare with peers \u2197",i.title="Open Comparison tab with this model + top 3 peers selected",i.onclick=function(p,h){return function(){var g=[h].concat(p.slice(0,3).map(function(y){return y.modelId})),x=document.getElementById("tabbtn-comparison");x&&x.click(),setTimeout(function(){var y=document.getElementById("cmp-models");if(y){Array.prototype.forEach.call(y.options,function(v){v.selected=!1}),g.forEach(function(v){var _=Array.prototype.find.call(y.options,function(C){return C.value===v});_&&(_.selected=!0)}),typeof Comparison!="undefined"&&Comparison.render&&(Comparison._updateCounters&&Comparison._updateCounters(),Comparison.render());var f=document.getElementById("modal");f&&f.classList.add("hidden")}},150)}}(a,r),n.appendChild(i),s.appendChild(n);var c=document.createElement("div");c.className="overflow-x-auto",s.appendChild(c);var d=function(p){c.textContent="";var h=a.find(function(u){return u.modelId===p});if(h){var g={};App.data.scores.forEach(function(u){u.model_id===p&&(g[u.benchmark_id]=u.value)});var x={};App.data.scores.forEach(function(u){u.model_id===r&&(x[u.benchmark_id]=u.value)});var y=document.createElement("table");y.className="w-full text-xs text-gray-200";var f=document.createElement("thead"),v=document.createElement("tr");v.className="text-gray-500 border-b border-gray-700",["Benchmark",t.name,"Peer","d"].forEach(function(u,w){var P=document.createElement("th");P.className=w===0?"text-left py-1":"text-right py-1",P.textContent=u,v.appendChild(P)}),f.appendChild(v),y.appendChild(f);var _=document.createElement("tbody");h.sharedBenches.forEach(function(u){var w=App.getBenchmarkMap()[u],P=w?w.name:u,z=x[u],j=g[u],O=z-j,M=O>0?"text-green-400":O<0?"text-red-400":"text-gray-400",L=O>0?"+":"",F=window.PeerMatcher?PeerMatcher.sotaTier(z,r,u,App.data.models,App.data.scores):null,Q=F?" "+(F.tier==="sota"?"*":F.tier==="top3"?"+":"~"):"",R=document.createElement("tr");R.className="border-b border-gray-800";var Z=document.createElement("td");Z.className="py-1",Z.textContent=P;var J=document.createElement("td");J.className="text-right py-1",J.textContent=z.toFixed(1)+Q;var U=document.createElement("td");U.className="text-right py-1 text-gray-400",U.textContent=j.toFixed(1);var S=document.createElement("td");S.className="text-right py-1 "+M,S.textContent=L+O.toFixed(1),R.appendChild(Z),R.appendChild(J),R.appendChild(U),R.appendChild(S),_.appendChild(R)}),y.appendChild(_),c.appendChild(y);var C=document.createElement("div");C.className="text-xs text-gray-500 mt-1";var m=h.avgDelta>=0?"+":"";C.textContent="Avg d "+m+h.avgDelta.toFixed(1)+"pt across "+h.overlap+" shared benchmarks",s.appendChild(C)}};e.onchange=function(){d(e.value)},d(a[0].modelId)}catch(p){console.warn("[modal] peer comparison error",p)}},_renderStrengthsWeaknesses:function(l,t){try{if(!window.PeerMatcher||!PeerMatcher.extractStrengthsWeaknesses)return;var r=PeerMatcher.extractStrengthsWeaknesses(t,App.data.models,App.data.scores);if(r.strengths.length>0){var a=Modal._collapsibleSection(l,"Strengths (12-month SOTA tier)","strengths",!0),s=document.createElement("ul");s.className="text-xs text-gray-200 space-y-1",r.strengths.forEach(function(e){var i=App.getBenchmarkMap()[e.benchmark_id],c=i?i.name:e.benchmark_id,d=document.createElement("li");d.className="flex justify-between border-b border-gray-800 py-1";var p=document.createElement("span");p.textContent=c;var h=document.createElement("span"),g=document.createElement("strong");g.textContent=e.value.toFixed(1),h.appendChild(g),h.appendChild(document.createTextNode(" "+e.tier.label+" "));var x=document.createElement("span");x.className="text-gray-500",x.textContent="("+e.tier.rank+"/"+e.tier.total+")",h.appendChild(x),d.appendChild(p),d.appendChild(h),s.appendChild(d)}),a.appendChild(s)}if(r.weaknesses.length>0){var n=Modal._collapsibleSection(l,"Weaknesses (vs peer avg)","weaknesses",!0),o=document.createElement("ul");o.className="text-xs text-gray-200 space-y-1",r.weaknesses.forEach(function(e){var i=App.getBenchmarkMap()[e.benchmark_id],c=i?i.name:e.benchmark_id,d=document.createElement("li");d.className="flex justify-between border-b border-gray-800 py-1";var p=document.createElement("span");p.textContent=c;var h=document.createElement("span");h.appendChild(document.createTextNode(e.value.toFixed(1)+"  "));var g=document.createElement("span");g.className="text-gray-500",g.textContent="peer avg "+e.peerAvg.toFixed(1)+"  ",h.appendChild(g);var x=document.createElement("span");x.className="text-red-400",x.textContent="d "+e.delta.toFixed(1),h.appendChild(x),d.appendChild(p),d.appendChild(h),o.appendChild(d)}),n.appendChild(o)}}catch(e){console.warn("[modal] strengths/weaknesses error",e)}},_renderScoreSources:function(l,t){var r={};t.forEach(function(o){var e=o.source&&o.source.url;e&&e.startsWith("http")&&(r[e]=(r[e]||0)+1)});var a=Object.keys(r).sort(function(o,e){return r[e]-r[o]}).slice(0,5);if(a.length){var s=Modal._collapsibleSection(l,"Score Sources ("+a.length+" unique)","sources",!1),n=document.createElement("div");n.className="flex flex-wrap gap-1.5",a.forEach(function(o){var e=document.createElement("a");e.href=o,e.target="_blank",e.rel="noopener noreferrer",e.className="inline-block px-2 py-1 rounded text-xs bg-gray-800 hover:bg-gray-700 text-blue-400 hover:underline";try{var i=new URL(o).hostname.replace(/^www\./,"");e.textContent=i+" ("+r[o]+")"}catch(c){e.textContent=o.slice(0,50)}e.title=o,n.appendChild(e)}),s.appendChild(n)}},_renderVersionHistory:function(l,t,r){try{var a=r.split("/").pop().replace(/[\d._-]+$/,"").replace(/-(pro|max|mini|flash|nano|ultra|small|medium|large|haiku|sonnet|opus|preview|beta|thinking|fast|reasoning|chat)$/i,"");if(a.length<3)return;var s=App.data.models.filter(function(e){if(e.id===r||e.vendor!==t.vendor)return!1;var i=e.id.split("/").pop();return i.toLowerCase().indexOf(a.toLowerCase())>=0});if(!s.length)return;s.sort(function(e,i){var c=e.release_date||"",d=i.release_date||"";return d.localeCompare(c)});var n=Modal._collapsibleSection(l,"Version History ("+t.vendor+")","version",!1),o=document.createElement("div");o.className="flex flex-wrap gap-1.5",s.slice(0,30).forEach(function(e){var i=document.createElement("span");i.className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 cursor-pointer transition",i.title=e.id;var c=e.release_date?" \xB7 "+e.release_date.slice(0,7):"";i.textContent=e.name+c,i.onclick=function(d){return function(){Modal.showModel(d)}}(e.id),o.appendChild(i)}),n.appendChild(o)}catch(e){}},_renderFamilyTree:function(l,t,r){try{var a=(App.data.models||[]).filter(function(e){return e.vendor===t.vendor&&(e.release_date||e.released_at)}).map(function(e){return{id:e.id,name:e.name,date:e.release_date||e.released_at}});if(a.find(function(e){return e.id===r})||a.push({id:r,name:t.name,date:t.release_date||t.released_at||"?"}),a.sort(function(e,i){return(e.date||"").localeCompare(i.date||"")}),a.length<2)return;var s=Modal._collapsibleSection(l,"Family Tree ("+(t.vendor||"unknown vendor")+")","family",!1),n=document.createElement("div");n.className="flex items-center gap-1 overflow-x-auto py-2",n.style.minWidth="0",a.forEach(function(e,i){var c=document.createElement("div");c.className="flex flex-col items-center min-w-[80px] cursor-pointer",c.title=e.id+" \xB7 "+e.date;var d=document.createElement("div");d.className="rounded-full transition",e.id===r?d.className+=" w-4 h-4 bg-blue-400 ring-2 ring-blue-200":d.className+=" w-3 h-3 bg-gray-500 hover:bg-blue-400",c.appendChild(d);var p=document.createElement("div");p.className="text-[10px] mt-1 text-center truncate w-full",p.style.color=e.id===r?"#60a5fa":"#9ca3af",p.textContent=e.name,c.appendChild(p);var h=document.createElement("div");if(h.className="text-[9px] text-gray-500",h.textContent=(e.date||"").slice(0,7),c.appendChild(h),c.addEventListener("click",function(x){return function(){Modal.showModel(x)}}(e.id)),n.appendChild(c),i<a.length-1){var g=document.createElement("div");g.className="flex-1 h-px bg-gray-700 mx-1",g.style.minWidth="20px",n.appendChild(g)}}),s.appendChild(n);var o=document.createElement("p");o.className="text-xs text-gray-500 mt-1",o.textContent="Chronological release order. Click any node to navigate to that model.",s.appendChild(o)}catch(e){console.warn("[modal] family tree error",e)}},_renderLineage:function(l,t,r){try{let e=function(i,c,d,p){if(!(c==null||c===""||Array.isArray(c)&&c.length===0)){var h=document.createElement("div");h.className="grid grid-cols-3 gap-2 text-xs py-0.5";var g=document.createElement("div");g.className="text-gray-500 col-span-1",g.textContent=i,h.appendChild(g);var x=document.createElement("div");if(x.className="text-gray-200 col-span-2",d&&p){var y=document.createElement("a");y.href="#",y.className="text-blue-400 hover:underline",y.textContent=c,y.addEventListener("click",function(f){f.preventDefault(),Modal.showModel(p)}),x.appendChild(y)}else x.textContent=Array.isArray(c)?c.join(", "):String(c);h.appendChild(x),s.appendChild(h)}};var o=e,a=r&&r.lineage;if(!a||!a.base_model&&!a.base_model_id&&!a.teacher_models&&!a.training_method)return;var s=Modal._collapsibleSection(l,"Lineage / Distillation","lineage",!1);if(a.base_model_id){var n=(App.data.models||[]).find(function(i){return i.id===a.base_model_id});e("Base model",n?n.name:a.base_model_id,!0,a.base_model_id)}else a.base_model&&e("Base model",a.base_model);a.teacher_models&&a.teacher_models.length&&a.teacher_models.forEach(function(i){var c=(App.data.models||[]).find(function(d){return d.id===i});e("Teacher",c?c.name:i,!0,i)}),a.training_method&&e("Training method",a.training_method)}catch(e){console.warn("[modal] lineage error",e)}},_renderEnrichmentSections:function(l,t,r,a,s,n){var o=a&&a[r];if(!o)return;try{let b=function(N,k,$){!k||typeof k!="string"||c.push({label:N,url:k,color:$})};var Tt=b,e=o.links||{},i=o.pricing||{},c=[];if(b("\u{1F4CB} System Card",e.system_card,"purple"),b("\u{1FAAA} Model Card",e.model_card,"cyan"),b("\u{1F917} HuggingFace",e.huggingface,"yellow"),b("\u{1F310} Homepage",e.homepage,"blue"),b("\u{1F4C4} Paper",e.paper,"pink"),b("\u2699 GitHub",e.github,"gray"),b("\u{1F4F0} Blog",e.blog,"green"),c.length){var d=Modal._collapsibleSection(l,"Reference Links","links2",!0),p=document.createElement("div");p.className="flex flex-wrap gap-2";var h={purple:"bg-purple-900 hover:bg-purple-800 text-purple-200",cyan:"bg-cyan-900 hover:bg-cyan-800 text-cyan-200",yellow:"bg-yellow-900 hover:bg-yellow-800 text-yellow-200",blue:"bg-blue-900 hover:bg-blue-800 text-blue-200",pink:"bg-pink-900 hover:bg-pink-800 text-pink-200",gray:"bg-gray-700 hover:bg-gray-600 text-gray-200",green:"bg-green-900 hover:bg-green-800 text-green-200"};c.forEach(function(N){var k=document.createElement("a");k.href=N.url,k.target="_blank",k.rel="noopener noreferrer",k.className="inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition "+(h[N.color]||h.gray),k.textContent=N.label,k.title=N.url,p.appendChild(k)}),d.appendChild(p)}if((i.input!=null||i.output!=null||i.cached_input!=null)&&n){let N=function(k,$){if($!=null){var W=document.createElement("div");W.className="grid grid-cols-3 gap-2 text-xs py-0.5";var Y=document.createElement("div");Y.className="text-gray-500 col-span-1",Y.textContent=k,W.appendChild(Y);var se=document.createElement("div");se.className="text-gray-200 col-span-2",se.textContent="$"+$,W.appendChild(se),x.appendChild(W)}};var Lt=N,g=Modal._collapsibleSection(l,"Pricing (per 1M tokens, "+(i.currency||"USD")+")","pricing",!1),x=document.createElement("div");x.className="bg-gray-800 rounded-lg p-4",N("Input",i.input),N("Output",i.output),N("Cached input",i.cached_input),g.appendChild(x)}}catch(b){console.warn("[modal] enrichment links/pricing patch error",b)}try{if(n){if(!t.vendor&&o.vendor_inferred){var y=n.querySelectorAll("div");y.forEach(function(b){var N=b.querySelector(".text-xs.text-gray-500");if(N&&N.textContent==="Vendor"){var k=b.querySelector(".text-sm.text-gray-200");k&&(k.textContent===""||k.textContent==="unknown")&&(k.textContent=o.vendor_inferred+" (inferred)",k.style.fontStyle="italic")}});var f=!1;if(n.querySelectorAll(".text-xs.text-gray-500").forEach(function(b){b.textContent==="Vendor"&&(f=!0)}),!f){var v=document.createElement("div"),_=document.createElement("div");_.className="text-xs text-gray-500",_.textContent="Vendor",v.appendChild(_);var C=document.createElement("div");C.className="text-sm text-gray-200",C.style.fontStyle="italic",C.textContent=o.vendor_inferred+" (inferred)",v.appendChild(C),n.insertBefore(v,n.firstChild)}}var m=o.system_registered_date||o.release_date_inferred;if(m&&n){var u=document.createElement("div"),w=document.createElement("div");w.className="text-xs text-gray-500",w.textContent="\uC2DC\uC2A4\uD15C \uB4F1\uB85D\uC77C",u.appendChild(w);var P=document.createElement("div");P.className="text-sm text-gray-400 italic",P.textContent=m,P.title="When the model was first ingested into the dashboard. Not the public release date.",u.appendChild(P),n.appendChild(u)}if((!t.modalities||!t.modalities.length)&&o.modalities_inferred&&o.modalities_inferred.length>1){var z=document.createElement("div"),j=document.createElement("div");j.className="text-xs text-gray-500",j.textContent="Modalities (inferred)",z.appendChild(j);var O=document.createElement("div");O.className="text-sm text-gray-200",O.style.fontStyle="italic",O.textContent=o.modalities_inferred.join(", "),z.appendChild(O),n.appendChild(z)}}}catch(b){}try{if(n&&o.license_terms){var M=o.license_terms,L=M.name||t.license||null;if(L){let b=function(N,k){var $=document.createElement("li"),W=document.createTextNode("\u2022 "+N+": "),Y=document.createElement("strong");return Y.textContent=k,$.appendChild(W),$.appendChild(Y),$};var Ft=b,F=document.createElement("div");F.className="col-span-2";var Q=document.createElement("div");Q.className="text-xs text-gray-500",Q.textContent="License Terms",F.appendChild(Q);var R=document.createElement("div");R.className="text-sm text-gray-200 flex items-center flex-wrap gap-1";var Z=document.createElement("span");Z.textContent=L,R.appendChild(Z);var J=document.createElement("button");J.className="ml-1 text-blue-400 hover:underline text-xs",J.textContent="\u24DE details",J.title="Show full license terms";var U=document.createElement("div");U.className="w-full mt-1 p-2 bg-gray-900 border border-gray-700 rounded text-xs hidden";var S=document.createElement("ul");if(S.className="space-y-0.5",M.commercial!==void 0&&S.appendChild(b("Commercial use",M.commercial?"allowed":"not allowed")),M.modify_redistribute!==void 0&&S.appendChild(b("Modify/redistribute",M.modify_redistribute?"allowed":"restricted")),M.attribution_required!==void 0&&S.appendChild(b("Attribution required",M.attribution_required?"yes":"no")),M.revenue_threshold&&S.appendChild(b("Revenue threshold","$"+Number(M.revenue_threshold).toLocaleString()+" (different terms above)")),S.children.length){var V=document.createElement("div");V.style.cssText="display:flex;justify-content:flex-end;margin-bottom:4px";var H=document.createElement("button");H.className="text-gray-500 hover:text-gray-200 text-xs",H.textContent="\xD7",H.title="Close",H.addEventListener("click",function(){U.classList.add("hidden")}),V.appendChild(H),U.insertBefore(V,U.firstChild),U.appendChild(S),J.addEventListener("click",function(){U.classList.toggle("hidden")}),R.appendChild(J),F.appendChild(R),F.appendChild(U),n.appendChild(F)}}}}catch(b){console.warn("[modal] license terms expansion error",b)}try{var D=o.benchmarks_meta||{},A=o.pricing||{},re=App.data.pricing&&App.data.pricing[r]||{},E=A.input!=null?A.input:re.input,T=A.output!=null?A.output:re.output,K=D.intelligence_index_override!=null?D.intelligence_index_override:re.intelligence_index,q=D.arena_elo,X=re.tokens_per_second,B=null,I=null;if(t.release_date||t.released_at){var oe=t.release_date||t.released_at,ee=new Date(oe);isNaN(ee.getTime())||(B=Math.floor((Date.now()-ee.getTime())/864e5),B<30?I=B+" days ago":B<365?I=Math.floor(B/30)+" months ago":I=(B/365).toFixed(1)+" years ago")}var te=null;try{var ne=(App.data.models||[]).filter(function(b){return b.vendor===t.vendor&&(b.release_date||b.released_at)}).map(function(b){return new Date(b.release_date||b.released_at)}).filter(function(b){return!isNaN(b.getTime())}).sort(function(b,N){return b-N});if(ne.length>=3){for(var ie=[],ae=1;ae<ne.length;ae++)ie.push((ne[ae]-ne[ae-1])/864e5);var ce=ie.reduce(function(b,N){return b+N},0)/ie.length;ce>0&&(te="Avg "+Math.round(ce)+" days between vendor releases")}}catch(b){}var de=null;if(K&&K>0&&E!=null){var bt=E+(T!=null?T*5:0);de=(bt/K).toFixed(3)}var Ee=null,yt=null,me=null;try{let b=function(N){if(!N.length)return null;var k=N.slice().sort(function(W,Y){return W-Y}),$=Math.floor(k.length/2);return k.length%2?k[$]:(k[$-1]+k[$])/2};var Ot=b,Ze=App.data.pricing||{},Xe=[],et=[];if(Object.keys(Ze).forEach(function(N){if(N!==r){var k=Ze[N];k&&typeof k.input=="number"&&Xe.push(k.input),k&&typeof k.output=="number"&&et.push(k.output)}}),Ee=b(Xe),yt=b(et),E!=null&&Ee!=null){var Se=E/Ee;Se<.5?me="Significantly cheaper":Se<.85?me="Below peer median":Se<1.15?me="Near peer median":Se<2?me="Above peer median":me="Significantly pricier"}}catch(b){}if(K!=null||q!=null||I||de!=null||te||me){let b=function(N,k,$){if(!(k==null||k==="")){var W=document.createElement("div");W.className="grid grid-cols-3 gap-2 text-xs py-0.5";var Y=document.createElement("div");Y.className="text-gray-500 col-span-1",Y.textContent=N,W.appendChild(Y);var se=document.createElement("div");if(se.className="text-gray-200 col-span-2",se.textContent=String(k),$){var Qe=document.createElement("span");Qe.className="ml-2 text-gray-500",Qe.textContent="("+$+")",se.appendChild(Qe)}W.appendChild(se),Ae.appendChild(W)}};var Pt=b,Ct=Modal._collapsibleSection(l,"Performance & Cost","perfcost",!1),Ae=document.createElement("div");if(Ae.className="bg-gray-800 rounded-lg p-4",K!=null&&b("Intelligence Index",K,"Artificial Analysis"),q!=null){var tt=q;D.arena_elo_source&&(tt=q+""),b("LMSys Arena Elo",tt,"lmarena.ai")}if(X!=null&&b("Throughput",X+" tokens/sec"),I&&b("Released",I,t.release_date),te&&b("Vendor cadence",te),de!=null){b("Cost / IQ point","$"+de,"blended input+5\xD7output / Intelligence Index");try{var at=App.data.pricing||{},ve=[];if(Object.keys(at).forEach(function(N){var k=at[N];if(!(!k||!k.intelligence_index||!k.input)){var $=k.input+(k.output!=null?k.output*5:0);ve.push($/k.intelligence_index)}}),ve.length>=5){ve.sort(function(N,k){return N-k});var je=ve[0],rt=ve[ve.length-1],_t=parseFloat(de),qe=Math.max(0,Math.min(1,(_t-je)/(rt-je))),Me=document.createElement("div");Me.className="grid grid-cols-3 gap-2 text-xs py-0.5";var He=document.createElement("div");He.className="text-gray-500 col-span-1",He.textContent="Cost position",Me.appendChild(He);var Te=document.createElement("div");Te.className="col-span-2";var Be=document.createElement("div");Be.style.cssText="position:relative;background:#1f2937;height:8px;border-radius:4px;overflow:hidden";var nt=document.createElement("div");nt.style.cssText="position:absolute;top:0;left:0;height:100%;width:"+(qe*100).toFixed(1)+"%;background:"+(qe<.33?"#10b981":qe<.66?"#f59e0b":"#ef4444"),Be.appendChild(nt),Te.appendChild(Be);var Ie=document.createElement("div");Ie.className="text-xs text-gray-500 mt-0.5",Ie.textContent="Cheaper $"+je.toFixed(2)+" \u2190 peer range \u2192 $"+rt.toFixed(2)+" Pricier",Te.appendChild(Ie),Me.appendChild(Te),Ae.appendChild(Me)}}catch(N){}}me&&Ee!=null&&b("Price position",me,"peer median input $"+Ee.toFixed(2)+"/M");try{for(var fe=null,Ge=0;Ge<App.data.scores.length;Ge++){var $e=App.data.scores[Ge];if($e.model_id===r){var De=$e.source&&$e.source.date;De&&(!fe||De>fe)&&(fe=De)}}if(fe){var Et=new Date,ot=new Date(fe);if(!isNaN(ot.getTime())){var xe=Math.floor((Et-ot)/864e5),ke;xe<1?ke="today":xe<7?ke=xe+" days ago":xe<60?ke=Math.floor(xe/7)+" weeks ago":ke=Math.floor(xe/30)+" months ago",b("Data freshness",ke,"most recent score: "+fe)}}}catch(N){}try{var kt=o.architecture||{},ge=kt.total_params_b;if(!ge&&t.parameters){var it=String(t.parameters).match(/(\d+(?:\.\d+)?)\s*B/i);it&&(ge=parseFloat(it[1]))}if(ge){var be,ye,Ce;ge<10?(be=0,ye=10,Ce="<10B"):ge<50?(be=10,ye=50,Ce="10-50B"):ge<200?(be=50,ye=200,Ce="50-200B"):ge<700?(be=200,ye=700,Ce="200-700B"):(be=700,ye=1/0,Ce="700B+");var Je=0;Object.keys(a).forEach(function(N){var k=(a[N].architecture||{}).total_params_b;typeof k=="number"&&k>=be&&k<ye&&Je++}),Je>=2&&b("Same-class peers",Je+" models",Ce+" parameter range")}}catch(N){}try{for(var Ve=(App.data.benchmarks||[]).length,lt={},Le=0;Le<App.data.scores.length;Le++)App.data.scores[Le].model_id===r&&(lt[App.data.scores[Le].benchmark_id]=!0);var Ke=Object.keys(lt).length;if(Ve>0&&Ke>0){var wt=(Ke/Ve*100).toFixed(1);b("Benchmark coverage",Ke+" / "+Ve+" benchmarks ("+wt+"%)")}}catch(N){}try{var ue=s[r];if(ue){if(ue.downloads_30d!=null&&b("HF downloads (30d)",ue.downloads_30d.toLocaleString(),"huggingface.co"),ue.likes!=null&&b("HF likes",ue.likes.toLocaleString()),ue.total_size_bytes!=null){var Nt=(ue.total_size_bytes/1e9).toFixed(1);b("HF repo size",Nt+" GB",(ue.file_count||"?")+" files")}ue.last_modified&&b("HF last update",String(ue.last_modified).slice(0,10))}}catch(N){}try{var pe=o.training||{},Fe=pe.compute_flops;if(Fe){var we=typeof Fe=="string"?parseFloat(Fe):Fe;if(we&&we>0){var St=Math.log10(we);b("Training compute",we.toExponential(1)+" FLOPs","~10^"+Math.round(St)+" compute");var At=we/1e16,st=At*.4,Oe=st/1e3,Pe;Oe>1e3?Pe=(Oe/1e3).toFixed(1)+"kt CO2":Oe>1?Pe=Oe.toFixed(0)+"t CO2":Pe=st.toFixed(0)+" kg CO2",b("Carbon estimate",Pe,"rough: 1 kWh \u2248 10^16 FLOPs, US grid 0.4 kg CO2/kWh")}}}catch(N){}Ct.appendChild(Ae)}}catch(b){console.warn("[modal] performance & cost section error",b)}var G=o.architecture||{},pe=o.training||{},he=o.safety||{},ct=o.quantizations||[],dt=o.api_providers||[],pt=G.type||G.total_params_b||G.attention||G.attention_pattern||G.experts_total,ut=pe.pretrain_tokens||pe.compute_flops||pe.phases&&pe.phases.length,mt=he.aisi_cyber_tier||he.cbrn_risk||he.self_reported_safety_card,ht=ct.length>0,gt=dt.length>0;if(Modal._renderLineage(l,r,o),Modal._renderCostCalculator(l,r,o),!(pt||ut||mt||ht||gt))return;var Mt=Modal._collapsibleSection(l,"Architecture / Training / Safety","architecture",!1),Ne=document.createElement("div");Ne.className="bg-gray-800 rounded-lg p-4";function le(b,N){if(!(N==null||N===""||Array.isArray(N)&&N.length===0)){var k=document.createElement("div");k.className="grid grid-cols-3 gap-2 text-xs py-0.5";var $=document.createElement("div");$.className="text-gray-500 col-span-1",$.textContent=b,k.appendChild($);var W=document.createElement("div");W.className="text-gray-200 col-span-2",W.textContent=Array.isArray(N)?N.join(", "):String(N),k.appendChild(W),Ne.appendChild(k)}}if(pt){if(le("Architecture",G.type?G.type.toUpperCase():null),G.total_params_b!=null){var We=G.total_params_b+"B";G.active_params_b!=null&&(We+=" total / "+G.active_params_b+"B active"),G.vision_encoder_b!=null&&(We+=" (+"+G.vision_encoder_b+"B vision)"),le("Parameters",We)}if(G.layers!=null&&le("Layers",G.layers),G.attention!=null&&le("Attention",G.attention.toUpperCase().replace(/_/g," ")),G.attention_pattern!=null&&le("Pattern",G.attention_pattern),G.experts_total!=null){var vt=G.experts_total+" experts";G.experts_active!=null&&(vt+=", "+G.experts_active+" active"),le("Experts",vt)}}if(ut&&(le("Pretrain tokens",pe.pretrain_tokens),le("Compute (FLOPs)",pe.compute_flops),pe.phases&&pe.phases.length&&le("Phases",pe.phases)),mt&&(le("AISI cyber tier",he.aisi_cyber_tier),le("CBRN risk",he.cbrn_risk),he.self_reported_safety_card)){var Re=document.createElement("div");Re.className="grid grid-cols-3 gap-2 text-xs py-0.5";var w=document.createElement("div");w.className="text-gray-500 col-span-1",w.textContent="Safety card",Re.appendChild(w);var P=document.createElement("div");P.className="col-span-2";var _e=document.createElement("a");_e.href=he.self_reported_safety_card,_e.target="_blank",_e.rel="noopener",_e.className="text-blue-400 hover:underline",_e.textContent=he.self_reported_safety_card.replace(/^https?:\/\//,"").slice(0,60),P.appendChild(_e),Re.appendChild(P),Ne.appendChild(Re)}if(ht){var ft=G.total_params_b||G.active_params_b,xt=o.links&&o.links.huggingface||null,ze=document.createElement("div");ze.className="grid grid-cols-3 gap-2 text-xs py-0.5";var Ye=document.createElement("div");Ye.className="text-gray-500 col-span-1",Ye.textContent="Quantizations",ze.appendChild(Ye);var Ue=document.createElement("div");Ue.className="text-gray-200 col-span-2 flex flex-wrap gap-1",ct.forEach(function(b){var N=b.toUpperCase(),k="";if(ft){var $={fp16:2,bf16:2,fp8:1,awq:.5,gguf:.6,int8:1,int4:.5}[b.toLowerCase()];$&&(k=" (~"+(ft*$).toFixed(1)+"GB)")}if(xt){var W=xt+"-"+N,Y=document.createElement("a");Y.href=W,Y.target="_blank",Y.rel="noopener noreferrer",Y.className="inline-block px-2 py-0.5 rounded text-xs bg-gray-700 hover:bg-gray-600 transition",Y.title=W+" (may not exist)",Y.textContent=N+k,Ue.appendChild(Y)}else{var se=document.createElement("span");se.className="inline-block px-2 py-0.5 rounded text-xs bg-gray-700",se.textContent=N+k,Ue.appendChild(se)}}),ze.appendChild(Ue),Ne.appendChild(ze)}gt&&le("API providers",dt),Mt.appendChild(Ne)},_renderCostCalculator:function(l,t,r){try{let C=function(u,w,P){var z=document.createElement("div"),j=document.createElement("label");j.className="text-gray-500 block mb-1",j.textContent=u,z.appendChild(j);var O=document.createElement("input");if(O.type="number",O.value=w,O.min="0",O.className="bg-gray-700 border border-gray-600 rounded px-2 py-1 w-full text-gray-100",z.appendChild(O),P){var M=document.createElement("span");M.className="text-gray-500 text-[10px]",M.textContent=P,z.appendChild(M)}return{wrap:z,input:O}},m=function(){var u=parseFloat(d.input.value)||0,w=parseFloat(p.input.value)||0,P=parseFloat(h.input.value)||0,z=u*n+w*o;f.textContent="";var j=document.createElement("div");j.className="flex justify-between text-sm py-1";var O=document.createElement("span");O.className="text-blue-400 font-semibold",O.textContent="\u2605 This model",j.appendChild(O);var M=document.createElement("span");M.className="text-gray-100 font-mono",M.textContent="$"+z.toFixed(2)+" / month",j.appendChild(M),f.appendChild(j);var L=App.data.pricing||{},F=[];Object.keys(L).forEach(function(U){if(U!==t){var S=L[U];if(!(S.input==null||S.output==null)){var V=u*S.input+w*S.output;F.push({id:U,cost:V,p:S})}}}),F.sort(function(U,S){return U.cost-S.cost});var Q=F.filter(function(U){return U.cost<z}).slice(-3).reverse(),R=F.filter(function(U){return U.cost>z}).slice(0,3),Z=0;if(Q.concat(R).forEach(function(U){var S=(App.data.models||[]).find(function(re){return re.id===U.id}),V=S?S.name:U.id,H=document.createElement("div");H.className="flex justify-between text-xs py-0.5 cursor-pointer hover:bg-gray-800 px-1 -mx-1 rounded",H.addEventListener("click",function(re){return function(){Modal.showModel(re)}}(U.id));var D=document.createElement("span");D.className="text-gray-300",D.textContent=V,H.appendChild(D);var A=document.createElement("span");A.className=U.cost<z?"text-green-400 font-mono text-xs":"text-amber-400 font-mono text-xs",A.textContent="$"+U.cost.toFixed(2),H.appendChild(A),f.appendChild(H),Z++}),Z===0){var J=document.createElement("div");J.className="text-gray-500 text-xs mt-1",J.textContent="No peer pricing data for comparison.",f.appendChild(J)}};var v=C,_=m,a=r&&r.pricing,s=App.data.pricing&&App.data.pricing[t]||{},n=a&&a.input!=null?a.input:s.input,o=a&&a.output!=null?a.output:s.output;if(n==null||o==null)return;var e=Modal._collapsibleSection(l,"Cost Calculator","cost-calc",!1),i=document.createElement("p");i.className="text-xs text-gray-500 mb-2",i.textContent="Estimate monthly cost. Default ratio: 1 input token = 5 output tokens (typical chat).",e.appendChild(i);var c=document.createElement("div");c.className="grid grid-cols-3 gap-2 text-xs items-end mb-2";var d=C("Input tokens / month (millions)","10",""),p=C("Output tokens / month (millions)","50",""),h=C("Requests / month","100000","");c.appendChild(d.wrap),c.appendChild(p.wrap),c.appendChild(h.wrap),e.appendChild(c);var g=document.createElement("div");g.className="flex flex-wrap gap-2 mb-3 text-xs items-center";var x=document.createElement("span");x.className="text-gray-500",x.textContent="Presets:",g.appendChild(x);var y=[{label:"\u{1F4AC} Chat",input:5,output:25,requests:5e4},{label:"\u{1F916} Agent",input:50,output:100,requests:1e4},{label:"\u{1F4BB} Coding",input:30,output:150,requests:3e4},{label:"\u{1F3A7} Support",input:20,output:60,requests:1e5},{label:"\u{1F4CA} Analytics",input:100,output:200,requests:5e3}];y.forEach(function(u){var w=document.createElement("button");w.className="bg-gray-700 hover:bg-gray-600 px-2 py-0.5 rounded text-xs",w.textContent=u.label,w.title=u.input+"M input / "+u.output+"M output / "+u.requests+" requests",w.addEventListener("click",function(){d.input.value=u.input,p.input.value=u.output,h.input.value=u.requests,m()}),g.appendChild(w)}),e.appendChild(g);var f=document.createElement("div");f.className="mt-3 p-3 bg-gray-900 rounded border border-gray-700",e.appendChild(f),d.input.addEventListener("input",m),p.input.addEventListener("input",m),h.input.addEventListener("input",m),m()}catch(C){console.warn("[modal] cost calculator error",C)}},_renderStrengthsRadar:function(l,t,r){try{let v=function(_){if(!_||!_.length)return null;for(var C=0,m=0;m<_.length;m++)C+=_[m];return C/_.length};for(var f=v,a=[{key:"reasoning",label:"Reasoning"},{key:"coding",label:"Coding"},{key:"math",label:"Math"},{key:"agent",label:"Agent"},{key:"multimodal",label:"Multimodal"}],s={},n=0;n<App.data.scores.length;n++){var o=App.data.scores[n],e=App.getBenchmarkMap()[o.benchmark_id];if(e){var i=e.category;s[o.model_id]||(s[o.model_id]={}),s[o.model_id][i]||(s[o.model_id][i]=[]),s[o.model_id][i].push(o.value)}}var c={};a.forEach(function(_){var C=[];Object.keys(s).forEach(function(m){var u=v(s[m][_.key]);u!=null&&C.push(u)}),C.sort(function(m,u){return m-u}),c[_.key]=C});var d=[],p=[];if(a.forEach(function(_){var C=v((s[r]||{})[_.key]);if(C!=null){var m=c[_.key];if(!(m.length<3)){for(var u=0,w=0;w<m.length;w++)m[w]<C&&u++;p.push({name:_.label+" ("+C.toFixed(0)+")",max:100}),d.push(u/m.length*100)}}}),p.length<3)return;var h=Modal._collapsibleSection(l,"Strengths Radar (percentile vs all models)","radar",!1),g=document.createElement("div");g.className="bg-gray-800 rounded-lg p-4";var x=document.createElement("div"),y=window.innerWidth<640;x.style.height=y?"220px":"280px",x.style.width="100%",g.appendChild(x),h.appendChild(g),setTimeout(function(){if(typeof echarts!="undefined"){var _=echarts.init(x,Modal._currentThemeName?Modal._currentThemeName():"dark");_.setOption({backgroundColor:"transparent",tooltip:{trigger:"item"},radar:{indicator:p,shape:"polygon",splitNumber:4,axisName:{color:"#d1d5db",fontSize:11},splitLine:{lineStyle:{color:"rgba(160,160,160,0.25)"}},splitArea:{show:!1},axisLine:{lineStyle:{color:"rgba(160,160,160,0.4)"}}},series:[{type:"radar",data:[{value:d,name:t.name,lineStyle:{width:2},areaStyle:{opacity:.25},itemStyle:{color:"#60a5fa"}}]}]}),window.addEventListener("resize",function(){_.resize()})}},0)}catch(v){console.warn("[modal] strengths radar error",v)}},_renderScoreHistory:function(l,t,r){try{var a=App.histDates?App.histDates():[],s=a.length;if(s<2){var n=Modal._collapsibleSection(l,"Score History","history",!1),o=document.createElement("div");o.className="text-xs text-gray-500 italic p-2",s===0?o.textContent="No history snapshots yet. Daily snapshots accumulate via the daily benchmark workflow.":o.textContent="Only "+s+" snapshot accumulated so far. Need 2+ for trend chart. Snapshots refresh daily at 06:00 UTC.",n.appendChild(o);return}for(var e={},i=0;i<App.data.scores.length;i++){var c=App.data.scores[i];c.model_id===r&&(e[c.benchmark_id]=c.value)}var d=Object.keys(e).sort(function(v,_){return e[_]-e[v]}).slice(0,4);if(d.length<1)return;var p=d.map(function(v){var _=App.getBenchmarkMap()[v],C=_?_.name:v,m=App.histPairSeries(r,v);return{name:C,type:"line",data:m,connectNulls:!0,smooth:!0}}),h=p.some(function(v){return v.data.filter(function(_){return _!=null}).length>=2});if(!h)return;var g=Modal._collapsibleSection(l,"Score History (top "+d.length+" benchmarks)","history",!1),x=document.createElement("div");x.className="bg-gray-800 rounded-lg p-4";var y=document.createElement("div"),f=window.innerWidth<640;y.style.height=f?"180px":"240px",y.style.width="100%",x.appendChild(y),g.appendChild(x),setTimeout(function(){if(typeof echarts!="undefined"){var v=echarts.init(y,Modal._currentThemeName?Modal._currentThemeName():"dark");v.setOption({backgroundColor:"transparent",tooltip:{trigger:"axis"},legend:{textStyle:{color:"#d1d5db",fontSize:10},top:0},grid:{left:40,right:20,top:30,bottom:30},xAxis:{type:"category",data:a,axisLabel:{color:"#9ca3af",fontSize:10}},yAxis:{type:"value",axisLabel:{color:"#9ca3af",fontSize:10},splitLine:{lineStyle:{color:"rgba(160,160,160,0.15)"}}},series:p}),window.addEventListener("resize",function(){v.resize()})}},0)}catch(v){console.warn("[modal] score history error",v)}},_renderScoreBreakdown:function(l,t,r){var a={};r.forEach(function(h){var g=App.getBenchmarkMap()[h.benchmark_id],x=g?g.category:"other";a[x]||(a[x]=[]),a[x].push({bench:g,score:h})});var s=["reasoning","coding","math","cybersecurity","cyber_defense","agent","multimodal","multilingual","other"],n={reasoning:"Reasoning",coding:"Coding",math:"Math",cybersecurity:"Cybersecurity (Attack)",cyber_defense:"Cyber Defense",agent:"Agent",multimodal:"Multimodal",multilingual:"Multilingual",other:"Other"},o=Modal._collapsibleSection(l,"Score Breakdown ("+r.length+" benchmarks)","scores",!1),e=document.createElement("div");e.className="mb-3";var i=document.createElement("input");i.type="text",i.placeholder="Filter benchmarks (e.g., math, korean)...",i.className="bg-gray-800 border border-gray-700 rounded px-3 py-1 w-full text-xs text-gray-100",e.appendChild(i),o.appendChild(e);var c=null;try{var d=localStorage.getItem("watchlist-snap:"+t);d&&(c=JSON.parse(d))}catch(h){}var p=[];s.forEach(function(h){var g=a[h];if(!(!g||g.length===0)){g.sort(function(f,v){return v.score.value-f.score.value});var x=document.createElement("div");x.className="mb-4";var y=document.createElement("h3");y.className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2",y.textContent=n[h]||h,x.appendChild(y),g.forEach(function(f){var v=document.createElement("div");v.className="flex items-center justify-between py-1.5 border-t border-gray-800 hover:bg-gray-800 rounded px-2 -mx-2 cursor-pointer transition",v.onclick=function(Z){return function(){Modal.showBenchmark(Z)}}(f.bench?f.bench.id:f.score.benchmark_id),v._benchName=f.bench?f.bench.name:f.score.benchmark_id,v._category=n[h]||h,p.push(v);var _=document.createElement("span");_.className="text-sm text-gray-300",_.textContent=f.bench?f.bench.name:f.score.benchmark_id,v.appendChild(_);var C=document.createElement("div");C.className="flex items-center gap-2";var m=document.createElement("span");m.className="text-sm font-mono"+(f.score.is_sota?" text-green-400 font-bold":" text-gray-200"),m.textContent=f.score.value>500?Math.round(f.score.value):f.score.value,C.appendChild(m);var u=window.PeerMatcher&&PeerMatcher.sotaTier?PeerMatcher.sotaTier(f.score.value,t,f.score.benchmark_id,App.data.models,App.data.scores):null;if(u){var w=document.createElement("span");w.className="px-1.5 py-0.5 text-xs rounded",u.tier==="sota"?w.className+=" bg-yellow-900 text-yellow-300":u.tier==="top3"?w.className+=" bg-gray-600 text-gray-100":u.tier==="top10"?w.className+=" bg-gray-700 text-gray-200":w.className+=" bg-gray-800 text-gray-400",w.textContent=u.label,w.title=u.label+" ("+u.rank+"/"+u.total+")",C.appendChild(w)}if(f.score.is_sota){var P=document.createElement("span");P.className="px-1.5 py-0.5 bg-green-900 text-green-300 text-xs rounded",P.textContent="SOTA",C.appendChild(P)}var z=Modal._makeStaleBadge(f.score);if(z&&C.appendChild(z),c&&c.scores&&c.scores[f.score.benchmark_id]!=null){var j=c.scores[f.score.benchmark_id],O=f.score.value;if(Math.abs(O-j)>.05){var M=document.createElement("span");M.className="ml-1 inline-block px-1 rounded text-xs";var L=O-j;L>0?(M.className+=" bg-green-900 text-green-300",M.textContent="\u2191+"+L.toFixed(1)):(M.className+=" bg-red-900 text-red-300",M.textContent="\u2193"+L.toFixed(1)),M.title="Changed since last visit (was "+j.toFixed(1)+")",C.appendChild(M)}}var F=f.score.source&&f.score.source.type||"web",Q=Modal._sourceLink(f.score.source),R;Q?(R=document.createElement("a"),R.href=Q,R.target="_blank",R.rel="noopener noreferrer",R.className="text-xs "+(F==="pdf"?"text-purple-400":"text-blue-400")+" hover:underline",R.textContent=F+" \u2197",R.title=Q):(R=document.createElement("span"),R.className="text-xs "+(F==="pdf"?"text-purple-400":"text-gray-600"),R.textContent=F),C.appendChild(R),v.appendChild(C),x.appendChild(v)}),o.appendChild(x)}}),i.addEventListener("input",function(){var h=i.value.toLowerCase().trim();p.forEach(function(g){var x=(g._benchName||"").toLowerCase(),y=(g._category||"").toLowerCase();!h||x.indexOf(h)!==-1||y.indexOf(h)!==-1?g.style.display="":g.style.display="none"})})}};
+/**
+ * Modal dialogs for benchmark detail and model detail views.
+ * Uses safe DOM methods (createElement + textContent) for all dynamic content.
+ */
+var Modal = {
+    _bmtData: null,
+
+    // Built-in benchmark metadata for benchmarks not in BMT
+    _builtinMeta: {
+        gpqa_diamond: { desc: 'Graduate-level science questions designed to be Google-proof. 198 expert-crafted questions across physics, chemistry, and biology.', paper: 'https://arxiv.org/abs/2311.12022', github: 'https://github.com/idavidrein/gpqa', year: '2023', items: '198 questions' },
+        swe_bench_verified: { desc: 'Real GitHub issues resolved by AI agents. 2,294 human-verified tasks from popular Python repositories.', paper: 'https://arxiv.org/abs/2310.06770', github: 'https://github.com/princeton-nlp/SWE-bench', year: '2023', items: '2,294 tasks' },
+        swe_bench_pro: { desc: 'Advanced SWE-bench requiring extended multi-step reasoning. Models scoring 80%+ on Verified reach only 46-58% on Pro.', paper: 'https://arxiv.org/abs/2310.06770', github: 'https://github.com/princeton-nlp/SWE-bench', year: '2024', items: 'Subset of SWE-bench' },
+        swe_bench_multilingual: { desc: 'Cross-language software engineering tasks spanning Python, Java, JavaScript, TypeScript, and more.', paper: 'https://arxiv.org/abs/2310.06770', github: 'https://github.com/princeton-nlp/SWE-bench', year: '2024' },
+        swe_rebench: { desc: 'Stricter re-evaluation of SWE-bench with improved verification to reduce false positives.', paper: 'https://swe-rebench.com', github: 'https://github.com/swe-rebench', year: '2026' },
+        terminal_bench_2: { desc: '89 Docker container tasks across SWE, biology, security, and gaming. Measures autonomous terminal agent capability.', paper: 'https://www.tbench.ai', github: 'https://github.com/laude-institute/terminal-bench', year: '2025', items: '89 tasks' },
+        hle: { desc: "Humanity's Last Exam — 2,500 expert-crafted questions at the frontier of human knowledge across math, science, and humanities.", paper: 'https://arxiv.org/abs/2501.14249', github: 'https://github.com/centerforaisafety/hle', year: '2025', items: '2,500 questions' },
+        arc_agi_2: { desc: 'Visual reasoning puzzles testing fluid intelligence and generalization. Measures abstract pattern recognition beyond training data.', paper: 'https://arcprize.org/arc-agi/2', github: 'https://github.com/fchollet/ARC-AGI', year: '2024' },
+        aime_2025: { desc: 'American Invitational Mathematics Examination 2025. 30 problems testing advanced high school mathematics.', paper: 'https://arxiv.org/abs/2503.04235', github: 'https://matharena.ai', year: '2025', items: '30 problems' },
+        hmmt_2025: { desc: 'Harvard-MIT Mathematics Tournament 2025. Collegiate-level competition math problems.', paper: 'https://matharena.ai', year: '2025' },
+        imo_answerbench: { desc: 'International Mathematical Olympiad answer-format problems for automated evaluation.', paper: 'https://matharena.ai', year: '2025' },
+        cybench: { desc: '40 professional-level CTF challenges from HackTheBox, SekaiCTF, and more. Spans crypto, web, reversing, forensics, exploitation.', paper: 'https://arxiv.org/abs/2408.08926', github: 'https://github.com/stanford-crfm/cybench', year: '2024', items: '40 challenges' },
+        cvebench: { desc: '40 critical-severity CVE-based real-world web application vulnerability exploitation benchmark.', paper: 'https://arxiv.org/abs/2503.17332', github: 'https://github.com/uiuc-kang-lab/cve-bench', year: '2025', items: '40 CVEs' },
+        cybergym: { desc: '1,507 real-world vulnerability instances from 188 open-source projects. Tests exploit PoC generation and zero-day discovery.', paper: 'https://arxiv.org/abs/2506.02548', github: 'https://github.com/sunblaze-ucb/cybergym', year: '2025', items: '1,507 instances' },
+        evmbench_exploit: { desc: 'Smart contract exploit generation — craft transactions that drain funds from vulnerable Ethereum contracts.', paper: 'https://openai.com/index/introducing-evmbench/', github: 'https://github.com/openai/evmbench', year: '2026', items: '120 vulnerabilities' },
+        evmbench_detect: { desc: 'Smart contract security audit — detect high-severity vulnerabilities in Ethereum contract code.', paper: 'https://openai.com/index/introducing-evmbench/', github: 'https://github.com/openai/evmbench', year: '2026', items: '120 vulnerabilities' },
+        evmbench_patch: { desc: 'Smart contract vulnerability patching — fix security flaws while preserving contract functionality.', paper: 'https://openai.com/index/introducing-evmbench/', github: 'https://github.com/openai/evmbench', year: '2026', items: '120 vulnerabilities' },
+        airtbench: { desc: '70 AI/ML CTF challenges testing autonomous red teaming of AI systems. Black-box exploitation tasks.', paper: 'https://arxiv.org/abs/2506.14682', github: 'https://github.com/dreadnode/AIRTBench-Code', year: '2025', items: '70 challenges' },
+        firefox_147: { desc: 'Browser JS shell exploitation from crash inputs. Measures code execution success rate on real Firefox vulnerabilities.', paper: 'https://www.anthropic.com/research', year: '2026' },
+        cyber_range: { desc: '15 network attack scenarios including C2, SSRF, binary exploitation, EDR evasion, and privilege escalation.', paper: 'https://openai.com/index/introducing-gpt-5-4/', year: '2026', items: '15 scenarios' },
+        autopatchbench: { desc: '136 real-world C/C++ vulnerabilities for automated patching. Verified through fuzzing and differential testing.', paper: 'https://ai.meta.com/research/publications/cyberseceval-4/', github: 'https://github.com/facebookresearch/CyberSecEval', year: '2025', items: '136 samples' },
+        cybersoceval: { desc: 'SOC malware analysis and threat intelligence reasoning. Meta + CrowdStrike joint benchmark.', paper: 'https://arxiv.org/abs/2509.20166', github: 'https://github.com/CrowdStrike/CyberSOCEval_data', year: '2025' },
+        zerodaybench: { desc: 'Unseen zero-day vulnerability detection and remediation across multiple information levels.', paper: 'https://arxiv.org/abs/2603.02297', year: '2026' },
+        dfir_metric: { desc: 'Digital forensics and incident response — MCQ knowledge + CTF forensics skills.', paper: 'https://arxiv.org/abs/2501.16466', year: '2025', items: '713 MCQs + 150 CTF challenges' },
+        browsecomp: { desc: '1,266 hard-to-find web information retrieval tasks requiring persistent navigation and synthesis.', paper: 'https://openai.com/index/browsecomp/', github: 'https://github.com/openai/browsecomp', year: '2025', items: '1,266 questions' },
+        osworld_verified: { desc: 'Real computer environment (Ubuntu) open-ended tasks. Tests GUI/CLI operation by multimodal agents.', paper: 'https://arxiv.org/abs/2404.07972', github: 'https://github.com/xlang-ai/OSWorld', year: '2024' },
+        tau_bench: { desc: 'Tool-Agent-User interaction across airline, retail, and telecom domains.', paper: 'https://arxiv.org/abs/2406.12045', github: 'https://github.com/sierra-research/tau-bench', year: '2024' },
+        tau2_bench: { desc: 'Tool-Agent-User interaction v2 with improved evaluation across multiple service domains.', paper: 'https://arxiv.org/abs/2506.07982', github: 'https://github.com/sierra-research/tau2-bench', year: '2025' },
+        mcp_atlas: { desc: '1,000 tasks across 36 real MCP servers and 220 tools for multi-step tool-use competency evaluation.', year: '2026', items: '1,000 tasks' },
+        deepsearchqa: { desc: 'Multi-step web research requiring deep browsing and information synthesis. F1 score metric.', year: '2026' },
+        vending_bench_2: { desc: 'Long-horizon agentic task simulating running a vending machine business over a year. Scored by final bank balance.', year: '2025' },
+        metr_time_horizons: { desc: 'Human task duration at which AI agents reach 50% autonomous success. Doubling every ~4 months.', paper: 'https://metr.org/time-horizons/', year: '2025' },
+        webarena: { desc: 'Web-based task automation across realistic web applications (CMS, ecommerce, forums).', paper: 'https://arxiv.org/abs/2307.13854', github: 'https://github.com/web-arena-x/webarena', year: '2023' },
+        mmmu_pro: { desc: 'Multimodal understanding and reasoning with college-level subject knowledge across 30 subjects.', paper: 'https://arxiv.org/abs/2401.11943', github: 'https://github.com/MMMU-Benchmark', year: '2024' },
+        mathvision: { desc: 'Visual math problem solving requiring both mathematical reasoning and visual understanding.', paper: 'https://arxiv.org/abs/2402.14804', year: '2024' },
+        video_mmmu: { desc: 'Knowledge acquisition from videos — tests understanding of educational and scientific video content.', paper: 'https://arxiv.org/abs/2501.13826', year: '2025' },
+        longvideobench: { desc: 'Long video understanding benchmark testing comprehension over extended video sequences.', paper: 'https://arxiv.org/abs/2407.15754', year: '2024' },
+        screenspot_pro: { desc: 'Screen understanding for GUI agents — identifies UI elements and their functions from screenshots.', year: '2025' },
+        charxiv_reasoning: { desc: 'Information synthesis from complex academic charts and figures. Tests chart reasoning ability.', paper: 'https://arxiv.org/abs/2406.18521', github: 'https://github.com/princeton-nlp/CharXiv', year: '2024' },
+        omnidocbench: { desc: 'OCR and document understanding benchmark. Edit Distance metric (lower is better for original, higher for normalized).', year: '2025' },
+        mmmlu: { desc: 'Multilingual MMLU — massive multitask evaluation across 57 subjects in 14+ languages.', paper: 'https://arxiv.org/abs/2009.03300', year: '2024' },
+        mmlu_pro: { desc: 'MMLU-Pro — harder version of MMLU with 10 answer choices and more reasoning-focused questions.', paper: 'https://arxiv.org/abs/2406.01574', github: 'https://github.com/TIGER-Lab/MMLU-Pro', year: '2024' },
+        global_piqa: { desc: 'Commonsense reasoning across 100 languages and cultures.', year: '2025' },
+        simpleqa_verified: { desc: 'Parametric knowledge verification — tests factual recall accuracy on verifiable questions.', year: '2025' },
+        facts_benchmark: { desc: 'Factual grounding, search, and retrieval benchmark suite.', year: '2025' },
+        longbench_v2: { desc: 'Long-context understanding benchmark testing reasoning over extended text passages.', paper: 'https://arxiv.org/abs/2412.15204', year: '2024' },
+        gdpval_aa: { desc: 'Real-world code generation quality evaluation using ELO-based pairwise comparison.', year: '2025' },
+        livecodebench: { desc: 'Contamination-free coding benchmark with monthly refreshed competitive programming problems.', paper: 'https://arxiv.org/abs/2403.07974', github: 'https://github.com/LiveCodeBench/LiveCodeBench', year: '2024' },
+        scicode: { desc: 'Scientific coding tasks requiring domain knowledge in physics, chemistry, and biology.', paper: 'https://arxiv.org/abs/2407.13168', github: 'https://github.com/scicode-bench/SciCode', year: '2024' },
+        paperbench: { desc: 'Reproduce ML paper results from code — tests ability to implement methodology from academic papers.', year: '2025' },
+        mle_bench: { desc: 'ML Engineering benchmark — solve Kaggle-style ML competitions to bronze medal threshold.', paper: 'https://arxiv.org/abs/2410.07095', github: 'https://github.com/openai/mle-bench', year: '2024' },
+        monorepo_bench: { desc: 'Large codebase navigation and modification tasks in monorepo environments.', year: '2026' },
+        cyscenariobench: { desc: 'Multi-step cyber attack scenario challenges requiring strategic planning and execution.', year: '2026' },
+        baxbench: { desc: '392 security-critical backend coding tasks across 14 frameworks and 6 languages.', paper: 'https://baxbench.com/paper.pdf', github: 'https://github.com/logic-star-ai/baxbench', year: '2025', items: '392 tasks' },
+        matharena_apex: { desc: 'Most challenging math contest problems — frontier difficulty beyond AIME level.', paper: 'https://matharena.ai', year: '2025' },
+        tau3_bench: { desc: 'Next-generation agent tool-use benchmark with knowledge retrieval and voice beyond TAU2.', paper: 'https://sierra.ai/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice', year: '2026' },
+        apex_agents: { desc: 'AI Productivity Index — 480 long-horizon cross-application professional tasks from banking, consulting, and law.', paper: 'https://arxiv.org/abs/2601.14242', github: 'https://www.mercor.com/apex/', year: '2026', items: '480 tasks' },
+        frontiermath: { desc: 'Research-level mathematics problems at the frontier of human mathematical knowledge. Problems that took expert mathematicians hours to days.', paper: 'https://arxiv.org/abs/2411.04872', year: '2024' },
+        livecodebench_elo: { desc: 'LiveCodeBench Elo rating from competitive programming (Codeforces/ICPC/IOI style).', paper: 'https://arxiv.org/abs/2403.07974', github: 'https://github.com/LiveCodeBench/LiveCodeBench', year: '2024' },
+        livecodebench_v6: { desc: 'LiveCodeBench version 6 — latest contamination-free competitive coding problems.', paper: 'https://arxiv.org/abs/2403.07974', year: '2025' },
+        fortress: { desc: 'FORTRESS — 1,010 expert-crafted adversarial prompts for CBRNE, terrorism, criminal eval. Attack Success Rate metric (lower=safer). Scale AI.', paper: 'https://arxiv.org/abs/2506.14922', github: 'https://labs.scale.com/leaderboard/fortress', year: '2025', items: '1,010 prompts' },
+        replibench: { desc: 'RepliBench — 86 tasks measuring autonomous self-replication capabilities across 4 domains: obtain resources, exfiltrate weights, replicate, persist. UK AISI.', paper: 'https://arxiv.org/abs/2504.18565', year: '2025', items: '86 tasks' },
+        tlo_cyber_range: { desc: 'The Last Ones (TLO) — 32-step corporate network attack simulation from reconnaissance to full takeover. Estimated 20 human-hours. UK AISI.', paper: 'https://www.aisi.gov.uk/blog/how-do-frontier-ai-agents-perform-in-multi-step-cyber-attack-scenarios', year: '2026', items: '32 steps' },
+        vibe_code_bench: { desc: 'Vibe Code Bench — 100 web application specifications evaluated through 964 browser-based workflows. End-to-end functional app development.', paper: 'https://arxiv.org/abs/2603.04601', year: '2026', items: '100 specs' },
+        abc_bench: { desc: 'ABC-Bench — 224 agentic backend coding tasks. Requires full dev lifecycle: repo exploration, containerized deployment, API tests.', paper: 'https://arxiv.org/abs/2601.11077', github: 'https://github.com/OpenMOSS/ABC-Bench', year: '2026', items: '224 tasks' },
+        mhbench: { desc: 'MHBench — 40 emulated multi-host network environments for autonomous red teaming. Tests multi-stage attacks: reconnaissance, lateral movement, privilege escalation.', paper: 'https://arxiv.org/abs/2501.16466', year: '2025', items: '40 networks' },
+        cyberexplorer: { desc: 'CyberExplorer — 40 vulnerable web services in VM. Autonomous exploitation without prior knowledge. Reactive multi-agent framework.', paper: 'https://arxiv.org/abs/2602.08023', year: '2026', items: '40 services' },
+        vibe_coding_safety: { desc: 'Vibe Coding Safety — measures security of AI-generated code in real-world tasks. Only 8.25% of outputs are both functionally correct AND secure.', paper: 'https://arxiv.org/abs/2512.03262', year: '2025' },
+        ailuminate: { desc: 'AILuminate v1.0 — MLCommons industry-standard AI safety benchmark. 12 hazard categories, 24,000+ prompts, 5-point grading scale (Poor to Excellent).', paper: 'https://arxiv.org/abs/2503.05731', github: 'https://ailuminate.mlcommons.org/benchmarks/', year: '2025', items: '24,000+ prompts' },
+        arc_agi_1: { desc: 'ARC-AGI-1 — Original abstract reasoning benchmark testing fluid intelligence and generalization.', paper: 'https://arcprize.org/arc-agi', github: 'https://github.com/fchollet/ARC-AGI', year: '2024' },
+        bfcl_v4: { desc: 'Berkeley Function Calling Leaderboard V4 — tool-use accuracy across Python/Java/JS/REST API with agentic web search evaluation.', paper: 'https://arxiv.org/abs/2402.15491', github: 'https://gorilla.cs.berkeley.edu/leaderboard.html', year: '2024' },
+        aider_polyglot: { desc: '225 Exercism problems across C++, Go, Java, JS, Python, Rust. Tests coding ability with error correction (2 attempts per problem).', paper: 'https://aider.chat/docs/leaderboards/', year: '2024', items: '225 problems' },
+        webvoyager: { desc: 'Web navigation benchmark for autonomous browsing agents across real websites.', paper: 'https://arxiv.org/abs/2401.13919', year: '2024' },
+        ifbench: { desc: 'IFBench — 58 verifiable out-of-domain instruction following constraints. Tests generalization of instruction following beyond training.', paper: 'https://arxiv.org/abs/2507.02833', github: 'https://github.com/allenai/IFBench', year: '2025', items: '58 constraints' },
+        arena_hard_v2: { desc: 'Arena Hard v2 — 500 curated prompts from Chatbot Arena and WildChat-1M. Automated LLM benchmark by LMSYS.', paper: 'https://arxiv.org/abs/2406.11939', github: 'https://github.com/lmarena/arena-hard-auto', year: '2024', items: '500 prompts' },
+        hmmt_2026: { desc: 'HMMT February 2026 — latest Harvard-MIT Mathematics Tournament problems.', paper: 'https://matharena.ai', year: '2026' },
+        aime_2026: { desc: 'AIME 2026 — American Invitational Mathematics Examination 2026 problems.', paper: 'https://matharena.ai', year: '2026' }
+    },
+
+    _lastTrigger: null,
+
+    // Filename (as stored in score.source.url) → public canonical URL.
+    // When a score's source is a local PDF, we can't link to the PDF on
+    // GitHub Pages (they are not deployed), but we can point users at the
+    // vendor's canonical page for the same document.
+    _pdfPublicUrl: {
+        'Claude Opus 4.7 System Card.pdf': 'https://www.anthropic.com/research',
+        'Claude Opus 4.6 System Card 02-05.pdf': 'https://www.anthropic.com/research',
+        'Claude Mythos Preview System Card.pdf': 'https://www.anthropic.com/research',
+        'gpt-5-4-thinking.pdf': 'https://openai.com/index/introducing-gpt-5-4/',
+        'GPT-5-3-Codex-System-Card-02.pdf': 'https://openai.com/index/introducing-gpt-5-3-codex/',
+        'Gemini-3-Pro-Model-Card.pdf': 'https://deepmind.google/models/gemini-3-pro/',
+        '2602.02276v1.pdf': 'https://arxiv.org/abs/2602.02276',
+        '2604.03121v1.pdf': 'https://arxiv.org/abs/2604.03121',
+        '2602.15763v2.pdf': 'https://arxiv.org/abs/2602.15763',
+        '2602.04705v1.pdf': 'https://arxiv.org/abs/2602.04705',
+        '2604.08644v1.pdf': 'https://arxiv.org/abs/2604.08644',
+        '2601.07022v1.pdf': 'https://arxiv.org/abs/2601.07022',
+        '2601.09200v5.pdf': 'https://arxiv.org/abs/2601.09200',
+        '2603.18788v2.pdf': 'https://arxiv.org/abs/2603.18788',
+        '2604.07035v1.pdf': 'https://arxiv.org/abs/2604.07035'
+    },
+    _sourceLink: function(source) {
+        if (!source) return null;
+        var url = source.url || '';
+        if (/^https?:\/\//.test(url)) return url;
+        // Local PDF path — strip 'resource/' prefix and look up public URL
+        var basename = url.split('/').pop();
+        return Modal._pdfPublicUrl[basename] || null;
+    },
+
+    // Cache for per-date history snapshots. Key: 'YYYY-MM-DD' → array of scores.
+    _historySnapshots: {},   // detail shard name -> Promise
+    _historyDataBase: null,
+
+    init: function() {
+        var base = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
+        Modal._historyDataBase = base;
+        fetch((window.App && App.dataUrl) ? App.dataUrl(base + '/bmt_connections.json') : base + '/bmt_connections.json').then(function(r) {
+            return r.ok ? r.json() : {};
+        }).then(function(d) {
+            Modal._bmtData = d;
+            // Re-render visible tables that surface BMT badges, since the
+            // initial render likely happened before this fetch resolved.
+            try {
+                if (typeof App !== 'undefined') {
+                    if (App.renderLeaderboard) App.renderLeaderboard();
+                    if (App._renderSOTATable) App._renderSOTATable();
+                }
+            } catch (e) { /* non-fatal */ }
+        }).catch(function() { Modal._bmtData = {}; });
+
+        var overlay = document.getElementById('modal-overlay');
+        var close = document.getElementById('modal-close');
+        if (overlay) {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) Modal.close();
+            });
+        }
+        if (close) {
+            close.addEventListener('click', function() { Modal.close(); });
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key !== 'Escape') return;
+            if (overlay && !overlay.classList.contains('hidden')) Modal.close();
+        });
+
+        // Focus trap — keeps Tab/Shift+Tab cycling inside the modal
+        if (!this._focusTrapInstalled) {
+            this._focusTrapInstalled = true;
+            document.addEventListener('keydown', function(e) {
+                if (e.key !== 'Tab') return;
+                var modalOverlay = document.getElementById('modal-overlay');
+                if (!modalOverlay || modalOverlay.classList.contains('hidden')) return;
+                var focusables = modalOverlay.querySelectorAll('button, a[href], select, textarea, input, [tabindex]:not([tabindex="-1"])');
+                if (!focusables.length) return;
+                var first = focusables[0];
+                var last = focusables[focusables.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault(); last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault(); first.focus();
+                }
+            });
+        }
+
+        // Click-away to close preferences panel
+        if (!this._prefsClickAwayInstalled) {
+            this._prefsClickAwayInstalled = true;
+            document.addEventListener('click', function(e) {
+                var panel = document.getElementById('modal-preferences-panel');
+                if (!panel) return;
+                if (panel.contains(e.target)) return;
+                if (e.target.closest && e.target.closest('button[aria-label="Modal preferences"]')) return;
+                panel.parentNode.removeChild(panel);
+            });
+        }
+    },
+
+    /**
+     * History of one (model, benchmark) score as [{date, score}, ...] in date
+     * order — one row per snapshot date that held the score. Reads the
+     * benchmark's detail shard (scores/history/detail/NN.json, ~100 KB gzip)
+     * instead of downloading every daily snapshot. Shards are cached.
+     */
+    _historyShard: function(benchmarkId) {
+        var h = 0x811c9dc5;
+        for (var i = 0; i < benchmarkId.length; i++) {
+            h ^= benchmarkId.charCodeAt(i);
+            h = Math.imul(h, 0x01000193) >>> 0;
+        }
+        return h % 64;  // = Exporter.HISTORY_DETAIL_SHARDS
+    },
+
+    _loadScoreHistory: function(modelId, benchmarkId) {
+        var n = Modal._historyShard(benchmarkId);
+        var name = (n < 10 ? '0' : '') + n;
+        if (!Modal._historySnapshots[name]) {
+            var url = Modal._historyDataBase + '/scores/history/detail/' + name + '.json';
+            Modal._historySnapshots[name] = fetch((window.App && App.dataUrl) ? App.dataUrl(url) : url)
+                .then(function(r) { return r.ok ? r.json() : null; })
+                .catch(function() { return null; });
+        }
+        return Modal._historySnapshots[name].then(function(d) {
+            if (!d || !d.r) return [];
+            var row = null;
+            for (var i = 0; i < d.r.length; i++) {
+                if (d.r[i][0] === modelId && d.r[i][1] === benchmarkId) { row = d.r[i]; break; }
+            }
+            if (!row) return [];
+            // change entries: [date_idx, value, url_idx, note_idx, is_sota, collected_idx, unit_idx]
+            var out = [], cur = null, k = 2;
+            for (var di = 0; di < d.dates.length; di++) {
+                while (k < row.length && row[k][0] === di) { cur = row[k][1] == null ? null : row[k]; k++; }
+                if (!cur) continue;
+                out.push({ date: d.dates[di], score: {
+                    model_id: modelId, benchmark_id: benchmarkId, value: cur[1], unit: d.u[cur[6]],
+                    source: { url: cur[2] >= 0 ? d.s[cur[2]] : null },
+                    notes: cur[3] >= 0 ? d.n[cur[3]] : '',
+                    is_sota: !!cur[4],
+                    collected_at: cur[5] >= 0 ? d.c[cur[5]] : null
+                } });
+            }
+            return out;
+        });
+    },
+
+    _open: function(trigger) {
+        Modal._lastTrigger = trigger || document.activeElement;
+        var overlay = document.getElementById('modal-overlay');
+        overlay.classList.remove('hidden');
+        // ARIA: mark the inner dialog div with role/aria attrs and move focus in
+        var dialogDiv = overlay.querySelector('[role="dialog"]');
+        if (dialogDiv) {
+            dialogDiv.setAttribute('aria-modal', 'true');
+            dialogDiv.setAttribute('aria-labelledby', 'modal-title');
+        }
+        var modalContent = document.getElementById('modal-content');
+        if (modalContent) {
+            setTimeout(function() { modalContent.focus(); }, 50);
+        } else {
+            var closeBtn = document.getElementById('modal-close');
+            if (closeBtn) closeBtn.focus();
+        }
+    },
+
+    close: function() {
+        var overlay = document.getElementById('modal-overlay');
+        if (overlay) overlay.classList.add('hidden');
+        var a = document.querySelector('.tab-btn.active');
+        if (a) history.replaceState(null, '', '#' + a.dataset.tab);
+        if (Modal._lastTrigger && typeof Modal._lastTrigger.focus === 'function') {
+            try { Modal._lastTrigger.focus(); } catch (e) { /* detached node */ }
+        }
+        Modal._lastTrigger = null;
+    },
+
+    /**
+     * Returns the current ECharts theme name based on the active HTML class.
+     * Use instead of hardcoding 'dark' so charts stay correct after theme toggle.
+     */
+    _currentThemeName: function() {
+        return document.documentElement.classList.contains('theme-light') ? null : 'dark';
+    },
+
+    /**
+     * Wraps a content element in a collapsible <details>-style section with a clickable header.
+     * Returns the content element so callers can append children to it.
+     * Persists open/closed state in localStorage with key 'modal-section:<id>'.
+     *
+     * @param {HTMLElement} container - parent to append the section to
+     * @param {string} title - heading text
+     * @param {string} stateKey - unique short id for localStorage
+     * @param {boolean} defaultOpen - initial open state if no saved preference
+     * @returns {HTMLElement} - the inner content div (caller appends here)
+     */
+    _collapsibleSection: function(container, title, stateKey, defaultOpen) {
+        var lsKey = 'modal-section:' + stateKey;
+        var saved = null;
+        try { saved = localStorage.getItem(lsKey); } catch (e) { /* private mode */ }
+        var isOpen = saved === null ? !!defaultOpen : (saved === '1');
+
+        var wrap = document.createElement('div');
+        wrap.className = 'mb-4';
+        wrap.id = 'modal-section-' + stateKey;
+
+        var header = document.createElement('div');
+        header.className = 'flex items-center justify-between cursor-pointer select-none px-2 py-1 -mx-2 rounded hover:bg-gray-800 transition';
+        header.setAttribute('role', 'button');
+        header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        header.setAttribute('tabindex', '0');
+
+        var titleEl = document.createElement('h3');
+        titleEl.className = 'text-sm font-semibold text-gray-300';
+        titleEl.textContent = title;
+        header.appendChild(titleEl);
+
+        var caret = document.createElement('span');
+        caret.className = 'text-xs text-gray-500 ml-2';
+        caret.textContent = isOpen ? '▼' : '▶';
+        header.appendChild(caret);
+
+        var body = document.createElement('div');
+        body.className = 'mt-2';
+        body.style.display = isOpen ? '' : 'none';
+
+        function toggle() {
+            isOpen = !isOpen;
+            body.style.display = isOpen ? '' : 'none';
+            caret.textContent = isOpen ? '▼' : '▶';
+            header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            try { localStorage.setItem(lsKey, isOpen ? '1' : '0'); } catch (e) { /* private */ }
+        }
+        header.addEventListener('click', toggle);
+        header.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggle();
+            }
+        });
+
+        wrap.appendChild(header);
+        wrap.appendChild(body);
+        container.appendChild(wrap);
+        return body;
+    },
+
+    // ---- Helper: Sticky Table-of-Contents for long model modals ----
+    _buildModalTOC: function() {
+        var modalContent = document.getElementById('modal-content');
+        if (!modalContent) return;
+        var sections = modalContent.querySelectorAll('div[id^="modal-section-"]');
+        if (sections.length < 4) return; // not worth a TOC for short modals
+
+        // Remove any prior TOC to avoid duplicates on rebuild
+        var existing = document.getElementById('modal-toc');
+        if (existing) existing.parentNode.removeChild(existing);
+
+        var toc = document.createElement('nav');
+        toc.id = 'modal-toc';
+        toc.setAttribute('aria-label', 'Modal sections');
+        toc.className = 'hidden lg:block fixed right-4 top-24 z-20 bg-gray-900/95 border border-gray-700 rounded p-2 text-xs max-w-[180px]';
+
+        var tocTitle = document.createElement('div');
+        tocTitle.className = 'text-gray-500 uppercase tracking-wider text-[10px] mb-1 px-1';
+        tocTitle.textContent = 'Sections';
+        toc.appendChild(tocTitle);
+
+        sections.forEach(function(sec) {
+            var h3 = sec.querySelector('h3');
+            var label = h3 ? h3.textContent.trim() : sec.id.replace('modal-section-', '');
+            var a = document.createElement('a');
+            a.href = '#';
+            a.className = 'block px-2 py-1 rounded text-gray-400 hover:bg-gray-800 hover:text-blue-300 transition truncate';
+            a.textContent = label;
+            a.title = label;
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // If section is collapsed, expand it by clicking the header
+                var body = sec.querySelector('div[style*="display: none"]');
+                if (body) {
+                    var header = sec.querySelector('div[role="button"]');
+                    if (header) header.click();
+                }
+            });
+            toc.appendChild(a);
+        });
+
+        modalContent.appendChild(toc);
+
+        // Mobile-only horizontal TOC strip — visible only on <lg
+        var existingMobile = document.getElementById('modal-toc-mobile');
+        if (existingMobile) existingMobile.parentNode.removeChild(existingMobile);
+
+        var mobileTOC = document.createElement('nav');
+        mobileTOC.id = 'modal-toc-mobile';
+        mobileTOC.setAttribute('aria-label', 'Modal sections (mobile)');
+        mobileTOC.className = 'lg:hidden flex gap-1.5 overflow-x-auto pb-2 mb-3 border-b border-gray-800 -mx-1 px-1';
+        sections.forEach(function(sec) {
+            var h3 = sec.querySelector('h3');
+            var stateKey = sec.id.replace('modal-section-', '');
+            var label = h3 ? h3.textContent.trim() : stateKey;
+            var pill = document.createElement('a');
+            pill.href = '#';
+            pill.className = 'flex-shrink-0 inline-block px-2 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-300 text-xs whitespace-nowrap transition';
+            pill.textContent = label.length > 18 ? label.slice(0, 16) + '…' : label;
+            pill.title = label;
+            pill.addEventListener('click', (function(secRef, tocRef) {
+                return function(e) {
+                    e.preventDefault();
+                    secRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    var body = secRef.querySelector('div[style*="display: none"]');
+                    if (body) {
+                        var header = secRef.querySelector('div[role="button"]');
+                        if (header) header.click();
+                    }
+                    // Auto-hide mobile TOC after navigation; show a re-open button
+                    tocRef.style.display = 'none';
+                    if (!document.getElementById('modal-toc-mobile-show')) {
+                        var showBtn = document.createElement('button');
+                        showBtn.id = 'modal-toc-mobile-show';
+                        showBtn.className = 'lg:hidden fixed top-3 left-3 z-30 bg-gray-800 text-gray-300 text-xs px-2 py-1 rounded shadow';
+                        showBtn.textContent = '☰ Sections';
+                        showBtn.addEventListener('click', function() {
+                            tocRef.style.display = '';
+                            if (showBtn.parentNode) showBtn.parentNode.removeChild(showBtn);
+                        });
+                        document.body.appendChild(showBtn);
+                    }
+                };
+            })(sec, mobileTOC));
+            mobileTOC.appendChild(pill);
+        });
+
+        // Insert at the top of modal-content (before all sections)
+        if (modalContent.firstChild) {
+            modalContent.insertBefore(mobileTOC, modalContent.firstChild);
+        } else {
+            modalContent.appendChild(mobileTOC);
+        }
+    },
+
+    _makeLabel: function(labelText, valueText) {
+        var div = document.createElement('div');
+        div.className = 'text-sm';
+        var lbl = document.createElement('span');
+        lbl.className = 'text-gray-500';
+        lbl.textContent = labelText + ': ';
+        div.appendChild(lbl);
+        var val = document.createElement('span');
+        val.className = 'text-gray-200';
+        val.textContent = valueText;
+        div.appendChild(val);
+        return div;
+    },
+
+    // Wave 6E3: stale-score badge. Given a score (or a candidate date string),
+    // returns a small amber pill element if the evaluation date is 90+ days
+    // old; returns null otherwise (missing date, parse failure, future date,
+    // or fresh enough). Uses today as 2026-05-09 baseline. Caller must
+    // appendChild the result if non-null.
+    _makeStaleBadge: function(scoreOrDate) {
+        var dateStr = null;
+        if (scoreOrDate && typeof scoreOrDate === 'object') {
+            if (scoreOrDate.source && scoreOrDate.source.date) dateStr = scoreOrDate.source.date;
+            else if (scoreOrDate.collected_at) dateStr = scoreOrDate.collected_at;
+        } else if (typeof scoreOrDate === 'string') {
+            dateStr = scoreOrDate;
+        }
+        if (!dateStr) return null;
+        var evalMs = Date.parse(dateStr);
+        if (isNaN(evalMs)) return null;
+        // Fixed "today" anchor — keeps badge stable across the dashboard load
+        // and avoids drift on long-running tabs. Bump on each rebuild.
+        var todayMs = Date.parse('2026-05-09');
+        var ageDays = Math.floor((todayMs - evalMs) / 86400000);
+        if (ageDays < 90) return null; // includes future dates (negative)
+        var badge = document.createElement('span');
+        badge.className = 'inline-block ml-1 px-1.5 py-0.5 rounded text-xs bg-yellow-700 text-yellow-100 font-medium align-middle';
+        badge.textContent = '90d+';
+        badge.title = '이 점수는 ' + ageDays + '일 전에 측정되었습니다. 더 최신 점수가 있을 수 있습니다.';
+        return badge;
+    },
+
+    showBenchmark: function(benchId) {
+        try { if (App._ensureScoreMeta) App._ensureScoreMeta(); } catch (e) {}
+        var bench = App.getBenchmarkMap()[benchId];
+        if (!bench) return;
+        history.replaceState(null, '', '#bench/' + benchId);
+
+        var bmt = (this._bmtData || {})[benchId] || (this._bmtData || {})[benchId.replace(/_/g, '')] || {};
+        var builtin = this._builtinMeta[benchId] || {};
+
+        // Merge: BMT takes priority, then builtin
+        if (!bmt.paper_link && builtin.paper) bmt.paper_link = builtin.paper;
+        if (!bmt.github_link && builtin.github) bmt.github_link = builtin.github;
+        if (!bmt.description && builtin.desc) bmt.description = builtin.desc;
+        if (!bmt.year && builtin.year) bmt.year = builtin.year;
+        if (!bmt.item_count && builtin.items) bmt.item_count = builtin.items;
+        // Use builtin desc as benchmark description if bench.description is empty
+        if (!bench.description && builtin.desc) bench = { id: bench.id, name: bench.name, category: bench.category, description: builtin.desc };
+
+        var scores = App.data.scores.filter(function(s) { return s.benchmark_id === benchId; });
+        scores.sort(function(a, b) { return b.value - a.value; });
+
+        var container = document.getElementById('modal-content');
+        container.textContent = '';
+
+        // Title
+        var h2 = document.createElement('h2');
+        h2.id = 'modal-title';
+        h2.className = 'text-xl font-bold text-white mb-1';
+        h2.textContent = bench.name;
+        container.appendChild(h2);
+
+        // Category badge
+        var catBadge = document.createElement('span');
+        catBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-blue-900 text-blue-300 mb-3';
+        catBadge.textContent = bench.category;
+        container.appendChild(catBadge);
+
+        // Description
+        if (bench.description) {
+            var desc = document.createElement('p');
+            desc.className = 'text-gray-400 text-sm mb-4';
+            desc.textContent = bench.description;
+            container.appendChild(desc);
+        }
+
+        // BMT metadata + builtin metadata
+        if (bmt.bmt_title || bmt.paper_link || bmt.github_link || bmt.description || bmt.year || (bmt.authors && bmt.authors.length) || bmt.specs || bmt.source) {
+            var metaDiv = document.createElement('div');
+            metaDiv.className = 'bg-gray-800 rounded-lg p-4 mb-4 space-y-2';
+
+            // Header row: BMT title + (publisher source) badge
+            if (bmt.bmt_title || bmt.source) {
+                var headerRow = document.createElement('div');
+                headerRow.className = 'flex items-baseline gap-2 flex-wrap';
+                if (bmt.bmt_title) {
+                    var titleLabel = document.createElement('span');
+                    titleLabel.className = 'text-xs text-gray-500';
+                    titleLabel.textContent = 'BMT Dataset';
+                    headerRow.appendChild(titleLabel);
+                    var titleVal = document.createElement('span');
+                    titleVal.className = 'text-sm font-semibold text-gray-200';
+                    titleVal.textContent = bmt.bmt_title;
+                    headerRow.appendChild(titleVal);
+                }
+                if (bmt.source) {
+                    var srcBadge = document.createElement('span');
+                    srcBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300';
+                    srcBadge.textContent = bmt.source;
+                    headerRow.appendChild(srcBadge);
+                }
+                metaDiv.appendChild(headerRow);
+            }
+
+            if (bmt.year) metaDiv.appendChild(this._makeLabel('Year', bmt.year));
+            if (bmt.item_count) metaDiv.appendChild(this._makeLabel('Items', bmt.item_count));
+            if (bmt.specs) metaDiv.appendChild(this._makeLabel('Specs', bmt.specs));
+
+            // Authors (truncate to first 3 + "et al.")
+            if (bmt.authors && bmt.authors.length) {
+                var authStr;
+                if (bmt.authors.length > 4) {
+                    authStr = bmt.authors.slice(0, 3).join(', ') + ', et al. (' + bmt.authors.length + ' authors)';
+                } else {
+                    authStr = bmt.authors.join(', ');
+                }
+                metaDiv.appendChild(this._makeLabel('Authors', authStr));
+            }
+
+            if (bmt.description) {
+                var bmtDesc = document.createElement('div');
+                bmtDesc.className = 'text-sm text-gray-400 mt-2 leading-relaxed';
+                bmtDesc.textContent = bmt.description;
+                metaDiv.appendChild(bmtDesc);
+            }
+
+            var linksDiv = document.createElement('div');
+            linksDiv.className = 'flex gap-3 mt-3 flex-wrap';
+            if (bmt.paper_link) {
+                var paperLink = document.createElement('a');
+                paperLink.href = bmt.paper_link;
+                paperLink.target = '_blank';
+                paperLink.rel = 'noopener noreferrer';
+                paperLink.className = 'inline-flex items-center gap-1 px-3 py-1.5 bg-purple-900 hover:bg-purple-800 text-purple-200 text-xs rounded transition';
+                paperLink.textContent = '📄 Paper';
+                linksDiv.appendChild(paperLink);
+            }
+            if (bmt.github_link) {
+                var ghLink = document.createElement('a');
+                ghLink.href = bmt.github_link;
+                ghLink.target = '_blank';
+                ghLink.rel = 'noopener noreferrer';
+                ghLink.className = 'inline-flex items-center gap-1 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded transition';
+                ghLink.textContent = '⚙ GitHub';
+                linksDiv.appendChild(ghLink);
+            }
+            // BMT registry deep-link if we have a bmt_id
+            if (bmt.bmt_id) {
+                var bmtLink = document.createElement('a');
+                bmtLink.href = 'https://benchmark-mt.com/dataset/' + encodeURIComponent(bmt.bmt_id);
+                bmtLink.target = '_blank';
+                bmtLink.rel = 'noopener noreferrer';
+                bmtLink.className = 'inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-900 hover:bg-emerald-800 text-emerald-200 text-xs rounded transition';
+                bmtLink.textContent = '🗂 BMT Registry';
+                linksDiv.appendChild(bmtLink);
+            }
+            if (linksDiv.children.length) metaDiv.appendChild(linksDiv);
+            container.appendChild(metaDiv);
+        }
+
+        // Scores table
+        var h3 = document.createElement('h3');
+        h3.className = 'text-sm font-semibold text-gray-300 mb-2';
+        h3.textContent = 'Model Rankings (' + scores.length + ' models)';
+        container.appendChild(h3);
+
+        var table = document.createElement('table');
+        table.className = 'w-full text-sm';
+        var thead = document.createElement('thead');
+        var hr = document.createElement('tr');
+        ['#', 'Model', 'Score', 'Source'].forEach(function(t) {
+            var th = document.createElement('th');
+            th.className = 'text-left text-gray-500 pb-2 pr-3 text-xs';
+            th.textContent = t;
+            hr.appendChild(th);
+        });
+        thead.appendChild(hr);
+        table.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+        scores.forEach(function(s, i) {
+            var model = App.getModelMap()[s.model_id];
+            var tr = document.createElement('tr');
+            tr.className = 'border-t border-gray-800';
+
+            var tdRank = document.createElement('td');
+            tdRank.className = 'py-1.5 pr-3 text-gray-500';
+            tdRank.textContent = i + 1;
+            tr.appendChild(tdRank);
+
+            var tdModel = document.createElement('td');
+            tdModel.className = 'py-1.5 pr-3 text-gray-200';
+            var modelSpan = document.createElement('span');
+            modelSpan.className = 'cursor-pointer hover:text-blue-400 transition';
+            modelSpan.textContent = model ? model.name : s.model_id.split('/').pop();
+            modelSpan.onclick = (function(mid) { return function(e) { e.stopPropagation(); Modal.showModel(mid); }; })(s.model_id);
+            tdModel.appendChild(modelSpan);
+            if (i === 0 && s.is_sota) {
+                var sota = document.createElement('span');
+                sota.className = 'ml-2 px-1.5 py-0.5 bg-green-900 text-green-300 text-xs rounded';
+                sota.textContent = 'SOTA';
+                tdModel.appendChild(sota);
+            }
+            tr.appendChild(tdModel);
+
+            var tdScore = document.createElement('td');
+            tdScore.className = 'py-1.5 pr-3 font-mono';
+            if (i === 0) tdScore.className += ' text-green-400 font-bold';
+            else if (i < 3) tdScore.className += ' text-blue-400';
+            else tdScore.className += ' text-gray-300';
+            tdScore.textContent = s.value > 500 ? Math.round(s.value) : s.value;
+            tr.appendChild(tdScore);
+
+            var tdSrc = document.createElement('td');
+            tdSrc.className = 'py-1.5 text-xs';
+            var srcType = (s.source && s.source.type) || 'web';
+            var publicUrl = Modal._sourceLink(s.source);
+            if (publicUrl) {
+                var a = document.createElement('a');
+                a.href = publicUrl;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.className = (srcType === 'pdf' ? 'text-purple-400' : 'text-blue-400') + ' hover:underline';
+                a.textContent = srcType + ' \u2197';
+                a.title = publicUrl;
+                tdSrc.appendChild(a);
+            } else {
+                tdSrc.className += srcType === 'pdf' ? ' text-purple-400' : ' text-gray-500';
+                tdSrc.textContent = srcType;
+            }
+            tr.appendChild(tdSrc);
+
+            tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        container.appendChild(table);
+
+        // Reference links (paper / github / leaderboard) from builtin meta
+        try {
+            var refs = [];
+            if (bmt.paper_link) refs.push({ label: '📄 Paper', url: bmt.paper_link, color: 'bg-purple-900 hover:bg-purple-800 text-purple-200' });
+            if (bmt.github_link) refs.push({ label: '⚙ GitHub', url: bmt.github_link, color: 'bg-gray-700 hover:bg-gray-600 text-gray-200' });
+            if (bench.leaderboard) refs.push({ label: '🏆 Leaderboard', url: bench.leaderboard, color: 'bg-yellow-900 hover:bg-yellow-800 text-yellow-200' });
+            if (refs.length > 0) {
+                var refsBody = Modal._collapsibleSection(container, 'References', 'bench-refs', true);
+                var refsDiv = document.createElement('div');
+                refsDiv.className = 'flex flex-wrap gap-2';
+                refs.forEach(function(r) {
+                    var a = document.createElement('a');
+                    a.href = r.url;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.className = 'inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition ' + r.color;
+                    a.textContent = r.label;
+                    a.title = r.url;
+                    refsDiv.appendChild(a);
+                });
+                refsBody.appendChild(refsDiv);
+            }
+        } catch (e) { console.warn('[modal] benchmark refs error', e); }
+
+        // Top 10 leaderboard (collapsible)
+        try {
+            var benchScores = (App.data.scores || []).filter(function(s) { return s.benchmark_id === benchId; });
+            if (benchScores.length > 0) {
+                benchScores.sort(function(a, b) { return b.value - a.value; });
+                var top10 = benchScores.slice(0, 10);
+                var lbBody = Modal._collapsibleSection(container, 'Top 10 Leaderboard', 'bench-lb', true);
+                var ol = document.createElement('ol');
+                ol.className = 'text-sm space-y-1';
+                top10.forEach(function(s, idx) {
+                    var m = (App.data.models || []).find(function(x) { return x.id === s.model_id; });
+                    var li = document.createElement('li');
+                    li.className = 'flex justify-between border-b border-gray-800 py-1 cursor-pointer hover:bg-gray-800 px-2 -mx-2 rounded';
+                    li.addEventListener('click', (function(mid) {
+                        return function() { Modal.showModel(mid); };
+                    })(s.model_id));
+                    var rankName = document.createElement('span');
+                    rankName.className = idx === 0 ? 'text-yellow-400 font-bold' : (idx < 3 ? 'text-gray-200' : 'text-gray-300');
+                    rankName.textContent = (idx + 1) + '. ' + (m ? m.name : s.model_id);
+                    li.appendChild(rankName);
+                    var val = document.createElement('span');
+                    val.className = 'font-mono text-gray-200';
+                    val.textContent = s.value.toFixed(1);
+                    li.appendChild(val);
+                    ol.appendChild(li);
+                });
+                lbBody.appendChild(ol);
+            }
+        } catch (e) { console.warn('[modal] benchmark leaderboard error', e); }
+
+        // Score distribution histogram
+        try {
+            var benchScores2 = (App.data.scores || []).filter(function(s) { return s.benchmark_id === benchId; });
+            if (benchScores2.length >= 5) {
+                var distBody = Modal._collapsibleSection(container, 'Score Distribution', 'bench-dist', false);
+                var distHost = document.createElement('div');
+                distHost.style.height = '200px';
+                distBody.appendChild(distHost);
+                setTimeout(function() {
+                    if (typeof echarts === 'undefined') return;
+                    // Bucket into 10 bins
+                    var values = benchScores2.map(function(s) { return s.value; });
+                    var minV = Math.min.apply(null, values);
+                    var maxV = Math.max.apply(null, values);
+                    var binCount = 10;
+                    var binSize = (maxV - minV) / binCount || 1;
+                    var bins = [];
+                    var labels = [];
+                    for (var i = 0; i < binCount; i++) {
+                        var lo = minV + i * binSize;
+                        var hi = lo + binSize;
+                        bins.push(values.filter(function(v) { return v >= lo && (i === binCount - 1 ? v <= hi : v < hi); }).length);
+                        labels.push(lo.toFixed(0) + '-' + hi.toFixed(0));
+                    }
+                    var chart = echarts.init(distHost, Modal._currentThemeName ? Modal._currentThemeName() : 'dark');
+                    chart.setOption({
+                        backgroundColor: 'transparent',
+                        grid: { left: 40, right: 20, top: 20, bottom: 40 },
+                        xAxis: { type: 'category', data: labels, axisLabel: { color: '#9ca3af', fontSize: 9, rotate: 30 } },
+                        yAxis: { type: 'value', axisLabel: { color: '#9ca3af', fontSize: 9 } },
+                        series: [{ type: 'bar', data: bins, itemStyle: { color: '#60a5fa' } }],
+                    });
+                }, 0);
+            }
+        } catch (e) { console.warn('[modal] benchmark distribution error', e); }
+
+        // Reliability metadata (NEW)
+        try {
+            var bench = App.getBenchmarkMap()[benchId];
+            if (bench && bench.reliability) {
+                var rel = bench.reliability;
+                var relBody = Modal._collapsibleSection(container, 'Reliability', 'bench-rel', false);
+                function relRow(label, value, color) {
+                    if (value == null) return;
+                    var r = document.createElement('div');
+                    r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                    var l = document.createElement('div');
+                    l.className = 'text-gray-500 col-span-1';
+                    l.textContent = label;
+                    r.appendChild(l);
+                    var v = document.createElement('div');
+                    v.className = 'col-span-2 ' + (color || 'text-gray-200');
+                    v.textContent = String(value);
+                    r.appendChild(v);
+                    relBody.appendChild(r);
+                }
+                var contamColor = { low: 'text-green-400', medium: 'text-yellow-300', high: 'text-red-400' }[rel.contamination_risk];
+                relRow('Contamination risk', rel.contamination_risk, contamColor);
+                var satColor = { not_saturated: 'text-green-400', approaching: 'text-yellow-300', saturated: 'text-red-400' }[rel.saturation];
+                relRow('Saturation', (rel.saturation || '').replace(/_/g, ' '), satColor);
+                if (rel.citation_count) relRow('Estimated citations', rel.citation_count.toLocaleString());
+                if (rel.last_updated) relRow('Last updated', rel.last_updated);
+                if (rel.notes) {
+                    var nr = document.createElement('div');
+                    nr.className = 'text-xs text-gray-400 italic mt-2';
+                    nr.textContent = rel.notes;
+                    relBody.appendChild(nr);
+                }
+            }
+        } catch (e) { console.warn('[modal] benchmark reliability error', e); }
+
+        Modal._open();
+    },
+
+    /**
+     * Show a focused detail modal for a single (model, benchmark) score cell.
+     * Displays source URL (public-canonical where possible), collection date,
+     * notes, and cross-links to the full benchmark / model views.
+     */
+    showScoreSource: function(modelId, benchmarkId) {
+        // Ensure the lazy source-URL/notes sidecar is loaded before showing a
+        // source modal (index-aligned merge onto App.data.scores). If it's
+        // still loading, re-render once it arrives so the URL/notes appear.
+        try {
+            var self = this;
+            if (App._ensureScoreMeta && !App._scoreMetaLoaded) {
+                App._ensureScoreMeta().then(function () { self.showScoreSource(modelId, benchmarkId); });
+            }
+        } catch (e) {}
+        var score = App.data.scores.find(function(s) {
+            return s.model_id === modelId && s.benchmark_id === benchmarkId;
+        });
+        if (!score) return;
+        var model = App.getModelMap()[modelId];
+        var bench = App.getBenchmarkMap()[benchmarkId];
+        if (!bench) return;
+
+        history.replaceState(null, '', '#score/' + modelId + '/' + benchmarkId);
+
+        var container = document.getElementById('modal-content');
+        container.textContent = '';
+
+        // Title: "Kimi K2.6 — SWE-bench Verified"
+        var h2 = document.createElement('h2');
+        h2.id = 'modal-title';
+        h2.className = 'text-xl font-bold text-white mb-1';
+        h2.textContent = (model ? model.name : modelId.split('/').pop()) + ' — ' + bench.name;
+        container.appendChild(h2);
+
+        // Category + SOTA badges
+        var badges = document.createElement('div');
+        badges.className = 'flex gap-2 mb-4';
+        var catBadge = document.createElement('span');
+        catBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-blue-900 text-blue-300';
+        catBadge.textContent = bench.category;
+        badges.appendChild(catBadge);
+        if (score.is_sota) {
+            var sotaBadge = document.createElement('span');
+            sotaBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-green-900 text-green-300 font-semibold';
+            sotaBadge.textContent = 'SOTA';
+            badges.appendChild(sotaBadge);
+        }
+        container.appendChild(badges);
+
+        // Big score display
+        var scoreBlock = document.createElement('div');
+        scoreBlock.className = 'bg-gray-800 rounded-lg p-5 mb-4 flex items-baseline gap-3';
+        var valueSpan = document.createElement('span');
+        valueSpan.className = 'text-4xl font-bold ' + (score.is_sota ? 'text-green-400' : 'text-blue-300');
+        valueSpan.textContent = score.value > 500 ? Math.round(score.value) : score.value;
+        scoreBlock.appendChild(valueSpan);
+        var unitSpan = document.createElement('span');
+        unitSpan.className = 'text-gray-400 text-lg';
+        unitSpan.textContent = score.unit || '';
+        scoreBlock.appendChild(unitSpan);
+        var primaryStale = Modal._makeStaleBadge(score);
+        if (primaryStale) scoreBlock.appendChild(primaryStale);
+        container.appendChild(scoreBlock);
+
+        // Provenance block: source URL, type, dates, notes
+        var meta = document.createElement('div');
+        meta.className = 'bg-gray-800 rounded-lg p-4 mb-4 space-y-2';
+        var metaHeader = document.createElement('h3');
+        metaHeader.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2';
+        metaHeader.textContent = '검증 소스';
+        meta.appendChild(metaHeader);
+
+        var srcType = (score.source && score.source.type) || 'web';
+        meta.appendChild(this._makeLabel('Source type', srcType));
+
+        var publicUrl = Modal._sourceLink(score.source);
+        var rawUrl = (score.source && score.source.url) || '';
+        if (publicUrl) {
+            var linkRow = document.createElement('div');
+            linkRow.className = 'text-sm';
+            var lbl = document.createElement('span');
+            lbl.className = 'text-gray-500';
+            lbl.textContent = 'Source URL: ';
+            linkRow.appendChild(lbl);
+            var a = document.createElement('a');
+            a.href = publicUrl;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = (srcType === 'pdf' ? 'text-purple-400' : 'text-blue-400') + ' hover:underline break-all';
+            a.textContent = publicUrl;
+            linkRow.appendChild(a);
+            meta.appendChild(linkRow);
+        } else if (rawUrl) {
+            meta.appendChild(this._makeLabel('Source path', rawUrl));
+        }
+
+        if (score.source && score.source.date) {
+            meta.appendChild(this._makeLabel('Source date', score.source.date));
+        }
+        if (score.collected_at && score.collected_at !== (score.source && score.source.date)) {
+            meta.appendChild(this._makeLabel('수집일 (collected_at)', score.collected_at));
+        } else if (score.collected_at) {
+            meta.appendChild(this._makeLabel('수집일', score.collected_at));
+        }
+        if (score.source && score.source.citation) {
+            meta.appendChild(this._makeLabel('Citation', score.source.citation));
+        }
+        if (score.notes) {
+            var noteBox = document.createElement('div');
+            noteBox.className = 'text-sm mt-3 pt-3 border-t border-gray-700';
+            var noteLbl = document.createElement('div');
+            noteLbl.className = 'text-gray-500 mb-1';
+            noteLbl.textContent = 'Notes';
+            noteBox.appendChild(noteLbl);
+            var noteTxt = document.createElement('div');
+            noteTxt.className = 'text-gray-200';
+            noteTxt.textContent = score.notes;
+            noteBox.appendChild(noteTxt);
+            meta.appendChild(noteBox);
+        }
+        container.appendChild(meta);
+
+        // Benchmark registry links — surfaces paper/github/leaderboard/BMT
+        // registry deep-links pulled from config/benchmarks_meta.yaml at
+        // export time. Only render when at least one link exists.
+        var registryLinks = [];
+        if (bench.paper) registryLinks.push({ label: 'Paper', url: bench.paper, color: 'text-purple-400' });
+        if (bench.github) registryLinks.push({ label: 'GitHub', url: bench.github, color: 'text-emerald-400' });
+        if (bench.leaderboard) registryLinks.push({ label: 'Leaderboard', url: bench.leaderboard, color: 'text-blue-400' });
+        if (bench.bmt && bench.bmt.bmt_id) {
+            registryLinks.push({
+                label: 'BMT Registry',
+                url: 'https://github.com/hollobit/SOTA/blob/ops/BMT/BMT.json',
+                color: 'text-amber-400',
+                aux: '#' + bench.bmt.bmt_id + (bench.bmt.bmt_title ? ' — ' + bench.bmt.bmt_title : '')
+            });
+        }
+        if (registryLinks.length || bench.year || bench.item_count) {
+            var regBlock = document.createElement('div');
+            regBlock.className = 'bg-gray-800 rounded-lg p-4 mb-4 space-y-2';
+            var regHeader = document.createElement('h3');
+            regHeader.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2';
+            regHeader.textContent = '벤치마크 레지스트리 (BMT / Paper / GitHub)';
+            regBlock.appendChild(regHeader);
+
+            if (bench.year) regBlock.appendChild(this._makeLabel('Year', bench.year));
+            if (bench.item_count) regBlock.appendChild(this._makeLabel('Item count', bench.item_count));
+
+            registryLinks.forEach(function(rl) {
+                var row = document.createElement('div');
+                row.className = 'text-sm';
+                var lbl = document.createElement('span');
+                lbl.className = 'text-gray-500';
+                lbl.textContent = rl.label + ': ';
+                row.appendChild(lbl);
+                var a = document.createElement('a');
+                a.href = rl.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.className = rl.color + ' hover:underline break-all';
+                a.textContent = rl.url;
+                row.appendChild(a);
+                if (rl.aux) {
+                    var aux = document.createElement('div');
+                    aux.className = 'text-xs text-gray-500 mt-0.5';
+                    aux.textContent = rl.aux;
+                    row.appendChild(aux);
+                }
+                regBlock.appendChild(row);
+            });
+            container.appendChild(regBlock);
+        }
+
+        // Change-history section (async loaded from daily snapshots in
+        // data/export/scores/history/YYYY-MM-DD.json). Skeleton appears
+        // immediately; rows fill in once snapshots resolve. Dedupes runs
+        // of consecutive identical values so only real changes show.
+        var historyBlock = document.createElement('div');
+        historyBlock.className = 'bg-gray-800 rounded-lg p-4 mb-4';
+        var historyHeader = document.createElement('h3');
+        historyHeader.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3';
+        historyHeader.textContent = '변경 이력 (Collection / Verification History)';
+        historyBlock.appendChild(historyHeader);
+        var historyBody = document.createElement('div');
+        historyBody.className = 'text-sm space-y-2';
+        historyBody.textContent = 'Loading history…';
+        historyBlock.appendChild(historyBody);
+        container.appendChild(historyBlock);
+
+        Modal._loadScoreHistory(modelId, benchmarkId).then(function(rows) {
+            historyBody.textContent = '';
+            if (!rows.length) {
+                var none = document.createElement('div');
+                none.className = 'text-gray-500';
+                none.textContent = 'No daily snapshots contain this score.';
+                historyBody.appendChild(none);
+                return;
+            }
+            // Collapse consecutive identical runs: show (first-date, last-date, value, source, notes)
+            // A row is "identical" when value + source.url + notes all match the previous row.
+            var runs = [];
+            rows.forEach(function(r) {
+                var sig = r.score.value + '|' + ((r.score.source && r.score.source.url) || '') + '|' + (r.score.notes || '');
+                var last = runs[runs.length - 1];
+                if (last && last.sig === sig) {
+                    last.lastDate = r.date;
+                } else {
+                    runs.push({ firstDate: r.date, lastDate: r.date, sig: sig, score: r.score });
+                }
+            });
+
+            var summary = document.createElement('div');
+            summary.className = 'text-xs text-gray-500 mb-2';
+            summary.textContent = rows.length + ' snapshots across ' +
+                rows[0].date + ' → ' + rows[rows.length - 1].date + '. ' +
+                (runs.length === 1 ? 'Value unchanged across all snapshots.'
+                                   : runs.length + ' distinct value/source states recorded.');
+            historyBody.appendChild(summary);
+
+            runs.forEach(function(run, idx) {
+                var row = document.createElement('div');
+                row.className = 'border-l-2 border-gray-700 pl-3 py-1';
+
+                // Highlight the most recent run with an accent border
+                if (idx === runs.length - 1) {
+                    row.style.borderLeftColor = '#3b82f6'; // Theme.accentStrong
+                }
+
+                // Date range + value
+                var head = document.createElement('div');
+                head.className = 'flex items-baseline gap-2';
+                var dateSpan = document.createElement('span');
+                dateSpan.className = 'text-gray-400 text-xs font-mono';
+                dateSpan.textContent = run.firstDate === run.lastDate
+                    ? run.firstDate
+                    : run.firstDate + ' → ' + run.lastDate;
+                head.appendChild(dateSpan);
+
+                var arrow = document.createElement('span');
+                arrow.className = 'text-gray-600 text-xs';
+                arrow.textContent = '·';
+                head.appendChild(arrow);
+
+                var valSpan = document.createElement('span');
+                valSpan.className = (idx === runs.length - 1 ? 'text-blue-300' : 'text-gray-300') + ' font-mono font-semibold';
+                valSpan.textContent = (run.score.value > 500 ? Math.round(run.score.value) : run.score.value) + (run.score.unit ? ' ' + run.score.unit : '');
+                head.appendChild(valSpan);
+
+                if (run.score.is_sota) {
+                    var sotaTag = document.createElement('span');
+                    sotaTag.className = 'px-1.5 py-0.5 bg-green-900 text-green-300 text-xs rounded';
+                    sotaTag.textContent = 'SOTA';
+                    head.appendChild(sotaTag);
+                }
+
+                var runStale = Modal._makeStaleBadge(run.score) || Modal._makeStaleBadge(run.lastDate);
+                if (runStale) head.appendChild(runStale);
+
+                // Show delta vs previous run
+                if (idx > 0) {
+                    var prevVal = runs[idx - 1].score.value;
+                    var delta = run.score.value - prevVal;
+                    if (Math.abs(delta) > 0.001) {
+                        var deltaSpan = document.createElement('span');
+                        deltaSpan.className = 'text-xs ' + (delta > 0 ? 'text-green-400' : 'text-red-400');
+                        deltaSpan.textContent = (delta > 0 ? '+' : '') + delta.toFixed(Math.abs(delta) < 10 ? 2 : 1);
+                        head.appendChild(deltaSpan);
+                    }
+                }
+                row.appendChild(head);
+
+                // Source + notes
+                var srcLine = document.createElement('div');
+                srcLine.className = 'text-xs text-gray-500 mt-0.5';
+                var srcType = (run.score.source && run.score.source.type) || 'web';
+                var srcUrl = Modal._sourceLink(run.score.source);
+                srcLine.appendChild(document.createTextNode(srcType + ' · '));
+                if (srcUrl) {
+                    var a = document.createElement('a');
+                    a.href = srcUrl;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.className = 'text-blue-400 hover:underline break-all';
+                    a.textContent = srcUrl.length > 80 ? srcUrl.slice(0, 77) + '…' : srcUrl;
+                    srcLine.appendChild(a);
+                } else if (run.score.source && run.score.source.url) {
+                    srcLine.appendChild(document.createTextNode(run.score.source.url));
+                }
+                row.appendChild(srcLine);
+
+                if (run.score.notes) {
+                    var noteLine = document.createElement('div');
+                    noteLine.className = 'text-xs text-gray-400 mt-0.5 italic';
+                    noteLine.textContent = run.score.notes;
+                    row.appendChild(noteLine);
+                }
+
+                historyBody.appendChild(row);
+            });
+        }).catch(function() {
+            historyBody.textContent = 'Failed to load history.';
+        });
+
+        // Cross-links
+        var linksDiv = document.createElement('div');
+        linksDiv.className = 'flex gap-2 mb-2';
+        var benchLink = document.createElement('button');
+        benchLink.className = 'px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-blue-200 text-xs rounded transition';
+        benchLink.textContent = '벤치마크 전체 랭킹 →';
+        benchLink.onclick = function() { Modal.showBenchmark(benchmarkId); };
+        linksDiv.appendChild(benchLink);
+        var modelLink = document.createElement('button');
+        modelLink.className = 'px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded transition';
+        modelLink.textContent = '모델 전체 점수 →';
+        modelLink.onclick = function() { Modal.showModel(modelId); };
+        linksDiv.appendChild(modelLink);
+        container.appendChild(linksDiv);
+
+        Modal._open();
+    },
+
+    showVendor: function(vendor) {
+        if (!vendor) return;
+        history.replaceState(null, '', '#vendor/' + encodeURIComponent(vendor));
+
+        var container = document.getElementById('modal-content');
+        if (!container) return;
+        container.textContent = '';
+
+        var vendorModels = (App.data.models || []).filter(function(m) { return m.vendor === vendor; });
+        if (!vendorModels.length) {
+            container.textContent = 'No models found for vendor: ' + vendor;
+            return;
+        }
+
+        // Header
+        var h2 = document.createElement('h2');
+        h2.id = 'modal-title';
+        h2.className = 'text-xl font-bold text-white mb-1';
+        h2.textContent = vendor;
+        container.appendChild(h2);
+
+        // Stats
+        var ow = vendorModels.filter(function(m) { return m.type === 'open-weight'; }).length;
+        var oss = vendorModels.filter(function(m) { return m.type === 'open-source'; }).length;
+        var prop = vendorModels.filter(function(m) { return m.type === 'proprietary'; }).length;
+
+        var stats = document.createElement('div');
+        stats.className = 'flex gap-2 mb-3 flex-wrap text-xs';
+        function badge(text, bgClass) {
+            var b = document.createElement('span');
+            b.className = 'inline-block px-2 py-0.5 rounded ' + bgClass;
+            b.textContent = text;
+            stats.appendChild(b);
+        }
+        badge(vendorModels.length + ' models', 'bg-gray-700 text-gray-300');
+        if (prop) badge(prop + ' proprietary', 'bg-red-900 text-red-300');
+        if (ow) badge(ow + ' open-weight', 'bg-green-900 text-green-300');
+        if (oss) badge(oss + ' open-source', 'bg-blue-900 text-blue-300');
+        container.appendChild(stats);
+
+        // Cadence
+        var dated = vendorModels
+            .filter(function(m) { return m.release_date || m.released_at; })
+            .map(function(m) { return new Date(m.release_date || m.released_at); })
+            .filter(function(d) { return !isNaN(d.getTime()); })
+            .sort(function(a, b) { return a - b; });
+        if (dated.length >= 3) {
+            var gaps = [];
+            for (var i = 1; i < dated.length; i++) {
+                gaps.push((dated[i] - dated[i-1]) / 86400000);
+            }
+            var avgGap = gaps.reduce(function(a, b) { return a + b; }, 0) / gaps.length;
+            var cadenceP = document.createElement('p');
+            cadenceP.className = 'text-xs text-gray-500 mb-3';
+            cadenceP.textContent = 'Avg ' + Math.round(avgGap) + ' days between releases (' + dated.length + ' dated models)';
+            container.appendChild(cadenceP);
+        }
+
+        // Models table
+        var modelsBody = Modal._collapsibleSection(container, 'Models from ' + vendor, 'vendor-models', true);
+        var tbl = document.createElement('table');
+        tbl.className = 'w-full text-xs text-gray-200';
+        var thead = document.createElement('thead');
+        var hr = document.createElement('tr');
+        hr.className = 'text-gray-500 border-b border-gray-700';
+        ['Model', 'Released', 'Type', 'Modalities', 'Scores'].forEach(function(label) {
+            var th = document.createElement('th');
+            th.className = 'text-left py-1';
+            th.textContent = label;
+            hr.appendChild(th);
+        });
+        thead.appendChild(hr);
+        tbl.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+        // Sort by release_date desc
+        var sorted = vendorModels.slice().sort(function(a, b) {
+            var ad = a.release_date || a.released_at || '';
+            var bd = b.release_date || b.released_at || '';
+            return bd.localeCompare(ad);
+        });
+        sorted.forEach(function(m) {
+            var tr = document.createElement('tr');
+            tr.className = 'border-b border-gray-800 hover:bg-gray-800 transition cursor-pointer';
+            tr.addEventListener('click', (function(mid) {
+                return function() { Modal.showModel(mid); };
+            })(m.id));
+
+            var nameTd = document.createElement('td');
+            nameTd.className = 'py-1 text-blue-400';
+            nameTd.textContent = m.name;
+            tr.appendChild(nameTd);
+
+            var dateTd = document.createElement('td');
+            dateTd.className = 'py-1 text-gray-400';
+            dateTd.textContent = (m.release_date || m.released_at || '—').slice(0, 10);
+            tr.appendChild(dateTd);
+
+            var typeTd = document.createElement('td');
+            var typeColor = m.type === 'proprietary' ? 'text-red-400' : (m.type === 'open-weight' ? 'text-green-400' : 'text-blue-400');
+            typeTd.className = 'py-1 ' + typeColor;
+            typeTd.textContent = m.type || '?';
+            tr.appendChild(typeTd);
+
+            var modTd = document.createElement('td');
+            modTd.className = 'py-1 text-gray-400';
+            modTd.textContent = (Array.isArray(m.modalities) ? m.modalities.join(', ') : '') || '—';
+            tr.appendChild(modTd);
+
+            var scoreCount = (App.data.scores || []).filter(function(s) { return s.model_id === m.id; }).length;
+            var sc = document.createElement('td');
+            sc.className = 'py-1 text-gray-400';
+            sc.textContent = scoreCount;
+            tr.appendChild(sc);
+
+            tbody.appendChild(tr);
+        });
+        tbl.appendChild(tbody);
+        modelsBody.appendChild(tbl);
+
+        // Show modal
+        Modal._open();
+    },
+
+    showModel: function(modelId) {
+        try { if (App._ensureScoreMeta) App._ensureScoreMeta(); } catch (e) {}
+        var model = App.getModelMap()[modelId];
+        if (!model) return;
+        history.replaceState(null, '', '#model/' + modelId);
+
+        var _enrichmentPromise = (typeof App !== 'undefined' && App.loadEnrichment)
+            ? App.loadEnrichment()
+            : Promise.resolve({});
+        var _hfPromise = (typeof App !== 'undefined' && App.loadHFMetadata)
+            ? App.loadHFMetadata()
+            : Promise.resolve({});
+
+        var scores = App.data.scores.filter(function(s) { return s.model_id === modelId; });
+
+        var container = document.getElementById('modal-content');
+        container.textContent = '';
+
+        Modal._renderHeader(container, model, scores);
+        Modal._renderVendorBadge(container, model);
+        var detail = Modal._renderDetailCard(container, model, modelId);
+        Modal._renderRefLinks(container, model);
+        Modal._renderPeerComparison(container, model, modelId);
+        Modal._renderStrengthsWeaknesses(container, modelId);
+        Modal._renderScoreSources(container, scores);
+        Modal._renderVersionHistory(container, model, modelId);
+        Modal._renderFamilyTree(container, model, modelId);
+
+        var enrichSlot = document.createElement('div');
+        enrichSlot.id = 'modal-enrichment-slot';
+        container.appendChild(enrichSlot);
+        Promise.all([_enrichmentPromise, _hfPromise]).then(function(results) {
+            Modal._renderEnrichmentSections(enrichSlot, model, modelId, results[0], results[1] || {}, detail);
+            Modal._buildModalTOC(); // rebuild after deferred enrichment sections are added
+        });
+
+        Modal._renderStrengthsRadar(container, model, modelId);
+        Modal._renderScoreHistory(container, model, modelId);
+        Modal._renderScoreBreakdown(container, modelId, scores);
+
+        Modal._buildModalTOC(); // initial build after synchronous sections render
+        Modal._open();
+    },
+
+    // ---- Helper: render h2 title + vendor/type/count badges ----
+    _renderHeader: function(container, model, scores) {
+        var h2 = document.createElement('h2');
+        h2.id = 'modal-title';
+        h2.className = 'text-xl font-bold text-white mb-1';
+        h2.textContent = model.name;
+        container.appendChild(h2);
+
+        var meta = document.createElement('div');
+        meta.className = 'flex gap-2 mb-4';
+
+        var vendorBadge = document.createElement('span');
+        vendorBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300 cursor-pointer hover:bg-gray-600 transition';
+        vendorBadge.textContent = model.vendor;
+        vendorBadge.title = 'Click to view all ' + model.vendor + ' models';
+        vendorBadge.addEventListener('click', (function(v) {
+            return function(e) {
+                e.stopPropagation();
+                Modal.showVendor(v);
+            };
+        })(model.vendor));
+        meta.appendChild(vendorBadge);
+
+        var typeBadge = document.createElement('span');
+        typeBadge.className = 'inline-block px-2 py-0.5 rounded text-xs';
+        if (model.type === 'proprietary') typeBadge.className += ' bg-red-900 text-red-300';
+        else if (model.type === 'open-weight') typeBadge.className += ' bg-green-900 text-green-300';
+        else typeBadge.className += ' bg-blue-900 text-blue-300';
+        typeBadge.textContent = model.type;
+        meta.appendChild(typeBadge);
+
+        var countBadge = document.createElement('span');
+        countBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-gray-800 text-gray-400';
+        countBadge.textContent = scores.length + ' benchmarks';
+        meta.appendChild(countBadge);
+
+        // Scale-class badge — visible only when entry is NOT a frontier-class
+        // foundation model (e.g. agent-system, simulator, classical-ml, narrow-task,
+        // dataset, benchmark-baseline). Surfaced from enrichment.scale_class.
+        try {
+            var enrMap = (typeof App !== 'undefined' && App.data && App.data.enrichment) || {};
+            var entry = enrMap[model.id];
+            var scaleClass = entry && entry.scale_class;
+            if (scaleClass) {
+                var SCALE_LABELS = {
+                    'agent-system': '🤖 Agent system',
+                    'agent-product': '🛠️ Agent product',
+                    'edge-slm': '📱 Edge SLM',
+                    'simulator-tool': '🛠 Simulator/Tool',
+                    'dataset': '📦 Dataset',
+                    'benchmark-baseline': '🎯 Benchmark baseline',
+                    'product-wrapper': '🏷 Product wrapper',
+                    'classical-ml': '🔬 Classical ML',
+                    'classical-bert': '📚 Classical BERT',
+                    'narrow-encoder': '🎨 Narrow encoder',
+                    'narrow-segmentation': '✂️ Narrow segmentation',
+                    'narrow-task': '🎯 Narrow task',
+                    'narrow-timeseries': '📈 Narrow time-series',
+                    'narrow-tabular': '📊 Narrow tabular',
+                    'narrow-tts': '🔊 Narrow TTS',
+                    'audio-codec': '🎙 Audio codec',
+                    'robotics-policy': '🤖 Robotics policy',
+                    'wavefunction-net': '⚛️ Wavefunction net',
+                    'dft-functional': '⚛️ DFT functional',
+                    'small-mlp-potential': '⚛️ Small MLP potential',
+                    'qec-decoder': '🧊 QEC decoder',
+                    'rl-search-system': '🔍 RL-search system',
+                    'symbolic-regression': '∑ Symbolic regression',
+                    'analysis-pipeline': '🔬 Analysis pipeline',
+                    'hydrology-lstm': '💧 Hydrology LSTM',
+                    'roadmap': '🗺 Roadmap (placeholder)',
+                    'human-baseline': '👤 Human baseline'
+                };
+                var label = SCALE_LABELS[scaleClass] || ('• ' + scaleClass);
+                var scaleBadge = document.createElement('span');
+                // edge-slm gets a green pill; everything else uses the default amber.
+                var badgeColor = (scaleClass === 'edge-slm')
+                    ? 'bg-green-900 text-green-200'
+                    : 'bg-amber-900 text-amber-200';
+                scaleBadge.className = 'inline-block px-2 py-0.5 rounded text-xs ' + badgeColor;
+                scaleBadge.textContent = label;
+                scaleBadge.title = 'Not a frontier-class foundation model: ' + scaleClass;
+                meta.appendChild(scaleBadge);
+            }
+        } catch (e) {
+            // enrichment may not be loaded yet — fail silent
+        }
+
+        // Settings cog — opens preferences panel for collapsible defaults
+        var cogBtn = document.createElement('button');
+        cogBtn.className = 'ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-400';
+        cogBtn.title = 'Modal preferences';
+        cogBtn.setAttribute('aria-label', 'Modal preferences');
+        cogBtn.textContent = '⚙';
+        cogBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            Modal._togglePreferencesPanel();
+        });
+        meta.appendChild(cogBtn);
+
+        // Watchlist star button
+        try {
+            var wlKey = 'watchlist:' + model.id;
+            var isWatched = false;
+            try { isWatched = localStorage.getItem(wlKey) === '1'; } catch (e) {}
+            var starBtn = document.createElement('button');
+            starBtn.className = 'ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs ' +
+                (isWatched ? 'bg-yellow-900 text-yellow-300' : 'bg-gray-800 text-gray-400 hover:bg-gray-700');
+            starBtn.textContent = isWatched ? '★ Watching' : '☆ Watch';
+            starBtn.title = isWatched ? 'Click to unwatch' : 'Click to add to watchlist (highlights score changes)';
+            starBtn.addEventListener('click', function() {
+                isWatched = !isWatched;
+                try {
+                    if (isWatched) {
+                        localStorage.setItem(wlKey, '1');
+                        // Snapshot current scores for diff
+                        var snapshot = {};
+                        scores.forEach(function(s) { snapshot[s.benchmark_id] = s.value; });
+                        localStorage.setItem('watchlist-snap:' + model.id, JSON.stringify({
+                            ts: new Date().toISOString(),
+                            scores: snapshot,
+                        }));
+                    } else {
+                        localStorage.removeItem(wlKey);
+                        localStorage.removeItem('watchlist-snap:' + model.id);
+                    }
+                } catch (e) { /* private mode */ }
+                starBtn.className = 'ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs ' +
+                    (isWatched ? 'bg-yellow-900 text-yellow-300' : 'bg-gray-800 text-gray-400 hover:bg-gray-700');
+                starBtn.textContent = isWatched ? '★ Watching' : '☆ Watch';
+            });
+            meta.appendChild(starBtn);
+        } catch (e) { /* watchlist non-fatal */ }
+
+        // Share URL button
+        try {
+            var shareBtn = document.createElement('button');
+            shareBtn.className = 'ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-400';
+            shareBtn.textContent = '🔗 Share';
+            shareBtn.title = 'Copy link to this model';
+            shareBtn.addEventListener('click', function() {
+                var base = window.location.origin + window.location.pathname;
+                var url = base + '?model=' + encodeURIComponent(model.id);
+                if (navigator.share) {
+                    navigator.share({
+                        title: model.name,
+                        text: 'Check out ' + model.name + ' on the SOTA dashboard',
+                        url: url,
+                    }).catch(function() { /* user cancelled */ });
+                } else if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = shareBtn.textContent;
+                        shareBtn.textContent = '✓ Copied';
+                        setTimeout(function() { shareBtn.textContent = orig; }, 1500);
+                    });
+                } else {
+                    prompt('Copy this URL:', url);
+                }
+            });
+            meta.appendChild(shareBtn);
+        } catch (e) { /* share non-fatal */ }
+
+        // Raw data inspect button
+        try {
+            var rawBtn = document.createElement('button');
+            rawBtn.className = 'ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-400';
+            rawBtn.textContent = '{} Raw';
+            rawBtn.title = 'View raw data for this model';
+            var _rawModelId = model.id;
+            rawBtn.addEventListener('click', function() {
+                Modal._showRawData(_rawModelId);
+            });
+            meta.appendChild(rawBtn);
+        } catch (e) { /* raw non-fatal */ }
+
+        container.appendChild(meta);
+
+        // "Built on: <base model>" — for agent-products and other derived
+        // entries whose enrichment lists a base_model_id. Click → opens that
+        // base model's modal. Defensive null checks: if enrichment isn't
+        // loaded, base_model_id missing, or base model not in DB → render
+        // nothing.
+        try {
+            var enrMap2 = (typeof App !== 'undefined' && App.data && App.data.enrichment) || {};
+            var entry2 = enrMap2[model.id];
+            var baseId = entry2 && entry2.base_model_id;
+            if (baseId) {
+                var baseModel = (App.data.models || []).find(function(m) { return m.id === baseId; });
+                if (baseModel) {
+                    var builtOn = document.createElement('div');
+                    builtOn.className = 'text-xs text-gray-400 mt-1 mb-3';
+                    builtOn.appendChild(document.createTextNode('Built on: '));
+                    var baseLink = document.createElement('a');
+                    baseLink.className = 'text-blue-400 hover:text-blue-300 cursor-pointer';
+                    baseLink.textContent = baseModel.name || baseId;
+                    baseLink.title = 'Open ' + baseId + ' modal';
+                    baseLink.addEventListener('click', (function(bid) {
+                        return function(e) {
+                            e.stopPropagation();
+                            Modal.showModel(bid);
+                        };
+                    })(baseId));
+                    builtOn.appendChild(baseLink);
+                    container.appendChild(builtOn);
+                }
+            }
+        } catch (e) { /* base_model_id render non-fatal */ }
+    },
+
+    _showRawData: function(modelId) {
+        var existing = document.getElementById('modal-raw-data-panel');
+        if (existing) {
+            existing.parentNode.removeChild(existing);
+            return;
+        }
+        var panel = document.createElement('div');
+        panel.id = 'modal-raw-data-panel';
+        panel.className = 'fixed inset-4 z-[80] bg-gray-900 border border-gray-700 rounded-lg p-4 overflow-auto';
+        var title = document.createElement('div');
+        title.className = 'flex justify-between items-center mb-3';
+        var h = document.createElement('h3');
+        h.className = 'text-lg font-semibold text-gray-200';
+        h.textContent = 'Raw data: ' + modelId;
+        title.appendChild(h);
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'bg-gray-700 hover:bg-gray-600 text-gray-300 px-3 py-1 rounded text-sm';
+        closeBtn.textContent = 'Close';
+        closeBtn.addEventListener('click', function() {
+            if (panel.parentNode) panel.parentNode.removeChild(panel);
+        });
+        title.appendChild(closeBtn);
+        panel.appendChild(title);
+
+        var rawData = {
+            model: (App.data.models || []).find(function(m) { return m.id === modelId; }),
+            enrichment: (App.data.enrichment || {})[modelId],
+            pricing: (App.data.pricing || {})[modelId],
+            hf_metadata: (App.data.hfMetadata || {})[modelId],
+            scores: (App.data.scores || []).filter(function(s) { return s.model_id === modelId; }),
+        };
+
+        var pre = document.createElement('pre');
+        pre.className = 'text-xs text-gray-300 bg-gray-950 p-3 rounded overflow-auto whitespace-pre-wrap font-mono';
+        pre.style.maxHeight = 'calc(100vh - 160px)';
+        pre.textContent = JSON.stringify(rawData, null, 2);
+        panel.appendChild(pre);
+
+        var copyBtn = document.createElement('button');
+        copyBtn.className = 'mt-2 bg-blue-700 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm';
+        copyBtn.textContent = 'Copy JSON';
+        copyBtn.addEventListener('click', function() {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(pre.textContent).then(function() {
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(function() { copyBtn.textContent = 'Copy JSON'; }, 1500);
+                });
+            }
+        });
+        panel.appendChild(copyBtn);
+
+        document.body.appendChild(panel);
+    },
+
+    _togglePreferencesPanel: function() {
+        var existing = document.getElementById('modal-preferences-panel');
+        if (existing) {
+            existing.parentNode.removeChild(existing);
+            return;
+        }
+
+        var panel = document.createElement('div');
+        panel.id = 'modal-preferences-panel';
+        panel.className = 'absolute right-3 top-12 z-40 bg-gray-900 border border-gray-700 rounded-lg p-3 shadow-lg text-xs max-w-[280px]';
+
+        var title = document.createElement('div');
+        title.className = 'text-gray-300 font-semibold mb-2';
+        title.textContent = 'Section defaults (open?)';
+        panel.appendChild(title);
+
+        var prefSections = [
+            { key: 'links', label: 'Reference Links' },
+            { key: 'peer', label: 'Peer Comparison' },
+            { key: 'strengths', label: 'Strengths' },
+            { key: 'weaknesses', label: 'Weaknesses' },
+            { key: 'radar', label: 'Strengths Radar' },
+            { key: 'history', label: 'Score History' },
+            { key: 'family', label: 'Family Tree' },
+            { key: 'architecture', label: 'Architecture' },
+            { key: 'perfcost', label: 'Performance & Cost' },
+            { key: 'lineage', label: 'Lineage' },
+            { key: 'sources', label: 'Score Sources' },
+            { key: 'scores', label: 'Score Breakdown' },
+            { key: 'version', label: 'Version History' },
+        ];
+
+        prefSections.forEach(function(s) {
+            var label = document.createElement('label');
+            label.className = 'flex items-center gap-2 py-0.5 cursor-pointer hover:bg-gray-800 px-1 rounded';
+            var cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.className = 'cursor-pointer';
+            var lsKey = 'modal-section:' + s.key;
+            var savedVal = null;
+            try { savedVal = localStorage.getItem(lsKey); } catch (e) { /* private */ }
+            cb.checked = savedVal === '1';
+            cb.addEventListener('change', function() {
+                try {
+                    localStorage.setItem(lsKey, cb.checked ? '1' : '0');
+                } catch (e) { /* private */ }
+            });
+            label.appendChild(cb);
+            var span = document.createElement('span');
+            span.className = 'text-gray-300';
+            span.textContent = s.label;
+            label.appendChild(span);
+            panel.appendChild(label);
+        });
+
+        var note = document.createElement('div');
+        note.className = 'text-gray-500 text-[10px] mt-2 pt-2 border-t border-gray-800';
+        note.textContent = 'Changes apply on next modal open. Per-section toggles also persist.';
+        panel.appendChild(note);
+
+        var modalEl = document.getElementById('modal');
+        if (modalEl) modalEl.appendChild(panel);
+        else {
+            var dialogEl = document.querySelector('[role="dialog"]');
+            if (dialogEl) dialogEl.appendChild(panel);
+            else document.body.appendChild(panel);
+        }
+    },
+
+    // ---- Helper: vendor "X tracked models" bar ----
+    _renderVendorBadge: function(container, model) {
+        try {
+            var vendorCount = (App.data.models || []).filter(function(mm) {
+                return mm.vendor === model.vendor;
+            }).length;
+            if (vendorCount > 1) {
+                var vBar = document.createElement('div');
+                vBar.className = 'mb-3 text-xs text-gray-400 cursor-pointer hover:text-gray-200 transition';
+                vBar.title = 'Click to view all ' + (model.vendor || 'unknown') + ' models';
+                vBar.addEventListener('click', (function(v) {
+                    return function(e) {
+                        e.stopPropagation();
+                        Modal.showVendor(v);
+                    };
+                })(model.vendor));
+                vBar.appendChild(document.createTextNode((model.vendor || 'unknown') + ' has '));
+                var cs = document.createElement('strong');
+                cs.className = 'text-blue-400';
+                cs.textContent = vendorCount;
+                vBar.appendChild(cs);
+                vBar.appendChild(document.createTextNode(' tracked models →'));
+                container.appendChild(vBar);
+            }
+        } catch (e) { /* non-fatal */ }
+    },
+
+    // ---- Helper: 2-column detail info card. Returns the detail element. ----
+    _renderDetailCard: function(container, model, modelId) {
+        var detail = document.createElement('div');
+        detail.className = 'bg-gray-800 rounded-lg p-4 mb-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm';
+        function addField(label, value, opts) {
+            if (value === undefined || value === null || value === '') return;
+            var wrap = document.createElement('div');
+            if (opts && opts.full) wrap.className = 'col-span-2';
+            var lbl = document.createElement('div');
+            lbl.className = 'text-xs text-gray-500';
+            lbl.textContent = label;
+            wrap.appendChild(lbl);
+            var val = document.createElement('div');
+            val.className = 'text-sm text-gray-200';
+            val.textContent = value;
+            wrap.appendChild(val);
+            detail.appendChild(wrap);
+        }
+        addField('Vendor', model.vendor);
+        addField('Released', model.release_date || model.released_at);
+        addField('Type', model.type);
+        addField('Version', model.version);
+        if (Array.isArray(model.modalities) && model.modalities.length) {
+            addField('Modalities', model.modalities.join(', '));
+        }
+        if (model.parameters) addField('Parameters', model.parameters);
+        if (model.params_b) addField('Parameters (B)', model.params_b + (model.active_params_b ? ' total / ' + model.active_params_b + ' active' : ''));
+        if (model.context_window) addField('Context Window', Number(model.context_window).toLocaleString() + ' tokens');
+        if (model.knowledge_cutoff) addField('Knowledge Cutoff', model.knowledge_cutoff);
+        if (Array.isArray(model.languages) && model.languages.length) {
+            var langs = model.languages;
+            var langText = langs.length <= 6 ? langs.join(', ') : (langs.slice(0, 6).join(', ') + ' (+' + (langs.length - 6) + ')');
+            addField('Languages', langText);
+        }
+        if (model.license) addField('License', model.license);
+        var pricing = model.pricing || (App.data.pricing && App.data.pricing[modelId]);
+        if (pricing) {
+            if (pricing.tokens_per_second != null) addField('Throughput', pricing.tokens_per_second + ' tokens/sec');
+            if (pricing.input != null) addField('Input price (per 1M tokens)', '$' + pricing.input);
+            if (pricing.output != null) addField('Output price (per 1M tokens)', '$' + pricing.output);
+            if (pricing.cached_input != null) addField('Cached input', '$' + pricing.cached_input);
+        } else {
+            // No per-token pricing → show "subscription" pill for agent-products
+            // (Devin, Manus, Claude Code, Codex CLI, etc.) which are sold
+            // subscription-style rather than metered API. Frontier models with
+            // no pricing data simply omit this row.
+            try {
+                var isAgentProduct = false;
+                if (typeof Agent !== 'undefined' && Agent._AGENT_PRODUCTS) {
+                    isAgentProduct = Agent._AGENT_PRODUCTS.indexOf(modelId) !== -1;
+                }
+                if (isAgentProduct) {
+                    var subWrap = document.createElement('div');
+                    var subLbl = document.createElement('div');
+                    subLbl.className = 'text-xs text-gray-500';
+                    subLbl.textContent = 'Pricing model';
+                    subWrap.appendChild(subLbl);
+                    var subVal = document.createElement('div');
+                    subVal.className = 'text-sm text-gray-200 flex items-center gap-2 flex-wrap';
+                    var pill = document.createElement('span');
+                    pill.className = 'text-xs bg-amber-900 text-amber-200 px-2 py-0.5 rounded';
+                    pill.textContent = 'subscription';
+                    subVal.appendChild(pill);
+                    // Vendor-disclosed subscription annotations (when known)
+                    var SUBSCRIPTION_NOTES = {
+                        'cognition/devin': '$20/mo Core + $2.25/ACU',
+                        'manus-ai/manus': '$500/mo (Pro)'
+                    };
+                    var note = SUBSCRIPTION_NOTES[modelId];
+                    if (note) {
+                        var noteSpan = document.createElement('span');
+                        noteSpan.className = 'text-xs text-gray-400';
+                        noteSpan.textContent = note;
+                        subVal.appendChild(noteSpan);
+                    }
+                    subWrap.appendChild(subVal);
+                    detail.appendChild(subWrap);
+                }
+            } catch (e) { /* subscription pill non-fatal */ }
+        }
+        if (model._note || model.notes || model.description) {
+            addField('Description', model._note || model.notes || model.description, {full: true});
+        }
+        if (detail.children.length) container.appendChild(detail);
+        return detail;
+    },
+
+    // ---- Helper: reference link pills (system card / model card / homepage / HF / paper) ----
+    _renderRefLinks: function(container, model) {
+        function pickLinks(m) {
+            var links = [];
+            function push(label, url, color) {
+                if (!url || typeof url !== 'string') return;
+                if (links.some(function(l) { return l.url === url; })) return;
+                links.push({label: label, url: url, color: color});
+            }
+            push('📋 System Card', m.system_card || m.system_card_url, 'purple');
+            push('🪪 Model Card', m.model_card || m.model_card_url, 'cyan');
+            push('🤗 HuggingFace', m.huggingface || m.hf_url || m.hf, 'yellow');
+            push('🌐 Homepage', m.homepage || m.url || m.vendor_url || m.website, 'blue');
+            push('📄 Paper', m.paper || m.paper_url || m.arxiv || m.arxiv_url, 'pink');
+            push('⚙ GitHub', m.github || m.github_url || m.repo, 'gray');
+            push('📰 Blog', m.blog || m.announcement || m.launch_blog, 'green');
+            if (Array.isArray(m.links)) m.links.forEach(function(l) { push(l.label || 'Link', l.url, 'blue'); });
+            return links;
+        }
+        var refLinks = pickLinks(model);
+        if (!refLinks.length) return;
+        var linksBody = Modal._collapsibleSection(container, 'Reference Links', 'links', true);
+        var linksDiv = document.createElement('div');
+        linksDiv.className = 'flex flex-wrap gap-2';
+        var bgMap = {
+            purple: 'bg-purple-900 hover:bg-purple-800 text-purple-200',
+            cyan: 'bg-cyan-900 hover:bg-cyan-800 text-cyan-200',
+            yellow: 'bg-yellow-900 hover:bg-yellow-800 text-yellow-200',
+            blue: 'bg-blue-900 hover:bg-blue-800 text-blue-200',
+            pink: 'bg-pink-900 hover:bg-pink-800 text-pink-200',
+            gray: 'bg-gray-700 hover:bg-gray-600 text-gray-200',
+            green: 'bg-green-900 hover:bg-green-800 text-green-200'
+        };
+        refLinks.forEach(function(l) {
+            var a = document.createElement('a');
+            a.href = l.url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = 'inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition ' + (bgMap[l.color] || bgMap.gray);
+            a.textContent = l.label;
+            a.title = l.url;
+            linksDiv.appendChild(a);
+        });
+        linksBody.appendChild(linksDiv);
+    },
+
+    // ---- Helper: Peer Comparison section ----
+    _renderPeerComparison: function(container, model, modelId) {
+        try {
+            var peerCandidates = (window.PeerMatcher && PeerMatcher.findPeers)
+                ? PeerMatcher.findPeers(modelId, App.data.models, App.data.scores, 5)
+                : [];
+            if (peerCandidates.length === 0) return;
+
+            var peerDiv = Modal._collapsibleSection(container, 'Peer Comparison', 'peer', true);
+
+            var picker = document.createElement('div');
+            picker.className = 'flex items-center gap-2 mb-2 text-xs text-gray-400';
+            var pickerLabel = document.createElement('span');
+            pickerLabel.textContent = 'Most similar:';
+            picker.appendChild(pickerLabel);
+            var sel = document.createElement('select');
+            sel.className = 'bg-gray-800 text-gray-200 rounded px-2 py-1 text-xs';
+            peerCandidates.forEach(function(p) {
+                var pm = App.getModelMap()[p.modelId];
+                var label = (pm ? pm.name : p.modelId) + '  (overlap ' + p.overlap + ', avg d ' + p.avgDelta.toFixed(1) + ')';
+                var opt = document.createElement('option');
+                opt.value = p.modelId;
+                opt.textContent = label;
+                sel.appendChild(opt);
+            });
+            picker.appendChild(sel);
+            var cmpBtn = document.createElement('button');
+            cmpBtn.className = 'ml-2 bg-blue-700 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs';
+            cmpBtn.textContent = 'Compare with peers ↗';
+            cmpBtn.title = 'Open Comparison tab with this model + top 3 peers selected';
+            cmpBtn.onclick = (function(peers, targetId) {
+                return function() {
+                    var ids = [targetId].concat(peers.slice(0, 3).map(function(p) { return p.modelId; }));
+                    var btn = document.getElementById('tabbtn-comparison');
+                    if (btn) btn.click();
+                    setTimeout(function() {
+                        var msel = document.getElementById('cmp-models');
+                        if (!msel) return;
+                        Array.prototype.forEach.call(msel.options, function(o) { o.selected = false; });
+                        ids.forEach(function(id) {
+                            var found = Array.prototype.find.call(msel.options, function(o) { return o.value === id; });
+                            if (found) found.selected = true;
+                        });
+                        if (typeof Comparison !== 'undefined' && Comparison.render) {
+                            if (Comparison._updateCounters) Comparison._updateCounters();
+                            Comparison.render();
+                        }
+                        var modalRoot = document.getElementById('modal');
+                        if (modalRoot) modalRoot.classList.add('hidden');
+                    }, 150);
+                };
+            })(peerCandidates, modelId);
+            picker.appendChild(cmpBtn);
+            peerDiv.appendChild(picker);
+
+            var tableWrap = document.createElement('div');
+            tableWrap.className = 'overflow-x-auto';
+            peerDiv.appendChild(tableWrap);
+
+            var renderPeerTable = function(peerId) {
+                tableWrap.textContent = '';
+                var picked = peerCandidates.find(function(p) { return p.modelId === peerId; });
+                if (!picked) return;
+                var peerScores = {};
+                App.data.scores.forEach(function(s) { if (s.model_id === peerId) peerScores[s.benchmark_id] = s.value; });
+                var targetScores = {};
+                App.data.scores.forEach(function(s) { if (s.model_id === modelId) targetScores[s.benchmark_id] = s.value; });
+
+                var tbl = document.createElement('table');
+                tbl.className = 'w-full text-xs text-gray-200';
+                var thead = document.createElement('thead');
+                var theadRow = document.createElement('tr');
+                theadRow.className = 'text-gray-500 border-b border-gray-700';
+                ['Benchmark', model.name, 'Peer', 'd'].forEach(function(label, idx) {
+                    var th = document.createElement('th');
+                    th.className = idx === 0 ? 'text-left py-1' : 'text-right py-1';
+                    th.textContent = label;
+                    theadRow.appendChild(th);
+                });
+                thead.appendChild(theadRow);
+                tbl.appendChild(thead);
+
+                var tb = document.createElement('tbody');
+                picked.sharedBenches.forEach(function(b) {
+                    var bench = App.getBenchmarkMap()[b];
+                    var name = bench ? bench.name : b;
+                    var t = targetScores[b];
+                    var p = peerScores[b];
+                    var delta = t - p;
+                    var deltaClass = delta > 0 ? 'text-green-400' : (delta < 0 ? 'text-red-400' : 'text-gray-400');
+                    var sign = delta > 0 ? '+' : '';
+                    var tier = window.PeerMatcher ? PeerMatcher.sotaTier(t, modelId, b, App.data.models, App.data.scores) : null;
+                    var badgeText = tier ? ' ' + (tier.tier === 'sota' ? '*' : (tier.tier === 'top3' ? '+' : '~')) : '';
+                    var tr = document.createElement('tr');
+                    tr.className = 'border-b border-gray-800';
+                    var cName = document.createElement('td'); cName.className = 'py-1'; cName.textContent = name;
+                    var cTarget = document.createElement('td'); cTarget.className = 'text-right py-1'; cTarget.textContent = t.toFixed(1) + badgeText;
+                    var cPeer = document.createElement('td'); cPeer.className = 'text-right py-1 text-gray-400'; cPeer.textContent = p.toFixed(1);
+                    var cDelta = document.createElement('td'); cDelta.className = 'text-right py-1 ' + deltaClass; cDelta.textContent = sign + delta.toFixed(1);
+                    tr.appendChild(cName); tr.appendChild(cTarget); tr.appendChild(cPeer); tr.appendChild(cDelta);
+                    tb.appendChild(tr);
+                });
+                tbl.appendChild(tb);
+                tableWrap.appendChild(tbl);
+
+                var foot = document.createElement('div');
+                foot.className = 'text-xs text-gray-500 mt-1';
+                var avgSign = picked.avgDelta >= 0 ? '+' : '';
+                foot.textContent = 'Avg d ' + avgSign + picked.avgDelta.toFixed(1) + 'pt across ' + picked.overlap + ' shared benchmarks';
+                peerDiv.appendChild(foot);
+            };
+
+            sel.onchange = function() { renderPeerTable(sel.value); };
+            renderPeerTable(peerCandidates[0].modelId);
+        } catch (e) {
+            console.warn('[modal] peer comparison error', e);
+        }
+    },
+
+    // ---- Helper: Strengths & Weaknesses lists ----
+    _renderStrengthsWeaknesses: function(container, modelId) {
+        try {
+            if (!window.PeerMatcher || !PeerMatcher.extractStrengthsWeaknesses) return;
+            var sw = PeerMatcher.extractStrengthsWeaknesses(modelId, App.data.models, App.data.scores);
+
+            if (sw.strengths.length > 0) {
+                var strDiv = Modal._collapsibleSection(container, 'Strengths (12-month SOTA tier)', 'strengths', true);
+                var ul = document.createElement('ul');
+                ul.className = 'text-xs text-gray-200 space-y-1';
+                sw.strengths.forEach(function(r) {
+                    var bench = App.getBenchmarkMap()[r.benchmark_id];
+                    var name = bench ? bench.name : r.benchmark_id;
+                    var li = document.createElement('li');
+                    li.className = 'flex justify-between border-b border-gray-800 py-1';
+                    var nameSpan = document.createElement('span');
+                    nameSpan.textContent = name;
+                    var valSpan = document.createElement('span');
+                    var bold = document.createElement('strong');
+                    bold.textContent = r.value.toFixed(1);
+                    valSpan.appendChild(bold);
+                    valSpan.appendChild(document.createTextNode(' ' + r.tier.label + ' '));
+                    var rankSpan = document.createElement('span');
+                    rankSpan.className = 'text-gray-500';
+                    rankSpan.textContent = '(' + r.tier.rank + '/' + r.tier.total + ')';
+                    valSpan.appendChild(rankSpan);
+                    li.appendChild(nameSpan);
+                    li.appendChild(valSpan);
+                    ul.appendChild(li);
+                });
+                strDiv.appendChild(ul);
+            }
+
+            if (sw.weaknesses.length > 0) {
+                var weakDiv = Modal._collapsibleSection(container, 'Weaknesses (vs peer avg)', 'weaknesses', true);
+                var wul = document.createElement('ul');
+                wul.className = 'text-xs text-gray-200 space-y-1';
+                sw.weaknesses.forEach(function(r) {
+                    var bench = App.getBenchmarkMap()[r.benchmark_id];
+                    var name = bench ? bench.name : r.benchmark_id;
+                    var li = document.createElement('li');
+                    li.className = 'flex justify-between border-b border-gray-800 py-1';
+                    var n = document.createElement('span');
+                    n.textContent = name;
+                    var v = document.createElement('span');
+                    v.appendChild(document.createTextNode(r.value.toFixed(1) + '  '));
+                    var avg = document.createElement('span');
+                    avg.className = 'text-gray-500';
+                    avg.textContent = 'peer avg ' + r.peerAvg.toFixed(1) + '  ';
+                    v.appendChild(avg);
+                    var d = document.createElement('span');
+                    d.className = 'text-red-400';
+                    d.textContent = 'd ' + r.delta.toFixed(1);
+                    v.appendChild(d);
+                    li.appendChild(n);
+                    li.appendChild(v);
+                    wul.appendChild(li);
+                });
+                weakDiv.appendChild(wul);
+            }
+        } catch (e) {
+            console.warn('[modal] strengths/weaknesses error', e);
+        }
+    },
+
+    // ---- Helper: Score Sources (deduplicated HTTP source URLs) ----
+    _renderScoreSources: function(container, scores) {
+        var srcUrls = {};
+        scores.forEach(function(s) {
+            var src = s.source && s.source.url;
+            if (src && src.startsWith('http')) srcUrls[src] = (srcUrls[src] || 0) + 1;
+        });
+        var topSrcs = Object.keys(srcUrls).sort(function(a, b) { return srcUrls[b] - srcUrls[a]; }).slice(0, 5);
+        if (!topSrcs.length) return;
+        var srcDiv = Modal._collapsibleSection(container, 'Score Sources (' + topSrcs.length + ' unique)', 'sources', false);
+        var slist = document.createElement('div');
+        slist.className = 'flex flex-wrap gap-1.5';
+        topSrcs.forEach(function(u) {
+            var a = document.createElement('a');
+            a.href = u;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = 'inline-block px-2 py-1 rounded text-xs bg-gray-800 hover:bg-gray-700 text-blue-400 hover:underline';
+            try {
+                var host = new URL(u).hostname.replace(/^www\./, '');
+                a.textContent = host + ' (' + srcUrls[u] + ')';
+            } catch (e) { a.textContent = u.slice(0, 50); }
+            a.title = u;
+            slist.appendChild(a);
+        });
+        srcDiv.appendChild(slist);
+    },
+
+    // ---- Helper: Version History (sibling models) ----
+    _renderVersionHistory: function(container, model, modelId) {
+        try {
+            var stem = modelId.split('/').pop()
+                .replace(/[\d._-]+$/, '')
+                .replace(/-(pro|max|mini|flash|nano|ultra|small|medium|large|haiku|sonnet|opus|preview|beta|thinking|fast|reasoning|chat)$/i, '');
+            if (stem.length < 3) return;
+            var siblings = App.data.models.filter(function(m) {
+                if (m.id === modelId) return false;
+                if (m.vendor !== model.vendor) return false;
+                var sname = m.id.split('/').pop();
+                return sname.toLowerCase().indexOf(stem.toLowerCase()) >= 0;
+            });
+            if (!siblings.length) return;
+            siblings.sort(function(a, b) {
+                var ad = a.release_date || ''; var bd = b.release_date || '';
+                return bd.localeCompare(ad);
+            });
+            var hist = Modal._collapsibleSection(container, 'Version History (' + model.vendor + ')', 'version', false);
+            var list = document.createElement('div');
+            list.className = 'flex flex-wrap gap-1.5';
+            siblings.slice(0, 30).forEach(function(sib) {
+                var pill = document.createElement('span');
+                pill.className = 'inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 cursor-pointer transition';
+                pill.title = sib.id;
+                var rd = sib.release_date ? ' · ' + sib.release_date.slice(0, 7) : '';
+                pill.textContent = sib.name + rd;
+                pill.onclick = (function(mid) { return function() { Modal.showModel(mid); }; })(sib.id);
+                list.appendChild(pill);
+            });
+            hist.appendChild(list);
+        } catch (e) { /* version history is non-fatal */ }
+    },
+
+    _renderFamilyTree: function(container, model, modelId) {
+        try {
+            // Find all models from same vendor with release_date
+            var siblings = (App.data.models || []).filter(function(m) {
+                return m.vendor === model.vendor && (m.release_date || m.released_at);
+            }).map(function(m) {
+                return {
+                    id: m.id,
+                    name: m.name,
+                    date: m.release_date || m.released_at,
+                };
+            });
+            // Include target itself even if no release_date
+            if (!siblings.find(function(s) { return s.id === modelId; })) {
+                siblings.push({
+                    id: modelId,
+                    name: model.name,
+                    date: model.release_date || model.released_at || '?',
+                });
+            }
+            siblings.sort(function(a, b) {
+                return (a.date || '').localeCompare(b.date || '');
+            });
+            if (siblings.length < 2) return; // not enough for a tree
+
+            var body = Modal._collapsibleSection(container, 'Family Tree (' + (model.vendor || 'unknown vendor') + ')', 'family', false);
+
+            // Horizontal timeline using flex
+            var tree = document.createElement('div');
+            tree.className = 'flex items-center gap-1 overflow-x-auto py-2';
+            tree.style.minWidth = '0';
+
+            siblings.forEach(function(sib, idx) {
+                var node = document.createElement('div');
+                node.className = 'flex flex-col items-center min-w-[80px] cursor-pointer';
+                node.title = sib.id + ' · ' + sib.date;
+
+                var dot = document.createElement('div');
+                dot.className = 'rounded-full transition';
+                if (sib.id === modelId) {
+                    dot.className += ' w-4 h-4 bg-blue-400 ring-2 ring-blue-200';
+                } else {
+                    dot.className += ' w-3 h-3 bg-gray-500 hover:bg-blue-400';
+                }
+                node.appendChild(dot);
+
+                var label = document.createElement('div');
+                label.className = 'text-[10px] mt-1 text-center truncate w-full';
+                label.style.color = sib.id === modelId ? '#60a5fa' : '#9ca3af';
+                label.textContent = sib.name;
+                node.appendChild(label);
+
+                var dateEl = document.createElement('div');
+                dateEl.className = 'text-[9px] text-gray-500';
+                dateEl.textContent = (sib.date || '').slice(0, 7);
+                node.appendChild(dateEl);
+
+                node.addEventListener('click', (function(sid) {
+                    return function() {
+                        Modal.showModel(sid);
+                    };
+                })(sib.id));
+
+                tree.appendChild(node);
+
+                // Connector line
+                if (idx < siblings.length - 1) {
+                    var line = document.createElement('div');
+                    line.className = 'flex-1 h-px bg-gray-700 mx-1';
+                    line.style.minWidth = '20px';
+                    tree.appendChild(line);
+                }
+            });
+
+            body.appendChild(tree);
+
+            var caption = document.createElement('p');
+            caption.className = 'text-xs text-gray-500 mt-1';
+            caption.textContent = 'Chronological release order. Click any node to navigate to that model.';
+            body.appendChild(caption);
+        } catch (e) {
+            console.warn('[modal] family tree error', e);
+        }
+    },
+
+    _renderLineage: function(enrichSlot, modelId, entry) {
+        try {
+            var lineage = entry && entry.lineage;
+            if (!lineage) return;
+            if (!lineage.base_model && !lineage.base_model_id && !lineage.teacher_models && !lineage.training_method) return;
+
+            var body = Modal._collapsibleSection(enrichSlot, 'Lineage / Distillation', 'lineage', false);
+
+            function row(label, value, isLink, linkId) {
+                if (value == null || value === '' || (Array.isArray(value) && value.length === 0)) return;
+                var r = document.createElement('div');
+                r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                var l = document.createElement('div');
+                l.className = 'text-gray-500 col-span-1';
+                l.textContent = label;
+                r.appendChild(l);
+                var v = document.createElement('div');
+                v.className = 'text-gray-200 col-span-2';
+                if (isLink && linkId) {
+                    var a = document.createElement('a');
+                    a.href = '#';
+                    a.className = 'text-blue-400 hover:underline';
+                    a.textContent = value;
+                    a.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        Modal.showModel(linkId);
+                    });
+                    v.appendChild(a);
+                } else {
+                    v.textContent = Array.isArray(value) ? value.join(', ') : String(value);
+                }
+                r.appendChild(v);
+                body.appendChild(r);
+            }
+
+            if (lineage.base_model_id) {
+                var baseModel = (App.data.models || []).find(function(m) { return m.id === lineage.base_model_id; });
+                row('Base model', baseModel ? baseModel.name : lineage.base_model_id, true, lineage.base_model_id);
+            } else if (lineage.base_model) {
+                row('Base model', lineage.base_model);
+            }
+            if (lineage.teacher_models && lineage.teacher_models.length) {
+                lineage.teacher_models.forEach(function(tid) {
+                    var tm = (App.data.models || []).find(function(m) { return m.id === tid; });
+                    row('Teacher', tm ? tm.name : tid, true, tid);
+                });
+            }
+            if (lineage.training_method) {
+                row('Training method', lineage.training_method);
+            }
+        } catch (e) {
+            console.warn('[modal] lineage error', e);
+        }
+    },
+
+    // ---- Helper: Enrichment sections (deferred Promise callback content) ----
+    // Called after Promise.all([_enrichmentPromise, _hfPromise]) resolves.
+    _renderEnrichmentSections: function(enrichSlot, model, modelId, enrichmentMap, hfMap, detail) {
+        var entry = enrichmentMap && enrichmentMap[modelId];
+        if (!entry) return;
+
+        // Patch Reference Links + Pricing from enrichment
+        try {
+            var entryLinks = entry.links || {};
+            var entryPricing = entry.pricing || {};
+            var enrichedLinks = [];
+            function pushE(label, url, color) {
+                if (!url || typeof url !== 'string') return;
+                enrichedLinks.push({ label: label, url: url, color: color });
+            }
+            pushE('📋 System Card', entryLinks.system_card, 'purple');
+            pushE('🪪 Model Card', entryLinks.model_card, 'cyan');
+            pushE('🤗 HuggingFace', entryLinks.huggingface, 'yellow');
+            pushE('🌐 Homepage', entryLinks.homepage, 'blue');
+            pushE('📄 Paper', entryLinks.paper, 'pink');
+            pushE('⚙ GitHub', entryLinks.github, 'gray');
+            pushE('📰 Blog', entryLinks.blog, 'green');
+
+            if (enrichedLinks.length) {
+                var linksBody2 = Modal._collapsibleSection(enrichSlot, 'Reference Links', 'links2', true);
+                var linksDiv2 = document.createElement('div');
+                linksDiv2.className = 'flex flex-wrap gap-2';
+                var bgMap = {
+                    purple: 'bg-purple-900 hover:bg-purple-800 text-purple-200',
+                    cyan: 'bg-cyan-900 hover:bg-cyan-800 text-cyan-200',
+                    yellow: 'bg-yellow-900 hover:bg-yellow-800 text-yellow-200',
+                    blue: 'bg-blue-900 hover:bg-blue-800 text-blue-200',
+                    pink: 'bg-pink-900 hover:bg-pink-800 text-pink-200',
+                    gray: 'bg-gray-700 hover:bg-gray-600 text-gray-200',
+                    green: 'bg-green-900 hover:bg-green-800 text-green-200'
+                };
+                enrichedLinks.forEach(function(l) {
+                    var a = document.createElement('a');
+                    a.href = l.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+                    a.className = 'inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition ' + (bgMap[l.color] || bgMap.gray);
+                    a.textContent = l.label; a.title = l.url;
+                    linksDiv2.appendChild(a);
+                });
+                linksBody2.appendChild(linksDiv2);
+            }
+
+            if ((entryPricing.input != null || entryPricing.output != null || entryPricing.cached_input != null) && detail) {
+                var priceBody = Modal._collapsibleSection(enrichSlot, 'Pricing (per 1M tokens, ' + (entryPricing.currency || 'USD') + ')', 'pricing', false);
+                var priceCard = document.createElement('div');
+                priceCard.className = 'bg-gray-800 rounded-lg p-4';
+                function priceRow(label, value) {
+                    if (value == null) return;
+                    var r = document.createElement('div');
+                    r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                    var l = document.createElement('div'); l.className = 'text-gray-500 col-span-1'; l.textContent = label; r.appendChild(l);
+                    var v = document.createElement('div'); v.className = 'text-gray-200 col-span-2'; v.textContent = '$' + value; r.appendChild(v);
+                    priceCard.appendChild(r);
+                }
+                priceRow('Input', entryPricing.input);
+                priceRow('Output', entryPricing.output);
+                priceRow('Cached input', entryPricing.cached_input);
+                priceBody.appendChild(priceCard);
+            }
+        } catch (e) {
+            console.warn('[modal] enrichment links/pricing patch error', e);
+        }
+
+        // Patch detail card with inferred fields (vendor / release_date / modalities)
+        try {
+            if (detail) {
+                if (!model.vendor && entry.vendor_inferred) {
+                    var rows = detail.querySelectorAll('div');
+                    rows.forEach(function(r) {
+                        var labelEl = r.querySelector('.text-xs.text-gray-500');
+                        if (labelEl && labelEl.textContent === 'Vendor') {
+                            var valEl = r.querySelector('.text-sm.text-gray-200');
+                            if (valEl && (valEl.textContent === '' || valEl.textContent === 'unknown')) {
+                                valEl.textContent = entry.vendor_inferred + ' (inferred)';
+                                valEl.style.fontStyle = 'italic';
+                            }
+                        }
+                    });
+                    // If no vendor row at all, add one
+                    var hasVendorRow = false;
+                    detail.querySelectorAll('.text-xs.text-gray-500').forEach(function(el) {
+                        if (el.textContent === 'Vendor') hasVendorRow = true;
+                    });
+                    if (!hasVendorRow) {
+                        var vWrap = document.createElement('div');
+                        var vLbl = document.createElement('div');
+                        vLbl.className = 'text-xs text-gray-500';
+                        vLbl.textContent = 'Vendor';
+                        vWrap.appendChild(vLbl);
+                        var vVal = document.createElement('div');
+                        vVal.className = 'text-sm text-gray-200';
+                        vVal.style.fontStyle = 'italic';
+                        vVal.textContent = entry.vendor_inferred + ' (inferred)';
+                        vWrap.appendChild(vVal);
+                        detail.insertBefore(vWrap, detail.firstChild);
+                    }
+                }
+                // Show system registration date (when we first ingested this model) — always as a
+                // separate secondary row, never as a substitute for the real release date.
+                var sysRegDate = entry.system_registered_date || entry.release_date_inferred; // backwards compat
+                if (sysRegDate && detail) {
+                    var sysRow = document.createElement('div');
+                    var sl = document.createElement('div');
+                    sl.className = 'text-xs text-gray-500';
+                    sl.textContent = '시스템 등록일';
+                    sysRow.appendChild(sl);
+                    var sv = document.createElement('div');
+                    sv.className = 'text-sm text-gray-400 italic';
+                    sv.textContent = sysRegDate;
+                    sv.title = 'When the model was first ingested into the dashboard. Not the public release date.';
+                    sysRow.appendChild(sv);
+                    detail.appendChild(sysRow);
+                }
+                if ((!model.modalities || !model.modalities.length) && entry.modalities_inferred && entry.modalities_inferred.length > 1) {
+                    var modWrap = document.createElement('div');
+                    var modLbl = document.createElement('div');
+                    modLbl.className = 'text-xs text-gray-500';
+                    modLbl.textContent = 'Modalities (inferred)';
+                    modWrap.appendChild(modLbl);
+                    var modVal = document.createElement('div');
+                    modVal.className = 'text-sm text-gray-200';
+                    modVal.style.fontStyle = 'italic';
+                    modVal.textContent = entry.modalities_inferred.join(', ');
+                    modWrap.appendChild(modVal);
+                    detail.appendChild(modWrap);
+                }
+            }
+        } catch (e) { /* detail patch non-fatal */ }
+
+        // License inline expansion — append to detail card if enrichment has license_terms
+        try {
+            if (detail && entry.license_terms) {
+                var lt = entry.license_terms;
+                var licName = lt.name || (model.license) || null;
+                if (licName) {
+                    var licWrap = document.createElement('div');
+                    licWrap.className = 'col-span-2';
+                    var licLbl = document.createElement('div');
+                    licLbl.className = 'text-xs text-gray-500';
+                    licLbl.textContent = 'License Terms';
+                    licWrap.appendChild(licLbl);
+                    var licVal = document.createElement('div');
+                    licVal.className = 'text-sm text-gray-200 flex items-center flex-wrap gap-1';
+                    var licTxt = document.createElement('span');
+                    licTxt.textContent = licName;
+                    licVal.appendChild(licTxt);
+                    var expandBtn = document.createElement('button');
+                    expandBtn.className = 'ml-1 text-blue-400 hover:underline text-xs';
+                    expandBtn.textContent = 'ⓞ details';
+                    expandBtn.title = 'Show full license terms';
+                    var detailsDiv = document.createElement('div');
+                    detailsDiv.className = 'w-full mt-1 p-2 bg-gray-900 border border-gray-700 rounded text-xs hidden';
+                    var bullets = document.createElement('ul');
+                    bullets.className = 'space-y-0.5';
+                    function makeLicBullet(labelText, valueText) {
+                        var li = document.createElement('li');
+                        var dot = document.createTextNode('• ' + labelText + ': ');
+                        var strong = document.createElement('strong');
+                        strong.textContent = valueText;
+                        li.appendChild(dot);
+                        li.appendChild(strong);
+                        return li;
+                    }
+                    if (lt.commercial !== undefined) bullets.appendChild(makeLicBullet('Commercial use', lt.commercial ? 'allowed' : 'not allowed'));
+                    if (lt.modify_redistribute !== undefined) bullets.appendChild(makeLicBullet('Modify/redistribute', lt.modify_redistribute ? 'allowed' : 'restricted'));
+                    if (lt.attribution_required !== undefined) bullets.appendChild(makeLicBullet('Attribution required', lt.attribution_required ? 'yes' : 'no'));
+                    if (lt.revenue_threshold) bullets.appendChild(makeLicBullet('Revenue threshold', '$' + Number(lt.revenue_threshold).toLocaleString() + ' (different terms above)'));
+                    if (bullets.children.length) {
+                        // Add × close button at top of details panel
+                        var closeRow = document.createElement('div');
+                        closeRow.style.cssText = 'display:flex;justify-content:flex-end;margin-bottom:4px';
+                        var closeX = document.createElement('button');
+                        closeX.className = 'text-gray-500 hover:text-gray-200 text-xs';
+                        closeX.textContent = '×';
+                        closeX.title = 'Close';
+                        closeX.addEventListener('click', function() {
+                            detailsDiv.classList.add('hidden');
+                        });
+                        closeRow.appendChild(closeX);
+                        detailsDiv.insertBefore(closeRow, detailsDiv.firstChild);
+
+                        detailsDiv.appendChild(bullets);
+                        expandBtn.addEventListener('click', function() {
+                            detailsDiv.classList.toggle('hidden');
+                        });
+                        licVal.appendChild(expandBtn);
+                        licWrap.appendChild(licVal);
+                        licWrap.appendChild(detailsDiv);
+                        detail.appendChild(licWrap);
+                    }
+                }
+            }
+        } catch (e) { console.warn('[modal] license terms expansion error', e); }
+
+        // Performance & Cost
+        try {
+            var bm = entry.benchmarks_meta || {};
+            var pricingFromEnrich = entry.pricing || {};
+            var aaPricing = (App.data.pricing && App.data.pricing[modelId]) || {};
+            var inputPrice = pricingFromEnrich.input != null ? pricingFromEnrich.input : aaPricing.input;
+            var outputPrice = pricingFromEnrich.output != null ? pricingFromEnrich.output : aaPricing.output;
+            var intelligenceIdx = bm.intelligence_index_override != null ? bm.intelligence_index_override : aaPricing.intelligence_index;
+            var arenaElo = bm.arena_elo;
+            var throughput = aaPricing.tokens_per_second;
+
+            var ageDays = null, ageStr = null;
+            if (model.release_date || model.released_at) {
+                var releaseStr = model.release_date || model.released_at;
+                var rd = new Date(releaseStr);
+                if (!isNaN(rd.getTime())) {
+                    ageDays = Math.floor((Date.now() - rd.getTime()) / 86400000);
+                    if (ageDays < 30) ageStr = ageDays + ' days ago';
+                    else if (ageDays < 365) ageStr = Math.floor(ageDays / 30) + ' months ago';
+                    else ageStr = (ageDays / 365).toFixed(1) + ' years ago';
+                }
+            }
+
+            var cadenceStr = null;
+            try {
+                var sameVendor = (App.data.models || []).filter(function(mm) {
+                    return mm.vendor === model.vendor && (mm.release_date || mm.released_at);
+                }).map(function(mm) { return new Date(mm.release_date || mm.released_at); })
+                  .filter(function(d) { return !isNaN(d.getTime()); })
+                  .sort(function(a, b) { return a - b; });
+                if (sameVendor.length >= 3) {
+                    var gaps = [];
+                    for (var gi = 1; gi < sameVendor.length; gi++) gaps.push((sameVendor[gi] - sameVendor[gi-1]) / 86400000);
+                    var avgGap = gaps.reduce(function(a, b) { return a + b; }, 0) / gaps.length;
+                    if (avgGap > 0) cadenceStr = 'Avg ' + Math.round(avgGap) + ' days between vendor releases';
+                }
+            } catch (e) { /* cadence non-fatal */ }
+
+            var costPerIQ = null;
+            if (intelligenceIdx && intelligenceIdx > 0 && inputPrice != null) {
+                var blendedCost = inputPrice + (outputPrice != null ? outputPrice * 5 : 0);
+                costPerIQ = (blendedCost / intelligenceIdx).toFixed(3);
+            }
+
+            var peerInputMedian = null, peerOutputMedian = null, pricePosition = null;
+            try {
+                var pmap = App.data.pricing || {};
+                var peerInputs = [], peerOutputs = [];
+                Object.keys(pmap).forEach(function(mid) {
+                    if (mid === modelId) return;
+                    var p = pmap[mid];
+                    if (p && typeof p.input === 'number') peerInputs.push(p.input);
+                    if (p && typeof p.output === 'number') peerOutputs.push(p.output);
+                });
+                function median(arr) {
+                    if (!arr.length) return null;
+                    var s = arr.slice().sort(function(a, b) { return a - b; });
+                    var mid = Math.floor(s.length / 2);
+                    return s.length % 2 ? s[mid] : (s[mid-1] + s[mid]) / 2;
+                }
+                peerInputMedian = median(peerInputs);
+                peerOutputMedian = median(peerOutputs);
+                if (inputPrice != null && peerInputMedian != null) {
+                    var ratio = inputPrice / peerInputMedian;
+                    if (ratio < 0.5) pricePosition = 'Significantly cheaper';
+                    else if (ratio < 0.85) pricePosition = 'Below peer median';
+                    else if (ratio < 1.15) pricePosition = 'Near peer median';
+                    else if (ratio < 2.0) pricePosition = 'Above peer median';
+                    else pricePosition = 'Significantly pricier';
+                }
+            } catch (e) { /* peer comp non-fatal */ }
+
+            if (intelligenceIdx != null || arenaElo != null || ageStr || costPerIQ != null || cadenceStr || pricePosition) {
+                var perfBody = Modal._collapsibleSection(enrichSlot, 'Performance & Cost', 'perfcost', false);
+                var perfCard = document.createElement('div');
+                perfCard.className = 'bg-gray-800 rounded-lg p-4';
+
+                function perfRow(label, value, hint) {
+                    if (value == null || value === '') return;
+                    var r = document.createElement('div');
+                    r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                    var l = document.createElement('div'); l.className = 'text-gray-500 col-span-1'; l.textContent = label; r.appendChild(l);
+                    var v = document.createElement('div'); v.className = 'text-gray-200 col-span-2'; v.textContent = String(value);
+                    if (hint) { var hintSpan = document.createElement('span'); hintSpan.className = 'ml-2 text-gray-500'; hintSpan.textContent = '(' + hint + ')'; v.appendChild(hintSpan); }
+                    r.appendChild(v);
+                    perfCard.appendChild(r);
+                }
+
+                if (intelligenceIdx != null) perfRow('Intelligence Index', intelligenceIdx, 'Artificial Analysis');
+                if (arenaElo != null) {
+                    var eloLabel = arenaElo;
+                    if (bm.arena_elo_source) eloLabel = arenaElo + '';
+                    perfRow('LMSys Arena Elo', eloLabel, 'lmarena.ai');
+                }
+                if (throughput != null) perfRow('Throughput', throughput + ' tokens/sec');
+                if (ageStr) perfRow('Released', ageStr, model.release_date);
+                if (cadenceStr) perfRow('Vendor cadence', cadenceStr);
+                if (costPerIQ != null) {
+                    perfRow('Cost / IQ point', '$' + costPerIQ, 'blended input+5×output / Intelligence Index');
+                    try {
+                        var pmap2 = App.data.pricing || {};
+                        var peerCosts = [];
+                        Object.keys(pmap2).forEach(function(mid) {
+                            var p = pmap2[mid];
+                            if (!p || !p.intelligence_index || !p.input) return;
+                            var peerBlended = p.input + (p.output != null ? p.output * 5 : 0);
+                            peerCosts.push(peerBlended / p.intelligence_index);
+                        });
+                        if (peerCosts.length >= 5) {
+                            peerCosts.sort(function(a, b) { return a - b; });
+                            var pmin = peerCosts[0];
+                            var pmax = peerCosts[peerCosts.length - 1];
+                            var thisCost = parseFloat(costPerIQ);
+                            var pos = Math.max(0, Math.min(1, (thisCost - pmin) / (pmax - pmin)));
+                            var barWrap = document.createElement('div');
+                            barWrap.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                            var lblBar = document.createElement('div'); lblBar.className = 'text-gray-500 col-span-1'; lblBar.textContent = 'Cost position'; barWrap.appendChild(lblBar);
+                            var barCell = document.createElement('div'); barCell.className = 'col-span-2';
+                            var barTrack = document.createElement('div');
+                            barTrack.style.cssText = 'position:relative;background:#1f2937;height:8px;border-radius:4px;overflow:hidden';
+                            var barFill = document.createElement('div');
+                            barFill.style.cssText = 'position:absolute;top:0;left:0;height:100%;width:' + (pos * 100).toFixed(1) + '%;background:' + (pos < 0.33 ? '#10b981' : (pos < 0.66 ? '#f59e0b' : '#ef4444'));
+                            barTrack.appendChild(barFill); barCell.appendChild(barTrack);
+                            var captionBar = document.createElement('div');
+                            captionBar.className = 'text-xs text-gray-500 mt-0.5';
+                            captionBar.textContent = 'Cheaper $' + pmin.toFixed(2) + ' ← peer range → $' + pmax.toFixed(2) + ' Pricier';
+                            barCell.appendChild(captionBar); barWrap.appendChild(barCell);
+                            perfCard.appendChild(barWrap);
+                        }
+                    } catch (e) { /* mini bar non-fatal */ }
+                }
+                if (pricePosition && peerInputMedian != null) {
+                    perfRow('Price position', pricePosition, 'peer median input $' + peerInputMedian.toFixed(2) + '/M');
+                }
+
+                try {
+                    var latest = null;
+                    for (var sfi = 0; sfi < App.data.scores.length; sfi++) {
+                        var sf = App.data.scores[sfi];
+                        if (sf.model_id !== modelId) continue;
+                        var d = sf.source && sf.source.date;
+                        if (d && (!latest || d > latest)) latest = d;
+                    }
+                    if (latest) {
+                        var now = new Date();
+                        var dl = new Date(latest);
+                        if (!isNaN(dl.getTime())) {
+                            var dayDiff = Math.floor((now - dl) / 86400000);
+                            var freshLabel;
+                            if (dayDiff < 1) freshLabel = 'today';
+                            else if (dayDiff < 7) freshLabel = dayDiff + ' days ago';
+                            else if (dayDiff < 60) freshLabel = Math.floor(dayDiff / 7) + ' weeks ago';
+                            else freshLabel = Math.floor(dayDiff / 30) + ' months ago';
+                            perfRow('Data freshness', freshLabel, 'most recent score: ' + latest);
+                        }
+                    }
+                } catch (e) { /* freshness non-fatal */ }
+
+                try {
+                    var entryArchForClass = entry.architecture || {};
+                    var pb = entryArchForClass.total_params_b;
+                    if (!pb && model.parameters) {
+                        var pmatch = String(model.parameters).match(/(\d+(?:\.\d+)?)\s*B/i);
+                        if (pmatch) pb = parseFloat(pmatch[1]);
+                    }
+                    if (pb) {
+                        var classMin, classMax, classLabel;
+                        if (pb < 10) { classMin = 0; classMax = 10; classLabel = '<10B'; }
+                        else if (pb < 50) { classMin = 10; classMax = 50; classLabel = '10-50B'; }
+                        else if (pb < 200) { classMin = 50; classMax = 200; classLabel = '50-200B'; }
+                        else if (pb < 700) { classMin = 200; classMax = 700; classLabel = '200-700B'; }
+                        else { classMin = 700; classMax = Infinity; classLabel = '700B+'; }
+                        var classCount = 0;
+                        Object.keys(enrichmentMap).forEach(function(mid) {
+                            var ma = (enrichmentMap[mid].architecture || {}).total_params_b;
+                            if (typeof ma === 'number' && ma >= classMin && ma < classMax) classCount++;
+                        });
+                        if (classCount >= 2) perfRow('Same-class peers', classCount + ' models', classLabel + ' parameter range');
+                    }
+                } catch (e) { /* class peer non-fatal */ }
+
+                try {
+                    var totalBench = (App.data.benchmarks || []).length;
+                    var modelBenchSet = {};
+                    for (var bsi = 0; bsi < App.data.scores.length; bsi++) {
+                        if (App.data.scores[bsi].model_id === modelId) modelBenchSet[App.data.scores[bsi].benchmark_id] = true;
+                    }
+                    var modelBenchCount = Object.keys(modelBenchSet).length;
+                    if (totalBench > 0 && modelBenchCount > 0) {
+                        var pctCov = (modelBenchCount / totalBench * 100).toFixed(1);
+                        perfRow('Benchmark coverage', modelBenchCount + ' / ' + totalBench + ' benchmarks (' + pctCov + '%)');
+                    }
+                } catch (e) { /* coverage non-fatal */ }
+
+                try {
+                    var hf = hfMap[modelId];
+                    if (hf) {
+                        if (hf.downloads_30d != null) perfRow('HF downloads (30d)', hf.downloads_30d.toLocaleString(), 'huggingface.co');
+                        if (hf.likes != null) perfRow('HF likes', hf.likes.toLocaleString());
+                        if (hf.total_size_bytes != null) {
+                            var gb = (hf.total_size_bytes / 1e9).toFixed(1);
+                            perfRow('HF repo size', gb + ' GB', (hf.file_count || '?') + ' files');
+                        }
+                        if (hf.last_modified) perfRow('HF last update', String(hf.last_modified).slice(0, 10));
+                    }
+                } catch (e) { /* hf metadata non-fatal */ }
+
+                // Training compute + carbon estimate
+                try {
+                    var train = entry.training || {};
+                    var flops = train.compute_flops;
+                    if (flops) {
+                        var flopsNum = typeof flops === 'string' ? parseFloat(flops) : flops;
+                        if (flopsNum && flopsNum > 0) {
+                            var exp = Math.log10(flopsNum);
+                            perfRow('Training compute', flopsNum.toExponential(1) + ' FLOPs', '~10^' + Math.round(exp) + ' compute');
+                            // Rough carbon estimate: 1 kWh ≈ 1e16 FLOPs (H100 BF16 ~700 TFLOPs at 700W)
+                            // → flops / 1e16 ≈ kWh; × 0.4 kg CO2/kWh
+                            var kwh = flopsNum / 1e16;
+                            var kgCO2 = kwh * 0.4;
+                            var tons = kgCO2 / 1000;
+                            var carbonStr;
+                            if (tons > 1000) carbonStr = (tons / 1000).toFixed(1) + 'kt CO2';
+                            else if (tons > 1) carbonStr = tons.toFixed(0) + 't CO2';
+                            else carbonStr = kgCO2.toFixed(0) + ' kg CO2';
+                            perfRow('Carbon estimate', carbonStr, 'rough: 1 kWh ≈ 10^16 FLOPs, US grid 0.4 kg CO2/kWh');
+                        }
+                    }
+                } catch (e) { /* carbon non-fatal */ }
+
+                perfBody.appendChild(perfCard);
+            }
+        } catch (e) {
+            console.warn('[modal] performance & cost section error', e);
+        }
+
+        // Architecture / Training / Safety
+        var arch = entry.architecture || {};
+        var train = entry.training || {};
+        var safety = entry.safety || {};
+        var quants = entry.quantizations || [];
+        var providers = entry.api_providers || [];
+        var anyArch = arch.type || arch.total_params_b || arch.attention || arch.attention_pattern || arch.experts_total;
+        var anyTrain = train.pretrain_tokens || train.compute_flops || (train.phases && train.phases.length);
+        var anySafety = safety.aisi_cyber_tier || safety.cbrn_risk || safety.self_reported_safety_card;
+        var anyQuant = quants.length > 0;
+        var anyProv = providers.length > 0;
+        // Lineage + cost render independently of architecture data — a model may have
+        // a lineage/pricing entry but no architecture block (e.g. cyber fine-tunes).
+        // Render them BEFORE the architecture early-return so they are never skipped.
+        Modal._renderLineage(enrichSlot, modelId, entry);
+        Modal._renderCostCalculator(enrichSlot, modelId, entry);
+        if (!(anyArch || anyTrain || anySafety || anyQuant || anyProv)) return;
+
+        var archBody = Modal._collapsibleSection(enrichSlot, 'Architecture / Training / Safety', 'architecture', false);
+        var card = document.createElement('div');
+        card.className = 'bg-gray-800 rounded-lg p-4';
+
+        function row(label, value) {
+            if (value == null || value === '' || (Array.isArray(value) && value.length === 0)) return;
+            var r = document.createElement('div');
+            r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+            var l = document.createElement('div'); l.className = 'text-gray-500 col-span-1'; l.textContent = label; r.appendChild(l);
+            var v = document.createElement('div'); v.className = 'text-gray-200 col-span-2';
+            v.textContent = Array.isArray(value) ? value.join(', ') : String(value);
+            r.appendChild(v);
+            card.appendChild(r);
+        }
+
+        if (anyArch) {
+            row('Architecture', arch.type ? arch.type.toUpperCase() : null);
+            if (arch.total_params_b != null) {
+                var paramsLabel = arch.total_params_b + 'B';
+                if (arch.active_params_b != null) paramsLabel += ' total / ' + arch.active_params_b + 'B active';
+                if (arch.vision_encoder_b != null) paramsLabel += ' (+' + arch.vision_encoder_b + 'B vision)';
+                row('Parameters', paramsLabel);
+            }
+            if (arch.layers != null) row('Layers', arch.layers);
+            if (arch.attention != null) row('Attention', arch.attention.toUpperCase().replace(/_/g, ' '));
+            if (arch.attention_pattern != null) row('Pattern', arch.attention_pattern);
+            if (arch.experts_total != null) {
+                var expLabel = arch.experts_total + ' experts';
+                if (arch.experts_active != null) expLabel += ', ' + arch.experts_active + ' active';
+                row('Experts', expLabel);
+            }
+        }
+        if (anyTrain) {
+            row('Pretrain tokens', train.pretrain_tokens);
+            row('Compute (FLOPs)', train.compute_flops);
+            if (train.phases && train.phases.length) row('Phases', train.phases);
+        }
+        if (anySafety) {
+            row('AISI cyber tier', safety.aisi_cyber_tier);
+            row('CBRN risk', safety.cbrn_risk);
+            if (safety.self_reported_safety_card) {
+                var sr = document.createElement('div'); sr.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                var sl = document.createElement('div'); sl.className = 'text-gray-500 col-span-1'; sl.textContent = 'Safety card'; sr.appendChild(sl);
+                var sv = document.createElement('div'); sv.className = 'col-span-2';
+                var sa = document.createElement('a'); sa.href = safety.self_reported_safety_card; sa.target = '_blank'; sa.rel = 'noopener';
+                sa.className = 'text-blue-400 hover:underline';
+                sa.textContent = safety.self_reported_safety_card.replace(/^https?:\/\//, '').slice(0, 60);
+                sv.appendChild(sa); sr.appendChild(sv); card.appendChild(sr);
+            }
+        }
+        if (anyQuant) {
+            var paramsBNum = arch.total_params_b || arch.active_params_b;
+            var hfBaseUrl = (entry.links && entry.links.huggingface) || null;
+            // Custom row for quantizations with clickable badges if HF base URL known
+            var quantRow = document.createElement('div');
+            quantRow.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+            var quantLbl = document.createElement('div');
+            quantLbl.className = 'text-gray-500 col-span-1';
+            quantLbl.textContent = 'Quantizations';
+            quantRow.appendChild(quantLbl);
+            var quantVal = document.createElement('div');
+            quantVal.className = 'text-gray-200 col-span-2 flex flex-wrap gap-1';
+            quants.forEach(function(q) {
+                var qup = q.toUpperCase();
+                var sizeStr = '';
+                if (paramsBNum) {
+                    var bytesPerParam = { fp16: 2, bf16: 2, fp8: 1, awq: 0.5, gguf: 0.6, int8: 1, int4: 0.5 }[q.toLowerCase()];
+                    if (bytesPerParam) sizeStr = ' (~' + (paramsBNum * bytesPerParam).toFixed(1) + 'GB)';
+                }
+                if (hfBaseUrl) {
+                    var quantUrl = hfBaseUrl + '-' + qup;
+                    var qa = document.createElement('a');
+                    qa.href = quantUrl;
+                    qa.target = '_blank';
+                    qa.rel = 'noopener noreferrer';
+                    qa.className = 'inline-block px-2 py-0.5 rounded text-xs bg-gray-700 hover:bg-gray-600 transition';
+                    qa.title = quantUrl + ' (may not exist)';
+                    qa.textContent = qup + sizeStr;
+                    quantVal.appendChild(qa);
+                } else {
+                    var qspan = document.createElement('span');
+                    qspan.className = 'inline-block px-2 py-0.5 rounded text-xs bg-gray-700';
+                    qspan.textContent = qup + sizeStr;
+                    quantVal.appendChild(qspan);
+                }
+            });
+            quantRow.appendChild(quantVal);
+            card.appendChild(quantRow);
+        }
+        if (anyProv) row('API providers', providers);
+        archBody.appendChild(card);
+    },
+
+    _renderCostCalculator: function(enrichSlot, modelId, entry) {
+        try {
+            var pricing = entry && entry.pricing;
+            var aaPricing = (App.data.pricing && App.data.pricing[modelId]) || {};
+            var input = (pricing && pricing.input != null) ? pricing.input : aaPricing.input;
+            var output = (pricing && pricing.output != null) ? pricing.output : aaPricing.output;
+            if (input == null || output == null) return; // no pricing — skip
+
+            var body = Modal._collapsibleSection(enrichSlot, 'Cost Calculator', 'cost-calc', false);
+
+            var desc = document.createElement('p');
+            desc.className = 'text-xs text-gray-500 mb-2';
+            desc.textContent = 'Estimate monthly cost. Default ratio: 1 input token = 5 output tokens (typical chat).';
+            body.appendChild(desc);
+
+            // Preset buttons — must be defined before recompute so they can call it
+            var form = document.createElement('div');
+            form.className = 'grid grid-cols-3 gap-2 text-xs items-end mb-2';
+
+            function field(labelText, defaultValue, suffix) {
+                var wrap = document.createElement('div');
+                var lbl = document.createElement('label');
+                lbl.className = 'text-gray-500 block mb-1';
+                lbl.textContent = labelText;
+                wrap.appendChild(lbl);
+                var inputEl = document.createElement('input');
+                inputEl.type = 'number';
+                inputEl.value = defaultValue;
+                inputEl.min = '0';
+                inputEl.className = 'bg-gray-700 border border-gray-600 rounded px-2 py-1 w-full text-gray-100';
+                wrap.appendChild(inputEl);
+                if (suffix) {
+                    var sfx = document.createElement('span');
+                    sfx.className = 'text-gray-500 text-[10px]';
+                    sfx.textContent = suffix;
+                    wrap.appendChild(sfx);
+                }
+                return { wrap: wrap, input: inputEl };
+            }
+
+            var inputTokens = field('Input tokens / month (millions)', '10', '');
+            var outputTokens = field('Output tokens / month (millions)', '50', '');
+            var requestsCount = field('Requests / month', '100000', '');
+
+            form.appendChild(inputTokens.wrap);
+            form.appendChild(outputTokens.wrap);
+            form.appendChild(requestsCount.wrap);
+            body.appendChild(form);
+
+            // Preset workload buttons
+            var presetRow = document.createElement('div');
+            presetRow.className = 'flex flex-wrap gap-2 mb-3 text-xs items-center';
+            var presetLabel = document.createElement('span');
+            presetLabel.className = 'text-gray-500';
+            presetLabel.textContent = 'Presets:';
+            presetRow.appendChild(presetLabel);
+            var presets = [
+                { label: '💬 Chat', input: 5, output: 25, requests: 50000 },
+                { label: '🤖 Agent', input: 50, output: 100, requests: 10000 },
+                { label: '💻 Coding', input: 30, output: 150, requests: 30000 },
+                { label: '🎧 Support', input: 20, output: 60, requests: 100000 },
+                { label: '📊 Analytics', input: 100, output: 200, requests: 5000 },
+            ];
+            presets.forEach(function(p) {
+                var btn = document.createElement('button');
+                btn.className = 'bg-gray-700 hover:bg-gray-600 px-2 py-0.5 rounded text-xs';
+                btn.textContent = p.label;
+                btn.title = p.input + 'M input / ' + p.output + 'M output / ' + p.requests + ' requests';
+                btn.addEventListener('click', function() {
+                    inputTokens.input.value = p.input;
+                    outputTokens.input.value = p.output;
+                    requestsCount.input.value = p.requests;
+                    recompute();
+                });
+                presetRow.appendChild(btn);
+            });
+            body.appendChild(presetRow);
+
+            var resultDiv = document.createElement('div');
+            resultDiv.className = 'mt-3 p-3 bg-gray-900 rounded border border-gray-700';
+            body.appendChild(resultDiv);
+
+            function recompute() {
+                var inM = parseFloat(inputTokens.input.value) || 0;
+                var outM = parseFloat(outputTokens.input.value) || 0;
+                var reqs = parseFloat(requestsCount.input.value) || 0;
+                var thisCost = inM * input + outM * output;
+
+                resultDiv.textContent = '';
+
+                var thisRow = document.createElement('div');
+                thisRow.className = 'flex justify-between text-sm py-1';
+                var thisName = document.createElement('span');
+                thisName.className = 'text-blue-400 font-semibold';
+                thisName.textContent = '★ This model';
+                thisRow.appendChild(thisName);
+                var thisCostSpan = document.createElement('span');
+                thisCostSpan.className = 'text-gray-100 font-mono';
+                thisCostSpan.textContent = '$' + thisCost.toFixed(2) + ' / month';
+                thisRow.appendChild(thisCostSpan);
+                resultDiv.appendChild(thisRow);
+
+                // Compare against 3 cheaper + 3 pricier peers with pricing
+                var pricingMap = App.data.pricing || {};
+                var peers = [];
+                Object.keys(pricingMap).forEach(function(mid) {
+                    if (mid === modelId) return;
+                    var p = pricingMap[mid];
+                    if (p.input == null || p.output == null) return;
+                    var cost = inM * p.input + outM * p.output;
+                    peers.push({ id: mid, cost: cost, p: p });
+                });
+                peers.sort(function(a, b) { return a.cost - b.cost; });
+                var cheapestThree = peers.filter(function(x) { return x.cost < thisCost; }).slice(-3).reverse();
+                var pricierThree = peers.filter(function(x) { return x.cost > thisCost; }).slice(0, 3);
+
+                var compareCount = 0;
+                cheapestThree.concat(pricierThree).forEach(function(peer) {
+                    var m = (App.data.models || []).find(function(mm) { return mm.id === peer.id; });
+                    var nm = m ? m.name : peer.id;
+                    var row = document.createElement('div');
+                    row.className = 'flex justify-between text-xs py-0.5 cursor-pointer hover:bg-gray-800 px-1 -mx-1 rounded';
+                    row.addEventListener('click', (function(mid) {
+                        return function() { Modal.showModel(mid); };
+                    })(peer.id));
+                    var name = document.createElement('span');
+                    name.className = 'text-gray-300';
+                    name.textContent = nm;
+                    row.appendChild(name);
+                    var cost = document.createElement('span');
+                    cost.className = peer.cost < thisCost ? 'text-green-400 font-mono text-xs' : 'text-amber-400 font-mono text-xs';
+                    cost.textContent = '$' + peer.cost.toFixed(2);
+                    row.appendChild(cost);
+                    resultDiv.appendChild(row);
+                    compareCount++;
+                });
+                if (compareCount === 0) {
+                    var none = document.createElement('div');
+                    none.className = 'text-gray-500 text-xs mt-1';
+                    none.textContent = 'No peer pricing data for comparison.';
+                    resultDiv.appendChild(none);
+                }
+            }
+
+            inputTokens.input.addEventListener('input', recompute);
+            outputTokens.input.addEventListener('input', recompute);
+            requestsCount.input.addEventListener('input', recompute);
+            recompute();
+        } catch (e) {
+            console.warn('[modal] cost calculator error', e);
+        }
+    },
+
+    // ---- Helper: Strengths Radar ECharts ----
+    _renderStrengthsRadar: function(container, model, modelId) {
+        try {
+            var radarCats = [
+                { key: 'reasoning', label: 'Reasoning' },
+                { key: 'coding', label: 'Coding' },
+                { key: 'math', label: 'Math' },
+                { key: 'agent', label: 'Agent' },
+                { key: 'multimodal', label: 'Multimodal' }
+            ];
+            var catScoresByModel = {};
+            for (var si = 0; si < App.data.scores.length; si++) {
+                var sc = App.data.scores[si];
+                var bench = App.getBenchmarkMap()[sc.benchmark_id];
+                if (!bench) continue;
+                var cat = bench.category;
+                if (!catScoresByModel[sc.model_id]) catScoresByModel[sc.model_id] = {};
+                if (!catScoresByModel[sc.model_id][cat]) catScoresByModel[sc.model_id][cat] = [];
+                catScoresByModel[sc.model_id][cat].push(sc.value);
+            }
+            function avg(arr) {
+                if (!arr || !arr.length) return null;
+                var s = 0; for (var i = 0; i < arr.length; i++) s += arr[i]; return s / arr.length;
+            }
+            var distByCat = {};
+            radarCats.forEach(function(rc) {
+                var values = [];
+                Object.keys(catScoresByModel).forEach(function(mid) {
+                    var a = avg(catScoresByModel[mid][rc.key]);
+                    if (a != null) values.push(a);
+                });
+                values.sort(function(a, b) { return a - b; });
+                distByCat[rc.key] = values;
+            });
+            var radarData = [], radarIndicators = [];
+            radarCats.forEach(function(rc) {
+                var targetAvg = avg((catScoresByModel[modelId] || {})[rc.key]);
+                if (targetAvg == null) return;
+                var dist = distByCat[rc.key];
+                if (dist.length < 3) return;
+                var below = 0;
+                for (var di = 0; di < dist.length; di++) { if (dist[di] < targetAvg) below++; }
+                radarIndicators.push({ name: rc.label + ' (' + targetAvg.toFixed(0) + ')', max: 100 });
+                radarData.push((below / dist.length) * 100);
+            });
+            if (radarIndicators.length < 3) return;
+
+            var radarBody = Modal._collapsibleSection(container, 'Strengths Radar (percentile vs all models)', 'radar', false);
+            var radarCard = document.createElement('div');
+            radarCard.className = 'bg-gray-800 rounded-lg p-4';
+            var radarHost = document.createElement('div');
+            var isMobileRadar = window.innerWidth < 640;
+            radarHost.style.height = isMobileRadar ? '220px' : '280px'; radarHost.style.width = '100%';
+            radarCard.appendChild(radarHost);
+            radarBody.appendChild(radarCard);
+            setTimeout(function() {
+                if (typeof echarts === 'undefined') return;
+                var chart = echarts.init(radarHost, Modal._currentThemeName ? Modal._currentThemeName() : 'dark');
+                chart.setOption({
+                    backgroundColor: 'transparent',
+                    tooltip: { trigger: 'item' },
+                    radar: {
+                        indicator: radarIndicators, shape: 'polygon', splitNumber: 4,
+                        axisName: { color: '#d1d5db', fontSize: 11 },
+                        splitLine: { lineStyle: { color: 'rgba(160,160,160,0.25)' } },
+                        splitArea: { show: false },
+                        axisLine: { lineStyle: { color: 'rgba(160,160,160,0.4)' } }
+                    },
+                    series: [{ type: 'radar', data: [{ value: radarData, name: model.name, lineStyle: { width: 2 }, areaStyle: { opacity: 0.25 }, itemStyle: { color: '#60a5fa' } }] }]
+                });
+                window.addEventListener('resize', function() { chart.resize(); });
+            }, 0);
+        } catch (e) {
+            console.warn('[modal] strengths radar error', e);
+        }
+    },
+
+    // ---- Helper: Score History line chart ----
+    _renderScoreHistory: function(container, model, modelId) {
+        try {
+            var historyDates = App.histDates ? App.histDates() : [];
+            var snapCount = historyDates.length;
+
+            if (snapCount < 2) {
+                var emptyBody = Modal._collapsibleSection(container, 'Score History', 'history', false);
+                var emptyMsg = document.createElement('div');
+                emptyMsg.className = 'text-xs text-gray-500 italic p-2';
+                if (snapCount === 0) {
+                    emptyMsg.textContent = 'No history snapshots yet. Daily snapshots accumulate via the daily benchmark workflow.';
+                } else {
+                    emptyMsg.textContent = 'Only ' + snapCount + ' snapshot accumulated so far. Need 2+ for trend chart. Snapshots refresh daily at 06:00 UTC.';
+                }
+                emptyBody.appendChild(emptyMsg);
+                return;
+            }
+
+            var modelScoresMap = {};
+            for (var hsi = 0; hsi < App.data.scores.length; hsi++) {
+                var hs = App.data.scores[hsi];
+                if (hs.model_id === modelId) modelScoresMap[hs.benchmark_id] = hs.value;
+            }
+            var topBenches = Object.keys(modelScoresMap)
+                .sort(function(a, b) { return modelScoresMap[b] - modelScoresMap[a]; })
+                .slice(0, 4);
+            if (topBenches.length < 1) return;
+            var seriesData = topBenches.map(function(bid) {
+                var bench = App.getBenchmarkMap()[bid];
+                var name = bench ? bench.name : bid;
+                var pts = App.histPairSeries(modelId, bid);
+                return { name: name, type: 'line', data: pts, connectNulls: true, smooth: true };
+            });
+            var hasData = seriesData.some(function(s) { return s.data.filter(function(v) { return v != null; }).length >= 2; });
+            if (!hasData) return;
+
+            var historyBody = Modal._collapsibleSection(container, 'Score History (top ' + topBenches.length + ' benchmarks)', 'history', false);
+            var historyCard = document.createElement('div');
+            historyCard.className = 'bg-gray-800 rounded-lg p-4';
+            var historyHost = document.createElement('div');
+            var isMobileHistory = window.innerWidth < 640;
+            historyHost.style.height = isMobileHistory ? '180px' : '240px'; historyHost.style.width = '100%';
+            historyCard.appendChild(historyHost);
+            historyBody.appendChild(historyCard);
+            setTimeout(function() {
+                if (typeof echarts === 'undefined') return;
+                var chart = echarts.init(historyHost, Modal._currentThemeName ? Modal._currentThemeName() : 'dark');
+                chart.setOption({
+                    backgroundColor: 'transparent',
+                    tooltip: { trigger: 'axis' },
+                    legend: { textStyle: { color: '#d1d5db', fontSize: 10 }, top: 0 },
+                    grid: { left: 40, right: 20, top: 30, bottom: 30 },
+                    xAxis: { type: 'category', data: historyDates, axisLabel: { color: '#9ca3af', fontSize: 10 } },
+                    yAxis: { type: 'value', axisLabel: { color: '#9ca3af', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(160,160,160,0.15)' } } },
+                    series: seriesData
+                });
+                window.addEventListener('resize', function() { chart.resize(); });
+            }, 0);
+        } catch (e) {
+            console.warn('[modal] score history error', e);
+        }
+    },
+
+    // ---- Helper: Score Breakdown by category ----
+    _renderScoreBreakdown: function(container, modelId, scores) {
+        var byCategory = {};
+        scores.forEach(function(s) {
+            var bench = App.getBenchmarkMap()[s.benchmark_id];
+            var cat = bench ? bench.category : 'other';
+            if (!byCategory[cat]) byCategory[cat] = [];
+            byCategory[cat].push({ bench: bench, score: s });
+        });
+
+        var catOrder = ['reasoning', 'coding', 'math', 'cybersecurity', 'cyber_defense', 'agent', 'multimodal', 'multilingual', 'other'];
+        var catNames = {
+            reasoning: 'Reasoning', coding: 'Coding', math: 'Math',
+            cybersecurity: 'Cybersecurity (Attack)', cyber_defense: 'Cyber Defense',
+            agent: 'Agent', multimodal: 'Multimodal', multilingual: 'Multilingual', other: 'Other'
+        };
+        var scoresBody = Modal._collapsibleSection(container, 'Score Breakdown (' + scores.length + ' benchmarks)', 'scores', false);
+
+        // Search/filter input
+        var filterRow = document.createElement('div');
+        filterRow.className = 'mb-3';
+        var filterInput = document.createElement('input');
+        filterInput.type = 'text';
+        filterInput.placeholder = 'Filter benchmarks (e.g., math, korean)...';
+        filterInput.className = 'bg-gray-800 border border-gray-700 rounded px-3 py-1 w-full text-xs text-gray-100';
+        filterRow.appendChild(filterInput);
+        scoresBody.appendChild(filterRow);
+
+        // Load watchlist snapshot for diff highlighting
+        var snap = null;
+        try {
+            var snapStr = localStorage.getItem('watchlist-snap:' + modelId);
+            if (snapStr) snap = JSON.parse(snapStr);
+        } catch (e) {}
+
+        var allRows = []; // collect row elements for filtering
+
+        catOrder.forEach(function(cat) {
+            var items = byCategory[cat];
+            if (!items || items.length === 0) return;
+            items.sort(function(a, b) { return b.score.value - a.score.value; });
+
+            var section = document.createElement('div');
+            section.className = 'mb-4';
+            var h3 = document.createElement('h3');
+            h3.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2';
+            h3.textContent = catNames[cat] || cat;
+            section.appendChild(h3);
+
+            items.forEach(function(item) {
+                var row = document.createElement('div');
+                row.className = 'flex items-center justify-between py-1.5 border-t border-gray-800 hover:bg-gray-800 rounded px-2 -mx-2 cursor-pointer transition';
+                row.onclick = (function(bid) { return function() { Modal.showBenchmark(bid); }; })(item.bench ? item.bench.id : item.score.benchmark_id);
+                // Attach metadata for filtering
+                row._benchName = item.bench ? item.bench.name : item.score.benchmark_id;
+                row._category = catNames[cat] || cat;
+                allRows.push(row);
+
+                var left = document.createElement('span');
+                left.className = 'text-sm text-gray-300';
+                left.textContent = item.bench ? item.bench.name : item.score.benchmark_id;
+                row.appendChild(left);
+
+                var right = document.createElement('div');
+                right.className = 'flex items-center gap-2';
+
+                var val = document.createElement('span');
+                val.className = 'text-sm font-mono' + (item.score.is_sota ? ' text-green-400 font-bold' : ' text-gray-200');
+                val.textContent = item.score.value > 500 ? Math.round(item.score.value) : item.score.value;
+                right.appendChild(val);
+
+                var tier = (window.PeerMatcher && PeerMatcher.sotaTier)
+                    ? PeerMatcher.sotaTier(item.score.value, modelId, item.score.benchmark_id, App.data.models, App.data.scores)
+                    : null;
+                if (tier) {
+                    var tierBadge = document.createElement('span');
+                    tierBadge.className = 'px-1.5 py-0.5 text-xs rounded';
+                    if (tier.tier === 'sota') tierBadge.className += ' bg-yellow-900 text-yellow-300';
+                    else if (tier.tier === 'top3') tierBadge.className += ' bg-gray-600 text-gray-100';
+                    else if (tier.tier === 'top10') tierBadge.className += ' bg-gray-700 text-gray-200';
+                    else tierBadge.className += ' bg-gray-800 text-gray-400';
+                    tierBadge.textContent = tier.label;
+                    tierBadge.title = tier.label + ' (' + tier.rank + '/' + tier.total + ')';
+                    right.appendChild(tierBadge);
+                }
+                if (item.score.is_sota) {
+                    var sotaBadge = document.createElement('span');
+                    sotaBadge.className = 'px-1.5 py-0.5 bg-green-900 text-green-300 text-xs rounded';
+                    sotaBadge.textContent = 'SOTA';
+                    right.appendChild(sotaBadge);
+                }
+
+                var rowStale = Modal._makeStaleBadge(item.score);
+                if (rowStale) right.appendChild(rowStale);
+
+                // Watchlist diff badge — highlight score changes since snapshot
+                if (snap && snap.scores && snap.scores[item.score.benchmark_id] != null) {
+                    var oldVal = snap.scores[item.score.benchmark_id];
+                    var newVal = item.score.value;
+                    if (Math.abs(newVal - oldVal) > 0.05) {
+                        var diffBadge = document.createElement('span');
+                        diffBadge.className = 'ml-1 inline-block px-1 rounded text-xs';
+                        var delta = newVal - oldVal;
+                        if (delta > 0) {
+                            diffBadge.className += ' bg-green-900 text-green-300';
+                            diffBadge.textContent = '↑+' + delta.toFixed(1);
+                        } else {
+                            diffBadge.className += ' bg-red-900 text-red-300';
+                            diffBadge.textContent = '↓' + delta.toFixed(1);
+                        }
+                        diffBadge.title = 'Changed since last visit (was ' + oldVal.toFixed(1) + ')';
+                        right.appendChild(diffBadge);
+                    }
+                }
+
+                var st = (item.score.source && item.score.source.type) || 'web';
+                var publicUrl = Modal._sourceLink(item.score.source);
+                var srcNode;
+                if (publicUrl) {
+                    srcNode = document.createElement('a');
+                    srcNode.href = publicUrl; srcNode.target = '_blank'; srcNode.rel = 'noopener noreferrer';
+                    srcNode.className = 'text-xs ' + (st === 'pdf' ? 'text-purple-400' : 'text-blue-400') + ' hover:underline';
+                    srcNode.textContent = st + ' ↗';
+                    srcNode.title = publicUrl;
+                } else {
+                    srcNode = document.createElement('span');
+                    srcNode.className = 'text-xs ' + (st === 'pdf' ? 'text-purple-400' : 'text-gray-600');
+                    srcNode.textContent = st;
+                }
+                right.appendChild(srcNode);
+                row.appendChild(right);
+                section.appendChild(row);
+            });
+            scoresBody.appendChild(section);
+        });
+
+        // Wire up filter input to hide/show rows
+        filterInput.addEventListener('input', function() {
+            var q = filterInput.value.toLowerCase().trim();
+            allRows.forEach(function(r) {
+                var benchName = (r._benchName || '').toLowerCase();
+                var category = (r._category || '').toLowerCase();
+                if (!q || benchName.indexOf(q) !== -1 || category.indexOf(q) !== -1) {
+                    r.style.display = '';
+                } else {
+                    r.style.display = 'none';
+                }
+            });
+        });
+    }
+};
