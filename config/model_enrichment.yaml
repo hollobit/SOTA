@@ -226,6 +226,24 @@ models:
       commercial: false
     cutoffs:
       knowledge_cutoff: 2026-01
+  alibaba/qwen4-max:
+    architecture:
+      type: moe
+      total_params: 2.4T backbone + 328B N-gram Embedding
+      active_params: 71B
+      attention: Gated DeltaNet (3 per QSA layer) + Qwen Sparse Attention; Gated Residual (4 branches); N-gram Embedding at layer 2
+    api_providers:
+    - alibaba_cloud
+    - openrouter
+    _sources:
+    - https://qwen.ai/blog?id=qwen4-max
+    - https://openrouter.ai/qwen/qwen4-max
+    lineage:
+      training_method: first model on the new Qwen4 architecture; successor to Qwen3.8-Max (25% fewer active parameters, 5-13% lower BPB); reasoning efforts low/high/xhigh
+    links:
+      homepage: https://qwen.ai
+      blog: https://qwen.ai/blog?id=qwen4-max
+    description: Released 2026-11-16. Alibaba's Qwen4 flagship 'AI teammate' for professional and long-horizon work; native vision, 1M context, up to 393K output on OpenRouter; $1.50/$4.50 per M tokens (cache read $0.075).
   google/gemini-4-hydrogen:
     api_providers:
     - google_ai_studio

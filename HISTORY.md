@@ -1,5 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-11-16 (Session 321b): Qwen4-Max gap pass
+
+Read what S321 skipped: Mercor APEX-Agents per-job boards, ALE Linux/Windows splits, Vals Index sector scores, the remaining AA object fields and AI IQ domain IQs. 26 benchmarks, 1,215 scores. Details are in Plans.md.
+
+## 2026-11-16 (Session 321): Qwen4-Max, ALE / Vals Index / APEX / AA / AI IQ boards
+
+Added Qwen4-Max from its launch blog, OpenRouter and Vals, and read the boards the blog cites: Agents' Last Exam v1.1, the Vals Index heatmap, Mercor APEX-Agents, AA Briefcase/AutomationBench objects and the AI IQ API (new Composite IQ and dimension ids). 3 models, 30 benchmarks, 2,070 scores. Details are in Plans.md.
+
 ## 2026-11-13 (Session 320b): Gemini 4 Hydrogen gap pass
 
 Read the AA fields the first pass missed (speed, briefcase, cost to run the index), two blog safety numbers and OpenRouter's arena fidelity scores. 5 benchmarks, 59 scores. Details are in Plans.md.

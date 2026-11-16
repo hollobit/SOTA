@@ -119,6 +119,7 @@ var Sovereign = {
             note: '중국 frontier 전체 — Qwen 풀+specialists (incl. Qwen3-VL-235B/Wan-2.2-I2V) · DeepSeek (V3-V4/R1/Coder/Math/VL) · Kimi · GLM · Hunyuan · ERNIE · Doubao · iFlytek Spark · Yi · Baichuan · InternLM/InternVL3 · SenseNova-V6.5-Pro · Skywork · MiniCPM-o · Ovis2.5 (AIDC-AI) · Step-1o (StepFun) · JT3.5 (China Mobile) · TeleMM-2.0 (China Telecom) · PanGu · Aquila · MOSS · Yuan',
             models: [
                 // Alibaba Qwen — full param lineup
+                'alibaba/qwen4-max',  // 2026-11-16 S321 — Qwen4-Max (Vals Index 63.20, top Chinese model; ALE v1.1 46.7 #1)
                 'alibaba/qwen3.8-max-preview', 'alibaba/qwen3.7-max', 'alibaba/qwen3.7-max-20260517', 'alibaba/qwen3.7-max-preview', 'alibaba/qwen3.7-plus-preview',
                 'inclusionai/ling-3.0-flash',
                 'inclusionai/ling-3.0-flash-sante',  // 2026-09-09 S276 — health/medicine MoE on Ling-3.0-flash (MedXpertQA-Text 53.9, DiagnosisArena 83.8)

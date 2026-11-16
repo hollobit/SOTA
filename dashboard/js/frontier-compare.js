@@ -246,6 +246,10 @@ var FrontierCompare = {
             'chartography_surge_no_tools',
             // 2026-11-12 S320 — Gemini 4 Hydrogen card: MKA (AA mkaClimbWsr), Terminal-Bench 4.1 cheating-adjusted
             'mka_climb_wsr', 'terminal_bench_4_1_cheating_adjusted',
+            // 2026-11-16 S321 — AI IQ composite (aiiq.org) + Qwen4-Max blog (Work360, Video-Index) + AutomationBench-AA breakdown
+            'aiiq_composite_iq', 'aiiq_programmatic_reasoning_iq', 'aiiq_computer_use_iq', 'aiiq_knowledge_work_iq', 'work360', 'qwen_video_index', 'automationbench_aa_completion',
+            // 2026-11-16 S321b — AI IQ applied-domain IQs, APEX-Agents per-job, Vals Index sectors
+            'aiiq_domain_software_engineering_iq', 'aiiq_domain_finance_iq', 'aiiq_domain_legal_iq', 'aiiq_domain_healthcare_iq', 'aiiq_domain_bio_iq', 'aiiq_domain_cybersecurity_iq', 'apex_agents_v1_1_investment_banking_analyst_pass1', 'vals_index_v2_2_finance_sector', 'vals_index_v2_2_coding_sector',
             // 2026-10-02 S291 — Blueprint-Bench 2 (Andon Labs spatial reasoning: apartment photos → 2D floor plan)
             'blueprint_bench_2',
             // 2026-10-02 S292 — spatial / physics reasoning suites with frontier VLM coverage
@@ -312,6 +316,8 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-11-16 S321
+        'alibaba/qwen4-max',  // 2026-11-16 — first Qwen4 model (2.4T, 71B active, 1M ctx); base = xhigh: Vals Index 63.20 (#11, top Chinese), ALE v1.1 pass 46.7 (#1), AA-Briefcase 1686, AutomationBench-AA 72.6, AAII v5 42.9, AI IQ n/a yet; $1.50/$4.50
         // 2026-11-12 S320
         'google/gemini-4-hydrogen',  // 2026-11-12 — efficient Gemini 4 (adapted from Carbon); base = xhigh: AAII v5 53.9 (high 50.8), HLE-Diamond 58.8, ALE v1.1 71.6, SWE-sweep 13.5, MKA 53.4, Vals Index 68.49, Tax Agent 52.3 (#1); $1.50/$7.50
         // 2026-11-09 S317

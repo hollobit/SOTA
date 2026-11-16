@@ -353,6 +353,10 @@ var Agent = (function() {
             benchmarks: [
                 // 2026-10-12 S303 — Meta Muse Wonder scorecard: Personal Superintelligence Index (7-eval composite) + FocusBench (Meta-run)
                 'meta_personal_superintelligence_index', 'meta_focusbench', 'automationbench_aa_strict_pass1',
+                // 2026-11-16 S321 — Qwen4-Max blog (Work360) + AutomationBench-AA breakdown (AA object automationBenchBreakdown)
+                'work360', 'work360_cost_per_task_usd_lower_better', 'automationbench_aa_completion', 'automationbench_aa_violations_per_task_lower_better', 'automationbench_aa_completion_finance', 'automationbench_aa_completion_hr', 'automationbench_aa_completion_marketing', 'automationbench_aa_completion_operations', 'automationbench_aa_completion_sales', 'automationbench_aa_completion_support', 'apex_agents_v1_1_pass1_rerun_mercor_board', 'apex_agents_v1_1_mean_score_rerun_mercor_board', 'arena_agent_net_improvement_rerun_qwen4max',
+                // 2026-11-16 S321b — Mercor APEX-Agents per-job boards, ALE v1.1 Linux/Windows splits + run stats, Vals Index sector scores
+                'apex_agents_v1_1_corporate_lawyer_pass1', 'apex_agents_v1_1_corporate_lawyer_mean_score', 'apex_agents_v1_1_management_consultant_pass1', 'apex_agents_v1_1_management_consultant_mean_score', 'apex_agents_v1_1_investment_banking_analyst_pass1', 'apex_agents_v1_1_investment_banking_analyst_mean_score', 'agents_last_exam_v1_1_linux_pass_rate', 'agents_last_exam_v1_1_linux_score', 'agents_last_exam_v1_1_windows_pass_rate', 'agents_last_exam_v1_1_windows_score', 'agents_last_exam_v1_1_output_tokens_m_lower_better', 'agents_last_exam_v1_1_runtime_hours_lower_better', 'vals_index_v2_2_finance_sector', 'vals_index_v2_2_coding_sector', 'vals_index_v2_2_legal_sector', 'vals_index_v2_2_tax_sector',
                 // 2026-10-09 S297 sweep #2 — headline ids of the April–October 2026 arXiv benchmark papers (80)
                 'ai4ai_bench_avg', 'dayjob_healthcare_strict_pass1', 'sqbench_simple_pass1', 'sqbench_weighted_pass1', 'agentideabench_active', 'agentideabench_static',
                 'handbook_md_strict_pass1', 'vloc_bench_file_f1', 'vloc_bench_phase_b_tnr', 'rideway_efficiency_utility_custom14', 'rideway_sr58', 'agenthop_accuracy',
@@ -610,6 +614,8 @@ var Agent = (function() {
         { id: 'deepswe_v1_1_pass_at_1', label: 'DeepSWE 1.1 (official board)' },
         { id: 'livebench_v2_2026_11_06_long_horizon', label: 'LiveBench Long-Horizon (11-06)' },
         { id: 'agents_last_exam_v1_1_pass_rate', label: "Agents' Last Exam v1.1 pass rate" },
+        { id: 'work360',              label: 'Work360 (Qwen)' },
+        { id: 'automationbench_aa_completion', label: 'AutomationBench-AA completion' },
         { id: 'terminal_bench_2',     label: 'Terminal-Bench 2.0' },
         { id: 'osworld_verified',     label: 'OSWorld-Verified' },
         { id: 'gaia',                 label: 'GAIA' },

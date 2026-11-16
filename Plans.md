@@ -3,6 +3,17 @@
 ## Current Status: Session 292b — sweep follow-ups: April–May gap, leftover papers, official boards (2026-10-03)
 **3,677 models · 6,204 benchmarks · 46,885 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-11-16 Session 321b — Qwen4-Max gap pass
+- `resource/zzzzzzzzzzzzzzzzzz_s321b_qwen4_gap_apex_jobs_ale_platforms_aa_aiiq_domains_2026_11_16_scores.json`: 26 benchmarks, 1,215 scores; 0 overwrites; 44 conflicts logged (AA output speed re-measured for 27 models, AA `hle`/LCR/SciCode). DB 4,876 / 14,403 / 116,296.
+- Missed in S321: Mercor per-job pages (`/apex/apex-agents-leaderboard/<job>-agent/`, `__NEXT_DATA__.props.pageProps.leaderboardData`, 72 rows each; the main page shows only the top 3), ALE JSON `platforms.{linux,windows}` and run totals, Vals `ValsIndexSection` sector scores, AA object fields beyond the S320 map (MLCR fields = `*_v2` ids, verified by value ratio), AI IQ `/api/domains/:id` (domain IQ kept only with >= 2 benchmarks covered).
+- Not added: AA sub-breakdowns (gdpPdf/harveyLab/healthbench/personality/MKA), briefcase token/tool-call stats, Qwen case-study iframes (cloud scheduling, ICU) — percentages already in the blog text, no benchmark.
+
+### 2026-11-16 Session 321 — Qwen4-Max + ALE / Vals Index / APEX / AA Briefcase+AutomationBench / AI IQ
+- `resource/zzzzzzzzzzzzzzzzzz_s321_qwen4_max_ale_vals_apex_aa_aiiq_2026_11_16_scores.json`: 3 models (Qwen4-Max, Mercury 3, Gemini 4 Hydrogen medium), 30 benchmarks, 2,070 scores; 0 overwrites; 161 conflicts logged (AA re-measurements of briefcase/GDPval/AAII/CritPt, Vals Index updates, AA prices). DB 4,876 / 14,377 / 115,081.
+- Qwen blog main figure is a PNG (read at full resolution; ALE OpenAI bar identified as GPT-6 Astra by bar colour). Panel → id: TB 4.0 = AA harness (`terminal_bench_4_0_aa`), HealthBench Pro = AA length-adjusted, ALE = pass rate, Chartography comparators = Surge no-tools board (Qwen bars self-run → `chartography`). Comparator conflicts → `*_rerun_qwen4max`. Work360 per-domain scores in the iframe are "plotting-equivalent" and hidden on the page → only the two totals stored. In-house BPB (base checkpoints) and token-efficiency points (unlabelled) skipped.
+- Boards: Vals Index heatmap astro props (38 models × 8 tasks + cost; `qwen3.8-max-internal` = Qwen3.8 Max 0902), ALE `/api/demo/leaderboard/v1.1` JSON, Mercor APEX `globalLeaderboard` (Qwen4-Max not yet listed; conflicts → `*_rerun_mercor_board`), AA RSC objects (new AutomationBench-AA completion/violations/6 domains), AI IQ `/api/models` (Composite + 7 dimensions + EQ; preview-vs-GA guard on name mapping; models released before 2025 excluded).
+- Menus: Timeline/Frontier Compare (Qwen4-Max + AI IQ axes), Cyber-Coding, Sovereign (CN), Agent; Resources (3 entries), seed_sources (+11), model_enrichment (Qwen4-Max); cache tag 20261116a.
+
 ### 2026-11-13 Session 320b — Hydrogen gap pass
 - `resource/zzzzzzzzzzzzzzzzzz_s320b_hydrogen_gap_aa_nested_2026_11_13_scores.json`: 5 benchmarks, 59 scores; 0 overwrites (111 AA re-measurements of speed/briefcase for existing models skipped). DB 4,873 / 14,347 / 113,011.
 - Missed in S320: AA speed and TTFAT live under `headline.*` and briefcase under `briefcaseBreakdown.*` in the current RSC objects, not top-level fields; now read for every mapped slug. New `aa_ii_v5_cost_to_run_usd_lower_better` from `intelligenceIndexCost.total` (28 models). New AA slugs `inkling-small-1102-rc17` and `hunyuan-dev1030-aa` mapped to Inkling 2 Small / Tencent Hy4.
