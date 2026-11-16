@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "generated_at": "2026-11-15",
-    "covered_models": 1005,
+    "generated_at": "2026-11-16",
+    "covered_models": 1006,
     "schema_version": "1.0"
   },
   "models": {
@@ -27248,6 +27248,68 @@
       "cutoffs": {
         "knowledge_cutoff": "2026-01"
       }
+    },
+    "alibaba/qwen4-max": {
+      "architecture": {
+        "type": "moe",
+        "total_params_b": null,
+        "active_params_b": null,
+        "layers": null,
+        "attention": "Gated DeltaNet (3 per QSA layer) + Qwen Sparse Attention; Gated Residual (4 branches); N-gram Embedding at layer 2",
+        "attention_pattern": null,
+        "experts_total": null,
+        "experts_active": null,
+        "vision_encoder_b": null
+      },
+      "training": {
+        "pretrain_tokens": null,
+        "compute_flops": null,
+        "phases": []
+      },
+      "safety": {
+        "aisi_cyber_tier": null,
+        "cbrn_risk": null,
+        "metr_autonomy_50pct": null,
+        "apollo_schemer_score": null,
+        "self_reported_safety_card": null
+      },
+      "throughput": {
+        "tokens_per_second": null,
+        "latency_p50_ms": null
+      },
+      "quantizations": [],
+      "api_providers": [
+        "alibaba_cloud",
+        "openrouter"
+      ],
+      "_sources": [
+        "https://qwen.ai/blog?id=qwen4-max",
+        "https://openrouter.ai/qwen/qwen4-max"
+      ],
+      "links": {
+        "homepage": "https://qwen.ai",
+        "system_card": null,
+        "model_card": null,
+        "huggingface": null,
+        "paper": null,
+        "github": null,
+        "blog": "https://qwen.ai/blog?id=qwen4-max"
+      },
+      "pricing": {
+        "input": null,
+        "output": null,
+        "cached_input": null,
+        "currency": "USD"
+      },
+      "benchmarks_meta": {
+        "arena_elo": null,
+        "arena_elo_source": null,
+        "intelligence_index_override": null
+      },
+      "lineage": {
+        "training_method": "first model on the new Qwen4 architecture; successor to Qwen3.8-Max (25% fewer active parameters, 5-13% lower BPB); reasoning efforts low/high/xhigh"
+      },
+      "description": "Released 2026-11-16. Alibaba's Qwen4 flagship 'AI teammate' for professional and long-horizon work; native vision, 1M context, up to 393K output on OpenRouter; $1.50/$4.50 per M tokens (cache read $0.075)."
     },
     "google/gemini-4-hydrogen": {
       "architecture": {
