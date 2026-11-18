@@ -5535,5 +5535,29 @@
   "type": "Data",
   "title": "S321b — Qwen4-Max 갭 패스: APEX 직무별 보드·ALE 플랫폼 분할·Vals 섹터·AA 잔여 필드·AI IQ 도메인",
   "detail": "S321에서 읽지 않은 부분 보완. Mercor APEX-Agents 직무별 리더보드 3종(기업 변호사·경영 컨설턴트·투자은행 애널리스트, 각 72개 구성의 Pass@1·평균 점수; 메인 페이지는 상위 3개만 노출) 신규 id 6개·420점. ALE v1.1 Linux 86개/Windows 36개 과제별 통과율·점수와 총 출력 토큰·실행 시간(27개 구성). Vals Index v2.2 섹터 점수(금융·코딩·법률·세무, 37개 모델). AA 객체 잔여 필드(MLCR v2, AA Cyber Index·CWE-bench·DeepSecBench·CyberGym-E2E 및 거절률, Openness Index, Omniscience 정확도/환각률 등) 채움. AI IQ 응용 도메인 IQ 10종(벤치마크 2개 이상 커버 모델만). +26 benchmarks, +1,215 scores, 기존 점수 변경 0(AA 재측정 44건 로그만)."
+ },
+ {
+  "date": "2026-11-17",
+  "type": "ingest",
+  "title": "S322 — GPT-6.2 Astra / GPT-6.2 Sol 출시 + 시스템카드 + AA / OpenRouter / Plotly",
+  "detail": "GPT-6.2 Astra·Sol(각 max 기본 + xhigh/high/medium/low, Pro) 12개 모델과 Gemini 4 Argon (Medium) 추가, 2,285 scores, 신규 벤치마크 155개. OpenAI 출시 글 Vega 차트 16개(모든 effort): ALE v1.1 77.61/73.04, Terminal-Bench-Science 77.1/68.0, Vals Science 68.4/57.8, AAII v5 62.1/57.3, BenchCAD 82.5/73.1. GPT-6.2 시스템카드 119쪽(표 2~21, 그림 56개 라벨, 임베디드 차트 11개): SEC-Bench Pro 86.75/88.34, ExploitBench Internal Port 53.5/50.5, Sandbox Bench v2, MLE-Bench Revised 96.06/91.38, OECI 170.1/168.8, Model Spec·배포 시뮬레이션·모니터링 지표. 카드의 비교 모델 재측정값은 *_rerun_gpt62 id로 분리, AA 재채점(CritPt v2 Hard 등)·차트 반올림 차이는 충돌만 기록. API 가격 Astra $8/$40, Sol $2/$10, 1.05M 컨텍스트. Plotly DataAnalyticsBench(Sol 40/43, $1.22) 신규. 기존 값 변경 0."
+ },
+ {
+  "date": "2026-11-17",
+  "type": "ingest",
+  "title": "S322b — GPT-6.2 갭 감사: 카드 그림 라벨·표 2 누락 칸·배치 가격",
+  "detail": "S322 출처의 표 21개·그림 56개·블로그 차트 16개·임베디드 차트 253점을 DB와 다시 대조. 누락 16건 보완: 표 2 GPT-6.1 Terra 바이롤로지 관측값 46.52(기존 id에는 refusal-adjusted 52.54가 저장돼 있어 *_rerun_gpt62로 분리), 그림 6·7 GPT-6 Astra EUREKA 100.87/1.23, 그림 5 GPT-5.6 Sol Bio-Probe 0.228, 그림 20 Vals 사전학습 효율(BPB 감소율) 신규 벤치마크(GPT-6.2 Astra 46.66, Opus 5.5 48.56, Gemini 4 Argon 46.90, GPT-6 Astra 46.26), OpenRouter 배치 가격(Astra $4/$20, Sol $1/$5, Pro 동일). 기존 값 변경 0."
+ },
+ {
+  "date": "2026-11-17",
+  "type": "ingest",
+  "title": "S323 — Epoch AI GPT-6.2 Astra 모델 페이지 + Epoch 데이터 갱신",
+  "detail": "epoch.ai/models/gpt-6-2-astra의 Astro props와 Epoch CSV/zip(2026-11-17 재조회)을 대조. GPT-6.2 Astra: ECI 174.17(241개 중 1위) + 벤치마크 13개(SpireClimb STS1 33.33/STS2 49.33 포함). 비교 모델 보완: Gemini 4 Carbon(ECI 169.78, 처음 수록된 Epoch 값 12개 + SimpleBench·CritPt·SciCode·CursorBench 4.0), Claude Fable 5.2(ProofBench·PostTrainBench·SimpleBench 94.9·Vending-Bench 2 등). Epoch가 MirrorCode·PostTrainBench·SpireClimb를 재채점해 현재 값 전체를 신규 *_2611 id 3개로 분리. 점수 118개, 기존 값 변경 0. ECI 재적합 등 충돌 139건은 로그만 기록."
+ },
+ {
+  "date": "2026-11-17",
+  "type": "ingest",
+  "title": "S323b — Epoch 페이지 갭 감사: 원점수 id·누락 보드",
+  "detail": "페이지 내장 데이터의 모든 값을 DB와 대조. 페이지는 원점수를, 기존 *_epoch id는 Epoch가 (원점수−무작위 기준선)/(상한−기준선)으로 정규화한 ECI 입력값을 저장하고 있어 표시값과 달랐음. 원점수 id 8개 신설(GPQA·FrontierMath T1-3·체스·미스터리·가구 조립·LMCA·DTBench·WeirdML v3; 각 보드 전체), id가 없던 ALE-Bench·ForecastBench·BTF-3(낮을수록 좋음) 추가, GBA-Eval 빈칸 보완(GPT-6 Astra 0.871, Fable 5.2 0.848). +11 benchmarks, +761 scores, 기존 값 변경 0."
  }
 ]
