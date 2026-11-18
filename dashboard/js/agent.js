@@ -353,6 +353,8 @@ var Agent = (function() {
             benchmarks: [
                 // 2026-10-12 S303 — Meta Muse Wonder scorecard: Personal Superintelligence Index (7-eval composite) + FocusBench (Meta-run)
                 'meta_personal_superintelligence_index', 'meta_focusbench', 'automationbench_aa_strict_pass1',
+                // 2026-11-17 S322 — GPT-6.2 launch: LifeVal, GDPval v2 (OpenAI internal), Plotly DataAnalyticsBench, AA-3D breakdown, Sequitur lab automation
+                'lifeval', 'lifeval_cost_per_task_usd_lower_better', 'gdpval_v2_internal', 'plotly_data_analytics_bench', 'plotly_dab_cost_per_run_usd_lower_better', 'plotly_dab_median_time_per_question_s_lower_better', 'aa_3d_cost_per_scene_usd_lower_better', 'aa_3d_first_look_by_turn20_share', 'sequitur_lab_automation_phase_execution',
                 // 2026-11-16 S321 — Qwen4-Max blog (Work360) + AutomationBench-AA breakdown (AA object automationBenchBreakdown)
                 'work360', 'work360_cost_per_task_usd_lower_better', 'automationbench_aa_completion', 'automationbench_aa_violations_per_task_lower_better', 'automationbench_aa_completion_finance', 'automationbench_aa_completion_hr', 'automationbench_aa_completion_marketing', 'automationbench_aa_completion_operations', 'automationbench_aa_completion_sales', 'automationbench_aa_completion_support', 'apex_agents_v1_1_pass1_rerun_mercor_board', 'apex_agents_v1_1_mean_score_rerun_mercor_board', 'arena_agent_net_improvement_rerun_qwen4max',
                 // 2026-11-16 S321b — Mercor APEX-Agents per-job boards, ALE v1.1 Linux/Windows splits + run stats, Vals Index sector scores
@@ -434,7 +436,7 @@ var Agent = (function() {
                 // 2026-09-30 S290 — Gemini 4 Argon table: Vals Index (Sep 2026 board), Vals Finance Agent v2, Harvey LAB (Vals), Google-run PostTrainBench v1.1
                 'vals_index_sep2026', 'finance_agent_v2', 'legal_agent_benchmark_harvey', 'posttrainbench_v1_1_google',
                 'vals_index_v2_1_cost_per_test_usd_lower_better',  // S290b
-                'apex_agents_v1_1_pass1', 'apex_agents_v1_1_mean_score', 'apex_v1_mercor_board_pass1', 'apex_v1_mercor_board_mean_score', 'apex_swe_mercor_board_pass1', 'apex_accounting_pass1', 'hal_reliability_score', 'hal_reliability_accuracy', 'hle_caisi_official', 'remote_labor_index_epoch', 'mka_climb_wsr', 'design_arena_agents_pdf_elo', 'design_arena_agents_spreadsheet_elo', 'access_to_justice_vals', 'harvey_lab_vals_v1_1', 'remote_labor_index_elo_v1', 'remote_labor_index_dollars_earned_v1_usd', 'posttrainbench_epoch', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
+                'apex_agents_v1_1_pass1', 'apex_agents_v1_1_mean_score', 'apex_v1_mercor_board_pass1', 'apex_v1_mercor_board_mean_score', 'apex_swe_mercor_board_pass1', 'apex_accounting_pass1', 'hal_reliability_score', 'hal_reliability_accuracy', 'hle_caisi_official', 'remote_labor_index_epoch', 'mka_climb_wsr', 'design_arena_agents_pdf_elo', 'design_arena_agents_spreadsheet_elo', 'access_to_justice_vals', 'harvey_lab_vals_v1_1', 'remote_labor_index_elo_v1', 'remote_labor_index_dollars_earned_v1_usd', 'posttrainbench_epoch', 'posttrainbench_epoch_2611', 'wandr_soft_f1_anthropic_offline', 'cobench_2_1',
                 // 2026-09-23 S282b — Opus 5.5 card §8.12.3 multi-agent team-size endpoints (1 vs 100 agents)
                 'anthropic_agent_team_knowledge_base_single_agent', 'anthropic_agent_team_knowledge_base_100_agents', 'anthropic_agent_team_lean_single_agent',
                 'anthropic_agent_team_lean_100_agents',

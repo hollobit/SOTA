@@ -3,6 +3,52 @@
 ## Current Status: Session 292b — sweep follow-ups: April–May gap, leftover papers, official boards (2026-10-03)
 **3,677 models · 6,204 benchmarks · 46,885 scores** (export counts; S179–S259 entries live in git log / changelog.json)
 
+### 2026-11-17 Session 323b — Epoch page gap audit: raw scores + missing external boards
+- `resource/zzzzzzzzzzzzzzzzzz_s323b_epoch_raw_scores_gap_audit_2026_11_17_scores.json`: 11 benchmarks, 761 scores; 0 overwrites; 0 conflicts. DB 4,889 / 14,574 / 119,476.
+- Audit: every value in the page props (`comparisonScoresByModel`, 4 models × up to 33 keys) was matched against the DB. The misses fell into three groups.
+- Why the page and DB disagree: Epoch's ECI-input values are rescaled as `(raw − random_baseline) / (ceiling − baseline)` per `benchmark_data.zip/benchmark_metadata.csv`. For example, GPQA (0.9684 − 0.25) / 0.72 = 0.9978. The existing `*_epoch` ids hold the rescaled value, while the page shows the raw value.
+- New `_raw` ids, filled with the full board from the zip:
+  - Own evals: `gpqa_diamond_epoch_raw` (90 rows), `frontiermath_tier1_3_v2_epoch_raw` (72), `chess_puzzles_epoch_raw` (77), `mystery_game_puzzles_epoch_raw` (66), `furniture_assembly_epoch_raw` (40).
+  - External boards: `lmca_score_raw` (102; lmca_epoch = score/85), `dtbench_accuracy_raw` (102; dtbench_epoch = (acc − 0.4)/0.6), `weirdml_v3_score_raw` (26; weirdml_v3 = max performance/0.9).
+- Boards on the page that had no id:
+  - `ale_bench` (68): GPT-6 Astra 2951.32, Gemini 4 Carbon 2374.7.
+  - `forecastbench_overall` (31): versions with duplicate rows skipped.
+  - `btf3_pooled_brier_lower_better` (12): FutureSearch-agent harness only.
+  - GBA-Eval overall/replay/procedural/audio: filled into the existing `gba_eval_*` ids (0–1 scale), including GPT-6 Astra 0.8705 and Fable 5.2 0.8480.
+- Version → model mapping: reused the `model_version` values from earlier Epoch notes, plus `<stem>_<effort>` → base id + `-<effort>` suffix. Pro-mode rows are excluded. A sample check of names against ids found no mismatches.
+- Frontier Compare `composite_eci` now lists the `_2611` and `_raw` ids.
+- Not added: WebDev Arena (Epoch's Elo snapshot; Arena primary data is already in `arena_webdev_elo`), Surge GDP.pdf (different metric from the DB `gdp_pdf`), and comparison cells that merge variants (GPT-6 Astra chess 76 = best across versions; the base row is 74).
+
+### 2026-11-17 Session 323 — Epoch AI GPT-6.2 Astra model page + Epoch data refresh
+- `resource/zzzzzzzzzzzzzzzzzz_s323_epoch_gpt62_astra_page_refresh_2026_11_17_scores.json`: 3 benchmarks, 118 scores; 0 overwrites. DB 4,889 / 14,563 / 118,715.
+- Source: epoch.ai/models/gpt-6-2-astra. Exact values are in the `ModelPage` astro-island props (`benchmarkResults`, `comparisonScoresByModel`, `bestModelScores`). In the HTML scorecard the first number in each row is the best score across all tracked models, not GPT-6.2 Astra's score (e.g. MirrorCode 98% = Claude Sonnet 5.5; GPT-6.2 Astra = 68%). Cross-checked against `eci_scores.csv`, `eci_benchmarks.csv` and `benchmark_data.zip`, all re-read 2026-11-17.
+- GPT-6.2 Astra: ECI 174.17 (CI 170.29–178.58, #1 of 241, tied with Fable 5.2 at display precision), plus 11 ECI-component scores. Five of the page scorecard values are raw hub scores that differ from the ECI-input CSV value: GPQA 96.84 vs 99.78, FrontierMath T1-3 92.63 vs 97.51, Chess 78 vs 76.85, Furniture 89.17 vs 84.52, Mystery 95 vs 94.49. The ids keep the S318 convention (CSV value), and the raw value is recorded in `_note`. Also added: SpireClimb STS1 33.33 and STS2 49.33.
+- Gemini 4 Carbon was new to Epoch data: ECI 169.78 and 12 components, mapped as `_high` → base id because arc_agi_2 92.08 equals carbon_high. Also added from Epoch's external mirrors: SimpleBench 92.6, CritPt 36.0, SciCode 64.24, CursorBench 4.0 high/medium/low, Blueprint-Bench 2 raw 80.9 and Erdős 2.94. Claude Fable 5.2 gaps: ProofBench, PostTrainBench, FrontierSWE, DTBench, RLI, APEX (Epoch), SimpleBench 94.9, Vending-Bench 2 $9,628, Blueprint-Bench 2 and the xhigh variant rows.
+- Epoch re-scored three benchmarks after 2026-11-11, so new `_2611` ids hold the full current set:
+  - MirrorCode: 7 of 17 stored values rose 6–20 pts. `mirrorcode_epoch_2611` has 38 rows.
+  - PostTrainBench: 9 of 15 stored values fell 0.5–5 pts. `posttrainbench_epoch_2611` has 19 rows.
+  - SpireClimb: now the mean of the STS1/STS2 subsets. `spireclimb_epoch_2611` has 10 rows.
+  - The old ids are unchanged. The Agent tab lists `posttrainbench_epoch_2611`.
+- 139 conflicts logged only: ECI re-fit again (90 models, +0.5–3 pts; Fable 5.2 174.24 → 173.5), chess_puzzles version swaps (27), and small otis/weirdml/apex drift.
+- Not added:
+  - Page "best score" cells that merge variants (e.g. GPT-6 Astra SimpleBench 86.5 = the Pro row).
+  - Epoch-transformed external values in `eci_benchmarks.csv` (SimpleBench, GeoBench and others), per S318.
+  - ALE-Bench, GBA-Eval and BTF3: no id.
+  - Surge GDP.pdf 0.564: the DB `gdp_pdf` id holds AA's metric.
+  - New-model rows for Gemini 4 Hydrogen, Inkling 2 Small, Muse Ember and Doubao Seed Evolving: outside this page.
+
+### 2026-11-17 Session 322b — GPT-6.2 gap audit
+- `resource/zzzzzzzzzzzzzzzzzz_s322b_gpt62_gap_audit_2026_11_17_scores.json`: 2 benchmarks, 16 scores; 0 overwrites. DB 4,889 / 14,560 / 118,597.
+- Audit method: per-caption triple count for all 21 tables / 56 figures, every zero-count figure opened as an image, card prose numbers checked against the DB, blog chart points (16 charts, score + cost) and the 253 evalchart points re-matched, AA/Plotly page numbers checked against the DB.
+- Missed in S322: Table 2 GPT-6.1 Terra observed virology 46.52 (the base id holds the refusal-adjusted 52.54 → `multimodal_troubleshooting_virology_rerun_gpt62`), Figure 6/7 GPT-6 Astra EUREKA 100.87 / 1.23, Figure 5 GPT-5.6 Sol Bio-Probe 0.228, Figure 20 Vals combined pretraining BPB reduction (new id; "Aurora" = GPT-6.2 Astra per caption; Opus 5.5 48.56, Gemini 4 Argon 46.90, GPT-6 Astra 46.26), OpenRouter batch prices for Astra/Sol/Astra Pro/Sol Pro (existing `batch_*_price` ids).
+- Still not added: Figure 5 labels for GPT-5.5 (0.246) and GPT-5 (0.298) — they mark the highest setting, not the best Brier the id stores; Safety Reasoner recall (separate monitor); 12-hour cache-write prices (no id).
+
+### 2026-11-17 Session 322 — GPT-6.2 Astra / GPT-6.2 Sol launch
+- `resource/zzzzzzzzzzzzzzzzzz_s322_gpt62_astra_sol_card_aa_openrouter_plotly_2026_11_17_scores.json`: 13 models (GPT-6.2 Astra/Sol max + 4 efforts each + Pro each, Gemini 4 Argon medium), 155 benchmarks, 2,285 scores; 0 overwrites. DB 4,889 / 14,558 / 118,581.
+- Sources: OpenAI blog (Vega specs in the RSC payload, 16 charts incl. hidden tabs), GPT-6.2 System Card (PDF stored as `resource/openai_gpt-6.2-astra-sol_system-card_2026-11-17.pdf`; 11 `data-evalchart` JSON datasets + 56 figure PNGs + pdftotext tables), API docs, OpenRouter (Pro models exist as own ids), AA model/eval pages + AA-3D article RSC, Plotly DataAnalyticsBench.
+- Routing: card comparator re-reports that differ from stored values -> `*_rerun_gpt62` (14 ids; e.g. dynamic mental health GPT-5.5 82.0 vs 98.1, image-input, honeypot, warnings). AAV re-run with a new prompt -> `aav_capsid_packaging_spearman_v2_prompt`; Sandbox Bench target set changed -> `sandbox_bench_v2`. 230 AA/blog conflicts logged only (AA CritPt v2 Hard +1–7 pts, AAII v5.0.1 +0.05–1.15, Briefcase/GDPval Elo drift, Gemini 4 Carbon input $4 vs $2).
+- Not added: UK AISI vuln discovery 88.6 and SecureBio results (pre-release checkpoint / helpful-only variant), training-checkpoint curves, unlabelled effort points, Plotly Particle-1 / Hy4 flash (vendor unknown / announced only), blog-restated numbers (OrcaRouter, Activepieces). aib.vote returned 429.
+
 ### 2026-11-16 Session 321b — Qwen4-Max gap pass
 - `resource/zzzzzzzzzzzzzzzzzz_s321b_qwen4_gap_apex_jobs_ale_platforms_aa_aiiq_domains_2026_11_16_scores.json`: 26 benchmarks, 1,215 scores; 0 overwrites; 44 conflicts logged (AA output speed re-measured for 27 models, AA `hle`/LCR/SciCode). DB 4,876 / 14,403 / 116,296.
 - Missed in S321: Mercor per-job pages (`/apex/apex-agents-leaderboard/<job>-agent/`, `__NEXT_DATA__.props.pageProps.leaderboardData`, 72 rows each; the main page shows only the top 3), ALE JSON `platforms.{linux,windows}` and run totals, Vals `ValsIndexSection` sector scores, AA object fields beyond the S320 map (MLCR fields = `*_v2` ids, verified by value ratio), AI IQ `/api/domains/:id` (domain IQ kept only with >= 2 benchmarks covered).

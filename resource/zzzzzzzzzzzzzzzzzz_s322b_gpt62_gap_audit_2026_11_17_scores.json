@@ -1,0 +1,161 @@
+{
+ "_meta": {
+  "collected_at": "2026-11-17",
+  "session": "S322b",
+  "sources": [
+   "https://deploymentsafety.openai.com/gpt-6-2-astra-sol",
+   "https://deploymentsafety.openai.com/gpt-6-2-astra-sol/gpt-6-2-astra-sol.pdf",
+   "https://openrouter.ai/openai/gpt-6.2-astra",
+   "https://openrouter.ai/openai/gpt-6.2-sol",
+   "https://openrouter.ai/openai/gpt-6.2-sol-pro:batch"
+  ],
+  "_note": "Gap audit of the S322 GPT-6.2 sources: card figure data labels and Table 2 cell missed by the readers, plus OpenRouter batch prices. Fill-only; no existing value changed."
+ },
+ "models": [],
+ "benchmarks": [
+  {
+   "id": "vals_rsi_combined_pretraining_bpb_reduction_gpt62_card",
+   "name": "Vals RSI Index — combined pretraining efficiency (BPB reduction, GPT-6.2 card)",
+   "category": "agent",
+   "metric": "% reduction in baseline bits per byte",
+   "description": "Figure 20 of the GPT-6.2 Astra/Sol System Card (Vals AI pre-release testing, modified RSI Index): best combined reduction in baseline bits per byte across the language-model-training and compression tasks within the combined compute budget (Compression experiment-hours/200 and LM H100 training-hours/24). Higher is better."
+  },
+  {
+   "id": "multimodal_troubleshooting_virology_rerun_gpt62",
+   "name": "Multi-select Virology Troubleshooting (observed) — GPT-6.2 launch values",
+   "category": "medical",
+   "metric": "pass@1 (observed)",
+   "description": "Observed (not refusal-adjusted) Multi-select Virology Troubleshooting pass@1 from Table 2 of the GPT-6.2 Astra/Sol System Card, for models whose value on multimodal_troubleshooting_virology differs."
+  }
+ ],
+ "scores": [
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "multimodal_troubleshooting_virology_rerun_gpt62",
+   "score": 46.52,
+   "unit": "percent",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol/gpt-6-2-astra-sol.pdf",
+   "_note": "GPT-6.2 System Card Table 2, GPT-6.1 Terra observed pass@1 46.52% (refusal-adjusted 52.54% is already stored on the base id)."
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "eurekabench_pilot_predictive_performance",
+   "score": 100.87,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol",
+   "_note": "GPT-6.2 System Card Figure 6 data label \"100.87 (n=48)\" [chart data label, image49.png]"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "eurekabench_pilot_novelty",
+   "score": 1.23,
+   "unit": "score",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol",
+   "_note": "GPT-6.2 System Card Figure 7 data label \"1.23 (n=48)\" [chart data label, image28.png]"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "bio_probe_brier_lower_better",
+   "score": 0.228,
+   "unit": "brier",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol",
+   "_note": "GPT-6.2 System Card Figure 5 data label 0.228 (best and highest-setting point of the GPT-5.6 Sol curve) [chart data label, image6.png]"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "vals_rsi_combined_pretraining_bpb_reduction_gpt62_card",
+   "score": 46.66,
+   "unit": "percent",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol",
+   "_note": "GPT-6.2 System Card Figure 20 data label 46.66% for \"Aurora\" (caption: GPT-6.2 Astra shown as \"Aurora\") [chart data label, image55.png]"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "vals_rsi_combined_pretraining_bpb_reduction_gpt62_card",
+   "score": 46.26,
+   "unit": "percent",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol",
+   "_note": "GPT-6.2 System Card Figure 20 data label 46.26% [chart data label, image55.png]"
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "vals_rsi_combined_pretraining_bpb_reduction_gpt62_card",
+   "score": 48.56,
+   "unit": "percent",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol",
+   "_note": "GPT-6.2 System Card Figure 20 data label 48.56% (\"Opus 5.5\") [chart data label, image55.png]"
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "vals_rsi_combined_pretraining_bpb_reduction_gpt62_card",
+   "score": 46.9,
+   "unit": "percent",
+   "_source": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol",
+   "_note": "GPT-6.2 System Card Figure 20 data label 46.90% (\"Gemini 4 Argon\") [chart data label, image55.png]"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "batch_input_price_per_mtok_lower_better",
+   "score": 4.0,
+   "unit": "usd_per_mtok",
+   "_source": "https://openrouter.ai/openai/gpt-6.2-astra",
+   "_note": "OpenRouter batch listing (\":batch\" variant) list price, read 2026-11-17"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "batch_output_price_per_mtok_lower_better",
+   "score": 20.0,
+   "unit": "usd_per_mtok",
+   "_source": "https://openrouter.ai/openai/gpt-6.2-astra",
+   "_note": "OpenRouter batch listing (\":batch\" variant) list price, read 2026-11-17"
+  },
+  {
+   "model": "openai/gpt-6.2-sol",
+   "benchmark": "batch_input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "usd_per_mtok",
+   "_source": "https://openrouter.ai/openai/gpt-6.2-sol",
+   "_note": "OpenRouter batch listing (\":batch\" variant) list price, read 2026-11-17"
+  },
+  {
+   "model": "openai/gpt-6.2-sol",
+   "benchmark": "batch_output_price_per_mtok_lower_better",
+   "score": 5.0,
+   "unit": "usd_per_mtok",
+   "_source": "https://openrouter.ai/openai/gpt-6.2-sol",
+   "_note": "OpenRouter batch listing (\":batch\" variant) list price, read 2026-11-17"
+  },
+  {
+   "model": "openai/gpt-6.2-astra-pro",
+   "benchmark": "batch_input_price_per_mtok_lower_better",
+   "score": 4.0,
+   "unit": "usd_per_mtok",
+   "_source": "https://openrouter.ai/openai/gpt-6.2-sol-pro:batch",
+   "_note": "OpenRouter batch listing (\":batch\" variant) list price, read 2026-11-17"
+  },
+  {
+   "model": "openai/gpt-6.2-astra-pro",
+   "benchmark": "batch_output_price_per_mtok_lower_better",
+   "score": 20.0,
+   "unit": "usd_per_mtok",
+   "_source": "https://openrouter.ai/openai/gpt-6.2-sol-pro:batch",
+   "_note": "OpenRouter batch listing (\":batch\" variant) list price, read 2026-11-17"
+  },
+  {
+   "model": "openai/gpt-6.2-sol-pro",
+   "benchmark": "batch_input_price_per_mtok_lower_better",
+   "score": 1.0,
+   "unit": "usd_per_mtok",
+   "_source": "https://openrouter.ai/openai/gpt-6.2-sol-pro:batch",
+   "_note": "OpenRouter batch listing (\":batch\" variant) list price, read 2026-11-17"
+  },
+  {
+   "model": "openai/gpt-6.2-sol-pro",
+   "benchmark": "batch_output_price_per_mtok_lower_better",
+   "score": 5.0,
+   "unit": "usd_per_mtok",
+   "_source": "https://openrouter.ai/openai/gpt-6.2-sol-pro:batch",
+   "_note": "OpenRouter batch listing (\":batch\" variant) list price, read 2026-11-17"
+  }
+ ]
+}

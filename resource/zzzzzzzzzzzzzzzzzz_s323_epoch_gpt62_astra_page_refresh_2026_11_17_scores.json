@@ -1,0 +1,986 @@
+{
+ "_meta": {
+  "session": "S323",
+  "date": "2026-11-17",
+  "sources": [
+   "https://epoch.ai/models/gpt-6-2-astra",
+   "https://epoch.ai/data/eci_benchmarks.csv",
+   "https://epoch.ai/data/eci_scores.csv",
+   "https://epoch.ai/data/benchmark_data.zip"
+  ],
+  "policy": "fill-only; Epoch re-scores of existing values logged, not applied"
+ },
+ "models": [],
+ "benchmarks": [
+  {
+   "id": "mirrorcode_epoch_2611",
+   "name": "MirrorCode (Epoch AI, 2026-11 re-scored)",
+   "category": "coding",
+   "metric": "score %",
+   "description": "Epoch AI Benchmarking Hub MirrorCode as currently published in eci_benchmarks.csv (read 2026-11-17). Epoch re-scored the board after 2026-11-11: 7 of the 17 values stored under mirrorcode_epoch rose by 6-20 pts (e.g. Claude Opus 5.5 77.4 -> 95.6), so the current set is kept separate.",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv"
+  },
+  {
+   "id": "posttrainbench_epoch_2611",
+   "name": "PostTrainBench (Epoch AI, 2026-11 re-scored)",
+   "category": "agentic",
+   "metric": "average %",
+   "description": "Epoch AI Benchmarking Hub PostTrainBench as currently published in eci_benchmarks.csv (read 2026-11-17). 9 of the 15 values stored under posttrainbench_epoch moved down by 0.5-5 pts after 2026-11-11, so the current set is kept separate.",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv"
+  },
+  {
+   "id": "spireclimb_epoch_2611",
+   "name": "SpireClimb (Epoch AI, 2026-11 re-scored)",
+   "category": "agentic",
+   "metric": "score %",
+   "description": "Epoch AI SpireClimb as currently published (eci_benchmarks.csv / benchmark_data.zip spireclimb.csv, read 2026-11-17): mean of the Slay the Spire 1 (A20 Heart) and Slay the Spire 2 (A10) subsets. 5 of the 9 values stored under spireclimb_epoch differ, so the current set is kept separate.",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv"
+  }
+ ],
+ "scores": [
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 8.8889,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gemini-3.1-pro-preview_high; model date 2026-02-19; performance x100 | board name: Gemini 3.1 Pro"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 18.11,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version gemini-3.1-pro-preview; model date 2026-02-19; performance x100 | board name: Gemini 3.1 Pro"
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 23.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gemini-3.6-flash_high; model date 2026-07-21; performance x100 | board name: Gemini 3.6 Flash"
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 41.1111,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gemini-3.7-flash_high; model date 2026-08-13; performance x100 | board name: Gemini 3.7 Flash"
+  },
+  {
+   "model": "google/gemini-3.8-flash",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 38.8889,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gemini-3.8-flash_high; model date 2026-09-02; performance x100 | board name: Gemini 3.8 Flash"
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 58.8889,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gemini-4-argon_high; model date 2026-10-13; performance x100 | board name: Gemini 4 Argon"
+  },
+  {
+   "model": "google/gemini-4-argon",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 40.44,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version gemini-4-argon_high; model date 2026-10-13; performance x100 | board name: Gemini 4 Argon"
+  },
+  {
+   "model": "google/gemini-4-carbon-medium",
+   "benchmark": "arc_agi_2_epoch",
+   "score": 94.1667,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"ARC-AGI-2\" (orig source Epoch own eval); model_version gemini-4-carbon_medium; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "gpqa_diamond_epoch_v2",
+   "score": 99.3441,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"GPQA diamond\" (orig source Epoch own eval); model_version gemini-4-carbon_high; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "otis_aime",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"OTIS Mock AIME 2024-2025\" (orig source Epoch own eval); model_version gemini-4-carbon_high; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "simpleqa_verified_epoch",
+   "score": 77.7,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SimpleQA Verified\" (orig source Epoch own eval); model_version gemini-4-carbon_high; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "chess_puzzles",
+   "score": 76.8519,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"Chess Puzzles\" (orig source Epoch own eval); model_version gemini-4-carbon_high; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "frontiermath_tier1_3_v2_2611",
+   "score": 95.2909,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"FrontierMath-Tiers-1-3-v2-Private\" (orig source Epoch own eval); model_version gemini-4-carbon_high; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "frontiermath_tier4_v2",
+   "score": 95.122,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"FrontierMath-Tier-4-v2-Private\" (orig source Epoch own eval); model_version gemini-4-carbon_high; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "ebr_bench_epoch",
+   "score": 87.619,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"EBR-bench\" (orig source Epoch own eval); model_version gemini-4-carbon_high; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "mystery_game_puzzles_epoch",
+   "score": 70.2578,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"Mystery Game Puzzles\" (orig source Epoch own eval); model_version gemini-4-carbon_high; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 40.98,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version gemini-4-carbon_high; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "furniture_assembly_epoch",
+   "score": 67.8571,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"Furniture Assembly\" (orig source Epoch own eval); model_version gemini-4-carbon_high; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "frontierswe_epoch",
+   "score": 61.1995,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"FrontierSWE\" (orig source https://www.frontierswe.com/); model_version gemini-4-carbon_high; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "google/gemini-4-carbon-medium",
+   "benchmark": "arc_agi_1_epoch",
+   "score": 98.5,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"ARC-AGI\" (orig source https://arcprize.org/leaderboard); model_version gemini-4-carbon_medium; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 70.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version claude-fable-5_max; model date 2026-06-09; performance x100 | board name: Claude Fable 5"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 37.27,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version claude-fable-5_max; model date 2026-06-09; performance x100 | board name: Claude Fable 5"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 32.2222,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version grok-4.5_high; model date 2026-07-08; performance x100 | board name: Grok 4.5"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 22.62,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version grok-4.5_high; model date 2026-07-08; performance x100 | board name: Grok 4.5"
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 41.1111,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version grok-4.6_xhigh; model date 2026-08-12; performance x100 | board name: Grok 4.6"
+  },
+  {
+   "model": "xai/grok-4.7",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 54.4444,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version grok-4.7_xhigh; model date 2026-09-21; performance x100 | board name: Grok 4.7"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 93.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version claude-fable-5-1_max; model date 2026-09-01; performance x100 | board name: Claude Fable 5.1"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 44.65,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version claude-fable-5-1_max; model date 2026-09-01; performance x100 | board name: Claude Fable 5.1"
+  },
+  {
+   "model": "anthropic/claude-fable-5.1",
+   "benchmark": "spireclimb_epoch_2611",
+   "score": 2.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SpireClimb\" (orig source Epoch own eval); model_version claude-fable-5-1_max; model date 2026-09-01; performance x100 | board name: Claude Fable 5.1"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 54.4444,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version kimi-k3_max; model date 2026-07-16; performance x100 | board name: Kimi K3"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-xhigh",
+   "benchmark": "arc_agi_2_epoch",
+   "score": 93.75,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"ARC-AGI-2\" (orig source Epoch own eval); model_version claude-fable-5-2_xhigh; model date 2026-11-09; performance x100 | board name: Claude Fable 5.2"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "proofbench",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"ProofBench\" (orig source https://www.vals.ai/benchmarks/proof_bench); model_version claude-fable-5-2_max; model date 2026-11-09; performance x100 | board name: Claude Fable 5.2"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-xhigh",
+   "benchmark": "lmca_epoch",
+   "score": 83.0706,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"LMCA\" (orig source https://conceptualreasoning.ai/lmca); model_version claude-fable-5-2_xhigh; model date 2026-11-09; performance x100 | board name: Claude Fable 5.2"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 44.64,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version claude-fable-5-2_max; model date 2026-11-09; performance x100 | board name: Claude Fable 5.2"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "frontierswe_epoch",
+   "score": 69.9402,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"FrontierSWE\" (orig source https://www.frontierswe.com/); model_version claude-fable-5-2_max; model date 2026-11-09; performance x100 | board name: Claude Fable 5.2"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-xhigh",
+   "benchmark": "weirdml_v3",
+   "score": 72.5338,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"WeirdML v3\" (orig source https://htihle.github.io/weirdml.html); model_version claude-fable-5-2_xhigh; model date 2026-11-09; performance x100 | board name: Claude Fable 5.2"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "spireclimb_epoch_2611",
+   "score": 15.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SpireClimb\" (orig source Epoch own eval); model_version claude-fable-5-2_max; model date 2026-11-09; performance x100 | board name: Claude Fable 5.2"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2-xhigh",
+   "benchmark": "arc_agi_1_epoch",
+   "score": 98.5,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"ARC-AGI\" (orig source https://arcprize.org/leaderboard); model_version claude-fable-5-2_xhigh; model date 2026-11-09; performance x100 | board name: Claude Fable 5.2"
+  },
+  {
+   "model": "anthropic/claude-haiku-5.5",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 78.8889,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version claude-haiku-5-5_max; model date 2026-10-07; performance x100 | board name: Claude Haiku 5.5"
+  },
+  {
+   "model": "mistral/mistral-large-4-preview",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 40.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version mistral-large-4-0_high; model date 2026-10-06; performance x100 | board name: Mistral Large 4 Preview"
+  },
+  {
+   "model": "meta/muse-spark-1.3",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 54.4444,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version muse-spark-1.3_max; model date 2026-09-02; performance x100 | board name: Muse Spark 1.3"
+  },
+  {
+   "model": "meta/muse-wonder",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 45.5556,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version muse-wonder-1.0_max; model date 2026-10-12; performance x100 | board name: Muse Wonder"
+  },
+  {
+   "model": "meta/muse-wonder",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 24.19,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version muse-wonder-1.0_xhigh; model date 2026-10-12; performance x100 | board name: Muse Wonder"
+  },
+  {
+   "model": "alibaba/qwen3.8-max",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 52.2222,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version qwen3.8-max_xhigh; model date 2026-08-02; performance x100 | board name: Qwen 3.8 Max"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 33.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version claude-opus-4-6_max; model date 2026-02-05; performance x100 | board name: Claude Opus 4.6"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 43.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version claude-opus-4-7_max; model date 2026-04-16; performance x100 | board name: Claude Opus 4.7"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 24.34,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version claude-opus-4-7_xhigh; model date 2026-04-16; performance x100 | board name: Claude Opus 4.7"
+  },
+  {
+   "model": "alibaba/qwen3.8-max-0902",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 47.7778,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version qwen3.8-max-0902_xhigh; model date 2026-09-01; performance x100 | board name: Qwen3.8 Max (0902)"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 65.5556,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version claude-opus-4-8_max; model date 2026-05-28; performance x100 | board name: Claude Opus 4.8"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 31.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version claude-opus-4-8_max; model date 2026-05-28; performance x100 | board name: Claude Opus 4.8"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 87.7778,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version claude-opus-5_max; model date 2026-07-24; performance x100 | board name: Claude Opus 5"
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 95.5556,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version claude-opus-5-5_max; model date 2026-09-22; performance x100 | board name: Claude Opus 5.5"
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 43.8,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version claude-opus-5-5_max; model date 2026-09-22; performance x100 | board name: Claude Opus 5.5"
+  },
+  {
+   "model": "anthropic/claude-opus-5.5",
+   "benchmark": "spireclimb_epoch_2611",
+   "score": 5.8333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SpireClimb\" (orig source Epoch own eval); model_version claude-opus-5-5_max; model date 2026-09-22; performance x100 | board name: Claude Opus 5.5"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 63.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version claude-sonnet-5_max; model date 2026-06-30; performance x100 | board name: Claude Sonnet 5"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 97.7778,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version claude-sonnet-5-5_max; model date 2026-09-28; performance x100 | board name: Claude Sonnet 5.5"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5.5",
+   "benchmark": "spireclimb_epoch_2611",
+   "score": 1.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SpireClimb\" (orig source Epoch own eval); model_version claude-sonnet-5-5_max; model date 2026-09-28; performance x100 | board name: Claude Sonnet 5.5"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 33.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version deepseek-v4-pro-0813_max; model date 2026-08-13; performance x100 | board name: DeepSeek V4 Pro 0813"
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 64.4444,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version deepseek-v4.1-flash_max; model date 2026-09-09; performance x100 | board name: DeepSeek V4.1 Flash"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 36.6667,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version glm-5.2_max; model date 2026-06-16; performance x100 | board name: GLM-5.2"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 30.4,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version glm-5.2_max; model date 2026-06-16; performance x100 | board name: GLM-5.2"
+  },
+  {
+   "model": "zhipu/glm-5.3",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 34.52,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version glm-5.3_max; model date 2026-08-14; performance x100 | board name: GLM-5.3"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 36.79,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version glm-5.3-flash_max; model date 2026-08-20; performance x100 | board name: GLM-5.3-Flash"
+  },
+  {
+   "model": "openai/gpt-5.2",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 32.2222,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gpt-5.2-2025-12-11_xhigh; model date 2025-12-11; performance x100 | board name: GPT-5.2"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 23.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gpt-5.4-2026-03-05_xhigh; model date 2026-03-05; performance x100 | board name: GPT-5.4"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 23.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gpt-5.5_xhigh; model date 2026-04-23; performance x100 | board name: GPT-5.5"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 23.87,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version gpt-5.5_xhigh; model date 2026-04-23; performance x100 | board name: GPT-5.5"
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 21.1111,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gpt-5.6-luna_max; model date 2026-07-09; performance x100 | board name: GPT-5.6 Luna"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 31.01,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version gpt-5.6-sol_max; model date 2026-07-09; performance x100 | board name: GPT-5.6 Sol"
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 41.1111,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gpt-5.6-terra_max; model date 2026-07-09; performance x100 | board name: GPT-5.6 Terra"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 60.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gpt-6-astra_max; model date 2026-09-03; performance x100 | board name: GPT-6 Astra"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 41.88,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version gpt-6-astra_max; model date 2026-09-03; performance x100 | board name: GPT-6 Astra"
+  },
+  {
+   "model": "openai/gpt-6-astra",
+   "benchmark": "spireclimb_epoch_2611",
+   "score": 34.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SpireClimb\" (orig source Epoch own eval); model_version gpt-6-astra_max; model date 2026-09-03; performance x100 | board name: GPT-6 Astra"
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 26.6667,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gpt-6-luna_max; model date 2026-09-22; performance x100 | board name: GPT-6 Luna"
+  },
+  {
+   "model": "openai/gpt-6-luna",
+   "benchmark": "spireclimb_epoch_2611",
+   "score": 0.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SpireClimb\" (orig source Epoch own eval); model_version gpt-6-luna_max; model date 2026-09-22; performance x100 | board name: GPT-6 Luna"
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 48.8889,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gpt-6-sol_max; model date 2026-09-22; performance x100 | board name: GPT-6 Sol"
+  },
+  {
+   "model": "openai/gpt-6-sol",
+   "benchmark": "spireclimb_epoch_2611",
+   "score": 9.1667,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SpireClimb\" (orig source Epoch own eval); model_version gpt-6-sol_max; model date 2026-09-22; performance x100 | board name: GPT-6 Sol"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 61.1111,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gpt-6.1-sol_max; model date 2026-09-29; performance x100 | board name: GPT-6.1 Sol"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 38.79,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version gpt-6.1-sol_max; model date 2026-09-29; performance x100 | board name: GPT-6.1 Sol"
+  },
+  {
+   "model": "openai/gpt-6.1-sol",
+   "benchmark": "spireclimb_epoch_2611",
+   "score": 23.8333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SpireClimb\" (orig source Epoch own eval); model_version gpt-6.1-sol_max; model date 2026-09-29; performance x100 | board name: GPT-6.1 Sol"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 76.6667,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gpt-6.1-terra_max; model date 2026-10-26; performance x100 | board name: GPT-6.1 Terra"
+  },
+  {
+   "model": "openai/gpt-6.1-terra",
+   "benchmark": "spireclimb_epoch_2611",
+   "score": 22.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SpireClimb\" (orig source Epoch own eval); model_version gpt-6.1-terra_max; model date 2026-10-26; performance x100 | board name: GPT-6.1 Terra"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "gpqa_diamond_epoch_v2",
+   "score": 99.7825,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"GPQA diamond\" (orig source Epoch own eval); model_version gpt-6.2-astra_max; model date 2026-11-17; performance x100 | board name: GPT-6.2 Astra. Model page https://epoch.ai/models/gpt-6-2-astra \"Benchmark scorecard\" shows the raw hub score 96.84% (benchmark_data.zip mean_score); this id stores the ECI-input value"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "otis_aime",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"OTIS Mock AIME 2024-2025\" (orig source Epoch own eval); model_version gpt-6.2-astra_max; model date 2026-11-17; performance x100 | board name: GPT-6.2 Astra"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "simpleqa_verified_epoch",
+   "score": 78.5,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SimpleQA Verified\" (orig source Epoch own eval); model_version gpt-6.2-astra_max; model date 2026-11-17; performance x100 | board name: GPT-6.2 Astra"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "chess_puzzles",
+   "score": 76.8519,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"Chess Puzzles\" (orig source Epoch own eval); model_version gpt-6.2-astra_max; model date 2026-11-17; performance x100 | board name: GPT-6.2 Astra. Model page https://epoch.ai/models/gpt-6-2-astra \"Benchmark scorecard\" shows the raw hub score 78.00% (benchmark_data.zip mean_score); this id stores the ECI-input value"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "frontiermath_tier1_3_v2_2611",
+   "score": 97.5069,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"FrontierMath-Tiers-1-3-v2-Private\" (orig source Epoch own eval); model_version gpt-6.2-astra_max; model date 2026-11-17; performance x100 | board name: GPT-6.2 Astra. Model page https://epoch.ai/models/gpt-6-2-astra \"Benchmark scorecard\" shows the raw hub score 92.63% (benchmark_data.zip mean_score); this id stores the ECI-input value"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "frontiermath_tier4_v2",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"FrontierMath-Tier-4-v2-Private\" (orig source Epoch own eval); model_version gpt-6.2-astra_max; model date 2026-11-17; performance x100 | board name: GPT-6.2 Astra"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "ebr_bench_epoch",
+   "score": 92.381,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"EBR-bench\" (orig source Epoch own eval); model_version gpt-6.2-astra_max; model date 2026-11-17; performance x100 | board name: GPT-6.2 Astra"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "mystery_game_puzzles_epoch",
+   "score": 94.4922,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"Mystery Game Puzzles\" (orig source Epoch own eval); model_version gpt-6.2-astra_max; model date 2026-11-17; performance x100 | board name: GPT-6.2 Astra. Model page https://epoch.ai/models/gpt-6-2-astra \"Benchmark scorecard\" shows the raw hub score 95.00% (benchmark_data.zip mean_score); this id stores the ECI-input value"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "mirrorcode_epoch_2611",
+   "score": 67.7778,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"MirrorCode\" (orig source Epoch own eval); model_version gpt-6.2-astra_max; model date 2026-11-17; performance x100 | board name: GPT-6.2 Astra"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "furniture_assembly_epoch",
+   "score": 84.5238,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"Furniture Assembly\" (orig source Epoch own eval); model_version gpt-6.2-astra_max; model date 2026-11-17; performance x100 | board name: GPT-6.2 Astra. Model page https://epoch.ai/models/gpt-6-2-astra \"Benchmark scorecard\" shows the raw hub score 89.17% (benchmark_data.zip mean_score); this id stores the ECI-input value"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "spireclimb_epoch_2611",
+   "score": 41.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"SpireClimb\" (orig source Epoch own eval); model_version gpt-6.2-astra_max; model date 2026-11-17; performance x100 | board name: GPT-6.2 Astra"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "apex_agents_epoch",
+   "score": 84.2,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"APEX-Agents\" (orig source Epoch own eval); model_version gemini-4-carbon_unknown; model date 2026-11-10; performance x100 | board name: Gemini 4 Carbon"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "posttrainbench_epoch_2611",
+   "score": 31.48,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"PostTrainBench\" (orig source Epoch own eval); model_version kimi-k3_unknown; model date 2026-07-16; performance x100 | board name: Kimi K3"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "dtbench_epoch",
+   "score": 98.6667,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"DTBench\" (orig source https://conceptualreasoning.ai/dtbench); model_version claude-fable-5-2_unknown; model date 2026-11-09; performance x100 | board name: Claude Fable 5.2"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "remote_labor_index_epoch",
+   "score": 41.25,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"Remote Labor Index\" (orig source Epoch own eval); model_version claude-fable-5-2_unknown; model date 2026-11-09; performance x100 | board name: Claude Fable 5.2"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "apex_agents_epoch",
+   "score": 80.1,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"APEX-Agents\" (orig source Epoch own eval); model_version claude-fable-5-2_unknown; model date 2026-11-09; performance x100 | board name: Claude Fable 5.2"
+  },
+  {
+   "model": "moonshot/kimi-k3.1-pro",
+   "benchmark": "apex_agents_epoch",
+   "score": 65.5,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"APEX-Agents\" (orig source Epoch own eval); model_version kimi-k3.1-pro_unknown; model date 2026-10-23; performance x100 | board name: Kimi K3.1 Pro"
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "benchmark": "remote_labor_index_epoch",
+   "score": 9.58,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/eci_benchmarks.csv",
+   "_note": "Epoch eci_benchmarks.csv (read 2026-11-17); benchmark \"Remote Labor Index\" (orig source Epoch own eval); model_version deepseek-v4.1-flash_unknown; model date 2026-09-09; performance x100 | board name: DeepSeek V4.1 Flash"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "spireclimb_sts1_a20_heart_epoch",
+   "score": 33.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/benchmark_data.zip",
+   "_note": "Epoch benchmark_data.zip/spireclimb_sts1_a20_heart.csv (read 2026-11-17), model_version gpt-6.2-astra_max, mean_score 0.3333333333333333 x100, stderr 0.06137164119322156; Epoch own eval"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "spireclimb_sts1_a20_heart_epoch",
+   "score": 13.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/benchmark_data.zip",
+   "_note": "Epoch benchmark_data.zip/spireclimb_sts1_a20_heart.csv (read 2026-11-17), model_version claude-fable-5-2_max, mean_score 0.13333333333333333 x100, stderr 0.044255719836307654; Epoch own eval"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "spireclimb_sts2_a10_epoch",
+   "score": 49.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/benchmark_data.zip",
+   "_note": "Epoch benchmark_data.zip/spireclimb_sts2_a10.csv (read 2026-11-17), model_version gpt-6.2-astra_max, mean_score 0.49333333333333335 x100, stderr 0.05811865258054231; Epoch own eval"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "spireclimb_sts2_a10_epoch",
+   "score": 17.3333,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/benchmark_data.zip",
+   "_note": "Epoch benchmark_data.zip/spireclimb_sts2_a10.csv (read 2026-11-17), model_version claude-fable-5-2_max, mean_score 0.17333333333333334 x100, stderr 0.04400382183783968; Epoch own eval"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "frontiermath_erdos_epoch",
+   "score": 2.94,
+   "unit": "%",
+   "_source": "https://epoch.ai/data/benchmark_data.zip",
+   "_note": "Epoch benchmark_data.zip/frontiermath_erdos.csv (read 2026-11-17), model_version gemini-4-carbon_high, mean_score 0.0294 x100, stderr 0.0206; Epoch own eval"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "simplebench",
+   "score": 94.9,
+   "unit": "%",
+   "_source": "https://epoch.ai/models/gpt-6-2-astra",
+   "_note": "Epoch AI model page https://epoch.ai/models/gpt-6-2-astra (comparison column) / benchmark_data.zip/simplebench_external.csv (read 2026-11-17): model_version claude-fable-5-2_unknown, \"Score (AVG@5)\" 0.9490000000000001 x100; orig source https://simple-bench.com/"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "simplebench",
+   "score": 92.6,
+   "unit": "%",
+   "_source": "https://epoch.ai/models/gpt-6-2-astra",
+   "_note": "Epoch AI model page https://epoch.ai/models/gpt-6-2-astra (comparison column) / benchmark_data.zip/simplebench_external.csv (read 2026-11-17): model_version gemini-4-carbon_unknown, \"Score (AVG@5)\" 0.9259999999999999 x100; orig source https://simple-bench.com/"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "vending_bench_2",
+   "score": 9628.48,
+   "unit": "usd",
+   "_source": "https://epoch.ai/models/gpt-6-2-astra",
+   "_note": "Epoch AI model page https://epoch.ai/models/gpt-6-2-astra (comparison column) / benchmark_data.zip/vending_bench_2_external.csv (read 2026-11-17): model_version claude-fable-5-2_unknown, \"Score\" 9628.479999999998; Epoch name \"Claude Fable 5.2\""
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "blueprint_bench_2",
+   "score": 56.6161,
+   "unit": "%",
+   "_source": "https://epoch.ai/models/gpt-6-2-astra",
+   "_note": "Epoch AI model page https://epoch.ai/models/gpt-6-2-astra (comparison column) / benchmark_data.zip/blueprint_bench_2_external.csv (read 2026-11-17): model_version claude-fable-5-2_unknown, \"Score\" 0.5661605206073753 x100; Epoch name \"Claude Fable 5.2\"; orig source https://andonlabs.com/evals/blueprint-bench-2"
+  },
+  {
+   "model": "anthropic/claude-fable-5.2",
+   "benchmark": "blueprint_bench_2_raw_composite",
+   "score": 80.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/models/gpt-6-2-astra",
+   "_note": "Epoch AI model page https://epoch.ai/models/gpt-6-2-astra (comparison column) / benchmark_data.zip/blueprint_bench_2_external.csv (read 2026-11-17): model_version claude-fable-5-2_unknown, \"Raw score\" 0.8 x100; Epoch name \"Claude Fable 5.2\"; orig source https://andonlabs.com/evals/blueprint-bench-2"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "blueprint_bench_2_raw_composite",
+   "score": 80.9,
+   "unit": "%",
+   "_source": "https://epoch.ai/models/gpt-6-2-astra",
+   "_note": "Epoch AI model page https://epoch.ai/models/gpt-6-2-astra (comparison column) / benchmark_data.zip/blueprint_bench_2_external.csv (read 2026-11-17): model_version gemini-4-carbon_unknown, \"Raw score\" 0.809 x100; Epoch name \"Gemini 4 Carbon\"; orig source https://andonlabs.com/evals/blueprint-bench-2"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "critpt",
+   "score": 36.0,
+   "unit": "%",
+   "_source": "https://epoch.ai/models/gpt-6-2-astra",
+   "_note": "Epoch AI model page https://epoch.ai/models/gpt-6-2-astra (comparison column) / benchmark_data.zip/critpt_external.csv (read 2026-11-17): model_version gemini-4-carbon_high, \"Accuracy\" 0.36 x100; Epoch name \"Gemini 4 Carbon (High)\""
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "scicode",
+   "score": 64.2361,
+   "unit": "%",
+   "_source": "https://epoch.ai/models/gpt-6-2-astra",
+   "_note": "Epoch AI model page https://epoch.ai/models/gpt-6-2-astra (comparison column) / benchmark_data.zip/scicode_external.csv (read 2026-11-17): model_version gemini-4-carbon_high, \"Score\" 0.642361111111111 x100; Epoch name \"Gemini 4 Carbon (High)\"; orig source https://artificialanalysis.ai/evaluations/scicode"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "cursorbench_4_0",
+   "score": 60.4,
+   "unit": "%",
+   "_source": "https://epoch.ai/models/gpt-6-2-astra",
+   "_note": "Epoch AI model page https://epoch.ai/models/gpt-6-2-astra (comparison column) / benchmark_data.zip/cursorbench_external.csv (read 2026-11-17): model_version gemini-4-carbon_high, \"Score\" 0.604 x100; Epoch name \"Gemini 4 Carbon High\"; orig source https://cursor.com/cursorbench"
+  },
+  {
+   "model": "google/gemini-4-carbon-medium",
+   "benchmark": "cursorbench_4_0",
+   "score": 60.1,
+   "unit": "%",
+   "_source": "https://epoch.ai/models/gpt-6-2-astra",
+   "_note": "Epoch AI model page https://epoch.ai/models/gpt-6-2-astra (comparison column) / benchmark_data.zip/cursorbench_external.csv (read 2026-11-17): model_version gemini-4-carbon_medium, \"Score\" 0.601 x100; Epoch name \"Gemini 4 Carbon Medium\"; orig source https://cursor.com/cursorbench"
+  },
+  {
+   "model": "google/gemini-4-carbon-low",
+   "benchmark": "cursorbench_4_0",
+   "score": 58.6,
+   "unit": "%",
+   "_source": "https://epoch.ai/models/gpt-6-2-astra",
+   "_note": "Epoch AI model page https://epoch.ai/models/gpt-6-2-astra (comparison column) / benchmark_data.zip/cursorbench_external.csv (read 2026-11-17): model_version gemini-4-carbon_low, \"Score\" 0.5860000000000001 x100; Epoch name \"Gemini 4 Carbon Low\"; orig source https://cursor.com/cursorbench"
+  },
+  {
+   "model": "openai/gpt-6.2-astra",
+   "benchmark": "epoch_capabilities_index",
+   "score": 174.17,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv",
+   "_note": "ECI 174.17 (95% CI 170.29-178.58), model date 2026-11-17; Epoch eci_scores.csv read 2026-11-17; Epoch model page ranks it #1 of 241 tracked models (tied with Claude Fable 5.2 at display precision)"
+  },
+  {
+   "model": "google/gemini-4-carbon",
+   "benchmark": "epoch_capabilities_index",
+   "score": 169.78,
+   "unit": "eci",
+   "_source": "https://epoch.ai/data/eci_scores.csv",
+   "_note": "ECI 169.78 (95% CI 166.59-173.31), model date 2026-11-10; Epoch eci_scores.csv read 2026-11-17"
+  }
+ ]
+}

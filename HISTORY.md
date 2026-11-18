@@ -1,5 +1,21 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-11-17 (Session 323b): Epoch page gap audit
+
+Matched every value on the Epoch GPT-6.2 Astra page against the database. The page shows raw scores, while the existing Epoch ids hold Epoch's rescaled ECI inputs. Added raw-score ids for 8 benchmarks (GPQA, FrontierMath Tiers 1-3, Chess, Mystery Game Puzzles, Furniture Assembly, LMCA, DTBench, WeirdML v3), the three boards that had no id (ALE-Bench, ForecastBench, BTF-3), and GBA-Eval gaps. 11 benchmarks and 761 scores, no existing value changed. Details are in Plans.md.
+
+## 2026-11-17 (Session 323): Epoch AI GPT-6.2 Astra page
+
+Added Epoch AI's results for GPT-6.2 Astra from its model page and Epoch's data files: ECI 174.17 (#1 of 241) plus 13 benchmark scores. Also filled Epoch gaps for the page's comparison models, Claude Fable 5.2 and Gemini 4 Carbon (new to Epoch data, ECI 169.78). Epoch re-scored MirrorCode, PostTrainBench and SpireClimb, so their current values go to new `_2611` ids. 3 benchmarks and 118 scores in total, no existing value changed. Details are in Plans.md.
+
+## 2026-11-17 (Session 322b): GPT-6.2 gap audit
+
+Re-checked every table, figure and chart in the S322 sources against the database. Added the 16 values the first pass missed: card figure labels (EUREKA, Bio-Probe, Vals pretraining efficiency), one Table 2 cell and OpenRouter batch prices. Details are in Plans.md.
+
+## 2026-11-17 (Session 322): GPT-6.2 Astra and GPT-6.2 Sol
+
+Added GPT-6.2 Astra and Sol (every reasoning effort plus Pro) from the OpenAI launch blog, the 119-page GPT-6.2 system card, the API docs, OpenRouter, Artificial Analysis (model pages, Intelligence Index, AA-3D) and Plotly's DataAnalyticsBench. 13 models, 155 benchmarks, 2,285 scores. Details are in Plans.md.
+
 ## 2026-11-16 (Session 321b): Qwen4-Max gap pass
 
 Read what S321 skipped: Mercor APEX-Agents per-job boards, ALE Linux/Windows splits, Vals Index sector scores, the remaining AA object fields and AI IQ domain IQs. 26 benchmarks, 1,215 scores. Details are in Plans.md.

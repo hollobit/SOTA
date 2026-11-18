@@ -248,6 +248,8 @@ var FrontierCompare = {
             'mka_climb_wsr', 'terminal_bench_4_1_cheating_adjusted',
             // 2026-11-16 S321 — AI IQ composite (aiiq.org) + Qwen4-Max blog (Work360, Video-Index) + AutomationBench-AA breakdown
             'aiiq_composite_iq', 'aiiq_programmatic_reasoning_iq', 'aiiq_computer_use_iq', 'aiiq_knowledge_work_iq', 'work360', 'qwen_video_index', 'automationbench_aa_completion',
+            // 2026-11-17 S322 — GPT-6.2 launch: LifeVal, GDPval v2 (OpenAI internal), SecureSWE, PatchBench, OpenAI MLE-Bench Revised, OECI, Plotly DataAnalyticsBench, AA HLE-Diamond, Model Spec targeted cases
+            'lifeval', 'gdpval_v2_internal', 'secureswe_openai', 'patchbench_openai', 'mle_bench_revised_openai', 'openai_epoch_capabilities_index_oeci', 'plotly_data_analytics_bench', 'hle_diamond_aa_reasoning', 'model_spec_targeted_cases_compliance',
             // 2026-11-16 S321b — AI IQ applied-domain IQs, APEX-Agents per-job, Vals Index sectors
             'aiiq_domain_software_engineering_iq', 'aiiq_domain_finance_iq', 'aiiq_domain_legal_iq', 'aiiq_domain_healthcare_iq', 'aiiq_domain_bio_iq', 'aiiq_domain_cybersecurity_iq', 'apex_agents_v1_1_investment_banking_analyst_pass1', 'vals_index_v2_2_finance_sector', 'vals_index_v2_2_coding_sector',
             // 2026-10-02 S291 — Blueprint-Bench 2 (Andon Labs spatial reasoning: apartment photos → 2D floor plan)
@@ -278,7 +280,11 @@ var FrontierCompare = {
             'vpct', 'weirdml_v2',
             // Developer Reported (10+ of 20 ingested)
             'arc_agi_3', 'bbh', 'cybench', 'gsm8k', 'hellaswag', 'mmlu',
-            'osworld_verified', 'triviaqa', 'video_mme'
+            'osworld_verified', 'triviaqa', 'video_mme',
+            // 2026-11-17 S323/S323b — Epoch hub current runs: re-scored boards (_2611) + raw scores shown on model pages (_raw)
+            'mirrorcode_epoch_2611', 'spireclimb_epoch_2611', 'posttrainbench_epoch_2611',
+            'gpqa_diamond_epoch_raw', 'frontiermath_tier1_3_v2_epoch_raw', 'chess_puzzles_epoch_raw',
+            'mystery_game_puzzles_epoch_raw', 'furniture_assembly_epoch_raw'
         ],
         // AAII composite — Artificial Analysis Intelligence Index v4.0.4 (legacy) + v4.1 (current).
         // v4.0→v4.1 (June 2026): IFBench REMOVED (saturation), T-Bench Hard→v2.1,
@@ -316,6 +322,9 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-11-17 S322
+        'openai/gpt-6.2-astra',  // 2026-11-17 — AAII v5 62.1 (max), ALE v1.1 77.61, TB-Science 77.1, Vals Science 68.4, BenchCAD 82.5, AA-3D Elo 1318 (#1); SEC-Bench Pro 86.75, ExploitBench Internal Port 53.5; first OpenAI release at High AI self-improvement; $8/$40
+        'openai/gpt-6.2-sol',  // 2026-11-17 — AAII v5 57.3 (max), ALE v1.1 73.04, TB-Science 68.0, SEC-Bench Pro 88.34, ExploitBench Internal Port 50.5; Plotly DataAnalyticsBench 40/43; $2/$10 (same as GPT-6.1 Sol)
         // 2026-11-16 S321
         'alibaba/qwen4-max',  // 2026-11-16 — first Qwen4 model (2.4T, 71B active, 1M ctx); base = xhigh: Vals Index 63.20 (#11, top Chinese), ALE v1.1 pass 46.7 (#1), AA-Briefcase 1686, AutomationBench-AA 72.6, AAII v5 42.9, AI IQ n/a yet; $1.50/$4.50
         // 2026-11-12 S320
