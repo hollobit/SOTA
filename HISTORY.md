@@ -1,5 +1,21 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-11-19 (Session 325b): Gemini 4 Neon gap audit
+
+Re-checked the S325 sources. Added Artificial Analysis breakdowns that were left out (MKA by vertical and file type, AA-Omniscience v1.1 by domain, AA-Briefcase by file type) for every model on the fetched AA pages, and the full primary leaderboards behind numbers Google and BenchLM quoted: CursorBench 4.1, the official Terminal-Bench 4.1 board, CWE-bench v2 and Cognition FrontierCode. Corrected one S325 attribution (DeepSeek-V4.1-Flash 1017 on CWE-bench v2) and exposed the new ids in the Cyber-Coding and Frontier Compare tabs. 37 benchmarks and 1,353 scores, no existing value changed. Details are in Plans.md.
+
+## 2026-11-19 (Session 325): Gemini 4 Neon
+
+Added Gemini 4 Neon (released 2026-11-18) with its four thinking levels from the Google blog, model card and evaluation PDF (one shared results table plus six blog charts), the Artificial Analysis model and evaluation pages, Vals AI, and Plotly. AA re-based its Coding Agent Index (FrontierCode 2.0 replaced DeepSWE), so the full current board went to new `_2611` ids; Neon leads it. Gaps exposed by the supplied BenchLM and OpenRouter pages were filled from Epoch's raw data and OpenRouter's embedded Vals/Design Arena records. 4 models, 24 benchmarks and 755 scores, no existing value changed. Details are in Plans.md.
+
+## 2026-11-18 (Session 324b): Image-gen gap audit
+
+Re-read every S324 source for tables and rows that were skipped. Added the 2026 models on the Artificial Analysis image arenas that had no database id (Canva Craft, MAI-Image-2.5-Pro, MAI-Image-2.6-Flash, HunyuanImage 3.5 Preview, Fibo 2.0, Kling Image 3.0 Omni, Z-Image Base, LongCat Image and others), the missing MOSS-Image report rows (LLTB, RealLayoutArena, GPT-6 rubric dimensions) and two Qwen-Image-Bench bars. 18 models, 12 benchmarks and 643 scores, no existing value changed. Details are in Plans.md.
+
+## 2026-11-18 (Session 324): Image generation models
+
+Researched 10 image models (Qwen-Image 2.1, FLUX 3 Image, Nano Banana 2.1, Krea 3, MOSS-Image, GPT-Image 2.6, Seedream 5.5, MiniMax H3-Image, MAI-Image-2.7, Kling Image 4.0) from vendor blogs, model and system cards, technical reports and the Artificial Analysis and LMArena image leaderboards. Added 17 models, 144 benchmarks and 3,096 scores, no existing value changed. AA re-anchored its image arenas, so the current boards use new `_2611` ids; the Image Gen tab now shows them. Details are in Plans.md.
+
 ## 2026-11-17 (Session 323b): Epoch page gap audit
 
 Matched every value on the Epoch GPT-6.2 Astra page against the database. The page shows raw scores, while the existing Epoch ids hold Epoch's rescaled ECI inputs. Added raw-score ids for 8 benchmarks (GPQA, FrontierMath Tiers 1-3, Chess, Mystery Game Puzzles, Furniture Assembly, LMCA, DTBench, WeirdML v3), the three boards that had no id (ALE-Bench, ForecastBench, BTF-3), and GBA-Eval gaps. 11 benchmarks and 761 scores, no existing value changed. Details are in Plans.md.

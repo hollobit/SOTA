@@ -1,18 +1,20 @@
 /**
  * Image Gen tab — text-to-image / image-edit / image-to-webdev arenas.
  * Pulls data-driven from arena_text_to_image_elo / arena_image_edit_elo /
- * arena_image_to_webdev_elo / arena_t2i_aa_elo benchmark scores.
+ * arena_image_to_webdev_elo / aa_t2i_arena_elo_2611 / aa_edit_arena_elo_2611 scores.
  *
  * No hardcoded model list — discovers image-gen models dynamically from
- * the scores tied to these 4 benchmark IDs. New models surface
- * automatically once they have a score on any of the 4 boards.
+ * the scores tied to these board benchmark IDs. New models surface
+ * automatically once they have a score on any of the boards.
  */
 var ImageGen = {
     BOARDS: [
         { id: 'arena_text_to_image_elo',  label: 'arena.ai Text-to-Image',  icon: '🖼️' },
         { id: 'arena_image_edit_elo',     label: 'arena.ai Image Edit',     icon: '✏️' },
         { id: 'arena_image_to_webdev_elo', label: 'arena.ai Image-to-WebDev', icon: '🌐' },
-        { id: 'arena_t2i_aa_elo',         label: 'Artificial Analysis T2I', icon: '📊' }
+        // S324: AA re-anchored its image arenas (FLUX.2 [dev] = 1000) → *_2611 ids
+        { id: 'aa_t2i_arena_elo_2611',    label: 'Artificial Analysis Text-to-Image', icon: '📊' },
+        { id: 'aa_edit_arena_elo_2611',   label: 'Artificial Analysis Image Editing', icon: '🪄' }
     ],
     _initialized: false,
 
@@ -97,8 +99,10 @@ var ImageGen = {
 
         var self = this;
         var imageModels = new Set();
+        var idx = window.App.getScoreIndex ? window.App.getScoreIndex() : null;
         this.BOARDS.forEach(function(board) {
-            var rows = scores.filter(function(s) { return s.benchmark_id === board.id; })
+            var rows = (idx ? (idx.byBench[board.id] || []).slice()
+                            : scores.filter(function(s) { return s.benchmark_id === board.id; }))
                               .sort(function(a, b) { return (b.value || 0) - (a.value || 0); });
             if (rows.length === 0) return;
             rows.forEach(function(s) { imageModels.add(s.model_id); });

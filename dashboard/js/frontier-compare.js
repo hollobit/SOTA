@@ -79,7 +79,9 @@ var FrontierCompare = {
             // 2026-07-01 S160 — Sonnet 5 system card §8 coding benches (Cognition FrontierCode v1 + SWE-Bench Multimodal)
             'frontiercode_v1', 'swe_bench_multimodal_sonnet5', 'swe_bench_verified_sonnet5_card',
             // 2026-07-08 S175/S176 — Grok 4.5 + GPT-5.6 launch coding benches
-            'deepswe_1_0', 'deepswe_1_1', 'swe_marathon', 'aa_coding_agent_index'
+            'deepswe_1_0', 'deepswe_1_1', 'swe_marathon', 'aa_coding_agent_index',
+            // 2026-11-19 S325 — AA Coding Agent Index re-based (FrontierCode 2.0 + SWE-Atlas-QnA + TB v4), CursorBench 4.1, SWE-sweep provider harness
+            'aa_coding_agents_index_2611', 'cursorbench_4_1', 'swe_sweep_provider_harness'
         ],
         math: ['riemannbench', 'aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026',
             // 2026-06-02 S46 — Qwen3.7-Plus HMMT 2026 Feb + IMOAnswerBench (existing id) + PolyMATH
@@ -156,6 +158,7 @@ var FrontierCompare = {
             // 2026-09-30 S290 — CWE-bench v1 official board + Google/Wiz internal evals (Gemini 4 Argon launch)
             'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
             'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench',  // S290b — cwe-bench.com board columns, v0
+            'cwe_bench_v2', 'webexploitbench_v1_2', 'autobaxbench_hard_google_2611',  // S325 — Gemini 4 Neon cyber charts + CWE-bench v2 board
             'evmbench_exploit', 'evmbench_detect', 'cvebench',
             'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range',
             'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion',
@@ -246,6 +249,7 @@ var FrontierCompare = {
             'chartography_surge_no_tools',
             // 2026-11-12 S320 — Gemini 4 Hydrogen card: MKA (AA mkaClimbWsr), Terminal-Bench 4.1 cheating-adjusted
             'mka_climb_wsr', 'terminal_bench_4_1_cheating_adjusted',
+            'mka_regression_wsr', 'aa_omniscience_v1_1_domain_software_engineering',  // S325b AA breakdowns
             // 2026-11-16 S321 — AI IQ composite (aiiq.org) + Qwen4-Max blog (Work360, Video-Index) + AutomationBench-AA breakdown
             'aiiq_composite_iq', 'aiiq_programmatic_reasoning_iq', 'aiiq_computer_use_iq', 'aiiq_knowledge_work_iq', 'work360', 'qwen_video_index', 'automationbench_aa_completion',
             // 2026-11-17 S322 — GPT-6.2 launch: LifeVal, GDPval v2 (OpenAI internal), SecureSWE, PatchBench, OpenAI MLE-Bench Revised, OECI, Plotly DataAnalyticsBench, AA HLE-Diamond, Model Spec targeted cases
@@ -322,6 +326,8 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-11-18 S325
+        'google/gemini-4-neon',  // 2026-11-18 — Gemini 4 Neon (adapted from Carbon); base = xhigh: AAII v5.0.1 61.4 (#3), AA Coding Agent Index 58.6 (#1, Antigravity CLI), Vals Index 70.87 (#2), SWE-sweep 39.0 (provider harness), GraphWalks 95.2, SEC-bench Pro 90.5, WebExploitBench 51.26, AA-Briefcase presentation 1771; $3/$15
         // 2026-11-17 S322
         'openai/gpt-6.2-astra',  // 2026-11-17 — AAII v5 62.1 (max), ALE v1.1 77.61, TB-Science 77.1, Vals Science 68.4, BenchCAD 82.5, AA-3D Elo 1318 (#1); SEC-Bench Pro 86.75, ExploitBench Internal Port 53.5; first OpenAI release at High AI self-improvement; $8/$40
         'openai/gpt-6.2-sol',  // 2026-11-17 — AAII v5 57.3 (max), ALE v1.1 73.04, TB-Science 68.0, SEC-Bench Pro 88.34, ExploitBench Internal Port 50.5; Plotly DataAnalyticsBench 40/43; $2/$10 (same as GPT-6.1 Sol)

@@ -48,6 +48,8 @@ var CyberCoding = {
         'irregular_atomic_evasion',
         // 2026-06-27 S148 — ExploitGym (S136/S143 evolution)
         'exploitgym', 'exploitgym_10h_google',
+        // 2026-11-19 S325/S325b — Gemini 4 Neon: WebExploitBench v1.2 (black-box web exploitation)
+        'webexploitbench_v1_2',
         // 2026-09-04 S260 — GPT-6 Astra system card (Critical cyber threshold): new internal evals + Irregular aggregate
         'sandbox_bench', 'sre_bench', 'irregular_frontiercyber_overall',
         // 2026-09-04 S261 — GPT-5-Codex addendum: malware refusal + coding prompt injection
@@ -95,6 +97,8 @@ var CyberCoding = {
         'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
         // 2026-10-01 S290b — cwe-bench.com: v1 pass@4 / judge-panel / cost columns, v0 board (100 tasks)
         'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench_v1_judge_pass4', 'cwe_bench_v1_cost_per_rollout_usd_lower_better', 'cwe_bench', 'cwe_bench_v0_cost_per_rollout_usd_lower_better',
+        // 2026-11-19 S325/S325b — CWE-bench v2 official board (combined 250 tasks) + AutoBaxBench hard tier (Gemini 4 Neon blog)
+        'cwe_bench_v2', 'cwe_bench_v2_pass4', 'cwe_bench_v2_cost_per_rollout_usd_lower_better', 'autobaxbench_hard_google_2611',
         // 2026-10-09 S298 — Vercel DeepsecBench board (F2 / recall / precision / cost) · Vals CyberBench v1.1 (PoC + Patch) · CyberGym-E2E official board (S1–S4, $10 budget + no-cap)
         'deepsecbench', 'deepsecbench_recall', 'deepsecbench_precision', 'deepsecbench_cost_usd_lower_better', 'vals_cyberbench_v1_1', 'vals_cyberbench_v1_1_poc', 'vals_cyberbench_v1_1_patch', 'vals_cyberbench_v1_1_cost_per_test_usd_lower_better', 'cybergym_e2e_official_s3', 'cybergym_e2e_official_s1', 'cybergym_e2e_official_s4', 'cybergym_e2e_official_patch_only', 'cybergym_e2e_official_s3_nocap',
         // 2026-09-28 S289 — Artificial Analysis Cyber Index v1 (CWE-Bench-AA / DeepsecBench-AA / CyberGym-E2E-AA + safety-block rates)
@@ -163,6 +167,8 @@ var CyberCoding = {
         // 2026-08-02 S224b — arxiv benchmark sweep (coding leaderboards)
         'swe_compass', 'nl2repo', 'dataclaweval',
         'terminal_bench_4_0', 'frontiercode_2_0_aa', 'swe_sweep',  // S265
+        // 2026-11-19 S325/S325b — CursorBench 4.1 board, SWE-sweep by harness, AA Coding Agent Index (Nov-2026 composition), TB 4.1 official board cost/tokens
+        'cursorbench_4_1', 'cursorbench_4_1_cost_per_task_usd_lower_better', 'swe_sweep_provider_harness', 'swe_sweep_mini_swe_harness', 'aa_coding_agents_index_2611', 'aa_coding_agents_frontiercode_2_0_2611', 'terminal_bench_4_1_tbench_total_cost_usd_lower_better',
         'frontiercode_2_0', 'benchcad_2_1_core_with_tools', 'benchcad_2_1_core_no_tools',  // S317 Cognition FrontierCode 2.0 + BenchCAD 2.1 (Fable 5.2 launch)
         'evocode_bench_v2_mt4', 'evocode_bench_v2_case',  // S270 Terminal-Universe paper
         // 2026-09-23 S282 — TB 4.0 vendor/AA ids, CursorBench 4.0, FrontierSWE v2, MiMo in-house
@@ -199,6 +205,8 @@ var CyberCoding = {
                 // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
                 'kernelbench_hard', 'swe_fficiency',
                 // 2026-09-23 S282
+                // 2026-11-19 S325/S325b
+                'cursorbench_4_1', 'swe_sweep_provider_harness', 'swe_sweep_mini_swe_harness', 'aa_coding_agents_index_2611',
                 'terminal_bench_4_0', 'frontiercode_2_0_aa', 'frontiercode_2_0', 'swe_sweep', 'terminal_bench_4', 'terminal_bench_4_0_aa', 'cursorbench_4_0', 'frontierswe_v2', 'frontierswe_v2_worst5', 'frontierswe_v2_best5', 'terminal_bench_4_1_cheating_adjusted', 'last_secure_code_bench_func_sec_pass_rate', 'last_secure_code_bench_all_granularity_secure_rate', 'aiiq_domain_cybersecurity_iq', 'aiiq_domain_software_engineering_iq', 'secureswe_openai', 'patchbench_openai', 'sandbox_bench_v2', 'deepbinary_total_estimated_bounty_usd', 'irregular_cyscenariobench_success_v2026_11', 'irregular_frontiercyber_solved_of_217', 'design_arena_models_website_elo', 'design_arena_models_uicomponent_elo', 'frontierswe_v2_implementation', 'frontierswe_v2_performance', 'frontierswe_v2_research', 'deepswe_v1_1_pass_at_1', 'livebench_v2_2026_11_06_coding', 'autobaxbench_easy', 'autobaxbench_medium', 'autobaxbench_hard', 'mimo_code_bench', 'mimo_visual_coding',
                 // 2026-09-23 S282b
                 'swe_atlas_qna_aa_codex', 'terminal_bench_4_0_aa_codex', 'deepswe_1_1_aa_codex', 'swe_bench_verified_codex_harness', 'swe_bench_verified_claude_code', 'swe_bench_verified_mini_swe_agent_harness', 'swe_bench_pro_codex_harness', 'swe_bench_pro_claude_code', 'swe_bench_pro_mini_swe_agent_harness', 'mimo_code_bench_mini_codex_harness', 'mimo_code_bench_mini_claude_code', 'mimo_code_bench_mini_mini_swe_agent_harness',
@@ -248,7 +256,7 @@ var CyberCoding = {
                 'irregular_atomic_network_attack_sim',
                 'irregular_atomic_vuln_research_exploit',
                 'irregular_atomic_evasion',
-                'exploitgym', 'exploitgym_10h_google',
+                'exploitgym', 'exploitgym_10h_google', 'webexploitbench_v1_2',  // S325
                 // 2026-09-04 S260 GPT-6 Astra system card
                 'sandbox_bench', 'sre_bench', 'irregular_frontiercyber_overall',
                 // 2026-09-04 S261 — GPT-5-Codex addendum
@@ -287,7 +295,7 @@ var CyberCoding = {
                 'csguard_llm_t2c_l1_asr_lower_better', 'csguard_llm_t2c_l2_avg_asr_lower_better', 'csguard_llm_c2c_avg_asr_lower_better',
                 // 2026-09-30 S290 — CWE-bench v1 board · Google real-world vuln discovery · Wiz black-box pentest
                 'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
-                'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench_v1_judge_pass4', 'cwe_bench_v1_cost_per_rollout_usd_lower_better', 'cwe_bench', 'cwe_bench_v0_cost_per_rollout_usd_lower_better',
+                'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench_v1_judge_pass4', 'cwe_bench_v1_cost_per_rollout_usd_lower_better', 'cwe_bench', 'cwe_bench_v0_cost_per_rollout_usd_lower_better', 'cwe_bench_v2', 'cwe_bench_v2_pass4', 'cwe_bench_v2_cost_per_rollout_usd_lower_better', 'autobaxbench_hard_google_2611',  // S325
                 // 2026-10-09 S298 — Vercel DeepsecBench board (F2 / recall / precision / cost) · Vals CyberBench v1.1 (PoC + Patch) · CyberGym-E2E official board (S1–S4, $10 budget + no-cap)
                 'deepsecbench', 'deepsecbench_recall', 'deepsecbench_precision', 'deepsecbench_cost_usd_lower_better', 'vals_cyberbench_v1_1', 'vals_cyberbench_v1_1_poc', 'vals_cyberbench_v1_1_patch', 'vals_cyberbench_v1_1_cost_per_test_usd_lower_better', 'cybergym_e2e_official_s3', 'cybergym_e2e_official_s1', 'cybergym_e2e_official_s4', 'cybergym_e2e_official_patch_only', 'cybergym_e2e_official_s3_nocap',
                 // 2026-09-28 S289 — AA Cyber Index v1 (defensive loop: find · reproduce · patch)
@@ -706,6 +714,8 @@ var CyberCoding = {
         'google/gemini-4-carbon', 'openai/gpt-6.1-terra', 'mistral/mistral-large-4',
         // 2026-11-12 S320 — Gemini 4 Hydrogen (SWE-sweep 13.5, TB 4.1 cheating-adjusted 57.0 at high)
         'google/gemini-4-hydrogen',
+        // 2026-11-18 S325 — Gemini 4 Neon (SEC-bench Pro 90.5, WebExploitBench v1.2 51.26, CWE-bench v2 70.7, ExploitGym 47.9/48.3 at 6h/10h, AutoBaxBench hard 76)
+        'google/gemini-4-neon',
         // 2026-11-17 S322 — GPT-6.2 Astra / Sol (SEC-Bench Pro 86.75 / 88.34, ExploitBench Internal Port 53.5 / 50.5, Sandbox Bench v2 36.4 / 25.0, PatchBench 79.7 / 75.6, SecureSWE 65.7 / 55.6)
         'openai/gpt-6.2-astra', 'openai/gpt-6.2-sol',
         // 2026-11-16 S321 — Qwen4-Max (DeepSWE v1.1 75.7, TB 4.0 AA 48.5, CodeArena 1750, Last Secure Code Bench func+sec 31.8)

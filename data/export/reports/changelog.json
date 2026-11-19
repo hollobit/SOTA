@@ -5559,5 +5559,29 @@
   "type": "ingest",
   "title": "S323b — Epoch 페이지 갭 감사: 원점수 id·누락 보드",
   "detail": "페이지 내장 데이터의 모든 값을 DB와 대조. 페이지는 원점수를, 기존 *_epoch id는 Epoch가 (원점수−무작위 기준선)/(상한−기준선)으로 정규화한 ECI 입력값을 저장하고 있어 표시값과 달랐음. 원점수 id 8개 신설(GPQA·FrontierMath T1-3·체스·미스터리·가구 조립·LMCA·DTBench·WeirdML v3; 각 보드 전체), id가 없던 ALE-Bench·ForecastBench·BTF-3(낮을수록 좋음) 추가, GBA-Eval 빈칸 보완(GPT-6 Astra 0.871, Fable 5.2 0.848). +11 benchmarks, +761 scores, 기존 값 변경 0."
+ },
+ {
+  "date": "2026-11-18",
+  "type": "ingest",
+  "title": "S324 — 이미지 생성 모델 10종: GPT-Image-2.6·MAI-Image-2.7·Kling Image 4.0·Seedream 5.5 외",
+  "detail": "Qwen-Image 2.1, FLUX 3 Image(+Klein), Nano Banana 2.1, Krea 3, MOSS-Image, GPT-Image-2.6, Seedream 5.5, MiniMax H3-Image, MAI-Image-2.7, Kling Image 4.0을 1차 출처로 조사. Artificial Analysis 이미지 아레나가 재기준(FLUX.2 [dev]=1000)되어 현재 보드 전체를 *_2611 id(T2I·편집, 카테고리 포함)로 분리. LMArena 최신값은 신규 모델만 채움. 벤더 자료: Qwen-Image-Bench, Nano Banana 2.1 모델 카드 SxS Elo, Seedream 5.5 텍스트 손상률·GSB, ChatGPT Images 2.6 시스템 카드 안전성 표, Krea 3 기술 보고서(지연·비용), FLUX 3 Klein 로컬 지연, MOSS-Image 기술 보고서(LLTB·7Bench·RealLayoutArena). +17 models, +144 benchmarks, +3,096 scores, 기존 값 변경 0. Image Gen 탭에 AA 보드 반영."
+ },
+ {
+  "date": "2026-11-18",
+  "type": "ingest",
+  "title": "S324b — 이미지 생성 갭 감사: AA 미등록 2026 모델 18종·MOSS 표 보강",
+  "detail": "S324 출처를 다시 전수 확인. AA 이미지 아레나에서 DB id가 없어 빠졌던 2026년 모델(Canva Craft, MAI-Image-2.5-Pro, MAI-Image-2.6-Flash, HunyuanImage 3.5 Preview, Fibo 2.0, FIBO Edit, Luma UNI-1 Max, Kling Image 3.0 Omni, ERNIE Image Turbo, Z-Image Base, LongCat Image 등)을 추가하고 전체·카테고리·가격 값을 채움. MOSS-Image 보고서의 LLTB(Z-Image Base), RealLayoutArena Elo, GPT-6 루브릭 6개 차원(신규 12 id)과 나머지 생성기 합계, Qwen-Image-Bench 2개 막대 추가. Qwen-Image-2.1 Pro/Turbo 메타데이터(7B, 가격) 보강. +18 models, +12 benchmarks, +643 scores, 기존 값 변경 0."
+ },
+ {
+  "date": "2026-11-19",
+  "type": "ingest",
+  "title": "S325 — Gemini 4 Neon 출시: Google 표·차트, AA, Vals, Plotly + AA 코딩 에이전트 지수 재기준",
+  "detail": "Gemini 4 Neon(2026-11-18, Carbon 기반, xhigh 기준 + High/Medium/Low) 추가. 모델 카드·평가 PDF·블로그 공통 결과표(21행, Opus 5.5·GPT-6.2 Sol 비교)와 블로그 차트 6종(AutoBaxBench, CWE-bench v2, ExploitGym, Gray Swan IPI, WebExploitBench, SEC-bench Pro), 안전성 수치 반영. 신규 id: cursorbench_4_1, swe_sweep_provider_harness/mini_swe_harness, cwe_bench_v2, webexploitbench_v1_2, arena_agent_arena_index 등. AA 모델·평가 페이지에서 4개 effort 정밀값(II v5.0.1 61.4, Briefcase 1700/발표 1771), AA 코딩 에이전트 지수가 FrontierCode 2.0 포함으로 재구성되어 보드 전체(41행)를 *_2611 id로 분리(Neon 58.64 1위). Vals(Vals Index 70.87 #2, Legal Research 56.25 #1), Plotly 43/43. BenchLM이 드러낸 Hydrogen/Carbon 누락분은 Epoch 원자료와 OpenRouter 레코드로 보충. +4 models, +24 benchmarks, +755 scores, 기존 값 변경 0."
+ },
+ {
+  "date": "2026-11-19",
+  "type": "ingest",
+  "title": "S325b — Gemini 4 Neon 갭 감사: AA 세부 분해·CursorBench 4.1·TB 4.1·CWE-bench v2 원 보드",
+  "detail": "S325 출처를 재점검. AA 페이지의 모델 객체 77개(slug 매핑 재구성)에서 MKA 분야·파일 유형별 Climb WSR(17 id, 20개 모델), AA-Omniscience v1.1 영역·공개/비공개·시도율(9 id, 35개 모델), AA-Briefcase 파일 유형별 루브릭 통과율(4 id, 43개 모델) 신규 추가. BenchLM·Google이 인용한 원 리더보드에서 CursorBench 4.1 전체(53행, 비용·토큰·단계), Terminal-Bench 4.1 공식 보드(52행, 총 토큰·비용), CWE-bench v2(20행, pass@4·비용), Cognition FrontierCode(Carbon 42.6·Hydrogen 38.9) 반영. Google 차트의 DeepSeek-V4.1-Flash CWE 값은 보드 표기대로 1017 id로 정정. AA가 재채점한 GDP.pdf·속도 필드는 Neon 외 모델에 채우지 않음. Cyber-Coding·Frontier Compare 목록에 S325 신규 id 노출. +37 benchmarks, +1,352 scores, 기존 값 변경 0."
  }
 ]
