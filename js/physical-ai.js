@@ -238,7 +238,7 @@ var PhysicalAI = {
                 'drivehierarchy_openloop_score', 'drivehierarchy_closedloop_r4_score', 'causaldrivebench_overall', 'obsdrivebench_risk_decision_avg', 'drivespatial_avg',
                 // 2026-10-03 S292b — leftovers + April–May gap (SIMPLE, Bench2Dex, DexVerse, VLAQuantBench, …) and V2X-QA / CCTVBench driving QA
                 'simple_grasp_dr0', 'bench2dex_sr_4channel_mean', 'dexverse_baseline_mean_sr', 'vlaquantbench_libero_spatial_w4a4', 'robofoldex_foldchallenge_avg_sr', 'activearena_real_avg', 'robomemarena_tsr', 'oopsiebench_b1k_ignite_wood_completion', 'v2x_qa_cooperative_avg', 'cctvbench_quadacc',
-                'robocasa', 'robocasa365', 'robotwin2', 'vlabench', 'vlabench_track1_primitive',
+                'robocasa', 'robocasa365', 'robocasa365_2611', 'robocasa365_atomic_2611', 'robocasa365_composite_seen_2611', 'robocasa365_composite_unseen_2611', 'robotwin2', 'vlabench', 'vlabench_track1_primitive',
                 'bridge_v2', 'aloha_4task_avg',
                 'open_x_embodiment', 'dexmimicgen', 'gr1_tabletop',
                 'simpler_env_avg', 'roboarena_elo',
@@ -288,7 +288,7 @@ var PhysicalAI = {
                 'sana_wm_1min_simple_diq', 'sana_wm_1min_hard_diq',
                 'sana_wm_1min_throughput',
                 // 2026-05-30 Tsinghua FIB WorldArena + SHI-Labs PAI-Bench Generation (arxiv 2512.01989)
-                'worldarena', 'pai_bench_g',
+                'worldarena', 'pai_bench_g', 'pai_bench_g_2611',
                 // 2026-05-30 Session 39 PAI-Bench Conditional Generation Quality
                 'pai_bench_c_quality',
                 // 2026-05-31 S40 WorldArena Track 2 Policy Evaluator (HF Space public 05-29)
@@ -1019,7 +1019,7 @@ var PhysicalAI = {
         var AXES = [
             { name: 'VLA Policy', benches: [
                 'libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long',
-                'robocasa', 'robocasa365', 'robotwin2', 'vlabench', 'vlabench_track1_primitive',
+                'robocasa', 'robocasa365', 'robocasa365_2611', 'robocasa365_atomic_2611', 'robocasa365_composite_seen_2611', 'robocasa365_composite_unseen_2611', 'robotwin2', 'vlabench', 'vlabench_track1_primitive',
                 'bridge_v2', 'aloha_4task_avg', 'open_x_embodiment', 'simpler_env_avg',
                 'gr1_real_lang_following', 'unitree_g1_1k_demos', 'realworld_language_following',
                 // 2026-10-04 S294b — 2026 manipulation suites on 0–100 scales (RoboArena Elo and the 0–13% RoboDojo rates stay out of this raw mean; see Sim-to-Real chart)

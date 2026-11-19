@@ -68,6 +68,7 @@
     'libero_long': 'vla-manipulation',
     'robocasa': 'vla-manipulation',
     'robocasa365': 'vla-manipulation',
+    'robocasa365_2611': 'vla-manipulation',  // S326b official RoboCasa365 board (re-run entries)
     'robotwin2': 'vla-manipulation',
     'vlabench': 'vla-manipulation',
     'vlabench_track1_primitive': 'vla-manipulation',
@@ -877,7 +878,7 @@
       'Top model on each benchmark — RoboDojo sim vs real (same 30-policy board), SimplerEnv, RoboCasa / RoboCasa365, LIBERO-Plus, RoboTwin hard. Percent scales only (RoboArena Elo is on the leaderboard).');
     if (typeof echarts === 'undefined') return;
 
-    var benches = ['robodojo_sim_avg_sr', 'robodojo_real_avg_sr', 'simpler_env_avg', 'robocasa', 'robocasa365', 'libero_plus', 'robotwin_hard'];  // 2026-10-04 S294b
+    var benches = ['robodojo_sim_avg_sr', 'robodojo_real_avg_sr', 'simpler_env_avg', 'robocasa', 'robocasa365_2611', 'libero_plus', 'robotwin_hard'];  // 2026-10-04 S294b
     var data = [];
     benches.forEach(function(bid) {
       var rows = _scoresFor(bid);
