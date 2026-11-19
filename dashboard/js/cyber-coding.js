@@ -100,7 +100,7 @@ var CyberCoding = {
         // 2026-11-19 S325/S325b — CWE-bench v2 official board (combined 250 tasks) + AutoBaxBench hard tier (Gemini 4 Neon blog)
         'cwe_bench_v2', 'cwe_bench_v2_pass4', 'cwe_bench_v2_cost_per_rollout_usd_lower_better', 'autobaxbench_hard_google_2611',
         // 2026-10-09 S298 — Vercel DeepsecBench board (F2 / recall / precision / cost) · Vals CyberBench v1.1 (PoC + Patch) · CyberGym-E2E official board (S1–S4, $10 budget + no-cap)
-        'deepsecbench', 'deepsecbench_recall', 'deepsecbench_precision', 'deepsecbench_cost_usd_lower_better', 'vals_cyberbench_v1_1', 'vals_cyberbench_v1_1_poc', 'vals_cyberbench_v1_1_patch', 'vals_cyberbench_v1_1_cost_per_test_usd_lower_better', 'cybergym_e2e_official_s3', 'cybergym_e2e_official_s1', 'cybergym_e2e_official_s4', 'cybergym_e2e_official_patch_only', 'cybergym_e2e_official_s3_nocap',
+        'deepsecbench', 'deepsecbench_recall', 'deepsecbench_precision', 'deepsecbench_cost_usd_lower_better', 'deepsecbench_2611', 'deepsecbench_recall_2611', 'deepsecbench_precision_2611', 'deepsecbench_cost_usd_lower_better_2611', 'vals_cyberbench_v1_1', 'vals_cyberbench_v1_1_poc', 'vals_cyberbench_v1_1_patch', 'vals_cyberbench_v1_1_cost_per_test_usd_lower_better', 'cybergym_e2e_official_s3', 'cybergym_e2e_official_s1', 'cybergym_e2e_official_s4', 'cybergym_e2e_official_patch_only', 'cybergym_e2e_official_s3_nocap',
         // 2026-09-28 S289 — Artificial Analysis Cyber Index v1 (CWE-Bench-AA / DeepsecBench-AA / CyberGym-E2E-AA + safety-block rates)
         'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa', 'cwe_bench_aa_refusal_rate_lower_better', 'deepsecbench_aa_refusal_rate_lower_better', 'cybergym_e2e_aa_refusal_rate_lower_better',
         // 2026-09-23 S282b — Opus 5.5 card §3.4-3.5 safeguard flag rates / rewind-attacker ASR
@@ -297,7 +297,7 @@ var CyberCoding = {
                 'cwe_bench_v1', 'google_realworld_vuln_discovery_internal', 'wiz_pentest_benchmark_internal',
                 'cwe_bench_v1_pass4', 'cwe_bench_v1_judge_pass1', 'cwe_bench_v1_judge_pass4', 'cwe_bench_v1_cost_per_rollout_usd_lower_better', 'cwe_bench', 'cwe_bench_v0_cost_per_rollout_usd_lower_better', 'cwe_bench_v2', 'cwe_bench_v2_pass4', 'cwe_bench_v2_cost_per_rollout_usd_lower_better', 'autobaxbench_hard_google_2611',  // S325
                 // 2026-10-09 S298 — Vercel DeepsecBench board (F2 / recall / precision / cost) · Vals CyberBench v1.1 (PoC + Patch) · CyberGym-E2E official board (S1–S4, $10 budget + no-cap)
-                'deepsecbench', 'deepsecbench_recall', 'deepsecbench_precision', 'deepsecbench_cost_usd_lower_better', 'vals_cyberbench_v1_1', 'vals_cyberbench_v1_1_poc', 'vals_cyberbench_v1_1_patch', 'vals_cyberbench_v1_1_cost_per_test_usd_lower_better', 'cybergym_e2e_official_s3', 'cybergym_e2e_official_s1', 'cybergym_e2e_official_s4', 'cybergym_e2e_official_patch_only', 'cybergym_e2e_official_s3_nocap',
+                'deepsecbench', 'deepsecbench_recall', 'deepsecbench_precision', 'deepsecbench_cost_usd_lower_better', 'deepsecbench_2611', 'deepsecbench_recall_2611', 'deepsecbench_precision_2611', 'deepsecbench_cost_usd_lower_better_2611', 'vals_cyberbench_v1_1', 'vals_cyberbench_v1_1_poc', 'vals_cyberbench_v1_1_patch', 'vals_cyberbench_v1_1_cost_per_test_usd_lower_better', 'cybergym_e2e_official_s3', 'cybergym_e2e_official_s1', 'cybergym_e2e_official_s4', 'cybergym_e2e_official_patch_only', 'cybergym_e2e_official_s3_nocap',
                 // 2026-09-28 S289 — AA Cyber Index v1 (defensive loop: find · reproduce · patch)
                 'aa_cyber_index_v1', 'cwe_bench_aa', 'deepsecbench_aa', 'cybergym_e2e_aa', 'cwe_bench_aa_refusal_rate_lower_better', 'deepsecbench_aa_refusal_rate_lower_better', 'cybergym_e2e_aa_refusal_rate_lower_better',
                 'apollo_sabotage_mean', 'apollo_impossible_task_lying', 'apollo_eval_awareness',
@@ -939,7 +939,7 @@ var CyberCoding = {
     CYBER_BOARDS: [
         { id: 'aa_cyber_index_v1', label: 'AA Cyber Index v1', sub: '발견·재현·패치 종합 (거절=0점)', chart: true },
         { id: 'vals_cyberbench_v1_1', label: 'Vals CyberBench v1.1', sub: 'OSS-Fuzz PoC 60 + Patch 56 (10/7)', chart: true },
-        { id: 'deepsecbench', label: 'DeepsecBench (Vercel)', sub: '발견 F2 — 231 골든 발견', chart: true },
+        { id: 'deepsecbench_2611', label: 'DeepsecBench (Vercel)', sub: '발견 F2 — 11월 재채점 보드', chart: true },
         { id: 'cybergym_e2e_official_s3', label: 'CyberGym-E2E (공식, $10)', sub: 'S3 = PoC + 패치 + 테스트 통과', chart: true },
         { id: 'cwe_bench_v1', label: 'CWE-bench v1', sub: '감사 + 패치 (Collinear 공식)' },
         { id: 'cybergym_e2e_aa', label: 'CyberGym-E2E-AA', sub: 'AA 구현 131 과제' },
@@ -951,7 +951,7 @@ var CyberCoding = {
         { id: 'exploitbench_v8_cap_pct', label: 'ExploitBench V8', sub: 'N-day 익스플로잇 능력' }
     ],
     // Radar: a small set of comparable headline axes instead of every cyber + coding id.
-    RADAR_AXES: ['aa_cyber_index_v1', 'vals_cyberbench_v1_1', 'deepsecbench', 'cwe_bench_v1', 'cybergym', 'cybench', 'swe_bench_pro', 'terminal_bench_4_0', 'frontiercode_2_0_aa', 'swe_sweep'],
+    RADAR_AXES: ['aa_cyber_index_v1', 'vals_cyberbench_v1_1', 'deepsecbench_2611', 'cwe_bench_v1', 'cybergym', 'cybench', 'swe_bench_pro', 'terminal_bench_4_0', 'frontiercode_2_0_aa', 'swe_sweep'],
 
     _isLowerBetter: function(bid) {
         if (/lower_better/.test(bid)) return true;

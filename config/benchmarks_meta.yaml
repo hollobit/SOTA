@@ -6235,3 +6235,3575 @@ benchmarks:
     citation_count: 380
     last_updated: "2024-05"
     notes: "Stricter MBPP variant with extended test cases"
+
+# --- S326 (2026-11-19): dataset metadata for heavily-scored benchmarks, from primary dataset/paper pages ---
+- id: scicode
+  name: SciCode
+  category: coding
+  metric: pass@1
+  unit: '%'
+  description: Scientist-curated research coding benchmark across 16 natural-science subfields; 80 main problems
+    decomposed into 338 Python subproblems, each checked by scientist-written test cases (optional background descriptions).
+    Scored as main-problem or subproblem pass rate.
+  paper: https://arxiv.org/abs/2407.13168
+  github: https://github.com/scicode-bench/SciCode
+  year: '2024'
+  item_count: 338 subproblems from 80 main problems
+  leaderboard: https://scicode-bench.github.io
+  source_session: S326
+- id: mmmu_pro
+  name: MMMU-Pro
+  category: vision-language
+  metric: accuracy
+  unit: '%'
+  description: 'Hardened MMMU for college-level multimodal reasoning: filters out text-only-answerable questions,
+    augments candidate options, and adds a vision-only setting with the question embedded in the image. Accuracy
+    (%).'
+  paper: https://arxiv.org/abs/2409.02813
+  github: https://github.com/MMMU-Benchmark/MMMU
+  year: '2024'
+  leaderboard: https://huggingface.co/datasets/MMMU/MMMU_Pro
+  source_session: S326
+- id: gdp_pdf
+  name: GDP.pdf (Surge AI)
+  category: multimodal
+  metric: pass rate
+  unit: '%'
+  description: 'Surge AI''s GDP.pdf benchmark (as implemented by Artificial Analysis): reasoning over long real-world
+    professional PDF documents, graded against detailed task-specific atomic criteria; strict pass rate.'
+  item_count: 100 tasks (10 domains, 4,592 source pages, 1,275 grading criteria)
+  leaderboard: https://artificialanalysis.ai/evaluations/gdp-pdf
+  source_session: S326
+- id: arc_agi_1
+  name: ARC-AGI-1
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: 'Abstraction and Reasoning Corpus: grid-based few-shot abstract reasoning tasks (infer the transformation
+    from demonstration pairs and produce the output grid); scored as % of tasks solved exactly.'
+  paper: https://arxiv.org/abs/1911.01547
+  github: https://github.com/fchollet/ARC-AGI
+  year: '2019'
+  item_count: 400 training + 400 evaluation tasks
+  license: Apache-2.0
+  leaderboard: https://arcprize.org/arc-agi/1/
+  source_session: S326
+- id: aiiq_composite_iq
+  name: AI IQ — Composite IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: 'AI IQ (aiiq.org) Composite IQ: mean of seven equally weighted capability dimensions, each estimated
+    from source-backed public benchmark results mapped onto a 100-centred human IQ scale, with documented imputation
+    for missing values.'
+  item_count: 7 dimensions, 39 benchmark inputs
+  leaderboard: https://www.aiiq.org/methodology/
+  source_session: S326
+- id: aiiq_abstract_reasoning_iq
+  name: AI IQ — Abstract Reasoning dimension IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) Abstract Reasoning dimension estimate on the 100-centred IQ scale, derived from
+    mapped public benchmark results; one of the seven dimensions averaged into Composite IQ (derived index, no own
+    items).
+  leaderboard: https://www.aiiq.org/dimensions/
+  source_session: S326
+- id: aiiq_academic_reasoning_iq
+  name: AI IQ — Academic Reasoning dimension IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) Academic Reasoning dimension estimate on the 100-centred IQ scale, derived from
+    mapped public benchmark results; one of the seven dimensions averaged into Composite IQ (derived index, no own
+    items).
+  leaderboard: https://www.aiiq.org/dimensions/
+  source_session: S326
+- id: aiiq_computer_use_iq
+  name: AI IQ — Computer Use dimension IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) Computer Use dimension estimate on the 100-centred IQ scale, derived from mapped
+    public benchmark results; one of the seven dimensions averaged into Composite IQ (derived index, no own items).
+  leaderboard: https://www.aiiq.org/dimensions/
+  source_session: S326
+- id: aiiq_knowledge_work_iq
+  name: AI IQ — Knowledge Work dimension IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) Knowledge Work dimension estimate on the 100-centred IQ scale, derived from mapped
+    public benchmark results; one of the seven dimensions averaged into Composite IQ (derived index, no own items).
+  leaderboard: https://www.aiiq.org/dimensions/
+  source_session: S326
+- id: aiiq_mathematical_reasoning_iq
+  name: AI IQ — Mathematical Reasoning dimension IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) Mathematical Reasoning dimension estimate on the 100-centred IQ scale, derived from
+    mapped public benchmark results; one of the seven dimensions averaged into Composite IQ (derived index, no own
+    items).
+  leaderboard: https://www.aiiq.org/dimensions/
+  source_session: S326
+- id: aiiq_programmatic_reasoning_iq
+  name: AI IQ — Programmatic Reasoning dimension IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) Programmatic Reasoning dimension estimate on the 100-centred IQ scale, derived from
+    mapped public benchmark results; one of the seven dimensions averaged into Composite IQ (derived index, no own
+    items).
+  leaderboard: https://www.aiiq.org/dimensions/
+  source_session: S326
+- id: aiiq_reliability_iq
+  name: AI IQ — Reliability dimension IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) Reliability dimension estimate on the 100-centred IQ scale, derived from mapped
+    public benchmark results; one of the seven dimensions averaged into Composite IQ (derived index, no own items).
+  leaderboard: https://www.aiiq.org/dimensions/
+  source_session: S326
+- id: aiiq_domain_legal_iq
+  name: AI IQ — Legal domain IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) applied-domain composite IQ for Legal, mapped from several public domain benchmarks
+    onto the 100-centred IQ scale; tracked outside Composite IQ (derived index, no own items).
+  leaderboard: https://www.aiiq.org/legal/
+  source_session: S326
+- id: aiiq_domain_bio_iq
+  name: AI IQ — Biology domain IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) applied-domain composite IQ for Biology, mapped from several public domain benchmarks
+    onto the 100-centred IQ scale; tracked outside Composite IQ (derived index, no own items).
+  leaderboard: https://www.aiiq.org/bio/
+  source_session: S326
+- id: aiiq_domain_healthcare_iq
+  name: AI IQ — Healthcare domain IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) applied-domain composite IQ for Healthcare, mapped from several public domain benchmarks
+    onto the 100-centred IQ scale; tracked outside Composite IQ (derived index, no own items).
+  leaderboard: https://www.aiiq.org/healthcare/
+  source_session: S326
+- id: aiiq_domain_webdev_design_iq
+  name: AI IQ — WebDev & Design domain IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) applied-domain composite IQ for WebDev & Design, mapped from several public domain
+    benchmarks onto the 100-centred IQ scale; tracked outside Composite IQ (derived index, no own items).
+  leaderboard: https://www.aiiq.org/webdev-design/
+  source_session: S326
+- id: aiiq_domain_software_engineering_iq
+  name: AI IQ — Software Engineering domain IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) applied-domain composite IQ for Software Engineering, mapped from several public
+    domain benchmarks onto the 100-centred IQ scale; tracked outside Composite IQ (derived index, no own items).
+  leaderboard: https://www.aiiq.org/software-engineering/
+  source_session: S326
+- id: aiiq_domain_writing_iq
+  name: AI IQ — Writing domain IQ
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) applied-domain composite IQ for Writing, mapped from several public domain benchmarks
+    onto the 100-centred IQ scale; tracked outside Composite IQ (derived index, no own items).
+  leaderboard: https://www.aiiq.org/writing/
+  source_session: S326
+- id: aiiq_emotional_reasoning_eq
+  name: AI IQ — Emotional Reasoning (EQ)
+  category: composite
+  metric: iq
+  unit: IQ points
+  description: AI IQ (aiiq.org) Emotional Reasoning (EQ) score on the 100-centred scale, derived from mapped public
+    benchmark results; tracked outside Composite IQ (derived index).
+  leaderboard: https://www.aiiq.org/dimensions/
+  source_session: S326
+- id: otis_aime
+  name: OTIS Mock AIME 2024-2025
+  category: math
+  metric: accuracy
+  unit: '%'
+  description: Problems from the OTIS (Olympiad Training) Mock AIME, an unofficial 3-hour 15-problem exam emulating
+    the AIME with integer answers 0-999; run by Epoch AI, scored as % correct.
+  item_count: 45 problems from 3 exams
+  leaderboard: https://epoch.ai/benchmarks/otis-mock-aime-2024-2025
+  source_session: S326
+- id: chess_puzzles
+  name: Chess Puzzles (Epoch AI)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Epoch AI benchmark of programmatically generated chess positions, each with a single best next move
+    per Stockfish; models are graded on selecting the correct move.
+  year: '2025'
+  item_count: 100 novel puzzles
+  leaderboard: https://epoch.ai/benchmarks/chess-puzzles
+  source_session: S326
+- id: weirdml_v2
+  name: WeirdML v2
+  category: coding
+  metric: accuracy
+  unit: '%'
+  description: 'WeirdML (Håvard Tveit Ihle): agentic ML tasks on unusual datasets where the model must understand
+    the data and build/iterate an ML pipeline under limited feedback, scored on held-out test performance averaged
+    over runs. (The live page now shows v3 with 11 tasks; this id stores v2.)'
+  leaderboard: https://htihle.github.io/weirdml.html
+  source_session: S326
+- id: lmca_score_raw
+  name: LMCA (Language Model Conceptual Argumentation)
+  category: reasoning
+  metric: pearson r x100
+  unit: score
+  description: Redwood Research benchmark of how well models rate informal arguments in contested conceptual domains
+    (decision theory, philosophy, AI safety); score = Pearson correlation x100 between model and expert overall
+    ratings (estimated ceiling ~85).
+  item_count: 560 position texts, 1,461 arguments
+  leaderboard: https://epoch.ai/benchmarks/lmca
+  source_session: S326
+- id: dtbench_accuracy_raw
+  name: DTBench (Decision Theory Benchmark)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Redwood Research benchmark of handcrafted multiple-choice questions on the decision theory of Newcomb-like
+    problems; accuracy on the 407 capability questions (random guessing 40%).
+  item_count: 537 multiple-choice questions (407 scored capability questions)
+  leaderboard: https://epoch.ai/benchmarks/dtbench
+  source_session: S326
+- id: ale_bench
+  name: ALE-Bench
+  category: coding
+  metric: performance
+  unit: score
+  description: Sakana AI / AtCoder benchmark of long-horizon algorithm engineering on hard combinatorial optimization
+    problems from AtCoder Heuristic Contests; iterative submissions converted to an Elo-like contest Performance
+    (higher is better).
+  paper: https://arxiv.org/abs/2506.09050
+  github: https://github.com/SakanaAI/ALE-Bench
+  year: '2025'
+  item_count: 40 AHC problems
+  leaderboard: https://epoch.ai/benchmarks/ale-bench
+  source_session: S326
+- id: eq_bench_creative_writing_longform
+  name: EQ-Bench Creative Writing Longform
+  category: creative
+  metric: judge score
+  unit: score
+  description: 'EQ-Bench longform writing: the model brainstorms, plans, revises and writes a complete short story/novella
+    from a minimal prompt over multiple turns; an LLM judge scores creativity, coherence, character development
+    and prose quality.'
+  github: https://github.com/EQ-bench/longform-writing-bench
+  license: MIT
+  leaderboard: https://eqbench.com/creative_writing_longform.html
+  source_session: S326
+- id: eqbench_creative_writing_v3_elo_2026_09
+  name: EQ-Bench Creative Writing v3 (Elo, 2026-09 snapshot)
+  category: creative
+  metric: elo
+  unit: Elo
+  description: 'EQ-Bench Creative Writing v3: models write responses to fixed creative-writing prompts over several
+    iterations; an LLM judge gives rubric scores and pairwise comparisons yield an Elo ranking.'
+  github: https://github.com/EQ-bench/creative-writing-bench
+  item_count: 32 prompts x 3 iterations (96 items)
+  leaderboard: https://eqbench.com/creative_writing.html
+  source_session: S326
+- id: eqbench_creative_writing_v3_rubric
+  name: EQ-Bench Creative Writing v3 (rubric score)
+  category: creative
+  metric: rubric score
+  unit: score
+  description: 'EQ-Bench Creative Writing v3: models write responses to fixed creative-writing prompts over several
+    iterations; an LLM judge gives rubric scores and pairwise comparisons yield an Elo ranking.'
+  github: https://github.com/EQ-bench/creative-writing-bench
+  item_count: 32 prompts x 3 iterations (96 items)
+  leaderboard: https://eqbench.com/creative_writing.html
+  source_session: S326
+- id: creativity_eqbench_cw_v3
+  name: EQ-Bench Creative Writing v3
+  category: creative
+  metric: elo
+  unit: Elo
+  description: 'EQ-Bench Creative Writing v3: models write responses to fixed creative-writing prompts over several
+    iterations; an LLM judge gives rubric scores and pairwise comparisons yield an Elo ranking.'
+  github: https://github.com/EQ-bench/creative-writing-bench
+  item_count: 32 prompts x 3 iterations (96 items)
+  leaderboard: https://eqbench.com/creative_writing.html
+  source_session: S326
+- id: simplebench
+  name: SimpleBench
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Multiple-choice text benchmark of spatio-temporal reasoning, social intelligence and trick questions
+    that non-specialist humans answer well but LLMs miss (non-specialized human baseline 83.7%); mostly private
+    set.
+  year: '2024'
+  leaderboard: https://simple-bench.com/
+  source_session: S326
+- id: frontiermath_tier4_v2
+  name: FrontierMath Tier 4 (v2, private)
+  category: math
+  metric: accuracy
+  unit: '%'
+  description: 'FrontierMath Tier 4: expansion set of exceptionally difficult original research-level math problems
+    with automatically verifiable answers, evaluated by Epoch AI (v2 problem set).'
+  paper: https://arxiv.org/abs/2411.04872
+  year: '2024'
+  item_count: 43 problems (Tier 4)
+  leaderboard: https://epoch.ai/benchmarks/frontiermath-tier-4
+  source_session: S326
+- id: frontiermath_tier1_3_v2
+  name: FrontierMath Tiers 1-3 (v2)
+  category: math
+  metric: accuracy
+  unit: '%'
+  description: 'FrontierMath base set (Tiers 1-3): original, expert-vetted mathematics problems from modern research
+    areas with automatically verifiable answers, evaluated by Epoch AI (v2 problem set).'
+  paper: https://arxiv.org/abs/2411.04872
+  year: '2024'
+  item_count: 295 problems (Tiers 1-3)
+  leaderboard: https://epoch.ai/frontiermath
+  source_session: S326
+- id: frontiermath_tier1_3_v2_2611
+  name: FrontierMath Tiers 1-3 (v2)
+  category: math
+  metric: accuracy
+  unit: '%'
+  description: 'FrontierMath base set (Tiers 1-3): original, expert-vetted mathematics problems from modern research
+    areas with automatically verifiable answers, evaluated by Epoch AI (v2 problem set).'
+  paper: https://arxiv.org/abs/2411.04872
+  year: '2024'
+  item_count: 295 problems (Tiers 1-3)
+  leaderboard: https://epoch.ai/frontiermath
+  source_session: S326
+- id: vibe_code_bench
+  name: Vibe Code Bench
+  category: coding
+  metric: accuracy
+  unit: '%'
+  description: Vals AI benchmark of building complete web applications from natural-language specifications in a
+    full development environment, graded by automated point-and-click browser testing of user workflows.
+  leaderboard: https://www.vals.ai/benchmarks/vibe-code
+  source_session: S326
+- id: vibe_code_bench_v1_1_vals
+  name: Vibe Code Bench v1.1 (Vals)
+  category: coding
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI Vibe Code Bench v1.1 (canonical test set): end-to-end web-application building from natural-language
+    specs, graded by point-and-click workflow tests.'
+  leaderboard: https://www.vals.ai/benchmarks/vibe-code
+  source_session: S326
+- id: vals_legal_research_bench
+  name: Vals Legal Research Bench
+  category: legal
+  metric: accuracy
+  unit: '%'
+  description: Realistic US legal research questions answered with case-law search, web search and document retrieval;
+    each paired with a gold answer, authoritative sources and a weighted grading rubric.
+  item_count: 208 test samples (+200 private validation, 5 public)
+  leaderboard: https://www.vals.ai/benchmarks/legal_research
+  source_session: S326
+- id: tax_agent_bench_vals
+  name: Vals Tax Agent Bench
+  category: other
+  metric: accuracy
+  unit: '%'
+  description: Agentic tax-research questions, each with a gold answer, authoritative sources and a grading rubric;
+    answers failing any rubric check score 0, with partial deduction for unresolved citations.
+  item_count: 193 test samples
+  leaderboard: https://www.vals.ai/benchmarks/tax_agent_bench
+  source_session: S326
+- id: medscribe_vals
+  name: Vals MedScribe
+  category: medical
+  metric: accuracy
+  unit: '%'
+  description: 'Evaluates AI scribing: generating SOAP clinical notes from encounters, scored with rubrics for documentation
+    quality (built with Protege).'
+  item_count: 100 rubrics
+  leaderboard: https://www.vals.ai/benchmarks/medscribe
+  source_session: S326
+- id: legalbench_vals_run
+  name: LegalBench (Vals-run)
+  category: legal
+  metric: accuracy
+  unit: '%'
+  description: Vals AI run of LegalBench, a collaboratively built benchmark of legal-reasoning tasks (issue spotting,
+    rule recall, interpretation, etc.); accuracy (%).
+  paper: https://arxiv.org/abs/2308.11462
+  year: '2023'
+  leaderboard: https://www.vals.ai/benchmarks/legal_bench
+  source_session: S326
+- id: medcode_vals
+  name: Vals MedCode
+  category: medical
+  metric: accuracy
+  unit: '%'
+  description: Evaluates medical coding (assigning diagnosis/procedure codes under sequencing, modifier and payer
+    rules) on real-world style clinical records.
+  leaderboard: https://www.vals.ai/benchmarks/medcode
+  source_session: S326
+- id: harvey_lab_vals
+  name: Harvey's Legal Agent Benchmark (Vals run)
+  category: legal
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI run of Harvey''s Legal Agent Benchmark: legal agent tasks across practice areas graded by
+    expert criteria; reported as task pass rate (all criteria met) and criteria pass rate.'
+  item_count: 120 tasks
+  leaderboard: https://www.vals.ai/benchmarks/hlab
+  source_session: S326
+- id: harvey_lab_vals_v1_1
+  name: Harvey's Legal Agent Benchmark (Vals run)
+  category: legal
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI run of Harvey''s Legal Agent Benchmark: legal agent tasks across practice areas graded by
+    expert criteria; reported as task pass rate (all criteria met) and criteria pass rate.'
+  item_count: 120 tasks
+  leaderboard: https://www.vals.ai/benchmarks/hlab
+  source_session: S326
+- id: livecodebench_vals
+  name: LiveCodeBench (Vals AI run)
+  category: coding
+  metric: accuracy
+  unit: '%'
+  description: Vals AI run of LiveCodeBench, a continuously updated competitive-programming benchmark with hidden
+    test cases across easy/medium/hard splits.
+  paper: https://arxiv.org/abs/2403.07974
+  year: '2024'
+  item_count: 1000+ problems (v6)
+  leaderboard: https://www.vals.ai/benchmarks/lcb
+  source_session: S326
+- id: mmlu_pro_vals
+  name: MMLU Pro (Vals AI run)
+  category: knowledge
+  metric: accuracy
+  unit: '%'
+  description: Vals AI run of MMLU-Pro (10-option, reasoning-focused MMLU successor) with 5-shot chain-of-thought
+    prompting.
+  paper: https://arxiv.org/abs/2406.01574
+  year: '2024'
+  item_count: 12,000+ questions
+  leaderboard: https://www.vals.ai/benchmarks/mmlu_pro
+  source_session: S326
+- id: code_migration_vals
+  name: Vals Code Migration (v1.0)
+  category: coding
+  metric: accuracy
+  unit: '%'
+  description: Vals AI benchmark of translating working programs between languages (incl. COBOL-to-Java and CLI
+    tools), graded by hidden test suites; v1.0 superseded by v1.1.
+  leaderboard: https://www.vals.ai/benchmarks/code-migration
+  source_session: S326
+- id: code_migration_v1_1_vals
+  name: Code Migration v1.1 (Vals)
+  category: coding
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI Code Migration v1.1: program translation between languages run on the Pi agent harness with
+    revised hidden test suites.'
+  leaderboard: https://www.vals.ai/benchmarks/code-migration
+  source_session: S326
+- id: gpqa_diamond_vals
+  name: GPQA Diamond (Vals AI run)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI run of GPQA Diamond: graduate-level, Google-proof multiple-choice science questions that
+    experts answer correctly and most non-experts miss.'
+  paper: https://arxiv.org/abs/2311.12022
+  year: '2023'
+  item_count: 198 questions
+  leaderboard: https://www.vals.ai/benchmarks/gpqa
+  source_session: S326
+- id: tax_eval_v2_vals
+  name: Vals TaxEval v2
+  category: other
+  metric: accuracy
+  unit: '%'
+  description: Vals AI tax-question benchmark (private), accuracy on the held-out test set.
+  item_count: 1,223 test samples
+  leaderboard: https://www.vals.ai/benchmarks/tax_eval_v2
+  source_session: S326
+- id: vals_ai_swe_bench_verified
+  name: Vals.ai SWE-Bench Verified
+  category: coding
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI run of SWE-bench Verified: real GitHub issues in isolated Docker containers; the model produces
+    a patch judged by repository unit tests (% resolved).'
+  paper: https://arxiv.org/abs/2310.06770
+  year: '2023'
+  item_count: 500 tasks
+  leaderboard: https://www.vals.ai/benchmarks/swebench
+  source_session: S326
+- id: vals_corpfin_v2
+  name: Vals CorpFin v2
+  category: finance
+  metric: accuracy
+  unit: '%'
+  description: Long-context understanding of credit agreements built with financial analysts and legal experts;
+    private test set.
+  item_count: 858 questions from 43 documents (private test)
+  leaderboard: https://www.vals.ai/benchmarks/corp_fin_v2
+  source_session: S326
+- id: vals_finance_agent_benchmark_v2
+  name: Vals Finance Agent Benchmark v2
+  category: finance
+  metric: accuracy
+  unit: '%'
+  description: Agentic benchmark of expert-reviewed questions on public company filings testing entry-level financial-analyst
+    work; accuracy (%).
+  item_count: 450 test samples (+450 private validation, 27 public)
+  leaderboard: https://www.vals.ai/benchmarks/fabv2
+  source_session: S326
+- id: excel_modeling_benchmark_vals
+  name: Vals Excel Modeling Benchmark
+  category: finance
+  metric: accuracy
+  unit: '%'
+  description: Agent builds a complete financial model workbook (tabs, structure, formulas, formatting) from a business-scenario
+    prompt and source files; rubric-graded. v1.1 updates the rubric judge.
+  item_count: 51 test samples (+51 private validation, 1 public)
+  leaderboard: https://www.vals.ai/benchmarks/emb
+  source_session: S326
+- id: excel_modeling_benchmark_v1_1_vals
+  name: Vals Excel Modeling Benchmark v1.1
+  category: finance
+  metric: accuracy
+  unit: '%'
+  description: Agent builds a complete financial model workbook (tabs, structure, formulas, formatting) from a business-scenario
+    prompt and source files; rubric-graded. v1.1 updates the rubric judge.
+  item_count: 51 test samples (+51 private validation, 1 public)
+  leaderboard: https://www.vals.ai/benchmarks/emb
+  source_session: S326
+- id: proof_bench_vals
+  name: Vals ProofBench
+  category: math
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI ProofBench: competition/research-style mathematical proof problems; model proofs are graded
+    for correctness (score %, private test split reported).'
+  item_count: 100 problems (private test split; plus 100 public)
+  leaderboard: https://www.vals.ai/benchmarks/proof_bench
+  source_session: S326
+- id: proofbench
+  name: Vals ProofBench
+  category: math
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI ProofBench: competition/research-style mathematical proof problems; model proofs are graded
+    for correctness (score %, private test split reported).'
+  item_count: 100 problems (private test split; plus 100 public)
+  leaderboard: https://www.vals.ai/benchmarks/proof_bench
+  source_session: S326
+- id: terminal_bench_4_0_vals_mini_swe_agent
+  name: Terminal-Bench 4.0 (Vals AI run, Mini-SWE-agent)
+  category: agent
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI run of Terminal-Bench 4.0 with the mini-swe-agent harness: long realistic terminal tasks
+    graded on the final artifact.'
+  item_count: 66 tasks
+  leaderboard: https://www.vals.ai/benchmarks/terminal-bench-4
+  source_session: S326
+- id: terminal_bench_2_1_vals_terminus2
+  name: Terminal-Bench 2.1 (Vals AI run, Terminus 2)
+  category: agent
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI run of Terminal-Bench 2.1 with the Terminus 2 harness: sandboxed terminal tasks from model
+    training to system administration.'
+  item_count: 89 tasks
+  leaderboard: https://www.vals.ai/benchmarks/terminal-bench-2-1
+  source_session: S326
+- id: terminal_bench_2_vals_terminus2
+  name: Terminal-Bench 2.0 (Vals AI run, Terminus 2)
+  category: agent
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI run of Terminal-Bench 2.0 with the Terminus 2 harness: sandboxed terminal tasks from model
+    training to system administration.'
+  item_count: 89 tasks
+  leaderboard: https://www.vals.ai/benchmarks/terminal-bench-2
+  source_session: S326
+- id: sage_vals
+  name: SAGE (Vals AI)
+  category: education
+  metric: accuracy
+  unit: '%'
+  description: Vals AI benchmark of grading student work against established rubrics (teacher-support grading);
+    headline score = share graded correctly, with too-strict/too-lenient error rates.
+  leaderboard: https://www.vals.ai/benchmarks/sage
+  source_session: S326
+- id: programbench_vals
+  name: ProgramBench (Vals AI run)
+  category: coding
+  metric: accuracy
+  unit: '%'
+  description: Reconstruct a command-line program from its executable binary and a behavioral specification; Fully
+    Resolved only if the implementation passes all hidden tests.
+  leaderboard: https://www.vals.ai/benchmarks/programbench
+  source_session: S326
+- id: mortgage_tax_vals
+  name: Vals MortgageTax
+  category: finance
+  metric: accuracy
+  unit: '%'
+  description: Questions about mortgage/tax documents presented as images; accuracy on the never-shared test set.
+  item_count: 938 test samples (1,258 documents total)
+  leaderboard: https://www.vals.ai/benchmarks/mortgage_tax
+  source_session: S326
+- id: mmmu_pro_vals
+  name: MMMU Pro (Vals AI run)
+  category: vision-language
+  metric: accuracy
+  unit: '%'
+  description: Vals AI run of MMMU-Pro (standard 4-option format), pass@1.
+  paper: https://arxiv.org/abs/2409.02813
+  year: '2024'
+  item_count: ~1,700 questions
+  leaderboard: https://www.vals.ai/benchmarks/mmmu
+  source_session: S326
+- id: vals_cyberbench_v1_1
+  name: Vals CyberBench v1.1
+  category: cybersecurity
+  metric: accuracy
+  unit: '%'
+  description: 'Vals AI CyberBench: OSS-Fuzz memory-safety vulnerabilities; PoC track (produce a crashing input)
+    and Patch track (patch so the PoC no longer crashes while preserving benign behavior).'
+  leaderboard: https://www.vals.ai/benchmarks/cyber
+  source_session: S326
+- id: public_benefits_bench_vals
+  name: Vals Public Benefits Bench
+  category: other
+  metric: accuracy
+  unit: '%'
+  description: SNAP public-benefits questions across all US states and two territories, each with ~7 expert evaluation
+    criteria; accuracy = criteria passed on the test subset.
+  item_count: 230 test questions (459 total)
+  leaderboard: https://www.vals.ai/benchmarks/public-benefits-bench
+  source_session: S326
+- id: ioi_vals
+  name: IOI (Vals AI run)
+  category: coding
+  metric: accuracy
+  unit: '%'
+  description: International Olympiad in Informatics problems solved in C++ with standardized automated grading;
+    official test data withheld during the attempt.
+  leaderboard: https://www.vals.ai/benchmarks/ioi
+  source_session: S326
+- id: case_law_v2_vals
+  name: Vals CaseLaw v2
+  category: legal
+  metric: accuracy
+  unit: '%'
+  description: Legal document analysis and case-law reasoning over recent US and Canadian cases (harder successor
+    to CaseLaw).
+  leaderboard: https://www.vals.ai/benchmarks/case_law_v2
+  source_session: S326
+- id: bfcl_v4
+  name: BFCL V4
+  category: agent
+  metric: accuracy
+  unit: '%'
+  description: 'Berkeley Function Calling Leaderboard V4: evaluates tool/function calling (single, multiple, parallel,
+    multi-turn) plus agentic categories such as web search and memory; overall accuracy (%).'
+  github: https://github.com/ShishirPatil/gorilla
+  year: '2025'
+  leaderboard: https://gorilla.cs.berkeley.edu/leaderboard.html
+  source_session: S326
+- id: terminal_bench_2_1
+  name: Terminal-Bench 2.1
+  category: agent
+  metric: task success rate
+  unit: '%'
+  description: 'Terminal-Bench 2.x: hard, realistic tasks in sandboxed command-line environments, each with a unique
+    environment, human-written solution and verification tests; 2.1 is a maintenance revision of the 89-task 2.0
+    set.'
+  paper: https://arxiv.org/abs/2601.11868
+  year: '2026'
+  item_count: 89 tasks
+  leaderboard: https://www.tbench.ai
+  source_session: S326
+- id: terminal_bench_4_0
+  name: Terminal-Bench 4.0 (resolution rate)
+  category: agent
+  metric: resolution rate
+  unit: '%'
+  description: 'Terminal-Bench 4.0: fresh set of community-contributed, maintainer-reviewed long terminal tasks
+    (no overlap with 2.1), each built around a real deliverable and graded strictly on the final artifact; official
+    board runs 5 trials per task.'
+  paper: https://arxiv.org/abs/2601.11868
+  year: '2026'
+  item_count: 66 tasks
+  leaderboard: https://www.tbench.ai/leaderboard/terminal-bench/4.0
+  source_session: S326
+- id: terminal_bench_4_0_tbench_pass_at_2
+  name: Terminal-Bench 4.0 — pass@2
+  category: agent
+  metric: resolution rate
+  unit: '%'
+  description: 'Terminal-Bench 4.0: fresh set of community-contributed, maintainer-reviewed long terminal tasks
+    (no overlap with 2.1), each built around a real deliverable and graded strictly on the final artifact; official
+    board runs 5 trials per task.'
+  paper: https://arxiv.org/abs/2601.11868
+  year: '2026'
+  item_count: 66 tasks
+  leaderboard: https://www.tbench.ai/leaderboard/terminal-bench/4.0
+  source_session: S326
+- id: terminal_bench_4_0_tbench_pass_at_3
+  name: Terminal-Bench 4.0 — pass@3
+  category: agent
+  metric: resolution rate
+  unit: '%'
+  description: 'Terminal-Bench 4.0: fresh set of community-contributed, maintainer-reviewed long terminal tasks
+    (no overlap with 2.1), each built around a real deliverable and graded strictly on the final artifact; official
+    board runs 5 trials per task.'
+  paper: https://arxiv.org/abs/2601.11868
+  year: '2026'
+  item_count: 66 tasks
+  leaderboard: https://www.tbench.ai/leaderboard/terminal-bench/4.0
+  source_session: S326
+- id: terminal_bench_4_0_tbench_pass_at_4
+  name: Terminal-Bench 4.0 — pass@4
+  category: agent
+  metric: resolution rate
+  unit: '%'
+  description: 'Terminal-Bench 4.0: fresh set of community-contributed, maintainer-reviewed long terminal tasks
+    (no overlap with 2.1), each built around a real deliverable and graded strictly on the final artifact; official
+    board runs 5 trials per task.'
+  paper: https://arxiv.org/abs/2601.11868
+  year: '2026'
+  item_count: 66 tasks
+  leaderboard: https://www.tbench.ai/leaderboard/terminal-bench/4.0
+  source_session: S326
+- id: terminal_bench_4_0_tbench_pass_at_5
+  name: Terminal-Bench 4.0 — pass@5
+  category: agent
+  metric: resolution rate
+  unit: '%'
+  description: 'Terminal-Bench 4.0: fresh set of community-contributed, maintainer-reviewed long terminal tasks
+    (no overlap with 2.1), each built around a real deliverable and graded strictly on the final artifact; official
+    board runs 5 trials per task.'
+  paper: https://arxiv.org/abs/2601.11868
+  year: '2026'
+  item_count: 66 tasks
+  leaderboard: https://www.tbench.ai/leaderboard/terminal-bench/4.0
+  source_session: S326
+- id: terminal_bench_4_1_cheating_adjusted
+  name: Terminal-Bench 4.1 (cheating-adjusted)
+  category: agent
+  metric: accuracy
+  unit: '%'
+  description: Terminal-Bench 4.1 agentic terminal tasks scored with cheating-adjusted accuracy (runs that game
+    the verifier count as failures).
+  paper: https://arxiv.org/abs/2601.11868
+  year: '2026'
+  leaderboard: https://www.tbench.ai/leaderboard/terminal-bench/4.1
+  source_session: S326
+- id: browsecomp
+  name: BrowseComp
+  category: agent
+  metric: accuracy
+  unit: '%'
+  description: OpenAI benchmark of hard-to-find, entangled information that requires persistent web browsing; short
+    answers verified against references.
+  paper: https://arxiv.org/abs/2504.12516
+  github: https://github.com/openai/simple-evals
+  year: '2025'
+  item_count: 1,266 questions
+  source_session: S326
+- id: deepswe_1_1
+  name: DeepSWE v1.1
+  category: coding
+  metric: pass@1
+  unit: '%'
+  description: 'Datacurve DeepSWE: long-horizon software-engineering tasks across many repositories and languages,
+    run with mini-swe-agent and scored by hidden tests (attempt pass rate).'
+  year: '2026'
+  item_count: 113 tasks (91 repos, 5 languages)
+  leaderboard: https://deepswe.datacurve.ai/
+  source_session: S326
+- id: deepswe_v1_1_pass_at_1
+  name: DeepSWE v1.1
+  category: coding
+  metric: pass@1
+  unit: '%'
+  description: 'Datacurve DeepSWE: long-horizon software-engineering tasks across many repositories and languages,
+    run with mini-swe-agent and scored by hidden tests (attempt pass rate).'
+  year: '2026'
+  item_count: 113 tasks (91 repos, 5 languages)
+  leaderboard: https://deepswe.datacurve.ai/
+  source_session: S326
+- id: livebench
+  name: LiveBench
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Contamination-limited benchmark with frequently updated questions from recent sources, scored automatically
+    against objective ground truth across math, coding, reasoning, language, instruction following and data analysis.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  year: '2024'
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_2026_06_25
+  name: LiveBench (release 2026-06-25) — overall
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench overall score on the 2026-06-25 question release; LiveBench refreshes questions from recent
+    sources and scores against objective ground truth.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  year: '2024'
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_2026_06_25_agentic_coding
+  name: LiveBench (release 2026-06-25) — Agentic Coding
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench Agentic Coding score on the 2026-06-25 question release; LiveBench refreshes questions
+    from recent sources and scores against objective ground truth.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  year: '2024'
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_2026_06_25_coding
+  name: LiveBench (release 2026-06-25) — Coding
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench Coding score on the 2026-06-25 question release; LiveBench refreshes questions from recent
+    sources and scores against objective ground truth.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  year: '2024'
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_2026_06_25_data_analysis
+  name: LiveBench (release 2026-06-25) — Data Analysis
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench Data Analysis score on the 2026-06-25 question release; LiveBench refreshes questions from
+    recent sources and scores against objective ground truth.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  year: '2024'
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_2026_06_25_instruction_following
+  name: LiveBench (release 2026-06-25) — Instruction Following
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench Instruction Following score on the 2026-06-25 question release; LiveBench refreshes questions
+    from recent sources and scores against objective ground truth.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  year: '2024'
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_2026_06_25_language
+  name: LiveBench (release 2026-06-25) — Language
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench Language score on the 2026-06-25 question release; LiveBench refreshes questions from recent
+    sources and scores against objective ground truth.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  year: '2024'
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_2026_06_25_mathematics
+  name: LiveBench (release 2026-06-25) — Mathematics
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench Mathematics score on the 2026-06-25 question release; LiveBench refreshes questions from
+    recent sources and scores against objective ground truth.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  year: '2024'
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_2026_06_25_reasoning
+  name: LiveBench (release 2026-06-25) — Reasoning
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench Reasoning score on the 2026-06-25 question release; LiveBench refreshes questions from
+    recent sources and scores against objective ground truth.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  year: '2024'
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_09_02_browser
+  name: LiveBench 2.0 (release 2026-09-02) — Browser Use
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Browser Use suite score for release 2026-09-02; successor
+    to the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_09_02_coding
+  name: LiveBench 2.0 (release 2026-09-02) — Coding
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Coding suite score for release 2026-09-02; successor to
+    the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_09_02_data_analysis
+  name: LiveBench 2.0 (release 2026-09-02) — Data Analysis
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Data Analysis suite score for release 2026-09-02; successor
+    to the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_09_02_design_layout
+  name: LiveBench 2.0 (release 2026-09-02) — Design
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Design suite score for release 2026-09-02; successor to
+    the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_09_02_long_horizon
+  name: LiveBench 2.0 (release 2026-09-02) — Long-Horizon (Agentic)
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Long-Horizon (Agentic) suite score for release 2026-09-02;
+    successor to the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_09_02_reasoning
+  name: LiveBench 2.0 (release 2026-09-02) — Reasoning
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Reasoning suite score for release 2026-09-02; successor
+    to the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_09_02_research
+  name: LiveBench 2.0 (release 2026-09-02) — Research
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Research suite score for release 2026-09-02; successor to
+    the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_11_06
+  name: LiveBench 2.0 (release 2026-11-06) — Overall
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Overall suite score for release 2026-11-06; successor to
+    the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_11_06_browser
+  name: LiveBench 2.0 (release 2026-11-06) — Browser Use
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Browser Use suite score for release 2026-11-06; successor
+    to the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_11_06_coding
+  name: LiveBench 2.0 (release 2026-11-06) — Coding
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Coding suite score for release 2026-11-06; successor to
+    the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_11_06_data_analysis
+  name: LiveBench 2.0 (release 2026-11-06) — Data Analysis
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Data Analysis suite score for release 2026-11-06; successor
+    to the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_11_06_design_layout
+  name: LiveBench 2.0 (release 2026-11-06) — Design
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Design suite score for release 2026-11-06; successor to
+    the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_11_06_long_horizon
+  name: LiveBench 2.0 (release 2026-11-06) — Long-Horizon (Agentic)
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Long-Horizon (Agentic) suite score for release 2026-11-06;
+    successor to the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_11_06_reasoning
+  name: LiveBench 2.0 (release 2026-11-06) — Reasoning
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Reasoning suite score for release 2026-11-06; successor
+    to the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: livebench_v2_2026_11_06_research
+  name: LiveBench 2.0 (release 2026-11-06) — Research
+  category: reasoning
+  metric: score
+  unit: '%'
+  description: LiveBench 2.0 (agentic-suite generation) Research suite score for release 2026-11-06; successor to
+    the original contamination-limited LiveBench.
+  paper: https://arxiv.org/abs/2406.19314
+  github: https://github.com/LiveBench/LiveBench
+  leaderboard: https://livebench.ai/
+  source_session: S326
+- id: apex_agents
+  name: APEX-Agents
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: 'Mercor AI Productivity Index for Agents: long-horizon, cross-application tasks created by investment-banking
+    analysts, management consultants and corporate lawyers, executed in realistic environments with files and tools
+    and graded with expert rubrics (Pass@1).'
+  paper: https://arxiv.org/abs/2601.14242
+  year: '2026'
+  item_count: 480 tasks (160 per job category)
+  license: CC-BY-4.0
+  leaderboard: https://huggingface.co/datasets/mercor/apex-agents
+  source_session: S326
+- id: apex_agents_v1_1_pass1
+  name: APEX-Agents v1.1 (Mercor leaderboard) — Pass@1
+  category: agent
+  metric: Pass@1
+  unit: '%'
+  description: 'Mercor APEX-Agents v1.1 leaderboard (Pass@1): professional-services agent tasks in simulated work
+    "worlds" graded with expert rubrics by an LM judge.'
+  paper: https://arxiv.org/abs/2601.14242
+  year: '2026'
+  item_count: 31 worlds, 240 tasks (leaderboard set)
+  leaderboard: https://www.mercor.com/apex/apex-agents-leaderboard/
+  source_session: S326
+- id: apex_agents_v1_1_corporate_lawyer_pass1
+  name: APEX-Agents v1.1 — Corporate Lawyer (Pass@1)
+  category: agent
+  metric: Pass@1
+  unit: '%'
+  description: Mercor APEX-Agents v1.1 Corporate Lawyer job leaderboard (Pass@1); expert-rubric graded long-horizon
+    tasks.
+  paper: https://arxiv.org/abs/2601.14242
+  year: '2026'
+  leaderboard: https://www.mercor.com/apex/apex-agents-leaderboard/
+  source_session: S326
+- id: apex_agents_v1_1_investment_banking_analyst_pass1
+  name: APEX-Agents v1.1 — Investment Banking Analyst (Pass@1)
+  category: agent
+  metric: Pass@1
+  unit: '%'
+  description: Mercor APEX-Agents v1.1 Investment Banking Analyst job leaderboard (Pass@1); expert-rubric graded
+    long-horizon tasks.
+  paper: https://arxiv.org/abs/2601.14242
+  year: '2026'
+  leaderboard: https://www.mercor.com/apex/apex-agents-leaderboard/
+  source_session: S326
+- id: apex_agents_v1_1_management_consultant_pass1
+  name: APEX-Agents v1.1 — Management Consultant (Pass@1)
+  category: agent
+  metric: Pass@1
+  unit: '%'
+  description: Mercor APEX-Agents v1.1 Management Consultant job leaderboard (Pass@1); expert-rubric graded long-horizon
+    tasks.
+  paper: https://arxiv.org/abs/2601.14242
+  year: '2026'
+  leaderboard: https://www.mercor.com/apex/apex-agents-leaderboard/
+  source_session: S326
+- id: apex_agents_v1_1_mean_score
+  name: APEX-Agents v1.1 (Mercor leaderboard) — mean rubric score
+  category: agent
+  metric: mean rubric score
+  unit: '%'
+  description: 'Mercor APEX-Agents v1.1 leaderboard (mean rubric score): professional-services agent tasks in simulated
+    work "worlds" graded with expert rubrics by an LM judge.'
+  paper: https://arxiv.org/abs/2601.14242
+  year: '2026'
+  item_count: 31 worlds, 240 tasks (leaderboard set)
+  leaderboard: https://www.mercor.com/apex/apex-agents-leaderboard/
+  source_session: S326
+- id: apex_agents_v1_1_corporate_lawyer_mean_score
+  name: APEX-Agents v1.1 — Corporate Lawyer (mean rubric score)
+  category: agent
+  metric: mean rubric score
+  unit: '%'
+  description: Mercor APEX-Agents v1.1 Corporate Lawyer job leaderboard (mean rubric score); expert-rubric graded
+    long-horizon tasks.
+  paper: https://arxiv.org/abs/2601.14242
+  year: '2026'
+  leaderboard: https://www.mercor.com/apex/apex-agents-leaderboard/
+  source_session: S326
+- id: apex_agents_v1_1_investment_banking_analyst_mean_score
+  name: APEX-Agents v1.1 — Investment Banking Analyst (mean rubric score)
+  category: agent
+  metric: mean rubric score
+  unit: '%'
+  description: Mercor APEX-Agents v1.1 Investment Banking Analyst job leaderboard (mean rubric score); expert-rubric
+    graded long-horizon tasks.
+  paper: https://arxiv.org/abs/2601.14242
+  year: '2026'
+  leaderboard: https://www.mercor.com/apex/apex-agents-leaderboard/
+  source_session: S326
+- id: apex_agents_v1_1_management_consultant_mean_score
+  name: APEX-Agents v1.1 — Management Consultant (mean rubric score)
+  category: agent
+  metric: mean rubric score
+  unit: '%'
+  description: Mercor APEX-Agents v1.1 Management Consultant job leaderboard (mean rubric score); expert-rubric
+    graded long-horizon tasks.
+  paper: https://arxiv.org/abs/2601.14242
+  year: '2026'
+  leaderboard: https://www.mercor.com/apex/apex-agents-leaderboard/
+  source_session: S326
+- id: apex_v1_mercor_board_pass1
+  name: APEX-v1 extended (Mercor leaderboard) — Pass@1
+  category: agent
+  metric: Pass@1
+  unit: '%'
+  description: 'Mercor APEX (AI Productivity Index) v1 leaderboard (Pass@1): expert-written professional tasks across
+    four jobs, each response sampled 8 times and graded by a judge LM against rubrics.'
+  year: '2025'
+  item_count: 400 held-out tasks (100 per job)
+  leaderboard: https://www.mercor.com/apex/apex-v1-leaderboard/
+  source_session: S326
+- id: apex_swe_mercor_board_pass1
+  name: APEX-SWE (Mercor leaderboard) — Pass@1
+  category: coding
+  metric: Pass@1
+  unit: '%'
+  description: 'Mercor APEX-SWE leaderboard (Pass@1): day-to-day software-engineering work including end-to-end
+    integration/deployment tasks, graded with rubrics.'
+  year: '2026'
+  item_count: 200 cases (50 open-sourced)
+  leaderboard: https://www.mercor.com/apex/apex-swe-leaderboard/
+  source_session: S326
+- id: apex_v1_mercor_board_mean_score
+  name: APEX-v1 extended (Mercor leaderboard) — mean rubric score
+  category: agent
+  metric: mean rubric score
+  unit: '%'
+  description: 'Mercor APEX (AI Productivity Index) v1 leaderboard (mean rubric score): expert-written professional
+    tasks across four jobs, each response sampled 8 times and graded by a judge LM against rubrics.'
+  year: '2025'
+  item_count: 400 held-out tasks (100 per job)
+  leaderboard: https://www.mercor.com/apex/apex-v1-leaderboard/
+  source_session: S326
+- id: apex_swe_mercor_board_mean_score
+  name: APEX-SWE (Mercor leaderboard) — mean rubric score
+  category: coding
+  metric: mean rubric score
+  unit: '%'
+  description: 'Mercor APEX-SWE leaderboard (mean rubric score): day-to-day software-engineering work including
+    end-to-end integration/deployment tasks, graded with rubrics.'
+  year: '2026'
+  item_count: 200 cases (50 open-sourced)
+  leaderboard: https://www.mercor.com/apex/apex-swe-leaderboard/
+  source_session: S326
+- id: bbh
+  name: BIG-Bench Hard (BBH)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Suite of challenging BIG-Bench tasks on which earlier LMs did not beat the average human rater; usually
+    evaluated few-shot with chain-of-thought, exact-match accuracy.
+  paper: https://arxiv.org/abs/2210.09261
+  github: https://github.com/suzgunmirac/BIG-Bench-Hard
+  year: '2022'
+  item_count: 23 tasks
+  source_session: S326
+- id: hellaswag
+  name: HellaSwag
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: 'Commonsense NLI: choose the most plausible continuation of an event description among adversarially
+    filtered machine-generated endings (trivial for humans >95%).'
+  paper: https://arxiv.org/abs/1905.07830
+  year: '2019'
+  license: MIT
+  source_session: S326
+- id: winogrande
+  name: WinoGrande
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Large-scale adversarial Winograd-schema pronoun-resolution dataset built by crowdsourcing plus AfLite
+    bias reduction; binary-choice accuracy.
+  paper: https://arxiv.org/abs/1907.10641
+  github: https://github.com/allenai/winogrande
+  year: '2019'
+  item_count: 44k problems
+  source_session: S326
+- id: piqa
+  name: PIQA
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: 'Physical Interaction QA: physical-commonsense two-choice questions about how to achieve everyday
+    goals (humans 95%).'
+  paper: https://arxiv.org/abs/1911.11641
+  year: '2019'
+  leaderboard: https://yonatanbisk.com/piqa/
+  source_session: S326
+- id: mmmlu
+  name: MMMLU
+  category: multilingual
+  metric: accuracy
+  unit: '%'
+  description: 'OpenAI''s multilingual MMLU: the MMLU test set professionally human-translated into 14 languages;
+    multiple-choice accuracy averaged across languages.'
+  paper: https://arxiv.org/abs/2009.03300
+  year: '2024'
+  item_count: MMLU test set x 14 languages
+  license: MIT
+  leaderboard: https://huggingface.co/datasets/openai/MMMLU
+  source_session: S326
+- id: nyt_connections_extended
+  name: NYT Connections — Extended
+  category: reasoning
+  metric: quadratic score
+  unit: '%'
+  description: Lech Mazur's benchmark on NYT Connections puzzles with extra trick words added; partial credit by
+    number of correctly found groups.
+  github: https://github.com/lechmazur/nyt-connections
+  item_count: 940 puzzles
+  source_session: S326
+- id: osworld_verified
+  name: OSWorld-Verified
+  category: agent
+  metric: success rate
+  unit: '%'
+  description: OSWorld computer-use tasks in real desktop/web environments with execution-based evaluation scripts;
+    Verified is the XLANG re-audited task set and harness.
+  paper: https://arxiv.org/abs/2404.07972
+  github: https://github.com/xlang-ai/OSWorld
+  year: '2024'
+  item_count: 369 tasks
+  leaderboard: https://os-world.github.io/
+  source_session: S326
+- id: agents_last_exam
+  name: Agents' Last Exam (ALE)
+  category: agent
+  metric: full pass rate
+  unit: '%'
+  description: Berkeley RDI-led agent benchmark of long-horizon, economically valuable computer-based professional
+    tasks with verifiable outcomes, built with 300+ industry experts across 55 sub-industries.
+  year: '2026'
+  item_count: 1,500+ tasks collected (growing)
+  leaderboard: https://agents-last-exam.org/
+  source_session: S326
+- id: agents_last_exam_score
+  name: Agents' Last Exam (Score, partial-credit)
+  category: agent
+  metric: partial-credit score
+  unit: '%'
+  description: Berkeley RDI-led agent benchmark of long-horizon, economically valuable computer-based professional
+    tasks with verifiable outcomes, built with 300+ industry experts across 55 sub-industries.
+  year: '2026'
+  item_count: 1,500+ tasks collected (growing)
+  leaderboard: https://agents-last-exam.org/
+  source_session: S326
+- id: agents_last_exam_v1_1
+  name: Agents' Last Exam v1.1 (Score)
+  category: agent
+  metric: rubric score
+  unit: '%'
+  description: Berkeley RDI-led agent benchmark of long-horizon, economically valuable computer-based professional
+    tasks with verifiable outcomes, built with 300+ industry experts across 55 sub-industries.
+  year: '2026'
+  item_count: 1,500+ tasks collected (growing)
+  leaderboard: https://agents-last-exam.org/
+  source_session: S326
+- id: hle_with_tools
+  name: HLE with Tools
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: 'Humanity''s Last Exam with tools allowed: multimodal, expert-written closed-ended academic questions
+    (multiple-choice and short-answer) at the frontier of human knowledge.'
+  paper: https://arxiv.org/abs/2501.14249
+  year: '2025'
+  item_count: 2,500 questions
+  leaderboard: https://lastexam.ai
+  source_session: S326
+- id: a3tune_iu_xray_rg_bertscore
+  name: A3Tune IU-Xray report generation BERTScore
+  category: medical-imaging
+  metric: BERTScore
+  unit: '%'
+  description: IU-Xray radiology report generation evaluated with BERTScore under the protocol of the A3Tune paper
+    (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_iu_xray_rg_bleu
+  name: A3Tune IU-Xray report generation BLEU
+  category: medical-imaging
+  metric: BLEU
+  unit: '%'
+  description: IU-Xray radiology report generation evaluated with BLEU under the protocol of the A3Tune paper (ACL
+    2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_iu_xray_rg_chexbert
+  name: A3Tune IU-Xray report generation CheXbert similarity
+  category: medical-imaging
+  metric: CheXbert similarity
+  unit: '%'
+  description: IU-Xray radiology report generation evaluated with CheXbert similarity under the protocol of the
+    A3Tune paper (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_iu_xray_rg_meteor
+  name: A3Tune IU-Xray report generation METEOR
+  category: medical-imaging
+  metric: METEOR
+  unit: '%'
+  description: IU-Xray radiology report generation evaluated with METEOR under the protocol of the A3Tune paper
+    (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_iu_xray_rg_radgraph
+  name: A3Tune IU-Xray report generation RadGraph F1
+  category: medical-imaging
+  metric: RadGraph F1
+  unit: '%'
+  description: IU-Xray radiology report generation evaluated with RadGraph F1 under the protocol of the A3Tune paper
+    (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_iu_xray_rg_ratescore
+  name: A3Tune IU-Xray report generation RaTEScore
+  category: medical-imaging
+  metric: RaTEScore
+  unit: '%'
+  description: IU-Xray radiology report generation evaluated with RaTEScore under the protocol of the A3Tune paper
+    (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_iu_xray_rg_rouge_l
+  name: A3Tune IU-Xray report generation ROUGE-L
+  category: medical-imaging
+  metric: ROUGE-L
+  unit: '%'
+  description: IU-Xray radiology report generation evaluated with ROUGE-L under the protocol of the A3Tune paper
+    (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_mimic_cxr_rg_bertscore
+  name: A3Tune MIMIC-CXR report generation BERTScore
+  category: medical-imaging
+  metric: BERTScore
+  unit: '%'
+  description: MIMIC-CXR radiology report generation evaluated with BERTScore under the protocol of the A3Tune paper
+    (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_mimic_cxr_rg_bleu
+  name: A3Tune MIMIC-CXR report generation BLEU
+  category: medical-imaging
+  metric: BLEU
+  unit: '%'
+  description: MIMIC-CXR radiology report generation evaluated with BLEU under the protocol of the A3Tune paper
+    (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_mimic_cxr_rg_chexbert
+  name: A3Tune MIMIC-CXR report generation CheXbert similarity
+  category: medical-imaging
+  metric: CheXbert similarity
+  unit: '%'
+  description: MIMIC-CXR radiology report generation evaluated with CheXbert similarity under the protocol of the
+    A3Tune paper (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_mimic_cxr_rg_meteor
+  name: A3Tune MIMIC-CXR report generation METEOR
+  category: medical-imaging
+  metric: METEOR
+  unit: '%'
+  description: MIMIC-CXR radiology report generation evaluated with METEOR under the protocol of the A3Tune paper
+    (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_mimic_cxr_rg_radgraph
+  name: A3Tune MIMIC-CXR report generation RadGraph F1
+  category: medical-imaging
+  metric: RadGraph F1
+  unit: '%'
+  description: MIMIC-CXR radiology report generation evaluated with RadGraph F1 under the protocol of the A3Tune
+    paper (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_mimic_cxr_rg_ratescore
+  name: A3Tune MIMIC-CXR report generation RaTEScore
+  category: medical-imaging
+  metric: RaTEScore
+  unit: '%'
+  description: MIMIC-CXR radiology report generation evaluated with RaTEScore under the protocol of the A3Tune paper
+    (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_mimic_cxr_rg_rouge_l
+  name: A3Tune MIMIC-CXR report generation ROUGE-L
+  category: medical-imaging
+  metric: ROUGE-L
+  unit: '%'
+  description: MIMIC-CXR radiology report generation evaluated with ROUGE-L under the protocol of the A3Tune paper
+    (ACL 2025), which compares medical vision-language models on VQA and report-generation benchmarks.
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_slake_closed_acc
+  name: A3Tune SLAKE closed-ended accuracy
+  category: medical-imaging
+  metric: closed-ended accuracy
+  unit: '%'
+  description: SLAKE medical VQA closed-ended accuracy under the protocol of the A3Tune paper (ACL 2025).
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: a3tune_slake_open_recall
+  name: A3Tune SLAKE open-ended recall
+  category: medical-imaging
+  metric: open-ended recall
+  unit: '%'
+  description: SLAKE medical VQA open-ended recall under the protocol of the A3Tune paper (ACL 2025).
+  paper: https://aclanthology.org/2025.acl-long.460/
+  year: '2025'
+  source_session: S326
+- id: tau3_banking
+  name: tau3-Bench Banking
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: 'Sierra tau-bench family (tau3 release) banking-knowledge domain: multi-turn tool-using customer-support
+    conversations with a simulated user; pass@1 averaged over repeats.'
+  github: https://github.com/sierra-research/tau2-bench
+  license: MIT
+  source_session: S326
+- id: tau2_telecom
+  name: τ²-Bench (Telecom)
+  category: agent
+  metric: success rate
+  unit: '%'
+  description: 'tau2-bench Telecom dual-control domain: agent and simulated user both act with tools in a shared
+    environment (technical-support style), with programmatically generated verifiable tasks.'
+  paper: https://arxiv.org/abs/2506.07982
+  github: https://github.com/sierra-research/tau2-bench
+  year: '2025'
+  license: MIT
+  source_session: S326
+- id: vending_bench_2
+  name: Vending-Bench 2
+  category: agent
+  metric: final balance / net worth
+  unit: USD
+  description: 'Andon Labs long-horizon agent benchmark: the model runs a simulated vending-machine business over
+    a simulated year and is scored on its money at the end.'
+  year: '2025'
+  leaderboard: https://andonlabs.com/evals/vending-bench-2
+  source_session: S326
+- id: vending_bench_2_final_balance_usd
+  name: Vending-Bench 2
+  category: agent
+  metric: final balance / net worth
+  unit: USD
+  description: 'Andon Labs long-horizon agent benchmark: the model runs a simulated vending-machine business over
+    a simulated year and is scored on its money at the end.'
+  year: '2025'
+  leaderboard: https://andonlabs.com/evals/vending-bench-2
+  source_session: S326
+- id: creativity_dat
+  name: Divergent Association Task (DAT)
+  category: creativity
+  metric: score
+  unit: score
+  description: Generate 10 maximally dissimilar nouns; score = mean pairwise semantic distance x100. Values from
+    the large-scale study of semantic-distance creativity tests for LLMs (arXiv 2605.13450).
+  paper: https://arxiv.org/abs/2605.13450
+  year: '2026'
+  source_session: S326
+- id: creativity_pace
+  name: Parallel Association Chain Evaluation (PACE)
+  category: creativity
+  metric: score
+  unit: score
+  description: Forward-flow free-association chains from seed words, scored by sequential semantic distance. Values
+    from the large-scale study of semantic-distance creativity tests for LLMs (arXiv 2605.13450).
+  paper: https://arxiv.org/abs/2605.13450
+  year: '2026'
+  source_session: S326
+- id: creativity_cdat
+  name: Conditional DAT (CDAT) — gated novelty
+  category: creativity
+  metric: score
+  unit: score
+  description: Cue-conditioned DAT novelty, restricted to temperatures passing an appropriateness gate. Values from
+    the large-scale study of semantic-distance creativity tests for LLMs (arXiv 2605.13450).
+  paper: https://arxiv.org/abs/2605.13450
+  year: '2026'
+  source_session: S326
+- id: creativity_cdat_a
+  name: Conditional DAT — appropriateness
+  category: creativity
+  metric: score
+  unit: score
+  description: Cue-conditioned DAT appropriateness score (ungated). Values from the large-scale study of semantic-distance
+    creativity tests for LLMs (arXiv 2605.13450).
+  paper: https://arxiv.org/abs/2605.13450
+  year: '2026'
+  source_session: S326
+- id: creativity_cdat_n
+  name: Conditional DAT — novelty (ungated)
+  category: creativity
+  metric: score
+  unit: score
+  description: Cue-conditioned DAT novelty score (ungated). Values from the large-scale study of semantic-distance
+    creativity tests for LLMs (arXiv 2605.13450).
+  paper: https://arxiv.org/abs/2605.13450
+  year: '2026'
+  source_session: S326
+- id: creativity_rat
+  name: Remote Associates Test (RAT)
+  category: creativity
+  metric: score
+  unit: score
+  description: 'Convergent-thinking test: find the word linking three cue words; strict accuracy. Values from the
+    large-scale study of semantic-distance creativity tests for LLMs (arXiv 2605.13450).'
+  paper: https://arxiv.org/abs/2605.13450
+  year: '2026'
+  source_session: S326
+- id: creativity_drat
+  name: Divergent Remote Association Test (DRAT)
+  category: creativity
+  metric: score
+  unit: score
+  description: Hybrid of DAT and RAT introduced in the paper, bridging convergent and divergent thinking. Values
+    from the large-scale study of semantic-distance creativity tests for LLMs (arXiv 2605.13450).
+  paper: https://arxiv.org/abs/2605.13450
+  year: '2026'
+  source_session: S326
+- id: creativity_arena_cw
+  name: Chatbot Arena Creative Writing (as used in creativity study)
+  category: creativity
+  metric: score
+  unit: score
+  description: Chatbot Arena creative-writing category Elo, used as a creative-writing criterion in the study. Values
+    from the large-scale study of semantic-distance creativity tests for LLMs (arXiv 2605.13450).
+  paper: https://arxiv.org/abs/2605.13450
+  year: '2026'
+  source_session: S326
+- id: epic_bench_man_affordance_region
+  name: EPIC-Bench MAN — Affordance region
+  category: embodied
+  metric: score (0-100)
+  unit: score
+  description: 'EPIC-Bench embodied visual-grounding benchmark (Target Localization, Navigation, Manipulation stages;
+    human-annotated image/text/mask tuples); this id: MAN — Affordance region.'
+  paper: https://arxiv.org/abs/2605.17070
+  year: '2026'
+  item_count: 6.6k annotated tuples, 23 tasks
+  source_session: S326
+- id: epic_bench_man_contact_relationship
+  name: EPIC-Bench MAN — Contact relationship
+  category: embodied
+  metric: score (0-100)
+  unit: score
+  description: 'EPIC-Bench embodied visual-grounding benchmark (Target Localization, Navigation, Manipulation stages;
+    human-annotated image/text/mask tuples); this id: MAN — Contact relationship.'
+  paper: https://arxiv.org/abs/2605.17070
+  year: '2026'
+  item_count: 6.6k annotated tuples, 23 tasks
+  source_session: S326
+- id: epic_bench_man_placement_region
+  name: EPIC-Bench MAN — Placement region
+  category: embodied
+  metric: score (0-100)
+  unit: score
+  description: 'EPIC-Bench embodied visual-grounding benchmark (Target Localization, Navigation, Manipulation stages;
+    human-annotated image/text/mask tuples); this id: MAN — Placement region.'
+  paper: https://arxiv.org/abs/2605.17070
+  year: '2026'
+  item_count: 6.6k annotated tuples, 23 tasks
+  source_session: S326
+- id: epic_bench_nav_feasible_path
+  name: EPIC-Bench NAV — Feasible path
+  category: embodied
+  metric: score (0-100)
+  unit: score
+  description: 'EPIC-Bench embodied visual-grounding benchmark (Target Localization, Navigation, Manipulation stages;
+    human-annotated image/text/mask tuples); this id: NAV — Feasible path.'
+  paper: https://arxiv.org/abs/2605.17070
+  year: '2026'
+  item_count: 6.6k annotated tuples, 23 tasks
+  source_session: S326
+- id: epic_bench_nav_ground_detection
+  name: EPIC-Bench NAV — Ground detection
+  category: embodied
+  metric: score (0-100)
+  unit: score
+  description: 'EPIC-Bench embodied visual-grounding benchmark (Target Localization, Navigation, Manipulation stages;
+    human-annotated image/text/mask tuples); this id: NAV — Ground detection.'
+  paper: https://arxiv.org/abs/2605.17070
+  year: '2026'
+  item_count: 6.6k annotated tuples, 23 tasks
+  source_session: S326
+- id: epic_bench_nav_visual_matching
+  name: EPIC-Bench NAV — Visual matching
+  category: embodied
+  metric: score (0-100)
+  unit: score
+  description: 'EPIC-Bench embodied visual-grounding benchmark (Target Localization, Navigation, Manipulation stages;
+    human-annotated image/text/mask tuples); this id: NAV — Visual matching.'
+  paper: https://arxiv.org/abs/2605.17070
+  year: '2026'
+  item_count: 6.6k annotated tuples, 23 tasks
+  source_session: S326
+- id: epic_bench_overall
+  name: EPIC-Bench overall average
+  category: embodied
+  metric: score (0-100)
+  unit: score
+  description: 'EPIC-Bench embodied visual-grounding benchmark (Target Localization, Navigation, Manipulation stages;
+    human-annotated image/text/mask tuples); this id: overall average.'
+  paper: https://arxiv.org/abs/2605.17070
+  year: '2026'
+  item_count: 6.6k annotated tuples, 23 tasks
+  source_session: S326
+- id: epic_bench_tl_basic
+  name: EPIC-Bench TL — Basic attribute
+  category: embodied
+  metric: score (0-100)
+  unit: score
+  description: 'EPIC-Bench embodied visual-grounding benchmark (Target Localization, Navigation, Manipulation stages;
+    human-annotated image/text/mask tuples); this id: TL — Basic attribute.'
+  paper: https://arxiv.org/abs/2605.17070
+  year: '2026'
+  item_count: 6.6k annotated tuples, 23 tasks
+  source_session: S326
+- id: epic_bench_tl_embodied_context
+  name: EPIC-Bench TL — Embodied context
+  category: embodied
+  metric: score (0-100)
+  unit: score
+  description: 'EPIC-Bench embodied visual-grounding benchmark (Target Localization, Navigation, Manipulation stages;
+    human-annotated image/text/mask tuples); this id: TL — Embodied context.'
+  paper: https://arxiv.org/abs/2605.17070
+  year: '2026'
+  item_count: 6.6k annotated tuples, 23 tasks
+  source_session: S326
+- id: epic_bench_tl_spatial_relation
+  name: EPIC-Bench TL — Spatial relation
+  category: embodied
+  metric: score (0-100)
+  unit: score
+  description: 'EPIC-Bench embodied visual-grounding benchmark (Target Localization, Navigation, Manipulation stages;
+    human-annotated image/text/mask tuples); this id: TL — Spatial relation.'
+  paper: https://arxiv.org/abs/2605.17070
+  year: '2026'
+  item_count: 6.6k annotated tuples, 23 tasks
+  source_session: S326
+- id: omnidocbench_v1_5_composite
+  name: OmniDocBench v1.5 (Overall Composite)
+  category: document-parsing
+  metric: composite score
+  unit: score
+  description: OmniDocBench document-parsing benchmark (nine document sources, layout/attribute labels); composite
+    = ((1-Text Edit)x100 + Table TEDS + Formula CDM)/3 on v1.5.
+  paper: https://arxiv.org/abs/2412.07626
+  github: https://github.com/opendatalab/OmniDocBench
+  year: '2024'
+  license: Apache-2.0
+  source_session: S326
+- id: charxiv_reasoning
+  name: CharXiv Reasoning
+  category: vision-language
+  metric: accuracy
+  unit: '%'
+  description: Chart understanding on real arXiv charts; the reasoning questions require synthesizing information
+    across complex visual elements; GPT-graded short answers.
+  paper: https://arxiv.org/abs/2406.18521
+  github: https://github.com/princeton-nlp/CharXiv
+  year: '2024'
+  item_count: 2,323 charts
+  leaderboard: https://charxiv.github.io
+  source_session: S326
+- id: mathvista
+  name: MathVista
+  category: vision-math
+  metric: accuracy
+  unit: '%'
+  description: Mathematical reasoning in visual contexts drawn from 28 existing multimodal datasets plus IQTest,
+    FunctionQA and PaperQA; usually reported on testmini.
+  paper: https://arxiv.org/abs/2310.02255
+  github: https://github.com/lupantech/MathVista
+  year: '2023'
+  item_count: 6,141 examples
+  leaderboard: https://mathvista.github.io
+  source_session: S326
+- id: gaia
+  name: GAIA
+  category: agent
+  metric: accuracy
+  unit: '%'
+  description: 'General AI Assistants: real-world questions needing reasoning, multimodality, web browsing and tool
+    use, conceptually simple for humans; exact-answer accuracy across 3 levels.'
+  paper: https://arxiv.org/abs/2311.12983
+  year: '2023'
+  item_count: 466 questions
+  leaderboard: https://huggingface.co/gaia-benchmark
+  source_session: S326
+- id: mmlu-pro
+  name: MMLU-Pro
+  category: knowledge
+  metric: accuracy
+  unit: '%'
+  description: Harder, reasoning-focused MMLU successor with ten answer options and trivial/noisy MMLU questions
+    removed; usually 5-shot CoT accuracy.
+  paper: https://arxiv.org/abs/2406.01574
+  github: https://github.com/TIGER-AI-Lab/MMLU-Pro
+  year: '2024'
+  license: MIT
+  leaderboard: https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro
+  source_session: S326
+- id: mmmu_val
+  name: MMMU (validation)
+  category: vision-language
+  metric: accuracy
+  unit: '%'
+  description: 'Massive Multi-discipline Multimodal Understanding: college-level multimodal questions over 30 subjects
+    and 183 subfields with heterogeneous image types; this id = validation split accuracy.'
+  paper: https://arxiv.org/abs/2311.16502
+  github: https://github.com/MMMU-Benchmark/MMMU
+  year: '2023'
+  item_count: 11.5K questions
+  leaderboard: https://huggingface.co/datasets/MMMU/MMMU
+  source_session: S326
+- id: mmstar
+  name: MMStar
+  category: vision-language
+  metric: accuracy
+  unit: '%'
+  description: Vision-indispensable multimodal benchmark of human-selected samples designed to avoid questions answerable
+    without the image or leaked into training data.
+  paper: https://arxiv.org/abs/2403.20330
+  year: '2024'
+  item_count: 1,500 samples
+  source_session: S326
+- id: matbench_discovery_f1
+  name: Matbench Discovery (F1)
+  category: physics-materials
+  metric: F1
+  unit: 0-1
+  description: Evaluation framework for ML energy models used as pre-filters in high-throughput stable-crystal searches;
+    F1 for thermodynamic stability classification on the WBM test set.
+  paper: https://arxiv.org/abs/2308.14920
+  github: https://github.com/janosh/matbench-discovery
+  year: '2023'
+  leaderboard: https://matbench-discovery.materialsproject.org/
+  source_session: S326
+- id: gso
+  name: GSO
+  category: coding
+  metric: opt@1
+  unit: '%'
+  description: 'Software-optimization benchmark: given a codebase and a performance test, the agent must improve
+    runtime efficiency, measured against the expert developer optimization commit.'
+  paper: https://arxiv.org/abs/2505.23671
+  github: https://github.com/gso-bench/gso
+  year: '2025'
+  item_count: 102 tasks (10 codebases)
+  leaderboard: https://gso-bench.github.io/
+  source_session: S326
+- id: mast_cpc
+  name: MAST — CPC-Bench (clinico-pathological)
+  category: medical-ai
+  metric: score
+  unit: score
+  description: 'MAST (Medical AI Superintelligence Test, ARISE AI Research Network; preview): multi-benchmark suite
+    measuring whether AI can safely and effectively support clinical decisions; this id: CPC-Bench (clinico-pathological).'
+  year: '2026'
+  leaderboard: https://www.arise-ai.org/mast/technical
+  source_session: S326
+- id: mast_diagnostic
+  name: MAST — Diagnostic Reasoning
+  category: medical-ai
+  metric: score
+  unit: score
+  description: 'MAST (Medical AI Superintelligence Test, ARISE AI Research Network; preview): multi-benchmark suite
+    measuring whether AI can safely and effectively support clinical decisions; this id: Diagnostic Reasoning.'
+  year: '2026'
+  leaderboard: https://www.arise-ai.org/mast/technical
+  source_session: S326
+- id: mast_noharm_v2_safety
+  name: MAST — First Do NOHARM v2 Safety
+  category: medical-ai
+  metric: score
+  unit: score
+  description: 'MAST (Medical AI Superintelligence Test, ARISE AI Research Network; preview): multi-benchmark suite
+    measuring whether AI can safely and effectively support clinical decisions; this id: First Do NOHARM v2 Safety.'
+  year: '2026'
+  leaderboard: https://www.arise-ai.org/mast/technical
+  source_session: S326
+- id: mast_management
+  name: MAST — Management Reasoning
+  category: medical-ai
+  metric: score
+  unit: score
+  description: 'MAST (Medical AI Superintelligence Test, ARISE AI Research Network; preview): multi-benchmark suite
+    measuring whether AI can safely and effectively support clinical decisions; this id: Management Reasoning.'
+  year: '2026'
+  leaderboard: https://www.arise-ai.org/mast/technical
+  source_session: S326
+- id: mast_reasoning
+  name: MAST — Medical Reasoning
+  category: medical-ai
+  metric: score
+  unit: score
+  description: 'MAST (Medical AI Superintelligence Test, ARISE AI Research Network; preview): multi-benchmark suite
+    measuring whether AI can safely and effectively support clinical decisions; this id: Medical Reasoning.'
+  year: '2026'
+  leaderboard: https://www.arise-ai.org/mast/technical
+  source_session: S326
+- id: mast_images
+  name: MAST — Medical Images
+  category: medical-ai
+  metric: score
+  unit: score
+  description: 'MAST (Medical AI Superintelligence Test, ARISE AI Research Network; preview): multi-benchmark suite
+    measuring whether AI can safely and effectively support clinical decisions; this id: Medical Images.'
+  year: '2026'
+  leaderboard: https://www.arise-ai.org/mast/technical
+  source_session: S326
+- id: mast_multimodal
+  name: MAST — Multimodal
+  category: medical-ai
+  metric: score
+  unit: score
+  description: 'MAST (Medical AI Superintelligence Test, ARISE AI Research Network; preview): multi-benchmark suite
+    measuring whether AI can safely and effectively support clinical decisions; this id: Multimodal.'
+  year: '2026'
+  leaderboard: https://www.arise-ai.org/mast/technical
+  source_session: S326
+- id: mast_radiology
+  name: MAST — Radiology (ReXrank Mini)
+  category: medical-ai
+  metric: score
+  unit: score
+  description: 'MAST (Medical AI Superintelligence Test, ARISE AI Research Network; preview): multi-benchmark suite
+    measuring whether AI can safely and effectively support clinical decisions; this id: Radiology (ReXrank Mini).'
+  year: '2026'
+  leaderboard: https://www.arise-ai.org/mast/technical
+  source_session: S326
+- id: mast_agentic
+  name: MAST — Agentic (MedAgentBench v2)
+  category: medical-ai
+  metric: score
+  unit: score
+  description: 'MAST (Medical AI Superintelligence Test, ARISE AI Research Network; preview): multi-benchmark suite
+    measuring whether AI can safely and effectively support clinical decisions; this id: Agentic (MedAgentBench
+    v2).'
+  year: '2026'
+  leaderboard: https://www.arise-ai.org/mast/technical
+  source_session: S326
+- id: arc_agi_3_provider_adapter_harness
+  name: ARC-AGI-3 Semi-Private (provider-adapter harness)
+  category: agent
+  metric: '% solved'
+  unit: '%'
+  description: ARC-AGI-3 interactive abstract-reasoning games (semi-private set) evaluated with ARC Prize's provider-adapter
+    harness; not comparable with standard-harness ARC-AGI-3 numbers.
+  year: '2026'
+  leaderboard: https://arcprize.org/arc-agi/3/
+  source_session: S326
+- id: cursorbench_4_1
+  name: CursorBench 4.1
+  category: coding
+  metric: score
+  unit: '%'
+  description: Cursor's internal agentic coding benchmark (v4.1) of real Cursor coding tasks, scores published by
+    Cursor; successor to v4.0, not comparable.
+  year: '2026'
+  leaderboard: https://cursor.com/cursorbench
+  source_session: S326
+- id: automationbench
+  name: AutomationBench
+  category: agent
+  metric: score
+  unit: '%'
+  description: Zapier benchmark for evaluating AI agents on realistic end-to-end business workflows spanning many
+    SaaS tools.
+  github: https://github.com/zapier/AutomationBench
+  year: '2026'
+  source_session: S326
+- id: automationbench_1_0_6
+  name: AutomationBench 1.0.6 (OpenAI-reported)
+  category: agent
+  metric: score
+  unit: '%'
+  description: Zapier AutomationBench v1.0.6 business-workflow agent benchmark, values as reported by OpenAI per
+    reasoning effort.
+  github: https://github.com/zapier/AutomationBench
+  year: '2026'
+  source_session: S326
+
+# --- S326 (2026-11-19): dataset metadata for heavily-scored benchmarks, from primary dataset/paper pages ---
+- id: aa_omniscience_index
+  name: AA-Omniscience Index
+  category: knowledge
+  metric: omniscience index
+  unit: -100..100
+  description: 'Artificial Analysis knowledge-reliability benchmark: open-answer questions from authoritative sources
+    across six domains; the Omniscience Index rewards correct answers and penalises hallucinated (incorrect) answers
+    relative to abstaining.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2025'
+  item_count: 6,000 questions (v1)
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_index_business
+  name: AA-Omniscience Index — Business
+  category: knowledge
+  metric: omniscience index
+  unit: -100..100
+  description: 'Artificial Analysis knowledge-reliability benchmark: open-answer questions from authoritative sources
+    across six domains; the Omniscience Index rewards correct answers and penalises hallucinated (incorrect) answers
+    relative to abstaining.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2025'
+  item_count: 6,000 questions (v1)
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_index_health
+  name: AA-Omniscience Index — Health
+  category: knowledge
+  metric: omniscience index
+  unit: -100..100
+  description: 'Artificial Analysis knowledge-reliability benchmark: open-answer questions from authoritative sources
+    across six domains; the Omniscience Index rewards correct answers and penalises hallucinated (incorrect) answers
+    relative to abstaining.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2025'
+  item_count: 6,000 questions (v1)
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_index_humanities_social
+  name: AA-Omniscience Index — Humanities & Social Sciences
+  category: knowledge
+  metric: omniscience index
+  unit: -100..100
+  description: 'Artificial Analysis knowledge-reliability benchmark: open-answer questions from authoritative sources
+    across six domains; the Omniscience Index rewards correct answers and penalises hallucinated (incorrect) answers
+    relative to abstaining.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2025'
+  item_count: 6,000 questions (v1)
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_index_law
+  name: AA-Omniscience Index — Law
+  category: knowledge
+  metric: omniscience index
+  unit: -100..100
+  description: 'Artificial Analysis knowledge-reliability benchmark: open-answer questions from authoritative sources
+    across six domains; the Omniscience Index rewards correct answers and penalises hallucinated (incorrect) answers
+    relative to abstaining.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2025'
+  item_count: 6,000 questions (v1)
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_index_stem
+  name: AA-Omniscience Index — Science, Engineering & Mathematics
+  category: knowledge
+  metric: omniscience index
+  unit: -100..100
+  description: 'Artificial Analysis knowledge-reliability benchmark: open-answer questions from authoritative sources
+    across six domains; the Omniscience Index rewards correct answers and penalises hallucinated (incorrect) answers
+    relative to abstaining.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2025'
+  item_count: 6,000 questions (v1)
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_index_swe
+  name: AA-Omniscience Index — Software Engineering
+  category: knowledge
+  metric: omniscience index
+  unit: -100..100
+  description: 'Artificial Analysis knowledge-reliability benchmark: open-answer questions from authoritative sources
+    across six domains; the Omniscience Index rewards correct answers and penalises hallucinated (incorrect) answers
+    relative to abstaining.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2025'
+  item_count: 6,000 questions (v1)
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_v1_1_index
+  name: AA-Omniscience v1.1 — Index
+  category: knowledge
+  metric: score
+  unit: '%'
+  description: 'AA-Omniscience v1.1 (revised, smaller question set used in AA Intelligence Index v5): knowledge
+    recall with a hallucination penalty across six domains.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2026'
+  item_count: 3,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_v1_1_acc
+  name: AA-Omniscience v1.1 — accuracy
+  category: knowledge
+  metric: score
+  unit: '%'
+  description: 'AA-Omniscience v1.1 (revised, smaller question set used in AA Intelligence Index v5): knowledge
+    recall with a hallucination penalty across six domains.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2026'
+  item_count: 3,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_v1_1_hallucination_rate_lower_better
+  name: AA-Omniscience v1.1 — hallucination rate (lower better)
+  category: knowledge
+  metric: score
+  unit: '%'
+  description: 'AA-Omniscience v1.1 (revised, smaller question set used in AA Intelligence Index v5): knowledge
+    recall with a hallucination penalty across six domains.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2026'
+  item_count: 3,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_v1_1_domain_business
+  name: AA-Omniscience v1.1 — Business
+  category: knowledge
+  metric: score
+  unit: '%'
+  description: 'AA-Omniscience v1.1 (revised, smaller question set used in AA Intelligence Index v5): knowledge
+    recall with a hallucination penalty across six domains.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2026'
+  item_count: 3,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_v1_1_domain_health
+  name: AA-Omniscience v1.1 — Health
+  category: knowledge
+  metric: score
+  unit: '%'
+  description: 'AA-Omniscience v1.1 (revised, smaller question set used in AA Intelligence Index v5): knowledge
+    recall with a hallucination penalty across six domains.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2026'
+  item_count: 3,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_v1_1_domain_humanities_social_sciences
+  name: AA-Omniscience v1.1 — Humanities & Social Sciences
+  category: knowledge
+  metric: score
+  unit: '%'
+  description: 'AA-Omniscience v1.1 (revised, smaller question set used in AA Intelligence Index v5): knowledge
+    recall with a hallucination penalty across six domains.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2026'
+  item_count: 3,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_v1_1_domain_law
+  name: AA-Omniscience v1.1 — Law
+  category: knowledge
+  metric: score
+  unit: '%'
+  description: 'AA-Omniscience v1.1 (revised, smaller question set used in AA Intelligence Index v5): knowledge
+    recall with a hallucination penalty across six domains.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2026'
+  item_count: 3,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_v1_1_domain_science_engineering_mathematics
+  name: AA-Omniscience v1.1 — Science, Engineering & Mathematics
+  category: knowledge
+  metric: score
+  unit: '%'
+  description: 'AA-Omniscience v1.1 (revised, smaller question set used in AA Intelligence Index v5): knowledge
+    recall with a hallucination penalty across six domains.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2026'
+  item_count: 3,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_v1_1_domain_software_engineering
+  name: AA-Omniscience v1.1 — Software Engineering
+  category: knowledge
+  metric: score
+  unit: '%'
+  description: 'AA-Omniscience v1.1 (revised, smaller question set used in AA Intelligence Index v5): knowledge
+    recall with a hallucination penalty across six domains.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2026'
+  item_count: 3,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_v1_1_private_net
+  name: AA-Omniscience v1.1 — private split net
+  category: knowledge
+  metric: score
+  unit: '%'
+  description: 'AA-Omniscience v1.1 (revised, smaller question set used in AA Intelligence Index v5): knowledge
+    recall with a hallucination penalty across six domains.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2026'
+  item_count: 3,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: aa_omniscience_v1_1_public_net
+  name: AA-Omniscience v1.1 — public split net
+  category: knowledge
+  metric: score
+  unit: '%'
+  description: 'AA-Omniscience v1.1 (revised, smaller question set used in AA Intelligence Index v5): knowledge
+    recall with a hallucination penalty across six domains.'
+  paper: https://arxiv.org/abs/2511.13029
+  year: '2026'
+  item_count: 3,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/omniscience
+  source_session: S326B
+- id: gpqa_diamond_aa
+  name: GPQA Diamond (Artificial Analysis run)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Graduate-level, Google-proof multiple-choice science questions (biology, physics, chemistry) from
+    the GPQA Diamond subset, where experts are correct and most non-experts fail; accuracy (%). Run by Artificial
+    Analysis in its own harness.
+  paper: https://arxiv.org/abs/2311.12022
+  year: '2023'
+  item_count: 198 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/gpqa-diamond
+  source_session: S326B
+- id: gpqa_diamond_epoch
+  name: GPQA Diamond (Epoch AI run)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Graduate-level, Google-proof multiple-choice science questions (biology, physics, chemistry) from
+    the GPQA Diamond subset, where experts are correct and most non-experts fail; accuracy (%). Run by Epoch AI
+    Benchmarking Hub.
+  paper: https://arxiv.org/abs/2311.12022
+  year: '2023'
+  item_count: 198 questions
+  leaderboard: https://epoch.ai/benchmarks/gpqa-diamond
+  source_session: S326B
+- id: gpqa_diamond_epoch_raw
+  name: GPQA Diamond (Epoch AI run) (raw best score)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Graduate-level, Google-proof multiple-choice science questions (biology, physics, chemistry) from
+    the GPQA Diamond subset, where experts are correct and most non-experts fail; accuracy (%). Run by Epoch AI
+    Benchmarking Hub.
+  paper: https://arxiv.org/abs/2311.12022
+  year: '2023'
+  item_count: 198 questions
+  leaderboard: https://epoch.ai/benchmarks/gpqa-diamond
+  source_session: S326B
+- id: gpqa_diamond_epoch_v2
+  name: GPQA Diamond (Epoch AI run) (2026-11 re-published)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Graduate-level, Google-proof multiple-choice science questions (biology, physics, chemistry) from
+    the GPQA Diamond subset, where experts are correct and most non-experts fail; accuracy (%). Run by Epoch AI
+    Benchmarking Hub.
+  paper: https://arxiv.org/abs/2311.12022
+  year: '2023'
+  item_count: 198 questions
+  leaderboard: https://epoch.ai/benchmarks/gpqa-diamond
+  source_session: S326B
+- id: gdpval_aa_v2_1
+  name: GDPval-AA v2.1 (normalized)
+  category: agent
+  metric: normalized Elo / win rate
+  unit: score
+  description: 'Artificial Analysis run of OpenAI''s GDPval gold subset: real-world economically valuable knowledge-work
+    tasks across 44 occupations, models produce deliverables in an agentic harness and are compared via pairwise
+    judging (Elo-based).'
+  paper: https://arxiv.org/abs/2510.04374
+  year: '2025'
+  item_count: 220 tasks (open gold subset of 1,320)
+  leaderboard: https://artificialanalysis.ai/evaluations/gdpval-aa
+  source_session: S326B
+- id: gdpval_aa_v2
+  name: GDPval-AA v2
+  category: agent
+  metric: normalized Elo / win rate
+  unit: score
+  description: 'Artificial Analysis run of OpenAI''s GDPval gold subset: real-world economically valuable knowledge-work
+    tasks across 44 occupations, models produce deliverables in an agentic harness and are compared via pairwise
+    judging (Elo-based).'
+  paper: https://arxiv.org/abs/2510.04374
+  year: '2025'
+  item_count: 220 tasks (open gold subset of 1,320)
+  leaderboard: https://artificialanalysis.ai/evaluations/gdpval-aa
+  source_session: S326B
+- id: gdpval_aa
+  name: GDPval-AA
+  category: agent
+  metric: normalized Elo / win rate
+  unit: score
+  description: 'Artificial Analysis run of OpenAI''s GDPval gold subset: real-world economically valuable knowledge-work
+    tasks across 44 occupations, models produce deliverables in an agentic harness and are compared via pairwise
+    judging (Elo-based).'
+  paper: https://arxiv.org/abs/2510.04374
+  year: '2025'
+  item_count: 220 tasks (open gold subset of 1,320)
+  leaderboard: https://artificialanalysis.ai/evaluations/gdpval-aa
+  source_session: S326B
+- id: aa_briefcase_v1_1
+  name: AA-Briefcase v1.1 (Elo)
+  category: agent
+  metric: Elo / rubric pass rate
+  unit: score
+  description: 'Artificial Analysis agentic knowledge-work benchmark: multi-week professional projects (data science,
+    product management, corporate strategy) with thousands of input files; graded by rubrics and pairwise judging.'
+  year: '2026'
+  item_count: 4 projects, 91 tasks
+  leaderboard: https://artificialanalysis.ai/evaluations/aa-briefcase
+  source_session: S326B
+- id: aa_briefcase_v1_1_rubric_pass_rate
+  name: AA-Briefcase v1.1 — rubric pass rate
+  category: agent
+  metric: Elo / rubric pass rate
+  unit: score
+  description: 'Artificial Analysis agentic knowledge-work benchmark: multi-week professional projects (data science,
+    product management, corporate strategy) with thousands of input files; graded by rubrics and pairwise judging.'
+  year: '2026'
+  item_count: 4 projects, 91 tasks
+  leaderboard: https://artificialanalysis.ai/evaluations/aa-briefcase
+  source_session: S326B
+- id: aa_briefcase_v1_1_rubric_pass_docx
+  name: AA-Briefcase v1.1 — rubric pass (docx tasks)
+  category: agent
+  metric: Elo / rubric pass rate
+  unit: score
+  description: 'Artificial Analysis agentic knowledge-work benchmark: multi-week professional projects (data science,
+    product management, corporate strategy) with thousands of input files; graded by rubrics and pairwise judging.'
+  year: '2026'
+  item_count: 4 projects, 91 tasks
+  leaderboard: https://artificialanalysis.ai/evaluations/aa-briefcase
+  source_session: S326B
+- id: aa_briefcase_v1_1_rubric_pass_pdf
+  name: AA-Briefcase v1.1 — rubric pass (pdf tasks)
+  category: agent
+  metric: Elo / rubric pass rate
+  unit: score
+  description: 'Artificial Analysis agentic knowledge-work benchmark: multi-week professional projects (data science,
+    product management, corporate strategy) with thousands of input files; graded by rubrics and pairwise judging.'
+  year: '2026'
+  item_count: 4 projects, 91 tasks
+  leaderboard: https://artificialanalysis.ai/evaluations/aa-briefcase
+  source_session: S326B
+- id: aa_briefcase_v1_1_rubric_pass_pptx
+  name: AA-Briefcase v1.1 — rubric pass (pptx tasks)
+  category: agent
+  metric: Elo / rubric pass rate
+  unit: score
+  description: 'Artificial Analysis agentic knowledge-work benchmark: multi-week professional projects (data science,
+    product management, corporate strategy) with thousands of input files; graded by rubrics and pairwise judging.'
+  year: '2026'
+  item_count: 4 projects, 91 tasks
+  leaderboard: https://artificialanalysis.ai/evaluations/aa-briefcase
+  source_session: S326B
+- id: aa_briefcase_v1_1_rubric_pass_xlsx
+  name: AA-Briefcase v1.1 — rubric pass (xlsx tasks)
+  category: agent
+  metric: Elo / rubric pass rate
+  unit: score
+  description: 'Artificial Analysis agentic knowledge-work benchmark: multi-week professional projects (data science,
+    product management, corporate strategy) with thousands of input files; graded by rubrics and pairwise judging.'
+  year: '2026'
+  item_count: 4 projects, 91 tasks
+  leaderboard: https://artificialanalysis.ai/evaluations/aa-briefcase
+  source_session: S326B
+- id: automationbench_aa
+  name: AutomationBench-AA
+  category: agent
+  metric: score
+  unit: '%'
+  description: 'Artificial Analysis agentic SaaS-workflow benchmark: business workflows across six domains in simulated
+    apps (Gmail, Sheets, Slack, Salesforce, Zendesk, Jira, HubSpot), graded on end-state assertions/objectives.'
+  year: '2026'
+  item_count: 657 tasks (6 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/automationbench-aa
+  source_session: S326B
+- id: automationbench_aa_completion
+  name: AutomationBench-AA — objective completion
+  category: agent
+  metric: score
+  unit: '%'
+  description: 'Artificial Analysis agentic SaaS-workflow benchmark: business workflows across six domains in simulated
+    apps (Gmail, Sheets, Slack, Salesforce, Zendesk, Jira, HubSpot), graded on end-state assertions/objectives.'
+  year: '2026'
+  item_count: 657 tasks (6 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/automationbench-aa
+  source_session: S326B
+- id: automationbench_aa_completion_finance
+  name: AutomationBench-AA — completion (Finance)
+  category: agent
+  metric: score
+  unit: '%'
+  description: 'Artificial Analysis agentic SaaS-workflow benchmark: business workflows across six domains in simulated
+    apps (Gmail, Sheets, Slack, Salesforce, Zendesk, Jira, HubSpot), graded on end-state assertions/objectives.'
+  year: '2026'
+  item_count: 657 tasks (6 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/automationbench-aa
+  source_session: S326B
+- id: automationbench_aa_completion_hr
+  name: AutomationBench-AA — completion (HR)
+  category: agent
+  metric: score
+  unit: '%'
+  description: 'Artificial Analysis agentic SaaS-workflow benchmark: business workflows across six domains in simulated
+    apps (Gmail, Sheets, Slack, Salesforce, Zendesk, Jira, HubSpot), graded on end-state assertions/objectives.'
+  year: '2026'
+  item_count: 657 tasks (6 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/automationbench-aa
+  source_session: S326B
+- id: automationbench_aa_completion_marketing
+  name: AutomationBench-AA — completion (Marketing)
+  category: agent
+  metric: score
+  unit: '%'
+  description: 'Artificial Analysis agentic SaaS-workflow benchmark: business workflows across six domains in simulated
+    apps (Gmail, Sheets, Slack, Salesforce, Zendesk, Jira, HubSpot), graded on end-state assertions/objectives.'
+  year: '2026'
+  item_count: 657 tasks (6 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/automationbench-aa
+  source_session: S326B
+- id: automationbench_aa_completion_operations
+  name: AutomationBench-AA — completion (Operations)
+  category: agent
+  metric: score
+  unit: '%'
+  description: 'Artificial Analysis agentic SaaS-workflow benchmark: business workflows across six domains in simulated
+    apps (Gmail, Sheets, Slack, Salesforce, Zendesk, Jira, HubSpot), graded on end-state assertions/objectives.'
+  year: '2026'
+  item_count: 657 tasks (6 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/automationbench-aa
+  source_session: S326B
+- id: automationbench_aa_completion_sales
+  name: AutomationBench-AA — completion (Sales)
+  category: agent
+  metric: score
+  unit: '%'
+  description: 'Artificial Analysis agentic SaaS-workflow benchmark: business workflows across six domains in simulated
+    apps (Gmail, Sheets, Slack, Salesforce, Zendesk, Jira, HubSpot), graded on end-state assertions/objectives.'
+  year: '2026'
+  item_count: 657 tasks (6 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/automationbench-aa
+  source_session: S326B
+- id: automationbench_aa_completion_support
+  name: AutomationBench-AA — completion (Support)
+  category: agent
+  metric: score
+  unit: '%'
+  description: 'Artificial Analysis agentic SaaS-workflow benchmark: business workflows across six domains in simulated
+    apps (Gmail, Sheets, Slack, Salesforce, Zendesk, Jira, HubSpot), graded on end-state assertions/objectives.'
+  year: '2026'
+  item_count: 657 tasks (6 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/automationbench-aa
+  source_session: S326B
+- id: automationbench_aa_strict_pass1
+  name: AutomationBench-AA — strict pass@1
+  category: agent
+  metric: score
+  unit: '%'
+  description: 'Artificial Analysis agentic SaaS-workflow benchmark: business workflows across six domains in simulated
+    apps (Gmail, Sheets, Slack, Salesforce, Zendesk, Jira, HubSpot), graded on end-state assertions/objectives.'
+  year: '2026'
+  item_count: 657 tasks (6 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/automationbench-aa
+  source_session: S326B
+- id: terminal_bench_4_0_aa
+  name: Terminal-Bench 4.0 (Artificial Analysis run)
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: Terminal-Bench 4.0 long terminal tasks run by Artificial Analysis with mini-swe-agent, pass@1 averaged
+    over three repeats.
+  paper: https://arxiv.org/abs/2601.11868
+  year: '2026'
+  item_count: 66 tasks
+  leaderboard: https://artificialanalysis.ai/evaluations/terminalbench-4-0
+  source_session: S326B
+- id: terminal_bench_2_1_aa
+  name: Terminal-Bench 2.1 (Artificial Analysis run)
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: Terminal-Bench 2.x hard terminal tasks (89-task set, 2.1 revision) run by Artificial Analysis in
+    its own harness.
+  paper: https://arxiv.org/abs/2601.11868
+  year: '2026'
+  item_count: 89 tasks
+  leaderboard: https://artificialanalysis.ai/evaluations/terminalbench-2-1
+  source_session: S326B
+- id: terminal_bench_hard_aa
+  name: Terminal-Bench Hard (Artificial Analysis run)
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: Hard subset of Terminal-Bench tasks run by Artificial Analysis in its own harness (earlier Intelligence
+    Index component).
+  paper: https://arxiv.org/abs/2601.11868
+  leaderboard: https://artificialanalysis.ai/evaluations/terminalbench-hard
+  source_session: S326B
+- id: terminal_bench_2_kilo_harness
+  name: Terminal-Bench 2.0 — Kilo Code harness
+  category: agent
+  metric: completion rate
+  unit: '%'
+  description: Terminal-Bench 2.0 (89 terminal tasks) completion rate run by Kilo in its own agent harness.
+  paper: https://arxiv.org/abs/2601.11868
+  year: '2026'
+  item_count: 89 tasks
+  source_session: S326B
+- id: terminal_bench_science_aa
+  name: Terminal-Bench-Science 0.1 (Artificial Analysis run)
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: 'Terminal-Bench-Science: scientific-workflow terminal tasks across life, physical, mathematical,
+    engineering and earth science, pass@1 averaged over three repeats.'
+  year: '2026'
+  item_count: 70 tasks (19 life, 17 physical, 17 math, 9 engineering, 8 earth)
+  leaderboard: https://artificialanalysis.ai/evaluations/terminal-bench-science
+  source_session: S326B
+- id: terminal_bench_science_aa_earth
+  name: Terminal-Bench-Science 0.1 (Artificial Analysis run) — Earth science
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: 'Terminal-Bench-Science: scientific-workflow terminal tasks across life, physical, mathematical,
+    engineering and earth science, pass@1 averaged over three repeats.'
+  year: '2026'
+  item_count: 70 tasks (19 life, 17 physical, 17 math, 9 engineering, 8 earth)
+  leaderboard: https://artificialanalysis.ai/evaluations/terminal-bench-science
+  source_session: S326B
+- id: terminal_bench_science_aa_engineering
+  name: Terminal-Bench-Science 0.1 (Artificial Analysis run) — Engineering science
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: 'Terminal-Bench-Science: scientific-workflow terminal tasks across life, physical, mathematical,
+    engineering and earth science, pass@1 averaged over three repeats.'
+  year: '2026'
+  item_count: 70 tasks (19 life, 17 physical, 17 math, 9 engineering, 8 earth)
+  leaderboard: https://artificialanalysis.ai/evaluations/terminal-bench-science
+  source_session: S326B
+- id: terminal_bench_science_aa_life
+  name: Terminal-Bench-Science 0.1 (Artificial Analysis run) — Life science
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: 'Terminal-Bench-Science: scientific-workflow terminal tasks across life, physical, mathematical,
+    engineering and earth science, pass@1 averaged over three repeats.'
+  year: '2026'
+  item_count: 70 tasks (19 life, 17 physical, 17 math, 9 engineering, 8 earth)
+  leaderboard: https://artificialanalysis.ai/evaluations/terminal-bench-science
+  source_session: S326B
+- id: terminal_bench_science_aa_mathematical
+  name: Terminal-Bench-Science 0.1 (Artificial Analysis run) — Mathematical science
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: 'Terminal-Bench-Science: scientific-workflow terminal tasks across life, physical, mathematical,
+    engineering and earth science, pass@1 averaged over three repeats.'
+  year: '2026'
+  item_count: 70 tasks (19 life, 17 physical, 17 math, 9 engineering, 8 earth)
+  leaderboard: https://artificialanalysis.ai/evaluations/terminal-bench-science
+  source_session: S326B
+- id: terminal_bench_science_aa_physical
+  name: Terminal-Bench-Science 0.1 (Artificial Analysis run) — Physical science
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: 'Terminal-Bench-Science: scientific-workflow terminal tasks across life, physical, mathematical,
+    engineering and earth science, pass@1 averaged over three repeats.'
+  year: '2026'
+  item_count: 70 tasks (19 life, 17 physical, 17 math, 9 engineering, 8 earth)
+  leaderboard: https://artificialanalysis.ai/evaluations/terminal-bench-science
+  source_session: S326B
+- id: terminal_bench_science_vals_mini_swe_agent
+  name: Terminal-Bench Science (Vals AI run, Mini-SWE-agent)
+  category: agent
+  metric: pass rate
+  unit: '%'
+  description: Vals AI run of Terminal-Bench-Science with mini-swe-agent; all upstream tasks scored pass/fail with
+    an eight-hour agent phase.
+  year: '2026'
+  item_count: 70 tasks
+  leaderboard: https://www.vals.ai/benchmarks/terminal-bench-science
+  source_session: S326B
+- id: ifbench_aa
+  name: IFBench (Artificial Analysis run)
+  category: instruction-following
+  metric: accuracy
+  unit: '%'
+  description: 'IFBench: generalization of precise instruction following to new, verifiable output constraints;
+    run by Artificial Analysis.'
+  paper: https://arxiv.org/abs/2507.02833
+  year: '2025'
+  leaderboard: https://artificialanalysis.ai/evaluations/ifbench
+  source_session: S326B
+- id: tau2_telecom_aa
+  name: τ²-Bench Telecom (Artificial Analysis run)
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: tau2-bench Telecom dual-control domain (agent and simulated user both act with tools) run by Artificial
+    Analysis.
+  paper: https://arxiv.org/abs/2506.07982
+  year: '2025'
+  leaderboard: https://artificialanalysis.ai/evaluations/tau2-bench
+  source_session: S326B
+- id: tau2_banking_aa
+  name: τ³-Banking (Artificial Analysis run)
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: tau3-bench banking customer-support suite run by Artificial Analysis; outcomes graded against backend
+    database state, pass@1 averaged across repeats.
+  year: '2026'
+  item_count: 97 tasks
+  leaderboard: https://artificialanalysis.ai/evaluations/tau3-banking
+  source_session: S326B
+- id: livecodebench_aa
+  name: LiveCodeBench (Artificial Analysis run)
+  category: coding
+  metric: pass@1
+  unit: '%'
+  description: Contamination-limited competitive-programming benchmark with hidden tests, collected continuously
+    from contest platforms; run by Artificial Analysis.
+  paper: https://arxiv.org/abs/2403.07974
+  year: '2024'
+  leaderboard: https://artificialanalysis.ai/evaluations/livecodebench
+  source_session: S326B
+- id: aime_2025_aa
+  name: AIME 2025 (Artificial Analysis run)
+  category: math
+  metric: accuracy
+  unit: '%'
+  description: All problems of the 2025 American Invitational Mathematics Examination (integer answers 000-999),
+    run by Artificial Analysis.
+  year: '2025'
+  item_count: 30 problems
+  leaderboard: https://artificialanalysis.ai/evaluations/aime-2025
+  source_session: S326B
+- id: aime_vals
+  name: AIME (Vals AI run)
+  category: math
+  metric: accuracy
+  unit: '%'
+  description: Vals AI run on AIME competition problems (two 15-question papers per year, integer answers 0-999).
+  item_count: 30 questions per year (2 x 15)
+  leaderboard: https://www.vals.ai/benchmarks/aime
+  source_session: S326B
+- id: critpt_v2_aa
+  name: CritPt v2 (Artificial Analysis run)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: 'CritPt: unpublished research-level physics challenges created by active physicists; v2 is the revised
+    set, solved with a code-execution tool in an offline sandbox.'
+  paper: https://arxiv.org/abs/2509.26574
+  year: '2025'
+  item_count: 70 composite research challenges
+  leaderboard: https://artificialanalysis.ai/evaluations/critpt-v2
+  source_session: S326B
+- id: critpt_v2_hard_aa
+  name: CritPt v2 (Artificial Analysis run) — hard subset
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: 'CritPt: unpublished research-level physics challenges created by active physicists; v2 is the revised
+    set, solved with a code-execution tool in an offline sandbox.'
+  paper: https://arxiv.org/abs/2509.26574
+  year: '2025'
+  item_count: 70 composite research challenges
+  leaderboard: https://artificialanalysis.ai/evaluations/critpt-v2
+  source_session: S326B
+- id: hle_diamond_aa
+  name: HLE-Diamond (Artificial Analysis run)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Refined, revised subset of Humanity's Last Exam with each question labelled reasoning or knowledge
+    (272 with images), run by Artificial Analysis.
+  paper: https://arxiv.org/abs/2501.14249
+  year: '2026'
+  item_count: 1,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/hle-diamond
+  source_session: S326B
+- id: hle_diamond_aa_knowledge
+  name: HLE-Diamond (Artificial Analysis run) — knowledge partition
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Refined, revised subset of Humanity's Last Exam with each question labelled reasoning or knowledge
+    (272 with images), run by Artificial Analysis.
+  paper: https://arxiv.org/abs/2501.14249
+  year: '2026'
+  item_count: 1,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/hle-diamond
+  source_session: S326B
+- id: hle_diamond_aa_reasoning
+  name: HLE-Diamond (Artificial Analysis run) — reasoning partition
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Refined, revised subset of Humanity's Last Exam with each question labelled reasoning or knowledge
+    (272 with images), run by Artificial Analysis.
+  paper: https://arxiv.org/abs/2501.14249
+  year: '2026'
+  item_count: 1,000 questions
+  leaderboard: https://artificialanalysis.ai/evaluations/hle-diamond
+  source_session: S326B
+- id: hle_epoch
+  name: Humanity's Last Exam (Epoch AI run)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: 'Humanity''s Last Exam: expert-written closed-ended questions across 100+ subjects; run by Epoch
+    AI Benchmarking Hub.'
+  paper: https://arxiv.org/abs/2501.14249
+  year: '2025'
+  item_count: 2,500 questions
+  leaderboard: https://epoch.ai/benchmarks/hle
+  source_session: S326B
+- id: mlcr_aa
+  name: MLCR-AA (Medical Long Context Reasoning)
+  category: medical
+  metric: score
+  unit: '%'
+  description: 'Wisedocs Medical Long Context Reasoning benchmark run by Artificial Analysis: reasoning and multi-document
+    synthesis over long, fragmented medical records; private held-out set of the two hardest tiers, each question
+    run 3 times.'
+  year: '2026'
+  item_count: 60 questions (private held-out)
+  leaderboard: https://artificialanalysis.ai/evaluations/mlcr-aa
+  source_session: S326B
+- id: mlcr_aa_overall_v2
+  name: MLCR-AA (Medical Long Context Reasoning) — overall (v2 field)
+  category: medical
+  metric: score
+  unit: '%'
+  description: 'Wisedocs Medical Long Context Reasoning benchmark run by Artificial Analysis: reasoning and multi-document
+    synthesis over long, fragmented medical records; private held-out set of the two hardest tiers, each question
+    run 3 times.'
+  year: '2026'
+  item_count: 60 questions (private held-out)
+  leaderboard: https://artificialanalysis.ai/evaluations/mlcr-aa
+  source_session: S326B
+- id: mlcr_aa_accuracy
+  name: MLCR-AA (Medical Long Context Reasoning) — accuracy
+  category: medical
+  metric: score
+  unit: '%'
+  description: 'Wisedocs Medical Long Context Reasoning benchmark run by Artificial Analysis: reasoning and multi-document
+    synthesis over long, fragmented medical records; private held-out set of the two hardest tiers, each question
+    run 3 times.'
+  year: '2026'
+  item_count: 60 questions (private held-out)
+  leaderboard: https://artificialanalysis.ai/evaluations/mlcr-aa
+  source_session: S326B
+- id: mlcr_aa_accuracy_v2
+  name: MLCR-AA (Medical Long Context Reasoning) — accuracy (v2 field)
+  category: medical
+  metric: score
+  unit: '%'
+  description: 'Wisedocs Medical Long Context Reasoning benchmark run by Artificial Analysis: reasoning and multi-document
+    synthesis over long, fragmented medical records; private held-out set of the two hardest tiers, each question
+    run 3 times.'
+  year: '2026'
+  item_count: 60 questions (private held-out)
+  leaderboard: https://artificialanalysis.ai/evaluations/mlcr-aa
+  source_session: S326B
+- id: mlcr_aa_completeness
+  name: MLCR-AA (Medical Long Context Reasoning) — completeness
+  category: medical
+  metric: score
+  unit: '%'
+  description: 'Wisedocs Medical Long Context Reasoning benchmark run by Artificial Analysis: reasoning and multi-document
+    synthesis over long, fragmented medical records; private held-out set of the two hardest tiers, each question
+    run 3 times.'
+  year: '2026'
+  item_count: 60 questions (private held-out)
+  leaderboard: https://artificialanalysis.ai/evaluations/mlcr-aa
+  source_session: S326B
+- id: mlcr_aa_completeness_v2
+  name: MLCR-AA (Medical Long Context Reasoning) — completeness (v2 field)
+  category: medical
+  metric: score
+  unit: '%'
+  description: 'Wisedocs Medical Long Context Reasoning benchmark run by Artificial Analysis: reasoning and multi-document
+    synthesis over long, fragmented medical records; private held-out set of the two hardest tiers, each question
+    run 3 times.'
+  year: '2026'
+  item_count: 60 questions (private held-out)
+  leaderboard: https://artificialanalysis.ai/evaluations/mlcr-aa
+  source_session: S326B
+- id: mlcr_aa_conciseness
+  name: MLCR-AA (Medical Long Context Reasoning) — conciseness
+  category: medical
+  metric: score
+  unit: '%'
+  description: 'Wisedocs Medical Long Context Reasoning benchmark run by Artificial Analysis: reasoning and multi-document
+    synthesis over long, fragmented medical records; private held-out set of the two hardest tiers, each question
+    run 3 times.'
+  year: '2026'
+  item_count: 60 questions (private held-out)
+  leaderboard: https://artificialanalysis.ai/evaluations/mlcr-aa
+  source_session: S326B
+- id: aa_analyst_agent
+  name: AA-AnalystAgent
+  category: agent
+  metric: accuracy
+  unit: '%'
+  description: 'Artificial Analysis data-analysis agent benchmark: quantitative questions across business and scientific
+    domains, each tied to a folder of spreadsheets/documents; private question set.'
+  year: '2026'
+  item_count: 80 questions (14 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/aa-analyst-agent
+  source_session: S326B
+- id: aa_analyst_agent_pass1
+  name: AA-AnalystAgent — pass@1
+  category: agent
+  metric: accuracy
+  unit: '%'
+  description: 'Artificial Analysis data-analysis agent benchmark: quantitative questions across business and scientific
+    domains, each tied to a folder of spreadsheets/documents; private question set.'
+  year: '2026'
+  item_count: 80 questions (14 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/aa-analyst-agent
+  source_session: S326B
+- id: aa_analyst_agent_pass_at_5
+  name: AA-AnalystAgent — pass^5 (all 5 attempts)
+  category: agent
+  metric: accuracy
+  unit: '%'
+  description: 'Artificial Analysis data-analysis agent benchmark: quantitative questions across business and scientific
+    domains, each tied to a folder of spreadsheets/documents; private question set.'
+  year: '2026'
+  item_count: 80 questions (14 domains)
+  leaderboard: https://artificialanalysis.ai/evaluations/aa-analyst-agent
+  source_session: S326B
+- id: enterpriseops_gym_aa
+  name: EnterpriseOps-Gym-AA
+  category: agent
+  metric: pass rate
+  unit: '%'
+  description: 'EnterpriseOps-Gym (run by Artificial Analysis): agentic planning in a containerized enterprise sandbox
+    with many database tables and functional tools, over expert-curated tasks in mission-critical verticals.'
+  year: '2026'
+  item_count: 1,150 expert-curated tasks (upstream)
+  leaderboard: https://artificialanalysis.ai/evaluations/enterprise-ops-gym-aa
+  source_session: S326B
+- id: itbench_aa
+  name: ITBench-AA (SRE)
+  category: agent
+  metric: score
+  unit: '%'
+  description: IBM ITBench Kubernetes site-reliability incident tasks run by Artificial Analysis on offline snapshots,
+    3 repeats per task.
+  paper: https://arxiv.org/abs/2502.05352
+  year: '2025'
+  item_count: 59 incident tasks (40 public + 19 private)
+  leaderboard: https://artificialanalysis.ai/evaluations/itbench-aa
+  source_session: S326B
+- id: harvey_lab_aa_v1_1
+  name: Harvey LAB-AA v1.1 (hallucination-gated all-pass)
+  category: legal
+  metric: pass rate
+  unit: '%'
+  description: 'Artificial Analysis implementation of Harvey''s Legal Agent Benchmark: real-world legal work tasks
+    checked against source documents for hallucinations and graded by a judge panel on criteria.'
+  year: '2026'
+  item_count: 120 private tasks (24 practice areas)
+  leaderboard: https://artificialanalysis.ai/evaluations/harvey-lab-aa
+  source_session: S326B
+- id: harvey_lab_aa_mean_criteria
+  name: Harvey LAB-AA — mean criteria share
+  category: legal
+  metric: pass rate
+  unit: '%'
+  description: 'Artificial Analysis implementation of Harvey''s Legal Agent Benchmark: real-world legal work tasks
+    checked against source documents for hallucinations and graded by a judge panel on criteria.'
+  year: '2026'
+  item_count: 120 private tasks (24 practice areas)
+  leaderboard: https://artificialanalysis.ai/evaluations/harvey-lab-aa
+  source_session: S326B
+- id: frontiercode_2_0_aa
+  name: FrontierCode-AA 2.0 (Artificial Analysis run)
+  category: coding
+  metric: score
+  unit: '%'
+  description: Cognition's private agentic coding benchmark of tasks from real open-source repositories, graded
+    on whether a maintainer would merge the change (correctness, regression safety, style, conventions).
+  year: '2026'
+  item_count: 132 tasks
+  leaderboard: https://artificialanalysis.ai/evaluations/frontiercode-2-0
+  source_session: S326B
+- id: frontiercode_2_0
+  name: FrontierCode 2.0 (Cognition official)
+  category: coding
+  metric: score
+  unit: '%'
+  description: Cognition's private agentic coding benchmark of tasks from real open-source repositories, graded
+    on whether a maintainer would merge the change (correctness, regression safety, style, conventions).
+  year: '2026'
+  item_count: 132 tasks
+  leaderboard: https://cognition.ai/frontiercode
+  source_session: S326B
+- id: frontiercode_1_1_aa
+  name: FrontierCode 1.1 (Artificial Analysis run)
+  category: coding
+  metric: score
+  unit: '%'
+  description: Cognition's private agentic coding benchmark of tasks from real open-source repositories, graded
+    on whether a maintainer would merge the change (correctness, regression safety, style, conventions).
+  year: '2026'
+  item_count: 100-task Main set (of 150)
+  leaderboard: https://artificialanalysis.ai/evaluations/frontiercode
+  source_session: S326B
+- id: frontiercode_epoch
+  name: FrontierCode 1.1 (Epoch AI aggregation)
+  category: coding
+  metric: score
+  unit: '%'
+  description: Cognition's private agentic coding benchmark of tasks from real open-source repositories, graded
+    on whether a maintainer would merge the change (correctness, regression safety, style, conventions).
+  year: '2026'
+  item_count: 100 Main / 150 Extended tasks
+  leaderboard: https://epoch.ai/benchmarks/frontiercode
+  source_session: S326B
+- id: frontiercode
+  name: FrontierCode
+  category: coding
+  metric: score
+  unit: '%'
+  description: Cognition's private agentic coding benchmark of tasks from real open-source repositories, graded
+    on whether a maintainer would merge the change (correctness, regression safety, style, conventions).
+  year: '2026'
+  item_count: 100 Main / 150 Extended tasks
+  leaderboard: https://epoch.ai/benchmarks/frontiercode
+  source_session: S326B
+- id: arc_agi_2_epoch
+  name: ARC-AGI-2 (Epoch AI run)
+  category: reasoning
+  metric: pass@2
+  unit: '%'
+  description: 'ARC-AGI-2 grid abstract-reasoning tasks: infer the transformation rule from demonstrations and apply
+    it to a test input (two attempts); run by Epoch AI.'
+  paper: https://arxiv.org/abs/2505.11831
+  year: '2025'
+  item_count: 1,360 tasks (1,000 training + 360 evaluation)
+  leaderboard: https://epoch.ai/benchmarks/arc-agi-2
+  source_session: S326B
+- id: arc_agi_1_epoch
+  name: ARC-AGI-1 (Epoch AI run)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: 'Abstraction and Reasoning Corpus v1: few-shot grid input-output rule induction; run by Epoch AI.'
+  paper: https://arxiv.org/abs/1911.01547
+  year: '2019'
+  item_count: 400 evaluation tasks
+  leaderboard: https://epoch.ai/benchmarks/arc-agi
+  source_session: S326B
+- id: simpleqa_verified_epoch
+  name: SimpleQA Verified (Epoch AI run)
+  category: knowledge
+  metric: accuracy
+  unit: '%'
+  description: Short-form factuality benchmark derived from OpenAI SimpleQA with label/topic fixes; run by Epoch
+    AI.
+  paper: https://arxiv.org/abs/2509.07968
+  year: '2025'
+  item_count: 1,000 prompts
+  leaderboard: https://epoch.ai/benchmarks/simpleqa-verified
+  source_session: S326B
+- id: swe_bench_verified_epoch
+  name: SWE-bench Verified (Epoch AI run)
+  category: coding
+  metric: resolved
+  unit: '%'
+  description: Human-validated real GitHub issues; the model must produce a patch passing the repository tests.
+    Epoch runs 484 of the 500 samples.
+  paper: https://arxiv.org/abs/2310.06770
+  year: '2024'
+  item_count: 500 samples (484 used by Epoch)
+  leaderboard: https://epoch.ai/benchmarks/swe-bench-verified
+  source_session: S326B
+- id: math_level5_epoch
+  name: MATH Level 5 (Epoch AI run)
+  category: math
+  metric: accuracy
+  unit: '%'
+  description: Hardest (level 5) problems of the MATH competition-mathematics dataset; run by Epoch AI.
+  paper: https://arxiv.org/abs/2103.03874
+  year: '2021'
+  item_count: 1,324 level-5 problems (of 12,500)
+  leaderboard: https://epoch.ai/benchmarks/math-level-5
+  source_session: S326B
+- id: apex_agents_epoch
+  name: APEX-Agents (Epoch AI run)
+  category: agent
+  metric: pass@1
+  unit: '%'
+  description: Mercor APEX-Agents long-horizon professional-services tasks in simulated work worlds, graded by expert
+    rubrics (pass only if all criteria met); run by Epoch AI.
+  paper: https://arxiv.org/abs/2601.14242
+  year: '2026'
+  item_count: 480 tasks (33 worlds)
+  leaderboard: https://epoch.ai/benchmarks/apex-agents
+  source_session: S326B
+- id: mystery_game_puzzles_epoch
+  name: Mystery Game Puzzles (Epoch AI)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: 'Epoch AI puzzles from an undisclosed well-known game: pick the single best next move; the game identity
+    is kept secret to limit benchmark-specific preparation.'
+  item_count: 100 positions
+  leaderboard: https://epoch.ai/benchmarks/mystery-game-puzzles
+  source_session: S326B
+- id: mystery_game_puzzles_epoch_raw
+  name: Mystery Game Puzzles (Epoch AI) (raw best score)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: 'Epoch AI puzzles from an undisclosed well-known game: pick the single best next move; the game identity
+    is kept secret to limit benchmark-specific preparation.'
+  item_count: 100 positions
+  leaderboard: https://epoch.ai/benchmarks/mystery-game-puzzles
+  source_session: S326B
+- id: chess_puzzles_epoch_raw
+  name: Chess Puzzles (Epoch AI, raw best score)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Epoch AI programmatically generated chess positions with a single Stockfish-best move; raw best score
+    across scorers.
+  year: '2025'
+  item_count: 100 novel puzzles
+  leaderboard: https://epoch.ai/benchmarks/chess-puzzles
+  source_session: S326B
+- id: furniture_assembly_epoch
+  name: Furniture Assembly (Epoch AI)
+  category: vision-reasoning
+  metric: score
+  unit: '%'
+  description: 'Epoch AI spatial-reasoning benchmark: given photos of IKEA furniture builds and the manual, decide
+    whether the build is correct and identify the mistaken step.'
+  leaderboard: https://epoch.ai/benchmarks/furniture-assembly
+  source_session: S326B
+- id: furniture_assembly_epoch_raw
+  name: Furniture Assembly (Epoch AI) (raw best score)
+  category: vision-reasoning
+  metric: score
+  unit: '%'
+  description: 'Epoch AI spatial-reasoning benchmark: given photos of IKEA furniture builds and the manual, decide
+    whether the build is correct and identify the mistaken step.'
+  leaderboard: https://epoch.ai/benchmarks/furniture-assembly
+  source_session: S326B
+- id: ebr_bench_epoch
+  name: EBR-bench (Earthborne Rangers, Epoch AI)
+  category: agent
+  metric: score
+  unit: score
+  description: 'Epoch AI test of on-the-job learning: models repeatedly play the obscure card-based board game Earthborne
+    Rangers with note-taking, measuring improvement across playthroughs.'
+  leaderboard: https://epoch.ai/benchmarks/ebr-bench
+  source_session: S326B
+- id: mirrorcode_epoch
+  name: MirrorCode (Epoch AI)
+  category: coding
+  metric: score
+  unit: '%'
+  description: 'Epoch AI MirrorCode: re-implement target programs in mainstream (Go) and low-resource (Ada) languages
+    under very large token/time budgets; graded by behavioural tests.'
+  year: '2026'
+  item_count: 30 tasks (15 programs x 2 languages)
+  leaderboard: https://epoch.ai/benchmarks/mirrorcode
+  source_session: S326B
+- id: mirrorcode_epoch_2611
+  name: MirrorCode (Epoch AI) (2026-11 re-scored)
+  category: coding
+  metric: score
+  unit: '%'
+  description: 'Epoch AI MirrorCode: re-implement target programs in mainstream (Go) and low-resource (Ada) languages
+    under very large token/time budgets; graded by behavioural tests.'
+  year: '2026'
+  item_count: 30 tasks (15 programs x 2 languages)
+  leaderboard: https://epoch.ai/benchmarks/mirrorcode
+  source_session: S326B
+- id: dtbench_epoch
+  name: DTBench (Epoch AI, ECI-input scale)
+  category: reasoning
+  metric: normalized accuracy
+  unit: score
+  description: Redwood Research Decision Theory Benchmark (Newcomb-like problems), stored on Epoch's ECI-input scale
+    ((acc-0.4)/0.6).
+  item_count: 537 questions (407 scored)
+  leaderboard: https://epoch.ai/benchmarks/dtbench
+  source_session: S326B
+- id: lmca_epoch
+  name: LMCA (Epoch AI, ECI-input scale)
+  category: reasoning
+  metric: normalized score
+  unit: score
+  description: Redwood Research Language Model Conceptual Argumentation benchmark (expert-rated arguments), stored
+    on Epoch's ECI-input scale (score/85).
+  item_count: 560 position texts, 1,461 arguments
+  leaderboard: https://epoch.ai/benchmarks/lmca
+  source_session: S326B
+- id: frontiermath_tier1_3_v2_epoch_raw
+  name: FrontierMath Tiers 1-3 v2 (Epoch AI, raw best score)
+  category: math
+  metric: accuracy
+  unit: '%'
+  description: FrontierMath base set of original expert-vetted research-level problems with verifiable answers;
+    raw best score from Epoch benchmark_data.
+  paper: https://arxiv.org/abs/2411.04872
+  year: '2024'
+  item_count: 295 problems (Tiers 1-3)
+  leaderboard: https://epoch.ai/benchmarks/frontiermath-tier-4
+  source_session: S326B
+- id: runebench_attack_peak_xp_rate
+  name: RuneBench — Attack peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Attack skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_cooking_peak_xp_rate
+  name: RuneBench — Cooking peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Cooking skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_crafting_peak_xp_rate
+  name: RuneBench — Crafting peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Crafting skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_defence_peak_xp_rate
+  name: RuneBench — Defence peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Defence skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_firemaking_peak_xp_rate
+  name: RuneBench — Firemaking peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Firemaking skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_fishing_peak_xp_rate
+  name: RuneBench — Fishing peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Fishing skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_fletching_peak_xp_rate
+  name: RuneBench — Fletching peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Fletching skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_hitpoints_peak_xp_rate
+  name: RuneBench — Hitpoints peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Hitpoints skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_magic_peak_xp_rate
+  name: RuneBench — Magic peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Magic skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_mining_peak_xp_rate
+  name: RuneBench — Mining peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Mining skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_prayer_peak_xp_rate
+  name: RuneBench — Prayer peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Prayer skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_ranged_peak_xp_rate
+  name: RuneBench — Ranged peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Ranged skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_smithing_peak_xp_rate
+  name: RuneBench — Smithing peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Smithing skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_strength_peak_xp_rate
+  name: RuneBench — Strength peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Strength skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_thieving_peak_xp_rate
+  name: RuneBench — Thieving peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Thieving skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: runebench_woodcutting_peak_xp_rate
+  name: RuneBench — Woodcutting peak XP rate
+  category: agent
+  metric: peak XP/min
+  unit: XP/min
+  description: 'RuneBench: coding agents play RuneScape on an emulated server by writing TypeScript against an SDK,
+    with wiki notes available; this id: peak XP rate for the Woodcutting skill.'
+  year: '2026'
+  leaderboard: https://maxbittker.github.io/runebench/
+  source_session: S326B
+- id: hmmt_feb_2026
+  name: HMMT February 2026 (MathArena)
+  category: math
+  metric: accuracy
+  unit: '%'
+  description: Harvard-MIT Mathematics Tournament February 2026 final-answer problems evaluated by MathArena (ETH
+    Zurich SRI Lab / INSAIT) shortly after the competition.
+  year: '2026'
+  leaderboard: https://matharena.ai/
+  source_session: S326B
+- id: jevjudge_judgebench_acc
+  name: JEV-as-a-Judge — JudgeBench pairs accuracy
+  category: judge
+  metric: accuracy
+  unit: '%'
+  description: 'Judge-protocol rerun from the JEV-as-a-Judge paper: judges decide with a calibrated accept/escalate
+    protocol on public judging datasets (JudgeBench, RewardBench, HaluEval, final-answer adjudication).'
+  paper: https://arxiv.org/abs/2609.26550
+  year: '2026'
+  source_session: S326B
+- id: jevjudge_rewardbench_acc
+  name: JEV-as-a-Judge — RewardBench pairs accuracy
+  category: judge
+  metric: accuracy
+  unit: '%'
+  description: 'Judge-protocol rerun from the JEV-as-a-Judge paper: judges decide with a calibrated accept/escalate
+    protocol on public judging datasets (JudgeBench, RewardBench, HaluEval, final-answer adjudication).'
+  paper: https://arxiv.org/abs/2609.26550
+  year: '2026'
+  source_session: S326B
+- id: jevjudge_final_answer_acc
+  name: JEV-as-a-Judge — final-answer adjudication accuracy
+  category: judge
+  metric: accuracy
+  unit: '%'
+  description: 'Judge-protocol rerun from the JEV-as-a-Judge paper: judges decide with a calibrated accept/escalate
+    protocol on public judging datasets (JudgeBench, RewardBench, HaluEval, final-answer adjudication).'
+  paper: https://arxiv.org/abs/2609.26550
+  year: '2026'
+  source_session: S326B
+- id: jevjudge_halueval_acc
+  name: JEV-as-a-Judge — HaluEval QA accuracy
+  category: judge
+  metric: accuracy
+  unit: '%'
+  description: 'Judge-protocol rerun from the JEV-as-a-Judge paper: judges decide with a calibrated accept/escalate
+    protocol on public judging datasets (JudgeBench, RewardBench, HaluEval, final-answer adjudication).'
+  paper: https://arxiv.org/abs/2609.26550
+  year: '2026'
+  source_session: S326B
+- id: toolathlon
+  name: Toolathlon (Tool Decathlon)
+  category: agent
+  metric: pass rate
+  unit: '%'
+  description: Language-agent benchmark of long-horizon, multi-app tasks with realistic environment setup and execution-based
+    evaluation across many software applications and tools.
+  paper: https://arxiv.org/abs/2510.25726
+  year: '2025'
+  item_count: 32 apps, 604 tools
+  source_session: S326B
+- id: sre_bench_fully_solved
+  name: SRE-Bench — instances fully solved
+  category: cybersecurity
+  metric: fully solved
+  unit: '%'
+  description: Contamination-free reverse-engineering benchmark of private real-world programs hardened with in-house
+    anti-analysis mechanisms; deterministically graded tasks per binary instance.
+  paper: https://arxiv.org/abs/2608.11469
+  year: '2026'
+  item_count: 262 binary instances, 1,572 tasks
+  source_session: S326B
+- id: blueprint_bench_2
+  name: Blueprint-Bench 2 (normalized connectivity score)
+  category: vision-reasoning
+  metric: score
+  unit: score
+  description: 'Andon Labs spatial-reasoning benchmark: agents convert ~20 interior photos per apartment into a
+    2D floor plan, processing apartments sequentially with a persistent notepad; scored by layout/connectivity similarity.'
+  year: '2026'
+  item_count: 50 apartments
+  leaderboard: https://andonlabs.com/evals/blueprint-bench-2
+  source_session: S326B
+- id: blueprint_bench_2_raw_composite
+  name: Blueprint-Bench 2 — raw composite similarity
+  category: vision-reasoning
+  metric: score
+  unit: score
+  description: 'Andon Labs spatial-reasoning benchmark: agents convert ~20 interior photos per apartment into a
+    2D floor plan, processing apartments sequentially with a persistent notepad; scored by layout/connectivity similarity.'
+  year: '2026'
+  item_count: 50 apartments
+  leaderboard: https://andonlabs.com/evals/blueprint-bench-2
+  source_session: S326B
+- id: deepsecbench
+  name: DeepsecBench (Vercel) (F2)
+  category: cybersecurity
+  metric: score
+  unit: '%'
+  description: Vercel AI Gateway benchmark of how well models find security vulnerabilities in application code,
+    scored against golden findings.
+  year: '2026'
+  leaderboard: https://vercel.com/ai-gateway/leaderboards/deepsecbench
+  source_session: S326B
+- id: deepsecbench_precision
+  name: DeepsecBench (Vercel) — precision
+  category: cybersecurity
+  metric: score
+  unit: '%'
+  description: Vercel AI Gateway benchmark of how well models find security vulnerabilities in application code,
+    scored against golden findings.
+  year: '2026'
+  leaderboard: https://vercel.com/ai-gateway/leaderboards/deepsecbench
+  source_session: S326B
+- id: deepsecbench_recall
+  name: DeepsecBench (Vercel) — recall
+  category: cybersecurity
+  metric: score
+  unit: '%'
+  description: Vercel AI Gateway benchmark of how well models find security vulnerabilities in application code,
+    scored against golden findings.
+  year: '2026'
+  leaderboard: https://vercel.com/ai-gateway/leaderboards/deepsecbench
+  source_session: S326B
+- id: video_mmmu
+  name: Video-MMMU
+  category: video
+  metric: accuracy
+  unit: '%'
+  description: Knowledge acquisition from multi-discipline professional videos, with stage-aligned questions (perception,
+    comprehension, adaptation).
+  paper: https://arxiv.org/abs/2501.13826
+  year: '2025'
+  item_count: 300 videos, 900 questions
+  source_session: S326B
+- id: big_bench_audio
+  name: Big Bench Audio
+  category: audio
+  metric: accuracy
+  unit: '%'
+  description: Audio version of a subset of BIG-Bench Hard questions for evaluating reasoning of audio-input models.
+  year: '2024'
+  item_count: 1,000 audio recordings
+  leaderboard: https://huggingface.co/datasets/ArtificialAnalysis/big_bench_audio
+  source_session: S326B
+- id: balrog
+  name: BALROG
+  category: agent
+  metric: progress
+  unit: '%'
+  description: Agentic LLM/VLM benchmark on game environments of increasing difficulty, scoring fine-grained progress.
+  paper: https://arxiv.org/abs/2411.13543
+  year: '2024'
+  source_session: S326B
+- id: healthbench_hard
+  name: HealthBench Hard
+  category: medical
+  metric: rubric score
+  unit: '%'
+  description: 'Hard subset of OpenAI HealthBench: realistic open-ended health conversations graded against physician-written
+    rubric criteria.'
+  paper: https://arxiv.org/abs/2505.08775
+  year: '2025'
+  source_session: S326B
+- id: swe_bench_pro_public
+  name: SWE-Bench Pro (Public)
+  category: coding
+  metric: resolved
+  unit: '%'
+  description: Enterprise-level long-horizon software-engineering problems from actively maintained repositories;
+    public split.
+  paper: https://arxiv.org/abs/2509.16941
+  year: '2025'
+  item_count: 1,865 problems (full benchmark, 41 repos)
+  source_session: S326B
+- id: apex_accounting_pass1
+  name: APEX-Accounting (Mercor leaderboard) — Pass@1
+  category: finance
+  metric: score
+  unit: '%'
+  description: 'Mercor APEX-Accounting: accounting agent tasks in held-out simulated worlds graded with rubric criteria.'
+  year: '2026'
+  item_count: 100 tasks, 1,475 criteria
+  leaderboard: https://www.mercor.com/apex/apex-accounting-leaderboard/
+  source_session: S326B
+- id: apex_accounting_mean_score
+  name: APEX-Accounting (Mercor leaderboard) — mean rubric score
+  category: finance
+  metric: score
+  unit: '%'
+  description: 'Mercor APEX-Accounting: accounting agent tasks in held-out simulated worlds graded with rubric criteria.'
+  year: '2026'
+  item_count: 100 tasks, 1,475 criteria
+  leaderboard: https://www.mercor.com/apex/apex-accounting-leaderboard/
+  source_session: S326B
+- id: lech_mazur_writing
+  name: LLM Creative Story-Writing Benchmark (Lech Mazur)
+  category: creative
+  metric: judge score
+  unit: score
+  description: Tests how well LLMs incorporate 10 mandatory story elements (characters, objects, concepts, attributes,
+    motivations) into a short creative story, scored by a panel of LLM judges.
+  github: https://github.com/lechmazur/writing
+  item_count: 400 prompts
+  source_session: S326B
+- id: skillsbench_vals_openhands
+  name: SkillsBench (Vals AI run, OpenHands)
+  category: coding
+  metric: pass rate
+  unit: '%'
+  description: 'Vals AI run of SkillsBench: whether agents do better on software tasks when given reusable task-specific
+    skills (each model run with and without skills).'
+  year: '2026'
+  leaderboard: https://www.vals.ai/benchmarks/skillsbench
+  source_session: S326B
+- id: mysterymechanism_vals
+  name: Vals MysteryMechanism
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  description: Agents discover hidden mathematical relationships through noisy, costly experiments, simulating scientific
+    discovery.
+  year: '2026'
+  leaderboard: https://www.vals.ai/benchmarks/mysterymechanism
+  source_session: S326B
+- id: edgeevals_system_one_core
+  name: EdgeEvals Health System One — core
+  category: medical
+  metric: accuracy
+  unit: '%'
+  description: 'EdgeEvals Health (OpenMed) System One preview: decision models make bounded clinical decisions on
+    authored cases (triage, notes, criteria, coding, frontier); a severe error zeroes its group.'
+  year: '2026'
+  item_count: 993 decisions (all sections)
+  leaderboard: https://edgeevals.ai/system-one
+  source_session: S326B
+- id: edgeevals_system_one_triage
+  name: EdgeEvals Health System One — triage
+  category: medical
+  metric: accuracy
+  unit: '%'
+  description: 'EdgeEvals Health (OpenMed) System One preview: decision models make bounded clinical decisions on
+    authored cases (triage, notes, criteria, coding, frontier); a severe error zeroes its group.'
+  year: '2026'
+  item_count: 993 decisions (all sections)
+  leaderboard: https://edgeevals.ai/system-one
+  source_session: S326B
+- id: edgeevals_system_one_notes
+  name: EdgeEvals Health System One — notes
+  category: medical
+  metric: accuracy
+  unit: '%'
+  description: 'EdgeEvals Health (OpenMed) System One preview: decision models make bounded clinical decisions on
+    authored cases (triage, notes, criteria, coding, frontier); a severe error zeroes its group.'
+  year: '2026'
+  item_count: 993 decisions (all sections)
+  leaderboard: https://edgeevals.ai/system-one
+  source_session: S326B
+- id: edgeevals_system_one_criteria
+  name: EdgeEvals Health System One — criteria
+  category: medical
+  metric: accuracy
+  unit: '%'
+  description: 'EdgeEvals Health (OpenMed) System One preview: decision models make bounded clinical decisions on
+    authored cases (triage, notes, criteria, coding, frontier); a severe error zeroes its group.'
+  year: '2026'
+  item_count: 993 decisions (all sections)
+  leaderboard: https://edgeevals.ai/system-one
+  source_session: S326B
+- id: edgeevals_system_one_coding
+  name: EdgeEvals Health System One — coding
+  category: medical
+  metric: accuracy
+  unit: '%'
+  description: 'EdgeEvals Health (OpenMed) System One preview: decision models make bounded clinical decisions on
+    authored cases (triage, notes, criteria, coding, frontier); a severe error zeroes its group.'
+  year: '2026'
+  item_count: 993 decisions (all sections)
+  leaderboard: https://edgeevals.ai/system-one
+  source_session: S326B

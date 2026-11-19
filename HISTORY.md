@@ -1,5 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-11-19 (Session 326b): Gap sweep round 2
+
+Classified the 89 registered boards that had no linked scores and ingested the live ones (latest LMArena text/vision/search/document snapshots, AutoBaxBench, the official RoboCasa365 board on new `_2611` ids), finished the leftover safety/robotics boards, and added 142 more dataset-metadata entries. 17 models, 4 benchmarks and 170 scores, no existing value changed. Details are in Plans.md.
+
+## 2026-11-19 (Session 326): Registered-source gap sweep
+
+Audited every registered leaderboard, arXiv paper and dataset source for missing models, results and dataset facts. Five parallel readers re-read the active boards and the uncovered papers; every value was machine-checked against a verbatim line in the saved source. Added 84 models, 33 benchmarks and 1,664 scores, put re-scored boards (AA video arenas, DeepsecBench, EdgeEvals System One v0.2, Jev Decision Index 0.4.1, PAI-Bench) on new `_2611` ids, added 185 dataset-metadata entries (paper, GitHub, dataset page, year, item count), and corrected one misattributed WorldScape row set. Details are in Plans.md.
+
 ## 2026-11-19 (Session 325b): Gemini 4 Neon gap audit
 
 Re-checked the S325 sources. Added Artificial Analysis breakdowns that were left out (MKA by vertical and file type, AA-Omniscience v1.1 by domain, AA-Briefcase by file type) for every model on the fetched AA pages, and the full primary leaderboards behind numbers Google and BenchLM quoted: CursorBench 4.1, the official Terminal-Bench 4.1 board, CWE-bench v2 and Cognition FrontierCode. Corrected one S325 attribution (DeepSeek-V4.1-Flash 1017 on CWE-bench v2) and exposed the new ids in the Cyber-Coding and Frontier Compare tabs. 37 benchmarks and 1,353 scores, no existing value changed. Details are in Plans.md.
